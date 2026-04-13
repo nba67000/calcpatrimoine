@@ -31,8 +31,7 @@ export const metadata: Metadata = {
     'IFI',
     'plus-value immobilière'
   ],
-  authors: [{ name: 'Nicolas Barbier' }],
-  creator: 'Nicolas Barbier',
+  creator: 'CalcPatrimoine',
   publisher: 'CalcPatrimoine',
   
   robots: {

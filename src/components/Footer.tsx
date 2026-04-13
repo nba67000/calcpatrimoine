@@ -93,16 +93,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-center text-xs text-gray-500 pt-8 border-t">
           <p>
-            © {currentYear} CalcPatrimoine. Développé par{' '}
-            <a 
-              href={LINKS.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-gray-700"
-            >
-              Nicolas Barbier
-            </a>
-            , développeur dans l&apos;assurance-vie.
+            © {currentYear} CalcPatrimoine. Développé par Nicolas, développeur dans l&apos;assurance-vie.
           </p>
           <p className="mt-2">
             Code source disponible sur{' '}

@@ -212,8 +212,8 @@ MIT License - voir [LICENSE](./LICENSE)
 
 ## 👨‍💻 Créateur
 
-**Nicolas Barbier**  
-Développeur COBOL/AS400 chez Império Assurances (groupe SMABTP)
+**Nicolas**  
+Développeur informatique dans l'assurance-vie
 
 - 🌐 Site : [calcpatrimoine.fr](https://calcpatrimoine.fr)
 - 💼 LinkedIn : [nicolas-barbier](https://www.linkedin.com/in/nicolas-barbier)
@@ -271,4 +271,4 @@ Si ce projet vous est utile :
 ---
 
 **CalcPatrimoine** - *Calculateurs patrimoniaux open-source pour la France*  
-© 2026 Nicolas Barbier | MIT License
+© 2026 CalcPatrimoine | MIT License
