@@ -1,0 +1,78 @@
+# .github/workflows/update-insee-data.yml
+name: Update INSEE Mortality Tables
+
+on:
+  # Exécution manuelle
+  workflow_dispatch:
+  
+  # Exécution automatique le 1er octobre chaque année (nouvelles tables INSEE)
+  schedule:
+    - cron: '0 0 1 10 *'  # 00:00 le 1er octobre
+
+jobs:
+  update-tables:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: develop
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install requests pandas openpyxl
+      
+      - name: Run INSEE scraper
+        run: |
+          python scripts/fetch-insee-data.py
+      
+      - name: Check if data changed
+        id: check_changes
+        run: |
+          if git diff --quiet public/mortality_tables.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Create Pull Request
+        if: steps.check_changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update INSEE mortality tables"
+          branch: update-insee-tables
+          delete-branch: true
+          title: "📊 Mise à jour tables INSEE mortalité"
+          body: |
+            🤖 **Mise à jour automatique**
+            
+            Les tables de mortalité INSEE ont été mises à jour.
+            
+            **Changements détectés :**
+            - ✅ Nouvelles données téléchargées depuis INSEE
+            - ✅ Facteurs viagers recalculés
+            - ✅ JSON exporté dans `public/mortality_tables.json`
+            
+            **Actions à faire :**
+            1. Vérifier que les données sont cohérentes
+            2. Tester le calculateur en local
+            3. Merger vers `develop` puis `main`
+            
+            ---
+            *Action déclenchée le {{ date }} par GitHub Actions*
+          labels: |
+            data-update
+            automated
+      
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Échec de la mise à jour des tables INSEE"
+          echo "Vérifier les logs et potentiellement mettre à jour les URLs dans le script Python"
