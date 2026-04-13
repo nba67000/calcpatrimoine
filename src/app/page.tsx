@@ -22,12 +22,24 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 pt-16 pb-12">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            Calculez votre rente viagère<br />en 30 secondes
+            Calculez votre rente viagère<br />
+            <span className="text-2xl md:text-3xl text-gray-600 font-normal">
+              (conversion capital → revenus mensuels à vie)
+            </span>
           </h1>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-lg text-gray-600 mb-6">
             Estimation fiable basée sur les tables de mortalité officielles INSEE.
             Gratuit, sans inscription, aucune donnée conservée.
           </p>
+          
+          {/* Clarification viager immobilier */}
+          <div className="bg-amber-50 border-l-4 border-amber-400 rounded-lg p-4 mb-8 text-left max-w-2xl mx-auto">
+            <p className="text-sm text-amber-900">
+              <strong>⚠️ À ne pas confondre</strong> : La <strong>rente viagère</strong> (ce calculateur) 
+              convertit un capital financier en revenus mensuels versés à vie. 
+              Le <strong>viager immobilier</strong> est la vente d&apos;un bien avec bouquet + rente.
+            </p>
+          </div>
           
           <TrustMarkers />
         </div>

@@ -27,9 +27,40 @@ export default function Methodologie() {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Comment nous calculons votre rente viagère
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 mb-6">
             Transparence totale sur nos méthodes de calcul, nos sources de données et nos formules actuarielles.
           </p>
+          
+          {/* Clarification rente viagère vs viager immobilier */}
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">
+              🏠 Rente viagère ≠ Viager immobilier
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6 text-sm">
+              <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+                <div className="font-semibold text-blue-900 mb-2">📊 Rente viagère (ce calculateur)</div>
+                <ul className="space-y-1 text-gray-700">
+                  <li>✓ Vous avez un <strong>capital financier</strong> (épargne, assurance-vie)</li>
+                  <li>✓ Vous le convertissez en <strong>revenus mensuels à vie</strong></li>
+                  <li>✓ Pas de bien immobilier impliqué</li>
+                  <li>✓ Exemple : 100 000€ → 614€/mois à vie (homme, 65 ans)</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500">
+                <div className="font-semibold text-orange-900 mb-2">🏡 Viager immobilier (autre produit)</div>
+                <ul className="space-y-1 text-gray-700">
+                  <li>✓ Vous vendez votre <strong>maison/appartement</strong></li>
+                  <li>✓ Acheteur paie : bouquet + rente mensuelle</li>
+                  <li>✓ Vous gardez l&apos;usufruit (droit d&apos;y habiter)</li>
+                  <li>✓ Exemple : Vente maison 300k€ → 50k€ bouquet + 800€/mois</li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-xs text-gray-600 mt-4 text-center">
+              💡 Ce site calcule uniquement les <strong>rentes viagères financières</strong>, pas le viager immobilier.
+            </p>
+          </div>
         </header>
 
         {/* Section 1 : Sources */}
