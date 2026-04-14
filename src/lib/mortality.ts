@@ -103,19 +103,11 @@ export function getMortalityData(age: number, gender: Gender): MortalityData | n
  * - R = rente annuelle
  * - C = capital
  * - a(x) = facteur viager (valeur actuarielle)
- * 
- * Options avancées :
- * - custom_tech_rate : taux technique personnalisé
- * - guaranteed_years : années garanties (rente certaine)
  */
 export function calculateSimpleAnnuity(
   capital: number,
   age: number,
-  gender: Gender,
-  options?: {
-    custom_tech_rate?: number
-    guaranteed_years?: number
-  }
+  gender: Gender
 ): AnnuityResult | null {
   const data = getMortalityData(age, gender)
   
@@ -124,79 +116,20 @@ export function calculateSimpleAnnuity(
     return null
   }
   
-  // Taux technique : personnalisé ou par défaut
-  const techRate = options?.custom_tech_rate ?? mortalityTables.metadata.tech_rate
-  
-  // Recalculer facteur viager si taux personnalisé
-  let annuityFactor = data.annuity_factor
-  if (options?.custom_tech_rate !== undefined) {
-    annuityFactor = recalculateAnnuityFactor(age, gender, techRate)
-  }
-  
-  // Ajustement pour rente certaine
-  if (options?.guaranteed_years && options.guaranteed_years > 0) {
-    const guaranteedFactor = calculateGuaranteedFactor(options.guaranteed_years, techRate)
-    annuityFactor = Math.max(annuityFactor, guaranteedFactor)
-  }
-  
-  const annualAmount = capital / annuityFactor
+  const annualAmount = capital / data.annuity_factor
   const monthlyAmount = annualAmount / 12
   const totalExpectedPayout = annualAmount * data.life_expectancy
   const roiYears = capital / annualAmount
   
-  const result: AnnuityResult = {
+  return {
     monthly_amount: Math.round(monthlyAmount),
     annual_amount: Math.round(annualAmount),
     life_expectancy: data.life_expectancy,
     total_expected_payout: Math.round(totalExpectedPayout),
     roi_years: Math.round(roiYears * 10) / 10,
-    annuity_factor: annuityFactor,
-    tech_rate: techRate,
-    custom_tech_rate_used: options?.custom_tech_rate !== undefined
+    annuity_factor: data.annuity_factor,
+    tech_rate: mortalityTables.metadata.tech_rate
   }
-  
-  // Ajouter info rente certaine
-  if (options?.guaranteed_years && options.guaranteed_years > 0) {
-    result.guaranteed_payout = {
-      years: options.guaranteed_years,
-      total_guaranteed: Math.round(annualAmount * options.guaranteed_years)
-    }
-  }
-  
-  return result
-}
-
-/**
- * Recalcule le facteur viager avec un taux technique personnalisé
- */
-function recalculateAnnuityFactor(
-  age: number,
-  gender: Gender,
-  techRate: number
-): number {
-  let factor = 0
-  const maxAge = 110
-  
-  for (let t = 1; t <= maxAge - age; t++) {
-    const survivalProb = calculateSurvivalProbability(age, gender, t)
-    if (survivalProb < 0.001) break
-    
-    const discountFactor = Math.pow(1 / (1 + techRate), t)
-    factor += survivalProb * discountFactor
-  }
-  
-  return factor
-}
-
-/**
- * Calcule le facteur pour rente certaine (garantie N années)
- */
-function calculateGuaranteedFactor(years: number, techRate: number): number {
-  let factor = 0
-  for (let t = 1; t <= years; t++) {
-    factor += Math.pow(1 / (1 + techRate), t)
-  }
-  return factor
 }
 
 /**
@@ -209,10 +142,6 @@ function calculateGuaranteedFactor(years: number, techRate: number): number {
  * - p = pourcentage de réversion (0.6, 0.8, 1.0)
  * - a_xy_barre = facteur viager "dernier décès" (au moins un des deux survit)
  * 
- * Options avancées :
- * - deferred_years : réversion démarre après N années
- * - custom_tech_rate : taux technique personnalisé
- * 
  * Référence : Louis Esch, Calcul actuariel, Chapitre 3, p.18
  */
 export function calculateReversionAnnuity(
@@ -220,11 +149,7 @@ export function calculateReversionAnnuity(
   age: number,
   gender: Gender,
   spouseAge: number,
-  reversionPercentage: 60 | 80 | 100,
-  options?: {
-    deferred_years?: number
-    custom_tech_rate?: number
-  }
+  reversionPercentage: 60 | 80 | 100
 ): AnnuityResult | null {
   const mainData = getMortalityData(age, gender)
   const spouseGender: Gender = gender === 'homme' ? 'femme' : 'homme'
@@ -234,17 +159,11 @@ export function calculateReversionAnnuity(
     return null
   }
   
-  const techRate = options?.custom_tech_rate ?? mortalityTables.metadata.tech_rate
+  const techRate = mortalityTables.metadata.tech_rate
   const p = reversionPercentage / 100
   
-  // Recalculer facteur si taux personnalisé
-  let mainFactor = mainData.annuity_factor
-  if (options?.custom_tech_rate !== undefined) {
-    mainFactor = recalculateAnnuityFactor(age, gender, techRate)
-  }
-  
-  // Calcul facteur "dernier décès"
-  let lastSurvivorFactor = calculateLastSurvivorFactor(
+  // Calcul rigoureux du facteur viager "dernier décès"
+  const lastSurvivorFactor = calculateLastSurvivorFactor(
     age,
     gender,
     spouseAge,
@@ -252,21 +171,8 @@ export function calculateReversionAnnuity(
     techRate
   )
   
-  // Réversion différée : réduire le facteur
-  if (options?.deferred_years && options.deferred_years > 0) {
-    const deferredDiscount = calculateDeferredReversionDiscount(
-      age,
-      gender,
-      spouseAge,
-      spouseGender,
-      options.deferred_years,
-      techRate
-    )
-    lastSurvivorFactor *= deferredDiscount
-  }
-  
   // Facteur viager avec réversion (formule actuarielle exacte)
-  const jointFactor = mainFactor + (p * lastSurvivorFactor)
+  const jointFactor = mainData.annuity_factor + (p * lastSurvivorFactor)
   
   const annualAmount = capital / jointFactor
   const monthlyAmount = annualAmount / 12
@@ -287,46 +193,11 @@ export function calculateReversionAnnuity(
     with_reversion: {
       monthly_amount: Math.round(monthlyAmount),
       spouse_monthly_amount: Math.round(spouseMonthlyAmount),
-      joint_life_expectancy: jointLifeExpectancy,
-      deferred_years: options?.deferred_years
+      joint_life_expectancy: jointLifeExpectancy
     },
     annuity_factor: jointFactor,
-    tech_rate: techRate,
-    custom_tech_rate_used: options?.custom_tech_rate !== undefined
+    tech_rate: techRate
   }
-}
-
-/**
- * Calcule le facteur de réduction pour réversion différée
- */
-function calculateDeferredReversionDiscount(
-  age1: number,
-  gender1: Gender,
-  age2: number,
-  gender2: Gender,
-  deferredYears: number,
-  techRate: number
-): number {
-  // La réversion ne démarre qu'après N années
-  // On réduit le facteur des N premières années
-  let fullFactor = 0
-  let deferredFactor = 0
-  const maxYears = 60
-  
-  for (let t = 1; t <= maxYears; t++) {
-    const t_px = calculateSurvivalProbability(age1, gender1, t)
-    const t_py = calculateSurvivalProbability(age2, gender2, t)
-    const t_pxy_bar = t_px + t_py - (t_px * t_py)
-    const v_t = Math.pow(1 / (1 + techRate), t)
-    
-    fullFactor += t_pxy_bar * v_t
-    
-    if (t > deferredYears) {
-      deferredFactor += t_pxy_bar * v_t
-    }
-  }
-  
-  return fullFactor > 0 ? deferredFactor / fullFactor : 0
 }
 
 /**
