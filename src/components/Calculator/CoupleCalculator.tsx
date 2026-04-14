@@ -28,18 +28,6 @@ export default function CoupleCalculator() {
     setResult(calc)
   }, [person1, person2])
 
-  const getRecommendationLabel = (rec: CoupleCalculation['recommendation']) => {
-    switch (rec) {
-      case 'person1_solo': return 'Rentes séparées (chacun sa rente)'
-      case 'joint_60': return 'Capital sur P1, réversion 60% → P2'
-      case 'joint_80': return 'Capital sur P1, réversion 80% → P2'
-      case 'joint_100': return 'Capital sur P1, réversion 100% → P2'
-      case 'p2_joint_60': return 'Capital sur P2, réversion 60% → P1'
-      case 'p2_joint_80': return 'Capital sur P2, réversion 80% → P1'
-      case 'p2_joint_100': return 'Capital sur P2, réversion 100% → P1'
-    }
-  }
-
   return (
     <div className="max-w-5xl mx-auto">
       <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
@@ -270,266 +258,181 @@ export default function CoupleCalculator() {
           animate={{ opacity: 1, y: 0 }}
           className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl border-2 border-purple-200 p-8"
         >
-          <h3 className="text-lg text-purple-900 mb-4">✨ Notre recommandation</h3>
+          <h3 className="text-lg text-purple-900 mb-4">📊 Comparaison des stratégies</h3>
           
-          {/* Stratégie recommandée */}
-          <div className="bg-white rounded-xl p-6 mb-6 border-2 border-purple-300">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                🏆
-              </div>
-              <div>
-                <div className="font-medium text-purple-900">
-                  {getRecommendationLabel(result.recommendation)}
-                </div>
-                <div className="text-xs text-gray-600">Meilleur rapport rendement/sécurité</div>
-              </div>
-            </div>
-            
-            <div className="text-3xl font-bold text-purple-900 mb-1">
-              {result.recommendation === 'person1_solo' && (
-                <div>
-                  <div>{formatEuro(result.person1_solo.monthly_amount + result.person2_solo.monthly_amount)}</div>
-                  <div className="text-sm text-gray-600 font-normal mt-2">
-                    Dont P1 : {formatEuro(result.person1_solo.monthly_amount)}/mois<br/>
-                    Et P2 : {formatEuro(result.person2_solo.monthly_amount)}/mois<br/>
-                    <span className="text-amber-700">⚠️ Après décès : {formatEuro(Math.min(result.person1_solo.monthly_amount, result.person2_solo.monthly_amount))}/mois pour le survivant</span>
-                  </div>
-                </div>
-              )}
-              {result.recommendation === 'joint_60' && (
-                <div>
-                  <div>{formatEuro(result.joint_with_reversion_60.monthly_amount)}</div>
-                  <div className="text-sm text-gray-600 font-normal mt-2">
-                    Si P1 décède : P2 reçoit {formatEuro(result.joint_with_reversion_60.with_reversion?.spouse_monthly_amount || 0)}/mois (60%)<br/>
-                    Si P2 décède : P1 garde {formatEuro(result.joint_with_reversion_60.monthly_amount)}/mois (100%)
-                  </div>
-                </div>
-              )}
-              {result.recommendation === 'joint_80' && (
-                <div>
-                  <div>{formatEuro(result.joint_with_reversion_80.monthly_amount)}</div>
-                  <div className="text-sm text-gray-600 font-normal mt-2">
-                    Si P1 décède : P2 reçoit {formatEuro(result.joint_with_reversion_80.with_reversion?.spouse_monthly_amount || 0)}/mois (80%)<br/>
-                    Si P2 décède : P1 garde {formatEuro(result.joint_with_reversion_80.monthly_amount)}/mois (100%)
-                  </div>
-                </div>
-              )}
-              {result.recommendation === 'joint_100' && (
-                <div>
-                  <div>{formatEuro(result.joint_with_reversion_100.monthly_amount)}</div>
-                  <div className="text-sm text-gray-600 font-normal mt-2">
-                    Si P1 décède : P2 reçoit {formatEuro(result.joint_with_reversion_100.with_reversion?.spouse_monthly_amount || 0)}/mois (100%)<br/>
-                    Si P2 décède : P1 garde {formatEuro(result.joint_with_reversion_100.monthly_amount)}/mois (100%)
-                  </div>
-                </div>
-              )}
-              {result.recommendation === 'p2_joint_60' && (
-                <div>
-                  <div>{formatEuro(result.p2_joint_with_reversion_60.monthly_amount)}</div>
-                  <div className="text-sm text-gray-600 font-normal mt-2">
-                    Si P2 décède : P1 reçoit {formatEuro(result.p2_joint_with_reversion_60.with_reversion?.spouse_monthly_amount || 0)}/mois (60%)<br/>
-                    Si P1 décède : P2 garde {formatEuro(result.p2_joint_with_reversion_60.monthly_amount)}/mois (100%)
-                  </div>
-                </div>
-              )}
-              {result.recommendation === 'p2_joint_80' && (
-                <div>
-                  <div>{formatEuro(result.p2_joint_with_reversion_80.monthly_amount)}</div>
-                  <div className="text-sm text-gray-600 font-normal mt-2">
-                    Si P2 décède : P1 reçoit {formatEuro(result.p2_joint_with_reversion_80.with_reversion?.spouse_monthly_amount || 0)}/mois (80%)<br/>
-                    Si P1 décède : P2 garde {formatEuro(result.p2_joint_with_reversion_80.monthly_amount)}/mois (100%)
-                  </div>
-                </div>
-              )}
-              {result.recommendation === 'p2_joint_100' && (
-                <div>
-                  <div>{formatEuro(result.p2_joint_with_reversion_100.monthly_amount)}</div>
-                  <div className="text-sm text-gray-600 font-normal mt-2">
-                    Si P2 décède : P1 reçoit {formatEuro(result.p2_joint_with_reversion_100.with_reversion?.spouse_monthly_amount || 0)}/mois (100%)<br/>
-                    Si P1 décède : P2 garde {formatEuro(result.p2_joint_with_reversion_100.monthly_amount)}/mois (100%)
-                  </div>
-                </div>
-              )}
-              <span className="text-lg">/mois</span>
-            </div>
-            <div className="text-sm text-gray-600">
-              Capital total : {formatEuro(result.total_capital)}
-            </div>
+          <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+            <p className="text-sm text-blue-900">
+              💡 <strong>Capital total : {formatEuro(result.total_capital)}</strong><br/>
+              Comparez les revenus selon les scénarios (couple vivant / après décès de l&apos;un).
+            </p>
           </div>
 
-          {/* Bouton afficher détails */}
-          <button
-            onClick={() => setShowDetails(!showDetails)}
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-6 rounded-lg font-medium transition-colors mb-4"
-          >
-            {showDetails ? 'Masquer' : 'Voir'} toutes les stratégies
-          </button>
-
           {/* Tableau comparatif */}
-          <AnimatePresence>
-            {showDetails && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden"
-              >
-                <div className="bg-white rounded-xl p-6 overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="text-left py-3 px-2">Stratégie</th>
-                        <th className="text-right py-3 px-2">Couple vivant</th>
-                        <th className="text-right py-3 px-2">Si P1 décède</th>
-                        <th className="text-right py-3 px-2">Si P2 décède</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className={`border-b ${result.recommendation === 'person1_solo' ? 'bg-purple-50' : ''}`}>
-                        <td className="py-3 px-2">
-                          Rentes séparées
-                          {result.recommendation === 'person1_solo' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
-                        </td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.person1_solo.monthly_amount + result.person2_solo.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-amber-700">
-                          {formatEuro(result.person2_solo.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-amber-700">
-                          {formatEuro(result.person1_solo.monthly_amount)}
-                        </td>
-                      </tr>
-                      <tr className={`border-b ${result.recommendation === 'joint_60' ? 'bg-purple-50' : ''}`}>
-                        <td className="py-3 px-2">
-                          Capital sur P1, rév. 60% → P2
-                          {result.recommendation === 'joint_60' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
-                        </td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.joint_with_reversion_60.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.joint_with_reversion_60.with_reversion?.spouse_monthly_amount || 0)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.joint_with_reversion_60.monthly_amount)}
-                        </td>
-                      </tr>
-                      <tr className={`border-b ${result.recommendation === 'joint_80' ? 'bg-purple-50' : ''}`}>
-                        <td className="py-3 px-2">
-                          Capital sur P1, rév. 80% → P2
-                          {result.recommendation === 'joint_80' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
-                        </td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.joint_with_reversion_80.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.joint_with_reversion_80.with_reversion?.spouse_monthly_amount || 0)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.joint_with_reversion_80.monthly_amount)}
-                        </td>
-                      </tr>
-                      <tr className={`border-b ${result.recommendation === 'joint_100' ? 'bg-purple-50' : ''}`}>
-                        <td className="py-3 px-2">
-                          Capital sur P1, rév. 100% → P2
-                          {result.recommendation === 'joint_100' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
-                        </td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.joint_with_reversion_100.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.joint_with_reversion_100.with_reversion?.spouse_monthly_amount || 0)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.joint_with_reversion_100.monthly_amount)}
-                        </td>
-                      </tr>
-                      <tr className={`border-b ${result.recommendation === 'p2_joint_60' ? 'bg-purple-50' : ''}`}>
-                        <td className="py-3 px-2">
-                          Capital sur P2, rév. 60% → P1
-                          {result.recommendation === 'p2_joint_60' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
-                        </td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.p2_joint_with_reversion_60.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.p2_joint_with_reversion_60.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.p2_joint_with_reversion_60.with_reversion?.spouse_monthly_amount || 0)}
-                        </td>
-                      </tr>
-                      <tr className={`border-b ${result.recommendation === 'p2_joint_80' ? 'bg-purple-50' : ''}`}>
-                        <td className="py-3 px-2">
-                          Capital sur P2, rév. 80% → P1
-                          {result.recommendation === 'p2_joint_80' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
-                        </td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.p2_joint_with_reversion_80.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.p2_joint_with_reversion_80.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.p2_joint_with_reversion_80.with_reversion?.spouse_monthly_amount || 0)}
-                        </td>
-                      </tr>
-                      <tr className={result.recommendation === 'p2_joint_100' ? 'bg-purple-50' : ''}>
-                        <td className="py-3 px-2">
-                          Capital sur P2, rév. 100% → P1
-                          {result.recommendation === 'p2_joint_100' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
-                        </td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.p2_joint_with_reversion_100.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.p2_joint_with_reversion_100.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-green-700">
-                          {formatEuro(result.p2_joint_with_reversion_100.with_reversion?.spouse_monthly_amount || 0)}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                        <td className="text-right py-3 px-2 text-gray-600">
-                          {formatEuro(result.person2_solo.total_expected_payout)}
-                        </td>
-                      </tr>
-                      <tr className="border-b bg-purple-50">
-                        <td className="py-3 px-2">Conjointe (60% réversion)</td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.joint_with_reversion_60.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-gray-600">
-                          {formatEuro(result.joint_with_reversion_60.total_expected_payout)}
-                        </td>
-                      </tr>
-                      <tr className="border-b bg-purple-50">
-                        <td className="py-3 px-2">Conjointe (80% réversion)</td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.joint_with_reversion_80.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-gray-600">
-                          {formatEuro(result.joint_with_reversion_80.total_expected_payout)}
-                        </td>
-                      </tr>
-                      <tr className="bg-purple-50">
-                        <td className="py-3 px-2">Conjointe (100% réversion)</td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.joint_with_reversion_100.monthly_amount)}
-                        </td>
-                        <td className="text-right py-3 px-2 text-gray-600">
-                          {formatEuro(result.joint_with_reversion_100.total_expected_payout)}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <div className="bg-white rounded-xl p-6 overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-3 px-2">Stratégie</th>
+                  <th className="text-right py-3 px-2">Couple vivant</th>
+                  <th className="text-right py-3 px-2">Si P1 décède<br/><span className="text-xs font-normal text-gray-500">→ P2 reçoit</span></th>
+                  <th className="text-right py-3 px-2">Si P2 décède<br/><span className="text-xs font-normal text-gray-500">→ P1 reçoit</span></th>
+                  <th className="text-right py-3 px-2">Total espéré<br/><span className="text-xs font-normal text-gray-500">(sur espérance vie)</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b hover:bg-gray-50">
+                  <td className="py-3 px-2 font-medium">
+                    Rentes séparées
+                    <div className="text-xs text-gray-500 font-normal">Chacun transforme son capital en rente</div>
+                  </td>
+                  <td className="text-right py-3 px-2 font-medium text-purple-900">
+                    <div className="mb-1">P1 : {formatEuro(result.person1_solo.monthly_amount)}/mois</div>
+                    <div>P2 : {formatEuro(result.person2_solo.monthly_amount)}/mois</div>
+                    <div className="text-xs text-gray-500 font-normal mt-1">
+                      Total : {formatEuro(result.person1_solo.monthly_amount + result.person2_solo.monthly_amount)}
+                    </div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-amber-700">
+                    {formatEuro(result.person2_solo.monthly_amount)}
+                    <div className="text-xs text-gray-500">P2 perd rente P1</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-amber-700">
+                    {formatEuro(result.person1_solo.monthly_amount)}
+                    <div className="text-xs text-gray-500">P1 perd rente P2</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-gray-600">
+                    {formatEuro((result.person1_solo.total_expected_payout + result.person2_solo.total_expected_payout) / 2)}
+                  </td>
+                </tr>
+                <tr className="border-b hover:bg-gray-50">
+                  <td className="py-3 px-2 font-medium">
+                    Capital sur P1, rév. 60% → P2
+                    <div className="text-xs text-gray-500 font-normal">Capital P2 non transformé (reste disponible)</div>
+                  </td>
+                  <td className="text-right py-3 px-2 font-medium text-purple-900">
+                    {formatEuro(result.joint_with_reversion_60.monthly_amount)}
+                    <div className="text-xs text-gray-500 font-normal">Rente viagère sur capital P1 uniquement</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.joint_with_reversion_60.with_reversion?.spouse_monthly_amount || 0)}
+                    <div className="text-xs text-gray-500">60% rente + capital P2 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.joint_with_reversion_60.monthly_amount)}
+                    <div className="text-xs text-gray-500">100% rente + capital P2 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-gray-600">
+                    {formatEuro(result.joint_with_reversion_60.total_expected_payout)}
+                  </td>
+                </tr>
+                <tr className="border-b hover:bg-gray-50">
+                  <td className="py-3 px-2 font-medium">
+                    Capital sur P1, rév. 80% → P2
+                    <div className="text-xs text-gray-500 font-normal">Capital P2 non transformé (reste disponible)</div>
+                  </td>
+                  <td className="text-right py-3 px-2 font-medium text-purple-900">
+                    {formatEuro(result.joint_with_reversion_80.monthly_amount)}
+                    <div className="text-xs text-gray-500 font-normal">Rente viagère sur capital P1 uniquement</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.joint_with_reversion_80.with_reversion?.spouse_monthly_amount || 0)}
+                    <div className="text-xs text-gray-500">80% rente + capital P2 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.joint_with_reversion_80.monthly_amount)}
+                    <div className="text-xs text-gray-500">100% rente + capital P2 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-gray-600">
+                    {formatEuro(result.joint_with_reversion_80.total_expected_payout)}
+                  </td>
+                </tr>
+                <tr className="border-b hover:bg-gray-50">
+                  <td className="py-3 px-2 font-medium">
+                    Capital sur P1, rév. 100% → P2
+                    <div className="text-xs text-gray-500 font-normal">Capital P2 non transformé (reste disponible)</div>
+                  </td>
+                  <td className="text-right py-3 px-2 font-medium text-purple-900">
+                    {formatEuro(result.joint_with_reversion_100.monthly_amount)}
+                    <div className="text-xs text-gray-500 font-normal">Rente viagère sur capital P1 uniquement</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.joint_with_reversion_100.with_reversion?.spouse_monthly_amount || 0)}
+                    <div className="text-xs text-gray-500">100% rente + capital P2 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.joint_with_reversion_100.monthly_amount)}
+                    <div className="text-xs text-gray-500">100% rente + capital P2 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-gray-600">
+                    {formatEuro(result.joint_with_reversion_100.total_expected_payout)}
+                  </td>
+                </tr>
+                <tr className="border-b hover:bg-gray-50">
+                  <td className="py-3 px-2 font-medium">
+                    Capital sur P2, rév. 60% → P1
+                    <div className="text-xs text-gray-500 font-normal">Capital P1 non transformé (reste disponible)</div>
+                  </td>
+                  <td className="text-right py-3 px-2 font-medium text-purple-900">
+                    {formatEuro(result.p2_joint_with_reversion_60.monthly_amount)}
+                    <div className="text-xs text-gray-500 font-normal">Rente viagère sur capital P2 uniquement</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.p2_joint_with_reversion_60.monthly_amount)}
+                    <div className="text-xs text-gray-500">100% rente + capital P1 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.p2_joint_with_reversion_60.with_reversion?.spouse_monthly_amount || 0)}
+                    <div className="text-xs text-gray-500">60% rente + capital P1 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-gray-600">
+                    {formatEuro(result.p2_joint_with_reversion_60.total_expected_payout)}
+                  </td>
+                </tr>
+                <tr className="border-b hover:bg-gray-50">
+                  <td className="py-3 px-2 font-medium">
+                    Capital sur P2, rév. 80% → P1
+                    <div className="text-xs text-gray-500 font-normal">Capital P1 non transformé (reste disponible)</div>
+                  </td>
+                  <td className="text-right py-3 px-2 font-medium text-purple-900">
+                    {formatEuro(result.p2_joint_with_reversion_80.monthly_amount)}
+                    <div className="text-xs text-gray-500 font-normal">Rente viagère sur capital P2 uniquement</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.p2_joint_with_reversion_80.monthly_amount)}
+                    <div className="text-xs text-gray-500">100% rente + capital P1 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.p2_joint_with_reversion_80.with_reversion?.spouse_monthly_amount || 0)}
+                    <div className="text-xs text-gray-500">80% rente + capital P1 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-gray-600">
+                    {formatEuro(result.p2_joint_with_reversion_80.total_expected_payout)}
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="py-3 px-2 font-medium">
+                    Capital sur P2, rév. 100% → P1
+                    <div className="text-xs text-gray-500 font-normal">Capital P1 non transformé (reste disponible)</div>
+                  </td>
+                  <td className="text-right py-3 px-2 font-medium text-purple-900">
+                    {formatEuro(result.p2_joint_with_reversion_100.monthly_amount)}
+                    <div className="text-xs text-gray-500 font-normal">Rente viagère sur capital P2 uniquement</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.p2_joint_with_reversion_100.monthly_amount)}
+                    <div className="text-xs text-gray-500">100% rente + capital P1 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-green-700">
+                    {formatEuro(result.p2_joint_with_reversion_100.with_reversion?.spouse_monthly_amount || 0)}
+                    <div className="text-xs text-gray-500">100% rente + capital P1 intact</div>
+                  </td>
+                  <td className="text-right py-3 px-2 text-gray-600">
+                    {formatEuro(result.p2_joint_with_reversion_100.total_expected_payout)}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </motion.div>
       )}
     </div>

@@ -30,9 +30,12 @@ export interface CalculatorInput {
   reversion?: {
     enabled: boolean
     spouse_age?: number
-    percentage?: 60 | 80 | 100  // Pourcentage de réversion
+    percentage?: 60 | 80 | 100
+    deferred_years?: number  // Nouveau : réversion différée
   }
   deferred_years?: number       // Rente différée (optionnel)
+  guaranteed_years?: number     // Nouveau : rente certaine
+  custom_tech_rate?: number     // Nouveau : taux technique personnalisé (0 à 2%)
 }
 
 export interface AnnuityResult {
@@ -47,11 +50,19 @@ export interface AnnuityResult {
     monthly_amount: number
     spouse_monthly_amount: number
     joint_life_expectancy: number
+    deferred_years?: number      // Nouveau : années avant démarrage réversion
+  }
+  
+  // Rente certaine
+  guaranteed_payout?: {
+    years: number                // Années garanties
+    total_guaranteed: number     // Total garanti minimum
   }
   
   // Métadata
   annuity_factor: number       // a(x) utilisé
   tech_rate: number            // Taux technique appliqué
+  custom_tech_rate_used?: boolean  // Taux personnalisé ?
 }
 
 export interface ComparisonScenario {
