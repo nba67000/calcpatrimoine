@@ -93,7 +93,7 @@ export default function FAQPage() {
                 <strong>Étape 2</strong> : L&apos;assureur calcule combien vous verser chaque mois en fonction de :
               </p>
               <ul className="list-disc pl-6 mb-3 space-y-1">
-                <li>Votre âge (plus vous êtes vieux, plus la rente est haute)</li>
+                <li>Votre âge (plus vous êtes âgé, plus la rente est élevée)</li>
                 <li>Votre sexe (les femmes vivent plus longtemps, donc rente légèrement plus basse)</li>
                 <li>Les options choisies (réversion ou pas, voir plus bas)</li>
               </ul>
@@ -461,12 +461,22 @@ export default function FAQPage() {
                   <strong>Sans réversion</strong> : 614€/mois
                 </p>
                 <p className="mb-2">
-                  <strong>Avec réversion 60%</strong> : 540€/mois (12% moins cher)
+                  <strong>Avec réversion 60%</strong> : 540€/mois
                 </p>
                 <p className="mb-2 text-sm text-gray-700">
-                  → Si Pierre décède, sa femme Marie (63 ans) touche 60% × 540€ = <strong>324€/mois à vie</strong>
+                  → Si Pierre décède, sa femme Marie touche 60% × 540€ = <strong>324€/mois à vie</strong><br/>
+                  → Si Marie décède avant Pierre, Pierre garde ses <strong>540€/mois</strong> (c&apos;est sa rente)
                 </p>
               </div>
+              
+              <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mb-3">
+                <p className="text-sm text-amber-900">
+                  ⚠️ <strong>Important</strong> : La réversion ne fonctionne que <strong>dans un sens</strong> 
+                  (du titulaire vers le bénéficiaire). Si c&apos;est votre conjoint qui décède en premier, 
+                  vous gardez 100% de votre rente. Seul le conjoint survivant bénéficie de la réversion.
+                </p>
+              </div>
+              
               <p className="mb-3">
                 <strong>Quel taux choisir ?</strong>
               </p>
@@ -483,40 +493,65 @@ export default function FAQPage() {
           answer: (
             <>
               <p className="mb-3">
-                <strong>Notre calculateur &quot;Mode Couple&quot; compare 5 stratégies</strong> et vous recommande la meilleure.
+                <strong>Notre calculateur &quot;Mode Couple&quot; compare plusieurs stratégies</strong> pour optimiser 
+                vos revenus en couple et protéger le survivant.
               </p>
+              
+              <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+                <p className="text-sm text-blue-900">
+                  💡 <strong>Principe clé</strong> : Dans un couple, vous avez deux options principales :
+                </p>
+                <ul className="list-disc pl-6 mt-2 text-sm text-blue-900 space-y-1">
+                  <li><strong>Rentes séparées</strong> : Chacun transforme son capital en rente (revenus max pour le couple, mais chute importante au premier décès)</li>
+                  <li><strong>Capital regroupé</strong> : Tout le capital sur une seule tête avec réversion (revenus couple plus bas, mais survivant mieux protégé)</li>
+                </ul>
+              </div>
+              
               <p className="mb-3">
-                <strong>Les 5 stratégies</strong> :
+                <strong>Les stratégies comparées</strong> :
               </p>
               <ol className="list-decimal pl-6 mb-3 space-y-2">
                 <li>
-                  <strong>Personne 1 seule</strong> : Tout le capital sur la personne 1
+                  <strong>Rentes séparées</strong> : Chacun sa rente sur son capital
+                  <div className="text-sm text-gray-600 mt-1">
+                    ✅ Revenus couple maximaux<br/>
+                    ⚠️ Survivant perd la rente du défunt (chute de revenus importante)
+                  </div>
                 </li>
                 <li>
-                  <strong>Personne 2 seule</strong> : Tout le capital sur la personne 2
+                  <strong>Capital total sur Personne 1</strong> avec réversion 60%, 80% ou 100% vers Personne 2
+                  <div className="text-sm text-gray-600 mt-1">
+                    Protection asymétrique : Personne 2 protégée à X%, Personne 1 garde 100% si P2 décède
+                  </div>
                 </li>
                 <li>
-                  <strong>Joint avec réversion 60%</strong> : Rente commune + 60% au survivant
-                </li>
-                <li>
-                  <strong>Joint avec réversion 80%</strong> : Rente commune + 80% au survivant
-                </li>
-                <li>
-                  <strong>Joint avec réversion 100%</strong> : Rente commune + 100% au survivant
+                  <strong>Capital total sur Personne 2</strong> avec réversion 60%, 80% ou 100% vers Personne 1
+                  <div className="text-sm text-gray-600 mt-1">
+                    Protection asymétrique : Personne 1 protégée à X%, Personne 2 garde 100% si P1 décède
+                  </div>
                 </li>
               </ol>
+              
               <p className="mb-3">
-                <strong>Critères de choix</strong> :
+                <strong>Comment choisir ?</strong>
               </p>
-              <ul className="list-disc pl-6 mb-3">
-                <li><strong>Rente mensuelle max</strong> : Pour vivre mieux au quotidien</li>
-                <li><strong>Total espéré max</strong> : Pour optimiser le rendement</li>
-                <li><strong>Protection du survivant</strong> : Pour sécuriser le conjoint</li>
+              <ul className="list-disc pl-6 mb-3 space-y-2">
+                <li>
+                  <strong>Si un conjoint a des revenus faibles</strong> : Mettre le capital sur l&apos;autre avec réversion 80-100%
+                </li>
+                <li>
+                  <strong>Si revenus équilibrés</strong> : Rentes séparées OU capital regroupé 80%
+                </li>
+                <li>
+                  <strong>Si vous voulez maximiser les revenus</strong> : Rentes séparées (mais risque survivant)
+                </li>
               </ul>
+              
               <div className="bg-green-50 border-l-4 border-green-400 p-4 mt-4">
                 <p className="text-sm text-green-900">
-                  <strong>Notre recommandation</strong> : Le calculateur analyse vos profils 
-                  et met un badge &quot;Recommandé&quot; sur la stratégie optimale (meilleur compromis rendement/sécurité).
+                  <strong>Notre recommandation automatique</strong> analyse votre situation et privilégie 
+                  la stratégie qui protège au mieux le survivant (au moins 70% des revenus du couple) 
+                  tout en maximisant les revenus tant que vous êtes vivants tous les deux.
                 </p>
               </div>
             </>
@@ -535,7 +570,7 @@ export default function FAQPage() {
               <ul className="list-disc pl-6 mb-3">
                 <li>Seule une <strong>fraction</strong> de votre rente est imposable</li>
                 <li>Cette fraction dépend de votre âge au moment de souscrire</li>
-                <li>Plus vous êtes vieux, moins vous payez d&apos;impôts</li>
+                <li>Plus vous souscrivez âgé, moins vous payez d&apos;impôts</li>
               </ul>
               <p className="mb-3">
                 <strong>Barème 2026</strong> :

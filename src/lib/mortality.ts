@@ -404,7 +404,7 @@ export function calculateCoupleStrategies(
   person1: CoupleProfile,
   person2: CoupleProfile
 ): CoupleCalculation | null {
-  // Calculs individuels
+  // Calculs individuels (chacun sa rente)
   const person1Solo = calculateSimpleAnnuity(person1.capital, person1.age, person1.gender)
   const person2Solo = calculateSimpleAnnuity(person2.capital, person2.age, person2.gender)
   
@@ -414,65 +414,89 @@ export function calculateCoupleStrategies(
   
   const totalCapital = person1.capital + person2.capital
   
-  // Calculs avec réversion (on met le capital total sur la tête de la personne la plus jeune)
-  const youngerPerson = person1.age <= person2.age ? person1 : person2
-  const olderPerson = person1.age > person2.age ? person1 : person2
+  // Stratégies : Capital total sur Person 1 avec réversion vers Person 2
+  const p1_rev60 = calculateReversionAnnuity(totalCapital, person1.age, person1.gender, person2.age, 60)
+  const p1_rev80 = calculateReversionAnnuity(totalCapital, person1.age, person1.gender, person2.age, 80)
+  const p1_rev100 = calculateReversionAnnuity(totalCapital, person1.age, person1.gender, person2.age, 100)
   
-  const joint60 = calculateReversionAnnuity(
-    totalCapital,
-    youngerPerson.age,
-    youngerPerson.gender,
-    olderPerson.age,
-    60
-  )
+  // Stratégies : Capital total sur Person 2 avec réversion vers Person 1
+  const p2_rev60 = calculateReversionAnnuity(totalCapital, person2.age, person2.gender, person1.age, 60)
+  const p2_rev80 = calculateReversionAnnuity(totalCapital, person2.age, person2.gender, person1.age, 80)
+  const p2_rev100 = calculateReversionAnnuity(totalCapital, person2.age, person2.gender, person1.age, 100)
   
-  const joint80 = calculateReversionAnnuity(
-    totalCapital,
-    youngerPerson.age,
-    youngerPerson.gender,
-    olderPerson.age,
-    80
-  )
-  
-  const joint100 = calculateReversionAnnuity(
-    totalCapital,
-    youngerPerson.age,
-    youngerPerson.gender,
-    olderPerson.age,
-    100
-  )
-  
-  if (!joint60 || !joint80 || !joint100) {
+  if (!p1_rev60 || !p1_rev80 || !p1_rev100 || !p2_rev60 || !p2_rev80 || !p2_rev100) {
     return null
   }
   
   // Déterminer la meilleure stratégie
-  // Critère : maximiser la rente mensuelle, puis le total espéré
   const strategies = [
-    { name: 'person1_solo' as const, monthly: person1Solo.monthly_amount, total: person1Solo.total_expected_payout },
-    { name: 'person2_solo' as const, monthly: person2Solo.monthly_amount, total: person2Solo.total_expected_payout },
-    { name: 'joint_60' as const, monthly: joint60.monthly_amount, total: joint60.total_expected_payout },
-    { name: 'joint_80' as const, monthly: joint80.monthly_amount, total: joint80.total_expected_payout },
-    { name: 'joint_100' as const, monthly: joint100.monthly_amount, total: joint100.total_expected_payout }
+    { 
+      name: 'person1_solo' as const,
+      monthly: person1Solo.monthly_amount + person2Solo.monthly_amount,
+      survivorMonthly: Math.min(person1Solo.monthly_amount, person2Solo.monthly_amount),
+      total: (person1Solo.total_expected_payout + person2Solo.total_expected_payout) / 2
+    },
+    { 
+      name: 'joint_60' as const,
+      monthly: p1_rev60.monthly_amount,
+      survivorMonthly: p1_rev60.with_reversion?.spouse_monthly_amount || 0,
+      total: p1_rev60.total_expected_payout
+    },
+    { 
+      name: 'joint_80' as const,
+      monthly: p1_rev80.monthly_amount,
+      survivorMonthly: p1_rev80.with_reversion?.spouse_monthly_amount || 0,
+      total: p1_rev80.total_expected_payout
+    },
+    { 
+      name: 'joint_100' as const,
+      monthly: p1_rev100.monthly_amount,
+      survivorMonthly: p1_rev100.with_reversion?.spouse_monthly_amount || 0,
+      total: p1_rev100.total_expected_payout
+    },
+    { 
+      name: 'p2_joint_60' as const,
+      monthly: p2_rev60.monthly_amount,
+      survivorMonthly: p2_rev60.with_reversion?.spouse_monthly_amount || 0,
+      total: p2_rev60.total_expected_payout
+    },
+    { 
+      name: 'p2_joint_80' as const,
+      monthly: p2_rev80.monthly_amount,
+      survivorMonthly: p2_rev80.with_reversion?.spouse_monthly_amount || 0,
+      total: p2_rev80.total_expected_payout
+    },
+    { 
+      name: 'p2_joint_100' as const,
+      monthly: p2_rev100.monthly_amount,
+      survivorMonthly: p2_rev100.with_reversion?.spouse_monthly_amount || 0,
+      total: p2_rev100.total_expected_payout
+    }
   ]
   
-  // Trouver la rente mensuelle maximale
-  const maxMonthly = Math.max(...strategies.map(s => s.monthly))
-  
-  // Filtrer les stratégies proches du max (écart < 5%)
-  const topStrategies = strategies.filter(s => s.monthly >= maxMonthly * 0.95)
-  
-  // Parmi celles-ci, prendre celle avec le meilleur total espéré
-  const recommendation = topStrategies.reduce((best, current) => 
-    current.total > best.total ? current : best
-  ).name
+  // Critère de recommandation : protéger le survivant + maximiser rente couple
+  const recommendation = strategies.reduce((best, current) => {
+    const currentRatio = current.survivorMonthly / current.monthly
+    const bestRatio = best.survivorMonthly / best.monthly
+    
+    // Si protection survivant équivalente (±5%), prendre rente couple max
+    if (Math.abs(currentRatio - bestRatio) < 0.05) {
+      return current.monthly > best.monthly ? current : best
+    }
+    
+    // Sinon, privilégier protection survivant
+    return currentRatio > bestRatio ? current : best
+  }).name
   
   return {
     person1_solo: person1Solo,
     person2_solo: person2Solo,
-    joint_with_reversion_60: joint60,
-    joint_with_reversion_80: joint80,
-    joint_with_reversion_100: joint100,
+    joint_with_reversion_60: p1_rev60,
+    joint_with_reversion_80: p1_rev80,
+    joint_with_reversion_100: p1_rev100,
+    p2_joint_with_reversion_60: p2_rev60,
+    p2_joint_with_reversion_80: p2_rev80,
+    p2_joint_with_reversion_100: p2_rev100,
     recommendation,
     total_capital: totalCapital
   }

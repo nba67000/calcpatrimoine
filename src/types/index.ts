@@ -104,6 +104,9 @@ export interface CoupleCalculation {
   joint_with_reversion_60: AnnuityResult
   joint_with_reversion_80: AnnuityResult
   joint_with_reversion_100: AnnuityResult
-  recommendation: 'person1_solo' | 'person2_solo' | 'joint_60' | 'joint_80' | 'joint_100'
+  p2_joint_with_reversion_60: AnnuityResult
+  p2_joint_with_reversion_80: AnnuityResult
+  p2_joint_with_reversion_100: AnnuityResult
+  recommendation: 'person1_solo' | 'joint_60' | 'joint_80' | 'joint_100' | 'p2_joint_60' | 'p2_joint_80' | 'p2_joint_100'
   total_capital: number
 }

@@ -30,11 +30,13 @@ export default function CoupleCalculator() {
 
   const getRecommendationLabel = (rec: CoupleCalculation['recommendation']) => {
     switch (rec) {
-      case 'person1_solo': return 'Rente séparée (Personne 1)'
-      case 'person2_solo': return 'Rente séparée (Personne 2)'
-      case 'joint_60': return 'Rente conjointe avec réversion 60%'
-      case 'joint_80': return 'Rente conjointe avec réversion 80%'
-      case 'joint_100': return 'Rente conjointe avec réversion 100%'
+      case 'person1_solo': return 'Rentes séparées (chacun sa rente)'
+      case 'joint_60': return 'Capital sur P1, réversion 60% → P2'
+      case 'joint_80': return 'Capital sur P1, réversion 80% → P2'
+      case 'joint_100': return 'Capital sur P1, réversion 100% → P2'
+      case 'p2_joint_60': return 'Capital sur P2, réversion 60% → P1'
+      case 'p2_joint_80': return 'Capital sur P2, réversion 80% → P1'
+      case 'p2_joint_100': return 'Capital sur P2, réversion 100% → P1'
     }
   }
 
@@ -285,11 +287,70 @@ export default function CoupleCalculator() {
             </div>
             
             <div className="text-3xl font-bold text-purple-900 mb-1">
-              {result.recommendation === 'person1_solo' && formatEuro(result.person1_solo.monthly_amount)}
-              {result.recommendation === 'person2_solo' && formatEuro(result.person2_solo.monthly_amount)}
-              {result.recommendation === 'joint_60' && formatEuro(result.joint_with_reversion_60.monthly_amount)}
-              {result.recommendation === 'joint_80' && formatEuro(result.joint_with_reversion_80.monthly_amount)}
-              {result.recommendation === 'joint_100' && formatEuro(result.joint_with_reversion_100.monthly_amount)}
+              {result.recommendation === 'person1_solo' && (
+                <div>
+                  <div>{formatEuro(result.person1_solo.monthly_amount + result.person2_solo.monthly_amount)}</div>
+                  <div className="text-sm text-gray-600 font-normal mt-2">
+                    Dont P1 : {formatEuro(result.person1_solo.monthly_amount)}/mois<br/>
+                    Et P2 : {formatEuro(result.person2_solo.monthly_amount)}/mois<br/>
+                    <span className="text-amber-700">⚠️ Après décès : {formatEuro(Math.min(result.person1_solo.monthly_amount, result.person2_solo.monthly_amount))}/mois pour le survivant</span>
+                  </div>
+                </div>
+              )}
+              {result.recommendation === 'joint_60' && (
+                <div>
+                  <div>{formatEuro(result.joint_with_reversion_60.monthly_amount)}</div>
+                  <div className="text-sm text-gray-600 font-normal mt-2">
+                    Si P1 décède : P2 reçoit {formatEuro(result.joint_with_reversion_60.with_reversion?.spouse_monthly_amount || 0)}/mois (60%)<br/>
+                    Si P2 décède : P1 garde {formatEuro(result.joint_with_reversion_60.monthly_amount)}/mois (100%)
+                  </div>
+                </div>
+              )}
+              {result.recommendation === 'joint_80' && (
+                <div>
+                  <div>{formatEuro(result.joint_with_reversion_80.monthly_amount)}</div>
+                  <div className="text-sm text-gray-600 font-normal mt-2">
+                    Si P1 décède : P2 reçoit {formatEuro(result.joint_with_reversion_80.with_reversion?.spouse_monthly_amount || 0)}/mois (80%)<br/>
+                    Si P2 décède : P1 garde {formatEuro(result.joint_with_reversion_80.monthly_amount)}/mois (100%)
+                  </div>
+                </div>
+              )}
+              {result.recommendation === 'joint_100' && (
+                <div>
+                  <div>{formatEuro(result.joint_with_reversion_100.monthly_amount)}</div>
+                  <div className="text-sm text-gray-600 font-normal mt-2">
+                    Si P1 décède : P2 reçoit {formatEuro(result.joint_with_reversion_100.with_reversion?.spouse_monthly_amount || 0)}/mois (100%)<br/>
+                    Si P2 décède : P1 garde {formatEuro(result.joint_with_reversion_100.monthly_amount)}/mois (100%)
+                  </div>
+                </div>
+              )}
+              {result.recommendation === 'p2_joint_60' && (
+                <div>
+                  <div>{formatEuro(result.p2_joint_with_reversion_60.monthly_amount)}</div>
+                  <div className="text-sm text-gray-600 font-normal mt-2">
+                    Si P2 décède : P1 reçoit {formatEuro(result.p2_joint_with_reversion_60.with_reversion?.spouse_monthly_amount || 0)}/mois (60%)<br/>
+                    Si P1 décède : P2 garde {formatEuro(result.p2_joint_with_reversion_60.monthly_amount)}/mois (100%)
+                  </div>
+                </div>
+              )}
+              {result.recommendation === 'p2_joint_80' && (
+                <div>
+                  <div>{formatEuro(result.p2_joint_with_reversion_80.monthly_amount)}</div>
+                  <div className="text-sm text-gray-600 font-normal mt-2">
+                    Si P2 décède : P1 reçoit {formatEuro(result.p2_joint_with_reversion_80.with_reversion?.spouse_monthly_amount || 0)}/mois (80%)<br/>
+                    Si P1 décède : P2 garde {formatEuro(result.p2_joint_with_reversion_80.monthly_amount)}/mois (100%)
+                  </div>
+                </div>
+              )}
+              {result.recommendation === 'p2_joint_100' && (
+                <div>
+                  <div>{formatEuro(result.p2_joint_with_reversion_100.monthly_amount)}</div>
+                  <div className="text-sm text-gray-600 font-normal mt-2">
+                    Si P2 décède : P1 reçoit {formatEuro(result.p2_joint_with_reversion_100.with_reversion?.spouse_monthly_amount || 0)}/mois (100%)<br/>
+                    Si P1 décède : P2 garde {formatEuro(result.p2_joint_with_reversion_100.monthly_amount)}/mois (100%)
+                  </div>
+                </div>
+              )}
               <span className="text-lg">/mois</span>
             </div>
             <div className="text-sm text-gray-600">
@@ -319,25 +380,119 @@ export default function CoupleCalculator() {
                     <thead>
                       <tr className="border-b">
                         <th className="text-left py-3 px-2">Stratégie</th>
-                        <th className="text-right py-3 px-2">Rente mensuelle</th>
-                        <th className="text-right py-3 px-2">Total espéré</th>
+                        <th className="text-right py-3 px-2">Couple vivant</th>
+                        <th className="text-right py-3 px-2">Si P1 décède</th>
+                        <th className="text-right py-3 px-2">Si P2 décède</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b">
-                        <td className="py-3 px-2">Pers. 1 seule</td>
-                        <td className="text-right py-3 px-2 font-medium">
-                          {formatEuro(result.person1_solo.monthly_amount)}
+                      <tr className={`border-b ${result.recommendation === 'person1_solo' ? 'bg-purple-50' : ''}`}>
+                        <td className="py-3 px-2">
+                          Rentes séparées
+                          {result.recommendation === 'person1_solo' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
                         </td>
-                        <td className="text-right py-3 px-2 text-gray-600">
-                          {formatEuro(result.person1_solo.total_expected_payout)}
-                        </td>
-                      </tr>
-                      <tr className="border-b">
-                        <td className="py-3 px-2">Pers. 2 seule</td>
                         <td className="text-right py-3 px-2 font-medium">
+                          {formatEuro(result.person1_solo.monthly_amount + result.person2_solo.monthly_amount)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-amber-700">
                           {formatEuro(result.person2_solo.monthly_amount)}
                         </td>
+                        <td className="text-right py-3 px-2 text-amber-700">
+                          {formatEuro(result.person1_solo.monthly_amount)}
+                        </td>
+                      </tr>
+                      <tr className={`border-b ${result.recommendation === 'joint_60' ? 'bg-purple-50' : ''}`}>
+                        <td className="py-3 px-2">
+                          Capital sur P1, rév. 60% → P2
+                          {result.recommendation === 'joint_60' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
+                        </td>
+                        <td className="text-right py-3 px-2 font-medium">
+                          {formatEuro(result.joint_with_reversion_60.monthly_amount)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.joint_with_reversion_60.with_reversion?.spouse_monthly_amount || 0)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.joint_with_reversion_60.monthly_amount)}
+                        </td>
+                      </tr>
+                      <tr className={`border-b ${result.recommendation === 'joint_80' ? 'bg-purple-50' : ''}`}>
+                        <td className="py-3 px-2">
+                          Capital sur P1, rév. 80% → P2
+                          {result.recommendation === 'joint_80' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
+                        </td>
+                        <td className="text-right py-3 px-2 font-medium">
+                          {formatEuro(result.joint_with_reversion_80.monthly_amount)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.joint_with_reversion_80.with_reversion?.spouse_monthly_amount || 0)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.joint_with_reversion_80.monthly_amount)}
+                        </td>
+                      </tr>
+                      <tr className={`border-b ${result.recommendation === 'joint_100' ? 'bg-purple-50' : ''}`}>
+                        <td className="py-3 px-2">
+                          Capital sur P1, rév. 100% → P2
+                          {result.recommendation === 'joint_100' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
+                        </td>
+                        <td className="text-right py-3 px-2 font-medium">
+                          {formatEuro(result.joint_with_reversion_100.monthly_amount)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.joint_with_reversion_100.with_reversion?.spouse_monthly_amount || 0)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.joint_with_reversion_100.monthly_amount)}
+                        </td>
+                      </tr>
+                      <tr className={`border-b ${result.recommendation === 'p2_joint_60' ? 'bg-purple-50' : ''}`}>
+                        <td className="py-3 px-2">
+                          Capital sur P2, rév. 60% → P1
+                          {result.recommendation === 'p2_joint_60' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
+                        </td>
+                        <td className="text-right py-3 px-2 font-medium">
+                          {formatEuro(result.p2_joint_with_reversion_60.monthly_amount)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.p2_joint_with_reversion_60.monthly_amount)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.p2_joint_with_reversion_60.with_reversion?.spouse_monthly_amount || 0)}
+                        </td>
+                      </tr>
+                      <tr className={`border-b ${result.recommendation === 'p2_joint_80' ? 'bg-purple-50' : ''}`}>
+                        <td className="py-3 px-2">
+                          Capital sur P2, rév. 80% → P1
+                          {result.recommendation === 'p2_joint_80' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
+                        </td>
+                        <td className="text-right py-3 px-2 font-medium">
+                          {formatEuro(result.p2_joint_with_reversion_80.monthly_amount)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.p2_joint_with_reversion_80.monthly_amount)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.p2_joint_with_reversion_80.with_reversion?.spouse_monthly_amount || 0)}
+                        </td>
+                      </tr>
+                      <tr className={result.recommendation === 'p2_joint_100' ? 'bg-purple-50' : ''}>
+                        <td className="py-3 px-2">
+                          Capital sur P2, rév. 100% → P1
+                          {result.recommendation === 'p2_joint_100' && <span className="ml-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded">✓ Recommandé</span>}
+                        </td>
+                        <td className="text-right py-3 px-2 font-medium">
+                          {formatEuro(result.p2_joint_with_reversion_100.monthly_amount)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.p2_joint_with_reversion_100.monthly_amount)}
+                        </td>
+                        <td className="text-right py-3 px-2 text-green-700">
+                          {formatEuro(result.p2_joint_with_reversion_100.with_reversion?.spouse_monthly_amount || 0)}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                         <td className="text-right py-3 px-2 text-gray-600">
                           {formatEuro(result.person2_solo.total_expected_payout)}
                         </td>
