@@ -61,15 +61,20 @@ export default function CoupleCalculator() {
                     max={LIMITS.AGE_MAX}
                     value={person1.age}
                     onChange={(e) => {
-                      const val = Number(e.target.value)
-                      if (val >= LIMITS.AGE_MIN && val <= LIMITS.AGE_MAX) {
-                        setPerson1({...person1, age: val})
-                      } else if (val < LIMITS.AGE_MIN) {
+                      const val = e.target.value
+                      if (val === '' || !isNaN(Number(val))) {
+                        setPerson1({...person1, age: val === '' ? LIMITS.AGE_MIN : Number(val)})
+                      }
+                    }}
+                    onBlur={(e) => {
+                      let val = Number(e.target.value)
+                      if (isNaN(val) || val < LIMITS.AGE_MIN) {
                         setPerson1({...person1, age: LIMITS.AGE_MIN})
                       } else if (val > LIMITS.AGE_MAX) {
                         setPerson1({...person1, age: LIMITS.AGE_MAX})
                       }
                     }}
+                    onFocus={(e) => e.target.select()}
                     className="w-16 px-2 py-1 text-sm font-medium text-center border border-blue-300 rounded 
                                focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
@@ -97,15 +102,20 @@ export default function CoupleCalculator() {
                     step={1000}
                     value={person1.capital}
                     onChange={(e) => {
-                      const val = Number(e.target.value)
-                      if (val >= LIMITS.CAPITAL_MIN && val <= LIMITS.CAPITAL_MAX) {
-                        setPerson1({...person1, capital: val})
-                      } else if (val < LIMITS.CAPITAL_MIN) {
+                      const val = e.target.value
+                      if (val === '' || !isNaN(Number(val))) {
+                        setPerson1({...person1, capital: val === '' ? LIMITS.CAPITAL_MIN : Number(val)})
+                      }
+                    }}
+                    onBlur={(e) => {
+                      let val = Number(e.target.value)
+                      if (isNaN(val) || val < LIMITS.CAPITAL_MIN) {
                         setPerson1({...person1, capital: LIMITS.CAPITAL_MIN})
                       } else if (val > LIMITS.CAPITAL_MAX) {
                         setPerson1({...person1, capital: LIMITS.CAPITAL_MAX})
                       }
                     }}
+                    onFocus={(e) => e.target.select()}
                     className="w-24 px-2 py-1 text-sm font-medium text-right border border-blue-300 rounded 
                                focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
@@ -157,15 +167,20 @@ export default function CoupleCalculator() {
                     max={LIMITS.AGE_MAX}
                     value={person2.age}
                     onChange={(e) => {
-                      const val = Number(e.target.value)
-                      if (val >= LIMITS.AGE_MIN && val <= LIMITS.AGE_MAX) {
-                        setPerson2({...person2, age: val})
-                      } else if (val < LIMITS.AGE_MIN) {
+                      const val = e.target.value
+                      if (val === '' || !isNaN(Number(val))) {
+                        setPerson2({...person2, age: val === '' ? LIMITS.AGE_MIN : Number(val)})
+                      }
+                    }}
+                    onBlur={(e) => {
+                      let val = Number(e.target.value)
+                      if (isNaN(val) || val < LIMITS.AGE_MIN) {
                         setPerson2({...person2, age: LIMITS.AGE_MIN})
                       } else if (val > LIMITS.AGE_MAX) {
                         setPerson2({...person2, age: LIMITS.AGE_MAX})
                       }
                     }}
+                    onFocus={(e) => e.target.select()}
                     className="w-16 px-2 py-1 text-sm font-medium text-center border border-pink-300 rounded 
                                focus:outline-none focus:ring-2 focus:ring-pink-500"
                   />
@@ -193,15 +208,20 @@ export default function CoupleCalculator() {
                     step={1000}
                     value={person2.capital}
                     onChange={(e) => {
-                      const val = Number(e.target.value)
-                      if (val >= LIMITS.CAPITAL_MIN && val <= LIMITS.CAPITAL_MAX) {
-                        setPerson2({...person2, capital: val})
-                      } else if (val < LIMITS.CAPITAL_MIN) {
+                      const val = e.target.value
+                      if (val === '' || !isNaN(Number(val))) {
+                        setPerson2({...person2, capital: val === '' ? LIMITS.CAPITAL_MIN : Number(val)})
+                      }
+                    }}
+                    onBlur={(e) => {
+                      let val = Number(e.target.value)
+                      if (isNaN(val) || val < LIMITS.CAPITAL_MIN) {
                         setPerson2({...person2, capital: LIMITS.CAPITAL_MIN})
                       } else if (val > LIMITS.CAPITAL_MAX) {
                         setPerson2({...person2, capital: LIMITS.CAPITAL_MAX})
                       }
                     }}
+                    onFocus={(e) => e.target.select()}
                     className="w-24 px-2 py-1 text-sm font-medium text-right border border-pink-300 rounded 
                                focus:outline-none focus:ring-2 focus:ring-pink-500"
                   />

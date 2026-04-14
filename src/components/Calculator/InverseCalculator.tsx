@@ -43,15 +43,20 @@ export default function InverseCalculator() {
                 step="50"
                 value={desiredAmount}
                 onChange={(e) => {
-                  const val = Number(e.target.value)
-                  if (val >= 300 && val <= 5000) {
-                    setDesiredAmount(val)
-                  } else if (val < 300) {
+                  const val = e.target.value
+                  if (val === '' || !isNaN(Number(val))) {
+                    setDesiredAmount(val === '' ? 300 : Number(val))
+                  }
+                }}
+                onBlur={(e) => {
+                  let val = Number(e.target.value)
+                  if (isNaN(val) || val < 300) {
                     setDesiredAmount(300)
                   } else if (val > 5000) {
                     setDesiredAmount(5000)
                   }
                 }}
+                onFocus={(e) => e.target.select()}
                 className="w-24 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
@@ -84,15 +89,20 @@ export default function InverseCalculator() {
                 max={LIMITS.AGE_MAX}
                 value={age}
                 onChange={(e) => {
-                  const val = Number(e.target.value)
-                  if (val >= LIMITS.AGE_MIN && val <= LIMITS.AGE_MAX) {
-                    setAge(val)
-                  } else if (val < LIMITS.AGE_MIN) {
+                  const val = e.target.value
+                  if (val === '' || !isNaN(Number(val))) {
+                    setAge(val === '' ? LIMITS.AGE_MIN : Number(val))
+                  }
+                }}
+                onBlur={(e) => {
+                  let val = Number(e.target.value)
+                  if (isNaN(val) || val < LIMITS.AGE_MIN) {
                     setAge(LIMITS.AGE_MIN)
                   } else if (val > LIMITS.AGE_MAX) {
                     setAge(LIMITS.AGE_MAX)
                   }
                 }}
+                onFocus={(e) => e.target.select()}
                 className="w-20 px-3 py-1 text-lg font-medium text-center border border-gray-300 rounded-lg 
                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />

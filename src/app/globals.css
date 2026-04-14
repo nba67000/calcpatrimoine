@@ -62,60 +62,60 @@ body {
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
-  background: transparent;
+  background: transparent !important;
   cursor: pointer;
   width: 100%;
 }
 
 /* Track (barre horizontale) - Toujours visible */
 input[type="range"]::-webkit-slider-track {
-  background: linear-gradient(to right, #bfdbfe 0%, #3b82f6 100%);
-  height: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid #93c5fd;
+  background: linear-gradient(to right, #bfdbfe 0%, #3b82f6 100%) !important;
+  height: 0.5rem !important;
+  border-radius: 0.5rem !important;
+  border: 1px solid #93c5fd !important;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  background-color: #2563eb;
-  height: 1.5rem;
-  width: 1.5rem;
-  border-radius: 50%;
-  margin-top: -0.5rem;
-  border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #2563eb !important;
+  height: 1.5rem !important;
+  width: 1.5rem !important;
+  border-radius: 50% !important;
+  margin-top: -0.5rem !important;
+  border: 2px solid white !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
   transition: all 0.2s ease-in-out;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  background-color: #1d4ed8;
+  background-color: #1d4ed8 !important;
   transform: scale(1.15);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Firefox */
 input[type="range"]::-moz-range-track {
-  background: linear-gradient(to right, #bfdbfe 0%, #3b82f6 100%);
-  height: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid #93c5fd;
+  background: linear-gradient(to right, #bfdbfe 0%, #3b82f6 100%) !important;
+  height: 0.5rem !important;
+  border-radius: 0.5rem !important;
+  border: 1px solid #93c5fd !important;
 }
 
 input[type="range"]::-moz-range-thumb {
-  background-color: #2563eb;
-  height: 1.5rem;
-  width: 1.5rem;
-  border-radius: 50%;
-  border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #2563eb !important;
+  height: 1.5rem !important;
+  width: 1.5rem !important;
+  border-radius: 50% !important;
+  border: 2px solid white !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
   transition: all 0.2s ease-in-out;
 }
 
 input[type="range"]::-moz-range-thumb:hover {
-  background-color: #1d4ed8;
+  background-color: #1d4ed8 !important;
   transform: scale(1.15);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Animation du résultat */

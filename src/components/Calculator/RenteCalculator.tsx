@@ -61,15 +61,22 @@ export default function RenteCalculator() {
                 max="90"
                 value={age}
                 onChange={(e) => {
-                  const val = Number(e.target.value)
-                  if (val >= 50 && val <= 90) {
-                    setAge(val)
-                  } else if (val < 50) {
+                  // Laisser l'utilisateur taper librement
+                  const val = e.target.value
+                  if (val === '' || !isNaN(Number(val))) {
+                    setAge(val === '' ? 50 : Number(val))
+                  }
+                }}
+                onBlur={(e) => {
+                  // Validation seulement à la perte de focus
+                  let val = Number(e.target.value)
+                  if (isNaN(val) || val < 50) {
                     setAge(50)
                   } else if (val > 90) {
                     setAge(90)
                   }
                 }}
+                onFocus={(e) => e.target.select()}
                 className="w-20 px-3 py-1 text-lg font-medium text-center border border-gray-300 rounded-lg 
                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
@@ -103,15 +110,20 @@ export default function RenteCalculator() {
                 step="1000"
                 value={capital}
                 onChange={(e) => {
-                  const val = Number(e.target.value)
-                  if (val >= 10000 && val <= 500000) {
-                    setCapital(val)
-                  } else if (val < 10000) {
+                  const val = e.target.value
+                  if (val === '' || !isNaN(Number(val))) {
+                    setCapital(val === '' ? 10000 : Number(val))
+                  }
+                }}
+                onBlur={(e) => {
+                  let val = Number(e.target.value)
+                  if (isNaN(val) || val < 10000) {
                     setCapital(10000)
                   } else if (val > 500000) {
                     setCapital(500000)
                   }
                 }}
+                onFocus={(e) => e.target.select()}
                 className="w-32 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
@@ -203,15 +215,20 @@ export default function RenteCalculator() {
                           max="90"
                           value={spouseAge}
                           onChange={(e) => {
-                            const val = Number(e.target.value)
-                            if (val >= 50 && val <= 90) {
-                              setSpouseAge(val)
-                            } else if (val < 50) {
+                            const val = e.target.value
+                            if (val === '' || !isNaN(Number(val))) {
+                              setSpouseAge(val === '' ? 50 : Number(val))
+                            }
+                          }}
+                          onBlur={(e) => {
+                            let val = Number(e.target.value)
+                            if (isNaN(val) || val < 50) {
                               setSpouseAge(50)
                             } else if (val > 90) {
                               setSpouseAge(90)
                             }
                           }}
+                          onFocus={(e) => e.target.select()}
                           className="w-16 px-2 py-1 text-sm font-medium text-center border border-amber-300 rounded-lg 
                                      focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                         />
