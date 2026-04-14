@@ -159,7 +159,7 @@ export default function APropos() {
                 <div className="space-y-2 text-sm text-gray-600">
                   <p><strong>Parcours</strong> : 6 ans chez Crédit Mutuel (EID), puis DevOps, puis retour à l&apos;assurance-vie</p>
                   <p><strong>Stack RenteVie</strong> : Next.js 15, TypeScript, Tailwind CSS, Python (scraping INSEE)</p>
-                  <p><strong>Open source</strong> : Code complet disponible sur <a href="https://github.com/nba67000/rente_viagere_calculator" className="text-blue-600 hover:underline" target="_blank" rel="noopener">GitHub</a></p>
+                  <p><strong>Open source</strong> : Code complet disponible sur <a href="https://github.com/nba67000/calcpatrimoine" className="text-blue-600 hover:underline" target="_blank" rel="noopener">GitHub</a></p>
                 </div>
               </div>
             </div>
@@ -243,17 +243,17 @@ export default function APropos() {
                 <h3 className="font-semibold text-gray-900 mb-3">Pour les développeurs</h3>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <a href="https://github.com/nba67000/rente_viagere_calculator" className="text-blue-600 hover:underline" target="_blank" rel="noopener">
+                    <a href="https://github.com/nba67000/calcpatrimoine" className="text-blue-600 hover:underline" target="_blank" rel="noopener">
                       → Code source GitHub
                     </a>
                   </li>
                   <li>
-                    <a href="https://github.com/nba67000/rente_viagere_calculator/issues" className="text-blue-600 hover:underline" target="_blank" rel="noopener">
+                    <a href="https://github.com/nba67000/calcpatrimoine/issues" className="text-blue-600 hover:underline" target="_blank" rel="noopener">
                       → Reporter un bug
                     </a>
                   </li>
                   <li>
-                    <a href="https://github.com/nba67000/rente_viagere_calculator/pulls" className="text-blue-600 hover:underline" target="_blank" rel="noopener">
+                    <a href="https://github.com/nba67000/calcpatrimoine/pulls" className="text-blue-600 hover:underline" target="_blank" rel="noopener">
                       → Contribuer (Pull Requests)
                     </a>
                   </li>
@@ -261,17 +261,15 @@ export default function APropos() {
               </div>
               
               <div>
-                <h3 className="font-semibold text-gray-900 mb-3">Pour le créateur</h3>
+                <h3 className="font-semibold text-gray-900 mb-3">Contact</h3>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <a href="https://www.linkedin.com/in/nicolas-barbier" className="text-blue-600 hover:underline" target="_blank" rel="noopener">
-                      → LinkedIn
-                    </a>
-                  </li>
-                  <li>
-                    <a href="mailto:contact@rente-viagere-calcul.fr" className="text-blue-600 hover:underline">
+                    <a href="mailto:contact@calcpatrimoine.fr" className="text-blue-600 hover:underline">
                       → Email
                     </a>
+                  </li>
+                  <li className="text-gray-500 text-xs pt-2">
+                    💡 Compte LinkedIn CalcPatrimoine à venir prochainement
                   </li>
                 </ul>
               </div>

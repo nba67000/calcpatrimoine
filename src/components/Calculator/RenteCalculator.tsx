@@ -54,7 +54,27 @@ export default function RenteCalculator() {
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
             <label className="text-sm text-gray-600">Votre âge</label>
-            <span className="text-lg font-medium">{age} ans</span>
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                min="50"
+                max="90"
+                value={age}
+                onChange={(e) => {
+                  const val = Number(e.target.value)
+                  if (val >= 50 && val <= 90) {
+                    setAge(val)
+                  } else if (val < 50) {
+                    setAge(50)
+                  } else if (val > 90) {
+                    setAge(90)
+                  }
+                }}
+                className="w-20 px-3 py-1 text-lg font-medium text-center border border-gray-300 rounded-lg 
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <span className="text-lg font-medium text-gray-600">ans</span>
+            </div>
           </div>
           <input
             type="range"
@@ -63,8 +83,7 @@ export default function RenteCalculator() {
             step="1"
             value={age}
             onChange={(e) => setAge(Number(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer 
-                       accent-blue-600 hover:bg-gray-300 transition-colors"
+            className="w-full"
           />
           <div className="flex justify-between text-xs text-gray-400 mt-1">
             <span>50 ans</span>
@@ -76,7 +95,28 @@ export default function RenteCalculator() {
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
             <label className="text-sm text-gray-600">Capital disponible</label>
-            <span className="text-lg font-medium">{formatEuro(capital)}</span>
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                min="10000"
+                max="500000"
+                step="1000"
+                value={capital}
+                onChange={(e) => {
+                  const val = Number(e.target.value)
+                  if (val >= 10000 && val <= 500000) {
+                    setCapital(val)
+                  } else if (val < 10000) {
+                    setCapital(10000)
+                  } else if (val > 500000) {
+                    setCapital(500000)
+                  }
+                }}
+                className="w-32 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <span className="text-lg font-medium text-gray-600">€</span>
+            </div>
           </div>
           <input
             type="range"
@@ -85,8 +125,7 @@ export default function RenteCalculator() {
             step="5000"
             value={capital}
             onChange={(e) => setCapital(Number(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer 
-                       accent-blue-600 hover:bg-gray-300 transition-colors"
+            className="w-full"
           />
           <div className="flex justify-between text-xs text-gray-400 mt-1">
             <span>10 k€</span>
@@ -157,7 +196,27 @@ export default function RenteCalculator() {
                   <div className="mb-4">
                     <div className="flex justify-between items-center mb-2">
                       <label className="text-sm text-gray-700">Âge du conjoint</label>
-                      <span className="text-sm font-medium">{spouseAge} ans</span>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="number"
+                          min="50"
+                          max="90"
+                          value={spouseAge}
+                          onChange={(e) => {
+                            const val = Number(e.target.value)
+                            if (val >= 50 && val <= 90) {
+                              setSpouseAge(val)
+                            } else if (val < 50) {
+                              setSpouseAge(50)
+                            } else if (val > 90) {
+                              setSpouseAge(90)
+                            }
+                          }}
+                          className="w-16 px-2 py-1 text-sm font-medium text-center border border-amber-300 rounded-lg 
+                                     focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                        />
+                        <span className="text-sm font-medium text-gray-600">ans</span>
+                      </div>
                     </div>
                     <input
                       type="range"
@@ -166,7 +225,7 @@ export default function RenteCalculator() {
                       step="1"
                       value={spouseAge}
                       onChange={(e) => setSpouseAge(Number(e.target.value))}
-                      className="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
+                      className="w-full"
                     />
                   </div>
 

@@ -82,7 +82,6 @@ export const LINKS = {
   insee_data: 'https://www.insee.fr/fr/statistiques/3303333',
   methodology: '/methodologie',
   about: '/a-propos',
-  contact: 'mailto:contact@rente-viagere-calcul.fr',
-  linkedin: 'https://www.linkedin.com/in/nicolas-barbier',
-  github: 'https://github.com/nicolasbarbier/rente-viagere-calculator',
+  contact: 'mailto:contact@calcpatrimoine.fr',
+  github: 'https://github.com/nba67000/calcpatrimoine',
 } as const

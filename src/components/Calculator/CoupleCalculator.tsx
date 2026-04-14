@@ -54,7 +54,27 @@ export default function CoupleCalculator() {
             <div className="mb-4">
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm text-gray-600">Âge</label>
-                <span className="text-sm font-medium">{person1.age} ans</span>
+                <div className="flex items-center gap-1">
+                  <input
+                    type="number"
+                    min={LIMITS.AGE_MIN}
+                    max={LIMITS.AGE_MAX}
+                    value={person1.age}
+                    onChange={(e) => {
+                      const val = Number(e.target.value)
+                      if (val >= LIMITS.AGE_MIN && val <= LIMITS.AGE_MAX) {
+                        setPerson1({...person1, age: val})
+                      } else if (val < LIMITS.AGE_MIN) {
+                        setPerson1({...person1, age: LIMITS.AGE_MIN})
+                      } else if (val > LIMITS.AGE_MAX) {
+                        setPerson1({...person1, age: LIMITS.AGE_MAX})
+                      }
+                    }}
+                    className="w-16 px-2 py-1 text-sm font-medium text-center border border-blue-300 rounded 
+                               focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className="text-sm">ans</span>
+                </div>
               </div>
               <input
                 type="range"
@@ -62,14 +82,35 @@ export default function CoupleCalculator() {
                 max={LIMITS.AGE_MAX}
                 value={person1.age}
                 onChange={(e) => setPerson1({...person1, age: Number(e.target.value)})}
-                className="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                className="w-full"
               />
             </div>
 
             <div className="mb-4">
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm text-gray-600">Capital</label>
-                <span className="text-sm font-medium">{formatEuro(person1.capital)}</span>
+                <div className="flex items-center gap-1">
+                  <input
+                    type="number"
+                    min={LIMITS.CAPITAL_MIN}
+                    max={LIMITS.CAPITAL_MAX}
+                    step={1000}
+                    value={person1.capital}
+                    onChange={(e) => {
+                      const val = Number(e.target.value)
+                      if (val >= LIMITS.CAPITAL_MIN && val <= LIMITS.CAPITAL_MAX) {
+                        setPerson1({...person1, capital: val})
+                      } else if (val < LIMITS.CAPITAL_MIN) {
+                        setPerson1({...person1, capital: LIMITS.CAPITAL_MIN})
+                      } else if (val > LIMITS.CAPITAL_MAX) {
+                        setPerson1({...person1, capital: LIMITS.CAPITAL_MAX})
+                      }
+                    }}
+                    className="w-24 px-2 py-1 text-sm font-medium text-right border border-blue-300 rounded 
+                               focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className="text-sm">€</span>
+                </div>
               </div>
               <input
                 type="range"
@@ -78,7 +119,7 @@ export default function CoupleCalculator() {
                 step={LIMITS.CAPITAL_STEP}
                 value={person1.capital}
                 onChange={(e) => setPerson1({...person1, capital: Number(e.target.value)})}
-                className="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                className="w-full"
               />
             </div>
 
@@ -109,7 +150,27 @@ export default function CoupleCalculator() {
             <div className="mb-4">
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm text-gray-600">Âge</label>
-                <span className="text-sm font-medium">{person2.age} ans</span>
+                <div className="flex items-center gap-1">
+                  <input
+                    type="number"
+                    min={LIMITS.AGE_MIN}
+                    max={LIMITS.AGE_MAX}
+                    value={person2.age}
+                    onChange={(e) => {
+                      const val = Number(e.target.value)
+                      if (val >= LIMITS.AGE_MIN && val <= LIMITS.AGE_MAX) {
+                        setPerson2({...person2, age: val})
+                      } else if (val < LIMITS.AGE_MIN) {
+                        setPerson2({...person2, age: LIMITS.AGE_MIN})
+                      } else if (val > LIMITS.AGE_MAX) {
+                        setPerson2({...person2, age: LIMITS.AGE_MAX})
+                      }
+                    }}
+                    className="w-16 px-2 py-1 text-sm font-medium text-center border border-pink-300 rounded 
+                               focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  />
+                  <span className="text-sm">ans</span>
+                </div>
               </div>
               <input
                 type="range"
@@ -117,14 +178,35 @@ export default function CoupleCalculator() {
                 max={LIMITS.AGE_MAX}
                 value={person2.age}
                 onChange={(e) => setPerson2({...person2, age: Number(e.target.value)})}
-                className="w-full h-2 bg-pink-200 rounded-lg appearance-none cursor-pointer accent-pink-600"
+                className="w-full"
               />
             </div>
 
             <div className="mb-4">
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm text-gray-600">Capital</label>
-                <span className="text-sm font-medium">{formatEuro(person2.capital)}</span>
+                <div className="flex items-center gap-1">
+                  <input
+                    type="number"
+                    min={LIMITS.CAPITAL_MIN}
+                    max={LIMITS.CAPITAL_MAX}
+                    step={1000}
+                    value={person2.capital}
+                    onChange={(e) => {
+                      const val = Number(e.target.value)
+                      if (val >= LIMITS.CAPITAL_MIN && val <= LIMITS.CAPITAL_MAX) {
+                        setPerson2({...person2, capital: val})
+                      } else if (val < LIMITS.CAPITAL_MIN) {
+                        setPerson2({...person2, capital: LIMITS.CAPITAL_MIN})
+                      } else if (val > LIMITS.CAPITAL_MAX) {
+                        setPerson2({...person2, capital: LIMITS.CAPITAL_MAX})
+                      }
+                    }}
+                    className="w-24 px-2 py-1 text-sm font-medium text-right border border-pink-300 rounded 
+                               focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  />
+                  <span className="text-sm">€</span>
+                </div>
               </div>
               <input
                 type="range"
@@ -133,7 +215,7 @@ export default function CoupleCalculator() {
                 step={LIMITS.CAPITAL_STEP}
                 value={person2.capital}
                 onChange={(e) => setPerson2({...person2, capital: Number(e.target.value)})}
-                className="w-full h-2 bg-pink-200 rounded-lg appearance-none cursor-pointer accent-pink-600"
+                className="w-full"
               />
             </div>
 

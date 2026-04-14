@@ -8,6 +8,7 @@ import CoupleCalculator from '@/components/Calculator/CoupleCalculator'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import TrustMarkers from '@/components/TrustMarkers'
+import CrossLink from '@/components/CrossLink'
 
 type CalculatorMode = 'standard' | 'inverse' | 'couple'
 
@@ -151,6 +152,24 @@ export default function Home() {
               📧 Inscrivez-vous pour être notifié des nouveaux calculateurs (bientôt)
             </p>
           </div>
+        </div>
+        
+        {/* Cross-links vers FAQ et Méthodologie */}
+        <div className="grid md:grid-cols-2 gap-6 mb-16">
+          <CrossLink
+            title="Des questions ?"
+            description="Consultez notre FAQ pour tout comprendre sur la rente viagère"
+            href="/faq"
+            icon="❓"
+            variant="blue"
+          />
+          <CrossLink
+            title="Comment on calcule ?"
+            description="Découvrez les formules actuarielles et les données INSEE utilisées"
+            href="/methodologie"
+            icon="📐"
+            variant="purple"
+          />
         </div>
       </section>
 

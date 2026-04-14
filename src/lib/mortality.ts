@@ -16,6 +16,78 @@ import mortalityTablesData from '../../public/mortality_tables.json'
 const mortalityTables = mortalityTablesData as MortalityTables
 
 /**
+ * Calcule la probabilité de survie t_px (probabilité qu'une tête d'âge x survive t années)
+ * 
+ * Formule : t_px = Π[k=0 to t-1] (1 - q_(x+k))
+ * où q_(x+k) = taux de mortalité à l'âge x+k
+ */
+function calculateSurvivalProbability(
+  age: number,
+  gender: Gender,
+  years: number
+): number {
+  let survivalProb = 1.0
+  
+  for (let k = 0; k < years; k++) {
+    const data = getMortalityData(age + k, gender)
+    if (!data) {
+      // Si on dépasse les données disponibles, on arrête
+      break
+    }
+    
+    // q_x = taux de mortalité annuel
+    // p_x = 1 - q_x = taux de survie annuel
+    const p_x = 1 - data.mortality_rate
+    survivalProb *= p_x
+  }
+  
+  return survivalProb
+}
+
+/**
+ * Calcule le facteur viager "dernier décès" pour un couple
+ * 
+ * Formule actuarielle exacte (Esch p.18) :
+ * a_xy_barre = Σ[t=1,∞] v^t · t_pxy_barre
+ * où :
+ * - t_pxy_barre = t_px + t_py - t_px·t_py (au moins un des deux survit)
+ * - v^t = (1/(1+i))^t (facteur d'actualisation)
+ */
+function calculateLastSurvivorFactor(
+  age1: number,
+  gender1: Gender,
+  age2: number,
+  gender2: Gender,
+  techRate: number
+): number {
+  let factor = 0
+  const maxYears = 60 // On calcule jusqu'à 60 ans dans le futur (suffisant)
+  
+  for (let t = 1; t <= maxYears; t++) {
+    // Probabilités de survie individuelles
+    const t_px = calculateSurvivalProbability(age1, gender1, t)
+    const t_py = calculateSurvivalProbability(age2, gender2, t)
+    
+    // Si probabilité devient négligeable, on arrête
+    if (t_px < 0.001 && t_py < 0.001) {
+      break
+    }
+    
+    // Probabilité qu'au moins un des deux survive
+    // Formule : t_pxy_barre = t_px + t_py - t_px·t_py
+    const t_pxy_bar = t_px + t_py - (t_px * t_py)
+    
+    // Facteur d'actualisation
+    const v_t = Math.pow(1 / (1 + techRate), t)
+    
+    // Accumulation
+    factor += t_pxy_bar * v_t
+  }
+  
+  return factor
+}
+
+/**
  * Récupère les données de mortalité pour un âge et sexe donnés
  */
 export function getMortalityData(age: number, gender: Gender): MortalityData | null {
@@ -63,10 +135,14 @@ export function calculateSimpleAnnuity(
 /**
  * Calcule la rente avec réversion au conjoint
  * 
- * Formule simplifiée : R = C / [a(x) + p * a(x,y)]
+ * Formule actuarielle exacte :
+ * R = C / [a(x) + p · a_xy_barre]
  * où :
+ * - a(x) = facteur viager tête principale
  * - p = pourcentage de réversion (0.6, 0.8, 1.0)
- * - a(x,y) = facteur viager conjoint (approximé)
+ * - a_xy_barre = facteur viager "dernier décès" (au moins un des deux survit)
+ * 
+ * Référence : Louis Esch, Calcul actuariel, Chapitre 3, p.18
  */
 export function calculateReversionAnnuity(
   capital: number,
@@ -83,17 +159,26 @@ export function calculateReversionAnnuity(
     return null
   }
   
-  // Approximation du facteur conjoint (formule simplifiée)
-  // En réalité, il faudrait une table de mortalité conjointe
-  // Ici on approxime avec la moyenne pondérée
+  const techRate = mortalityTables.metadata.tech_rate
   const p = reversionPercentage / 100
-  const jointFactor = mainData.annuity_factor + (p * spouseData.annuity_factor * 0.7)
+  
+  // Calcul rigoureux du facteur viager "dernier décès"
+  const lastSurvivorFactor = calculateLastSurvivorFactor(
+    age,
+    gender,
+    spouseAge,
+    spouseGender,
+    techRate
+  )
+  
+  // Facteur viager avec réversion (formule actuarielle exacte)
+  const jointFactor = mainData.annuity_factor + (p * lastSurvivorFactor)
   
   const annualAmount = capital / jointFactor
   const monthlyAmount = annualAmount / 12
   const spouseMonthlyAmount = (monthlyAmount * p)
   
-  // Espérance de vie conjointe (approximation)
+  // Espérance de vie conjointe (max des deux espérances)
   const jointLifeExpectancy = Math.max(
     mainData.life_expectancy,
     spouseData.life_expectancy
@@ -111,7 +196,7 @@ export function calculateReversionAnnuity(
       joint_life_expectancy: jointLifeExpectancy
     },
     annuity_factor: jointFactor,
-    tech_rate: mortalityTables.metadata.tech_rate
+    tech_rate: techRate
   }
 }
 
@@ -279,14 +364,24 @@ export function calculateRequiredCapital(
   
   let annuityFactor = data.annuity_factor
   
-  // Si réversion activée, ajuster le facteur
+  // Si réversion activée, calcul rigoureux du facteur
   if (reversion?.enabled && reversion.spouse_age && reversion.percentage) {
     const spouseGender: Gender = gender === 'homme' ? 'femme' : 'homme'
     const spouseData = getMortalityData(reversion.spouse_age, spouseGender)
     
     if (spouseData) {
+      const techRate = mortalityTables.metadata.tech_rate
       const p = reversion.percentage / 100
-      annuityFactor = data.annuity_factor + (p * spouseData.annuity_factor * 0.7)
+      
+      const lastSurvivorFactor = calculateLastSurvivorFactor(
+        age,
+        gender,
+        reversion.spouse_age,
+        spouseGender,
+        techRate
+      )
+      
+      annuityFactor = data.annuity_factor + (p * lastSurvivorFactor)
     }
   }
   

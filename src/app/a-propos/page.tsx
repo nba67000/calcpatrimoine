@@ -250,14 +250,12 @@ export default function APropos() {
                 <h3 className="font-semibold text-gray-900 mb-3">Contact</h3>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <a href="https://www.linkedin.com/in/nicolas-barbier" className="text-blue-600 hover:underline" target="_blank" rel="noopener">
-                      → LinkedIn
-                    </a>
-                  </li>
-                  <li>
                     <a href="mailto:contact@calcpatrimoine.fr" className="text-blue-600 hover:underline">
                       → Email
                     </a>
+                  </li>
+                  <li className="text-gray-500 text-xs pt-2">
+                    💡 Compte LinkedIn CalcPatrimoine à venir prochainement
                   </li>
                 </ul>
               </div>
