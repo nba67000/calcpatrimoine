@@ -2,13 +2,14 @@
 'use client'
 
 import { useState } from 'react'
+import type { ReactElement } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CrossLink from '@/components/CrossLink'
 
 interface FAQItem {
   question: string
-  answer: string | JSX.Element
+  answer: string | ReactElement
 }
 
 interface FAQSection {
