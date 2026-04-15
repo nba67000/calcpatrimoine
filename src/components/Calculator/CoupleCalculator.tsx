@@ -129,7 +129,7 @@ export default function CoupleCalculator() {
                 max="90"
                 value={person1Age}
                 onChange={(e) => setPerson1Age(Number(e.target.value))}
-                className="w-full"
+                className="w-full custom-range"
               />
               <div className="flex justify-between text-xs text-neutral-400 mt-1">
                 <span>50 ans</span>
@@ -175,7 +175,7 @@ export default function CoupleCalculator() {
                 max="90"
                 value={person2Age}
                 onChange={(e) => setPerson2Age(Number(e.target.value))}
-                className="w-full"
+                className="w-full custom-range"
               />
               <div className="flex justify-between text-xs text-neutral-400 mt-1">
                 <span>50 ans</span>

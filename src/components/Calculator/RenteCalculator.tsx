@@ -114,7 +114,7 @@ export default function RenteCalculator() {
             step="1"
             value={age}
             onChange={(e) => setAge(Number(e.target.value))}
-            className="w-full"
+            className="w-full custom-range"
           />
           <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>50 ans</span>
@@ -162,23 +162,7 @@ export default function RenteCalculator() {
             step="5000"
             value={capital}
             onChange={(e) => setCapital(Number(e.target.value))}
-            className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer
-                       [&::-webkit-slider-thumb]:appearance-none
-                       [&::-webkit-slider-thumb]:w-5
-                       [&::-webkit-slider-thumb]:h-5
-                       [&::-webkit-slider-thumb]:rounded-full
-                       [&::-webkit-slider-thumb]:bg-primary-600
-                       [&::-webkit-slider-thumb]:cursor-pointer
-                       [&::-webkit-slider-thumb]:hover:bg-primary-700
-                       [&::-webkit-slider-thumb]:transition-colors
-                       [&::-moz-range-thumb]:w-5
-                       [&::-moz-range-thumb]:h-5
-                       [&::-moz-range-thumb]:rounded-full
-                       [&::-moz-range-thumb]:bg-primary-600
-                       [&::-moz-range-thumb]:cursor-pointer
-                       [&::-moz-range-thumb]:hover:bg-primary-700
-                       [&::-moz-range-thumb]:border-0
-                       [&::-moz-range-thumb]:transition-colors"
+            className="w-full custom-range"
           />
           <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>10 k€</span>
