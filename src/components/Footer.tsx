@@ -6,13 +6,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
   
   return (
-    <footer className="border-t bg-gray-50 py-12">
+    <footer className="border-t bg-neutral-50 py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* À propos */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-3">CalcPatrimoine</h4>
-            <p className="text-sm text-gray-600 leading-relaxed mb-4">
+            <h4 className="font-semibold text-neutral-900 mb-3">CalcPatrimoine</h4>
+            <p className="text-sm text-neutral-600 leading-relaxed mb-4">
               Calculateurs patrimoniaux open-source basés sur les données officielles INSEE.
             </p>
             <div className="flex gap-3">
@@ -20,7 +20,7 @@ export default function Footer() {
                 href={LINKS.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-neutral-400 hover:text-neutral-600 transition-colors"
                 aria-label="GitHub"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -32,20 +32,20 @@ export default function Footer() {
           
           {/* Liens utiles */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-3">Ressources</h4>
+            <h4 className="font-semibold text-neutral-900 mb-3">Ressources</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/faq" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <Link href="/faq" className="text-neutral-600 hover:text-neutral-900 transition-colors">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href={LINKS.methodology} className="text-gray-600 hover:text-gray-900 transition-colors">
+                <Link href={LINKS.methodology} className="text-neutral-600 hover:text-neutral-900 transition-colors">
                   Méthodologie
                 </Link>
               </li>
               <li>
-                <Link href={LINKS.about} className="text-gray-600 hover:text-gray-900 transition-colors">
+                <Link href={LINKS.about} className="text-neutral-600 hover:text-neutral-900 transition-colors">
                   À propos
                 </Link>
               </li>
@@ -54,7 +54,7 @@ export default function Footer() {
                   href={LINKS.insee_data}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-neutral-600 hover:text-neutral-900 transition-colors"
                 >
                   Données INSEE ↗
                 </a>
@@ -64,20 +64,20 @@ export default function Footer() {
 
           {/* Légal */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-3">Légal</h4>
+            <h4 className="font-semibold text-neutral-900 mb-3">Légal</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/mentions-legales" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <Link href="/mentions-legales" className="text-neutral-600 hover:text-neutral-900 transition-colors">
                   Mentions légales
                 </Link>
               </li>
               <li>
-                <Link href="/cgu" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <Link href="/cgu" className="text-neutral-600 hover:text-neutral-900 transition-colors">
                   CGU
                 </Link>
               </li>
               <li>
-                <Link href="/politique-confidentialite" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <Link href="/politique-confidentialite" className="text-neutral-600 hover:text-neutral-900 transition-colors">
                   Confidentialité
                 </Link>
               </li>
@@ -86,16 +86,16 @@ export default function Footer() {
           
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-3">Contact</h4>
-            <p className="text-sm text-gray-600 mb-2">
+            <h4 className="font-semibold text-neutral-900 mb-3">Contact</h4>
+            <p className="text-sm text-neutral-600 mb-2">
               <a 
                 href={LINKS.contact}
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-neutral-600 hover:text-neutral-900 transition-colors"
               >
                 contact@calcpatrimoine.fr
               </a>
             </p>
-            <p className="text-xs text-gray-500 leading-relaxed mt-4">
+            <p className="text-xs text-neutral-500 leading-relaxed mt-4">
               Aucune donnée personnelle collectée. Calculs locaux dans votre navigateur.
             </p>
           </div>
@@ -103,21 +103,21 @@ export default function Footer() {
         
         {/* Disclaimer + Copyright */}
         <div className="text-center pt-8 border-t space-y-3">
-          <p className="text-xs text-gray-500 max-w-4xl mx-auto">
+          <p className="text-xs text-neutral-500 max-w-4xl mx-auto">
             ⚠️ CalcPatrimoine est un outil pédagogique gratuit à titre indicatif. 
             Il ne constitue pas un conseil en investissement. Consultez un professionnel 
             avant toute décision. Tables INSEE 2022 | Conforme réglementation 2012
           </p>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-neutral-500">
             © {currentYear} Nicolas Barbier - Tous droits réservés
           </p>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-neutral-500">
             Code source disponible sur{' '}
             <a 
               href={LINKS.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-gray-700"
+              className="underline hover:text-neutral-700"
             >
               GitHub
             </a>

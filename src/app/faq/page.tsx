@@ -22,14 +22,14 @@ function FAQAccordion({ item }: { item: FAQItem }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="border border-gray-200 rounded-lg mb-3 overflow-hidden">
+    <div className="border border-neutral-200 rounded-lg mb-3 overflow-hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors text-left"
+        className="w-full px-6 py-4 flex justify-between items-center bg-white hover:bg-neutral-50 transition-colors text-left"
       >
-        <span className="font-medium text-gray-900 pr-4">{item.question}</span>
+        <span className="font-medium text-neutral-900 pr-4">{item.question}</span>
         <svg 
-          className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform ${
+          className={`w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform ${
             isOpen ? 'rotate-180' : ''
           }`}
           fill="none" 
@@ -41,8 +41,8 @@ function FAQAccordion({ item }: { item: FAQItem }) {
       </button>
       
       {isOpen && (
-        <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
-          <div className="text-gray-700 leading-relaxed prose prose-sm max-w-none">
+        <div className="px-6 py-4 bg-neutral-50 border-t border-neutral-200">
+          <div className="text-neutral-700 leading-relaxed prose prose-sm max-w-none">
             {item.answer}
           </div>
         </div>
@@ -73,8 +73,8 @@ export default function FAQPage() {
                 <strong>Pourquoi faire ça ?</strong> Pour avoir un revenu régulier et sécurisé, 
                 comme un complément de retraite que vous créez vous-même.
               </p>
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
-                <p className="text-sm text-blue-900">
+              <div className="bg-primary-50 border-l-4 border-blue-400 p-4 mt-4">
+                <p className="text-sm text-primary-900">
                   💡 <strong>À retenir</strong> : Plus vous êtes âgé au moment de souscrire, 
                   plus la rente mensuelle est élevée (car l&apos;assureur estime vous verser moins longtemps).
                 </p>
@@ -100,7 +100,7 @@ export default function FAQPage() {
               <p className="mb-3">
                 <strong>Étape 3</strong> : Vous recevez votre rente chaque mois, à vie, peu importe combien de temps vous vivez.
               </p>
-              <div className="bg-green-50 border-l-4 border-green-400 p-4 mt-4">
+              <div className="bg-success-50 border-l-4 border-green-400 p-4 mt-4">
                 <p className="text-sm text-green-900">
                   ✅ <strong>Exemple chiffré</strong> : Marc, 70 ans, verse 200 000€. 
                   Il reçoit 1 227€/mois à vie. S&apos;il vit jusqu&apos;à 90 ans (20 ans), 
@@ -117,37 +117,37 @@ export default function FAQPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm border-collapse">
                   <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-300 px-4 py-2 text-left"></th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Livret A / Assurance-vie</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Rente viagère</th>
+                    <tr className="bg-neutral-100">
+                      <th className="border border-neutral-300 px-4 py-2 text-left"></th>
+                      <th className="border border-neutral-300 px-4 py-2 text-left">Livret A / Assurance-vie</th>
+                      <th className="border border-neutral-300 px-4 py-2 text-left">Rente viagère</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-medium">Capital</td>
-                      <td className="border border-gray-300 px-4 py-2">✅ Vous gardez votre argent</td>
-                      <td className="border border-gray-300 px-4 py-2">❌ Vous le donnez définitivement</td>
+                      <td className="border border-neutral-300 px-4 py-2 font-medium">Capital</td>
+                      <td className="border border-neutral-300 px-4 py-2">✅ Vous gardez votre argent</td>
+                      <td className="border border-neutral-300 px-4 py-2">❌ Vous le donnez définitivement</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-medium">Revenus</td>
-                      <td className="border border-gray-300 px-4 py-2">⚠️ Variables selon les marchés</td>
-                      <td className="border border-gray-300 px-4 py-2">✅ Fixes, garantis à vie</td>
+                      <td className="border border-neutral-300 px-4 py-2 font-medium">Revenus</td>
+                      <td className="border border-neutral-300 px-4 py-2">⚠️ Variables selon les marchés</td>
+                      <td className="border border-neutral-300 px-4 py-2">✅ Fixes, garantis à vie</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-medium">Durée</td>
-                      <td className="border border-gray-300 px-4 py-2">⏱️ Limité par votre capital</td>
-                      <td className="border border-gray-300 px-4 py-2">♾️ Jusqu&apos;à votre décès (illimité)</td>
+                      <td className="border border-neutral-300 px-4 py-2 font-medium">Durée</td>
+                      <td className="border border-neutral-300 px-4 py-2">⏱️ Limité par votre capital</td>
+                      <td className="border border-neutral-300 px-4 py-2">♾️ Jusqu&apos;à votre décès (illimité)</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-medium">Héritage</td>
-                      <td className="border border-gray-300 px-4 py-2">✅ Transmis à vos héritiers</td>
-                      <td className="border border-gray-300 px-4 py-2">❌ Rien si vous décédez tôt (sauf réversion)</td>
+                      <td className="border border-neutral-300 px-4 py-2 font-medium">Héritage</td>
+                      <td className="border border-neutral-300 px-4 py-2">✅ Transmis à vos héritiers</td>
+                      <td className="border border-neutral-300 px-4 py-2">❌ Rien si vous décédez tôt (sauf réversion)</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <p className="mt-4 text-sm text-gray-700">
+              <p className="mt-4 text-sm text-neutral-700">
                 <strong>En résumé</strong> : La rente viagère, c&apos;est l&apos;inverse d&apos;un héritage. 
                 Vous &quot;pariez&quot; sur votre longévité pour avoir un revenu garanti à vie.
               </p>
@@ -176,8 +176,8 @@ export default function FAQPage() {
                 <li>Si vous décédez tôt, vous perdez votre capital (sauf option réversion)</li>
                 <li>L&apos;inflation réduit le pouvoir d&apos;achat de votre rente (614€ en 2026 ≠ 614€ en 2046)</li>
               </ul>
-              <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mt-4">
-                <p className="text-sm text-amber-900">
+              <div className="bg-warning-50 border-l-4 border-warning-400 p-4 mt-4">
+                <p className="text-sm text-warning-900">
                   ⚠️ <strong>Conseil</strong> : Ne mettez pas TOUT votre capital en rente viagère. 
                   Gardez une réserve de sécurité (10-20k€) accessible en cas d&apos;urgence (santé, travaux...).
                 </p>
@@ -226,8 +226,8 @@ export default function FAQPage() {
                   ❌ Vous êtes en <strong>mauvaise santé</strong> (risque de décès rapide)
                 </li>
               </ul>
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
-                <p className="text-sm text-blue-900">
+              <div className="bg-primary-50 border-l-4 border-blue-400 p-4 mt-4">
+                <p className="text-sm text-primary-900">
                   💡 <strong>Cas idéal</strong> : Jeanne, 68 ans, célibataire, 120 000€ d&apos;épargne, 
                   retraite 1200€/mois. Elle transforme 80 000€ en rente (491€/mois) et garde 40 000€ 
                   en réserve. Total : 1691€/mois garanti à vie.
@@ -261,7 +261,7 @@ export default function FAQPage() {
                 <li>Femme 70 ans → <strong>671€/mois</strong></li>
                 <li>Femme 75 ans → <strong>885€/mois</strong></li>
               </ul>
-              <div className="bg-green-50 border-l-4 border-green-400 p-4 mt-4">
+              <div className="bg-success-50 border-l-4 border-green-400 p-4 mt-4">
                 <p className="text-sm text-green-900">
                   ✅ <strong>Astuce</strong> : Plus vous attendez (70 ans vs 65 ans), 
                   plus la rente mensuelle est élevée (+25% environ tous les 5 ans).
@@ -310,7 +310,7 @@ export default function FAQPage() {
               <p className="mb-3">
                 <strong>Exemple concret</strong> :
               </p>
-              <div className="bg-gray-100 p-4 rounded-lg mb-3">
+              <div className="bg-neutral-100 p-4 rounded-lg mb-3">
                 <p className="mb-2">
                   Jean, 65 ans, verse 100 000€. Il reçoit 614€/mois.
                 </p>
@@ -336,8 +336,8 @@ export default function FAQPage() {
                 <li>Homme 65 ans → Point mort à <strong>78-79 ans</strong> (13-14 ans)</li>
                 <li>Femme 65 ans → Point mort à <strong>80-81 ans</strong> (15-16 ans)</li>
               </ul>
-              <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mt-4">
-                <p className="text-sm text-amber-900">
+              <div className="bg-warning-50 border-l-4 border-warning-400 p-4 mt-4">
+                <p className="text-sm text-warning-900">
                   💡 <strong>C&apos;est un pari</strong> : Si vous vivez longtemps, vous gagnez. 
                   Si vous décédez tôt, vous perdez. C&apos;est le principe de l&apos;assurance.
                 </p>
@@ -359,7 +359,7 @@ export default function FAQPage() {
               <p className="mb-3">
                 <strong>Exemple extrême</strong> :
               </p>
-              <div className="bg-green-100 p-4 rounded-lg mb-3">
+              <div className="bg-success-100 p-4 rounded-lg mb-3">
                 <p className="mb-2">
                   Marie, 65 ans, verse 100 000€. Elle reçoit 532€/mois (femme).
                 </p>
@@ -376,8 +376,8 @@ export default function FAQPage() {
                 certains clients décèdent à 70 ans (il garde leur argent), 
                 d&apos;autres vivent jusqu&apos;à 100 ans (il paie plus). En moyenne, ça s&apos;équilibre.
               </p>
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
-                <p className="text-sm text-blue-900">
+              <div className="bg-primary-50 border-l-4 border-blue-400 p-4 mt-4">
+                <p className="text-sm text-primary-900">
                   ✅ <strong>Garantie</strong> : Même si vous vivez 50 ans de plus, 
                   l&apos;assureur est <strong>légalement obligé</strong> de vous verser la rente.
                 </p>
@@ -453,7 +453,7 @@ export default function FAQPage() {
               <p className="mb-3">
                 <strong>Exemple chiffré</strong> :
               </p>
-              <div className="bg-blue-100 p-4 rounded-lg mb-3">
+              <div className="bg-primary-100 p-4 rounded-lg mb-3">
                 <p className="mb-2">
                   Pierre, 65 ans, verse 100 000€.
                 </p>
@@ -463,14 +463,14 @@ export default function FAQPage() {
                 <p className="mb-2">
                   <strong>Avec réversion 60%</strong> : 540€/mois
                 </p>
-                <p className="mb-2 text-sm text-gray-700">
+                <p className="mb-2 text-sm text-neutral-700">
                   → Si Pierre décède, sa femme Marie touche 60% × 540€ = <strong>324€/mois à vie</strong><br/>
                   → Si Marie décède avant Pierre, Pierre garde ses <strong>540€/mois</strong> (c&apos;est sa rente)
                 </p>
               </div>
               
-              <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mb-3">
-                <p className="text-sm text-amber-900">
+              <div className="bg-warning-50 border-l-4 border-warning-400 p-4 mb-3">
+                <p className="text-sm text-warning-900">
                   ⚠️ <strong>Important</strong> : La réversion ne fonctionne que <strong>dans un sens</strong> 
                   (du titulaire vers le bénéficiaire). Si c&apos;est votre conjoint qui décède en premier, 
                   vous gardez 100% de votre rente. Seul le conjoint survivant bénéficie de la réversion.
@@ -497,11 +497,11 @@ export default function FAQPage() {
                 vos revenus en couple et protéger le survivant.
               </p>
               
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
-                <p className="text-sm text-blue-900">
+              <div className="bg-primary-50 border-l-4 border-blue-400 p-4 mb-4">
+                <p className="text-sm text-primary-900">
                   💡 <strong>Principe clé</strong> : Dans un couple, vous avez deux options principales :
                 </p>
-                <ul className="list-disc pl-6 mt-2 text-sm text-blue-900 space-y-1">
+                <ul className="list-disc pl-6 mt-2 text-sm text-primary-900 space-y-1">
                   <li><strong>Rentes séparées</strong> : Chacun transforme son capital en rente (revenus max pour le couple, mais chute importante au premier décès)</li>
                   <li><strong>Capital regroupé</strong> : Tout le capital sur une seule tête avec réversion (revenus couple plus bas, mais survivant mieux protégé)</li>
                 </ul>
@@ -513,20 +513,20 @@ export default function FAQPage() {
               <ol className="list-decimal pl-6 mb-3 space-y-2">
                 <li>
                   <strong>Rentes séparées</strong> : Chacun sa rente sur son capital
-                  <div className="text-sm text-gray-600 mt-1">
+                  <div className="text-sm text-neutral-600 mt-1">
                     ✅ Revenus couple maximaux<br/>
                     ⚠️ Survivant perd la rente du défunt (chute de revenus importante)
                   </div>
                 </li>
                 <li>
                   <strong>Capital total sur Personne 1</strong> avec réversion 60%, 80% ou 100% vers Personne 2
-                  <div className="text-sm text-gray-600 mt-1">
+                  <div className="text-sm text-neutral-600 mt-1">
                     Protection asymétrique : Personne 2 protégée à X%, Personne 1 garde 100% si P2 décède
                   </div>
                 </li>
                 <li>
                   <strong>Capital total sur Personne 2</strong> avec réversion 60%, 80% ou 100% vers Personne 1
-                  <div className="text-sm text-gray-600 mt-1">
+                  <div className="text-sm text-neutral-600 mt-1">
                     Protection asymétrique : Personne 1 protégée à X%, Personne 2 garde 100% si P1 décède
                   </div>
                 </li>
@@ -547,7 +547,7 @@ export default function FAQPage() {
                 </li>
               </ul>
               
-              <div className="bg-green-50 border-l-4 border-green-400 p-4 mt-4">
+              <div className="bg-success-50 border-l-4 border-green-400 p-4 mt-4">
                 <p className="text-sm text-green-900">
                   <strong>Notre recommandation automatique</strong> analyse votre situation et privilégie 
                   la stratégie qui protège au mieux le survivant (au moins 70% des revenus du couple) 
@@ -577,34 +577,34 @@ export default function FAQPage() {
               </p>
               <table className="w-full text-sm border-collapse mb-3">
                 <thead>
-                  <tr className="bg-gray-100">
-                    <th className="border border-gray-300 px-4 py-2 text-left">Âge lors du 1er versement</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Part imposable</th>
+                  <tr className="bg-neutral-100">
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Âge lors du 1er versement</th>
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Part imposable</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">Moins de 50 ans</td>
-                    <td className="border border-gray-300 px-4 py-2">70%</td>
+                    <td className="border border-neutral-300 px-4 py-2">Moins de 50 ans</td>
+                    <td className="border border-neutral-300 px-4 py-2">70%</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">50 à 59 ans</td>
-                    <td className="border border-gray-300 px-4 py-2">50%</td>
+                    <td className="border border-neutral-300 px-4 py-2">50 à 59 ans</td>
+                    <td className="border border-neutral-300 px-4 py-2">50%</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">60 à 69 ans</td>
-                    <td className="border border-gray-300 px-4 py-2">40%</td>
+                    <td className="border border-neutral-300 px-4 py-2">60 à 69 ans</td>
+                    <td className="border border-neutral-300 px-4 py-2">40%</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">70 ans et plus</td>
-                    <td className="border border-gray-300 px-4 py-2">30%</td>
+                    <td className="border border-neutral-300 px-4 py-2">70 ans et plus</td>
+                    <td className="border border-neutral-300 px-4 py-2">30%</td>
                   </tr>
                 </tbody>
               </table>
               <p className="mb-3">
                 <strong>Exemple concret</strong> :
               </p>
-              <div className="bg-blue-100 p-4 rounded-lg">
+              <div className="bg-primary-100 p-4 rounded-lg">
                 <p className="mb-2">
                   Paul, 65 ans, reçoit 614€/mois de rente.
                 </p>
@@ -662,21 +662,21 @@ export default function FAQPage() {
               <ol className="list-decimal pl-6 mb-3 space-y-3">
                 <li>
                   <strong>Votre banque</strong>
-                  <ul className="list-none pl-4 mt-1 text-sm text-gray-700">
+                  <ul className="list-none pl-4 mt-1 text-sm text-neutral-700">
                     <li>✅ Pratique (vous avez déjà un conseiller)</li>
                     <li>❌ Souvent plus cher (moins de choix, commissions élevées)</li>
                   </ul>
                 </li>
                 <li>
                   <strong>Un assureur directement</strong>
-                  <ul className="list-none pl-4 mt-1 text-sm text-gray-700">
+                  <ul className="list-none pl-4 mt-1 text-sm text-neutral-700">
                     <li>✅ Tarifs transparents</li>
                     <li>❌ Vous ne comparez qu&apos;un seul produit</li>
                   </ul>
                 </li>
                 <li>
                   <strong>Un courtier en assurances</strong>
-                  <ul className="list-none pl-4 mt-1 text-sm text-gray-700">
+                  <ul className="list-none pl-4 mt-1 text-sm text-neutral-700">
                     <li>✅ Compare plusieurs assureurs (meilleur taux)</li>
                     <li>✅ Conseils personnalisés gratuits</li>
                     <li>⚠️ Vérifiez qu&apos;il est certifié ORIAS</li>
@@ -687,14 +687,14 @@ export default function FAQPage() {
                 <strong>Notre conseil</strong> : Contactez 2-3 courtiers, comparez leurs propositions, 
                 et choisissez le meilleur taux.
               </p>
-              <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mt-4">
-                <p className="text-sm text-amber-900">
+              <div className="bg-warning-50 border-l-4 border-warning-400 p-4 mt-4">
+                <p className="text-sm text-warning-900">
                   ⚠️ <strong>Attention aux arnaques</strong> : Vérifiez toujours que le courtier est enregistré 
-                  sur <a href="https://www.orias.fr" target="_blank" rel="noopener" className="text-blue-600 underline">orias.fr</a> 
+                  sur <a href="https://www.orias.fr" target="_blank" rel="noopener" className="text-primary-600 underline">orias.fr</a> 
                   (registre officiel des intermédiaires en assurance).
                 </p>
               </div>
-              <p className="mt-4 text-sm text-gray-600">
+              <p className="mt-4 text-sm text-neutral-600">
                 <strong>Note</strong> : CalcPatrimoine est un outil de calcul gratuit et indépendant. 
                 Nous ne vendons pas de rentes viagères. Utilisez nos calculateurs pour estimer vos montants, 
                 puis contactez un courtier certifié pour souscrire.
@@ -707,16 +707,16 @@ export default function FAQPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <main className="min-h-screen bg-gradient-to-b from-neutral-50 to-white">
       <Header />
 
       <div className="max-w-4xl mx-auto px-4 py-16">
         {/* En-tête */}
         <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-neutral-900 mb-4">
             Questions fréquentes
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-8">
             Tout ce que vous devez savoir sur la rente viagère, expliqué simplement avec des exemples concrets.
           </p>
           
@@ -735,7 +735,7 @@ export default function FAQPage() {
         {/* Sections FAQ */}
         {sections.map((section, sectionIndex) => (
           <section key={sectionIndex} className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-neutral-900 mb-6 flex items-center gap-2">
               <span>{section.icon}</span>
               <span>{section.title}</span>
             </h2>
@@ -760,15 +760,15 @@ export default function FAQPage() {
         </div>
 
         {/* CTA final */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-center text-white mt-16">
+        <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg p-8 text-center text-white mt-16">
           <h3 className="text-2xl font-bold mb-3">Vous avez d&apos;autres questions ?</h3>
-          <p className="text-blue-100 mb-6">
+          <p className="text-primary-100 mb-6">
             Contactez-nous par email, nous vous répondrons sous 48h.
           </p>
           <a
             href="mailto:contact@calcpatrimoine.fr"
-            className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-medium 
-                       hover:bg-blue-50 transition-colors"
+            className="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg font-medium 
+                       hover:bg-primary-50 transition-colors"
           >
             Nous contacter
           </a>

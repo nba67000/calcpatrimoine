@@ -45,24 +45,24 @@ export default function CoupleCalculator() {
   return (
     <div className="max-w-5xl mx-auto" suppressHydrationWarning>
       {/* Formulaire */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6" suppressHydrationWarning>
+      <div className="bg-neutral-100 rounded-lg shadow-md p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
         <h2 className="text-xl font-medium mb-2">Mode couple</h2>
-        <p className="text-sm text-gray-600 mb-6">
+        <p className="text-sm text-neutral-600 mb-6">
           Comparez 9 stratégies de rente pour optimiser votre situation à deux
         </p>
 
         {/* Note épargne commune/séparée */}
-        <div className="mb-6 p-4 bg-amber-50 border-2 border-amber-200 rounded-lg">
-          <p className="text-sm text-amber-900">
+        <div className="mb-6 p-4 bg-warning-50 border-l-4 border-warning-200 rounded-lg">
+          <p className="text-sm text-warning-900">
             <strong>💰 Épargne commune ou séparée ?</strong><br />
             Ce calculateur suppose que le capital total peut être alloué librement 
             entre les deux personnes (compte joint ou patrimoine commun).
           </p>
           <details className="mt-3">
-            <summary className="text-xs text-amber-700 cursor-pointer hover:underline font-medium">
+            <summary className="text-xs text-warning-700 cursor-pointer hover:underline font-medium">
               ▸ En savoir plus sur la gestion de l&apos;épargne en couple
             </summary>
-            <div className="mt-3 text-xs text-amber-800 space-y-2 pl-4 border-l-2 border-amber-300">
+            <div className="mt-3 text-xs text-warning-800 space-y-2 pl-4 border-l-2 border-warning-300">
               <p>
                 <strong>Capital commun (compte joint) :</strong> Peut être alloué 
                 librement selon toutes les stratégies affichées ci-dessous.
@@ -74,7 +74,7 @@ export default function CoupleCalculator() {
                 stratégies nécessiteraient de transférer les fonds sur un compte 
                 commun avant conversion en rente.
               </p>
-              <p className="font-semibold text-amber-900 mt-2">
+              <p className="font-semibold text-warning-900 mt-2">
                 ⚖️ Selon votre régime matrimonial (communauté, séparation de biens), 
                 les possibilités et implications fiscales/successorales diffèrent. 
                 Un notaire pourra vous conseiller précisément.
@@ -84,8 +84,8 @@ export default function CoupleCalculator() {
         </div>
 
         {/* Note pédagogique */}
-        <div className="mb-6 p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">
-          <p className="text-sm text-blue-900">
+        <div className="mb-6 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+          <p className="text-sm text-primary-900">
             <strong>ℹ️ Table unisexe (réglementation 2012)</strong><br />
             Les calculs utilisent la table de mortalité unique obligatoire depuis décembre 2012.
           </p>
@@ -93,12 +93,12 @@ export default function CoupleCalculator() {
 
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           {/* Personne 1 */}
-          <div className="border-2 border-blue-200 rounded-xl p-6 bg-blue-50">
-            <h3 className="font-medium text-blue-900 mb-4">👤 Personne 1</h3>
+          <div className="border border-primary-200 rounded-lg p-6 bg-primary-50">
+            <h3 className="font-medium text-primary-900 mb-4">👤 Personne 1</h3>
             
             <div className="mb-4">
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm text-gray-600">Âge</label>
+                <label className="text-sm text-neutral-600">Âge</label>
                 <div className="flex items-center gap-1">
                   <input
                     type="number"
@@ -117,10 +117,10 @@ export default function CoupleCalculator() {
                       if (val > 90) val = 90
                       setPerson1Age(val)
                     }}
-                    className="w-20 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
-                               focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-20 px-3 py-1 text-lg font-medium text-right border border-neutral-300 rounded-lg 
+                               focus:outline-none focus:ring-2 focus:ring-primary-500"
                   />
-                  <span className="text-lg font-medium text-gray-600">ans</span>
+                  <span className="text-lg font-medium text-neutral-600">ans</span>
                 </div>
               </div>
               <input
@@ -131,7 +131,7 @@ export default function CoupleCalculator() {
                 onChange={(e) => setPerson1Age(Number(e.target.value))}
                 className="w-full"
               />
-              <div className="flex justify-between text-xs text-gray-400 mt-1">
+              <div className="flex justify-between text-xs text-neutral-400 mt-1">
                 <span>50 ans</span>
                 <span>90 ans</span>
               </div>
@@ -139,12 +139,12 @@ export default function CoupleCalculator() {
           </div>
 
           {/* Personne 2 */}
-          <div className="border-2 border-orange-200 rounded-xl p-6 bg-orange-50">
+          <div className="border-2 border-orange-200 rounded-lg p-6 bg-orange-50">
             <h3 className="font-medium text-orange-900 mb-4">👤 Personne 2</h3>
             
             <div className="mb-4">
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm text-gray-600">Âge</label>
+                <label className="text-sm text-neutral-600">Âge</label>
                 <div className="flex items-center gap-1">
                   <input
                     type="number"
@@ -163,10 +163,10 @@ export default function CoupleCalculator() {
                       if (val > 90) val = 90
                       setPerson2Age(val)
                     }}
-                    className="w-20 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
+                    className="w-20 px-3 py-1 text-lg font-medium text-right border border-neutral-300 rounded-lg 
                                focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
-                  <span className="text-lg font-medium text-gray-600">ans</span>
+                  <span className="text-lg font-medium text-neutral-600">ans</span>
                 </div>
               </div>
               <input
@@ -177,7 +177,7 @@ export default function CoupleCalculator() {
                 onChange={(e) => setPerson2Age(Number(e.target.value))}
                 className="w-full"
               />
-              <div className="flex justify-between text-xs text-gray-400 mt-1">
+              <div className="flex justify-between text-xs text-neutral-400 mt-1">
                 <span>50 ans</span>
                 <span>90 ans</span>
               </div>
@@ -188,7 +188,7 @@ export default function CoupleCalculator() {
         {/* Capital total */}
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
-            <label className="text-sm text-gray-600">Capital total du couple</label>
+            <label className="text-sm text-neutral-600">Capital total du couple</label>
             <div className="flex items-center gap-2">
               <input
                 type="text"
@@ -207,10 +207,10 @@ export default function CoupleCalculator() {
                   setTotalCapital(val)
                 }}
                 onFocus={(e) => e.target.select()}
-                className="w-44 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
-                           focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-44 px-3 py-1 text-lg font-medium text-right border border-neutral-300 rounded-lg 
+                           focus:outline-none focus:ring-2 focus:ring-success-500"
               />
-              <span className="text-lg font-medium text-gray-600">€</span>
+              <span className="text-lg font-medium text-neutral-600">€</span>
             </div>
           </div>
           <input
@@ -220,25 +220,25 @@ export default function CoupleCalculator() {
             step="10000"
             value={totalCapital}
             onChange={(e) => setTotalCapital(Number(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
+            className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer
                        [&::-webkit-slider-thumb]:appearance-none
                        [&::-webkit-slider-thumb]:w-5
                        [&::-webkit-slider-thumb]:h-5
                        [&::-webkit-slider-thumb]:rounded-full
-                       [&::-webkit-slider-thumb]:bg-green-600
+                       [&::-webkit-slider-thumb]:bg-success-600
                        [&::-webkit-slider-thumb]:cursor-pointer
-                       [&::-webkit-slider-thumb]:hover:bg-green-700
+                       [&::-webkit-slider-thumb]:hover:bg-success-700
                        [&::-webkit-slider-thumb]:transition-colors
                        [&::-moz-range-thumb]:w-5
                        [&::-moz-range-thumb]:h-5
                        [&::-moz-range-thumb]:rounded-full
-                       [&::-moz-range-thumb]:bg-green-600
+                       [&::-moz-range-thumb]:bg-success-600
                        [&::-moz-range-thumb]:cursor-pointer
-                       [&::-moz-range-thumb]:hover:bg-green-700
+                       [&::-moz-range-thumb]:hover:bg-success-700
                        [&::-moz-range-thumb]:border-0
                        [&::-moz-range-thumb]:transition-colors"
           />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
+          <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>20 k€</span>
             <span>1 M€</span>
           </div>
@@ -247,9 +247,9 @@ export default function CoupleCalculator() {
 
       {/* Résultats */}
       {strategies.length > 0 && (
-        <div className="bg-white rounded-2xl border border-gray-200 p-8">
+        <div className="bg-white rounded-lg border border-neutral-200 p-8">
           <h3 className="text-xl font-semibold mb-2">Comparaison des 9 stratégies</h3>
-          <p className="text-sm text-gray-600 mb-6">
+          <p className="text-sm text-neutral-600 mb-6">
             Voici toutes les options possibles pour votre situation. Choisissez selon vos priorités.
           </p>
 
@@ -260,34 +260,34 @@ export default function CoupleCalculator() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="border-2 border-gray-200 rounded-xl p-6 hover:border-blue-300 transition-colors"
+                className="border border-neutral-200 rounded-lg p-6 hover:border-primary-300 transition-colors"
               >
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900">
+                    <h4 className="text-lg font-semibold text-neutral-900">
                       {strategy.strategy}
                     </h4>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="text-sm text-neutral-600 mt-1">
                       {strategy.description}
                     </p>
                   </div>
                   <div className="text-right">
-                    <div className="text-3xl font-bold text-blue-600">
+                    <div className="text-3xl font-bold text-primary-600">
                       {formatEuro(strategy.monthly_amount)}
                     </div>
-                    <div className="text-xs text-gray-500">par mois</div>
+                    <div className="text-xs text-neutral-500">par mois</div>
                   </div>
                 </div>
 
                 {strategy.life_expectancy && (
-                  <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-gray-200 text-sm">
+                  <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-neutral-200 text-sm">
                     <div>
-                      <span className="text-gray-600">Espérance de vie : </span>
+                      <span className="text-neutral-600">Espérance de vie : </span>
                       <span className="font-medium">{strategy.life_expectancy.toFixed(1)} ans</span>
                     </div>
                     {strategy.total_payout && (
                       <div>
-                        <span className="text-gray-600">Total espéré : </span>
+                        <span className="text-neutral-600">Total espéré : </span>
                         <span className="font-medium">{formatEuro(strategy.total_payout)}</span>
                       </div>
                     )}
@@ -298,8 +298,8 @@ export default function CoupleCalculator() {
           </div>
 
           {/* Note explicative réversion */}
-          <div className="mt-6 p-4 bg-amber-50 border-2 border-amber-200 rounded-lg">
-            <p className="text-sm text-amber-900">
+          <div className="mt-6 p-4 bg-warning-50 border-l-4 border-warning-200 rounded-lg">
+            <p className="text-sm text-warning-900">
               <strong>⚠️ Important</strong> : La réversion est <strong>unidirectionnelle</strong>.
               Si "P1 titulaire, 80% à P2" : P1 décède → P2 reçoit 80%. Mais si P2 décède d'abord → P1 garde 100%.
             </p>
@@ -368,8 +368,8 @@ export default function CoupleCalculator() {
 
       {/* État calcul */}
       {isCalculating && (
-        <div className="text-center py-8 text-gray-500">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="text-center py-8 text-neutral-500">
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
           <p className="mt-2 text-sm">Calcul en cours...</p>
         </div>
       )}

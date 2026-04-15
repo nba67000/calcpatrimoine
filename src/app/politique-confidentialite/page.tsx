@@ -7,24 +7,24 @@ export const metadata = {
 
 export default function PolitiqueConfidentialitePage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-neutral-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
         <h1 className="text-4xl font-bold mb-8">Politique de Confidentialité</h1>
 
-        <div className="bg-white rounded-2xl border border-gray-200 p-8 space-y-8">
+        <div className="bg-white rounded-lg border border-neutral-200 p-8 space-y-8">
           
           {/* Intro */}
           <section>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+            <div className="bg-success-50 border border-green-200 rounded-lg p-4 mb-6">
               <p className="text-green-900 font-medium">
                 ✅ CalcPatrimoine ne collecte <strong>AUCUNE donnée personnelle identifiable</strong>.
               </p>
             </div>
-            <p className="text-gray-700">
+            <p className="text-neutral-700">
               Cette politique de confidentialité explique comment nous traitons les informations 
               dans le cadre de votre utilisation du site CalcPatrimoine.fr.
             </p>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-neutral-500 mt-2">
               Dernière mise à jour : 15 avril 2026
             </p>
           </section>
@@ -33,7 +33,7 @@ export default function PolitiqueConfidentialitePage() {
           <section>
             <h2 className="text-2xl font-semibold mb-4">Ce que nous NE collectons PAS</h2>
             <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-              <ul className="space-y-2 text-gray-700">
+              <ul className="space-y-2 text-neutral-700">
                 <li className="flex items-start gap-2">
                   <span className="text-red-600 font-bold">❌</span>
                   <span>Nom, prénom, adresse email ou numéro de téléphone</span>
@@ -65,31 +65,31 @@ export default function PolitiqueConfidentialitePage() {
           {/* Ce que nous collectons */}
           <section>
             <h2 className="text-2xl font-semibold mb-4">Ce que nous collectons (anonyme)</h2>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <p className="text-gray-700 mb-4">
+            <div className="bg-primary-50 border border-primary-200 rounded-lg p-6">
+              <p className="text-neutral-700 mb-4">
                 Nous utilisons <strong>Plausible Analytics</strong>, une solution d&apos;analyse 
                 respectueuse de la vie privée, conforme au RGPD et qui ne nécessite pas de 
                 bandeau de consentement aux cookies.
               </p>
-              <ul className="space-y-2 text-gray-700">
+              <ul className="space-y-2 text-neutral-700">
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold">✓</span>
+                  <span className="text-primary-600 font-bold">✓</span>
                   <span>Pages visitées (sans identification de l&apos;utilisateur)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold">✓</span>
+                  <span className="text-primary-600 font-bold">✓</span>
                   <span>Pays d&apos;origine (niveau pays uniquement, pas de ville)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold">✓</span>
+                  <span className="text-primary-600 font-bold">✓</span>
                   <span>Appareil utilisé (desktop/mobile/tablette, de manière agrégée)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold">✓</span>
+                  <span className="text-primary-600 font-bold">✓</span>
                   <span>Source de trafic (Google, lien direct, etc., sans tracking individuel)</span>
                 </li>
               </ul>
-              <p className="text-sm text-gray-600 mt-4">
+              <p className="text-sm text-neutral-600 mt-4">
                 <strong>Important :</strong> Ces statistiques sont entièrement anonymes et agrégées. 
                 Nous ne pouvons identifier aucun utilisateur individuel.
               </p>
@@ -99,12 +99,12 @@ export default function PolitiqueConfidentialitePage() {
           {/* Calculs locaux */}
           <section>
             <h2 className="text-2xl font-semibold mb-4">Calculs effectués localement</h2>
-            <div className="text-gray-700 space-y-3">
+            <div className="text-neutral-700 space-y-3">
               <p>
                 <strong>Tous les calculs de rente viagère sont effectués directement dans votre navigateur</strong>, 
                 côté client (frontend), grâce à JavaScript.
               </p>
-              <p className="font-semibold text-green-700">
+              <p className="font-semibold text-success-700">
                 ✅ Aucune donnée que vous saisissez (âge, capital, situation familiale) n&apos;est 
                 transmise à nos serveurs ou stockée quelque part.
               </p>
@@ -118,7 +118,7 @@ export default function PolitiqueConfidentialitePage() {
           {/* Plausible */}
           <section>
             <h2 className="text-2xl font-semibold mb-4">Pourquoi Plausible Analytics ?</h2>
-            <div className="text-gray-700 space-y-3">
+            <div className="text-neutral-700 space-y-3">
               <p>
                 Nous avons choisi Plausible car c&apos;est une alternative éthique à Google Analytics :
               </p>
@@ -131,7 +131,7 @@ export default function PolitiqueConfidentialitePage() {
                 <li>Statistiques entièrement anonymes</li>
               </ul>
               <p className="mt-4">
-                Pour en savoir plus : <a href="https://plausible.io/privacy-focused-web-analytics" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Documentation Plausible</a>
+                Pour en savoir plus : <a href="https://plausible.io/privacy-focused-web-analytics" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Documentation Plausible</a>
               </p>
             </div>
           </section>
@@ -139,7 +139,7 @@ export default function PolitiqueConfidentialitePage() {
           {/* Vos droits RGPD */}
           <section>
             <h2 className="text-2xl font-semibold mb-4">Vos droits (RGPD)</h2>
-            <div className="text-gray-700 space-y-3">
+            <div className="text-neutral-700 space-y-3">
               <p>
                 Bien que nous ne collections aucune donnée personnelle identifiable, 
                 conformément au Règlement Général sur la Protection des Données (RGPD), 
@@ -154,7 +154,7 @@ export default function PolitiqueConfidentialitePage() {
               </ul>
               <p className="mt-4">
                 Pour exercer ces droits ou pour toute question concernant vos données personnelles, 
-                contactez-nous à : <a href="mailto:contact@calcpatrimoine.fr" className="text-blue-600 hover:underline font-medium">contact@calcpatrimoine.fr</a>
+                contactez-nous à : <a href="mailto:contact@calcpatrimoine.fr" className="text-primary-600 hover:underline font-medium">contact@calcpatrimoine.fr</a>
               </p>
             </div>
           </section>
@@ -162,7 +162,7 @@ export default function PolitiqueConfidentialitePage() {
           {/* Conservation */}
           <section>
             <h2 className="text-2xl font-semibold mb-4">Conservation des données</h2>
-            <div className="text-gray-700">
+            <div className="text-neutral-700">
               <p>
                 Les statistiques anonymes collectées via Plausible Analytics sont conservées 
                 pour une durée maximale de <strong>24 mois</strong>, après quoi elles sont 
@@ -174,7 +174,7 @@ export default function PolitiqueConfidentialitePage() {
           {/* Cookies */}
           <section>
             <h2 className="text-2xl font-semibold mb-4">Cookies</h2>
-            <div className="text-gray-700 space-y-3">
+            <div className="text-neutral-700 space-y-3">
               <p>
                 CalcPatrimoine <strong>n&apos;utilise pas de cookies de tracking</strong> nécessitant 
                 votre consentement.
@@ -190,7 +190,7 @@ export default function PolitiqueConfidentialitePage() {
           {/* Sécurité */}
           <section>
             <h2 className="text-2xl font-semibold mb-4">Sécurité</h2>
-            <div className="text-gray-700">
+            <div className="text-neutral-700">
               <p>
                 Nous mettons en œuvre des mesures de sécurité appropriées pour protéger nos systèmes, 
                 notamment :
@@ -206,7 +206,7 @@ export default function PolitiqueConfidentialitePage() {
           {/* Modifications */}
           <section>
             <h2 className="text-2xl font-semibold mb-4">Modifications de cette politique</h2>
-            <div className="text-gray-700">
+            <div className="text-neutral-700">
               <p>
                 Nous pouvons être amenés à mettre à jour cette politique de confidentialité. 
                 La date de dernière modification est indiquée en haut de cette page. 
@@ -218,14 +218,14 @@ export default function PolitiqueConfidentialitePage() {
           {/* Contact */}
           <section>
             <h2 className="text-2xl font-semibold mb-4">Contact</h2>
-            <div className="text-gray-700">
+            <div className="text-neutral-700">
               <p>
                 Pour toute question concernant cette politique de confidentialité ou 
                 le traitement de vos données :
               </p>
               <p className="mt-2">
                 <strong>Email :</strong>{' '}
-                <a href="mailto:contact@calcpatrimoine.fr" className="text-blue-600 hover:underline font-medium">
+                <a href="mailto:contact@calcpatrimoine.fr" className="text-primary-600 hover:underline font-medium">
                   contact@calcpatrimoine.fr
                 </a>
               </p>
@@ -233,7 +233,7 @@ export default function PolitiqueConfidentialitePage() {
           </section>
 
           {/* Footer */}
-          <section className="text-sm text-gray-500 border-t pt-4">
+          <section className="text-sm text-neutral-500 border-t pt-4">
             <p>Version 1.0 - Dernière mise à jour : 15 avril 2026</p>
           </section>
 

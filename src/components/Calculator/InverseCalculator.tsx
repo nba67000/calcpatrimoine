@@ -40,16 +40,16 @@ export default function InverseCalculator() {
   return (
     <div className="max-w-4xl mx-auto" suppressHydrationWarning>
       {/* Zone formulaire */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6" suppressHydrationWarning>
+      <div className="bg-neutral-100 rounded-lg shadow-md p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
         <h2 className="text-xl font-medium mb-2">Calculateur inverse</h2>
-        <p className="text-sm text-gray-600 mb-6">
+        <p className="text-sm text-neutral-600 mb-6">
           Découvrez le capital nécessaire pour obtenir la rente mensuelle souhaitée
         </p>
         
         {/* Montant souhaité */}
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
-            <label className="text-sm text-gray-600">Rente mensuelle souhaitée</label>
+            <label className="text-sm text-neutral-600">Rente mensuelle souhaitée</label>
             <div className="flex items-center gap-2">
               <input
                 type="text"
@@ -70,10 +70,10 @@ export default function InverseCalculator() {
                   }
                 }}
                 onFocus={(e) => e.target.select()}
-                className="w-28 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-28 px-3 py-1 text-lg font-medium text-right border border-neutral-300 rounded-lg 
+                           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
-              <span className="text-lg font-medium text-gray-600">€/mois</span>
+              <span className="text-lg font-medium text-neutral-600">€/mois</span>
             </div>
           </div>
           <input
@@ -83,25 +83,25 @@ export default function InverseCalculator() {
             step="50"
             value={desiredAmount}
             onChange={(e) => setDesiredAmount(Number(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
+            className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer
                        [&::-webkit-slider-thumb]:appearance-none
                        [&::-webkit-slider-thumb]:w-5
                        [&::-webkit-slider-thumb]:h-5
                        [&::-webkit-slider-thumb]:rounded-full
-                       [&::-webkit-slider-thumb]:bg-blue-600
+                       [&::-webkit-slider-thumb]:bg-primary-600
                        [&::-webkit-slider-thumb]:cursor-pointer
-                       [&::-webkit-slider-thumb]:hover:bg-blue-700
+                       [&::-webkit-slider-thumb]:hover:bg-primary-700
                        [&::-webkit-slider-thumb]:transition-colors
                        [&::-moz-range-thumb]:w-5
                        [&::-moz-range-thumb]:h-5
                        [&::-moz-range-thumb]:rounded-full
-                       [&::-moz-range-thumb]:bg-blue-600
+                       [&::-moz-range-thumb]:bg-primary-600
                        [&::-moz-range-thumb]:cursor-pointer
-                       [&::-moz-range-thumb]:hover:bg-blue-700
+                       [&::-moz-range-thumb]:hover:bg-primary-700
                        [&::-moz-range-thumb]:border-0
                        [&::-moz-range-thumb]:transition-colors"
           />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
+          <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>300€</span>
             <span>5 000€</span>
           </div>
@@ -110,7 +110,7 @@ export default function InverseCalculator() {
         {/* Âge */}
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
-            <label className="text-sm text-gray-600">Votre âge</label>
+            <label className="text-sm text-neutral-600">Votre âge</label>
             <div className="flex items-center gap-2">
               <input
                 type="number"
@@ -132,10 +132,10 @@ export default function InverseCalculator() {
                   }
                 }}
                 onFocus={(e) => e.target.select()}
-                className="w-20 px-3 py-1 text-lg font-medium text-center border border-gray-300 rounded-lg 
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-20 px-3 py-1 text-lg font-medium text-center border border-neutral-300 rounded-lg 
+                           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
-              <span className="text-lg font-medium text-gray-600">ans</span>
+              <span className="text-lg font-medium text-neutral-600">ans</span>
             </div>
           </div>
           <input
@@ -147,15 +147,15 @@ export default function InverseCalculator() {
             onChange={(e) => setAge(Number(e.target.value))}
             className="w-full"
           />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
+          <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>{LIMITS.AGE_MIN} ans</span>
             <span>{LIMITS.AGE_MAX} ans</span>
           </div>
         </div>
 
         {/* Note pédagogique table unisexe */}
-        <div className="mb-6 p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">
-          <p className="text-sm text-blue-900">
+        <div className="mb-6 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+          <p className="text-sm text-primary-900">
             <strong>ℹ️ Table de mortalité unisexe (réglementation 2012)</strong><br />
             Depuis décembre 2012, les assureurs utilisent une table unique pour
             hommes et femmes. Ce calculateur applique cette réglementation.
@@ -164,21 +164,21 @@ export default function InverseCalculator() {
 
         {/* Réversion au conjoint - UX améliorée */}
         <div className="border-t pt-6 mt-6">
-          <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border-2 border-amber-200 p-6">
+          <div className="bg-warning-50 rounded-lg border-l-4 border-warning-200 p-6">
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-2xl">💑</span>
-                  <h3 className="text-lg font-medium text-gray-900">Réversion au conjoint</h3>
+                  <h3 className="text-lg font-medium text-neutral-900">Réversion au conjoint</h3>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-neutral-600">
                   Augmente le capital nécessaire, mais protège votre conjoint
                 </p>
               </div>
               <button
                 onClick={() => setShowReversion(!showReversion)}
                 className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${
-                  showReversion ? 'bg-amber-500' : 'bg-gray-300'
+                  showReversion ? 'bg-warning-500' : 'bg-neutral-300'
                 }`}
               >
                 <span
@@ -198,9 +198,9 @@ export default function InverseCalculator() {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="border-t border-amber-200 pt-4 mt-2">
+                  <div className="border-t border-warning-200 pt-4 mt-2">
                     <div className="bg-white/50 rounded-lg p-4 mb-4">
-                      <p className="text-xs text-amber-800">
+                      <p className="text-xs text-warning-800">
                         💡 <strong>Impact :</strong> Le capital nécessaire sera plus élevé, 
                         car votre conjoint continuera à recevoir {reversionPercentage}% de la rente après votre décès.
                       </p>
@@ -209,7 +209,7 @@ export default function InverseCalculator() {
                     {/* Âge conjoint */}
                     <div className="mb-4">
                       <div className="flex justify-between items-center mb-2">
-                        <label className="text-sm font-medium text-gray-700">Âge du conjoint</label>
+                        <label className="text-sm font-medium text-neutral-700">Âge du conjoint</label>
                         <div className="flex items-center gap-2">
                           <input
                             type="number"
@@ -231,10 +231,10 @@ export default function InverseCalculator() {
                               }
                             }}
                             onFocus={(e) => e.target.select()}
-                            className="w-16 px-2 py-1 text-sm font-medium text-center border border-amber-300 rounded-lg 
+                            className="w-16 px-2 py-1 text-sm font-medium text-center border border-warning-300 rounded-lg 
                                        focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                           />
-                          <span className="text-sm font-medium text-gray-600">ans</span>
+                          <span className="text-sm font-medium text-neutral-600">ans</span>
                         </div>
                       </div>
                       <input
@@ -250,7 +250,7 @@ export default function InverseCalculator() {
 
                     {/* Pourcentage réversion */}
                     <div>
-                      <label className="text-sm font-medium text-gray-700 block mb-3">
+                      <label className="text-sm font-medium text-neutral-700 block mb-3">
                         Pourcentage de réversion
                       </label>
                       <div className="grid grid-cols-3 gap-3">
@@ -260,15 +260,15 @@ export default function InverseCalculator() {
                             onClick={() => setReversionPercentage(pct)}
                             className={`py-3 px-4 rounded-lg border-2 text-sm font-medium transition-all ${
                               reversionPercentage === pct
-                                ? 'border-amber-600 bg-amber-100 text-amber-900 shadow-sm'
-                                : 'border-gray-200 hover:border-amber-300 hover:bg-amber-50'
+                                ? 'border-amber-600 bg-warning-100 text-warning-900 shadow-sm'
+                                : 'border-neutral-200 hover:border-warning-300 hover:bg-warning-50'
                             }`}
                           >
                             {pct}%
                           </button>
                         ))}
                       </div>
-                      <p className="text-xs text-gray-500 mt-2">
+                      <p className="text-xs text-neutral-500 mt-2">
                         {reversionPercentage === 60 && '💰 Capital réduit, protection modérée'}
                         {reversionPercentage === 80 && '⚖️ Équilibre idéal (le plus courant)'}
                         {reversionPercentage === 100 && '🛡️ Protection maximale du conjoint'}
@@ -288,37 +288,39 @@ export default function InverseCalculator() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl border-2 border-green-200 p-8"
+          className="bg-white rounded-lg shadow-lg p-10 border-t-4 border-success-600"
         >
-          <h3 className="text-lg text-green-900 mb-2">Capital nécessaire</h3>
+          <h3 className="text-xl font-semibold text-neutral-900 mb-6">Capital nécessaire</h3>
           
           {/* Montant principal */}
-          <div className="mb-6">
+          <div className="mb-8">
             <motion.div
               key={result.required_capital}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.4, type: 'spring' }}
-              className="text-5xl font-bold text-green-900 mb-1"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.2 }}
+              className="flex items-baseline gap-2"
             >
-              {formatEuro(result.required_capital)}
+              <span className="text-6xl font-bold font-mono text-neutral-900 tracking-tight">
+                {formatEuro(result.required_capital)}
+              </span>
             </motion.div>
-            <div className="text-sm text-green-700">
+            <div className="text-sm text-neutral-500 mt-2">
               pour obtenir {formatEuro(desiredAmount)}/mois à vie
             </div>
           </div>
 
           {/* Détails */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="bg-white/60 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">Espérance de vie</div>
-              <div className="text-lg font-medium text-gray-900">
+          <div className="grid grid-cols-2 gap-4 pb-6 border-b border-neutral-200">
+            <div className="bg-neutral-50 rounded-md p-4">
+              <div className="text-xs text-neutral-600 font-medium mb-1">Espérance de vie</div>
+              <div className="text-2xl font-semibold font-mono text-neutral-900">
                 {result.life_expectancy} ans
               </div>
             </div>
-            <div className="bg-white/60 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">Total espéré</div>
-              <div className="text-lg font-medium text-gray-900">
+            <div className="bg-neutral-50 rounded-md p-4">
+              <div className="text-xs text-neutral-600 font-medium mb-1">Total espéré</div>
+              <div className="text-2xl font-semibold font-mono text-neutral-900">
                 {formatEuro(desiredAmount * 12 * result.life_expectancy)}
               </div>
             </div>

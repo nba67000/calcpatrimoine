@@ -16,29 +16,23 @@ export default function Header() {
   ]
 
   return (
-    <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+    <header className="border-b border-neutral-200 bg-white sticky top-0 z-50 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         <Link 
           href="/" 
           className="flex items-center gap-3 hover:opacity-90 transition-opacity group"
           onClick={() => setMobileMenuOpen(false)}
         >
-          {/* Logo monogramme C */}
-          <div className="relative">
-            <div className="w-11 h-11 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl 
-                            flex items-center justify-center shadow-md 
-                            group-hover:shadow-lg group-hover:scale-105 transition-all duration-200">
-              <span className="text-white font-bold text-2xl tracking-tight">C</span>
-            </div>
-            {/* Point d'accent subtil */}
-            <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-cyan-400 rounded-full 
-                            ring-2 ring-white"></div>
+          {/* Logo avec accent or */}
+          <div className="w-11 h-11 bg-primary-700 rounded-md flex items-center justify-center shadow-md 
+                          group-hover:shadow-lg group-hover:bg-primary-800 transition-all duration-200">
+            <span className="text-white font-bold text-2xl">C</span>
           </div>
           
           {/* Nom de marque */}
           <div className="flex flex-col">
-            <span className="font-bold text-gray-900 text-lg leading-tight">CalcPatrimoine</span>
-            <span className="text-xs text-gray-500 leading-tight">Calculateurs open-source</span>
+            <span className="font-bold text-neutral-900 text-lg leading-tight">CalcPatrimoine</span>
+            <span className="text-xs text-neutral-500 leading-tight">Calculateurs open-source</span>
           </div>
         </Link>
         
@@ -48,10 +42,10 @@ export default function Header() {
             <Link 
               key={link.href}
               href={link.href} 
-              className={`transition-colors ${
+              className={`transition-colors font-medium ${
                 pathname === link.href 
-                  ? 'text-blue-600 font-medium' 
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'text-primary-700' 
+                  : 'text-neutral-600 hover:text-neutral-900'
               }`}
             >
               {link.label}
@@ -61,7 +55,7 @@ export default function Header() {
 
         {/* Mobile menu button */}
         <button 
-          className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+          className="md:hidden p-2 text-neutral-600 hover:text-neutral-900 transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Menu"
         >
@@ -81,16 +75,16 @@ export default function Header() {
 
       {/* Mobile menu dropdown */}
       {mobileMenuOpen && (
-        <nav className="md:hidden border-t bg-white">
+        <nav className="md:hidden border-t border-neutral-200 bg-white">
           <div className="max-w-6xl mx-auto px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block px-4 py-3 rounded-lg transition-colors ${
+                className={`block px-4 py-3 rounded-md transition-colors ${
                   pathname === link.href
-                    ? 'bg-blue-50 text-blue-600 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
+                    ? 'bg-primary-50 text-primary-700 font-medium'
+                    : 'text-neutral-700 hover:bg-neutral-50'
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >

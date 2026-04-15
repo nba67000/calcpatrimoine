@@ -3,6 +3,15 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import PlausibleScript from "@/components/PlausibleScript";
 
+// Fontsource imports pour CalcPatrimoine
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/500.css'
+import '@fontsource/inter/600.css'
+import '@fontsource/inter/700.css'
+import '@fontsource/playfair-display/700.css'
+import '@fontsource/roboto-mono/500.css'
+import '@fontsource/roboto-mono/700.css'
+
 const inter = Inter({ 
   subsets: ["latin"],
   display: 'swap',

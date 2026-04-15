@@ -68,13 +68,14 @@ export default function RenteCalculator() {
   return (
     <div className="max-w-4xl mx-auto" suppressHydrationWarning>
       {/* Zone formulaire */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6" suppressHydrationWarning>
-        <h2 className="text-xl font-medium mb-6">Vos informations</h2>
+      <div className="bg-neutral-100 rounded-lg shadow-md p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
+        <h2 className="text-2xl font-semibold text-neutral-900 mb-2">Calculez votre rente viagère</h2>
+        <p className="text-sm text-neutral-600 mb-6">Simulation basée sur les tables de mortalité INSEE 2022</p>
         
         {/* Âge */}
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
-            <label className="text-sm text-gray-600">Votre âge</label>
+            <label className="text-sm text-neutral-600">Votre âge</label>
             <div className="flex items-center gap-2">
               <input
                 type="number"
@@ -98,10 +99,10 @@ export default function RenteCalculator() {
                   }
                 }}
                 onFocus={(e) => e.target.select()}
-                className="w-20 px-3 py-1 text-lg font-medium text-center border border-gray-300 rounded-lg 
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-20 px-3 py-1 text-lg font-medium text-center border border-neutral-300 rounded-lg 
+                           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
-              <span className="text-lg font-medium text-gray-600">ans</span>
+              <span className="text-lg font-medium text-neutral-600">ans</span>
             </div>
           </div>
           <input
@@ -113,7 +114,7 @@ export default function RenteCalculator() {
             onChange={(e) => setAge(Number(e.target.value))}
             className="w-full"
           />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
+          <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>50 ans</span>
             <span>90 ans</span>
           </div>
@@ -122,7 +123,7 @@ export default function RenteCalculator() {
         {/* Capital */}
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
-            <label className="text-sm text-gray-600">Capital disponible</label>
+            <label className="text-sm text-neutral-600">Capital disponible</label>
             <div className="flex items-center gap-2">
               <input
                 type="text"
@@ -143,10 +144,10 @@ export default function RenteCalculator() {
                   }
                 }}
                 onFocus={(e) => e.target.select()}
-                className="w-40 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-40 px-3 py-1 text-lg font-medium text-right border border-neutral-300 rounded-lg 
+                           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
-              <span className="text-lg font-medium text-gray-600">€</span>
+              <span className="text-lg font-medium text-neutral-600">€</span>
             </div>
           </div>
           <input
@@ -156,39 +157,39 @@ export default function RenteCalculator() {
             step="5000"
             value={capital}
             onChange={(e) => setCapital(Number(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
+            className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer
                        [&::-webkit-slider-thumb]:appearance-none
                        [&::-webkit-slider-thumb]:w-5
                        [&::-webkit-slider-thumb]:h-5
                        [&::-webkit-slider-thumb]:rounded-full
-                       [&::-webkit-slider-thumb]:bg-blue-600
+                       [&::-webkit-slider-thumb]:bg-primary-600
                        [&::-webkit-slider-thumb]:cursor-pointer
-                       [&::-webkit-slider-thumb]:hover:bg-blue-700
+                       [&::-webkit-slider-thumb]:hover:bg-primary-700
                        [&::-webkit-slider-thumb]:transition-colors
                        [&::-moz-range-thumb]:w-5
                        [&::-moz-range-thumb]:h-5
                        [&::-moz-range-thumb]:rounded-full
-                       [&::-moz-range-thumb]:bg-blue-600
+                       [&::-moz-range-thumb]:bg-primary-600
                        [&::-moz-range-thumb]:cursor-pointer
-                       [&::-moz-range-thumb]:hover:bg-blue-700
+                       [&::-moz-range-thumb]:hover:bg-primary-700
                        [&::-moz-range-thumb]:border-0
                        [&::-moz-range-thumb]:transition-colors"
           />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
+          <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>10 k€</span>
             <span>500 k€</span>
           </div>
         </div>
 
         {/* Note pédagogique table unisexe */}
-        <div className="mb-6 p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">
-          <p className="text-sm text-blue-900">
+        <div className="mb-6 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+          <p className="text-sm text-primary-900">
             <strong>ℹ️ Table de mortalité unisexe (réglementation 2012)</strong><br />
             Depuis décembre 2012, les assureurs utilisent une table unique pour
             hommes et femmes (moyenne pondérée). Ce calculateur applique cette
             réglementation obligatoire.
           </p>
-          <p className="text-xs text-blue-700 mt-2">
+          <p className="text-xs text-primary-700 mt-2">
             Biologiquement, les femmes vivent ~4 ans de plus que les hommes
             (espérance vie 24,1 vs 20,4 ans à 65 ans), mais la loi impose
             un tarif identique (arrêt CJUE mars 2011).
@@ -197,21 +198,21 @@ export default function RenteCalculator() {
 
         {/* Réversion au conjoint - UX améliorée */}
         <div className="border-t pt-6 mt-6">
-          <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border-2 border-amber-200 p-6">
+          <div className="bg-warning-50 rounded-lg border-l-4 border-warning-200 p-6">
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-2xl">💑</span>
-                  <h3 className="text-lg font-medium text-gray-900">Réversion au conjoint</h3>
+                  <h3 className="text-lg font-medium text-neutral-900">Réversion au conjoint</h3>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-neutral-600">
                   Garantir un revenu à votre conjoint après votre décès
                 </p>
               </div>
               <button
                 onClick={() => setShowReversion(!showReversion)}
                 className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${
-                  showReversion ? 'bg-amber-500' : 'bg-gray-300'
+                  showReversion ? 'bg-warning-500' : 'bg-neutral-300'
                 }`}
               >
                 <span
@@ -231,9 +232,9 @@ export default function RenteCalculator() {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="border-t border-amber-200 pt-4 mt-2">
+                  <div className="border-t border-warning-200 pt-4 mt-2">
                     <div className="bg-white/50 rounded-lg p-4 mb-4">
-                      <p className="text-xs text-amber-800">
+                      <p className="text-xs text-warning-800">
                         💡 <strong>Comment ça marche ?</strong> Votre rente sera légèrement réduite, 
                         mais votre conjoint continuera à recevoir {reversionPercentage}% après votre décès.
                       </p>
@@ -242,7 +243,7 @@ export default function RenteCalculator() {
                     {/* Âge conjoint */}
                     <div className="mb-4">
                       <div className="flex justify-between items-center mb-2">
-                        <label className="text-sm font-medium text-gray-700">Âge du conjoint</label>
+                        <label className="text-sm font-medium text-neutral-700">Âge du conjoint</label>
                         <div className="flex items-center gap-2">
                           <input
                             type="number"
@@ -264,10 +265,10 @@ export default function RenteCalculator() {
                               }
                             }}
                             onFocus={(e) => e.target.select()}
-                            className="w-16 px-2 py-1 text-sm font-medium text-center border border-amber-300 rounded-lg 
+                            className="w-16 px-2 py-1 text-sm font-medium text-center border border-warning-300 rounded-lg 
                                        focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                           />
-                          <span className="text-sm font-medium text-gray-600">ans</span>
+                          <span className="text-sm font-medium text-neutral-600">ans</span>
                         </div>
                       </div>
                       <input
@@ -283,7 +284,7 @@ export default function RenteCalculator() {
 
                     {/* Pourcentage réversion */}
                     <div>
-                      <label className="text-sm font-medium text-gray-700 block mb-3">
+                      <label className="text-sm font-medium text-neutral-700 block mb-3">
                         Pourcentage de réversion
                       </label>
                       <div className="grid grid-cols-3 gap-3">
@@ -293,15 +294,15 @@ export default function RenteCalculator() {
                             onClick={() => setReversionPercentage(pct)}
                             className={`py-3 px-4 rounded-lg border-2 text-sm font-medium transition-all ${
                               reversionPercentage === pct
-                                ? 'border-amber-600 bg-amber-100 text-amber-900 shadow-sm'
-                                : 'border-gray-200 hover:border-amber-300 hover:bg-amber-50'
+                                ? 'border-amber-600 bg-warning-100 text-warning-900 shadow-sm'
+                                : 'border-neutral-200 hover:border-warning-300 hover:bg-warning-50'
                             }`}
                           >
                             {pct}%
                           </button>
                         ))}
                       </div>
-                      <p className="text-xs text-gray-500 mt-2">
+                      <p className="text-xs text-neutral-500 mt-2">
                         {reversionPercentage === 60 && '💰 Rente couple maximale, protection modérée'}
                         {reversionPercentage === 80 && '⚖️ Équilibre idéal (le plus courant)'}
                         {reversionPercentage === 100 && '🛡️ Protection maximale du conjoint'}
@@ -321,35 +322,38 @@ export default function RenteCalculator() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border-2 border-blue-200 p-8"
+          className="bg-white rounded-lg shadow-lg p-10 border-t-4 border-success-600"
         >
-          <h3 className="text-lg text-blue-900 mb-2">Votre rente viagère estimée</h3>
+          <h3 className="text-xl font-semibold text-neutral-900 mb-6">Votre rente viagère estimée</h3>
           
           {/* Montant principal */}
-          <div className="mb-6">
+          <div className="mb-8">
             <motion.div
               key={result.monthly_amount}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.4, type: 'spring' }}
-              className="text-5xl font-bold text-blue-900 mb-1"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.2 }}
+              className="flex items-baseline gap-2"
             >
-              {formatEuro(result.monthly_amount)}
+              <span className="text-6xl font-bold font-mono text-neutral-900 tracking-tight">
+                {formatEuro(result.monthly_amount)}
+              </span>
+              <span className="text-xl text-neutral-600 font-medium">/ mois</span>
             </motion.div>
-            <div className="text-sm text-blue-700">par mois, à vie, garantie</div>
+            <div className="text-sm text-neutral-500 mt-2">Rente mensuelle garantie à vie</div>
           </div>
 
           {/* Détails */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="bg-white/60 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">Espérance de vie</div>
-              <div className="text-lg font-medium text-gray-900">
+          <div className="grid grid-cols-2 gap-4 pb-6 border-b border-neutral-200">
+            <div className="bg-neutral-50 rounded-md p-4">
+              <div className="text-xs text-neutral-600 font-medium mb-1">Espérance de vie</div>
+              <div className="text-2xl font-semibold font-mono text-neutral-900">
                 {result.life_expectancy} ans
               </div>
             </div>
-            <div className="bg-white/60 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">Total espéré</div>
-              <div className="text-lg font-medium text-gray-900">
+            <div className="bg-neutral-50 rounded-md p-4">
+              <div className="text-xs text-neutral-600 font-medium mb-1">Total espéré</div>
+              <div className="text-2xl font-semibold font-mono text-neutral-900">
                 {formatEuro(result.total_expected_payout)}
               </div>
             </div>
@@ -357,11 +361,11 @@ export default function RenteCalculator() {
 
           {/* Réversion info */}
           {result.with_reversion && (
-            <div className="bg-amber-100 border border-amber-300 rounded-lg p-4">
-              <div className="text-xs text-amber-800 mb-2 font-medium">
+            <div className="bg-warning-100 border border-warning-300 rounded-lg p-4">
+              <div className="text-xs text-warning-800 mb-2 font-medium">
                 Avec réversion {reversionPercentage}%
               </div>
-              <div className="text-sm text-amber-900">
+              <div className="text-sm text-warning-900">
                 Après votre décès, votre conjoint percevra{' '}
                 <strong>{formatEuro(result.with_reversion.spouse_monthly_amount)}/mois</strong>
               </div>

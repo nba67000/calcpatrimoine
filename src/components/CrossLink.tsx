@@ -17,21 +17,21 @@ export default function CrossLink({
   variant = 'blue' 
 }: CrossLinkProps) {
   const variantStyles = {
-    blue: 'bg-blue-50 border-blue-200 hover:border-blue-300 text-blue-900',
-    green: 'bg-green-50 border-green-200 hover:border-green-300 text-green-900',
+    blue: 'bg-primary-50 border-primary-200 hover:border-blue-300 text-primary-900',
+    green: 'bg-success-50 border-green-200 hover:border-green-300 text-green-900',
     purple: 'bg-purple-50 border-purple-200 hover:border-purple-300 text-purple-900',
   }
 
   const iconStyles = {
-    blue: 'text-blue-600',
-    green: 'text-green-600',
-    purple: 'text-purple-600',
+    blue: 'text-primary-600',
+    green: 'text-success-600',
+    purple: 'text-primary-700',
   }
 
   return (
     <Link 
       href={href}
-      className={`block border-2 rounded-xl p-4 transition-all hover:shadow-md ${variantStyles[variant]}`}
+      className={`block border-2 rounded-lg p-4 transition-all hover:shadow-md ${variantStyles[variant]}`}
     >
       <div className="flex items-start gap-3">
         <span className={`text-2xl ${iconStyles[variant]}`}>{icon}</span>
