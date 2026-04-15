@@ -8,6 +8,7 @@ import type { CalculatorInput, AnnuityResult } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import Tooltip from '@/components/Tooltip'
+import ProjectionChart from '@/components/ProjectionChart'
 
 export default function RenteCalculator() {
   const [age, setAge] = useState<number>(65)
@@ -379,6 +380,22 @@ export default function RenteCalculator() {
               </div>
             </div>
           )}
+        </motion.div>
+      )}
+
+      {/* Graphique de projection */}
+      {result && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className="mt-6 bg-white rounded-lg shadow-lg p-8 border border-neutral-200"
+        >
+          <ProjectionChart
+            capital={capital}
+            monthlyRent={result.monthly_amount}
+            lifeExpectancy={result.life_expectancy}
+          />
         </motion.div>
       )}
 
