@@ -6,8 +6,11 @@ import { calculateCoupleStrategies, formatEuro } from '@/lib/mortality'
 import type { CoupleProfile, CoupleCalculation } from '@/types'
 import { motion } from 'framer-motion'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
+import { useSliderStyles } from '@/hooks/useSliderStyles'
 
 export default function CoupleCalculator() {
+  // Force slider styles
+  useSliderStyles()
   const [person1Age, setPerson1Age] = useState<number>(67)
   const [person2Age, setPerson2Age] = useState<number>(64)
   const [totalCapital, setTotalCapital] = useState<number>(180000)

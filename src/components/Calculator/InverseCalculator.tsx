@@ -9,8 +9,12 @@ import { LIMITS } from '@/lib/constants'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import Tooltip from '@/components/Tooltip'
 import ProjectionChart from '@/components/ProjectionChart'
+import { useSliderStyles } from '@/hooks/useSliderStyles'
 
 export default function InverseCalculator() {
+  // Force slider styles
+  useSliderStyles()
+  
   const [desiredAmount, setDesiredAmount] = useState<number>(1000)
   const [age, setAge] = useState<number>(65)
   const [showReversion, setShowReversion] = useState(false)
@@ -150,7 +154,7 @@ export default function InverseCalculator() {
             step="1"
             value={age}
             onChange={(e) => setAge(Number(e.target.value))}
-            className="w-full"
+            className="w-full custom-range"
           />
           <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>{LIMITS.AGE_MIN} ans</span>
@@ -249,7 +253,7 @@ export default function InverseCalculator() {
                         step="1"
                         value={spouseAge}
                         onChange={(e) => setSpouseAge(Number(e.target.value))}
-                        className="w-full"
+                        className="w-full custom-range"
                       />
                     </div>
 

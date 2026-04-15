@@ -9,8 +9,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import Tooltip from '@/components/Tooltip'
 import ProjectionChart from '@/components/ProjectionChart'
+import { useSliderStyles } from '@/hooks/useSliderStyles'
 
 export default function RenteCalculator() {
+  // Force slider styles
+  useSliderStyles()
+  
   const [age, setAge] = useState<number>(65)
   const [capital, setCapital] = useState<number>(100000)
   const [showReversion, setShowReversion] = useState(false)
@@ -270,7 +274,7 @@ export default function RenteCalculator() {
                         step="1"
                         value={spouseAge}
                         onChange={(e) => setSpouseAge(Number(e.target.value))}
-                        className="w-full"
+                        className="w-full custom-range"
                       />
                     </div>
 
