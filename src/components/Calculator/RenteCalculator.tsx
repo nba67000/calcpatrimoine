@@ -207,9 +207,6 @@ export default function RenteCalculator() {
           </p>
         </div>
 
-        {/* Disclaimer juridique */}
-        <LegalDisclaimer />
-
         {/* Réversion au conjoint - UX améliorée */}
         <div className="border-t pt-6 mt-6">
           <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border-2 border-amber-200 p-6">
@@ -383,11 +380,63 @@ export default function RenteCalculator() {
             </div>
           )}
 
-          {/* Disclaimer */}
-          <div className="mt-6 text-xs text-blue-800 leading-relaxed">
-            <strong>Avertissement :</strong> Cette estimation est indicative et basée sur les tables de mortalité INSEE 
-            et un taux technique de {(result.tech_rate * 100).toFixed(1)}%. Les montants réels peuvent varier selon 
-            l&apos;assureur, votre état de santé et les frais appliqués. Ceci ne constitue pas un conseil en investissement.
+          {/* Disclaimer LONG */}
+          <div className="mt-6 p-6 bg-red-50 border-2 border-red-200 rounded-lg">
+            <h4 className="text-base font-bold text-red-900 mb-3 flex items-center gap-2">
+              <span className="text-xl">⚠️</span>
+              Avertissement Important
+            </h4>
+            
+            <div className="text-sm text-red-800 space-y-3">
+              <p className="font-semibold">
+                CalcPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
+                Il ne constitue en aucun cas :
+              </p>
+              
+              <ul className="list-disc list-inside space-y-1 ml-4 text-red-700">
+                <li>Un conseil en investissement personnalisé</li>
+                <li>Une recommandation de souscription</li>
+                <li>Une garantie de résultat</li>
+                <li>Un avis juridique, fiscal ou patrimonial</li>
+              </ul>
+              
+              <p className="font-semibold mt-3">
+                Les calculs sont basés sur des formules actuarielles standard mais ne tiennent PAS compte de :
+              </p>
+              
+              <ul className="list-disc list-inside space-y-1 ml-4 text-red-700 text-xs">
+                <li>Votre situation fiscale personnelle</li>
+                <li>Votre état de santé spécifique</li>
+                <li>Votre régime matrimonial</li>
+                <li>Les frais et commissions des assureurs (variables selon contrats)</li>
+                <li>Les clauses particulières des contrats</li>
+                <li>Les évolutions réglementaires futures</li>
+              </ul>
+              
+              <p className="font-bold text-red-900 mt-3">
+                ⚖️ Avant toute décision d'investissement, consultez IMPÉRATIVEMENT :
+              </p>
+              
+              <ul className="list-disc list-inside space-y-1 ml-4 text-red-700">
+                <li>Un <strong>conseiller en gestion de patrimoine</strong> certifié (CGP)</li>
+                <li>Un <strong>notaire</strong> pour les aspects successoraux et matrimoniaux</li>
+                <li>Un <strong>expert-comptable</strong> pour optimiser la fiscalité</li>
+              </ul>
+              
+              <div className="border-t border-red-300 pt-3 mt-3">
+                <p className="text-xs text-red-700">
+                  <strong>Limitation de responsabilité :</strong> CalcPatrimoine décline toute responsabilité 
+                  en cas de décision prise uniquement sur la base des calculs fournis. L'éditeur ne peut être 
+                  tenu responsable d'éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
+                  postérieures à la dernière mise à jour (avril 2026).
+                </p>
+                <p className="text-xs text-red-700 mt-2">
+                  <a href="/cgu" className="underline hover:text-red-900 font-medium">
+                    Conditions d'utilisation complètes →
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </motion.div>
       )}

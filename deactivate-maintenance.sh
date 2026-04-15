@@ -16,8 +16,8 @@ if [ ! -d "src/app" ]; then
 fi
 
 # Vérifier qu'il y a un backup
-if [ ! -f "src/app/page.BACKUP.tsx" ]; then
-    echo "❌ Erreur : Pas de backup trouvé (page.BACKUP.tsx)"
+if [ ! -f "src/app/page.BACKUP.tsx" ] && [ ! -f "src/app/page.PRODUCTION.tsx" ]; then
+    echo "❌ Erreur : Pas de backup trouvé (page.BACKUP.tsx ou page.PRODUCTION.tsx)"
     echo "⚠️  Tu dois restaurer manuellement la page de production"
     exit 1
 fi
@@ -32,12 +32,17 @@ if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
     exit 0
 fi
 
-# Restaurer
+# Restaurer (priorité à BACKUP.tsx, sinon PRODUCTION.tsx)
 echo ""
 echo "🔄 Restauration de la page de production..."
 cd src/app
 rm page.tsx
-mv page.BACKUP.tsx page.tsx
+
+if [ -f "page.BACKUP.tsx" ]; then
+    mv page.BACKUP.tsx page.tsx
+elif [ -f "page.PRODUCTION.tsx" ]; then
+    mv page.PRODUCTION.tsx page.tsx
+fi
 
 # Git
 echo ""
