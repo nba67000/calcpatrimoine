@@ -27,6 +27,7 @@ export default function ProjectionChart({ capital, monthlyRent, lifeExpectancy }
   // Calculer le seuil de rentabilité (breakeven) : année où rente cumulée > capital
   const breakEvenYear = capital / (monthlyRent * 12)
   const breakEvenYearRounded = Math.ceil(breakEvenYear)
+  const breakEvenYearDisplay = breakEvenYear.toFixed(1) // Affichage avec 1 décimale
 
   // Formatter pour l'axe Y (montants en euros)
   const formatYAxis = (value: number) => {
@@ -64,7 +65,7 @@ export default function ProjectionChart({ capital, monthlyRent, lifeExpectancy }
           📈 Projection sur {maxYears} ans
         </h3>
         <div className="text-sm text-neutral-600">
-          Seuil de rentabilité : <span className="font-semibold text-success-600">{breakEvenYearRounded} ans</span>
+          Seuil de rentabilité : <span className="font-semibold text-success-600">{breakEvenYearDisplay} ans</span>
         </div>
       </div>
 
@@ -143,7 +144,7 @@ export default function ProjectionChart({ capital, monthlyRent, lifeExpectancy }
           La ligne verte montre le total des rentes perçues au fil des années.
         </p>
         <p className="text-sm text-primary-800 mt-2">
-          <strong>Seuil de rentabilité ({breakEvenYearRounded} ans)</strong> : À partir de cette année,
+          <strong>Seuil de rentabilité ({breakEvenYearDisplay} ans)</strong> : À partir de cette année,
           vous aurez perçu plus que votre capital initial. Plus vous vivez longtemps
           après ce seuil, plus la rente viagère devient avantageuse.
         </p>

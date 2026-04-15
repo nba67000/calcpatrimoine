@@ -9,12 +9,9 @@ import { LIMITS } from '@/lib/constants'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import Tooltip from '@/components/Tooltip'
 import ProjectionChart from '@/components/ProjectionChart'
-import { useSliderStyles } from '@/hooks/useSliderStyles'
+import RangeSlider from '@/components/RangeSlider'
 
 export default function InverseCalculator() {
-  // Force slider styles
-  useSliderStyles()
-  
   const [desiredAmount, setDesiredAmount] = useState<number>(1000)
   const [age, setAge] = useState<number>(65)
   const [showReversion, setShowReversion] = useState(false)
@@ -85,30 +82,12 @@ export default function InverseCalculator() {
               <span className="text-lg font-medium text-neutral-600">€/mois</span>
             </div>
           </div>
-          <input
-            type="range"
-            min="300"
-            max="5000"
-            step="50"
+          <RangeSlider
+            min={300}
+            max={5000}
+            step={50}
             value={desiredAmount}
-            onChange={(e) => setDesiredAmount(Number(e.target.value))}
-            className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer
-                       [&::-webkit-slider-thumb]:appearance-none
-                       [&::-webkit-slider-thumb]:w-5
-                       [&::-webkit-slider-thumb]:h-5
-                       [&::-webkit-slider-thumb]:rounded-full
-                       [&::-webkit-slider-thumb]:bg-primary-600
-                       [&::-webkit-slider-thumb]:cursor-pointer
-                       [&::-webkit-slider-thumb]:hover:bg-primary-700
-                       [&::-webkit-slider-thumb]:transition-colors
-                       [&::-moz-range-thumb]:w-5
-                       [&::-moz-range-thumb]:h-5
-                       [&::-moz-range-thumb]:rounded-full
-                       [&::-moz-range-thumb]:bg-primary-600
-                       [&::-moz-range-thumb]:cursor-pointer
-                       [&::-moz-range-thumb]:hover:bg-primary-700
-                       [&::-moz-range-thumb]:border-0
-                       [&::-moz-range-thumb]:transition-colors"
+            onChange={setDesiredAmount}
           />
           <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>300€</span>
@@ -147,14 +126,12 @@ export default function InverseCalculator() {
               <span className="text-lg font-medium text-neutral-600">ans</span>
             </div>
           </div>
-          <input
-            type="range"
+          <RangeSlider
             min={LIMITS.AGE_MIN}
             max={LIMITS.AGE_MAX}
-            step="1"
+            step={1}
             value={age}
-            onChange={(e) => setAge(Number(e.target.value))}
-            className="w-full custom-range"
+            onChange={setAge}
           />
           <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>{LIMITS.AGE_MIN} ans</span>
@@ -246,14 +223,12 @@ export default function InverseCalculator() {
                           <span className="text-sm font-medium text-neutral-600">ans</span>
                         </div>
                       </div>
-                      <input
-                        type="range"
-                        min="50"
-                        max="90"
-                        step="1"
+                      <RangeSlider
+                        min={50}
+                        max={90}
+                        step={1}
                         value={spouseAge}
-                        onChange={(e) => setSpouseAge(Number(e.target.value))}
-                        className="w-full custom-range"
+                        onChange={setSpouseAge}
                       />
                     </div>
 
@@ -324,7 +299,7 @@ export default function InverseCalculator() {
             <div className="bg-neutral-50 rounded-md p-4">
               <div className="text-xs text-neutral-600 font-medium mb-1">Espérance de vie</div>
               <div className="text-2xl font-semibold tabular-nums text-neutral-900">
-                {result.life_expectancy} ans
+                {result.life_expectancy.toFixed(1)} ans
               </div>
             </div>
             <div className="bg-neutral-50 rounded-md p-4">

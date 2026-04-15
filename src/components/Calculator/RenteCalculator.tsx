@@ -9,12 +9,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import Tooltip from '@/components/Tooltip'
 import ProjectionChart from '@/components/ProjectionChart'
-import { useSliderStyles } from '@/hooks/useSliderStyles'
+import RangeSlider from '@/components/RangeSlider'
 
 export default function RenteCalculator() {
-  // Force slider styles
-  useSliderStyles()
-  
   const [age, setAge] = useState<number>(65)
   const [capital, setCapital] = useState<number>(100000)
   const [showReversion, setShowReversion] = useState(false)
@@ -111,14 +108,12 @@ export default function RenteCalculator() {
               <span className="text-lg font-medium text-neutral-600">ans</span>
             </div>
           </div>
-          <input
-            type="range"
-            min="50"
-            max="90"
-            step="1"
+          <RangeSlider
+            min={50}
+            max={90}
+            step={1}
             value={age}
-            onChange={(e) => setAge(Number(e.target.value))}
-            className="w-full custom-range"
+            onChange={setAge}
           />
           <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>50 ans</span>
@@ -159,14 +154,12 @@ export default function RenteCalculator() {
               <span className="text-lg font-medium text-neutral-600">€</span>
             </div>
           </div>
-          <input
-            type="range"
-            min="10000"
-            max="500000"
-            step="5000"
+          <RangeSlider
+            min={10000}
+            max={500000}
+            step={5000}
             value={capital}
-            onChange={(e) => setCapital(Number(e.target.value))}
-            className="w-full custom-range"
+            onChange={setCapital}
           />
           <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>10 k€</span>
@@ -267,14 +260,12 @@ export default function RenteCalculator() {
                           <span className="text-sm font-medium text-neutral-600">ans</span>
                         </div>
                       </div>
-                      <input
-                        type="range"
-                        min="50"
-                        max="90"
-                        step="1"
+                      <RangeSlider
+                        min={50}
+                        max={90}
+                        step={1}
                         value={spouseAge}
-                        onChange={(e) => setSpouseAge(Number(e.target.value))}
-                        className="w-full custom-range"
+                        onChange={setSpouseAge}
                       />
                     </div>
 
@@ -345,7 +336,7 @@ export default function RenteCalculator() {
             <div className="bg-neutral-50 rounded-md p-4">
               <div className="text-xs text-neutral-600 font-medium mb-1">Espérance de vie</div>
               <div className="text-2xl font-semibold tabular-nums text-neutral-900">
-                {result.life_expectancy} ans
+                {result.life_expectancy.toFixed(1)} ans
               </div>
             </div>
             <div className="bg-neutral-50 rounded-md p-4">

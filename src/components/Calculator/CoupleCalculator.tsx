@@ -6,11 +6,9 @@ import { calculateCoupleStrategies, formatEuro } from '@/lib/mortality'
 import type { CoupleProfile, CoupleCalculation } from '@/types'
 import { motion } from 'framer-motion'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
-import { useSliderStyles } from '@/hooks/useSliderStyles'
+import RangeSlider from '@/components/RangeSlider'
 
 export default function CoupleCalculator() {
-  // Force slider styles
-  useSliderStyles()
   const [person1Age, setPerson1Age] = useState<number>(67)
   const [person2Age, setPerson2Age] = useState<number>(64)
   const [totalCapital, setTotalCapital] = useState<number>(180000)
@@ -126,13 +124,12 @@ export default function CoupleCalculator() {
                   <span className="text-lg font-medium text-neutral-600">ans</span>
                 </div>
               </div>
-              <input
-                type="range"
-                min="50"
-                max="90"
+              <RangeSlider
+                min={50}
+                max={90}
+                step={1}
                 value={person1Age}
-                onChange={(e) => setPerson1Age(Number(e.target.value))}
-                className="w-full custom-range"
+                onChange={setPerson1Age}
               />
               <div className="flex justify-between text-xs text-neutral-400 mt-1">
                 <span>50 ans</span>
@@ -172,13 +169,12 @@ export default function CoupleCalculator() {
                   <span className="text-lg font-medium text-neutral-600">ans</span>
                 </div>
               </div>
-              <input
-                type="range"
-                min="50"
-                max="90"
+              <RangeSlider
+                min={50}
+                max={90}
+                step={1}
                 value={person2Age}
-                onChange={(e) => setPerson2Age(Number(e.target.value))}
-                className="w-full custom-range"
+                onChange={setPerson2Age}
               />
               <div className="flex justify-between text-xs text-neutral-400 mt-1">
                 <span>50 ans</span>
@@ -216,30 +212,12 @@ export default function CoupleCalculator() {
               <span className="text-lg font-medium text-neutral-600">€</span>
             </div>
           </div>
-          <input
-            type="range"
-            min="20000"
-            max="1000000"
-            step="10000"
+          <RangeSlider
+            min={20000}
+            max={1000000}
+            step={10000}
             value={totalCapital}
-            onChange={(e) => setTotalCapital(Number(e.target.value))}
-            className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer
-                       [&::-webkit-slider-thumb]:appearance-none
-                       [&::-webkit-slider-thumb]:w-5
-                       [&::-webkit-slider-thumb]:h-5
-                       [&::-webkit-slider-thumb]:rounded-full
-                       [&::-webkit-slider-thumb]:bg-success-600
-                       [&::-webkit-slider-thumb]:cursor-pointer
-                       [&::-webkit-slider-thumb]:hover:bg-success-700
-                       [&::-webkit-slider-thumb]:transition-colors
-                       [&::-moz-range-thumb]:w-5
-                       [&::-moz-range-thumb]:h-5
-                       [&::-moz-range-thumb]:rounded-full
-                       [&::-moz-range-thumb]:bg-success-600
-                       [&::-moz-range-thumb]:cursor-pointer
-                       [&::-moz-range-thumb]:hover:bg-success-700
-                       [&::-moz-range-thumb]:border-0
-                       [&::-moz-range-thumb]:transition-colors"
+            onChange={setTotalCapital}
           />
           <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>20 k€</span>
