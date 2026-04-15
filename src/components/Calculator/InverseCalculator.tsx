@@ -7,6 +7,7 @@ import type { InverseResult } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LIMITS } from '@/lib/constants'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
+import Tooltip from '@/components/Tooltip'
 
 export default function InverseCalculator() {
   const [desiredAmount, setDesiredAmount] = useState<number>(1000)
@@ -49,7 +50,10 @@ export default function InverseCalculator() {
         {/* Montant souhaité */}
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
-            <label className="text-sm text-neutral-600">Rente mensuelle souhaitée</label>
+            <label className="text-sm text-neutral-600 flex items-center">
+              Rente mensuelle souhaitée
+              <Tooltip content="Montant que vous aimeriez percevoir chaque mois à vie. Le calculateur vous indiquera le capital nécessaire pour obtenir cette rente." />
+            </label>
             <div className="flex items-center gap-2">
               <input
                 type="text"

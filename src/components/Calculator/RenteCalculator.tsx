@@ -7,6 +7,7 @@ import { trackEvent, PlausibleEvents } from '@/lib/plausible'
 import type { CalculatorInput, AnnuityResult } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
+import Tooltip from '@/components/Tooltip'
 
 export default function RenteCalculator() {
   const [age, setAge] = useState<number>(65)
@@ -123,7 +124,10 @@ export default function RenteCalculator() {
         {/* Capital */}
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
-            <label className="text-sm text-neutral-600">Capital disponible</label>
+            <label className="text-sm text-neutral-600 flex items-center">
+              Capital disponible
+              <Tooltip content="Montant total de votre épargne (PER, Assurance-vie, livrets...) que vous souhaitez convertir en rente viagère." />
+            </label>
             <div className="flex items-center gap-2">
               <input
                 type="text"
@@ -203,7 +207,10 @@ export default function RenteCalculator() {
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-2xl">💑</span>
-                  <h3 className="text-lg font-medium text-neutral-900">Réversion au conjoint</h3>
+                  <h3 className="text-lg font-medium text-neutral-900 flex items-center">
+                    Réversion au conjoint
+                    <Tooltip content="Permet à votre conjoint de continuer à percevoir une partie de la rente (60%, 80% ou 100%) après votre décès. Votre rente sera légèrement réduite en contrepartie de cette garantie." />
+                  </h3>
                 </div>
                 <p className="text-sm text-neutral-600">
                   Garantir un revenu à votre conjoint après votre décès
@@ -284,8 +291,9 @@ export default function RenteCalculator() {
 
                     {/* Pourcentage réversion */}
                     <div>
-                      <label className="text-sm font-medium text-neutral-700 block mb-3">
+                      <label className="text-sm font-medium text-neutral-700 flex items-center mb-3">
                         Pourcentage de réversion
+                        <Tooltip content="Part de votre rente que votre conjoint continuera à percevoir après votre décès. Plus le pourcentage est élevé, plus votre rente initiale sera réduite." />
                       </label>
                       <div className="grid grid-cols-3 gap-3">
                         {([60, 80, 100] as const).map((pct) => (

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import PlausibleScript from "@/components/PlausibleScript";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 // Fontsource imports pour CalcPatrimoine
 import '@fontsource/inter/400.css'
@@ -20,27 +21,27 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://calcpatrimoine.fr'),
   title: {
-    default: 'CalcPatrimoine | Calculateurs Patrimoniaux Open Source',
+    default: 'CalcPatrimoine - Calculateur de Rente Viagère Gratuit',
     template: '%s | CalcPatrimoine'
   },
-  description: 'Calculateurs patrimoniaux gratuits et transparents : rente viagère, TMI, assurance-vie, PER. Basés sur les données officielles INSEE.',
+  description: 'Calculateur de rente viagère gratuit et open-source. Estimez vos revenus mensuels à vie basés sur les tables de mortalité officielles INSEE 2022. Sans inscription, données non conservées.',
   keywords: [
-    'calculateur patrimoine',
-    'rente viagère',
-    'TMI',
-    'tranche marginale imposition',
-    'assurance-vie',
-    'PER',
-    'simulateur fiscal',
-    'optimisation fiscale',
-    'calcul rente viagère',
+    'calculateur rente viagère',
+    'rente viagère calcul',
+    'viager calcul',
     'tables mortalité INSEE',
+    'espérance de vie',
     'réversion',
-    'calculateur viager',
-    'rachat assurance-vie',
-    'IFI',
-    'plus-value immobilière'
+    'capital rente',
+    'revenus à vie',
+    'patrimoine',
+    'assurance vie',
+    'PER',
+    'calculateur patrimoine',
+    'simulateur viager',
+    'open source finance'
   ],
+  authors: [{ name: 'CalcPatrimoine', url: 'https://calcpatrimoine.fr' }],
   creator: 'CalcPatrimoine',
   publisher: 'CalcPatrimoine',
   
@@ -61,32 +62,41 @@ export const metadata: Metadata = {
     locale: 'fr_FR',
     siteName: 'CalcPatrimoine',
     url: 'https://calcpatrimoine.fr',
-    title: 'CalcPatrimoine - Calculateurs Patrimoniaux Open Source',
-    description: 'Calculateurs gratuits et transparents pour gérer votre patrimoine : rente viagère, TMI, assurance-vie, optimisations fiscales.',
+    title: 'CalcPatrimoine - Calculateur de Rente Viagère Gratuit',
+    description: 'Calculez votre rente viagère en quelques secondes. Outil gratuit basé sur les tables de mortalité INSEE 2022. Sans inscription, open-source, données non conservées.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'CalcPatrimoine - Calculateurs Patrimoniaux',
+        alt: 'CalcPatrimoine - Calculateur de Rente Viagère',
+        type: 'image/png',
       },
     ],
   },
   
   twitter: {
     card: 'summary_large_image',
-    title: 'CalcPatrimoine - Calculateurs Patrimoniaux Open Source',
-    description: 'Outils gratuits et transparents basés sur les données officielles',
+    site: '@calcpatrimoine',
+    creator: '@calcpatrimoine',
+    title: 'CalcPatrimoine - Calculateur de Rente Viagère Gratuit',
+    description: 'Calculez votre rente viagère gratuitement. Tables INSEE 2022, open-source, sans inscription.',
     images: ['/og-image.png'],
   },
   
   verification: {
-    google: 'votre-code-google-search-console',
+    google: 'VOTRE_CODE_GOOGLE_SEARCH_CONSOLE', // À remplacer
+    yandex: 'VOTRE_CODE_YANDEX', // Optionnel
+    // bing: 'VOTRE_CODE_BING', // Via Bing Webmaster Tools
   },
   
   alternates: {
     canonical: 'https://calcpatrimoine.fr',
   },
+  
+  // Autres metadatas SEO
+  category: 'Finance',
+  classification: 'Finance Calculator',
 };
 
 export default function RootLayout({
@@ -102,6 +112,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       </head>
       <body className={`${inter.className} antialiased`}>
+        {/* Schema.org JSON-LD pour SEO */}
+        <SchemaMarkup />
+        
         {/* Plausible Analytics - Auto-hébergé, RGPD compliant, sans cookies */}
         <PlausibleScript />
         

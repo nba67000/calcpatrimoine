@@ -24,10 +24,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 pt-20 pb-16">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight tracking-tight">
-              Calculez votre rente viagère
+              Convertissez votre épargne en revenus à vie
             </h1>
             <p className="text-xl md:text-2xl text-primary-100 mb-6 font-light">
-              Conversion capital → revenus mensuels à vie
+              PER, Assurance-vie, Capital : simulez votre rente viagère
             </p>
             <p className="text-base text-primary-200 mb-8 leading-relaxed">
               Estimation fiable basée sur les tables de mortalité officielles INSEE.
