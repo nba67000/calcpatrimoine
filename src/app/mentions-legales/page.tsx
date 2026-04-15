@@ -1,4 +1,6 @@
 // src/app/mentions-legales/page.tsx
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export const metadata = {
   title: 'Mentions Légales - CalcPatrimoine',
@@ -7,7 +9,9 @@ export const metadata = {
 
 export default function MentionsLegalesPage() {
   return (
-    <div className="min-h-screen bg-neutral-50 py-12">
+    <>
+      <Header />
+      <div className="min-h-screen bg-neutral-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
         <h1 className="text-4xl font-bold mb-8">Mentions Légales</h1>
 
@@ -107,5 +111,7 @@ export default function MentionsLegalesPage() {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   )
 }

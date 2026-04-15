@@ -1,4 +1,6 @@
 // src/app/cgu/page.tsx
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export const metadata = {
   title: 'Conditions Générales d\'Utilisation - CalcPatrimoine',
@@ -7,7 +9,9 @@ export const metadata = {
 
 export default function CGUPage() {
   return (
-    <div className="min-h-screen bg-neutral-50 py-12">
+    <>
+      <Header />
+      <div className="min-h-screen bg-neutral-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
         <h1 className="text-4xl font-bold mb-8">Conditions Générales d&apos;Utilisation</h1>
 
@@ -179,5 +183,7 @@ export default function CGUPage() {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   )
 }

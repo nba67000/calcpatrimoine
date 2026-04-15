@@ -301,7 +301,7 @@ export default function InverseCalculator() {
               transition={{ duration: 0.2 }}
               className="flex items-baseline gap-2"
             >
-              <span className="text-6xl font-bold font-mono text-neutral-900 tracking-tight">
+              <span className="text-6xl font-bold tabular-nums text-neutral-900 tracking-tight">
                 {formatEuro(result.required_capital)}
               </span>
             </motion.div>
@@ -314,13 +314,13 @@ export default function InverseCalculator() {
           <div className="grid grid-cols-2 gap-4 pb-6 border-b border-neutral-200">
             <div className="bg-neutral-50 rounded-md p-4">
               <div className="text-xs text-neutral-600 font-medium mb-1">Espérance de vie</div>
-              <div className="text-2xl font-semibold font-mono text-neutral-900">
+              <div className="text-2xl font-semibold tabular-nums text-neutral-900">
                 {result.life_expectancy} ans
               </div>
             </div>
             <div className="bg-neutral-50 rounded-md p-4">
               <div className="text-xs text-neutral-600 font-medium mb-1">Total espéré</div>
-              <div className="text-2xl font-semibold font-mono text-neutral-900">
+              <div className="text-2xl font-semibold tabular-nums text-neutral-900">
                 {formatEuro(desiredAmount * 12 * result.life_expectancy)}
               </div>
             </div>
