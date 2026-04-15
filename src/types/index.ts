@@ -54,6 +54,7 @@ export interface InverseResult {
   annual_amount: number
   life_expectancy: number
   total_payout: number
+  tech_rate: number
 }
 
 export interface CoupleProfile {

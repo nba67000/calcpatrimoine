@@ -564,7 +564,8 @@ export function calculateRequiredCapital(
     monthly_amount: desiredMonthlyAmount,
     annual_amount: Math.round(desiredAnnualAmount),
     life_expectancy: jointLifeExpectancy,
-    total_payout: Math.round(desiredAnnualAmount * jointLifeExpectancy)
+    total_payout: Math.round(desiredAnnualAmount * jointLifeExpectancy),
+    tech_rate: techRate
   }
 }
 
@@ -709,8 +710,4 @@ export function calculateCoupleStrategies(
   }
   
   return results
-}
-    recommendation: 'joint_80', // Valeur par défaut (la plus courante)
-    total_capital: totalCapital
-  }
 }
