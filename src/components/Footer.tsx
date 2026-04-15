@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="border-t bg-gray-50 py-12">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* À propos */}
           <div>
             <h4 className="font-semibold text-gray-900 mb-3">CalcPatrimoine</h4>
@@ -32,7 +32,7 @@ export default function Footer() {
           
           {/* Liens utiles */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-3">Liens utiles</h4>
+            <h4 className="font-semibold text-gray-900 mb-3">Ressources</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/faq" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -59,37 +59,59 @@ export default function Footer() {
                   Données INSEE ↗
                 </a>
               </li>
+            </ul>
+          </div>
+
+          {/* Légal */}
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-3">Légal</h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <a 
-                  href={LINKS.contact}
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  Contact
-                </a>
+                <Link href="/mentions-legales" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Mentions légales
+                </Link>
+              </li>
+              <li>
+                <Link href="/cgu" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  CGU
+                </Link>
+              </li>
+              <li>
+                <Link href="/politique-confidentialite" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Confidentialité
+                </Link>
               </li>
             </ul>
           </div>
           
-          {/* Mentions légales */}
+          {/* Contact */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-3">Mentions légales</h4>
-            <p className="text-xs text-gray-500 leading-relaxed mb-3">
-              Données : INSEE, Tables de mortalité par sexe et âge (2019).
-              Licence Ouverte v2.0 / Open License.
+            <h4 className="font-semibold text-gray-900 mb-3">Contact</h4>
+            <p className="text-sm text-gray-600 mb-2">
+              <a 
+                href={LINKS.contact}
+                className="text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                contact@calcpatrimoine.fr
+              </a>
             </p>
-            <p className="text-xs text-gray-500 leading-relaxed">
-              Ce site ne collecte aucune donnée personnelle. Les calculs sont effectués 
-              localement dans votre navigateur.
+            <p className="text-xs text-gray-500 leading-relaxed mt-4">
+              Aucune donnée personnelle collectée. Calculs locaux dans votre navigateur.
             </p>
           </div>
         </div>
         
-        {/* Copyright */}
-        <div className="text-center text-xs text-gray-500 pt-8 border-t">
-          <p>
-            © {currentYear} CalcPatrimoine. Développé par Nicolas, développeur dans l&apos;assurance-vie.
+        {/* Disclaimer + Copyright */}
+        <div className="text-center pt-8 border-t space-y-3">
+          <p className="text-xs text-gray-500 max-w-4xl mx-auto">
+            ⚠️ CalcPatrimoine est un outil pédagogique gratuit à titre indicatif. 
+            Il ne constitue pas un conseil en investissement. Consultez un professionnel 
+            avant toute décision. Tables INSEE 2022 | Conforme réglementation 2012
           </p>
-          <p className="mt-2">
+          <p className="text-xs text-gray-500">
+            © {currentYear} Nicolas Barbier - Tous droits réservés
+          </p>
+          <p className="text-xs text-gray-500">
             Code source disponible sur{' '}
             <a 
               href={LINKS.github}

@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { calculateCoupleStrategies, formatEuro } from '@/lib/mortality'
 import type { CoupleProfile, CoupleCalculation } from '@/types'
 import { motion } from 'framer-motion'
+import LegalDisclaimer from '@/components/LegalDisclaimer'
 
 export default function CoupleCalculator() {
   const [person1Age, setPerson1Age] = useState<number>(67)
@@ -40,6 +41,41 @@ export default function CoupleCalculator() {
         <p className="text-sm text-gray-600 mb-6">
           Comparez 9 stratégies de rente pour optimiser votre situation à deux
         </p>
+
+        {/* Disclaimer juridique RENFORCÉ */}
+        <LegalDisclaimer />
+
+        {/* Note épargne commune/séparée */}
+        <div className="mb-6 p-4 bg-amber-50 border-2 border-amber-200 rounded-lg">
+          <p className="text-sm text-amber-900">
+            <strong>💰 Épargne commune ou séparée ?</strong><br />
+            Ce calculateur suppose que le capital total peut être alloué librement 
+            entre les deux personnes (compte joint ou patrimoine commun).
+          </p>
+          <details className="mt-3">
+            <summary className="text-xs text-amber-700 cursor-pointer hover:underline font-medium">
+              ▸ En savoir plus sur la gestion de l&apos;épargne en couple
+            </summary>
+            <div className="mt-3 text-xs text-amber-800 space-y-2 pl-4 border-l-2 border-amber-300">
+              <p>
+                <strong>Capital commun (compte joint) :</strong> Peut être alloué 
+                librement selon toutes les stratégies affichées ci-dessous.
+              </p>
+              <p>
+                <strong>Contrats individuels séparés :</strong> Si Personne 1 a une assurance-vie 
+                à son nom (100k€) et Personne 2 une autre (80k€), seules les stratégies 
+                "P1 seule" et "P2 seule" sont directement applicables. Les autres 
+                stratégies nécessiteraient de transférer les fonds sur un compte 
+                commun avant conversion en rente.
+              </p>
+              <p className="font-semibold text-amber-900 mt-2">
+                ⚖️ Selon votre régime matrimonial (communauté, séparation de biens), 
+                les possibilités et implications fiscales/successorales diffèrent. 
+                Un notaire pourra vous conseiller précisément.
+              </p>
+            </div>
+          </details>
+        </div>
 
         {/* Note pédagogique */}
         <div className="mb-6 p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">

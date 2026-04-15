@@ -4,8 +4,9 @@
 import { useState, useEffect } from 'react'
 import { calculateAnnuity, formatEuro } from '@/lib/mortality'
 import { trackEvent, PlausibleEvents } from '@/lib/plausible'
-import type { CalculatorInput, AnnuityResult, Gender } from '@/types'
+import type { CalculatorInput, AnnuityResult } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
+import LegalDisclaimer from '@/components/LegalDisclaimer'
 
 export default function RenteCalculator() {
   const [age, setAge] = useState<number>(65)
@@ -60,6 +61,41 @@ export default function RenteCalculator() {
       {/* Zone formulaire */}
       <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6" suppressHydrationWarning>
         <h2 className="text-xl font-medium mb-6">Vos informations</h2>
+
+        {/* Disclaimer juridique RENFORCÉ */}
+        <div className="mb-6 p-6 bg-red-50 border-2 border-red-200 rounded-lg">
+          <h3 className="text-lg font-bold text-red-900 mb-3">
+            ⚠️ Avertissement Important
+          </h3>
+          
+          <div className="text-sm text-red-800 space-y-3">
+            <p className="font-semibold">
+              CalcPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
+              Il ne constitue en aucun cas :
+            </p>
+            
+            <ul className="list-disc list-inside space-y-1 ml-2 text-xs">
+              <li>Un conseil en investissement personnalisé</li>
+              <li>Une recommandation de souscription</li>
+              <li>Une garantie de résultat</li>
+              <li>Un avis juridique, fiscal ou successoral</li>
+            </ul>
+            
+            <p className="text-xs font-semibold mt-3">
+              Les calculs ne tiennent pas compte de votre situation fiscale, état de santé, 
+              régime matrimonial, ni des frais spécifiques des assureurs.
+            </p>
+            
+            <p className="text-xs font-bold mt-3 text-red-900">
+              Avant toute décision, consultez un conseiller en gestion de patrimoine certifié, 
+              un notaire et/ou un expert-comptable.
+            </p>
+            
+            <p className="text-xs mt-3 border-t border-red-300 pt-2">
+              <a href="/cgu" className="underline hover:no-underline">Conditions d&apos;utilisation complètes</a>
+            </p>
+          </div>
+        </div>
         
         {/* Âge */}
         <div className="mb-6">
@@ -170,6 +206,9 @@ export default function RenteCalculator() {
             un tarif identique (arrêt CJUE mars 2011).
           </p>
         </div>
+
+        {/* Disclaimer juridique */}
+        <LegalDisclaimer />
 
         {/* Réversion au conjoint - UX améliorée */}
         <div className="border-t pt-6 mt-6">

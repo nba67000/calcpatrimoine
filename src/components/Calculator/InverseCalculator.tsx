@@ -3,9 +3,10 @@
 
 import { useState, useEffect } from 'react'
 import { calculateRequiredCapital, formatEuro } from '@/lib/mortality'
-import type { Gender, InverseResult } from '@/types'
+import type { InverseResult } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LIMITS } from '@/lib/constants'
+import LegalDisclaimer from '@/components/LegalDisclaimer'
 
 export default function InverseCalculator() {
   const [desiredAmount, setDesiredAmount] = useState<number>(1000)
@@ -35,6 +36,29 @@ export default function InverseCalculator() {
         <p className="text-sm text-gray-600 mb-6">
           Découvrez le capital nécessaire pour obtenir la rente mensuelle souhaitée
         </p>
+
+        {/* Disclaimer juridique RENFORCÉ */}
+        <div className="mb-6 p-6 bg-red-50 border-2 border-red-200 rounded-lg">
+          <h3 className="text-lg font-bold text-red-900 mb-3">
+            ⚠️ Avertissement Important
+          </h3>
+          
+          <div className="text-sm text-red-800 space-y-3">
+            <p className="font-semibold">
+              CalcPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
+              Il ne constitue en aucun cas un conseil personnalisé.
+            </p>
+            
+            <p className="text-xs font-semibold mt-2">
+              Les calculs ne tiennent pas compte de votre situation fiscale, état de santé, 
+              régime matrimonial, ni des frais spécifiques des assureurs.
+            </p>
+            
+            <p className="text-xs font-bold mt-2 text-red-900">
+              Consultez un professionnel qualifié avant toute décision d&apos;investissement.
+            </p>
+          </div>
+        </div>
         
         {/* Montant souhaité */}
         <div className="mb-6">
@@ -137,6 +161,9 @@ export default function InverseCalculator() {
             hommes et femmes. Ce calculateur applique cette réglementation.
           </p>
         </div>
+
+        {/* Disclaimer juridique */}
+        <LegalDisclaimer />
 
         {/* Réversion au conjoint - UX améliorée */}
         <div className="border-t pt-6 mt-6">
