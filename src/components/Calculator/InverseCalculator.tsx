@@ -9,7 +9,6 @@ import { LIMITS } from '@/lib/constants'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import Tooltip from '@/components/Tooltip'
 import ProjectionChart from '@/components/ProjectionChart'
-import RangeSlider from '@/components/RangeSlider'
 
 export default function InverseCalculator() {
   const [desiredAmount, setDesiredAmount] = useState<number>(1000)
@@ -82,12 +81,14 @@ export default function InverseCalculator() {
               <span className="text-lg font-medium text-neutral-600">€/mois</span>
             </div>
           </div>
-          <RangeSlider
+          <input
+            type="range"
             min={300}
             max={5000}
             step={50}
             value={desiredAmount}
-            onChange={setDesiredAmount}
+            onChange={(e) => setDesiredAmount(Number(e.target.value))}
+            className="w-full"
           />
           <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>300€</span>
@@ -126,12 +127,14 @@ export default function InverseCalculator() {
               <span className="text-lg font-medium text-neutral-600">ans</span>
             </div>
           </div>
-          <RangeSlider
+          <input
+            type="range"
             min={LIMITS.AGE_MIN}
             max={LIMITS.AGE_MAX}
             step={1}
             value={age}
-            onChange={setAge}
+            onChange={(e) => setAge(Number(e.target.value))}
+            className="w-full"
           />
           <div className="flex justify-between text-xs text-neutral-400 mt-1">
             <span>{LIMITS.AGE_MIN} ans</span>
@@ -223,13 +226,15 @@ export default function InverseCalculator() {
                           <span className="text-sm font-medium text-neutral-600">ans</span>
                         </div>
                       </div>
-                      <RangeSlider
-                        min={50}
-                        max={90}
-                        step={1}
-                        value={spouseAge}
-                        onChange={setSpouseAge}
-                      />
+                      <input
+            type="range"
+            min={50}
+            max={90}
+            step={1}
+            value={spouseAge}
+            onChange={(e) => setSpouseAge(Number(e.target.value))}
+            className="w-full"
+          />
                     </div>
 
                     {/* Pourcentage réversion */}
