@@ -247,7 +247,7 @@ export default function FAQPage() {
           answer: (
             <>
               <p className="mb-3">
-                <strong>Utilisez notre calculateur</strong>  en haut de cette page ! 
+                <strong>Utilisez notre calculateur</strong> en haut de cette page ! 
                 C&apos;est gratuit, instantané, et basé sur les vraies tables de mortalité INSEE.
               </p>
               <p className="mb-3">

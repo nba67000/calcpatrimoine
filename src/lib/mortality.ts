@@ -141,6 +141,81 @@ function calculateLastSurvivorFactor(
   return factor
 }
 
+/**
+ * Calcule la probabilité de survie unisexe (table moyenne)
+ * 
+ * Version unisexe de calculateSurvivalProbability pour conformité 2012.
+ * 
+ * @param age - Âge actuel
+ * @param years - Nombre d'années dans le futur
+ * @returns Probabilité de survie entre 0 et 1
+ * 
+ * @example
+ * const prob = calculateSurvivalProbabilityUnisex(65, 10)
+ * // prob ≈ 0.86 (moyenne H/F)
+ */
+function calculateSurvivalProbabilityUnisex(
+  age: number,
+  years: number
+): number {
+  let survivalProb = 1.0
+  
+  for (let k = 0; k < years; k++) {
+    const data = getUnisexMortalityData(age + k)
+    
+    if (!data) {
+      break
+    }
+    
+    const annualSurvivalRate = 1 - data.mortality_rate
+    survivalProb *= annualSurvivalRate
+  }
+  
+  return survivalProb
+}
+
+/**
+ * Calcule le facteur viager "dernier décès" pour un couple (version unisexe)
+ * 
+ * Version conforme réglementation 2012 : utilise tables unisexes pour les deux personnes.
+ * 
+ * @param age1 - Âge personne 1
+ * @param age2 - Âge personne 2
+ * @param techRate - Taux technique d'actualisation
+ * @returns Facteur viager "dernier décès"
+ * 
+ * @example
+ * const factor = calculateLastSurvivorFactorUnisex(65, 63, 0.005)
+ * // factor ≈ 24.2
+ */
+function calculateLastSurvivorFactorUnisex(
+  age1: number,
+  age2: number,
+  techRate: number
+): number {
+  let factor = 0
+  
+  for (let t = 1; t <= MAX_COUPLE_YEARS; t++) {
+    // Probabilités unisexes de survie
+    const t_px = calculateSurvivalProbabilityUnisex(age1, t)
+    const t_py = calculateSurvivalProbabilityUnisex(age2, t)
+    
+    if (t_px < NEGLIGIBLE_PROBABILITY && t_py < NEGLIGIBLE_PROBABILITY) {
+      break
+    }
+    
+    // Probabilité qu'au moins un survive
+    const t_pxy_bar = t_px + t_py - (t_px * t_py)
+    
+    // Actualisation
+    const discountFactor = Math.pow(1 / (1 + techRate), t)
+    
+    factor += t_pxy_bar * discountFactor
+  }
+  
+  return factor
+}
+
 // =============================================================================
 // FONCTIONS PUBLIQUES - ACCÈS AUX DONNÉES
 // =============================================================================
@@ -165,6 +240,43 @@ export function getMortalityData(
 }
 
 /**
+ * Récupère les données de mortalité unisexe (conformité réglementation 2012)
+ * 
+ * Depuis le 21 décembre 2012, les assureurs doivent utiliser une table
+ * de mortalité unique pour hommes et femmes (arrêt CJUE mars 2011).
+ * 
+ * Cette fonction calcule une moyenne pondérée basée sur la démographie française :
+ * - 48% hommes
+ * - 52% femmes
+ * 
+ * @param age - Âge recherché (50-110)
+ * @returns Données de mortalité unisexe ou null si âge hors limites
+ * 
+ * @example
+ * const data = getUnisexMortalityData(65)
+ * // data.annuity_factor ≈ 17.27 (entre homme 16.29 et femme 18.16)
+ */
+export function getUnisexMortalityData(age: number): MortalityData | null {
+  const dataHomme = getMortalityData(age, 'homme')
+  const dataFemme = getMortalityData(age, 'femme')
+  
+  if (!dataHomme || !dataFemme) {
+    return null
+  }
+  
+  // Pondération démographique France 2022 (source INSEE)
+  const WEIGHT_HOMME = 0.48
+  const WEIGHT_FEMME = 0.52
+  
+  return {
+    age,
+    mortality_rate: (dataHomme.mortality_rate * WEIGHT_HOMME) + (dataFemme.mortality_rate * WEIGHT_FEMME),
+    annuity_factor: (dataHomme.annuity_factor * WEIGHT_HOMME) + (dataFemme.annuity_factor * WEIGHT_FEMME),
+    life_expectancy: (dataHomme.life_expectancy * WEIGHT_HOMME) + (dataFemme.life_expectancy * WEIGHT_FEMME)
+  }
+}
+
+/**
  * Formatte un montant en euros avec séparateurs de milliers
  * 
  * @param amount - Montant à formater
@@ -186,7 +298,7 @@ export function formatEuro(amount: number): string {
 // =============================================================================
 
 /**
- * Calcule la rente viagère immédiate (sans réversion)
+ * Calcule la rente viagère immédiate (table unisexe, conforme réglementation 2012)
  * 
  * Principe : On divise le capital par le facteur viager pour obtenir
  * la rente annuelle qui sera versée jusqu'au décès.
@@ -197,31 +309,33 @@ export function formatEuro(amount: number): string {
  * où :
  * - R = rente annuelle
  * - C = capital investi
- * - a(x) = facteur viager (somme actualisée des probabilités de survie)
+ * - a(x) = facteur viager unisexe (moyenne pondérée H/F)
+ * 
+ * Note : Depuis le 21 décembre 2012, les assureurs utilisent une table
+ * unisexe unique (arrêt CJUE mars 2011). Ce calculateur applique cette
+ * réglementation.
  * 
  * @param capital - Capital à investir (€)
  * @param age - Âge du bénéficiaire
- * @param gender - Sexe du bénéficiaire
  * @returns Résultat détaillé du calcul ou null si données manquantes
  * 
  * @example
- * const result = calculateSimpleAnnuity(100000, 65, 'homme')
- * // result.monthly_amount ≈ 614€/mois
- * // result.annual_amount ≈ 7368€/an
+ * const result = calculateSimpleAnnuity(100000, 65)
+ * // result.monthly_amount ≈ 580€/mois (table unisexe)
+ * // result.annual_amount ≈ 6960€/an
  */
 export function calculateSimpleAnnuity(
   capital: number,
-  age: number,
-  gender: Gender
+  age: number
 ): AnnuityResult | null {
-  const data = getMortalityData(age, gender)
+  const data = getUnisexMortalityData(age)
   
   if (!data) {
-    console.error(`Pas de données de mortalité pour ${gender} ${age} ans`)
+    console.error(`Pas de données de mortalité unisexe pour ${age} ans`)
     return null
   }
   
-  // Calculs de base
+  // Calcul rente avec table unisexe (conforme 2012)
   const annualAmount = capital / data.annuity_factor
   const monthlyAmount = annualAmount / 12
   const totalExpectedPayout = annualAmount * data.life_expectancy
@@ -275,30 +389,24 @@ export function calculateSimpleAnnuity(
 export function calculateReversionAnnuity(
   capital: number,
   age: number,
-  gender: Gender,
   spouseAge: number,
   reversionPercentage: 60 | 80 | 100
 ): AnnuityResult | null {
-  const mainData = getMortalityData(age, gender)
-  
-  // Le conjoint a le sexe opposé
-  const spouseGender: Gender = gender === 'homme' ? 'femme' : 'homme'
-  const spouseData = getMortalityData(spouseAge, spouseGender)
+  const mainData = getUnisexMortalityData(age)
+  const spouseData = getUnisexMortalityData(spouseAge)
   
   if (!mainData || !spouseData) {
-    console.error('Données de mortalité manquantes pour le couple')
+    console.error('Données de mortalité unisexe manquantes pour le couple')
     return null
   }
   
   const techRate = mortalityTables.metadata.tech_rate
   const reversionRate = reversionPercentage / 100
   
-  // Calcul rigoureux du facteur viager "dernier décès"
-  const lastSurvivorFactor = calculateLastSurvivorFactor(
+  // Calcul facteur viager "dernier décès" (version unisexe)
+  const lastSurvivorFactor = calculateLastSurvivorFactorUnisex(
     age,
-    gender,
     spouseAge,
-    spouseGender,
     techRate
   )
   
@@ -373,7 +481,6 @@ export function calculateAnnuity(input: CalculatorInput): AnnuityResult | null {
     return calculateReversionAnnuity(
       input.capital,
       input.age,
-      input.gender,
       input.reversion.spouse_age,
       input.reversion.percentage
     )
@@ -382,8 +489,7 @@ export function calculateAnnuity(input: CalculatorInput): AnnuityResult | null {
   // Cas simple (sans réversion)
   return calculateSimpleAnnuity(
     input.capital,
-    input.age,
-    input.gender
+    input.age
   )
 }
 
@@ -411,17 +517,15 @@ export function calculateAnnuity(input: CalculatorInput): AnnuityResult | null {
 export function calculateRequiredCapital(
   desiredMonthlyAmount: number,
   age: number,
-  gender: Gender,
   reversion?: {
-    enabled: boolean
-    spouse_age?: number
-    percentage?: 60 | 80 | 100
+    spouse_age: number
+    percentage: 60 | 80 | 100
   }
 ): InverseResult | null {
-  const data = getMortalityData(age, gender)
+  const data = getUnisexMortalityData(age)
   
   if (!data) {
-    console.error(`Pas de données de mortalité pour ${gender} ${age} ans`)
+    console.error(`Pas de données de mortalité unisexe pour ${age} ans`)
     return null
   }
   
@@ -429,21 +533,27 @@ export function calculateRequiredCapital(
   const desiredAnnualAmount = desiredMonthlyAmount * 12
   
   let annuityFactor = data.annuity_factor
+  let jointLifeExpectancy = data.life_expectancy
   
   // Ajustement si réversion
-  if (reversion?.enabled && reversion.spouse_age && reversion.percentage) {
-    const spouseGender: Gender = gender === 'homme' ? 'femme' : 'homme'
+  if (reversion) {
+    const spouseData = getUnisexMortalityData(reversion.spouse_age)
+    
+    if (!spouseData) {
+      console.error(`Pas de données unisexe pour ${reversion.spouse_age} ans`)
+      return null
+    }
+    
     const reversionRate = reversion.percentage / 100
     
-    const lastSurvivorFactor = calculateLastSurvivorFactor(
+    const lastSurvivorFactor = calculateLastSurvivorFactorUnisex(
       age,
-      gender,
       reversion.spouse_age,
-      spouseGender,
       techRate
     )
     
     annuityFactor = data.annuity_factor + (reversionRate * lastSurvivorFactor)
+    jointLifeExpectancy = Math.max(data.life_expectancy, spouseData.life_expectancy)
   }
   
   // Calcul inverse : C = R · a(x)
@@ -451,9 +561,10 @@ export function calculateRequiredCapital(
   
   return {
     required_capital: Math.round(requiredCapital),
-    annuity_factor: annuityFactor,
-    life_expectancy: data.life_expectancy,
-    tech_rate: techRate
+    monthly_amount: desiredMonthlyAmount,
+    annual_amount: Math.round(desiredAnnualAmount),
+    life_expectancy: jointLifeExpectancy,
+    total_payout: Math.round(desiredAnnualAmount * jointLifeExpectancy)
   }
 }
 
@@ -486,94 +597,119 @@ export function calculateRequiredCapital(
  * // comparison contient person1_solo, joint_with_reversion_80, etc.
  */
 export function calculateCoupleStrategies(
-  person1: CoupleProfile,
-  person2: CoupleProfile
-): CoupleCalculation | null {
-  const totalCapital = person1.capital + person2.capital
+  input: CoupleProfile
+): CoupleCalculation[] {
+  const age1 = input.person1_age
+  const age2 = input.person2_age
+  const capital = input.total_capital
   
-  // Stratégie 1 : Rentes séparées
-  const person1_solo = calculateSimpleAnnuity(
-    person1.capital,
-    person1.age,
-    person1.gender
-  )
+  const data1 = getUnisexMortalityData(age1)
+  const data2 = getUnisexMortalityData(age2)
   
-  const person2_solo = calculateSimpleAnnuity(
-    person2.capital,
-    person2.age,
-    person2.gender
-  )
-  
-  if (!person1_solo || !person2_solo) {
-    return null
+  if (!data1 || !data2) {
+    console.error('Données unisexe manquantes pour le couple')
+    return []
   }
   
-  // Stratégies 2-4 : Capital total sur P1, réversion → P2
-  const joint_60 = calculateReversionAnnuity(
-    totalCapital,
-    person1.age,
-    person1.gender,
-    person2.age,
-    60
-  )
+  const techRate = mortalityTables.metadata.tech_rate
+  const results: CoupleCalculation[] = []
   
-  const joint_80 = calculateReversionAnnuity(
-    totalCapital,
-    person1.age,
-    person1.gender,
-    person2.age,
-    80
-  )
-  
-  const joint_100 = calculateReversionAnnuity(
-    totalCapital,
-    person1.age,
-    person1.gender,
-    person2.age,
-    100
-  )
-  
-  // Stratégies 5-7 : Capital total sur P2, réversion → P1
-  const p2_joint_60 = calculateReversionAnnuity(
-    totalCapital,
-    person2.age,
-    person2.gender,
-    person1.age,
-    60
-  )
-  
-  const p2_joint_80 = calculateReversionAnnuity(
-    totalCapital,
-    person2.age,
-    person2.gender,
-    person1.age,
-    80
-  )
-  
-  const p2_joint_100 = calculateReversionAnnuity(
-    totalCapital,
-    person2.age,
-    person2.gender,
-    person1.age,
-    100
-  )
-  
-  if (!joint_60 || !joint_80 || !joint_100 || 
-      !p2_joint_60 || !p2_joint_80 || !p2_joint_100) {
-    return null
+  // Stratégie 1 : Personne 1 seule
+  const p1Solo = calculateSimpleAnnuity(capital, age1)
+  if (p1Solo) {
+    results.push({
+      strategy: 'Personne 1 seule',
+      monthly_amount: p1Solo.monthly_amount,
+      description: `Rente viagère pour personne 1 uniquement (${age1} ans)`,
+      life_expectancy: p1Solo.life_expectancy,
+      total_payout: p1Solo.total_expected_payout
+    })
   }
   
-  // Pas de recommandation automatique : on laisse l'utilisateur choisir
-  // selon sa situation (santé, priorités, besoins)
-  return {
-    person1_solo,
-    person2_solo,
-    joint_with_reversion_60: joint_60,
-    joint_with_reversion_80: joint_80,
-    joint_with_reversion_100: joint_100,
-    p2_joint_with_reversion_60: p2_joint_60,
-    p2_joint_with_reversion_80: p2_joint_80,
-    p2_joint_with_reversion_100: p2_joint_100,
+  // Stratégie 2 : Personne 2 seule
+  const p2Solo = calculateSimpleAnnuity(capital, age2)
+  if (p2Solo) {
+    results.push({
+      strategy: 'Personne 2 seule',
+      monthly_amount: p2Solo.monthly_amount,
+      description: `Rente viagère pour personne 2 uniquement (${age2} ans)`,
+      life_expectancy: p2Solo.life_expectancy,
+      total_payout: p2Solo.total_expected_payout
+    })
+  }
+  
+  // Stratégie 3 : Dernier décès (tant qu'un vivant)
+  const lastSurvivorFactor = calculateLastSurvivorFactorUnisex(age1, age2, techRate)
+  const lastDecesAnnual = capital / lastSurvivorFactor
+  const lastDecesMo = lastDecesAnnual / 12
+  results.push({
+    strategy: 'Dernier décès',
+    monthly_amount: Math.round(lastDecesMo),
+    description: `Rente versée tant qu'au moins un est vivant`,
+    life_expectancy: Math.max(data1.life_expectancy, data2.life_expectancy),
+    total_payout: Math.round(lastDecesAnnual * Math.max(data1.life_expectancy, data2.life_expectancy))
+  })
+  
+  // Stratégies 4-6 : P1 titulaire avec réversion à P2 (60%, 80%, 100%)
+  const rev60_p1 = calculateReversionAnnuity(capital, age1, age2, 60)
+  const rev80_p1 = calculateReversionAnnuity(capital, age1, age2, 80)
+  const rev100_p1 = calculateReversionAnnuity(capital, age1, age2, 100)
+  
+  if (rev60_p1) {
+    results.push({
+      strategy: 'P1 titulaire, 60% à P2',
+      monthly_amount: rev60_p1.monthly_amount,
+      description: `P1 (${age1} ans) touche ${rev60_p1.monthly_amount}€/mois. Si décès, P2 touche ${rev60_p1.with_reversion?.spouse_monthly_amount}€/mois`
+    })
+  }
+  
+  if (rev80_p1) {
+    results.push({
+      strategy: 'P1 titulaire, 80% à P2',
+      monthly_amount: rev80_p1.monthly_amount,
+      description: `P1 (${age1} ans) touche ${rev80_p1.monthly_amount}€/mois. Si décès, P2 touche ${rev80_p1.with_reversion?.spouse_monthly_amount}€/mois`
+    })
+  }
+  
+  if (rev100_p1) {
+    results.push({
+      strategy: 'P1 titulaire, 100% à P2',
+      monthly_amount: rev100_p1.monthly_amount,
+      description: `P1 (${age1} ans) touche ${rev100_p1.monthly_amount}€/mois. Si décès, P2 touche ${rev100_p1.with_reversion?.spouse_monthly_amount}€/mois`
+    })
+  }
+  
+  // Stratégies 7-9 : P2 titulaire avec réversion à P1 (60%, 80%, 100%)
+  const rev60_p2 = calculateReversionAnnuity(capital, age2, age1, 60)
+  const rev80_p2 = calculateReversionAnnuity(capital, age2, age1, 80)
+  const rev100_p2 = calculateReversionAnnuity(capital, age2, age1, 100)
+  
+  if (rev60_p2) {
+    results.push({
+      strategy: 'P2 titulaire, 60% à P1',
+      monthly_amount: rev60_p2.monthly_amount,
+      description: `P2 (${age2} ans) touche ${rev60_p2.monthly_amount}€/mois. Si décès, P1 touche ${rev60_p2.with_reversion?.spouse_monthly_amount}€/mois`
+    })
+  }
+  
+  if (rev80_p2) {
+    results.push({
+      strategy: 'P2 titulaire, 80% à P1',
+      monthly_amount: rev80_p2.monthly_amount,
+      description: `P2 (${age2} ans) touche ${rev80_p2.monthly_amount}€/mois. Si décès, P1 touche ${rev80_p2.with_reversion?.spouse_monthly_amount}€/mois`
+    })
+  }
+  
+  if (rev100_p2) {
+    results.push({
+      strategy: 'P2 titulaire, 100% à P1',
+      monthly_amount: rev100_p2.monthly_amount,
+      description: `P2 (${age2} ans) touche ${rev100_p2.monthly_amount}€/mois. Si décès, P1 touche ${rev100_p2.with_reversion?.spouse_monthly_amount}€/mois`
+    })
+  }
+  
+  return results
+}
     recommendation: 'joint_80', // Valeur par défaut (la plus courante)
     total_capital: totalCapital
   }

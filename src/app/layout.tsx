@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
+import PlausibleScript from "@/components/PlausibleScript";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -93,13 +93,8 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       </head>
       <body className={`${inter.className} antialiased`}>
-        {/* Umami Analytics - Privacy-friendly, GDPR compliant */}
-        <Script
-          async
-          src="https://TON-UMAMI-DOMAINE.vercel.app/script.js"
-          data-website-id="TON-WEBSITE-ID"
-          strategy="afterInteractive"
-        />
+        {/* Plausible Analytics - Auto-hébergé, RGPD compliant, sans cookies */}
+        <PlausibleScript />
         
         {children}
       </body>

@@ -1,46 +1,49 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  // Redirections
+  async redirects() {
+    return [
+      // Redirection www → non-www
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.calcpatrimoine.fr',
+          },
+        ],
+        destination: 'https://calcpatrimoine.fr/:path*',
+        permanent: true, // 301 redirect
+      },
+    ]
+  },
   
-  // Optimisations de performance
-  compress: true,
-  poweredByHeader: false,
-  
-  // SEO et sécurité
+  // Headers de sécurité
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
           {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
-          },
-          {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload'
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY'
           },
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff'
           },
           {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          },
-          {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin'
-          }
-        ]
-      }
+          },
+        ],
+      },
     ]
   },
-  
-  // Redirections futures (pour V2)
-  async redirects() {
-    return []
-  }
 }
 
 module.exports = nextConfig

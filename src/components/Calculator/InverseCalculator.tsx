@@ -10,7 +10,6 @@ import { LIMITS } from '@/lib/constants'
 export default function InverseCalculator() {
   const [desiredAmount, setDesiredAmount] = useState<number>(1000)
   const [age, setAge] = useState<number>(65)
-  const [gender, setGender] = useState<Gender>('homme')
   const [showReversion, setShowReversion] = useState(false)
   const [spouseAge, setSpouseAge] = useState<number>(63)
   const [reversionPercentage, setReversionPercentage] = useState<60 | 80 | 100>(60)
@@ -20,20 +19,18 @@ export default function InverseCalculator() {
     const calculatedResult = calculateRequiredCapital(
       desiredAmount,
       age,
-      gender,
       showReversion ? {
-        enabled: true,
         spouse_age: spouseAge,
         percentage: reversionPercentage
       } : undefined
     )
     setResult(calculatedResult)
-  }, [desiredAmount, age, gender, showReversion, spouseAge, reversionPercentage])
+  }, [desiredAmount, age, showReversion, spouseAge, reversionPercentage])
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto" suppressHydrationWarning>
       {/* Zone formulaire */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+      <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6" suppressHydrationWarning>
         <h2 className="text-xl font-medium mb-2">Calculateur inverse</h2>
         <p className="text-sm text-gray-600 mb-6">
           Découvrez le capital nécessaire pour obtenir la rente mensuelle souhaitée
@@ -132,31 +129,13 @@ export default function InverseCalculator() {
           </div>
         </div>
 
-        {/* Sexe */}
-        <div className="mb-6">
-          <label className="text-sm text-gray-600 block mb-3">Sexe</label>
-          <div className="flex gap-3">
-            <button
-              onClick={() => setGender('homme')}
-              className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all ${
-                gender === 'homme'
-                  ? 'border-blue-600 bg-blue-50 text-blue-900'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              Homme
-            </button>
-            <button
-              onClick={() => setGender('femme')}
-              className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all ${
-                gender === 'femme'
-                  ? 'border-blue-600 bg-blue-50 text-blue-900'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              Femme
-            </button>
-          </div>
+        {/* Note pédagogique table unisexe */}
+        <div className="mb-6 p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">
+          <p className="text-sm text-blue-900">
+            <strong>ℹ️ Table de mortalité unisexe (réglementation 2012)</strong><br />
+            Depuis décembre 2012, les assureurs utilisent une table unique pour
+            hommes et femmes. Ce calculateur applique cette réglementation.
+          </p>
         </div>
 
         {/* Réversion au conjoint - UX améliorée */}
@@ -165,6 +144,7 @@ export default function InverseCalculator() {
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
+                  <span className="text-2xl">💑</span>
                   <h3 className="text-lg font-medium text-gray-900">Réversion au conjoint</h3>
                 </div>
                 <p className="text-sm text-gray-600">
