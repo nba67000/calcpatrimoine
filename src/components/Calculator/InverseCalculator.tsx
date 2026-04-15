@@ -16,6 +16,15 @@ export default function InverseCalculator() {
   const [reversionPercentage, setReversionPercentage] = useState<60 | 80 | 100>(60)
   const [result, setResult] = useState<InverseResult | null>(null)
 
+  // Formatage montant avec espaces (100 000 au lieu de 100000)
+  const formatAmountInput = (value: number): string => {
+    return value.toLocaleString('fr-FR')
+  }
+
+  const parseAmountInput = (value: string): number => {
+    return Number(value.replace(/\s/g, ''))
+  }
+
   useEffect(() => {
     const calculatedResult = calculateRequiredCapital(
       desiredAmount,
@@ -36,29 +45,6 @@ export default function InverseCalculator() {
         <p className="text-sm text-gray-600 mb-6">
           Découvrez le capital nécessaire pour obtenir la rente mensuelle souhaitée
         </p>
-
-        {/* Disclaimer juridique RENFORCÉ */}
-        <div className="mb-6 p-6 bg-red-50 border-2 border-red-200 rounded-lg">
-          <h3 className="text-lg font-bold text-red-900 mb-3">
-            ⚠️ Avertissement Important
-          </h3>
-          
-          <div className="text-sm text-red-800 space-y-3">
-            <p className="font-semibold">
-              CalcPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
-              Il ne constitue en aucun cas un conseil personnalisé.
-            </p>
-            
-            <p className="text-xs font-semibold mt-2">
-              Les calculs ne tiennent pas compte de votre situation fiscale, état de santé, 
-              régime matrimonial, ni des frais spécifiques des assureurs.
-            </p>
-            
-            <p className="text-xs font-bold mt-2 text-red-900">
-              Consultez un professionnel qualifié avant toute décision d&apos;investissement.
-            </p>
-          </div>
-        </div>
         
         {/* Montant souhaité */}
         <div className="mb-6">
@@ -66,19 +52,17 @@ export default function InverseCalculator() {
             <label className="text-sm text-gray-600">Rente mensuelle souhaitée</label>
             <div className="flex items-center gap-2">
               <input
-                type="number"
-                min="300"
-                max="5000"
-                step="50"
-                value={desiredAmount}
+                type="text"
+                inputMode="numeric"
+                value={formatAmountInput(desiredAmount)}
                 onChange={(e) => {
-                  const val = e.target.value
+                  const val = e.target.value.replace(/\s/g, '')
                   if (val === '' || !isNaN(Number(val))) {
                     setDesiredAmount(val === '' ? 300 : Number(val))
                   }
                 }}
                 onBlur={(e) => {
-                  let val = Number(e.target.value)
+                  let val = parseAmountInput(e.target.value)
                   if (isNaN(val) || val < 300) {
                     setDesiredAmount(300)
                   } else if (val > 5000) {
@@ -86,7 +70,7 @@ export default function InverseCalculator() {
                   }
                 }}
                 onFocus={(e) => e.target.select()}
-                className="w-24 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
+                className="w-28 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
               <span className="text-lg font-medium text-gray-600">€/mois</span>
@@ -99,7 +83,23 @@ export default function InverseCalculator() {
             step="50"
             value={desiredAmount}
             onChange={(e) => setDesiredAmount(Number(e.target.value))}
-            className="w-full"
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
+                       [&::-webkit-slider-thumb]:appearance-none
+                       [&::-webkit-slider-thumb]:w-5
+                       [&::-webkit-slider-thumb]:h-5
+                       [&::-webkit-slider-thumb]:rounded-full
+                       [&::-webkit-slider-thumb]:bg-blue-600
+                       [&::-webkit-slider-thumb]:cursor-pointer
+                       [&::-webkit-slider-thumb]:hover:bg-blue-700
+                       [&::-webkit-slider-thumb]:transition-colors
+                       [&::-moz-range-thumb]:w-5
+                       [&::-moz-range-thumb]:h-5
+                       [&::-moz-range-thumb]:rounded-full
+                       [&::-moz-range-thumb]:bg-blue-600
+                       [&::-moz-range-thumb]:cursor-pointer
+                       [&::-moz-range-thumb]:hover:bg-blue-700
+                       [&::-moz-range-thumb]:border-0
+                       [&::-moz-range-thumb]:transition-colors"
           />
           <div className="flex justify-between text-xs text-gray-400 mt-1">
             <span>300€</span>
@@ -323,63 +323,70 @@ export default function InverseCalculator() {
               </div>
             </div>
           </div>
+        </motion.div>
+      )}
 
-          {/* Disclaimer LONG */}
-          <div className="mt-6 p-6 bg-red-50 border-2 border-red-200 rounded-lg">
-            <h4 className="text-base font-bold text-red-900 mb-3 flex items-center gap-2">
-              <span className="text-xl">⚠️</span>
-              Avertissement Important
-            </h4>
+      {/* Disclaimer LONG - EN DEHORS du bloc vert */}
+      {result && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
+          className="mt-6 p-6 bg-red-50 border-2 border-red-200 rounded-lg"
+        >
+          <h4 className="text-base font-bold text-red-900 mb-3 flex items-center gap-2">
+            <span className="text-xl">⚠️</span>
+            Avertissement Important
+          </h4>
+          
+          <div className="text-sm text-red-800 space-y-3">
+            <p className="font-semibold">
+              CalcPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
+              Il ne constitue en aucun cas :
+            </p>
             
-            <div className="text-sm text-red-800 space-y-3">
-              <p className="font-semibold">
-                CalcPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
-                Il ne constitue en aucun cas :
+            <ul className="list-disc list-inside space-y-1 ml-4 text-red-700">
+              <li>Un conseil en investissement personnalisé</li>
+              <li>Une recommandation de souscription</li>
+              <li>Une garantie de résultat</li>
+              <li>Un avis juridique, fiscal ou patrimonial</li>
+            </ul>
+            
+            <p className="font-semibold mt-3">
+              Les calculs sont basés sur des formules actuarielles standard mais ne tiennent PAS compte de :
+            </p>
+            
+            <ul className="list-disc list-inside space-y-1 ml-4 text-red-700 text-xs">
+              <li>Votre situation fiscale personnelle</li>
+              <li>Votre état de santé spécifique</li>
+              <li>Votre régime matrimonial</li>
+              <li>Les frais et commissions des assureurs (variables selon contrats)</li>
+              <li>Les clauses particulières des contrats</li>
+              <li>Les évolutions réglementaires futures</li>
+            </ul>
+            
+            <p className="font-bold text-red-900 mt-3">
+              ⚖️ Avant toute décision d'investissement, consultez IMPÉRATIVEMENT :
+            </p>
+            
+            <ul className="list-disc list-inside space-y-1 ml-4 text-red-700">
+              <li>Un <strong>conseiller en gestion de patrimoine</strong> certifié (CGP)</li>
+              <li>Un <strong>notaire</strong> pour les aspects successoraux et matrimoniaux</li>
+              <li>Un <strong>expert-comptable</strong> pour optimiser la fiscalité</li>
+            </ul>
+            
+            <div className="border-t border-red-300 pt-3 mt-3">
+              <p className="text-xs text-red-700">
+                <strong>Limitation de responsabilité :</strong> CalcPatrimoine décline toute responsabilité 
+                en cas de décision prise uniquement sur la base des calculs fournis. L'éditeur ne peut être 
+                tenu responsable d'éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
+                postérieures à la dernière mise à jour (avril 2026).
               </p>
-              
-              <ul className="list-disc list-inside space-y-1 ml-4 text-red-700">
-                <li>Un conseil en investissement personnalisé</li>
-                <li>Une recommandation de souscription</li>
-                <li>Une garantie de résultat</li>
-                <li>Un avis juridique, fiscal ou patrimonial</li>
-              </ul>
-              
-              <p className="font-semibold mt-3">
-                Les calculs sont basés sur des formules actuarielles standard mais ne tiennent PAS compte de :
+              <p className="text-xs text-red-700 mt-2">
+                <a href="/cgu" className="underline hover:text-red-900 font-medium">
+                  Conditions d'utilisation complètes →
+                </a>
               </p>
-              
-              <ul className="list-disc list-inside space-y-1 ml-4 text-red-700 text-xs">
-                <li>Votre situation fiscale personnelle</li>
-                <li>Votre état de santé spécifique</li>
-                <li>Votre régime matrimonial</li>
-                <li>Les frais et commissions des assureurs (variables selon contrats)</li>
-                <li>Les clauses particulières des contrats</li>
-                <li>Les évolutions réglementaires futures</li>
-              </ul>
-              
-              <p className="font-bold text-red-900 mt-3">
-                ⚖️ Avant toute décision d'investissement, consultez IMPÉRATIVEMENT :
-              </p>
-              
-              <ul className="list-disc list-inside space-y-1 ml-4 text-red-700">
-                <li>Un <strong>conseiller en gestion de patrimoine</strong> certifié (CGP)</li>
-                <li>Un <strong>notaire</strong> pour les aspects successoraux et matrimoniaux</li>
-                <li>Un <strong>expert-comptable</strong> pour optimiser la fiscalité</li>
-              </ul>
-              
-              <div className="border-t border-red-300 pt-3 mt-3">
-                <p className="text-xs text-red-700">
-                  <strong>Limitation de responsabilité :</strong> CalcPatrimoine décline toute responsabilité 
-                  en cas de décision prise uniquement sur la base des calculs fournis. L'éditeur ne peut être 
-                  tenu responsable d'éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
-                  postérieures à la dernière mise à jour (avril 2026).
-                </p>
-                <p className="text-xs text-red-700 mt-2">
-                  <a href="/cgu" className="underline hover:text-red-900 font-medium">
-                    Conditions d'utilisation complètes →
-                  </a>
-                </p>
-              </div>
             </div>
           </div>
         </motion.div>

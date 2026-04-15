@@ -15,6 +15,15 @@ export default function CoupleCalculator() {
   const [strategies, setStrategies] = useState<CoupleCalculation[]>([])
   const [isCalculating, setIsCalculating] = useState(false)
 
+  // Formatage montant avec espaces
+  const formatCapitalInput = (value: number): string => {
+    return value.toLocaleString('fr-FR')
+  }
+
+  const parseCapitalInput = (value: string): number => {
+    return Number(value.replace(/\s/g, ''))
+  }
+
   useEffect(() => {
     setIsCalculating(true)
     
@@ -182,24 +191,23 @@ export default function CoupleCalculator() {
             <label className="text-sm text-gray-600">Capital total du couple</label>
             <div className="flex items-center gap-2">
               <input
-                type="number"
-                min="20000"
-                max="1000000"
-                step="5000"
-                value={totalCapital}
+                type="text"
+                inputMode="numeric"
+                value={formatCapitalInput(totalCapital)}
                 onChange={(e) => {
-                  const val = e.target.value
+                  const val = e.target.value.replace(/\s/g, '')
                   if (val === '' || !isNaN(Number(val))) {
                     setTotalCapital(val === '' ? 20000 : Number(val))
                   }
                 }}
                 onBlur={(e) => {
-                  let val = Number(e.target.value)
+                  let val = parseCapitalInput(e.target.value)
                   if (isNaN(val) || val < 20000) val = 20000
                   if (val > 1000000) val = 1000000
                   setTotalCapital(val)
                 }}
-                className="w-32 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
+                onFocus={(e) => e.target.select()}
+                className="w-44 px-3 py-1 text-lg font-medium text-right border border-gray-300 rounded-lg 
                            focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <span className="text-lg font-medium text-gray-600">€</span>
@@ -212,7 +220,23 @@ export default function CoupleCalculator() {
             step="10000"
             value={totalCapital}
             onChange={(e) => setTotalCapital(Number(e.target.value))}
-            className="w-full"
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
+                       [&::-webkit-slider-thumb]:appearance-none
+                       [&::-webkit-slider-thumb]:w-5
+                       [&::-webkit-slider-thumb]:h-5
+                       [&::-webkit-slider-thumb]:rounded-full
+                       [&::-webkit-slider-thumb]:bg-green-600
+                       [&::-webkit-slider-thumb]:cursor-pointer
+                       [&::-webkit-slider-thumb]:hover:bg-green-700
+                       [&::-webkit-slider-thumb]:transition-colors
+                       [&::-moz-range-thumb]:w-5
+                       [&::-moz-range-thumb]:h-5
+                       [&::-moz-range-thumb]:rounded-full
+                       [&::-moz-range-thumb]:bg-green-600
+                       [&::-moz-range-thumb]:cursor-pointer
+                       [&::-moz-range-thumb]:hover:bg-green-700
+                       [&::-moz-range-thumb]:border-0
+                       [&::-moz-range-thumb]:transition-colors"
           />
           <div className="flex justify-between text-xs text-gray-400 mt-1">
             <span>20 k€</span>
