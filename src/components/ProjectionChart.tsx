@@ -48,7 +48,7 @@ export default function ProjectionChart({ capital, monthlyRent, lifeExpectancy }
           <p className="text-sm text-success-700">
             Rente cumulée : <span className="font-medium">{formatEuro(payload[1].value)}</span>
           </p>
-          {label === breakEvenYearRounded && (
+          {Math.abs(label - breakEvenYear) < 0.5 && (
             <p className="text-xs text-success-600 mt-1 font-medium">✅ Seuil de rentabilité atteint</p>
           )}
         </div>
@@ -100,7 +100,7 @@ export default function ProjectionChart({ capital, monthlyRent, lifeExpectancy }
           
           {/* Ligne de référence au seuil de rentabilité */}
           <ReferenceLine
-            x={breakEvenYearRounded}
+            x={breakEvenYear}
             stroke="#059669"
             strokeDasharray="5 5"
             label={{
