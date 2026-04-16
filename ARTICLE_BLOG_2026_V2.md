@@ -98,6 +98,42 @@ La rente viagère, c'est :
 
 ---
 
+## Le graphique qui dit tout
+
+Sur CalcPatrimoine, j'ai ajouté un graphique de projection sur 30 ans. Voici ce qu'il montre :
+
+```
+Capital : 255k€
+Rente : 1 340€/mois
+
+  €
+  │
+340k│                             ╱ Rente cumulée
+  │                          ╱
+255k├──────────────────────┼──  Capital initial
+  │                    ╱   │
+  │                 ╱      │✅ Seuil : 15,8 ans
+  │              ╱         │
+  │           ╱            │🔴 Espérance : 14 ans
+  │        ╱               │
+ 0│     ╱                  │
+  └─────┴──────────────────┴────────> Années
+  0    10        14       15,8      28
+```
+
+**Ce que ça montre** :
+- Ligne bleue (horizontale) : Votre capital (255k€)
+- Ligne verte (montante) : Total cumulé des rentes perçues
+- Trait vert (✅) : Seuil de rentabilité (15,8 ans)
+- Trait rouge (🔴) : Espérance de vie moyenne (14 ans)
+
+**Traduction** : Statistiquement, vous mourrez AVANT d'avoir récupéré votre capital. L'assureur gagne.
+
+MAIS : si vous vivez jusqu'à 90 ans (18 ans), vous aurez touché 289k€. Vous gagnez 34k€.  
+Et si vous vivez jusqu'à 95 ans (23 ans), vous aurez touché 370k€. Vous gagnez 115k€.
+
+---
+
 ## Les paramètres qui changent tout
 
 ### 1. L'âge (le levier le plus puissant)
@@ -139,7 +175,7 @@ Vous perdez **250€/mois** (25% de la rente). Sur 20 ans : **60 000€ de manqu
 **Quand c'est un piège** :
 - Vous avez le même âge (±3 ans)
 - Votre conjoint a sa propre retraite
-- Vous pourriez décéder en même temps (accident, maladie)
+- Vous pourriez mourir en même temps (accident, maladie)
 
 ### 3. Le taux technique (disparu, mais à comprendre)
 
@@ -155,8 +191,7 @@ Depuis 2016, la plupart des nouveaux contrats sont à taux 0%. Pourquoi ? Parce 
 
 ---
 
-**Les 3 cas où la rente viagère a du sens**
-
+## Les 3 cas où la rente viagère a du sens
 
 ### 1. Vous êtes convaincu de vivre très vieux
 
@@ -167,13 +202,11 @@ Depuis 2016, la plupart des nouveaux contrats sont à taux 0%. Pourquoi ? Parce 
 
 **Calcul** : Si vous vivez 5-10 ans de plus que l'espérance, vous touchez 30-50% de plus que votre capital.
 
-
 ### 2. Vous n'avez pas d'héritiers
 
 Si vous êtes célibataire sans enfants, la question de la transmission ne se pose pas. Autant profiter à fond de votre capital.
 
 **Bonus** : Vous évitez les droits de succession (qui peuvent atteindre 60% pour les neveux/nièces).
-
 
 ### 3. Vous voulez la sécurité absolue
 
@@ -183,7 +216,7 @@ La rente, c'est **zéro gestion**. Versement automatique chaque mois jusqu'à vo
 
 ---
 
-**Les 5 cas où c'est une mauvaise idée**
+## Les 5 cas où c'est une mauvaise idée
 
 ### 1. Vous voulez transmettre à vos enfants
 
