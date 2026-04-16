@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcPatrimoine OG Image</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .og-image {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #1E3A5F 0%, #2E4A6F 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Pattern background subtil */
+        .og-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .og-image::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -30%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+        
+        .icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+        }
+        
+        .title {
+            font-size: 72px;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-size: 36px;
+            font-weight: 600;
+            margin: 0 0 40px 0;
+            color: #D1DDE9;
+            line-height: 1.3;
+        }
+        
+        .features {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            color: #D1DDE9;
+        }
+        
+        .feature-icon {
+            color: #10B981;
+            font-size: 28px;
+        }
+        
+        .url {
+            font-size: 32px;
+            font-weight: 600;
+            color: #10B981;
+            margin-top: 20px;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid #10B981;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 18px;
+            color: #10B981;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="og-image">
+        <div class="content">
+            <div class="badge">GRATUIT • OPEN-SOURCE</div>
+            
+            <div class="icon">📊</div>
+            
+            <h1 class="title">CalcPatrimoine</h1>
+            
+            <p class="subtitle">
+                Calculateur de Rente Viagère
+            </p>
+            
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon">✓</span>
+                    <span>Tables INSEE 2022</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">✓</span>
+                    <span>Sans inscription</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">✓</span>
+                    <span>Données privées</span>
+                </div>
+            </div>
+            
+            <div class="url">calcpatrimoine.fr</div>
+        </div>
+    </div>
+    
+    <div style="padding: 40px; text-align: center; background: #f5f5f5; font-family: 'Inter', sans-serif;">
+        <h2 style="color: #1E3A5F; margin-bottom: 20px;">Instructions</h2>
+        <ol style="text-align: left; max-width: 800px; margin: 0 auto; line-height: 1.8; color: #333;">
+            <li>Ouvre cette page dans Chrome/Firefox</li>
+            <li>Zoom 100% (Ctrl+0 ou Cmd+0)</li>
+            <li>Fais un screenshot de la zone bleue uniquement (1200x630px)</li>
+            <li>Sauvegarde en <strong>og-image.png</strong></li>
+            <li>Place le fichier dans <strong>public/og-image.png</strong></li>
+            <li>Redéploie le site</li>
+            <li>Teste avec <a href="https://www.opengraph.xyz/" target="_blank">opengraph.xyz</a></li>
+        </ol>
+        
+        <p style="margin-top: 30px; color: #666;">
+            <strong>Alternative :</strong> Utilise l'outil de screenshot intégré du navigateur :<br>
+            Chrome : Ctrl+Shift+P → "Capture full size screenshot"<br>
+            Firefox : Shift+F2 → "screenshot --fullpage"
+        </p>
+    </div>
+</body>
+</html>

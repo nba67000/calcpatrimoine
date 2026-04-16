@@ -85,7 +85,7 @@ export const metadata: Metadata = {
   },
   
   verification: {
-    google: 'VOTRE_CODE_GOOGLE_SEARCH_CONSOLE', // À remplacer
+    google: 'TNiWVpRx2OUPkpd3psd01dLxb9RyaBLgsWxrN_Z-GlY', // À remplacer
     yandex: 'VOTRE_CODE_YANDEX', // Optionnel
     // bing: 'VOTRE_CODE_BING', // Via Bing Webmaster Tools
   },
