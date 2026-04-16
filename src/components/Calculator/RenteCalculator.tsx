@@ -191,7 +191,6 @@ export default function RenteCalculator() {
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">💑</span>
                   <h3 className="text-lg font-medium text-neutral-900 flex items-center">
                     Réversion au conjoint
                     <Tooltip content="Permet à votre conjoint de continuer à percevoir une partie de la rente (60%, 80% ou 100%) après votre décès. Votre rente sera légèrement réduite en contrepartie de cette garantie." />

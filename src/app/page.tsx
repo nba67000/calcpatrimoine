@@ -64,7 +64,7 @@ export default function Home() {
                   : 'text-neutral-700 hover:bg-neutral-50'
               }`}
             >
-              📊 Calculateur classique
+              Calculateur classique
             </button>
             <button
               onClick={() => setMode('inverse')}
@@ -74,7 +74,7 @@ export default function Home() {
                   : 'text-neutral-700 hover:bg-neutral-50'
               }`}
             >
-              🎯 Calculateur inverse
+              Calculateur inverse
             </button>
             <button
               onClick={() => setMode('couple')}
@@ -84,7 +84,7 @@ export default function Home() {
                   : 'text-neutral-700 hover:bg-neutral-50'
               }`}
             >
-              💑 Mode couple
+              Mode couple
             </button>
           </div>
         </div>

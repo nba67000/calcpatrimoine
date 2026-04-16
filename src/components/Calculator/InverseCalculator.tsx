@@ -157,7 +157,6 @@ export default function InverseCalculator() {
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">💑</span>
                   <h3 className="text-lg font-medium text-neutral-900">Réversion au conjoint</h3>
                 </div>
                 <p className="text-sm text-neutral-600">
