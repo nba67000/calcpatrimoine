@@ -162,6 +162,29 @@ export default function Home() {
           </div>
         </div>
         
+        {/* Article blog mis en avant */}
+        <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl p-8 mb-12 text-white">
+          <div className="flex items-start gap-6">
+            <div className="hidden md:block text-6xl">📊</div>
+            <div className="flex-1">
+              <div className="text-primary-100 text-sm font-medium mb-2">ARTICLE</div>
+              <h3 className="text-2xl font-bold mb-3">
+                Pourquoi le seuil de rentabilité est après votre espérance de vie
+              </h3>
+              <p className="text-primary-100 mb-6">
+                À 72 ans avec 250 000€, le seuil tombe à 15,8 ans alors que l'espérance est de 14 ans. 
+                Découvrez pourquoi c'est normal — et ce que personne ne vous dit sur la rente viagère.
+              </p>
+              <a 
+                href="/blog/rente-viagere-seuil-rentabilite"
+                className="inline-block bg-white text-primary-700 font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors"
+              >
+                Lire l'article complet →
+              </a>
+            </div>
+          </div>
+        </div>
+        
         {/* Cross-links vers FAQ et Méthodologie */}
         <div className="grid md:grid-cols-2 gap-6 mb-16">
           <CrossLink

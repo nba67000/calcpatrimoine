@@ -10,6 +10,7 @@ export default function Header() {
   const pathname = usePathname()
 
   const navLinks = [
+    { href: '/blog', label: 'Blog' },
     { href: '/faq', label: 'FAQ' },
     { href: '/methodologie', label: 'Méthodologie' },
     { href: '/a-propos', label: 'À propos' },
