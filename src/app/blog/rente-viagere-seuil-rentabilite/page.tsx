@@ -59,376 +59,355 @@ export default function ArticleRenteViagere() {
           </div>
         </div>
 
-        {/* Contenu article - TRÈS aéré */}
+        {/* Contenu article - ton intermédiaire */}
         <div className="space-y-8 text-lg leading-relaxed text-neutral-800">
           
           {/* Introduction */}
           <p className="text-xl leading-relaxed">
-            Vous avez 72 ans et 250 000€ sur votre assurance-vie. Votre conseiller vous propose une rente de 1 300€/mois. 
-            Ça a l'air bien.
+            La rente viagère financière permet de transformer un capital accumulé (via une assurance-vie, un PER, ou une épargne constituée) en revenus mensuels garantis et versés à vie. À titre d'illustration, avec un taux de conversion moyen de 5,2% net de frais observé en 2026 (non garanti), un épargnant peut percevoir environ 1 300€ par mois pour chaque tranche de 250 000€ investie.
           </p>
 
           <p>
-            Puis vous faites le calcul : 250 000 / (1 300 × 12) = <strong>16 ans</strong>. Vous devez vivre jusqu'à 
-            88 ans pour simplement <em>récupérer</em> votre capital. Rentable seulement après.
+            Cependant, une observation mérite d'être mise en lumière : le seuil de rentabilité — c'est-à-dire le nombre d'années nécessaires pour récupérer l'intégralité du capital initial — se situe généralement au-delà de l'espérance de vie statistique. Prenons un exemple concret : un homme de 72 ans qui convertit 250 000€ en rente viagère et perçoit 1 340€ mensuels devra vivre jusqu'à 87,8 ans (soit 15,8 années) pour retrouver son capital de départ. Or, l'espérance de vie INSEE d'un homme de 72 ans étant d'environ 14 ans (86 ans), le seuil de rentabilité se trouve donc environ 2 ans après l'espérance statistique moyenne.
           </p>
 
           <p>
-            Or votre espérance de vie ? <strong>14-15 ans</strong>. Autrement dit : statistiquement, l'assureur gagne 
-            de l'argent. Pas vous.
-          </p>
-
-          <p>
-            Surprise ? C'est pourtant exactement comme ça que ça marche. Et dans cet article, on va voir pourquoi c'est 
-            à la fois normal ET pourquoi il faut le savoir avant de signer.
+            Cette réalité, rarement mise en avant par les distributeurs, est pourtant inhérente au modèle de la rente viagère. Dans ce guide, nous décryptons les mécanismes de ce produit, identifions les situations où il présente un réel intérêt patrimonial, et analysons les alternatives (assurance-vie en gestion libre, retraits programmés, PER) qui peuvent s'avérer plus adaptées selon votre profil.
           </p>
 
           {/* Box avertissement */}
           <div className="bg-warning-50 border-l-4 border-warning-400 p-8 rounded-r-lg my-12">
             <h3 className="text-xl font-bold text-warning-900 mb-4">
-              ⚠️ Clarification : on ne parle PAS de viager immobilier
+              ⚠️ Clarification : nous parlons de rente viagère financière
             </h3>
             <p className="leading-relaxed mb-0">
-              Si vous êtes arrivé ici en cherchant "rente viagère" pour vendre votre maison (bouquet + rente mensuelle), 
-              ce n'est pas le sujet. On parle ici de <strong>rente viagère financière</strong> : transformer un capital 
-              (PER, assurance-vie, épargne) en revenus mensuels versés jusqu'à votre décès.
+              Cet article traite de la rente viagère financière (transformation d'un capital financier en revenus à vie), et non du viager immobilier (vente d'un bien immobilier contre bouquet et rente mensuelle). Si vous cherchez des informations sur le viager immobilier, ce n'est pas le sujet abordé ici.
             </p>
           </div>
 
           <h2 className="text-3xl font-bold text-neutral-900 mt-16 mb-6">
-            Le principe (sans langue de bois)
+            Fonctionnement de la rente viagère
           </h2>
 
-          <p>Vous avez économisé 200 000€. Deux options :</p>
-
           <p>
-            <strong>Option A</strong> : Vous gardez le capital et piochez dedans chaque mois. Mais combien retirer pour 
-            ne pas finir à sec à 95 ans ? Trop peu → vous vous privez. Trop → risque de panne sèche.
+            Considérons un épargnant qui a constitué un capital de 200 000€ via son assurance-vie ou son PER. À l'approche de la retraite, deux grandes stratégies s'offrent à lui pour transformer ce capital en revenus.
           </p>
 
           <p>
-            <strong>Option B</strong> : Vous donnez les 200 000€ à un assureur qui vous garantit 1 100€/mois à vie. 
-            Même si vous vivez jusqu'à 105 ans.
+            <strong>Première option : conserver le capital et effectuer des retraits progressifs.</strong> L'épargnant garde la propriété de son capital et retire chaque mois ou trimestre le montant dont il a besoin. Cette approche offre une grande flexibilité et permet de transmettre le solde restant à ses héritiers. En revanche, elle impose de déterminer le bon rythme de retrait : trop conservateur, et l'on se prive d'un niveau de vie que l'on pourrait s'offrir ; trop généreux, et l'on risque d'épuiser son capital avant son décès, notamment en cas de longévité supérieure à la moyenne.
           </p>
 
           <p>
-            Contrepartie : si vous mourez à 74 ans, l'assureur empoche le capital restant. Vos héritiers ne touchent rien.
+            <strong>Seconde option : convertir le capital en rente viagère.</strong> L'épargnant transfère irrévocablement ses 200 000€ à un assureur, qui s'engage en contrepartie à lui verser une rente mensuelle garantie (par exemple 1 100€) jusqu'à son décès, quelle que soit sa durée de vie. Si l'assuré atteint 105 ans, l'assureur continuera de verser la rente. En revanche, en cas de décès prématuré (par exemple à 74 ans), le capital non distribué reste acquis à l'assureur, et les héritiers ne perçoivent rien (sauf clauses particulières comme les annuités garanties ou la réversion).
           </p>
 
           <p>
-            C'est ça, la rente viagère. <strong>Un pari sur votre longévité.</strong>
-          </p>
-
-          <p>
-            L'assureur parie que vous mourrez dans les temps (espérance moyenne). Vous pariez que vous vivrez plus vieux. 
-            Si vous gagnez le pari, vous touchez beaucoup plus que votre capital. Si vous perdez, l'assureur garde la mise.
+            La rente viagère fonctionne donc comme une assurance longévité : l'assureur s'engage à vous verser un revenu à vie en échange de votre capital. Si vous vivez plus longtemps que la moyenne, vous êtes gagnant. Si vous décédez tôt, c'est l'assureur qui conserve le capital restant. Ce mécanisme repose sur la mutualisation des risques : ceux qui décèdent avant l'espérance de vie financent ceux qui vivent au-delà, et l'assureur prélève sa marge au passage.
           </p>
 
           <h2 className="text-3xl font-bold text-neutral-900 mt-16 mb-6">
-            La vraie question : pourquoi le seuil de rentabilité est APRÈS l'espérance de vie ?
+            Pourquoi le seuil de rentabilité est-il après l'espérance de vie ?
           </h2>
 
-          <p>Prenons un exemple réel que j'ai eu cette semaine sur CalcPatrimoine :</p>
+          <p>Prenons l'exemple d'un profil type observé sur CalcPatrimoine :</p>
 
           <div className="bg-neutral-100 border border-neutral-300 rounded-xl p-8 my-12">
-            <p className="font-bold text-lg mb-6">Profil :</p>
+            <p className="font-bold text-lg mb-6">Caractéristiques du profil :</p>
             <ul className="space-y-3">
-              <li>Âge : <strong>72 ans</strong></li>
-              <li>Capital : <strong>255 000€</strong></li>
-              <li>Rente proposée : <strong>~1 340€/mois</strong></li>
+              <li>• Âge : <strong>72 ans</strong></li>
+              <li>• Capital disponible : <strong>255 000€</strong></li>
+              <li>• Rente mensuelle proposée : <strong>1 340€</strong></li>
             </ul>
 
-            <p className="font-bold text-lg mt-10 mb-6">Calcul du seuil :</p>
+            <p className="font-bold text-lg mt-10 mb-6">Calcul du seuil de rentabilité :</p>
             <p className="font-mono bg-white p-6 rounded-lg border border-neutral-300">
-              255 000 / (1 340 × 12) = <strong className="text-success-600 text-xl">15,8 ans</strong>
+              255 000€ / (1 340€ × 12 mois) = <strong className="text-success-600 text-xl">15,8 années</strong>
             </p>
 
-            <p className="mt-6">Donc rentable à partir de <strong>87,8 ans</strong>.</p>
+            <p className="mt-6">Le capital initial est récupéré à partir de <strong>87,8 ans</strong>.</p>
 
-            <p className="font-bold text-lg mt-10 mb-6">Or l'espérance de vie à 72 ans (INSEE 2022) :</p>
+            <p className="font-bold text-lg mt-10 mb-6">Espérance de vie à 72 ans (tables INSEE 2022) :</p>
             <ul className="space-y-3">
-              <li>Homme : ~14 ans <span className="text-neutral-600">(86 ans)</span></li>
-              <li>Femme : ~17 ans <span className="text-neutral-600">(89 ans)</span></li>
+              <li>• Homme : environ 14 ans <span className="text-neutral-600">(soit 86 ans)</span></li>
+              <li>• Femme : environ 17 ans <span className="text-neutral-600">(soit 89 ans)</span></li>
             </ul>
 
             <p className="mt-8 text-warning-700 font-bold">
-              ⚠️ Le seuil est APRÈS l'espérance moyenne pour les hommes, légèrement avant pour les femmes.
+              Observation : le seuil de rentabilité se situe après l'espérance moyenne pour les hommes, et légèrement avant pour les femmes.
             </p>
           </div>
 
           <h3 className="text-2xl font-bold text-neutral-900 mt-12 mb-4">
-            Pourquoi c'est comme ça ?
+            Les trois raisons de cet écart
           </h3>
 
           <h4 className="text-xl font-bold mt-8 mb-4">
-            1. L'assureur prend une marge (20-30%)
+            1. L'assureur prélève une marge substantielle
           </h4>
 
-          <p>Sur 255 000€, l'assureur ne vous reverse pas tout. Il garde :</p>
+          <p>Sur un capital initial de 255 000€, l'assureur ne redistribue pas l'intégralité sous forme de rentes. Il retient environ 20 à 30% pour couvrir plusieurs postes :</p>
 
           <ul className="space-y-2 ml-6">
-            <li>• Une marge bénéficiaire (15-20%)</li>
-            <li>• Des frais de gestion (5-10%)</li>
-            <li>• Une provision pour risque longévité</li>
+            <li>• Sa marge bénéficiaire (15 à 20%)</li>
+            <li>• Ses frais de gestion annuels (5 à 10%)</li>
+            <li>• Des provisions pour le risque de longévité exceptionnelle</li>
           </ul>
 
           <p>
-            Résultat : sur 255 000€, seuls ~180 000€ sont réellement versés sous forme de rentes. Le reste ? 
-            Profit de l'assureur.
+            Concrètement, sur 255 000€ versés, environ 180 000€ sont effectivement reversés via les rentes mensuelles au fil des années. Le différentiel constitue la rémunération de l'assureur pour le service rendu et le risque pris.
           </p>
 
           <h4 className="text-xl font-bold mt-8 mb-4">
-            2. L'actuariel fonctionne sur la moyenne
+            2. Le principe de mutualisation actuarielle
           </h4>
 
           <p>
-            L'assureur ne parie pas sur VOUS spécifiquement. Il parie sur la loi des grands nombres : sur 1 000 clients, 
-            la moitié mourra avant l'espérance, l'autre moitié après.
+            L'assureur ne mise pas sur votre durée de vie individuelle, mais sur une moyenne statistique. Sur 1 000 assurés, environ la moitié décédera avant l'espérance de vie, et l'autre moitié vivra au-delà. Les capitaux non distribués des premiers financent les rentes prolongées des seconds. C'est le principe classique de mutualisation des risques, identique à celui de l'assurance automobile ou habitation.
           </p>
 
           <p>
-            Ceux qui meurent tôt "financent" ceux qui vivent vieux. Et l'assureur empoche la marge au milieu.
+            Autrement dit, l'assureur équilibre son portefeuille : ceux qui décèdent tôt "subventionnent" ceux qui vivent longtemps, tandis que l'assureur prélève sa marge technique au passage.
           </p>
 
           <h4 className="text-xl font-bold mt-8 mb-4">
-            3. C'est un produit d'ASSURANCE, pas d'épargne
+            3. Une assurance, pas un placement
           </h4>
 
           <p>
-            Une assurance auto, vous payez des primes toute votre vie. Si vous n'avez jamais d'accident, vous "perdez" 
-            de l'argent. Personne ne trouve ça choquant.
+            La rente viagère n'est pas un produit d'épargne conçu pour maximiser le rendement de votre capital. C'est avant tout un produit d'assurance destiné à couvrir le risque de longévité excessive. De la même manière qu'une assurance automobile vous protège contre le risque d'accident (et que vous "perdez" vos primes si vous n'en avez jamais), la rente viagère vous protège contre le risque de vivre trop longtemps et d'épuiser votre capital.
           </p>
 
           <p>
-            La rente viagère, c'est pareil : vous assurez votre longévité. Si vous mourez "trop tôt", vous perdez. 
-            C'est le prix de la garantie.
+            Si vous décédez avant le seuil de rentabilité, vous aurez effectivement "perdu" de l'argent par rapport à un retrait programmé de votre capital. Mais c'est le prix de la garantie : quoi qu'il arrive, vous toucherez vos revenus jusqu'à votre dernier jour, même à 105 ans.
           </p>
 
           <h3 className="text-2xl font-bold text-neutral-900 mt-12 mb-4">
-            Alors, c'est une arnaque ?
+            La rente viagère est-elle alors désavantageuse ?
           </h3>
 
-          <p><strong>Non</strong>. C'est transparent (enfin, maintenant que vous le savez).</p>
+          <p>Non. La rente viagère n'est ni une arnaque ni un mauvais produit en soi. C'est simplement un outil patrimonial qui répond à un besoin spécifique : sécuriser des revenus à vie en transférant le risque de longévité à un assureur.</p>
 
-          <p>La rente viagère, c'est :</p>
+          <p>Le produit présente trois caractéristiques fondamentales :</p>
 
           <ul className="space-y-2 ml-6">
-            <li>• ✅ Une <strong>protection</strong> contre le risque de vivre trop vieux</li>
-            <li>• ✅ Un <strong>revenu garanti</strong> à vie (même si vous vivez jusqu'à 110 ans)</li>
-            <li>• ❌ PAS un placement rentable pour récupérer votre capital</li>
+            <li>• ✅ Une protection contre le risque de vivre au-delà de vos moyens financiers</li>
+            <li>• ✅ Un revenu garanti à vie, quelle que soit votre longévité effective</li>
+            <li>• ❌ Un rendement inférieur au capital initial si vous décédez avant le seuil de rentabilité</li>
           </ul>
 
           <div className="bg-success-50 border-l-4 border-success-600 p-8 rounded-r-lg my-12">
             <p className="font-bold text-success-900 text-lg mb-3">
-              La règle d'or :
+              Règle d'or :
             </p>
             <p className="text-success-900 mb-0">
-              C'est rentable SEULEMENT si vous vivez plus longtemps que la moyenne.
+              La rente viagère est financièrement intéressante uniquement si vous vivez au-delà de l'espérance de vie moyenne de votre tranche d'âge.
             </p>
           </div>
 
           {/* CTA Calculateur */}
           <div className="bg-primary-50 border border-primary-200 rounded-xl p-10 my-16 text-center">
             <h3 className="text-3xl font-bold text-primary-900 mb-4">
-              Calculez votre seuil de rentabilité
+              Calculez votre seuil de rentabilité personnel
             </h3>
             <p className="text-neutral-700 mb-8 max-w-2xl mx-auto">
-              Utilisez CalcPatrimoine pour voir exactement où se situe votre seuil par rapport à votre espérance de vie.
+              Utilisez notre calculateur gratuit pour déterminer précisément votre seuil de rentabilité et le comparer à votre espérance de vie selon les tables INSEE.
             </p>
             <Link 
               href="/"
               className="inline-block bg-primary-600 text-white font-bold text-lg px-10 py-4 rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl"
             >
-              Essayer le simulateur gratuit →
+              Accéder au simulateur →
             </Link>
           </div>
 
           <h2 className="text-3xl font-bold text-neutral-900 mt-16 mb-6">
-            Les 3 cas où la rente viagère a du sens
+            Les trois situations où la rente viagère présente un intérêt
           </h2>
 
           <h3 className="text-2xl font-bold text-neutral-900 mt-12 mb-4">
-            1. Vous êtes convaincu de vivre très vieux
+            1. Vous anticipez une longévité supérieure à la moyenne
           </h3>
 
-          <p><strong>Profil :</strong></p>
+          <p>Si vous réunissez plusieurs facteurs favorables à une longévité exceptionnelle :</p>
+
           <ul className="space-y-2 ml-6">
-            <li>• Excellente santé</li>
-            <li>• Parents/grands-parents centenaires</li>
-            <li>• Mode de vie sain (sport, alimentation, pas de tabac)</li>
+            <li>• Excellente santé actuelle et absence d'antécédents familiaux graves</li>
+            <li>• Historique familial de longévité (parents et grands-parents ayant vécu au-delà de 90 ans)</li>
+            <li>• Mode de vie sain : activité physique régulière, alimentation équilibrée, absence de tabagisme</li>
           </ul>
 
           <p>
-            <strong>Calcul</strong> : Si vous vivez 5-10 ans de plus que l'espérance, vous touchez 30-50% de plus 
-            que votre capital.
+            Dans ce cas, si vous vivez 5 à 10 ans de plus que l'espérance de vie moyenne, vous percevrez potentiellement 30 à 50% de plus que votre capital initial. La rente viagère devient alors un outil de maximisation des revenus sur votre longévité.
           </p>
 
           <h3 className="text-2xl font-bold text-neutral-900 mt-12 mb-4">
-            2. Vous n'avez pas d'héritiers
+            2. Vous n'avez pas d'objectif de transmission
           </h3>
 
           <p>
-            Si vous êtes célibataire sans enfants, la question de la transmission ne se pose pas. Autant profiter à 
-            fond de votre capital.
+            Si vous êtes célibataire sans enfants, ou que vos héritiers potentiels (neveux, nièces) n'ont pas de besoins financiers particuliers, la question de la transmission patrimoniale ne se pose pas avec la même acuité. Dans ce contexte, optimiser vos revenus de votre vivant prime sur la constitution d'un héritage.
           </p>
 
           <p>
-            <strong>Bonus</strong> : Vous évitez les droits de succession (qui peuvent atteindre 60% pour les 
-            neveux/nièces).
+            Avantage fiscal supplémentaire : en l'absence de transmission, vous évitez les droits de succession qui peuvent atteindre 60% pour les neveux et nièces (au-delà de 15 932€ par bénéficiaire).
           </p>
 
           <h3 className="text-2xl font-bold text-neutral-900 mt-12 mb-4">
-            3. Vous voulez la sécurité absolue
+            3. Vous recherchez la sécurité absolue
           </h3>
 
           <p>
-            Vous avez peur de gérer un capital, de mal retirer, de vous faire arnaquer, de perdre en bourse.
+            Certains épargnants ne souhaitent pas gérer un capital en phase de retraite, que ce soit par crainte des mauvaises décisions de retrait, de la volatilité des marchés financiers, ou par simple préférence pour la tranquillité d'esprit.
           </p>
 
           <p>
-            La rente, c'est <strong>zéro gestion</strong>. Versement automatique chaque mois jusqu'à votre dernier 
-            souffle. Même si vous devenez dépendant, même si vous perdez la tête.
+            La rente viagère offre alors une délégation totale : versement automatique chaque mois jusqu'au décès, sans aucune gestion requise de votre part. Même en cas de perte d'autonomie ou de troubles cognitifs, les revenus continuent d'être versés sans interruption.
           </p>
 
           <h2 className="text-3xl font-bold text-neutral-900 mt-16 mb-6">
-            Les 5 cas où c'est une mauvaise idée
+            Les cinq situations où d'autres solutions sont préférables
           </h2>
 
           <h3 className="text-2xl font-bold text-neutral-900 mt-12 mb-4">
-            1. Vous voulez transmettre à vos enfants
+            1. Vous avez un objectif de transmission patrimoniale
           </h3>
 
           <p>
-            La rente viagère, c'est <strong>zéro héritage</strong> (sauf rare clause "annuités garanties").
+            La rente viagère entraîne une extinction du capital : sauf clauses spécifiques (annuités garanties), vos héritiers ne perçoivent rien au décès. Si la transmission à vos enfants ou petits-enfants constitue un objectif important, d'autres solutions sont plus adaptées.
           </p>
 
           <p>
-            <strong>Alternative</strong> : Gardez le capital en assurance-vie. Transmission optimisée fiscalement 
-            (152 500€ exonérés par bénéficiaire).
+            <strong>Alternative recommandée :</strong> conserver le capital en assurance-vie avec retraits programmés. Vous bénéficiez d'une fiscalité avantageuse sur les retraits (abattement de 4 600€ par an pour une personne seule, 9 200€ pour un couple), tout en préservant la transmission du solde restant avec un abattement de 152 500€ par bénéficiaire.
           </p>
 
           <h3 className="text-2xl font-bold text-neutral-900 mt-12 mb-4">
-            2. Vous pourriez avoir besoin de liquidités
+            2. Vous pourriez avoir besoin de liquidités ponctuelles
           </h3>
 
-          <p>Besoin potentiel :</p>
+          <p>Plusieurs situations courantes peuvent nécessiter un accès au capital :</p>
+
           <ul className="space-y-2 ml-6">
-            <li>• Travaux maison</li>
-            <li>• Aide financière enfants</li>
-            <li>• Dépendance (EHPAD : 2 000-4 000€/mois)</li>
-            <li>• Soins médicaux non remboursés</li>
+            <li>• Travaux importants dans votre résidence principale</li>
+            <li>• Aide financière substantielle à vos enfants (acquisition immobilière, création d'entreprise)</li>
+            <li>• Dépendance et financement d'un EHPAD (coûts moyens de 2 000 à 4 000€ par mois)</li>
+            <li>• Soins médicaux lourds non pris en charge par la Sécurité sociale</li>
           </ul>
 
           <p>
-            La rente, c'est <strong>irréversible</strong>. Impossible de récupérer le capital. Vous êtes coincé.
+            La rente viagère est un engagement irrévocable : une fois le capital transféré, il n'est plus possible de le récupérer, même partiellement. Si un besoin imprévu survient, vous n'aurez aucune marge de manœuvre.
           </p>
 
           <h3 className="text-2xl font-bold text-neutral-900 mt-12 mb-4">
-            3. Votre santé est fragile
+            3. Votre état de santé est fragile
           </h3>
 
           <p>
-            Si votre médecin vous donne une espérance inférieure à la moyenne (cancer, maladie chronique, etc.), 
-            vous allez <em>mathématiquement</em> perdre de l'argent.
+            Si votre médecin vous indique une espérance de vie inférieure à la moyenne (suite à une maladie chronique, un cancer, ou d'autres pathologies lourdes), vous allez mathématiquement perdre de l'argent avec une rente viagère.
           </p>
 
           <div className="bg-warning-50 border-l-4 border-warning-400 p-6 rounded-r-lg my-8">
-            <strong>Exemple</strong> : Espérance 8 ans, seuil 15,8 ans. Vous perdez 50% de votre capital.
+            <strong>Exemple chiffré :</strong> avec une espérance de 8 ans et un seuil de rentabilité à 15,8 ans, vous ne récupérerez qu'environ 50% de votre capital initial.
           </div>
+
+          <p>
+            Dans ce contexte, conserver le capital en assurance-vie et effectuer des retraits plus élevés permet de profiter pleinement de vos économies de votre vivant, tout en transmettant le solde à vos proches.
+          </p>
 
           <h3 className="text-2xl font-bold text-neutral-900 mt-12 mb-4">
             4. Vous avez moins de 65 ans
           </h3>
 
-          <p>Avant 65 ans, la rente est tellement faible que ça ne vaut pas le coup.</p>
+          <p>Le taux de conversion de la rente viagère augmente significativement avec l'âge. Avant 65 ans, les montants de rente sont généralement peu attractifs.</p>
 
           <div className="bg-neutral-100 rounded-xl p-8 my-10">
-            <p className="font-bold mb-6">Exemple pour 200 000€ :</p>
+            <p className="font-bold mb-6">Illustration pour un capital de 200 000€ :</p>
             <ul className="space-y-3">
-              <li>• 60 ans : 780€/mois</li>
-              <li>• 70 ans : 1 360€/mois <span className="text-success-600 font-bold">(+74%)</span></li>
+              <li>• À 60 ans : environ 780€ par mois</li>
+              <li>• À 70 ans : environ 1 360€ par mois <span className="text-success-600 font-bold">(soit +74%)</span></li>
             </ul>
           </div>
 
           <p>
-            Attendre 10 ans double presque la rente. Pendant ce temps, vivez sur le capital (retraits programmés) 
-            ou laissez-le fructifier.
+            En reportant la conversion de 10 ans, vous doublez presque votre rente mensuelle. Pendant cette période, il est préférable de conserver le capital en assurance-vie ou PER, soit en effectuant des retraits programmés pour financer votre retraite, soit en laissant fructifier le capital jusqu'à un âge plus favorable.
           </p>
 
           <h3 className="text-2xl font-bold text-neutral-900 mt-12 mb-4">
-            5. L'inflation vous inquiète
+            5. L'inflation est une préoccupation majeure
           </h3>
 
           <p>
-            La rente est revalorisée chaque année, mais pas toujours au niveau de l'inflation réelle.
+            Bien que certaines rentes viagères soient indexées sur l'inflation, la revalorisation effective est souvent inférieure à l'inflation réelle constatée, notamment en période de forte hausse des prix.
           </p>
 
           <p>
-            <strong>Exemple</strong> : Inflation 3%/an, revalorisation 1,5%/an. Vous perdez 1,5% de pouvoir d'achat 
-            par an. Sur 20 ans : -30%.
+            <strong>Exemple :</strong> avec une inflation à 3% par an et une revalorisation de la rente limitée à 1,5% par an, vous perdez 1,5% de pouvoir d'achat chaque année. Sur une période de 20 ans, cela représente une perte cumulée d'environ 30% en termes de pouvoir d'achat réel.
+          </p>
+
+          <p>
+            À l'inverse, en conservant votre capital investi en unités de compte (actions, obligations, immobilier) via votre assurance-vie, vous bénéficiez potentiellement d'une meilleure protection contre l'érosion monétaire, notamment via les dividendes croissants et la revalorisation des actifs.
           </p>
 
           <h2 className="text-3xl font-bold text-neutral-900 mt-16 mb-6">
-            Ce qu'il faut retenir (synthèse en 10 points)
+            Synthèse : les dix points à retenir
           </h2>
 
           <div className="space-y-6 my-12">
             <div className="flex gap-4">
               <span className="font-bold text-primary-600 shrink-0 text-xl">1.</span>
-              <p className="mb-0"><strong>La rente viagère est un PARI sur votre longévité</strong>, pas un placement. Vous gagnez si vous vivez plus vieux que la moyenne.</p>
+              <p className="mb-0">La rente viagère est un mécanisme d'assurance longévité, pas un produit d'épargne optimisant le rendement du capital. Vous transférez le risque de longévité à l'assureur en échange d'un revenu garanti à vie.</p>
             </div>
             <div className="flex gap-4">
               <span className="font-bold text-primary-600 shrink-0 text-xl">2.</span>
-              <p className="mb-0"><strong>Le seuil de rentabilité est APRÈS l'espérance de vie</strong>. C'est normal : l'assureur prend une marge. Statistiquement, il gagne.</p>
+              <p className="mb-0">Le seuil de rentabilité se situe après l'espérance de vie moyenne en raison de la marge prélevée par l'assureur (20 à 30%) et du principe de mutualisation des risques. Cette caractéristique est inhérente au modèle et parfaitement normale.</p>
             </div>
             <div className="flex gap-4">
               <span className="font-bold text-primary-600 shrink-0 text-xl">3.</span>
-              <p className="mb-0"><strong>Plus vous attendez, plus la rente est élevée</strong>. Sweet spot : 70-75 ans. Avant, vous perdez trop de rente.</p>
+              <p className="mb-0">Le taux de conversion augmente significativement avec l'âge. La période optimale pour convertir se situe entre 70 et 75 ans. Avant 65 ans, les montants de rente sont généralement peu attractifs.</p>
             </div>
             <div className="flex gap-4">
               <span className="font-bold text-primary-600 shrink-0 text-xl">4.</span>
-              <p className="mb-0"><strong>La réversion coûte 20-30% de rente</strong> et est unidirectionnelle. Calculez le besoin réel de votre conjoint avant.</p>
+              <p className="mb-0">L'option de réversion au profit du conjoint survivant réduit la rente initiale de 20 à 30%. Calculez précisément les besoins réels de votre conjoint avant d'opter pour cette clause.</p>
             </div>
             <div className="flex gap-4">
               <span className="font-bold text-primary-600 shrink-0 text-xl">5.</span>
-              <p className="mb-0"><strong>Irréversible</strong>. Une fois signé, impossible de récupérer le capital. Réfléchissez TRÈS bien.</p>
+              <p className="mb-0">La décision est irrévocable : une fois le capital transféré à l'assureur, il est impossible de le récupérer, même partiellement. Pesez soigneusement cette irréversibilité avant de vous engager.</p>
             </div>
             <div className="flex gap-4">
               <span className="font-bold text-primary-600 shrink-0 text-xl">6.</span>
-              <p className="mb-0"><strong>Seulement si vous vivez vieux</strong>. Excellente santé, longévité familiale = avantage. Santé fragile = fuyez.</p>
+              <p className="mb-0">La rente viagère est pertinente si vous anticipez une longévité supérieure à la moyenne : excellente santé, antécédents familiaux de longévité, mode de vie sain. Dans le cas contraire, d'autres solutions sont préférables.</p>
             </div>
             <div className="flex gap-4">
               <span className="font-bold text-primary-600 shrink-0 text-xl">7.</span>
-              <p className="mb-0"><strong>Vérifiez les frais</strong> (conversion + gestion). Ils varient du simple au triple selon les assureurs.</p>
+              <p className="mb-0">Comparez systématiquement les frais de conversion et les frais de gestion annuels entre différents assureurs. Les écarts peuvent être substantiels (variation du simple au triple selon les contrats).</p>
             </div>
             <div className="flex gap-4">
               <span className="font-bold text-primary-600 shrink-0 text-xl">8.</span>
-              <p className="mb-0"><strong>Comparez avec assurance-vie et PER</strong> selon votre situation (héritiers, flexibilité, santé).</p>
+              <p className="mb-0">Évaluez les alternatives patrimoniales selon votre situation : assurance-vie en gestion libre avec retraits programmés, PER, ou stratégies mixtes combinant rente partielle et conservation de capital.</p>
             </div>
             <div className="flex gap-4">
               <span className="font-bold text-primary-600 shrink-0 text-xl">9.</span>
-              <p className="mb-0"><strong>Utilisez CalcPatrimoine</strong> pour voir les VRAIS chiffres : seuil exact, graphique projection, impact réversion.</p>
+              <p className="mb-0">Utilisez des outils de simulation comme CalcPatrimoine pour visualiser concrètement votre seuil de rentabilité, comparer avec votre espérance de vie, et évaluer l'impact des différentes options (réversion, annuités garanties).</p>
             </div>
             <div className="flex gap-4">
               <span className="font-bold text-primary-600 shrink-0 text-xl">10.</span>
-              <p className="mb-0"><strong>Ne faites pas confiance aveuglément</strong> à votre conseiller. Son intérêt (commission) n'est pas toujours aligné avec le vôtre.</p>
+              <p className="mb-0">Consultez un conseiller en gestion de patrimoine indépendant pour une analyse personnalisée de votre situation. Les conseillers liés à un assureur ont des intérêts commerciaux qui ne sont pas nécessairement alignés avec les vôtres.</p>
             </div>
           </div>
 
           {/* CTA final */}
           <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl p-10 my-16 text-center">
             <h3 className="text-3xl font-bold mb-4">
-              Calculez votre rente viagère en 3 clics
+              Simulez votre rente viagère en quelques clics
             </h3>
             <p className="text-primary-100 mb-8 max-w-2xl mx-auto">
-              Graphique projection 30 ans • Seuil de rentabilité exact • Comparaison espérance de vie • 
-              7 stratégies couple
+              Projection sur 30 ans • Seuil de rentabilité précis • Comparaison avec l'espérance de vie INSEE • 
+              Simulation des stratégies couple
             </p>
             <Link 
               href="/"
               className="inline-block bg-white text-primary-700 font-bold text-lg px-10 py-4 rounded-lg hover:bg-neutral-50 transition-colors shadow-lg"
             >
-              Essayer CalcPatrimoine gratuitement →
+              Accéder au calculateur gratuit →
             </Link>
           </div>
 
@@ -437,12 +416,17 @@ export default function ArticleRenteViagere() {
             <p>
               <strong>Publié le :</strong> 16 avril 2026<br />
               <strong>Auteur :</strong> Nicolas Barbier - CalcPatrimoine<br />
-              <strong>Licence :</strong> Creative Commons BY-NC-SA 4.0
+              <strong>Dernière mise à jour :</strong> 16 avril 2026
             </p>
 
             <p className="italic">
-              Cet article est fourni à titre informatif uniquement. Il ne constitue pas un conseil en investissement. 
-              Consultez un conseiller financier indépendant avant toute décision patrimoniale importante.
+              Cet article est fourni à titre informatif et pédagogique uniquement. Il ne constitue pas un conseil en investissement personnalisé. 
+              Pour toute décision patrimoniale importante, consultez un conseiller en gestion de patrimoine indépendant certifié.
+            </p>
+
+            <p className="text-xs">
+              <strong>Sources :</strong> Tables de mortalité INSEE 2022 • Enquête patrimoniale INSEE 2021 • 
+              Observatoire de l'épargne réglementée 2025
             </p>
           </div>
         </div>
