@@ -11,6 +11,14 @@ export const metadata: Metadata = {
 export default function BlogIndex() {
   const articles = [
     {
+      slug: 'assurance-vie-fiscalite-rachat',
+      title: 'Assurance-vie : combien vous allez VRAIMENT payer sur un rachat',
+      excerpt: 'Règle proportionnelle, abattement 8 ans, PFU vs IR, date du 27 septembre 2017. Guide complet avec exemples chiffrés et formules détaillées.',
+      date: '2026-04-18',
+      readTime: '11 min',
+      category: 'Finance personnelle',
+    },
+    {
       slug: 'rente-viagere-seuil-rentabilite',
       title: 'Pourquoi le seuil de rentabilité est après votre espérance de vie',
       excerpt: 'À 72 ans avec 250 000€, le seuil tombe à 15,8 ans alors que l\'espérance est de 14 ans. Découvrez pourquoi c\'est normal — et ce que personne ne vous dit.',

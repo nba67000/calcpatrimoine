@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'CalcPatrimoine - Calculateurs gratuits patrimoine & retraite',
@@ -16,9 +14,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <>
-      <Header />
-      <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-primary-50 to-white py-20 border-b border-neutral-200">
         <div className="max-w-4xl mx-auto px-4 text-center">
@@ -250,7 +246,5 @@ export default function HomePage() {
         </div>
       </section>
     </div>
-    <Footer />
-    </>
   )
 }

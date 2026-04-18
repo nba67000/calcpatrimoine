@@ -75,6 +75,21 @@ export default function ArticleRenteViagere() {
             Cette réalité, rarement mise en avant par les distributeurs, est pourtant inhérente au modèle de la rente viagère. Dans ce guide, nous décryptons les mécanismes de ce produit, identifions les situations où il présente un réel intérêt patrimonial, et analysons les alternatives (assurance-vie en gestion libre, retraits programmés, PER) qui peuvent s'avérer plus adaptées selon votre profil.
           </p>
 
+          {/* Disclaimer important - EN HAUT */}
+          <div className="bg-warning-50 border-2 border-warning-400 rounded-xl p-8 my-12">
+            <div className="flex items-start gap-4">
+              <div className="text-3xl">⚠️</div>
+              <div>
+                <h3 className="text-xl font-bold text-warning-900 mb-4">
+                  Outil de comparaison et d'information uniquement
+                </h3>
+                <p className="leading-relaxed text-warning-800">
+                  Cet article compare différentes options de gestion de patrimoine (rente viagère, retraits programmés, assurance-vie). Il ne constitue <strong>pas</strong> un conseil patrimonial personnalisé. Chaque situation est unique (santé, objectifs, héritiers, fiscalité). Pour une décision adaptée à votre cas, consultez un expert-comptable, un avocat fiscaliste ou un conseiller en gestion de patrimoine indépendant.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Box avertissement */}
           <div className="bg-warning-50 border-l-4 border-warning-400 p-8 rounded-r-lg my-12">
             <h3 className="text-xl font-bold text-warning-900 mb-4">
