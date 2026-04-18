@@ -10,9 +10,9 @@ export default function Header() {
   const pathname = usePathname()
 
   const navLinks = [
+    { href: '/rente-viagere', label: 'Rente Viagère' },
+    { href: '/assurance-vie', label: 'Assurance-Vie' },
     { href: '/blog', label: 'Blog' },
-    { href: '/faq', label: 'FAQ' },
-    { href: '/methodologie', label: 'Méthodologie' },
     { href: '/a-propos', label: 'À propos' },
   ]
 

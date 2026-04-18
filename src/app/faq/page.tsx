@@ -720,6 +720,29 @@ export default function FAQPage() {
             Tout ce que vous devez savoir sur la rente viagère, expliqué simplement avec des exemples concrets.
           </p>
           
+          {/* Lien vers FAQ Assurance-Vie */}
+          <div className="max-w-2xl mx-auto mb-6">
+            <a
+              href="/faq/assurance-vie"
+              className="block bg-success-50 border-2 border-success-200 rounded-xl p-6 hover:border-success-400 hover:shadow-md transition-all group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="text-3xl">🏦</div>
+                <div className="flex-1 text-left">
+                  <div className="font-bold text-neutral-900 mb-1 group-hover:text-success-600 transition-colors">
+                    FAQ Assurance-Vie
+                  </div>
+                  <div className="text-sm text-neutral-600">
+                    Fiscalité du rachat : PFU vs IR, abattement, optimisations
+                  </div>
+                </div>
+                <div className="text-success-600 group-hover:translate-x-1 transition-transform">
+                  →
+                </div>
+              </div>
+            </a>
+          </div>
+          
           {/* Cross-link Méthodologie */}
           <div className="max-w-2xl mx-auto">
             <CrossLink
