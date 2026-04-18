@@ -82,21 +82,24 @@ export default function HomePage() {
             </div>
           </Link>
 
-          {/* Calculateur Assurance-Vie */}
+          {/* Calculateur Assurance-Vie (2 calculateurs) */}
           <Link 
             href="/assurance-vie"
-            className="bg-white rounded-xl border-2 border-neutral-200 p-8 hover:border-primary-400 hover:shadow-lg transition-all group"
+            className="bg-white rounded-xl border-2 border-neutral-200 p-8 hover:border-primary-400 hover:shadow-lg transition-all group relative"
           >
+            <div className="absolute top-4 right-4 bg-primary-100 text-primary-700 text-xs font-bold px-2 py-1 rounded-full">
+              2 outils
+            </div>
             <div className="text-5xl mb-4">🏦</div>
             <h3 className="text-2xl font-bold text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors">
               Assurance-Vie
             </h3>
             <p className="text-neutral-600 mb-6 leading-relaxed">
-              Calculez la fiscalité exacte de votre rachat partiel. 
-              Comparez PFU vs IR selon votre tranche d'imposition.
+              Deux calculateurs : fiscalité des rachats (PFU vs IR) et 
+              transmission aux bénéficiaires (succession).
             </p>
             <div className="flex items-center gap-2 text-primary-600 font-medium group-hover:gap-3 transition-all">
-              <span>Accéder au calculateur</span>
+              <span>Voir les calculateurs</span>
               <span>→</span>
             </div>
           </Link>
@@ -110,21 +113,6 @@ export default function HomePage() {
             <p className="text-neutral-500 mb-6 leading-relaxed">
               Optimisez votre déduction fiscale et comparez PER vs Assurance-vie 
               selon votre situation.
-            </p>
-            <div className="text-neutral-400 font-medium">
-              Bientôt disponible
-            </div>
-          </div>
-
-          {/* Transmission / Succession */}
-          <div className="bg-neutral-50 rounded-xl border-2 border-dashed border-neutral-300 p-8">
-            <div className="text-5xl mb-4 opacity-50">👨‍👩‍👧</div>
-            <h3 className="text-2xl font-bold text-neutral-500 mb-3">
-              Transmission
-            </h3>
-            <p className="text-neutral-500 mb-6 leading-relaxed">
-              Calculez les droits de succession et optimisez la transmission 
-              de votre patrimoine.
             </p>
             <div className="text-neutral-400 font-medium">
               Bientôt disponible
