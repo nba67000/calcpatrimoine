@@ -26,9 +26,9 @@ const config: Config = {
         accent: {
           100: '#F5EFE0',
           200: '#EBE0C1',
-          300: '#E5C77F',  // Or clair
-          400: '#D4AF37',  // Or discret
-          500: '#B8860B',  // DarkGoldenRod
+          300: '#E5C77F',
+          400: '#D4AF37',
+          500: '#B8860B',
           600: '#9A7209',
           700: '#7C5E07',
         },
@@ -44,18 +44,20 @@ const config: Config = {
           800: '#1E293B',
           900: '#0F172A',
         },
+        // Success = MÊME bleu primary (on unifie)
         success: {
-          50: '#F0FDF4',
-          100: '#DCFCE7',
-          200: '#BBF7D0',
-          300: '#86EFAC',
-          400: '#4ADE80',
-          500: '#22C55E',
-          600: '#059669',  // Vert émeraude
-          700: '#047857',
-          800: '#065F46',
-          900: '#064E3B',
+          50: '#E8EEF5',
+          100: '#D1DDE9',
+          200: '#A3BBD3',
+          300: '#7599BD',
+          400: '#4777A7',
+          500: '#2E5A8F',
+          600: '#2E4A6F',
+          700: '#1E3A5F',
+          800: '#1A2F4F',
+          900: '#0A2540',
         },
+        // Warning = gardé pour disclaimers (orange/ambre)
         warning: {
           50: '#FFFBEB',
           100: '#FEF3C7',
@@ -68,17 +70,16 @@ const config: Config = {
           800: '#92400E',
           900: '#78350F',
         },
+        // Error = MÊME bleu primary (on unifie)
         error: {
-          50: '#FEF2F2',
-          100: '#FEE2E2',
-          200: '#FECACA',
-          300: '#FCA5A5',
-          400: '#F87171',
-          500: '#EF4444',
-          600: '#DC2626',
-          700: '#B91C1C',
-          800: '#991B1B',
-          900: '#7F1D1D',
+          50: '#E8EEF5',
+          100: '#D1DDE9',
+          200: '#A3BBD3',
+          500: '#2E5A8F',
+          600: '#2E4A6F',
+          700: '#1E3A5F',
+          800: '#1A2F4F',
+          900: '#0A2540',
         },
       },
       fontFamily: {
@@ -87,8 +88,8 @@ const config: Config = {
         mono: ['Roboto Mono', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        'display': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '700' }],  // 60px
-        'hero': ['3rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],      // 48px
+        'display': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'hero': ['3rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
       },
       boxShadow: {
         'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
@@ -98,15 +99,15 @@ const config: Config = {
         'premium': '0 20px 25px -5px rgba(184, 134, 11, 0.1), 0 10px 10px -5px rgba(184, 134, 11, 0.04)',
       },
       borderRadius: {
-        'sm': '0.125rem',  // 2px
-        DEFAULT: '0.25rem', // 4px
-        'md': '0.375rem',  // 6px
-        'lg': '0.5rem',    // 8px - MAX pour CalcPatrimoine
+        'sm': '0.125rem',
+        DEFAULT: '0.25rem',
+        'md': '0.375rem',
+        'lg': '0.5rem',
       },
       spacing: {
-        '18': '4.5rem',   // 72px
-        '88': '22rem',    // 352px
-        '128': '32rem',   // 512px
+        '18': '4.5rem',
+        '88': '22rem',
+        '128': '32rem',
       },
       animation: {
         'fade-in': 'fadeIn 0.2s ease-in',
