@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Result panel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin:0; padding:18px; font-family: var(--font-sans); background: var(--neutral-50); }
+  .panel { background:#fff; border-top: 4px solid var(--primary-600); border-radius: 8px; padding: 22px 26px; box-shadow: var(--shadow-result); }
+  .title { font-size:15px; font-weight:600; color:var(--fg-1); margin: 0 0 16px 0; }
+  .big { display:flex; align-items:baseline; gap:8px; }
+  .big .num { font-size:56px; font-weight:700; color: var(--fg-1); letter-spacing:-0.02em; font-variant-numeric: tabular-nums; line-height:1; }
+  .big .unit { font-size:18px; color:var(--fg-3); font-weight:500; }
+  .sub { font-size:12px; color:var(--fg-4); margin-top:4px; }
+  .stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:18px; padding-top:18px; border-top:1px solid var(--border-default); }
+  .stat { background: var(--neutral-50); border-radius:6px; padding:12px; }
+  .stat .k { font-size:11px; color: var(--fg-3); font-weight:500; margin-bottom:4px; }
+  .stat .v { font-size:20px; font-weight:600; color: var(--fg-1); font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <h3 class="title">Votre rente viagère estimée</h3>
+    <div class="big"><span class="num">438&nbsp;€</span><span class="unit">/ mois</span></div>
+    <div class="sub">Rente mensuelle garantie à vie</div>
+    <div class="stats">
+      <div class="stat"><div class="k">Espérance de vie</div><div class="v">23,4 ans</div></div>
+      <div class="stat"><div class="k">Total espéré</div><div class="v">123&nbsp;012&nbsp;€</div></div>
+    </div>
+  </div>
+</body>
+</html>

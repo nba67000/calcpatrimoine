@@ -10,6 +10,7 @@ export default function Header() {
  const pathname = usePathname()
 
  const navLinks = [
+ { href: '/tmi', label: 'TMI / IR' },
  { href: '/rente-viagere', label: 'Rente Viagère' },
  { href: '/assurance-vie', label: 'Assurance-Vie' },
  { href: '/blog', label: 'Blog' },

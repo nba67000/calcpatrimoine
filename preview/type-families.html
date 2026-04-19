@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Typography — Families</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Roboto+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin:0; padding:20px 24px; font-family: var(--font-sans); background:#fff; }
+  .fam { padding: 10px 0; border-bottom:1px solid var(--border-default); }
+  .fam:last-child { border:none; }
+  .label { font-family: var(--font-mono); font-size:10px; color:var(--fg-4); margin-bottom:4px; }
+  .spec-inter { font-family: var(--font-sans); font-size: 28px; font-weight: 600; letter-spacing: -0.01em; color: var(--fg-1); }
+  .spec-playfair { font-family: var(--font-serif); font-size: 28px; font-weight: 700; color: var(--fg-1); }
+  .spec-mono { font-family: var(--font-mono); font-size: 22px; font-weight: 500; color: var(--fg-1); }
+  .use { font-size: 11px; color: var(--fg-4); margin-top:2px; }
+</style>
+</head>
+<body>
+  <div class="fam">
+    <div class="label">Inter · 400 / 500 / 600 / 700 · workhorse</div>
+    <div class="spec-inter">Calculateurs patrimoniaux</div>
+    <div class="use">UI, body, headings, numbers.</div>
+  </div>
+  <div class="fam">
+    <div class="label">Playfair Display · 700 · editorial only</div>
+    <div class="spec-playfair">Rente viagère &amp; seuil</div>
+    <div class="use">Blog h1, À propos. Use sparingly.</div>
+  </div>
+  <div class="fam">
+    <div class="label">Roboto Mono · 500 / 700 · tabular</div>
+    <div class="spec-mono">2 458,37 €  ·  15,8 ans</div>
+    <div class="use">Result panels, tabular columns.</div>
+  </div>
+</body>
+</html>

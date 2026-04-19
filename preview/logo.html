@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Logo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin:0; padding:20px 24px; font-family: var(--font-sans); background:#fff; }
+  .row { display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
+  .lockup { display:flex; align-items:center; gap:12px; }
+  .tile { width:44px; height:44px; border-radius: 6px; background: linear-gradient(135deg, #2E4A6F, #1E3A5F); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:26px; letter-spacing:-0.5px; box-shadow: var(--shadow-card); }
+  .tile.sm { width:32px; height:32px; border-radius:4px; font-size:20px; }
+  .tile.dark-bg { background: linear-gradient(135deg, #2E4A6F, #1E3A5F); }
+  .bg-dark { background: var(--neutral-900); padding: 12px 16px; border-radius:8px; color:#fff; }
+  .name { display:flex; flex-direction:column; }
+  .name b { font-size:16px; color: var(--fg-1); }
+  .bg-dark .name b { color:#fff; }
+  .name span { font-size:11px; color: var(--fg-4); }
+  h3 { margin:0 0 10px 0; font-size:14px; font-weight:600; }
+</style>
+</head>
+<body>
+  <h3>Logo lockup</h3>
+  <div class="row">
+    <div class="lockup">
+      <div class="tile">C</div>
+      <div class="name"><b>CalcPatrimoine</b><span>Calculateurs open-source</span></div>
+    </div>
+    <div class="lockup">
+      <div class="tile sm">C</div>
+      <b style="font-size:14px">CalcPatrimoine</b>
+    </div>
+    <div class="bg-dark lockup">
+      <div class="tile dark-bg">C</div>
+      <div class="name"><b>CalcPatrimoine</b></div>
+    </div>
+  </div>
+  <p style="font-size:11px;color:var(--fg-4);margin-top:12px">Letterform "C" on navy gradient · flagged as placeholder pending wordmark.</p>
+</body>
+</html>
