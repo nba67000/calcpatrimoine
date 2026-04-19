@@ -15,6 +15,7 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
 | `rente-viagere` | Rente viagère (classique / inverse / couple) | `done` | 2026-04 |
 | `assurance-vie/fiscalite-rachat` | Fiscalité rachat assurance-vie | `done` | 2026-04 |
 | `assurance-vie/transmission` | Transmission assurance-vie (art. 990 I / 757 B) | `done` | 2026-04 |
+| `tmi` | Tranche marginale d'imposition (barème IR 2026, QF, décote) | `done` | 2026-04-19 |
 
 ---
 
@@ -23,7 +24,8 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
 ### P1 — À faire en priorité
 
 #### `tmi` — Tranche marginale d'imposition
-- **Statut** : `todo`
+- **Statut** : `done`
+- **Date** : 2026-04-19
 - **Volume recherche estimé** : ~12 000/mois
 - **Description** : Calcul TMI et taux moyen à partir du revenu imposable et
   de la situation familiale (célibataire / marié-pacsé / parts fiscales).

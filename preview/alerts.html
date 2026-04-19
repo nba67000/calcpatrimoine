@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Alerts</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin:0; padding:16px 20px; font-family: var(--font-sans); background:#fff; }
+  .a { margin-bottom:10px; padding:14px 16px; border-radius:8px; font-size:12px; line-height:1.5; }
+  .info { background: var(--primary-50); border: 1px solid var(--primary-200); color: var(--primary-900); }
+  .info strong { display:block; font-size:13px; margin-bottom:3px; }
+  .warn { background: var(--warning-50); border: 2px solid var(--warning-300); color: var(--warning-900); }
+  .warn h4 { margin:0 0 6px 0; font-size:13px; font-weight:700; display:flex; align-items:center; gap:6px; }
+  .accent-left { background: var(--primary-50); border-left:4px solid var(--primary-300); border-radius: 8px; padding:14px 16px; color: var(--primary-900); font-size:12px; }
+  .tri { display:inline-block; width:0; height:0; border-left:7px solid transparent; border-right:7px solid transparent; border-bottom:12px solid var(--warning-500); position:relative; }
+</style>
+</head>
+<body>
+  <div class="a info">
+    <strong>Table de mortalité unisexe (réglementation 2012)</strong>
+    Depuis décembre 2012, les assureurs utilisent une table unique pour hommes et femmes.
+  </div>
+  <div class="a warn">
+    <h4><span class="tri"></span> Avertissement important</h4>
+    CalcPatrimoine est un outil pédagogique à titre indicatif. Il ne constitue pas un conseil en investissement personnalisé.
+  </div>
+  <div class="accent-left">
+    <strong style="display:block;margin-bottom:3px">Réversion au conjoint</strong>
+    Garantir un revenu à votre conjoint après votre décès (60 / 80 / 100 %).
+  </div>
+</body>
+</html>

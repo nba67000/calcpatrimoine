@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Typography — Body</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin:0; padding:20px 24px; font-family: var(--font-sans); background:#fff; }
+  .row { display:grid; grid-template-columns:140px 1fr; gap:14px; padding:6px 0; align-items:baseline; border-bottom:1px solid var(--border-default); }
+  .row:last-child { border:none; }
+  .meta { font-family: var(--font-mono); font-size: 10px; color: var(--fg-4); }
+</style>
+</head>
+<body>
+  <div class="row"><span class="meta">body-lg / 20</span><span class="body-lg">Outils open-source pour simuler votre patrimoine.</span></div>
+  <div class="row"><span class="meta">body / 16</span><span>Aucune donnée conservée, calculs 100% côté navigateur.</span></div>
+  <div class="row"><span class="meta">body-sm / 14</span><span class="body-sm">Simulation basée sur les tables de mortalité INSEE 2022.</span></div>
+  <div class="row"><span class="meta">caption / 12</span><span class="caption">Dernière mise à jour avril 2026.</span></div>
+  <div class="row"><span class="meta">eyebrow / 12 uc</span><span class="eyebrow">Calculateurs</span></div>
+  <div class="row"><span class="meta">tabular-nums</span><span class="num" style="font-size:18px;font-weight:600">250 000 €&nbsp;·&nbsp;15,8 ans&nbsp;·&nbsp;+12,8 %</span></div>
+</body>
+</html>

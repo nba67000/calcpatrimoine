@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Buttons</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin:0; padding:24px; font-family: var(--font-sans); background:#fff; }
+  .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:14px; }
+  .label { font-family: var(--font-mono); font-size: 10px; color:var(--fg-4); width:90px; }
+  button { font: inherit; cursor:pointer; border:none; }
+  .toggle { position: relative; display:inline-flex; height:32px; width:56px; align-items:center; border-radius:9999px; background:var(--primary-600); transition: background .2s; }
+  .toggle span { height:24px; width:24px; border-radius:9999px; background:#fff; transform:translateX(28px); transition:transform .2s; }
+  .toggle.off { background: var(--neutral-300); }
+  .toggle.off span { transform:translateX(4px); }
+  .pct { padding:10px 18px; border-radius:8px; border:2px solid var(--neutral-200); background:#fff; font-weight:500; font-size:14px; }
+  .pct.active { border-color: var(--primary-600); background: var(--primary-100); color: var(--primary-900); }
+</style>
+</head>
+<body>
+  <div class="row"><span class="label">primary</span>
+    <button class="btn-primary">Accéder au calculateur</button>
+    <button class="btn-primary" style="background:var(--primary-700)">hover</button>
+  </div>
+  <div class="row"><span class="label">secondary</span>
+    <button class="btn-secondary">Voir la méthodologie</button>
+    <a href="#" style="color:var(--primary-700);font-weight:500;font-size:14px;text-decoration:none">Voir les calculateurs →</a>
+  </div>
+  <div class="row"><span class="label">segmented</span>
+    <button class="pct">60 %</button>
+    <button class="pct active">80 %</button>
+    <button class="pct">100 %</button>
+  </div>
+  <div class="row"><span class="label">toggle</span>
+    <span class="toggle"><span></span></span>
+    <span class="toggle off"><span></span></span>
+    <span style="font-size:12px;color:var(--fg-4)">Réversion au conjoint</span>
+  </div>
+</body>
+</html>

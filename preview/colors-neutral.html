@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Color scale — Neutral</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 20px; font-family: var(--font-sans); background: #fff; }
+  .row { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; }
+  .sw { border-radius: 6px; height: 68px; display:flex; flex-direction:column; justify-content:flex-end; padding:8px; color:#fff; font-size:10px; font-family:var(--font-mono); }
+  .sw.dark { color: #0F172A; }
+  .label { display:grid; grid-template-columns: repeat(10, 1fr); gap:6px; margin-top:8px; font-size:10px; color:var(--fg-4); font-family:var(--font-mono); text-align:center; }
+  h3 { margin: 0 0 4px 0; font-size: 14px; font-weight: 600; color: var(--fg-1); }
+  p.sub { margin: 0 0 12px 0; font-size: 12px; color: var(--fg-4); }
+</style>
+</head>
+<body>
+  <h3>Neutral — Slate</h3>
+  <p class="sub">Tailwind slate. Backgrounds, borders, body text. 900 only in footer.</p>
+  <div class="row">
+    <div class="sw dark" style="background:#F8FAFC;border:1px solid #E2E8F0">#F8FAFC</div>
+    <div class="sw dark" style="background:#F1F5F9">#F1F5F9</div>
+    <div class="sw dark" style="background:#E2E8F0">#E2E8F0</div>
+    <div class="sw dark" style="background:#CBD5E1">#CBD5E1</div>
+    <div class="sw" style="background:#94A3B8">#94A3B8</div>
+    <div class="sw" style="background:#64748B">#64748B</div>
+    <div class="sw" style="background:#475569">#475569</div>
+    <div class="sw" style="background:#334155">#334155</div>
+    <div class="sw" style="background:#1E293B">#1E293B</div>
+    <div class="sw" style="background:#0F172A">#0F172A</div>
+  </div>
+  <div class="label">
+    <span>50</span><span>100</span><span>200</span><span>300</span><span>400</span>
+    <span>500</span><span>600</span><span>700</span><span>800</span><span>900</span>
+  </div>
+</body>
+</html>

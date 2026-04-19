@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Cards</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin:0; padding:22px; font-family: var(--font-sans); background: var(--neutral-50); }
+  .grid { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px; }
+  .link-card { background:#fff; border-radius:12px; border:2px solid var(--neutral-200); padding:20px; position:relative; box-shadow: var(--shadow-card); }
+  .link-card h3 { margin:0 0 8px 0; font-size:18px; font-weight:700; color: var(--fg-1); }
+  .link-card p { margin:0 0 14px 0; font-size:12px; line-height:1.5; color: var(--fg-3); }
+  .link-card .go { font-size:12px; color: var(--primary-600); font-weight:500; }
+  .badge { position:absolute; top:12px; right:12px; font-size:10px; background:var(--primary-100); color:var(--primary-700); padding:3px 8px; border-radius:9999px; font-weight:700; }
+  .link-card.hover { border-color: var(--primary-400); box-shadow: var(--shadow-card-hover); }
+  .link-card.soon { background: var(--neutral-50); border:2px dashed var(--border-strong); }
+  .link-card.soon h3, .link-card.soon p { color: var(--fg-4); }
+  .link-card.soon .go { color: var(--neutral-400); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="link-card">
+      <h3>Rente Viagère</h3>
+      <p>Seuil de rentabilité, espérance de vie INSEE, stratégies couple.</p>
+      <div class="go">Accéder au calculateur →</div>
+    </div>
+    <div class="link-card hover">
+      <div class="badge">2 outils</div>
+      <h3>Assurance-Vie</h3>
+      <p>Fiscalité des rachats (PFU vs IR) et transmission aux bénéficiaires.</p>
+      <div class="go">Voir les calculateurs →</div>
+    </div>
+    <div class="link-card soon">
+      <h3>PER (Retraite)</h3>
+      <p>Déduction fiscale, comparaison PER vs Assurance-vie.</p>
+      <div class="go">Bientôt disponible</div>
+    </div>
+  </div>
+</body>
+</html>
