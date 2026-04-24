@@ -3,7 +3,6 @@
 
 import { useState, useEffect } from 'react'
 import { calculateAnnuity, formatEuro } from '@/lib/mortality'
-import { trackEvent, PlausibleEvents } from '@/lib/plausible'
 import type { CalculatorInput, AnnuityResult } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 import Tooltip from '@/components/Tooltip'
@@ -38,13 +37,6 @@ export default function RenteCalculator() {
  const timer = setTimeout(() => {
  const calculatedResult = calculateAnnuity(input)
  setResult(calculatedResult)
- 
- if (calculatedResult) {
- trackEvent(
- showReversion ? PlausibleEvents.RENTE_REVERSION : PlausibleEvents.RENTE_SIMPLE,
- { age, capital, ...(showReversion && { reversionPct: reversionPercentage }) }
- )
- }
  }, 150)
  
  return () => clearTimeout(timer)

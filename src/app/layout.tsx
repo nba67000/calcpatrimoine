@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import PlausibleScript from "@/components/PlausibleScript";
 import SchemaMarkup from "@/components/SchemaMarkup";
 
 // Fontsource imports pour CalcPatrimoine
@@ -115,10 +115,10 @@ export default function RootLayout({
  {/* Schema.org JSON-LD pour SEO */}
  <SchemaMarkup />
  
- {/* Plausible Analytics - Auto-hébergé, RGPD compliant, sans cookies */}
- <PlausibleScript />
- 
  {children}
+ 
+ {/* Vercel Web Analytics — page views et performance, sans cookies */}
+ <Analytics />
  </body>
  </html>
  );

@@ -21,7 +21,7 @@ export default function PolitiqueConfidentialitePage() {
  <section>
  <div className="bg-primary-50 border border-primary-200 rounded-lg p-4 mb-6">
  <p className="text-primary-900 font-medium">
- CalcPatrimoine ne collecte <strong>AUCUNE donnée personnelle identifiable</strong>.
+ CalcPatrimoine ne collecte <strong>aucune donnée personnelle identifiable</strong> et n&apos;utilise aucun cookie de tracking.
  </p>
  </div>
  <p className="text-neutral-700">
@@ -29,7 +29,7 @@ export default function PolitiqueConfidentialitePage() {
  dans le cadre de votre utilisation du site CalcPatrimoine.fr.
  </p>
  <p className="text-sm text-neutral-500 mt-2">
- Dernière mise à jour : 15 avril 2026
+ Dernière mise à jour : 24 avril 2026
  </p>
  </section>
 
@@ -39,27 +39,27 @@ export default function PolitiqueConfidentialitePage() {
  <div className="bg-primary-50 border border-primary-200 rounded-lg p-6">
  <ul className="space-y-2 text-neutral-700">
  <li className="flex items-start gap-2">
- <span className="text-primary-600 font-bold"></span>
+ <span className="text-primary-600 font-bold">•</span>
  <span>Nom, prénom, adresse email ou numéro de téléphone</span>
  </li>
  <li className="flex items-start gap-2">
- <span className="text-primary-600 font-bold"></span>
- <span>Adresse postale ou adresse IP complète</span>
+ <span className="text-primary-600 font-bold">•</span>
+ <span>Adresse IP complète (elle est anonymisée, cf. ci-dessous)</span>
  </li>
  <li className="flex items-start gap-2">
- <span className="text-primary-600 font-bold"></span>
+ <span className="text-primary-600 font-bold">•</span>
  <span>Montants de capital, âges ou situations personnelles que vous saisissez dans les calculateurs</span>
  </li>
  <li className="flex items-start gap-2">
- <span className="text-primary-600 font-bold"></span>
- <span>Cookies de tracking, publicité ou réseaux sociaux</span>
+ <span className="text-primary-600 font-bold">•</span>
+ <span>Cookies de tracking, cookies publicitaires ou cookies tiers</span>
  </li>
  <li className="flex items-start gap-2">
- <span className="text-primary-600 font-bold"></span>
- <span>Données de navigation cross-site (pas de fingerprinting)</span>
+ <span className="text-primary-600 font-bold">•</span>
+ <span>Données de navigation cross-site (pas de fingerprinting persistant)</span>
  </li>
  <li className="flex items-start gap-2">
- <span className="text-primary-600 font-bold"></span>
+ <span className="text-primary-600 font-bold">•</span>
  <span>Compte utilisateur, historique de calculs ou profils personnalisés</span>
  </li>
  </ul>
@@ -68,12 +68,12 @@ export default function PolitiqueConfidentialitePage() {
 
  {/* Ce que nous collectons */}
  <section>
- <h2 className="text-2xl font-semibold mb-4">Ce que nous collectons (anonyme)</h2>
+ <h2 className="text-2xl font-semibold mb-4">Ce que nous collectons (anonyme et agrégé)</h2>
  <div className="bg-primary-50 border border-primary-200 rounded-lg p-6">
  <p className="text-neutral-700 mb-4">
- Nous utilisons <strong>Plausible Analytics</strong>, une solution d&apos;analyse 
- respectueuse de la vie privée, conforme au RGPD et qui ne nécessite pas de 
- bandeau de consentement aux cookies.
+ Nous utilisons <strong>Vercel Web Analytics</strong>, une solution de mesure d&apos;audience
+ sans cookies, intégrée à notre hébergeur Vercel. Elle nous permet de mesurer la fréquentation 
+ du site sans identifier les visiteurs individuellement.
  </p>
  <ul className="space-y-2 text-neutral-700">
  <li className="flex items-start gap-2">
@@ -82,20 +82,22 @@ export default function PolitiqueConfidentialitePage() {
  </li>
  <li className="flex items-start gap-2">
  <span className="text-primary-600 font-bold">✓</span>
- <span>Pays d&apos;origine (niveau pays uniquement, pas de ville)</span>
+ <span>Pays et région d&apos;origine (niveau géographique large, pas de ville précise)</span>
  </li>
  <li className="flex items-start gap-2">
  <span className="text-primary-600 font-bold">✓</span>
- <span>Appareil utilisé (desktop/mobile/tablette, de manière agrégée)</span>
+ <span>Type d&apos;appareil et navigateur (desktop/mobile/tablette, de manière agrégée)</span>
  </li>
  <li className="flex items-start gap-2">
  <span className="text-primary-600 font-bold">✓</span>
- <span>Source de trafic (Google, lien direct, etc., sans tracking individuel)</span>
+ <span>Source de trafic (moteur de recherche, lien direct, etc.)</span>
  </li>
  </ul>
  <p className="text-sm text-neutral-600 mt-4">
- <strong>Important :</strong>Ces statistiques sont entièrement anonymes et agrégées. 
- Nous ne pouvons identifier aucun utilisateur individuel.
+ <strong>Important : </strong>Vercel Analytics calcule un identifiant visiteur à partir 
+ d&apos;un hash de l&apos;adresse IP et du user-agent, renouvelé chaque jour. Cet identifiant 
+ ne permet pas de reconnaître un visiteur d&apos;une journée sur l&apos;autre et n&apos;est 
+ jamais partagé avec des tiers. Aucune donnée ne permet de vous identifier personnellement.
  </p>
  </div>
  </section>
@@ -105,12 +107,12 @@ export default function PolitiqueConfidentialitePage() {
  <h2 className="text-2xl font-semibold mb-4">Calculs effectués localement</h2>
  <div className="text-neutral-700 space-y-3">
  <p>
- <strong>Tous les calculs de rente viagère sont effectués directement dans votre navigateur</strong>, 
- côté client (frontend), grâce à JavaScript.
+ <strong>Tous les calculs (rente viagère, assurance-vie, transmission) sont effectués 
+ directement dans votre navigateur</strong>, côté client (frontend), grâce à JavaScript.
  </p>
  <p className="font-semibold text-primary-700">
  Aucune donnée que vous saisissez (âge, capital, situation familiale) n&apos;est 
- transmise à nos serveurs ou stockée quelque part.
+ transmise à nos serveurs ou stockée où que ce soit.
  </p>
  <p>
  Vos informations restent 100% privées et disparaissent dès que vous fermez votre navigateur 
@@ -119,23 +121,26 @@ export default function PolitiqueConfidentialitePage() {
  </div>
  </section>
 
- {/* Plausible */}
+ {/* Vercel Analytics */}
  <section>
- <h2 className="text-2xl font-semibold mb-4">Pourquoi Plausible Analytics ?</h2>
+ <h2 className="text-2xl font-semibold mb-4">Pourquoi Vercel Web Analytics ?</h2>
  <div className="text-neutral-700 space-y-3">
  <p>
- Nous avons choisi Plausible car c&apos;est une alternative éthique à Google Analytics :
+ Nous avons choisi Vercel Web Analytics pour ses caractéristiques respectueuses de la vie privée :
  </p>
  <ul className="list-disc list-inside space-y-2 ml-4">
- <li>Open-source et transparent</li>
- <li>Hébergé en Europe (conformité RGPD)</li>
- <li>Pas de cookies de tracking</li>
- <li>Pas de collecte de données personnelles</li>
- <li>Pas de vente de données à des tiers</li>
- <li>Statistiques entièrement anonymes</li>
+ <li>Aucun cookie déposé sur votre appareil</li>
+ <li>Pas de collecte de données personnelles identifiables</li>
+ <li>Pas de vente ni de partage de données à des tiers publicitaires</li>
+ <li>Identifiant visiteur renouvelé quotidiennement (pas de suivi persistant)</li>
+ <li>Statistiques entièrement anonymes et agrégées</li>
+ <li>Intégré nativement à notre hébergeur (pas de service tiers additionnel)</li>
  </ul>
- <p className="mt-4">
- Pour en savoir plus : <a href="https://plausible.io/privacy-focused-web-analytics" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Documentation Plausible</a>
+ <p className="mt-4 text-sm text-neutral-600">
+ Vercel Analytics est fourni par Vercel Inc. (société américaine). Dans ce cadre, 
+ certaines données techniques peuvent transiter par des serveurs situés hors Union européenne. 
+ Ces transferts sont encadrés par les clauses contractuelles types de la Commission européenne 
+ et le cadre Data Privacy Framework.
  </p>
  </div>
  </section>
@@ -168,9 +173,10 @@ export default function PolitiqueConfidentialitePage() {
  <h2 className="text-2xl font-semibold mb-4">Conservation des données</h2>
  <div className="text-neutral-700">
  <p>
- Les statistiques anonymes collectées via Plausible Analytics sont conservées 
- pour une durée maximale de <strong>24 mois</strong>, après quoi elles sont 
- automatiquement supprimées.
+ Les statistiques agrégées collectées via Vercel Web Analytics sont conservées 
+ conformément à la politique de rétention de Vercel (généralement <strong>1 à 12 mois</strong> selon 
+ le type de métrique), après quoi elles sont automatiquement supprimées ou agrégées de manière 
+ définitivement anonyme.
  </p>
  </div>
  </section>
@@ -184,9 +190,10 @@ export default function PolitiqueConfidentialitePage() {
  votre consentement.
  </p>
  <p>
- Plausible Analytics n&apos;utilise aucun cookie. C&apos;est pourquoi vous ne voyez 
- pas de bandeau de consentement aux cookies sur ce site (conformément à la réglementation, 
- un tel bandeau n&apos;est obligatoire que si des cookies de tracking sont utilisés).
+ Vercel Web Analytics ne dépose aucun cookie sur votre appareil. C&apos;est pourquoi 
+ vous ne voyez pas de bandeau de consentement aux cookies sur ce site (conformément à la 
+ réglementation, un tel bandeau n&apos;est obligatoire que si des cookies de tracking ou 
+ équivalents sont utilisés).
  </p>
  </div>
  </section>
@@ -228,7 +235,7 @@ export default function PolitiqueConfidentialitePage() {
  le traitement de vos données :
  </p>
  <p className="mt-2">
- <strong>Email :</strong>{' '}
+ <strong>Email : </strong>{' '}
  <a href="mailto:contact@calcpatrimoine.fr" className="text-primary-600 hover:underline font-medium">
  contact@calcpatrimoine.fr
  </a>
@@ -238,7 +245,7 @@ export default function PolitiqueConfidentialitePage() {
 
  {/* Footer */}
  <section className="text-sm text-neutral-500 border-t pt-4">
- <p>Version 1.0 - Dernière mise à jour : 15 avril 2026</p>
+ <p>Version 1.1 - Dernière mise à jour : 24 avril 2026</p>
  </section>
 
  </div>

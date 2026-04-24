@@ -64,15 +64,15 @@ export default function MentionsLegalesPage() {
  <h2 className="text-2xl font-semibold mb-4">Cookies et données personnelles</h2>
  <div className="text-neutral-700 space-y-3">
  <p>
- Ce site utilise <strong>Plausible Analytics</strong>, une solution d'analyse respectueuse 
- de la vie privée et conforme au RGPD, qui ne collecte aucune donnée personnelle identifiable.
+ Ce site utilise <strong>Vercel Web Analytics</strong>, une solution de mesure d&apos;audience 
+ sans cookies intégrée à notre hébergeur, qui ne collecte aucune donnée personnelle identifiable.
  </p>
  <p>
- Plausible n'utilise pas de cookies de tracking et ne nécessite donc pas de bandeau de 
- consentement aux cookies.
+ Aucun cookie de tracking n&apos;est déposé sur votre appareil, ce qui ne rend pas nécessaire 
+ l&apos;affichage d&apos;un bandeau de consentement aux cookies.
  </p>
  <p>
- Pour plus d'informations, consultez notre{' '}
+ Pour plus d&apos;informations, consultez notre{' '}
  <a href="/politique-confidentialite" className="text-primary-600 hover:underline">
  Politique de Confidentialité
  </a>.
@@ -105,7 +105,7 @@ export default function MentionsLegalesPage() {
 
  {/* Dernière MAJ */}
  <section className="text-sm text-neutral-500 border-t pt-4">
- <p>Dernière mise à jour : 15 avril 2026</p>
+ <p>Dernière mise à jour : 24 avril 2026</p>
  </section>
 
  </div>
