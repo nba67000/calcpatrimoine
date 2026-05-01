@@ -4,19 +4,11 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { NAV_HEADER } from '@/config/navigation'
 
 export default function Header() {
  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
  const pathname = usePathname()
-
- const navLinks = [
- { href: '/tmi', label: 'TMI / IR' },
- { href: '/per-individuel', label: 'PER' },
- { href: '/rente-viagere', label: 'Rente Viagère' },
- { href: '/assurance-vie', label: 'Assurance-Vie' },
- { href: '/blog', label: 'Blog' },
- { href: '/a-propos', label: 'À propos' },
- ]
 
  return (
  <header className="border-b border-neutral-200 bg-white sticky top-0 z-50 shadow-sm">
@@ -40,7 +32,7 @@ export default function Header() {
  
  {/* Navigation desktop */}
  <nav className="hidden md:flex gap-6 text-sm">
- {navLinks.map((link) => (
+ {NAV_HEADER.map((link) => (
  <Link 
  key={link.href}
  href={link.href} 
@@ -77,7 +69,7 @@ export default function Header() {
  {mobileMenuOpen && (
  <nav className="md:hidden border-t border-neutral-200 bg-white">
  <div className="max-w-6xl mx-auto px-4 py-3 space-y-1">
- {navLinks.map((link) => (
+ {NAV_HEADER.map((link) => (
  <Link
  key={link.href}
  href={link.href}

@@ -4,6 +4,8 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { calculerPER } from '@/lib/per'
 import type { PERInputs, TMIOption } from '@/types/per'
+import { useNumericInput } from '@/hooks/useNumericInput'
+import AlertList from '@/components/AlertList'
 
 const TMI_OPTIONS: Array<{ value: TMIOption; label: string; color: string }> = [
   { value: 0,  label: '0 %',  color: 'bg-neutral-100 text-neutral-800' },
@@ -27,50 +29,26 @@ function formatEur(n: number): string {
 }
 
 export default function PERCalculator() {
-  const [salaire, setSalaire] = useState(DEFAULT_INPUTS.salaireNetAnnuel)
-  const [salaireSaisi, setSalaireSaisi] = useState(String(DEFAULT_INPUTS.salaireNetAnnuel))
+  const salaire = useNumericInput(DEFAULT_INPUTS.salaireNetAnnuel, { min: 0, max: 500_000 })
   const [tmi, setTmi] = useState<TMIOption>(DEFAULT_INPUTS.tmi)
-  const [versement, setVersement] = useState(DEFAULT_INPUTS.versementEnvisage)
-  const [versementSaisi, setVersementSaisi] = useState(String(DEFAULT_INPUTS.versementEnvisage))
-  const [reportN1, setReportN1] = useState(0)
-  const [reportN1Saisi, setReportN1Saisi] = useState('0')
-  const [reportN2, setReportN2] = useState(0)
-  const [reportN2Saisi, setReportN2Saisi] = useState('0')
-  const [reportN3, setReportN3] = useState(0)
-  const [reportN3Saisi, setReportN3Saisi] = useState('0')
+  const versement = useNumericInput(DEFAULT_INPUTS.versementEnvisage, { min: 0, max: 200_000 })
+  const reportN1 = useNumericInput(0, { min: 0, max: 200_000 })
+  const reportN2 = useNumericInput(0, { min: 0, max: 200_000 })
+  const reportN3 = useNumericInput(0, { min: 0, max: 200_000 })
 
   const inputs: PERInputs = {
-    salaireNetAnnuel: salaire,
+    salaireNetAnnuel: salaire.value,
     tmi,
-    versementEnvisage: versement,
-    plafondsReportesN1: reportN1,
-    plafondsReportesN2: reportN2,
-    plafondsReportesN3: reportN3,
+    versementEnvisage: versement.value,
+    plafondsReportesN1: reportN1.value,
+    plafondsReportesN2: reportN2.value,
+    plafondsReportesN3: reportN3.value,
   }
 
-  const results = useMemo(() => calculerPER(inputs), [salaire, tmi, versement, reportN1, reportN2, reportN3])
-
-  function handleSalaireInput(val: string) {
-    setSalaireSaisi(val)
-    const n = parseInt(val.replace(/\s/g, ''), 10)
-    if (!isNaN(n) && n >= 0 && n <= 500_000) setSalaire(n)
-  }
-
-  function handleVersementInput(val: string) {
-    setVersementSaisi(val)
-    const n = parseInt(val.replace(/\s/g, ''), 10)
-    if (!isNaN(n) && n >= 0 && n <= 200_000) setVersement(n)
-  }
-
-  function handleReportInput(
-    val: string,
-    setter: (n: number) => void,
-    saisieSet: (s: string) => void
-  ) {
-    saisieSet(val)
-    const n = parseInt(val.replace(/\s/g, ''), 10)
-    if (!isNaN(n) && n >= 0 && n <= 200_000) setter(n)
-  }
+  const results = useMemo(
+    () => calculerPER(inputs),
+    [salaire.value, tmi, versement.value, reportN1.value, reportN2.value, reportN3.value]
+  )
 
   const { detail, economieFiscale, coutNetReel, rendementFiscal, warnings, optimisations } = results
 
@@ -94,9 +72,9 @@ export default function PERCalculator() {
               <input
                 type="text"
                 inputMode="numeric"
-                value={salaireSaisi}
-                onChange={(e) => handleSalaireInput(e.target.value)}
-                onBlur={() => setSalaireSaisi(String(salaire))}
+                value={salaire.display}
+                onChange={(e) => salaire.onChange(e.target.value)}
+                onBlur={salaire.onBlur}
                 className="w-40 px-4 py-3 border border-neutral-300 rounded-lg text-2xl font-bold text-primary-700 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-right"
               />
               <span className="text-2xl font-bold text-neutral-600">€</span>
@@ -106,12 +84,8 @@ export default function PERCalculator() {
               min="0"
               max="300000"
               step="1000"
-              value={salaire}
-              onChange={(e) => {
-                const n = Number(e.target.value)
-                setSalaire(n)
-                setSalaireSaisi(String(n))
-              }}
+              value={salaire.value}
+              onChange={(e) => salaire.set(Number(e.target.value))}
               className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
             />
             <div className="flex justify-between text-xs text-neutral-500 mt-1">
@@ -165,9 +139,9 @@ export default function PERCalculator() {
               <input
                 type="text"
                 inputMode="numeric"
-                value={versementSaisi}
-                onChange={(e) => handleVersementInput(e.target.value)}
-                onBlur={() => setVersementSaisi(String(versement))}
+                value={versement.display}
+                onChange={(e) => versement.onChange(e.target.value)}
+                onBlur={versement.onBlur}
                 className="w-40 px-4 py-3 border border-neutral-300 rounded-lg text-2xl font-bold text-primary-700 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-right"
               />
               <span className="text-2xl font-bold text-neutral-600">€</span>
@@ -177,12 +151,8 @@ export default function PERCalculator() {
               min="0"
               max="50000"
               step="100"
-              value={versement}
-              onChange={(e) => {
-                const n = Number(e.target.value)
-                setVersement(n)
-                setVersementSaisi(String(n))
-              }}
+              value={versement.value}
+              onChange={(e) => versement.set(Number(e.target.value))}
               className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
             />
             <div className="flex justify-between text-xs text-neutral-500 mt-1">
@@ -202,26 +172,20 @@ export default function PERCalculator() {
           </p>
 
           <div className="space-y-3">
-            {[
-              { label: 'Report N-1 (2024)', val: reportN1Saisi, setVal: setReportN1Saisi, setN: setReportN1 },
-              { label: 'Report N-2 (2023)', val: reportN2Saisi, setVal: setReportN2Saisi, setN: setReportN2 },
-              { label: 'Report N-3 (2022)', val: reportN3Saisi, setVal: setReportN3Saisi, setN: setReportN3 },
-            ].map((r) => (
+            {([
+              { label: 'Report N-1 (2024)', field: reportN1 },
+              { label: 'Report N-2 (2023)', field: reportN2 },
+              { label: 'Report N-3 (2022)', field: reportN3 },
+            ] as const).map((r) => (
               <div key={r.label} className="flex items-center gap-3">
                 <label className="text-sm text-neutral-600 w-36 flex-shrink-0">{r.label}</label>
                 <div className="flex items-baseline gap-2">
                   <input
                     type="text"
                     inputMode="numeric"
-                    value={r.val}
-                    onChange={(e) => handleReportInput(e.target.value, r.setN, r.setVal)}
-                    onBlur={() => {
-                      const n = parseInt(r.val.replace(/\s/g, ''), 10)
-                      if (isNaN(n) || n < 0) {
-                        r.setVal('0')
-                        r.setN(0)
-                      }
-                    }}
+                    value={r.field.display}
+                    onChange={(e) => r.field.onChange(e.target.value)}
+                    onBlur={r.field.onBlur}
                     className="w-28 px-3 py-2 border border-neutral-300 rounded-lg text-sm font-medium text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-right"
                   />
                   <span className="text-sm text-neutral-500">€</span>
@@ -272,7 +236,7 @@ export default function PERCalculator() {
           <div className="space-y-2 text-sm">
             <div className="flex justify-between text-neutral-600">
               <span>Salaire net N-1</span>
-              <span className="font-medium">{formatEur(salaire)}</span>
+              <span className="font-medium">{formatEur(salaire.value)}</span>
             </div>
             <div className="flex justify-between text-neutral-600">
               <span>Abattement frais pro (10 %)</span>
@@ -301,7 +265,7 @@ export default function PERCalculator() {
             <div className="pt-3 border-t border-neutral-200 space-y-2">
               <div className="flex justify-between text-neutral-600">
                 <span>Versement envisagé</span>
-                <span className="font-medium">{formatEur(versement)}</span>
+                <span className="font-medium">{formatEur(versement.value)}</span>
               </div>
               <div className="flex justify-between font-medium">
                 <span className={detail.partNonDeductible > 0 ? 'text-red-700' : 'text-neutral-700'}>
@@ -321,51 +285,8 @@ export default function PERCalculator() {
           </div>
         </div>
 
-        {/* Warnings */}
-        {warnings.length > 0 && (
-          <div className="space-y-3">
-            {warnings.map((w, i) => (
-              <div
-                key={i}
-                className={`rounded-xl p-4 border-2 ${
-                  w.type === 'danger'
-                    ? 'bg-red-50 border-red-300'
-                    : w.type === 'warning'
-                    ? 'bg-orange-50 border-orange-300'
-                    : 'bg-blue-50 border-blue-300'
-                }`}
-              >
-                <p className={`text-sm leading-relaxed ${
-                  w.type === 'danger' ? 'text-red-800'
-                  : w.type === 'warning' ? 'text-orange-800'
-                  : 'text-blue-800'
-                }`}>
-                  {w.message}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Optimisations */}
-        {optimisations.length > 0 && (
-          <div className="space-y-3">
-            {optimisations.map((o, i) => (
-              <div
-                key={i}
-                className={`rounded-xl p-4 border-2 ${
-                  o.type === 'success' ? 'bg-green-50 border-green-300' : 'bg-blue-50 border-blue-300'
-                }`}
-              >
-                <p className={`text-sm leading-relaxed ${
-                  o.type === 'success' ? 'text-green-800' : 'text-blue-800'
-                }`}>
-                  {o.message}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
+        <AlertList items={warnings} />
+        <AlertList items={optimisations} />
       </div>
     </div>
   )

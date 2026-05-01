@@ -160,21 +160,31 @@ export default function <Nom>Page() {
 
 ## 4. Tests / validation (pragmatique)
 
-Le repo n'a **pas encore** de framework de tests. Pour un nouveau calculateur,
-la stratégie est :
+Le repo utilise **vitest** (`npm run test`) pour les fonctions pures de `lib/`.
+Config : `vitest.config.ts` à la racine, alias `@/` résolu vers `src/`.
 
-1. **Cas de référence dans le code** : en fin de `lib/<domaine>.ts`, ajouter un
-   commentaire JSDoc `/** @example */` avec 2-3 cas issus de sources officielles
-   (ex: un exemple du BOFiP) avec valeurs attendues. Cela sert de documentation
-   exécutable.
-2. **Test manuel dans le navigateur** : `npm run dev`, saisir les cas de
-   référence, vérifier que les résultats collent à ±1€ près.
-3. **`npm run type-check`** doit passer sans erreur.
-4. **`npm run lint`** doit passer (warnings acceptés si justifiés).
-5. **`npm run build`** doit compiler sans erreur.
+### Règles de test
 
-Si tu introduis un vrai framework de tests (vitest conseillé), fais-le dans un
-commit dédié et **documente-le ici** en mettant à jour cette section.
+- **Fichier** : `src/lib/<domaine>.test.ts` côte à côte avec le lib testé.
+- **Périmètre** : fonctions pures exportées depuis `lib/`. Pas de tests de composants React.
+- **Couverture obligatoire** : toute logique de cascade, de clamp ou de redistribution.
+- **Cas nominaux + cas limites** : tester le cas heureux, la valeur limite, l'id inconnu, l'immutabilité du tableau source.
+
+### Commandes
+
+```bash
+npm run test          # exécution unique (CI)
+npm run test:watch    # mode watch (développement)
+npm run type-check    # TypeScript strict, sans erreur
+npm run build         # compilation Next.js, sans erreur
+```
+
+### Pour un nouveau calculateur
+
+1. **Cas de référence dans le code** : commentaire JSDoc `/** @example */` avec
+   2-3 cas issus de sources officielles (BOFiP, service-public.fr).
+2. **Test manuel dans le navigateur** : `npm run dev`, vérifier à ±1 € près.
+3. **Tests vitest** si la lib contient une logique non triviale (cascade, barème, prorata).
 
 ---
 
@@ -273,7 +283,8 @@ Cas chiffrés issus de sources officielles pour validation :
 6. **Construire le composant** `src/components/Calculator/<Nom>Calculator.tsx`.
 7. **Créer la page** `src/app/<slug>/page.tsx` avec metadata SEO, disclaimer,
    section sources.
-8. **Ajouter la route au `Header.tsx` / au menu** si pertinent.
+8. **Ajouter une entrée dans `src/config/navigation.ts`** (`category: 'calculateur'`,
+   `showInHeader: true`). Header et Footer se mettent à jour automatiquement.
 9. **Ajouter au `sitemap.ts`**.
 10. **Vérifier** : `npm run type-check`, `npm run lint`, `npm run build`.
 11. **Commit atomique** : `feat(calc): ajout calculateur <nom>`.

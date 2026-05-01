@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import FiscaliteComparisonChart from '@/components/FiscaliteComparisonChart'
 import { calculerFiscaliteRachat, formatDateForInput, parseDateFromInput } from '@/lib/assuranceVie'
 import type { AssuranceVieInputs, AssuranceVieResults } from '@/types/assuranceVie'
+import AlertList from '@/components/AlertList'
 
 export default function AssuranceVieCalculator() {
  // États inputs
@@ -329,57 +330,8 @@ export default function AssuranceVieCalculator() {
  />
  </div>
 
- {/* Warnings */}
- {results.warnings.length > 0 && (
- <div className="space-y-3">
- {results.warnings.map((warning, index) => (
- <div
- key={index}
- className={`rounded-xl p-5 border-2 ${
- warning.type === 'danger'
- ? 'bg-primary-50 border-primary-300'
- : warning.type === 'warning'
- ? 'bg-primary-50 border-primary-300'
- : 'bg-primary-50 border-primary-300'
- }`}
->
- <p className={`text-sm leading-relaxed ${
- warning.type === 'danger'
- ? 'text-primary-700'
- : warning.type === 'warning'
- ? 'text-primary-700'
- : 'text-primary-700'
- }`}>
- {warning.message}
- </p>
- </div>
- ))}
- </div>
- )}
-
- {/* Optimisations */}
- {results.optimisations.length > 0 && (
- <div className="space-y-3">
- {results.optimisations.map((optim, index) => (
- <div
- key={index}
- className={`rounded-xl p-5 border-2 ${
- optim.type === 'success'
- ? 'bg-primary-50 border-primary-300'
- : 'bg-primary-50 border-primary-300'
- }`}
->
- <p className={`text-sm leading-relaxed ${
- optim.type === 'success'
- ? 'text-primary-700'
- : 'text-primary-700'
- }`}>
- {optim.message}
- </p>
- </div>
- ))}
- </div>
- )}
+ <AlertList items={results.warnings} />
+ <AlertList items={results.optimisations} />
 
  {/* Synthèse */}
  <div className="bg-neutral-50 rounded-xl border border-neutral-200 p-6">

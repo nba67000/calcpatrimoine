@@ -3,7 +3,15 @@
 
 import { useState, useEffect } from 'react'
 import TransmissionChart from '@/components/TransmissionChart'
-import { calculerTransmission, genererIdBeneficiaire, getLibelleLien } from '@/lib/transmission'
+import {
+ calculerTransmission,
+ genererIdBeneficiaire,
+ getLibelleLien,
+ ajouterBeneficiaire,
+ supprimerBeneficiaire,
+ equilibrerParts,
+ modifierPartBeneficiaire,
+} from '@/lib/transmission'
 import type { 
  TransmissionInputs, 
  TransmissionResults,
@@ -50,118 +58,9 @@ export default function TransmissionCalculator() {
  setResults(calculatedResults)
  }, [capitalTotal, versementsAvant70, versementsApres70, ageSouscripteur, beneficiaires])
 
- // Actions bénéficiaires
- const ajouterBeneficiaire = () => {
- if (beneficiaires.length >=  6) return
- 
- const partExistante = beneficiaires.reduce((sum, b) => sum + b.partPourcentage, 0)
- const partRestante = Math.max(0, 100 - partExistante)
- 
- setBeneficiaires([
- ...beneficiaires,
- {
- id: genererIdBeneficiaire(),
- nom: `Bénéficiaire ${beneficiaires.length + 1}`,
- lien: 'enfant',
- partPourcentage: partRestante
- }
- ])
- }
-
- const supprimerBeneficiaire = (id: string) => {
- if (beneficiaires.length <= 1) return
- setBeneficiaires(beneficiaires.filter(b => b.id !== id))
- }
-
+ // Actions bénéficiaires — délèguent aux fonctions pures de lib/transmission
  const modifierBeneficiaire = (id: string, updates: Partial<Beneficiaire>) => {
- setBeneficiaires(beneficiaires.map(b => 
- b.id === id ? { ...b, ...updates } : b
- ))
- }
-
- /**
- * Modifie la part d'un bénéficiaire avec cascade proportionnelle
- * 
- * Règle : Quand on bouge le bénéficiaire N, seuls les bénéficiaires 
- * situés APRÈS (N+1, N+2, ...) s'ajustent proportionnellement pour 
- * maintenir le total à 100%.
- * 
- * Les bénéficiaires AVANT (1, 2, ..., N-1) restent figés.
- * 
- * Exemple : 3 bénéficiaires (40, 40, 20)
- * - Bouger benef 1 à 60% → benef 2 et 3 ajustés proportionnellement
- * Ratio benef 2/3 actuel : 40/20 = 2/1 (soit 2/3 et 1/3)
- * Reste à répartir : 100 - 60 = 40%
- * Benef 2 : 40 × 2/3 = 26.67%
- * Benef 3 : 40 × 1/3 = 13.33%
- * - Bouger benef 2 à 50% → seul benef 3 ajusté
- * Benef 1 reste à 40%, reste à répartir : 100 - 40 - 50 = 10%
- * Benef 3 : 10%
- */
- const modifierPartBeneficiaire = (id: string, nouvelleValeur: number) => {
- const index = beneficiaires.findIndex(b => b.id === id)
- if (index === -1) return
-
- // Cas spécial : dernier bénéficiaire → pas de cascade possible
- // On lui permet de changer et on affichera l'alerte "total != 100%"
- if (index === beneficiaires.length - 1) {
- setBeneficiaires(beneficiaires.map(b => 
- b.id === id ? { ...b, partPourcentage: nouvelleValeur } : b
- ))
- return
- }
-
- // Somme des parts des bénéficiaires AVANT (figés)
- const partAvant = beneficiaires
- .slice(0, index)
- .reduce((sum, b) => sum + b.partPourcentage, 0)
-
- // Part maximum disponible pour le bénéficiaire actuel
- const partMaxDispo = 100 - partAvant
- const partClampee = Math.max(0, Math.min(nouvelleValeur, partMaxDispo))
-
- // Reste à répartir entre les bénéficiaires APRÈS
- const resteAPartager = partMaxDispo - partClampee
-
- // Bénéficiaires situés APRÈS
- const benefApres = beneficiaires.slice(index + 1)
- 
- // Somme actuelle des parts des bénéficiaires après
- const sommePartsApres = benefApres.reduce((sum, b) => sum + b.partPourcentage, 0)
-
- // Créer le nouveau tableau
- const nouveauBeneficiaires = beneficiaires.map((b, i) => {
- // Bénéficiaires avant : inchangés
- if (i < index) return b
- 
- // Bénéficiaire modifié
- if (i === index) {
- return { ...b, partPourcentage: partClampee }
- }
- 
- // Bénéficiaires après : ajustement proportionnel
- if (sommePartsApres> 0) {
- // Garder le ratio entre bénéficiaires après
- const ratio = b.partPourcentage / sommePartsApres
- const nouvellePart = resteAPartager * ratio
- return { ...b, partPourcentage: Math.round(nouvellePart * 100) / 100 }
- } else {
- // Si toutes les parts après étaient à 0, répartir équitablement
- const nouvellePart = resteAPartager / benefApres.length
- return { ...b, partPourcentage: Math.round(nouvellePart * 100) / 100 }
- }
- })
-
- setBeneficiaires(nouveauBeneficiaires)
- }
-
- // Equilibrer les parts
- const equilibrerParts = () => {
- const partEgale = 100 / beneficiaires.length
- setBeneficiaires(beneficiaires.map(b => ({
- ...b,
- partPourcentage: Math.round(partEgale * 100) / 100
- })))
+   setBeneficiaires(beneficiaires.map(b => b.id === id ? { ...b, ...updates } : b))
  }
 
  const totalParts = beneficiaires.reduce((sum, b) => sum + b.partPourcentage, 0)
@@ -286,7 +185,7 @@ export default function TransmissionCalculator() {
  <div className="flex gap-2">
  {beneficiaires.length > 1 && (
  <button
- onClick={equilibrerParts}
+ onClick={() => setBeneficiaires(equilibrerParts(beneficiaires))}
  className="text-xs bg-neutral-100 hover:bg-neutral-200 text-neutral-700 px-3 py-1 rounded-lg font-medium transition-colors"
 >
  Équilibrer
@@ -294,7 +193,7 @@ export default function TransmissionCalculator() {
  )}
  {beneficiaires.length < 6 && (
  <button
- onClick={ajouterBeneficiaire}
+ onClick={() => setBeneficiaires(ajouterBeneficiaire(beneficiaires))}
  className="text-xs bg-primary-600 hover:bg-primary-700 text-white px-3 py-1 rounded-lg font-medium transition-colors"
 >
  + Ajouter
@@ -339,7 +238,7 @@ export default function TransmissionCalculator() {
  />
  {beneficiaires.length > 1 && (
  <button
- onClick={() => supprimerBeneficiaire(benef.id)}
+ onClick={() => setBeneficiaires(supprimerBeneficiaire(beneficiaires, benef.id))}
  className="text-primary-500 hover:text-primary-700 text-sm"
  aria-label="Supprimer"
 >
@@ -411,7 +310,7 @@ export default function TransmissionCalculator() {
  })()}
  step="0.5"
  value={benef.partPourcentage}
- onChange={(e) => modifierPartBeneficiaire(benef.id, Number(e.target.value))}
+ onChange={(e) => setBeneficiaires(modifierPartBeneficiaire(beneficiaires, benef.id, Number(e.target.value)))}
  disabled={index === beneficiaires.length - 1 && beneficiaires.length > 1}
  className={`w-full h-1.5 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600 ${
  index === beneficiaires.length - 1 && beneficiaires.length > 1 

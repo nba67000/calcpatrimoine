@@ -72,27 +72,3 @@ export interface TransmissionResults {
  infos: string[]
 }
 
-// Barème succession 2026 - Droits en ligne directe (enfants)
-export const BAREME_LIGNE_DIRECTE = [
- { min: 0, max: 8072, taux: 0.05 },
- { min: 8072, max: 12109, taux: 0.10 },
- { min: 12109, max: 15932, taux: 0.15 },
- { min: 15932, max: 552324, taux: 0.20 },
- { min: 552324, max: 902838, taux: 0.30 },
- { min: 902838, max: 1805677, taux: 0.40 },
- { min: 1805677, max: Infinity, taux: 0.45 }
-]
-
-// Abattement succession ligne directe (enfants)
-export const ABATTEMENT_SUCCESSION_ENFANT = 100000 // 2026
-
-// Abattement AV versements après 70 ans (Article 757 B)
-export const ABATTEMENT_757B_GLOBAL = 30500
-
-// Abattement AV versements avant 70 ans (Article 990 I)
-export const ABATTEMENT_990I_PAR_BENEFICIAIRE = 152500
-
-// Taux 990 I
-export const TAUX_990I_REDUIT = 0.20 // Jusqu'à 700 000€ au-delà abattement
-export const TAUX_990I_NORMAL = 0.3125 // Au-delà 700 000€
-export const SEUIL_990I = 700000 // Seuil changement de taux

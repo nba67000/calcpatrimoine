@@ -7,15 +7,30 @@ import type {
  Beneficiaire
 } from '@/types/transmission'
 
-import {
- ABATTEMENT_757B_GLOBAL,
- ABATTEMENT_990I_PAR_BENEFICIAIRE,
- TAUX_990I_REDUIT,
- TAUX_990I_NORMAL,
- SEUIL_990I,
- BAREME_LIGNE_DIRECTE,
- ABATTEMENT_SUCCESSION_ENFANT
-} from '@/types/transmission'
+// Barème droits de succession ligne directe — Art. 777 CGI (LF 2026)
+const BAREME_LIGNE_DIRECTE = [
+ { min: 0,       max: 8072,    taux: 0.05 },
+ { min: 8072,    max: 12109,   taux: 0.10 },
+ { min: 12109,   max: 15932,   taux: 0.15 },
+ { min: 15932,   max: 552324,  taux: 0.20 },
+ { min: 552324,  max: 902838,  taux: 0.30 },
+ { min: 902838,  max: 1805677, taux: 0.40 },
+ { min: 1805677, max: Infinity, taux: 0.45 },
+]
+
+// Art. 779 CGI — abattement succession enfant (ligne directe)
+const ABATTEMENT_SUCCESSION_ENFANT = 100_000
+
+// Art. 757 B CGI — abattement global versements AV après 70 ans
+const ABATTEMENT_757B_GLOBAL = 30_500
+
+// Art. 990 I CGI — abattement par bénéficiaire versements AV avant 70 ans
+const ABATTEMENT_990I_PAR_BENEFICIAIRE = 152_500
+
+// Art. 990 I CGI — taux de prélèvement et seuil
+const TAUX_990I_REDUIT = 0.20
+const TAUX_990I_NORMAL = 0.3125
+const SEUIL_990I = 700_000
 
 /**
  * Calcule les droits de succession selon le barème ligne directe
@@ -248,4 +263,81 @@ export function getLibelleLien(lien: Beneficiaire['lien']): string {
  autre: 'Autre'
  }
  return libelles[lien] || 'Inconnu'
+}
+
+// ---------------------------------------------------------------------------
+// Opérations sur la liste des bénéficiaires — fonctions pures
+// Chaque fonction retourne un nouveau tableau, sans muter l'entrée.
+// ---------------------------------------------------------------------------
+
+/** Ajoute un bénéficiaire avec la part restante disponible. Max 6. */
+export function ajouterBeneficiaire(beneficiaires: Beneficiaire[]): Beneficiaire[] {
+ if (beneficiaires.length >= 6) return beneficiaires
+ const partExistante = beneficiaires.reduce((s, b) => s + b.partPourcentage, 0)
+ const partRestante = Math.max(0, 100 - partExistante)
+ return [
+   ...beneficiaires,
+   {
+     id: genererIdBeneficiaire(),
+     nom: `Bénéficiaire ${beneficiaires.length + 1}`,
+     lien: 'enfant',
+     partPourcentage: partRestante,
+   },
+ ]
+}
+
+/** Supprime un bénéficiaire par id. Garde au minimum 1. */
+export function supprimerBeneficiaire(beneficiaires: Beneficiaire[], id: string): Beneficiaire[] {
+ if (beneficiaires.length <= 1) return beneficiaires
+ return beneficiaires.filter(b => b.id !== id)
+}
+
+/** Répartit les parts à parts égales entre tous les bénéficiaires. */
+export function equilibrerParts(beneficiaires: Beneficiaire[]): Beneficiaire[] {
+ const partEgale = Math.round((100 / beneficiaires.length) * 100) / 100
+ return beneficiaires.map(b => ({ ...b, partPourcentage: partEgale }))
+}
+
+/**
+ * Modifie la part d'un bénéficiaire avec cascade proportionnelle.
+ *
+ * Règle : seuls les bénéficiaires situés APRÈS l'index modifié s'ajustent
+ * proportionnellement pour maintenir le total à 100 %.
+ * Les bénéficiaires AVANT restent figés.
+ * Le dernier bénéficiaire est modifiable librement (pas de cascade possible).
+ */
+export function modifierPartBeneficiaire(
+ beneficiaires: Beneficiaire[],
+ id: string,
+ nouvelleValeur: number
+): Beneficiaire[] {
+ const index = beneficiaires.findIndex(b => b.id === id)
+ if (index === -1) return beneficiaires
+
+ // Dernier bénéficiaire : pas de cascade, modification libre
+ if (index === beneficiaires.length - 1) {
+   return beneficiaires.map(b =>
+     b.id === id ? { ...b, partPourcentage: nouvelleValeur } : b
+   )
+ }
+
+ const partAvant = beneficiaires.slice(0, index).reduce((s, b) => s + b.partPourcentage, 0)
+ const partMaxDispo = 100 - partAvant
+ const partClampee = Math.max(0, Math.min(nouvelleValeur, partMaxDispo))
+ const resteAPartager = partMaxDispo - partClampee
+
+ const benefApres = beneficiaires.slice(index + 1)
+ const sommePartsApres = benefApres.reduce((s, b) => s + b.partPourcentage, 0)
+
+ return beneficiaires.map((b, i) => {
+   if (i < index) return b
+   if (i === index) return { ...b, partPourcentage: partClampee }
+   // Bénéficiaires après : ajustement proportionnel
+   if (sommePartsApres > 0) {
+     const ratio = b.partPourcentage / sommePartsApres
+     return { ...b, partPourcentage: Math.round(resteAPartager * ratio * 100) / 100 }
+   }
+   // Si toutes les parts après étaient à 0 : répartition égale
+   return { ...b, partPourcentage: Math.round((resteAPartager / benefApres.length) * 100) / 100 }
+ })
 }

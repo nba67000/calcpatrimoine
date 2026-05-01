@@ -11,7 +11,14 @@
       "Bash(npm run *)",
       "Bash(npx next *)",
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\\\\app\" -Directory)",
-      "Bash(Select-Object Name)"
+      "Bash(Select-Object Name)",
+      "Bash(npx tsc *)",
+      "Bash(npm ls *)",
+      "Bash(findstr /i \"vitest\\\\|jest\\\\|test\")",
+      "Bash(Select-String -Path package.json -Pattern \"vitest|jest|test\")",
+      "Bash(npm install *)",
+      "Bash(Start-Sleep -Seconds 30)",
+      "Bash(npm --version)"
     ]
   }
 }

@@ -2,6 +2,7 @@
 'use client'
 
 import Link from 'next/link'
+import { CALCULATEURS, RESSOURCES, LIENS_LEGAUX } from '@/config/navigation'
 
 export default function Footer() {
  return (
@@ -30,16 +31,13 @@ export default function Footer() {
  Calculateurs
  </p>
  <ul className="space-y-2 text-sm">
- <li>
- <Link href="/rente-viagere" className="text-neutral-400 hover:text-white transition-colors">
- Rente Viagère
+ {CALCULATEURS.map(item => (
+ <li key={item.href}>
+ <Link href={item.href} className="text-neutral-400 hover:text-white transition-colors">
+ {item.label}
  </Link>
  </li>
- <li>
- <Link href="/assurance-vie" className="text-neutral-400 hover:text-white transition-colors">
- Assurance-Vie
- </Link>
- </li>
+ ))}
  </ul>
  </div>
 
@@ -49,26 +47,13 @@ export default function Footer() {
  Ressources
  </p>
  <ul className="space-y-2 text-sm">
- <li>
- <Link href="/blog" className="text-neutral-400 hover:text-white transition-colors">
- Blog
+ {RESSOURCES.map(item => (
+ <li key={item.href}>
+ <Link href={item.href} className="text-neutral-400 hover:text-white transition-colors">
+ {item.label}
  </Link>
  </li>
- <li>
- <Link href="/faq" className="text-neutral-400 hover:text-white transition-colors">
- FAQ
- </Link>
- </li>
- <li>
- <Link href="/methodologie" className="text-neutral-400 hover:text-white transition-colors">
- Méthodologie
- </Link>
- </li>
- <li>
- <Link href="/a-propos" className="text-neutral-400 hover:text-white transition-colors">
- À propos
- </Link>
- </li>
+ ))}
  </ul>
  </div>
  </div>
@@ -79,15 +64,11 @@ export default function Footer() {
  © {new Date().getFullYear()} CalcPatrimoine · Tous droits réservés
  </div>
  <div className="flex flex-wrap gap-x-6 gap-y-2">
- <Link href="/mentions-legales" className="text-xs text-neutral-500 hover:text-white transition-colors">
- Mentions légales
+ {LIENS_LEGAUX.map(item => (
+ <Link key={item.href} href={item.href} className="text-xs text-neutral-500 hover:text-white transition-colors">
+ {item.label}
  </Link>
- <Link href="/cgu" className="text-xs text-neutral-500 hover:text-white transition-colors">
- CGU
- </Link>
- <Link href="/politique-confidentialite" className="text-xs text-neutral-500 hover:text-white transition-colors">
- Confidentialité
- </Link>
+ ))}
  <a
  href="https://github.com/nba67000/calcpatrimoine"
  target="_blank"

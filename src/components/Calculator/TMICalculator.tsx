@@ -4,6 +4,8 @@
 import { useState, useMemo } from 'react'
 import { calculerTMIResult } from '@/lib/tmi'
 import type { TMIInputs, SituationFamiliale } from '@/types/tmi'
+import { useNumericInput } from '@/hooks/useNumericInput'
+import AlertList from '@/components/AlertList'
 
 const TMI_COLORS: Record<number, { badge: string; text: string; bg: string }> = {
   0:  { badge: 'bg-neutral-200 text-neutral-800',  text: 'text-neutral-700',  bg: 'bg-neutral-50'  },
@@ -28,28 +30,19 @@ const SITUATIONS: Array<{ value: SituationFamiliale; label: string }> = [
 ]
 
 export default function TMICalculator() {
-  const [revenu, setRevenu] = useState<number>(45000)
-  const [revenuSaisi, setRevenuSaisi] = useState<string>('45000')
+  const revenu = useNumericInput(45000, { min: 0, max: 500000 })
   const [situationFamiliale, setSituationFamiliale] = useState<SituationFamiliale>('celibataire')
   const [nombreEnfants, setNombreEnfants] = useState<number>(0)
 
   const inputs: TMIInputs = {
-    revenuNetImposable: revenu,
+    revenuNetImposable: revenu.value,
     situationFamiliale,
     nombreEnfants,
   }
 
-  const results = useMemo(() => calculerTMIResult(inputs), [revenu, situationFamiliale, nombreEnfants])
+  const results = useMemo(() => calculerTMIResult(inputs), [revenu.value, situationFamiliale, nombreEnfants])
 
   const tmiColors = TMI_COLORS[results.tmi]
-
-  function handleRevenuInput(val: string) {
-    setRevenuSaisi(val)
-    const n = parseInt(val.replace(/\s/g, ''), 10)
-    if (!isNaN(n) && n >= 0 && n <= 500000) {
-      setRevenu(n)
-    }
-  }
 
   return (
     <div className="grid lg:grid-cols-2 gap-8">
@@ -68,9 +61,9 @@ export default function TMICalculator() {
               <input
                 type="text"
                 inputMode="numeric"
-                value={revenuSaisi}
-                onChange={(e) => handleRevenuInput(e.target.value)}
-                onBlur={() => setRevenuSaisi(String(revenu))}
+                value={revenu.display}
+                onChange={(e) => revenu.onChange(e.target.value)}
+                onBlur={revenu.onBlur}
                 className="w-40 px-4 py-3 border border-neutral-300 rounded-lg text-2xl font-bold text-primary-700 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-right"
               />
               <span className="text-2xl font-bold text-neutral-600">€</span>
@@ -80,12 +73,8 @@ export default function TMICalculator() {
               min="0"
               max="200000"
               step="500"
-              value={revenu}
-              onChange={(e) => {
-                const n = Number(e.target.value)
-                setRevenu(n)
-                setRevenuSaisi(String(n))
-              }}
+              value={revenu.value}
+              onChange={(e) => revenu.set(Number(e.target.value))}
               className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
             />
             <div className="flex justify-between text-xs text-neutral-500 mt-1">
@@ -205,7 +194,7 @@ export default function TMICalculator() {
           {/* Barres de tranches */}
           <div className="space-y-3 mb-5">
             {results.detailTranches.map((tranche, i) => {
-              const pct = revenu > 0 ? (tranche.revenuDansLaTranche / revenu) * 100 : 0
+              const pct = revenu.value > 0 ? (tranche.revenuDansLaTranche / revenu.value) * 100 : 0
               return (
                 <div key={i}>
                   <div className="flex justify-between text-xs text-neutral-600 mb-1">
@@ -281,55 +270,8 @@ export default function TMICalculator() {
           </div>
         </div>
 
-        {/* Warnings */}
-        {results.warnings.length > 0 && (
-          <div className="space-y-3">
-            {results.warnings.map((warning, i) => (
-              <div
-                key={i}
-                className={`rounded-xl p-4 border-2 ${
-                  warning.type === 'danger'
-                    ? 'bg-red-50 border-red-300'
-                    : warning.type === 'warning'
-                    ? 'bg-orange-50 border-orange-300'
-                    : 'bg-blue-50 border-blue-300'
-                }`}
-              >
-                <p className={`text-sm leading-relaxed ${
-                  warning.type === 'danger'
-                    ? 'text-red-800'
-                    : warning.type === 'warning'
-                    ? 'text-orange-800'
-                    : 'text-blue-800'
-                }`}>
-                  {warning.message}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Optimisations */}
-        {results.optimisations.length > 0 && (
-          <div className="space-y-3">
-            {results.optimisations.map((optim, i) => (
-              <div
-                key={i}
-                className={`rounded-xl p-4 border-2 ${
-                  optim.type === 'success'
-                    ? 'bg-green-50 border-green-300'
-                    : 'bg-blue-50 border-blue-300'
-                }`}
-              >
-                <p className={`text-sm leading-relaxed ${
-                  optim.type === 'success' ? 'text-green-800' : 'text-blue-800'
-                }`}>
-                  {optim.message}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
+        <AlertList items={results.warnings} />
+        <AlertList items={results.optimisations} />
       </div>
     </div>
   )
