@@ -9,7 +9,9 @@
       "WebSearch",
       "Bash(git *)",
       "Bash(npm run *)",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\\\\app\" -Directory)",
+      "Bash(Select-Object Name)"
     ]
   }
 }
