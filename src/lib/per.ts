@@ -1,0 +1,161 @@
+// src/lib/per.ts
+
+import type { PERInputs, PERResults, PERDetailPlafond } from '@/types/per'
+
+// PASS 2025 — Décret du 29 novembre 2024
+const PASS_2025 = 47_100
+
+// Art. 163 quatervicies I CGI — plafonds versements 2026 (base PASS 2025)
+const MAX_PLAFOND_PER = Math.round(PASS_2025 * 8 * 0.10)  // 37 680 €
+const MIN_PLAFOND_PER = Math.round(PASS_2025 * 1 * 0.10)  // 4 710 €
+
+// Abattement forfaitaire 10 % frais professionnels — Art. 83 CGI, LF 2026 (revenus 2025)
+const MIN_ABATTEMENT_FRAIS_PRO = 509
+const MAX_ABATTEMENT_FRAIS_PRO = 14_555
+
+/**
+ * Calcule le détail du plafond de déduction PER pour un salarié.
+ *
+ * Formule (Art. 163 quatervicies CGI) :
+ *   plafond annuel = max(MIN_PLAFOND, min(revenu_net_pro × 10 %, MAX_PLAFOND))
+ *   revenu_net_pro = salaire − abattement_10 %
+ *   abattement_10 % = max(MIN_ABATT, min(salaire × 10 %, MAX_ABATT))
+ */
+function calculerDetailPlafond(inputs: PERInputs): PERDetailPlafond {
+  const { salaireNetAnnuel, versementEnvisage, plafondsReportesN1, plafondsReportesN2, plafondsReportesN3 } = inputs
+
+  // 1. Abattement forfaitaire frais professionnels (Art. 83 CGI)
+  const abattementBrut = salaireNetAnnuel * 0.10
+  const abattementFraisPro = Math.round(
+    Math.max(MIN_ABATTEMENT_FRAIS_PRO, Math.min(abattementBrut, MAX_ABATTEMENT_FRAIS_PRO))
+  )
+
+  // 2. Revenu net professionnel (base de calcul du plafond PER)
+  const revenuNetProfessionnel = Math.max(0, salaireNetAnnuel - abattementFraisPro)
+
+  // 3. Plafond annuel — borné entre MIN et MAX légaux
+  const plafondBrut = revenuNetProfessionnel * 0.10
+  const plafondAnnuel = Math.round(
+    Math.max(MIN_PLAFOND_PER, Math.min(plafondBrut, MAX_PLAFOND_PER))
+  )
+
+  // 4. Total des reports (N-1, N-2, N-3) — Art. 163 quatervicies I al. 3 CGI
+  const plafondsReportesTotal = Math.max(0, plafondsReportesN1)
+    + Math.max(0, plafondsReportesN2)
+    + Math.max(0, plafondsReportesN3)
+
+  // 5. Plafond total disponible
+  const plafondTotal = plafondAnnuel + plafondsReportesTotal
+
+  // 6. Montant effectivement déductible
+  const montantDeductible = Math.min(versementEnvisage, plafondTotal)
+  const partNonDeductible = Math.max(0, versementEnvisage - plafondTotal)
+
+  return {
+    abattementFraisPro,
+    revenuNetProfessionnel,
+    plafondAnnuel,
+    plafondsReportesTotal,
+    plafondTotal,
+    montantDeductible,
+    partNonDeductible,
+  }
+}
+
+/**
+ * Calcule l'économie d'impôt générée par un versement volontaire sur un PER individuel.
+ *
+ * Périmètre : PERIN, salarié, versements déductibles (compartiment 1).
+ * Millésime : versements 2026 sur revenus 2025 (PASS 2025 = 47 100 €).
+ *
+ * @example
+ * // Salarié 60 000 €, TMI 30 %, versement 3 000 €, sans reports
+ * // Attendu : économie 900 €, coût net 2 100 €, plafond 5 400 €
+ * calculerPER({ salaireNetAnnuel: 60000, tmi: 30, versementEnvisage: 3000,
+ *   plafondsReportesN1: 0, plafondsReportesN2: 0, plafondsReportesN3: 0 })
+ *
+ * @example
+ * // Salarié 50 000 €, TMI 30 %, versement 5 000 € (dépassement plafond)
+ * // Plafond = 4 710 € (minimum légal s'applique car 10 % × 45 000 = 4 500 < MIN)
+ * // Attendu : économie 1 413 €, part non déductible 290 €
+ * calculerPER({ salaireNetAnnuel: 50000, tmi: 30, versementEnvisage: 5000,
+ *   plafondsReportesN1: 0, plafondsReportesN2: 0, plafondsReportesN3: 0 })
+ *
+ * @example
+ * // Salarié 50 000 €, TMI 41 %, versement 10 000 €, report N-1 = 3 000 €
+ * // Plafond total = 4 710 + 3 000 = 7 710 €
+ * // Attendu : économie 3 161 €, coût net 6 839 €
+ * calculerPER({ salaireNetAnnuel: 50000, tmi: 41, versementEnvisage: 10000,
+ *   plafondsReportesN1: 3000, plafondsReportesN2: 0, plafondsReportesN3: 0 })
+ */
+export function calculerPER(inputs: PERInputs): PERResults {
+  const { tmi, versementEnvisage } = inputs
+
+  // 1. Calcul du plafond
+  const detail = calculerDetailPlafond(inputs)
+
+  // 2. Économie fiscale sur la part déductible
+  const economieFiscale = Math.round(detail.montantDeductible * (tmi / 100))
+
+  // 3. Coût net réel du versement
+  const coutNetReel = versementEnvisage - economieFiscale
+
+  // 4. Rendement fiscal (économie / versement total)
+  const rendementFiscal =
+    versementEnvisage > 0
+      ? Math.round((economieFiscale / versementEnvisage) * 1000) / 10
+      : 0
+
+  // 5. Warnings et optimisations
+  const warnings: PERResults['warnings'] = []
+  const optimisations: PERResults['optimisations'] = []
+
+  if (detail.partNonDeductible > 0) {
+    warnings.push({
+      type: 'danger',
+      message: `Votre versement de ${versementEnvisage.toLocaleString('fr-FR')} € dépasse votre plafond disponible de ${detail.partNonDeductible.toLocaleString('fr-FR')} €. Seuls ${detail.montantDeductible.toLocaleString('fr-FR')} € sont déductibles. La part excédentaire (${detail.partNonDeductible.toLocaleString('fr-FR')} €) reste investissable sur le PER mais sans avantage fiscal à l'entrée.`,
+    })
+  }
+
+  if (tmi === 0) {
+    warnings.push({
+      type: 'info',
+      message: `À TMI 0 %, le versement PER ne génère pas d'économie d'impôt immédiate. L'avantage fiscal du PER se produira à la sortie si votre TMI à la retraite est inférieure à votre TMI actuelle.`,
+    })
+  }
+
+  if (tmi === 11) {
+    warnings.push({
+      type: 'info',
+      message: `À TMI 11 %, l'économie fiscale est limitée. Vérifiez que la déduction PER ne fait pas baisser votre revenu imposable sous le seuil de la tranche suivante, ce qui réduirait l'économie effective.`,
+    })
+  }
+
+  if (versementEnvisage > 0 && detail.partNonDeductible === 0) {
+    const margeRestante = detail.plafondTotal - versementEnvisage
+    if (margeRestante >= 1000) {
+      const gainSupplementaire = Math.round(margeRestante * (tmi / 100))
+      optimisations.push({
+        type: 'info',
+        message: `Votre plafond disponible n'est pas entièrement utilisé. En versant ${margeRestante.toLocaleString('fr-FR')} € supplémentaires (jusqu'au plafond total de ${detail.plafondTotal.toLocaleString('fr-FR')} €), vous pourriez économiser ${gainSupplementaire.toLocaleString('fr-FR')} € d'impôt de plus.`,
+        gain: gainSupplementaire,
+      })
+    }
+  }
+
+  if (detail.plafondsReportesTotal === 0 && tmi >= 30) {
+    optimisations.push({
+      type: 'info',
+      message: `Les plafonds non utilisés des années N-1, N-2 et N-3 sont reportables. Ces montants figurent sur votre avis d'imposition (rubrique "Plafonds disponibles pour les versements retraite").`,
+    })
+  }
+
+  return {
+    detail,
+    economieFiscale,
+    coutNetReel,
+    rendementFiscal,
+    warnings,
+    optimisations,
+  }
+}

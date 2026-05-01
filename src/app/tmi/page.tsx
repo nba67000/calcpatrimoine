@@ -150,7 +150,7 @@ export default function TMIPage() {
         {/* Lien PER */}
         <div className="max-w-4xl mx-auto px-4 py-6">
           <Link
-            href="/per/fiscalite-versement"
+            href="/per-individuel"
             className="block bg-primary-50 border-2 border-primary-200 rounded-xl p-8 hover:border-primary-400 hover:shadow-lg transition-all group"
           >
             <div className="flex-1">
@@ -162,7 +162,7 @@ export default function TMIPage() {
                 en versant sur un Plan d'Épargne Retraite individuel (déductibilité Art. 163 quatervicies CGI).
               </p>
               <div className="flex items-center gap-2 text-primary-600 font-medium group-hover:gap-3 transition-all">
-                <span>Simulateur PER — bientôt disponible</span>
+                <span>Simulateur PER individuel</span>
                 <span>→</span>
               </div>
             </div>

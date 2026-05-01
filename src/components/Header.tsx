@@ -11,6 +11,7 @@ export default function Header() {
 
  const navLinks = [
  { href: '/tmi', label: 'TMI / IR' },
+ { href: '/per-individuel', label: 'PER' },
  { href: '/rente-viagere', label: 'Rente Viagère' },
  { href: '/assurance-vie', label: 'Assurance-Vie' },
  { href: '/blog', label: 'Blog' },

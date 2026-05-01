@@ -44,7 +44,10 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
   PER / d'un don / de travaux éligibles CITE/MaPrimeRénov'.
 
 #### `per/fiscalite-versement` — PER : économie d'impôt sur versement
-- **Statut** : `todo`
+- **Statut** : `done`
+- **Date** : 2026-05-01
+- **Slug déployé** : `/per-individuel` (affiné lors du cadrage grill-me)
+- **Assignee** : claude-code-session-2026-05-01
 - **Volume recherche estimé** : ~6 500/mois
 - **Description** : Calcul de l'économie d'impôt réalisée par un versement
   volontaire sur un PER individuel, selon la TMI et le plafond annuel.
