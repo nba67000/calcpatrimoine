@@ -64,9 +64,9 @@ export default function TMICalculator() {
                 value={revenu.display}
                 onChange={(e) => revenu.onChange(e.target.value)}
                 onBlur={revenu.onBlur}
-                className="w-40 px-4 py-3 border border-neutral-300 rounded-lg text-2xl font-bold text-primary-700 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-right"
+                className="w-28 sm:w-40 px-4 py-3 border border-neutral-300 rounded-lg text-xl sm:text-2xl font-bold text-primary-700 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-right"
               />
-              <span className="text-2xl font-bold text-neutral-600">€</span>
+              <span className="text-xl sm:text-2xl font-bold text-neutral-600">€</span>
             </div>
             <input
               type="range"
@@ -169,7 +169,7 @@ export default function TMICalculator() {
               {results.tmi} %
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-4">
             <div>
               <div className="text-xs text-neutral-500 mb-1">Impôt sur le revenu net</div>
               <div className="text-3xl font-bold text-neutral-900">

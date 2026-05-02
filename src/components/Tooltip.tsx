@@ -19,7 +19,8 @@ export default function Tooltip({ content, children }: TooltipProps) {
  onMouseLeave={() => setIsVisible(false)}
  onFocus={() => setIsVisible(true)}
  onBlur={() => setIsVisible(false)}
- className="inline-flex items-center justify-center w-4 h-4 ml-1 text-neutral-400 hover:text-primary-600 transition-colors cursor-help"
+ onClick={() => setIsVisible(v => !v)}
+ className="inline-flex items-center justify-center w-6 h-6 ml-1 text-neutral-400 hover:text-primary-600 transition-colors cursor-help"
  aria-label="Information"
 >
  {children || (
@@ -41,7 +42,7 @@ export default function Tooltip({ content, children }: TooltipProps) {
 
  {isVisible && (
  <div
- className="absolute z-50 px-3 py-2 text-sm text-white bg-neutral-900 rounded-lg shadow-lg -top-2 left-6 min-w-[200px] max-w-[300px]"
+ className="absolute z-50 px-3 py-2 text-sm text-white bg-neutral-900 rounded-lg shadow-lg -top-2 left-6 w-max max-w-[min(280px,80vw)]"
  role="tooltip"
 >
  {content}

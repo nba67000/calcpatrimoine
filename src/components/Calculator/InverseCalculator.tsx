@@ -42,7 +42,7 @@ export default function InverseCalculator() {
  return (
  <div className="max-w-4xl mx-auto" suppressHydrationWarning>
  {/* Zone formulaire */}
- <div className="bg-neutral-100 rounded-lg shadow-md p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
+ <div className="bg-neutral-100 rounded-lg shadow-md p-5 sm:p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
  <h2 className="text-xl font-medium mb-2">Calculateur inverse</h2>
  <p className="text-sm text-neutral-600 mb-6">
  Découvrez le capital nécessaire pour obtenir la rente mensuelle souhaitée
@@ -50,7 +50,7 @@ export default function InverseCalculator() {
  
  {/* Montant souhaité */}
  <div className="mb-6">
- <div className="flex justify-between items-center mb-2">
+ <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
  <label className="text-sm text-neutral-600 flex items-center">
  Rente mensuelle souhaitée
  <Tooltip content="Montant que vous aimeriez percevoir chaque mois à vie. Le calculateur vous indiquera le capital nécessaire pour obtenir cette rente." />
@@ -98,7 +98,7 @@ export default function InverseCalculator() {
 
  {/* Âge */}
  <div className="mb-6">
- <div className="flex justify-between items-center mb-2">
+ <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
  <label className="text-sm text-neutral-600">Votre âge</label>
  <div className="flex items-center gap-2">
  <input
@@ -196,7 +196,7 @@ export default function InverseCalculator() {
 
  {/* Âge conjoint */}
  <div className="mb-4">
- <div className="flex justify-between items-center mb-2">
+ <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
  <label className="text-sm font-medium text-neutral-700">Âge du conjoint</label>
  <div className="flex items-center gap-2">
  <input
@@ -276,7 +276,7 @@ export default function InverseCalculator() {
  initial={{ opacity: 0, y: 20 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ duration: 0.3 }}
- className="bg-white rounded-lg shadow-lg p-10 border-t-4 border-primary-600"
+ className="bg-white rounded-lg shadow-lg p-5 sm:p-8 border-t-4 border-primary-600"
 >
  <h3 className="text-xl font-semibold text-neutral-900 mb-6">Capital nécessaire</h3>
  
@@ -289,7 +289,7 @@ export default function InverseCalculator() {
  transition={{ duration: 0.2 }}
  className="flex items-baseline gap-2"
 >
- <span className="text-6xl font-bold tabular-nums text-neutral-900 tracking-tight">
+ <span className="text-4xl sm:text-6xl font-bold tabular-nums text-neutral-900 tracking-tight">
  {formatEuro(result.required_capital)}
  </span>
  </motion.div>
@@ -322,7 +322,7 @@ export default function InverseCalculator() {
  initial={{ opacity: 0, y: 20 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ duration: 0.3, delay: 0.1 }}
- className="mt-6 bg-white rounded-lg shadow-lg p-8 border border-neutral-200"
+ className="mt-6 bg-white rounded-lg shadow-lg p-4 sm:p-8 border border-neutral-200"
 >
  <ProjectionChart
  capital={result.required_capital}

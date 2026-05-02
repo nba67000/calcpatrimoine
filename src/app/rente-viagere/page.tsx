@@ -49,7 +49,7 @@ export default function RenteViagerePage() {
 
           <div className="h-[2px] w-10 bg-accent-400 mb-6" />
 
-          <h1 className="font-serif text-5xl font-bold text-neutral-900 mb-4 leading-tight">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 mb-4 leading-tight">
             Calculateur<br />
             Rente Viagère
           </h1>
@@ -81,12 +81,12 @@ export default function RenteViagerePage() {
         {/* Calculateur + tabs */}
         <div className="max-w-6xl mx-auto px-6 py-10">
           <div className="flex mb-2">
-            <div className="flex border border-neutral-300 overflow-hidden">
+            <div className="flex border border-neutral-300 overflow-x-auto">
               {MODES.map(m => (
                 <button
                   key={m.id}
                   onClick={() => setMode(m.id)}
-                  className={`px-6 py-3 font-mono text-xs font-medium transition-colors ${
+                  className={`px-4 sm:px-6 py-3 font-mono text-xs font-medium transition-colors whitespace-nowrap ${
                     mode === m.id
                       ? 'bg-primary-700 text-white'
                       : 'bg-white text-neutral-600 hover:bg-neutral-50'
@@ -168,7 +168,7 @@ export default function RenteViagerePage() {
             <div className="space-y-6">
               <div>
                 <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formules actuarielles</h3>
-                <div className="bg-neutral-50 border border-neutral-200 p-5 grid md:grid-cols-2 gap-x-8 gap-y-3">
+                <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5 grid sm:grid-cols-2 gap-x-8 gap-y-3 overflow-hidden">
                   {[
                     ['Annuité viagère (äx)', 'Σ (ₖpₓ × vᵏ) pour k = 0 à ω-x'],
                     ['Facteur d\'actualisation', 'v = 1 / (1 + i) — i = taux technique'],
@@ -179,7 +179,7 @@ export default function RenteViagerePage() {
                   ].map(([label, val]) => (
                     <div key={label} className="font-mono">
                       <p className="text-xs text-neutral-400 mb-0.5">{label}</p>
-                      <p className="text-xs text-neutral-700">{val}</p>
+                      <p className="text-xs text-neutral-700 break-all">{val}</p>
                     </div>
                   ))}
                 </div>

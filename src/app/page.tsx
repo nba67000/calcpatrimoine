@@ -151,7 +151,7 @@ export default function HomePage() {
                 <span className="font-mono text-xs text-primary-600 border border-primary-300 px-2 py-0.5 shrink-0 hidden sm:inline bg-white">
                   {calc.tag}
                 </span>
-                <span className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors shrink-0 min-w-[10rem] lg:min-w-[14rem]">
+                <span className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors shrink-0 min-w-0 sm:min-w-[10rem] lg:min-w-[14rem]">
                   {calc.nom}
                 </span>
                 <span className="text-neutral-500 text-sm flex-1 hidden md:block leading-snug">
@@ -173,7 +173,7 @@ export default function HomePage() {
                 <span className="font-mono text-xs text-neutral-500 border border-neutral-300 px-2 py-0.5 shrink-0 hidden sm:inline">
                   {calc.tag}
                 </span>
-                <span className="font-bold text-neutral-500 shrink-0 min-w-[10rem] lg:min-w-[14rem]">
+                <span className="font-bold text-neutral-500 shrink-0 min-w-0 sm:min-w-[10rem] lg:min-w-[14rem]">
                   {calc.nom}
                 </span>
                 <span className="text-neutral-400 text-sm flex-1 hidden md:block leading-snug">

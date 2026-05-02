@@ -9,7 +9,7 @@ export default function Footer() {
  <footer className="bg-neutral-900 text-neutral-300 mt-16">
  <div className="max-w-6xl mx-auto px-4 py-12">
  
- <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+ <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
  
  {/* Marque */}
  <div className="col-span-2">
@@ -33,7 +33,7 @@ export default function Footer() {
  <ul className="space-y-2 text-sm">
  {CALCULATEURS.map(item => (
  <li key={item.href}>
- <Link href={item.href} className="text-neutral-400 hover:text-white transition-colors">
+ <Link href={item.href} className="text-neutral-400 hover:text-white transition-colors block py-1">
  {item.label}
  </Link>
  </li>
@@ -49,7 +49,7 @@ export default function Footer() {
  <ul className="space-y-2 text-sm">
  {RESSOURCES.map(item => (
  <li key={item.href}>
- <Link href={item.href} className="text-neutral-400 hover:text-white transition-colors">
+ <Link href={item.href} className="text-neutral-400 hover:text-white transition-colors block py-1">
  {item.label}
  </Link>
  </li>

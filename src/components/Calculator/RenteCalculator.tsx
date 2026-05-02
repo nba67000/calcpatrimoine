@@ -45,13 +45,13 @@ export default function RenteCalculator() {
  return (
  <div className="max-w-4xl mx-auto" suppressHydrationWarning>
  {/* Zone formulaire */}
- <div className="bg-neutral-100 rounded-lg shadow-md p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
+ <div className="bg-neutral-100 rounded-lg shadow-md p-5 sm:p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
  <h2 className="text-2xl font-semibold text-neutral-900 mb-2">Calculez votre rente viagère</h2>
  <p className="text-sm text-neutral-600 mb-6">Simulation basée sur les tables de mortalité INSEE 2022</p>
  
  {/* Âge */}
  <div className="mb-6">
- <div className="flex justify-between items-center mb-2">
+ <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
  <label className="text-sm text-neutral-600">Votre âge</label>
  <div className="flex items-center gap-2">
  <input
@@ -94,7 +94,7 @@ export default function RenteCalculator() {
 
  {/* Capital */}
  <div className="mb-6">
- <div className="flex justify-between items-center mb-2">
+ <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
  <label className="text-sm text-neutral-600 flex items-center">
  Capital disponible
  <Tooltip content="Montant total de votre épargne (PER, Assurance-vie, livrets...) que vous souhaitez convertir en rente viagère." />
@@ -116,8 +116,7 @@ export default function RenteCalculator() {
  else if (val> 500000) setCapital(500000)
  }}
  onFocus={(e) => e.target.select()}
- className="w-40 px-3 py-1 text-lg font-medium text-right border border-neutral-300 rounded-lg 
- focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+ className="w-28 sm:w-40 px-3 py-1 text-lg font-medium text-right border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
  />
  <span className="text-lg font-medium text-neutral-600">€</span>
  </div>
@@ -274,7 +273,7 @@ export default function RenteCalculator() {
  initial={{ opacity: 0, y: 20 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ duration: 0.3 }}
- className="bg-white rounded-lg shadow-lg p-10 border-t-4 border-primary-600"
+ className="bg-white rounded-lg shadow-lg p-5 sm:p-8 border-t-4 border-primary-600"
 >
  <h3 className="text-xl font-semibold text-neutral-900 mb-6">Votre rente viagère estimée</h3>
  
@@ -286,7 +285,7 @@ export default function RenteCalculator() {
  transition={{ duration: 0.2 }}
  className="flex items-baseline gap-2"
 >
- <span className="text-6xl font-bold tabular-nums text-neutral-900 tracking-tight">
+ <span className="text-4xl sm:text-6xl font-bold tabular-nums text-neutral-900 tracking-tight">
  {formatEuro(result.monthly_amount)}
  </span>
  <span className="text-xl text-neutral-600 font-medium">/ mois</span>
@@ -294,7 +293,7 @@ export default function RenteCalculator() {
  <div className="text-sm text-neutral-500 mt-2">Rente mensuelle garantie à vie</div>
  </div>
 
- <div className="grid grid-cols-2 gap-4 pb-6 border-b border-neutral-200">
+ <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-6 border-b border-neutral-200">
  <div className="bg-neutral-50 rounded-md p-4">
  <div className="text-xs text-neutral-600 font-medium mb-1">Espérance de vie</div>
  <div className="text-2xl font-semibold tabular-nums text-neutral-900">
@@ -329,7 +328,7 @@ export default function RenteCalculator() {
  initial={{ opacity: 0, y: 20 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ duration: 0.3, delay: 0.1 }}
- className="mt-6 bg-white rounded-lg shadow-lg p-8 border border-neutral-200"
+ className="mt-6 bg-white rounded-lg shadow-lg p-4 sm:p-8 border border-neutral-200"
 >
  <ProjectionChart
  capital={capital}

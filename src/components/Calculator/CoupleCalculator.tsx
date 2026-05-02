@@ -45,7 +45,7 @@ export default function CoupleCalculator() {
  return (
  <div className="max-w-5xl mx-auto" suppressHydrationWarning>
  {/* Formulaire */}
- <div className="bg-neutral-100 rounded-lg shadow-md p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
+ <div className="bg-neutral-100 rounded-lg shadow-md p-5 sm:p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
  <h2 className="text-xl font-medium mb-2">Mode couple</h2>
  <p className="text-sm text-neutral-600 mb-6">
  Comparez 9 stratégies de rente pour optimiser votre situation à deux
@@ -97,7 +97,7 @@ export default function CoupleCalculator() {
  <h3 className="font-medium text-primary-900 mb-4">Personne 1</h3>
  
  <div className="mb-4">
- <div className="flex justify-between items-center mb-2">
+ <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
  <label className="text-sm text-neutral-600">Âge</label>
  <div className="flex items-center gap-1">
  <input
@@ -144,7 +144,7 @@ export default function CoupleCalculator() {
  <h3 className="font-medium text-primary-900 mb-4">Personne 2</h3>
  
  <div className="mb-4">
- <div className="flex justify-between items-center mb-2">
+ <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
  <label className="text-sm text-neutral-600">Âge</label>
  <div className="flex items-center gap-1">
  <input
@@ -189,7 +189,7 @@ export default function CoupleCalculator() {
 
  {/* Capital total */}
  <div className="mb-6">
- <div className="flex justify-between items-center mb-2">
+ <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
  <label className="text-sm text-neutral-600">Capital total du couple</label>
  <div className="flex items-center gap-2">
  <input

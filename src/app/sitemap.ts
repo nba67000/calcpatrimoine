@@ -25,12 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
  priority: 0.9,
  },
  {
- url: `${baseUrl}/plus-value-immobiliere`,
- lastModified,
- changeFrequency: 'monthly',
- priority: 0.9,
- },
- {
  url: `${baseUrl}/rente-viagere`,
  lastModified,
  changeFrequency: 'monthly',
@@ -69,12 +63,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
  {
  url: `${baseUrl}/blog/assurance-vie-fiscalite-rachat`,
  lastModified: new Date('2026-04-18'),
- changeFrequency: 'monthly',
- priority: 0.7,
- },
- {
- url: `${baseUrl}/faq/plus-value-immobiliere`,
- lastModified,
  changeFrequency: 'monthly',
  priority: 0.7,
  },

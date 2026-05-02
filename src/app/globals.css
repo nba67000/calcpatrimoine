@@ -111,3 +111,18 @@ html {
   outline: 2px solid #2E4A6F;
   outline-offset: 2px;
 }
+
+/* Slider thumb plus grand sur mobile/touch */
+@media (hover: none) and (pointer: coarse) {
+  input[type="range"]::-webkit-slider-thumb,
+  .custom-range::-webkit-slider-thumb {
+    height: 1.75rem !important;
+    width: 1.75rem !important;
+    margin-top: -0.625rem !important;
+  }
+  input[type="range"]::-moz-range-thumb,
+  .custom-range::-moz-range-thumb {
+    height: 1.75rem !important;
+    width: 1.75rem !important;
+  }
+}

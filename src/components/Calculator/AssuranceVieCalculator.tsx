@@ -186,7 +186,7 @@ export default function AssuranceVieCalculator() {
                 <button
                   key={taux}
                   onClick={() => setTmi(taux)}
-                  className={`py-3 px-2 rounded-lg font-bold text-sm transition-all ${
+                  className={`py-2 px-1 sm:py-3 sm:px-2 rounded-lg font-bold text-sm transition-all ${
                     tmi === taux
                       ? 'bg-primary-600 text-white shadow-md scale-105'
                       : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'

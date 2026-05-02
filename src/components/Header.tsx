@@ -30,7 +30,7 @@ export default function Header() {
  </Link>
  
  {/* Navigation desktop */}
- <nav className="hidden md:flex gap-6 text-sm">
+ <nav className="hidden lg:flex gap-5 text-sm">
  {NAV_HEADER.map((link) => (
  <Link 
  key={link.href}
@@ -48,7 +48,7 @@ export default function Header() {
 
  {/* Mobile menu button */}
  <button 
- className="md:hidden p-2 text-neutral-600 hover:text-neutral-900 transition-colors"
+ className="lg:hidden p-2 text-neutral-600 hover:text-neutral-900 transition-colors"
  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
  aria-label="Menu"
 >
@@ -66,7 +66,7 @@ export default function Header() {
 
  {/* Mobile menu dropdown */}
  {mobileMenuOpen && (
- <nav className="md:hidden border-t border-neutral-200 bg-white">
+ <nav className="lg:hidden border-t border-neutral-200 bg-white">
  <div className="max-w-6xl mx-auto px-4 py-3 space-y-1">
  {NAV_HEADER.map((link) => (
  <Link
