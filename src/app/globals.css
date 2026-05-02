@@ -13,6 +13,12 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
 }
 
+/* Lora remplace Roboto Mono — labels, formules, breadcrumbs */
+.font-mono {
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

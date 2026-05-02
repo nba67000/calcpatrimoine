@@ -14,7 +14,7 @@ export default function Footer() {
  {/* Marque */}
  <div className="col-span-2">
  <Link href="/" className="flex items-center gap-3 mb-4">
- <div className="w-10 h-10 bg-primary-700 rounded-md flex items-center justify-center">
+ <div className="w-10 h-10 bg-primary-700 flex items-center justify-center">
  <span className="text-white font-bold text-xl">C</span>
  </div>
  <span className="text-white text-lg font-bold">CalcPatrimoine</span>

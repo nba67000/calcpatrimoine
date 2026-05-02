@@ -16,205 +16,160 @@ export const metadata: Metadata = {
   },
 }
 
+const SOURCES = [
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051212954', label: 'Article 197 du CGI', desc: 'Barème progressif IR 2026 (revenus 2025), décote, plafonnement QF' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006302756', label: 'Article 194 du CGI', desc: 'Quotient familial : parts de base et parts pour enfants à charge' },
+  { href: 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179579/', label: 'Article 195 du CGI', desc: 'Demi-parts supplémentaires : parent isolé (case T), invalidité, etc.' },
+  { href: 'https://bofip.impots.gouv.fr/bofip/2491-PGP.html/identifiant=BOI-IR-LIQ-20-10-20260407', label: 'BOFiP BOI-IR-LIQ-20-10', desc: 'Barème de l\'impôt sur le revenu 2026 — publié le 07/04/2026' },
+  { href: 'https://bofip.impots.gouv.fr/bofip/2495-PGP.html/identifiant=BOI-IR-LIQ-20-20-30-20250414', label: 'BOFiP BOI-IR-LIQ-20-20-30', desc: 'Décote — paramètres 2026 (indexation +0,9 % sur la base 2025)' },
+]
+
+const TRANCHES = [
+  { tranche: 'Jusqu\'à 11 600 €', taux: '0 %', color: 'text-neutral-500' },
+  { tranche: 'De 11 601 € à 29 579 €', taux: '11 %', color: 'text-green-700' },
+  { tranche: 'De 29 580 € à 84 577 €', taux: '30 %', color: 'text-yellow-700' },
+  { tranche: 'De 84 578 € à 181 917 €', taux: '41 %', color: 'text-orange-700' },
+  { tranche: 'Au-delà de 181 917 €', taux: '45 %', color: 'text-red-700' },
+]
+
+const LIMITES = [
+  'Le revenu saisi est le revenu net imposable (après abattement 10 % ou frais réels).',
+  'Les revenus soumis à taux fixe (plus-values mobilières au PFU, etc.) ne sont pas pris en compte.',
+  'Les réductions et crédits d\'impôt ne sont pas simulés.',
+  'La contribution sur les hauts revenus (CEHR — Art. 223 sexies CGI) n\'est pas calculée.',
+  'La résidence alternée (demi-parts à 0,25) n\'est pas gérée.',
+]
+
 export default function TMIPage() {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-neutral-50">
+      <div className="h-[3px] bg-accent-400 w-full" />
+      <div style={{ backgroundColor: '#F7F3EC' }}>
 
-        {/* En-tête */}
-        <div className="bg-gradient-to-b from-primary-50 to-white border-b border-neutral-200">
-          <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Hero */}
+        <section className="max-w-6xl mx-auto px-6 py-12">
+          <nav className="flex items-center gap-2 font-mono text-xs text-neutral-400 mb-8">
+            <Link href="/" className="hover:text-primary-600 transition-colors">Accueil</Link>
+            <span>/</span>
+            <span className="text-neutral-600">Tranche Marginale d&apos;Imposition</span>
+          </nav>
 
-            {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-sm text-neutral-600 mb-6">
-              <Link href="/" className="hover:text-primary-600">Accueil</Link>
-              <span>›</span>
-              <span className="text-neutral-900 font-medium">Tranche Marginale d'Imposition</span>
-            </div>
+          <div className="h-[2px] w-10 bg-accent-400 mb-6" />
 
-            {/* Titre */}
-            <h1 className="text-5xl font-bold text-neutral-900 mb-6 leading-tight">
-              Calculateur TMI<br />
-              Barème IR 2026
-            </h1>
+          <h1 className="font-serif text-5xl font-bold text-neutral-900 mb-4 leading-tight">
+            Calculateur TMI<br />
+            Barème IR 2026
+          </h1>
 
-            <p className="text-xl text-neutral-700 max-w-3xl leading-relaxed">
-              Calculez votre tranche marginale d'imposition et votre impôt net à partir de votre
-              revenu net imposable, de votre situation familiale et du nombre d'enfants à charge.
-              Barème officiel 2026 (revenus 2025), quotient familial et décote inclus.
-            </p>
+          <p className="text-lg text-neutral-600 max-w-3xl leading-relaxed mb-8">
+            Calculez votre tranche marginale d&apos;imposition et votre impôt net à partir de votre
+            revenu net imposable, de votre situation familiale et du nombre d&apos;enfants à charge.
+            Barème officiel 2026 (revenus 2025), quotient familial et décote inclus.
+          </p>
 
-            {/* Trust markers */}
-            <div className="flex flex-wrap gap-6 mt-8">
-              <div className="flex items-center gap-2 text-sm text-neutral-600">
-                <span className="text-primary-600 text-lg">✓</span>
-                <span>Barème IR 2026 (LF 2026)</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-neutral-600">
-                <span className="text-primary-600 text-lg">✓</span>
-                <span>Quotient familial + plafonnement</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-neutral-600">
-                <span className="text-primary-600 text-lg">✓</span>
-                <span>Décote (Art. 197-I-4 CGI)</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-neutral-600">
-                <span className="text-primary-600 text-lg">✓</span>
-                <span>Zéro donnée conservée</span>
-              </div>
-            </div>
+          <div className="flex flex-wrap gap-x-8 gap-y-2">
+            {['Barème IR 2026 (LF 2026)', 'Quotient familial + plafonnement', 'Décote (Art. 197-I-4 CGI)', 'Zéro donnée conservée'].map(t => (
+              <span key={t} className="font-mono text-xs text-neutral-500">{t}</span>
+            ))}
           </div>
-        </div>
+        </section>
 
-        {/* Disclaimer légal */}
-        <div className="max-w-6xl mx-auto px-4 pt-8">
+        {/* Disclaimer */}
+        <div className="max-w-6xl mx-auto px-6">
           <LegalDisclaimer />
         </div>
 
         {/* Calculateur */}
-        <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="max-w-6xl mx-auto px-6 py-8">
           <TMICalculator />
         </div>
 
         {/* Explications */}
-        <div className="max-w-4xl mx-auto px-4 py-12">
-          <div className="bg-white rounded-xl border border-neutral-200 p-8 space-y-6">
-
-            <h2 className="text-2xl font-bold text-neutral-900">
+        <section className="max-w-4xl mx-auto px-6 py-8">
+          <div className="bg-white border border-neutral-200 p-8 space-y-5">
+            <h2 className="font-serif text-2xl font-bold text-neutral-900">
               Comment fonctionne le barème progressif ?
             </h2>
 
             <div className="space-y-4 text-neutral-700 leading-relaxed">
               <p>
-                <strong>Principe : chaque tranche s'applique sur la fraction concernée du revenu.</strong><br />
+                <strong>Chaque tranche s&apos;applique sur la fraction concernée du revenu.</strong>{' '}
                 Un célibataire gagnant 50 000 € ne paie pas 30 % sur 50 000 €. Il paie 0 % sur les
                 premiers 11 600 €, 11 % de 11 600 € à 29 579 €, et 30 % sur le reste. La TMI est le
-                taux de la tranche la plus haute atteinte, pas le taux appliqué sur l'ensemble du revenu.
+                taux de la tranche la plus haute atteinte, pas le taux appliqué sur l&apos;ensemble du revenu.
               </p>
-
               <p>
-                <strong>Quotient familial : diviser pour mieux imposer.</strong><br />
-                Le revenu est divisé par le nombre de parts fiscales avant d'appliquer le barème, puis
-                l'impôt est multiplié par ce même nombre de parts. Cette mécanique réduit l'impôt des
-                foyers avec enfants. Le gain est toutefois limité par le plafonnement du quotient familial
-                (1 807 € par demi-part supplémentaire — Art. 197-IV CGI).
+                <strong>Quotient familial : diviser pour mieux imposer.</strong>{' '}
+                Le revenu est divisé par le nombre de parts fiscales avant d&apos;appliquer le barème, puis
+                l&apos;impôt est multiplié par ce même nombre de parts. Le gain est limité par le plafonnement
+                du quotient familial (1 807 € par demi-part supplémentaire — Art. 197-IV CGI).
               </p>
-
               <p>
-                <strong>La décote protège les revenus modestes.</strong><br />
-                Si l'impôt brut reste inférieur à 1 982 € (célibataire) ou 3 277 € (couple), une décote
-                s'applique automatiquement et réduit l'impôt proportionnellement (Art. 197-I-4 CGI).
-                Elle s'annule progressivement pour éviter tout effet de seuil brutal.
+                <strong>La décote protège les revenus modestes.</strong>{' '}
+                Si l&apos;impôt brut reste inférieur à 1 982 € (célibataire) ou 3 277 € (couple), une décote
+                s&apos;applique automatiquement et réduit l&apos;impôt proportionnellement (Art. 197-I-4 CGI).
               </p>
             </div>
 
-            <div className="bg-neutral-50 rounded-lg p-5 border border-neutral-200">
-              <h3 className="font-bold text-neutral-900 mb-3 text-sm uppercase tracking-wide">
+            <div className="bg-neutral-50 border border-neutral-200 p-5">
+              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">
                 Barème 2026 — revenus 2025 (Art. 197 CGI, LF 2026)
               </h3>
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-neutral-300">
-                    <th className="text-left py-2 text-neutral-600 font-medium">Tranche (revenu / part)</th>
-                    <th className="text-right py-2 text-neutral-600 font-medium">Taux</th>
+                    <th className="text-left py-2 text-neutral-500 font-mono text-xs">Tranche (revenu / part)</th>
+                    <th className="text-right py-2 text-neutral-500 font-mono text-xs">Taux</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-200">
-                  <tr>
-                    <td className="py-2 text-neutral-700">Jusqu'à 11 600 €</td>
-                    <td className="py-2 text-right font-bold text-neutral-500">0 %</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 text-neutral-700">De 11 601 € à 29 579 €</td>
-                    <td className="py-2 text-right font-bold text-green-700">11 %</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 text-neutral-700">De 29 580 € à 84 577 €</td>
-                    <td className="py-2 text-right font-bold text-yellow-700">30 %</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 text-neutral-700">De 84 578 € à 181 917 €</td>
-                    <td className="py-2 text-right font-bold text-orange-700">41 %</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 text-neutral-700">Au-delà de 181 917 €</td>
-                    <td className="py-2 text-right font-bold text-red-700">45 %</td>
-                  </tr>
+                  {TRANCHES.map(t => (
+                    <tr key={t.tranche}>
+                      <td className="py-2 text-neutral-700">{t.tranche}</td>
+                      <td className={`py-2 text-right font-bold font-mono ${t.color}`}>{t.taux}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Lien PER */}
-        <div className="max-w-4xl mx-auto px-4 py-6">
-          <Link
-            href="/per-individuel"
-            className="block bg-primary-50 border-2 border-primary-200 rounded-xl p-8 hover:border-primary-400 hover:shadow-lg transition-all group"
-          >
-            <div className="flex-1">
-              <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors">
-                Calculez votre économie d'impôt PER
-              </h3>
-              <p className="text-neutral-700 mb-4 leading-relaxed">
-                Connaissant maintenant votre TMI, simulez l'économie d'impôt que vous réaliseriez
-                en versant sur un Plan d'Épargne Retraite individuel (déductibilité Art. 163 quatervicies CGI).
-              </p>
-              <div className="flex items-center gap-2 text-primary-600 font-medium group-hover:gap-3 transition-all">
-                <span>Simulateur PER individuel</span>
-                <span>→</span>
+        {/* Lien vers PER */}
+        <section className="max-w-4xl mx-auto px-6 pb-8">
+          <div className="border-t border-neutral-300">
+            <Link
+              href="/per-individuel"
+              className="group flex items-center justify-between py-5 border-b border-neutral-200 hover:bg-white transition-colors pr-4"
+              style={{ borderLeft: '3px solid #D4AF37', paddingLeft: '1.25rem' }}
+            >
+              <div>
+                <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">Calculez votre économie d&apos;impôt PER</p>
+                <p className="text-sm text-neutral-500">Connaissant votre TMI, simulez l&apos;économie d&apos;impôt en versant sur un PER individuel (Art. 163 quatervicies CGI).</p>
               </div>
-            </div>
-          </Link>
-        </div>
+              <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
+            </Link>
+          </div>
+        </section>
 
-        {/* Méthodologie et sources */}
-        <div className="max-w-4xl mx-auto px-4 py-12">
-          <div className="bg-neutral-100 rounded-xl p-8">
-            <h2 className="text-2xl font-bold text-neutral-900 mb-6">
+        {/* Méthodologie */}
+        <section className="max-w-4xl mx-auto px-6 py-8 pb-16">
+          <div className="bg-white border border-neutral-200 p-8">
+            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
               Méthodologie et sources officielles
             </h2>
 
             <div className="space-y-6">
-
               <div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-3">Textes de loi</h3>
+                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Textes de loi</h3>
                 <ul className="space-y-3 text-sm">
-                  {[
-                    {
-                      href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051212954',
-                      label: 'Article 197 du CGI',
-                      desc: 'Barème progressif IR 2026 (revenus 2025), décote, plafonnement QF',
-                    },
-                    {
-                      href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006302756',
-                      label: 'Article 194 du CGI',
-                      desc: 'Quotient familial : parts de base et parts pour enfants à charge',
-                    },
-                    {
-                      href: 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179579/',
-                      label: 'Article 195 du CGI',
-                      desc: 'Demi-parts supplémentaires : parent isolé (case T), invalidité, etc.',
-                    },
-                    {
-                      href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006302765',
-                      label: 'Article 196 du CGI',
-                      desc: 'Définition des enfants à charge fiscalement',
-                    },
-                  ].map((s) => (
-                    <li key={s.href} className="flex items-start gap-2">
-                      <span className="text-primary-600 mt-1">•</span>
+                  {SOURCES.map(s => (
+                    <li key={s.href} className="flex items-start gap-3">
+                      <span className="text-accent-400 mt-0.5 shrink-0">—</span>
                       <div>
-                        <a
-                          href={s.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary-600 hover:underline font-medium"
-                        >
-                          {s.label}
-                        </a>
-                        <p className="text-neutral-600 text-xs mt-0.5">{s.desc}</p>
+                        <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
+                        <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>
                       </div>
                     </li>
                   ))}
@@ -222,93 +177,35 @@ export default function TMIPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-3">Documentation officielle</h3>
-                <ul className="space-y-3 text-sm">
-                  {[
-                    {
-                      href: 'https://bofip.impots.gouv.fr/bofip/2491-PGP.html/identifiant=BOI-IR-LIQ-20-10-20260407',
-                      label: 'BOFiP BOI-IR-LIQ-20-10',
-                      desc: 'Barème de l\'impôt sur le revenu 2026 — publié le 07/04/2026',
-                    },
-                    {
-                      href: 'https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20260407',
-                      label: 'BOFiP BOI-IR-LIQ-20-20-20',
-                      desc: 'Plafonnement des effets du quotient familial',
-                    },
-                    {
-                      href: 'https://bofip.impots.gouv.fr/bofip/2495-PGP.html/identifiant=BOI-IR-LIQ-20-20-30-20250414',
-                      label: 'BOFiP BOI-IR-LIQ-20-20-30',
-                      desc: 'Décote — paramètres 2026 (indexation +0,9 % sur la base 2025)',
-                    },
-                  ].map((s) => (
-                    <li key={s.href} className="flex items-start gap-2">
-                      <span className="text-primary-600 mt-1">•</span>
-                      <div>
-                        <a
-                          href={s.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary-600 hover:underline font-medium"
-                        >
-                          {s.label}
-                        </a>
-                        <p className="text-neutral-600 text-xs mt-0.5">{s.desc}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-2">Limites connues</h3>
-                <ul className="text-sm text-neutral-600 space-y-1">
-                  {[
-                    'Le revenu saisi est le revenu net imposable (après abattement 10 % ou frais réels).',
-                    'Les revenus soumis à taux fixe (plus-values mobilières au PFU, etc.) ne sont pas pris en compte.',
-                    'Les réductions et crédits d\'impôt ne sont pas simulés.',
-                    'La contribution sur les hauts revenus (CEHR — Art. 223 sexies CGI) n\'est pas calculée.',
-                    'La résidence alternée (demi-parts à 0,25) n\'est pas gérée.',
-                  ].map((l, i) => (
+                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
+                <ul className="text-sm text-neutral-600 space-y-1.5">
+                  {LIMITES.map((l, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-neutral-400 mt-0.5">–</span>
+                      <span className="text-neutral-400 mt-0.5 shrink-0">—</span>
                       <span>{l}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="bg-primary-50 rounded-lg p-4 border border-primary-200">
+              <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
                 <p className="text-sm text-primary-800">
-                  <strong>Méthodologie vérifiée</strong> : Les calculs ont été validés sur trois cas
-                  de référence issus des barèmes officiels LF 2026, dont un cas de plafonnement du
-                  quotient familial. Dernière vérification : 19 avril 2026.
+                  <strong>Méthodologie vérifiée</strong> — calculs validés sur trois cas de référence issus des barèmes LF 2026,
+                  dont un cas de plafonnement du quotient familial. Dernière vérification : 19 avril 2026.
                 </p>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Footer disclaimer */}
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <div className="text-center text-sm text-neutral-600 space-y-2">
-            <p className="italic">
-              Cet outil est fourni à titre informatif uniquement. Il ne constitue pas un conseil
-              fiscal personnalisé. Pour toute décision patrimoniale importante, consultez un
-              conseiller en gestion de patrimoine indépendant ou un expert-comptable.
-            </p>
-            <p>
-              <strong>Code open-source :</strong>{' '}
-              <a
-                href="https://github.com/nba67000/calcpatrimoine"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary-600 hover:underline"
-              >
-                github.com/nba67000/calcpatrimoine
-              </a>
+          <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
+            <p className="font-mono text-xs text-neutral-400 leading-relaxed">
+              Outil indicatif uniquement. Ne constitue pas un conseil fiscal personnalisé.
+              Consultez un conseiller en gestion de patrimoine ou un expert-comptable.{' '}
+              <a href="https://github.com/nba67000/calcpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
             </p>
           </div>
-        </div>
+        </section>
+
       </div>
       <Footer />
     </>

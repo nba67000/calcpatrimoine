@@ -1,186 +1,247 @@
-// src/app/page.tsx
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import HomeHeroWidget from '@/components/HomeHeroWidget'
 
 export const metadata: Metadata = {
-  title: 'CalcPatrimoine - Calculateurs gratuits patrimoine & retraite',
-  description: 'Calculateurs gratuits et open-source pour vos décisions patrimoniales : rente viagère, assurance-vie, PER. Zéro donnée conservée.',
-  keywords: 'calculateur patrimoine, rente viagère, assurance vie, PER, retraite, simulateur gratuit',
+  title: 'CalcPatrimoine — Calculateurs patrimoniaux gratuits et open-source',
+  description: 'Rente viagère, assurance-vie, PER, impôt sur le revenu. Calculs basés sur les textes officiels. Aucune donnée conservée. Code source ouvert.',
+  keywords: 'calculateur patrimoine, rente viagère, assurance vie, PER, TMI, retraite, simulateur gratuit, open-source',
   openGraph: {
-    title: 'CalcPatrimoine - Calculateurs gratuits patrimoine',
-    description: 'Outils open-source pour simuler rente viagère, fiscalité assurance-vie, et optimiser votre patrimoine.',
+    title: 'CalcPatrimoine — Calculateurs patrimoniaux gratuits',
+    description: 'Quatre outils de calcul patrimonial basés sur les textes officiels. Aucun conseil, aucune donnée conservée.',
     type: 'website',
   },
 }
+
+const CALCULATEURS_ACTIFS = [
+  {
+    href: '/rente-viagere',
+    nom: 'Rente Viagère',
+    tag: 'Assurance',
+    desc: 'Convertit un capital en revenu mensuel garanti à vie. Seuil de rentabilité, espérance INSEE, stratégies couple.',
+  },
+  {
+    href: '/assurance-vie',
+    nom: 'Assurance-Vie',
+    tag: 'Fiscalité',
+    desc: 'Fiscalité des rachats (PFU vs barème IR) et transmission aux bénéficiaires (succession).',
+  },
+  {
+    href: '/tmi',
+    nom: 'TMI — Impôt sur le revenu',
+    tag: 'Fiscalité',
+    desc: 'Visualise les tranches marginales, le taux effectif et l\'impôt annuel selon le barème en vigueur.',
+  },
+  {
+    href: '/per-individuel',
+    nom: 'PER Individuel',
+    tag: 'Retraite',
+    desc: 'Économie d\'impôt sur versement et comparaison avec l\'assurance-vie selon votre TMI.',
+  },
+]
+
+const CALCULATEURS_A_VENIR = [
+  {
+    nom: 'SCPI',
+    tag: 'Immobilier',
+    desc: 'Revenus locatifs papier et rentabilité comparée entre véhicules.',
+  },
+  {
+    nom: 'Immobilier locatif',
+    tag: 'Immobilier',
+    desc: 'Rendement brut/net, cash-flow, fiscalité LMNP et SCI.',
+  },
+]
+
+const ARTICLES = [
+  {
+    href: '/blog/assurance-vie-fiscalite-rachat',
+    tag: 'Fiscalité',
+    duree: '11 min',
+    titre: 'Assurance-vie : combien vous allez vraiment payer sur un rachat',
+    accroche: 'Règle proportionnelle, abattement 8 ans, PFU vs IR, versements avant 2017. Tout le détail.',
+  },
+  {
+    href: '/blog/rente-viagere-seuil-rentabilite',
+    tag: 'Rente viagère',
+    duree: '15 min',
+    titre: 'Pourquoi le seuil de rentabilité est après votre espérance de vie',
+    accroche: 'À 72 ans avec 250 000 €, le seuil tombe à 15,8 ans. Ce n\'est pas une anomalie.',
+  },
+]
 
 export default function HomePage() {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-neutral-50">
-        {/* Hero */}
-        <section className="bg-gradient-to-b from-primary-50 to-white py-20 border-b border-neutral-200">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h1 className="text-5xl font-bold text-neutral-900 mb-6">
-              Calculateurs gratuits pour vos décisions patrimoniales
-            </h1>
-            <p className="text-xl text-neutral-700 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Outils open-source pour simuler rente viagère, fiscalité assurance-vie, 
-              et optimiser votre patrimoine. Aucune donnée conservée, calculs 100% côté navigateur.
-            </p>
-            
-            <div className="flex flex-wrap gap-6 justify-center text-sm">
-              <div className="flex items-center gap-2 text-neutral-600">
-                <span className="font-medium">100% gratuit</span>
+
+      {/* Liseré or accent en haut du contenu */}
+      <div className="h-[3px] bg-accent-400 w-full" />
+
+      <div style={{ backgroundColor: '#F7F3EC' }}>
+
+        {/* ── HERO ─────────────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-6 pt-16 pb-12 lg:pt-24 lg:pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.75fr_1fr] gap-10 lg:gap-16 items-start">
+
+            {/* Colonne gauche — éditoriale */}
+            <div>
+              <p className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-6">
+                Calcul patrimonial — France
+              </p>
+
+              {/* Filet or */}
+              <div className="h-[2px] w-14 bg-accent-400 mb-8" />
+
+              <h1 className="font-serif text-5xl lg:text-[3.6rem] text-neutral-900 leading-tight tracking-tight mb-6">
+                Des chiffres précis.<br />
+                Pas de conseil.
+              </h1>
+
+              <p className="text-lg text-neutral-600 leading-relaxed mb-10 max-w-xl">
+                Rente viagère, assurance-vie, PER, impôt sur le revenu.
+                Quatre calculateurs basés sur les textes officiels en vigueur.
+                Les calculs s&apos;exécutent entièrement dans votre navigateur.
+              </p>
+
+              {/* Données de confiance en monospace */}
+              <div className="flex flex-wrap gap-x-8 gap-y-2.5">
+                {[
+                  '0 donnée collectée',
+                  '4 calculateurs actifs',
+                  'Sources : CGI · BOFiP · INSEE',
+                  'Code source ouvert',
+                ].map(label => (
+                  <span key={label} className="font-mono text-xs text-neutral-500">
+                    {label}
+                  </span>
+                ))}
               </div>
-              <div className="flex items-center gap-2 text-neutral-600">
-                <span className="font-medium">Open-source</span>
-              </div>
-              <div className="flex items-center gap-2 text-neutral-600">
-                <span className="font-medium">Zéro tracking</span>
-              </div>
-              <div className="flex items-center gap-2 text-neutral-600">
-                <span className="font-medium">Tables INSEE officielles</span>
-              </div>
+            </div>
+
+            {/* Colonne droite — widget interactif */}
+            <div>
+              <HomeHeroWidget />
             </div>
           </div>
         </section>
 
-        {/* Calculateurs Grid */}
-        <section className="max-w-6xl mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-3">
-            Nos calculateurs
+        {/* ── CALCULATEURS ─────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
+
+          {/* En-tête de section */}
+          <div className="flex items-center gap-6 mb-0">
+            <h2 className="font-serif text-3xl text-neutral-900 shrink-0">
+              Les outils
+            </h2>
+            <div className="flex-1 h-[1px] bg-neutral-300" />
+          </div>
+
+          {/* Calculateurs disponibles */}
+          <div className="border-t border-neutral-300">
+            {CALCULATEURS_ACTIFS.map((calc) => (
+              <Link
+                key={calc.href}
+                href={calc.href}
+                className="group flex items-center gap-4 lg:gap-8 py-5 border-b border-neutral-200 hover:bg-white transition-colors pr-6"
+                style={{ borderLeft: '3px solid #2E4A6F', paddingLeft: '1.25rem' }}
+              >
+                <span className="font-mono text-xs text-primary-600 border border-primary-300 px-2 py-0.5 shrink-0 hidden sm:inline bg-white">
+                  {calc.tag}
+                </span>
+                <span className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors shrink-0 min-w-[10rem] lg:min-w-[14rem]">
+                  {calc.nom}
+                </span>
+                <span className="text-neutral-500 text-sm flex-1 hidden md:block leading-snug">
+                  {calc.desc}
+                </span>
+                <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-auto shrink-0">
+                  →
+                </span>
+              </Link>
+            ))}
+
+            {/* Calculateurs à venir — atténués */}
+            {CALCULATEURS_A_VENIR.map((calc) => (
+              <div
+                key={calc.nom}
+                className="flex items-center gap-4 lg:gap-8 py-5 border-b border-neutral-200 pr-6 opacity-35"
+                style={{ borderLeft: '3px solid #94A3B8', paddingLeft: '1.25rem' }}
+              >
+                <span className="font-mono text-xs text-neutral-500 border border-neutral-300 px-2 py-0.5 shrink-0 hidden sm:inline">
+                  {calc.tag}
+                </span>
+                <span className="font-bold text-neutral-500 shrink-0 min-w-[10rem] lg:min-w-[14rem]">
+                  {calc.nom}
+                </span>
+                <span className="text-neutral-400 text-sm flex-1 hidden md:block leading-snug">
+                  {calc.desc}
+                </span>
+                <span className="font-mono text-xs text-neutral-400 ml-auto shrink-0">
+                  Bientôt
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── MANIFESTE ────────────────────────────────────────── */}
+        <section className="max-w-2xl mx-auto px-6 py-16 lg:py-20 text-center">
+          <div className="h-[1px] w-20 bg-accent-400 mx-auto mb-10" />
+
+          <h2 className="font-serif text-3xl lg:text-4xl font-bold text-neutral-900 leading-tight mb-6">
+            CalcPatrimoine calcule.<br />
+            Il ne conseille pas.
           </h2>
-          <p className="text-neutral-600 mb-10 text-lg">
-            Choisissez le calculateur adapté à votre situation patrimoniale
+
+          <p className="text-neutral-600 leading-relaxed">
+            Chaque résultat repose sur les textes officiels en vigueur —
+            Code général des impôts, BOFiP, tables de mortalité INSEE 2022.
+            Le code source est public et auditable.
+            Les données ne quittent pas votre navigateur.
           </p>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            {/* Rente Viagère */}
-            <Link 
-              href="/rente-viagere"
-              className="bg-white rounded-xl border-2 border-neutral-200 p-8 hover:border-primary-400 hover:shadow-lg transition-all group"
-            >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors">
-                Rente Viagère
-              </h3>
-              <p className="text-neutral-600 mb-6 leading-relaxed">
-                Calculez votre seuil de rentabilité, comparez avec l&apos;espérance de vie INSEE, 
-                et simulez différentes stratégies couple.
-              </p>
-              <div className="flex items-center gap-2 text-primary-600 font-medium group-hover:gap-3 transition-all">
-                <span>Accéder au calculateur</span>
-                <span>→</span>
-              </div>
-            </Link>
 
-            {/* Assurance-Vie (2 calculateurs) */}
-            <Link 
-              href="/assurance-vie"
-              className="bg-white rounded-xl border-2 border-neutral-200 p-8 hover:border-primary-400 hover:shadow-lg transition-all group relative"
-            >
-              <div className="absolute top-4 right-4 bg-primary-100 text-primary-700 text-xs font-bold px-2 py-1 rounded-full">
-                2 outils
-              </div>
-              <h3 className="text-2xl font-bold text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors">
-                Assurance-Vie
-              </h3>
-              <p className="text-neutral-600 mb-6 leading-relaxed">
-                Deux calculateurs : fiscalité des rachats (PFU vs IR) et 
-                transmission aux bénéficiaires (succession).
-              </p>
-              <div className="flex items-center gap-2 text-primary-600 font-medium group-hover:gap-3 transition-all">
-                <span>Voir les calculateurs</span>
-                <span>→</span>
-              </div>
-            </Link>
+          <div className="h-[1px] w-20 bg-accent-400 mx-auto mt-10" />
+        </section>
 
-            {/* PER (coming soon) */}
-            <div className="bg-neutral-50 rounded-xl border-2 border-dashed border-neutral-300 p-8">
-              <h3 className="text-2xl font-bold text-neutral-500 mb-3">
-                PER (Retraite)
-              </h3>
-              <p className="text-neutral-500 mb-6 leading-relaxed">
-                Optimisez votre déduction fiscale et comparez PER vs Assurance-vie 
-                selon votre situation.
-              </p>
-              <div className="text-neutral-400 font-medium">
-                Bientôt disponible
-              </div>
-            </div>
+        {/* ── ARTICLES ─────────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-6 py-12 pb-24">
 
-            {/* SCPI */}
-            <div className="bg-neutral-50 rounded-xl border-2 border-dashed border-neutral-300 p-8">
-              <h3 className="text-2xl font-bold text-neutral-500 mb-3">
-                SCPI
-              </h3>
-              <p className="text-neutral-500 mb-6 leading-relaxed">
-                Simulez vos revenus locatifs et comparez la rentabilité 
-                de différentes SCPI.
-              </p>
-              <div className="text-neutral-400 font-medium">
-                Bientôt disponible
-              </div>
-            </div>
+          <div className="flex items-center gap-6 mb-0">
+            <h2 className="font-serif text-3xl text-neutral-900 shrink-0">
+              À lire avant de calculer
+            </h2>
+            <div className="flex-1 h-[1px] bg-neutral-300" />
+          </div>
 
-            {/* Immobilier locatif */}
-            <div className="bg-neutral-50 rounded-xl border-2 border-dashed border-neutral-300 p-8">
-              <h3 className="text-2xl font-bold text-neutral-500 mb-3">
-                Immobilier locatif
-              </h3>
-              <p className="text-neutral-500 mb-6 leading-relaxed">
-                Calculez la rentabilité de votre projet immobilier 
-                (rendement, cash-flow, fiscalité).
-              </p>
-              <div className="text-neutral-400 font-medium">
-                Bientôt disponible
-              </div>
-            </div>
-
+          <div className="border-t border-neutral-300">
+            {ARTICLES.map((article) => (
+              <Link
+                key={article.href}
+                href={article.href}
+                className="group flex flex-col gap-1.5 py-6 border-b border-neutral-200 hover:bg-white transition-colors px-5"
+                style={{ borderLeft: '3px solid #D4AF37' }}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-xs text-neutral-500">{article.tag}</span>
+                  <span className="font-mono text-xs text-neutral-300">·</span>
+                  <span className="font-mono text-xs text-neutral-500">{article.duree} de lecture</span>
+                </div>
+                <h3 className="text-lg font-bold text-neutral-900 group-hover:text-primary-700 transition-colors leading-snug">
+                  {article.titre}
+                </h3>
+                <p className="text-sm text-neutral-500 leading-snug">
+                  {article.accroche}
+                </p>
+              </Link>
+            ))}
           </div>
         </section>
 
-        {/* Articles récents */}
-        <section className="max-w-6xl mx-auto px-4 py-16 bg-white rounded-xl my-8 border border-neutral-200">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-3">
-            Articles récents
-          </h2>
-          <p className="text-neutral-600 mb-8 text-lg">
-            Guides complets pour comprendre avant de calculer
-          </p>
-          
-          <div className="space-y-4">
-            <Link 
-              href="/blog/assurance-vie-fiscalite-rachat"
-              className="block p-6 rounded-lg border border-neutral-200 hover:border-primary-300 hover:bg-primary-50 transition-colors"
-            >
-              <div className="text-primary-600 text-sm font-medium mb-2">Fiscalité · 11 min</div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                Assurance-vie : combien vous allez vraiment payer sur un rachat
-              </h3>
-              <p className="text-neutral-600">
-                Règle proportionnelle, abattement 8 ans, PFU vs IR, versements avant 2017. Tout le détail.
-              </p>
-            </Link>
-
-            <Link 
-              href="/blog/rente-viagere-seuil-rentabilite"
-              className="block p-6 rounded-lg border border-neutral-200 hover:border-primary-300 hover:bg-primary-50 transition-colors"
-            >
-              <div className="text-primary-600 text-sm font-medium mb-2">Rente viagère · 15 min</div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                Pourquoi le seuil de rentabilité est après votre espérance de vie
-              </h3>
-              <p className="text-neutral-600">
-                À 72 ans avec 250 000€, le seuil tombe à 15,8 ans. Ce n&apos;est pas une anomalie.
-              </p>
-            </Link>
-          </div>
-        </section>
       </div>
+
       <Footer />
     </>
   )

@@ -22,10 +22,10 @@ function FAQAccordion({ item }: { item: FAQItem }) {
  const [isOpen, setIsOpen] = useState(false)
 
  return (
- <div className="border border-neutral-200 rounded-lg mb-3 overflow-hidden">
+ <div className="border border-neutral-200 mb-2 overflow-hidden">
  <button
  onClick={() => setIsOpen(!isOpen)}
- className="w-full px-6 py-4 flex justify-between items-center bg-white hover:bg-neutral-50 transition-colors text-left"
+ className="w-full px-5 py-4 flex justify-between items-center bg-white hover:bg-[#F7F3EC] transition-colors text-left"
 >
  <span className="font-medium text-neutral-900 pr-4">{item.question}</span>
  <svg 
@@ -137,7 +137,7 @@ export default function FAQPage() {
  <tr>
  <td className="border border-neutral-300 px-4 py-2 font-medium">Durée</td>
  <td className="border border-neutral-300 px-4 py-2">Limité par votre capital</td>
- <td className="border border-neutral-300 px-4 py-2">♾️ Jusqu&apos;à votre décès (illimité)</td>
+ <td className="border border-neutral-300 px-4 py-2">Jusqu&apos;à votre décès (illimité)</td>
  </tr>
  <tr>
  <td className="border border-neutral-300 px-4 py-2 font-medium">Héritage</td>
@@ -310,7 +310,7 @@ export default function FAQPage() {
  <p className="mb-3">
  <strong>Exemple concret</strong> :
  </p>
- <div className="bg-neutral-100 p-4 rounded-lg mb-3">
+ <div className="bg-neutral-100 p-4 border border-neutral-200 mb-3">
  <p className="mb-2">
  Jean, 65 ans, verse 100 000€. Il reçoit 614€/mois.
  </p>
@@ -359,7 +359,7 @@ export default function FAQPage() {
  <p className="mb-3">
  <strong>Exemple extrême</strong> :
  </p>
- <div className="bg-primary-100 p-4 rounded-lg mb-3">
+ <div className="bg-primary-100 p-4 border border-neutral-200 mb-3">
  <p className="mb-2">
  Marie, 65 ans, verse 100 000€. Elle reçoit 532€/mois (femme).
  </p>
@@ -416,7 +416,7 @@ export default function FAQPage() {
  </ol>
  <div className="bg-primary-50 border-l-4 border-primary-500 p-4 mt-4">
  <p className="text-sm text-primary-900">
- 🚨 <strong>CRUCIAL</strong> : Avant de signer, assurez-vous de garder une épargne de sécurité. 
+ <strong>CRUCIAL</strong> — Avant de signer, assurez-vous de garder une épargne de sécurité.
  La rente viagère doit compléter vos revenus, pas être votre unique ressource.
  </p>
  </div>
@@ -453,7 +453,7 @@ export default function FAQPage() {
  <p className="mb-3">
  <strong>Exemple chiffré</strong> :
  </p>
- <div className="bg-primary-100 p-4 rounded-lg mb-3">
+ <div className="bg-primary-100 p-4 border border-neutral-200 mb-3">
  <p className="mb-2">
  Pierre, 65 ans, verse 100 000€.
  </p>
@@ -604,7 +604,7 @@ export default function FAQPage() {
  <p className="mb-3">
  <strong>Exemple concret</strong> :
  </p>
- <div className="bg-primary-100 p-4 rounded-lg">
+ <div className="bg-primary-100 p-4 border border-neutral-200">
  <p className="mb-2">
  Paul, 65 ans, reçoit 614€/mois de rente.
  </p>
@@ -707,44 +707,41 @@ export default function FAQPage() {
  ]
 
  return (
- <main className="min-h-screen bg-gradient-to-b from-neutral-50 to-white">
+ <>
  <Header />
+ <div className="h-[3px] bg-accent-400 w-full" />
+ <main style={{ backgroundColor: '#F7F3EC' }}>
 
- <div className="max-w-4xl mx-auto px-4 py-16">
+ <div className="max-w-4xl mx-auto px-6 py-16">
  {/* En-tête */}
- <header className="text-center mb-8">
- <h1 className="text-4xl font-bold text-neutral-900 mb-4">
+ <header className="mb-12">
+ <nav className="flex items-center gap-2 font-mono text-xs text-neutral-400 mb-8">
+ <a href="/" className="hover:text-primary-600 transition-colors">Accueil</a>
+ <span>/</span>
+ <span className="text-neutral-600">FAQ</span>
+ </nav>
+
+ <div className="h-[2px] w-10 bg-accent-400 mb-6" />
+
+ <h1 className="font-serif text-4xl font-bold text-neutral-900 mb-4">
  Questions fréquentes
  </h1>
- <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-8">
- Tout ce que vous devez savoir sur la rente viagère, expliqué simplement avec des exemples concrets.
+ <p className="text-lg text-neutral-600 max-w-2xl mb-10">
+ Tout ce que vous devez savoir sur la rente viagère, expliqué avec des exemples concrets.
  </p>
- 
- {/* Lien vers FAQ Assurance-Vie */}
- <div className="max-w-2xl mx-auto mb-6">
+
+ <div className="border-t border-neutral-300">
  <a
  href="/faq/assurance-vie"
- className="block bg-primary-50 border-2 border-primary-200 rounded-xl p-6 hover:border-primary-400 hover:shadow-md transition-all group"
+ className="group flex items-center justify-between py-5 border-b border-neutral-200 hover:bg-white transition-colors pr-4"
+ style={{ borderLeft: '3px solid #D4AF37', paddingLeft: '1.25rem' }}
 >
- <div className="flex items-center gap-4">
- <div className="text-3xl"></div>
- <div className="flex-1 text-left">
- <div className="font-bold text-neutral-900 mb-1 group-hover:text-primary-600 transition-colors">
- FAQ Assurance-Vie
+ <div>
+ <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">FAQ Assurance-Vie</p>
+ <p className="text-sm text-neutral-500">Fiscalité du rachat : PFU vs IR, abattement, optimisations.</p>
  </div>
- <div className="text-sm text-neutral-600">
- Fiscalité du rachat : PFU vs IR, abattement, optimisations
- </div>
- </div>
- <div className="text-primary-600 group-hover:translate-x-1 transition-transform">
- →
- </div>
- </div>
+ <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
  </a>
- </div>
- 
- {/* Cross-link Méthodologie */}
- <div className="max-w-2xl mx-auto">
  <CrossLink
  title="Voir les formules détaillées"
  description="Découvrez comment sont calculées les rentes avec les tables INSEE"
@@ -756,9 +753,8 @@ export default function FAQPage() {
  {/* Sections FAQ */}
  {sections.map((section, sectionIndex) => (
  <section key={sectionIndex} className="mb-12">
- <h2 className="text-2xl font-bold text-neutral-900 mb-6 flex items-center gap-2">
- <span>{section.icon}</span>
- <span>{section.title}</span>
+ <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
+ {section.title}
  </h2>
  
  <div>
@@ -779,22 +775,22 @@ export default function FAQPage() {
  </div>
 
  {/* CTA final */}
- <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg p-8 text-center text-white mt-16">
- <h3 className="text-2xl font-bold mb-3">Vous avez d&apos;autres questions ?</h3>
- <p className="text-primary-100 mb-6">
- Contactez-nous par email, nous vous répondrons sous 48h.
+ <div className="bg-primary-700 p-8 text-center text-white mt-16">
+ <h3 className="font-serif text-2xl font-bold mb-3">Vous avez d&apos;autres questions ?</h3>
+ <p className="text-primary-200 mb-6 font-mono text-sm">
+ Réponse par email sous 48h.
  </p>
  <a
  href="mailto:contact@calcpatrimoine.fr"
- className="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg font-medium 
- hover:bg-primary-50 transition-colors"
+ className="inline-block bg-white text-primary-700 px-8 py-3 font-medium hover:bg-neutral-100 transition-colors"
 >
- Nous contacter
+ Nous contacter →
  </a>
  </div>
  </div>
 
- <Footer />
  </main>
+ <Footer />
+ </>
  )
 }

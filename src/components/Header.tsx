@@ -19,8 +19,7 @@ export default function Header() {
  onClick={() => setMobileMenuOpen(false)}
 >
  {/* Logo */}
- <div className="w-11 h-11 bg-primary-700 rounded-md flex items-center justify-center shadow-md 
- group-hover:shadow-lg group-hover:bg-primary-800 transition-all duration-200">
+ <div className="w-11 h-11 bg-primary-700 flex items-center justify-center group-hover:bg-primary-800 transition-colors duration-200">
  <span className="text-white font-bold text-2xl">C</span>
  </div>
  
@@ -73,7 +72,7 @@ export default function Header() {
  <Link
  key={link.href}
  href={link.href}
- className={`block px-4 py-3 rounded-md transition-colors ${
+ className={`block px-4 py-3 transition-colors ${
  pathname === link.href
  ? 'bg-primary-50 text-primary-700 font-medium'
  : 'text-neutral-700 hover:bg-neutral-50'

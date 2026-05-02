@@ -18,7 +18,8 @@
       "Bash(Select-String -Path package.json -Pattern \"vitest|jest|test\")",
       "Bash(npm install *)",
       "Bash(Start-Sleep -Seconds 30)",
-      "Bash(npm --version)"
+      "Bash(npm --version)",
+      "PowerShell(npm install *)"
     ]
   }
 }

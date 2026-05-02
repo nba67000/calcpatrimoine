@@ -85,7 +85,7 @@ const config: Config = {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         serif: ['Playfair Display', 'Georgia', 'serif'],
-        mono: ['Roboto Mono', 'ui-monospace', 'monospace'],
+        mono: ['Lora', 'Georgia', 'serif'],
       },
       fontSize: {
         'display': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '700' }],
