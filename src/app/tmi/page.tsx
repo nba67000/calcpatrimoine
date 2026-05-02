@@ -206,6 +206,24 @@ export default function TMIPage() {
           </div>
         </section>
 
+
+        {/* FAQ cross-link */}
+        <section className="max-w-4xl mx-auto px-6 pb-16">
+          <div className="border-t border-neutral-300">
+            <Link
+              href="/faq/tmi"
+              className="group flex items-center justify-between py-5 border-b border-neutral-200 hover:bg-white transition-colors pr-4"
+              style={{ borderLeft: '3px solid #D4AF37', paddingLeft: '1.25rem' }}
+            >
+              <div>
+                <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">FAQ TMI</p>
+                <p className="text-sm text-neutral-500">TMI vs taux moyen, quotient familial, décote, utilité pour le PER et l&apos;assurance-vie.</p>
+              </div>
+              <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
+            </Link>
+          </div>
+        </section>
+
       </div>
       <Footer />
     </>

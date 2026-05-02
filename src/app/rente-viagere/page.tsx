@@ -19,7 +19,7 @@ const MODES: { id: CalculatorMode; label: string; desc: string }[] = [
 const CROSS_LINKS = [
   { href: '/assurance-vie/fiscalite-rachat', label: 'Plutôt un rachat qu\'une rente ?', desc: 'Calculez la fiscalité exacte d\'un rachat partiel ou total d\'assurance-vie.' },
   { href: '/blog/rente-viagere-seuil-rentabilite', label: 'Article — Le seuil de rentabilité', desc: 'À 72 ans avec 250 000 €, le seuil tombe à 15,8 ans. Ce n\'est pas une anomalie.' },
-  { href: '/faq', label: 'FAQ rente viagère', desc: 'Espérance de vie, réversion, fiscalité, différence avec le viager immobilier.' },
+  { href: '/faq/rente-viagere', label: 'FAQ rente viagère', desc: 'Espérance de vie, réversion, fiscalité, couple, bon âge pour souscrire.' },
 ]
 
 const SOURCES = [

@@ -105,6 +105,15 @@ export default function TransmissionPage() {
               <div>
                 <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">Vous voulez retirer de l&apos;argent de votre contrat ?</p>
                 <p className="text-sm text-neutral-500">Calculateur de fiscalité des rachats — comparaison automatique PFU vs IR.</p>
+            </Link>
+            <Link
+              href="/faq/transmission"
+              className="group flex items-center justify-between py-5 border-b border-neutral-200 hover:bg-white transition-colors pr-4"
+              style={{ borderLeft: '3px solid #D4AF37', paddingLeft: '1.25rem' }}
+            >
+              <div>
+                <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">FAQ Transmission Assurance-Vie</p>
+                <p className="text-sm text-neutral-500">Article 990 I, 757 B, clause bénéficiaire, abattements — toutes vos questions.
               </div>
               <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
             </Link>

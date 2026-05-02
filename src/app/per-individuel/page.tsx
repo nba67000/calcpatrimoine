@@ -252,6 +252,24 @@ export default function PERIndividuelPage() {
           </div>
         </section>
 
+
+        {/* FAQ cross-link */}
+        <section className="max-w-4xl mx-auto px-6 pb-16">
+          <div className="border-t border-neutral-300">
+            <Link
+              href="/faq/per"
+              className="group flex items-center justify-between py-5 border-b border-neutral-200 hover:bg-white transition-colors pr-4"
+              style={{ borderLeft: '3px solid #D4AF37', paddingLeft: '1.25rem' }}
+            >
+              <div>
+                <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">FAQ PER Individuel</p>
+                <p className="text-sm text-neutral-500">Plafonds 2026, report N-1/N-2/N-3, sortie en capital ou rente, stratégies.</p>
+              </div>
+              <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
+            </Link>
+          </div>
+        </section>
+
       </div>
       <Footer />
     </>
