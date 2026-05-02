@@ -23,11 +23,11 @@ const CROSS_LINKS = [
 ]
 
 const SOURCES = [
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006796685', label: 'Article A132-1 du Code des assurances', desc: 'Tables de mortalité réglementaires pour les contrats de rente viagère' },
-  { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023744555', label: 'Loi n° 2011-1906 du 21 décembre 2011', desc: 'Interdiction de la tarification différenciée selon le sexe (tables unisexes)' },
-  { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000606830', label: 'Arrêté du 1er août 2006 (tables TGH 05 / TGF 05)', desc: 'Tables de mortalité par génération pour les rentes viagères' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006307136', label: 'Article 158-6 du CGI', desc: 'Fiscalité des rentes viagères à titre onéreux (abattement selon âge)' },
-  { href: 'https://www.insee.fr/fr/statistiques/5390366', label: 'INSEE — Tables de mortalité 2020–2022', desc: 'Tables officielles utilisées pour les projections d\'espérance de vie' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035514601', label: 'Article A132-1 du Code des assurances', desc: 'Taux technique maximum autorisé pour les contrats de rente viagère (75 % du taux OAT, plafonné à 3,5 %)' },
+  { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000820127', label: 'Arrêté du 1er août 2006 — tables TGH 05 / TGF 05', desc: 'Homologation des tables de mortalité par génération pour les rentes viagères (art. A335-1 Code des assurances)' },
+  { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023744555', label: 'Loi n° 2011-1906 du 21 décembre 2011', desc: 'Interdiction de la tarification différenciée selon le sexe (tables unisexes obligatoires depuis le 21 décembre 2012)' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053542725', label: 'Article 158-6 du CGI', desc: 'Fractions imposables des rentes viagères à titre onéreux selon l\'âge : 70 % (< 50 ans), 50 % (50-59 ans), 40 % (60-69 ans), 30 % (> 69 ans)' },
+  { href: 'https://www.insee.fr/fr/statistiques/7624538', label: 'INSEE — Tables de mortalité 2021', desc: 'Tables statistiques utilisées pour les projections d\'espérance de vie (publication juin 2023)' },
 ]
 
 export default function RenteViagerePage() {
@@ -61,7 +61,7 @@ export default function RenteViagerePage() {
           </p>
 
           <div className="flex flex-wrap gap-x-8 gap-y-2">
-            {['Tables INSEE 2020–2022', 'Réversion 60/80/100 %', '3 modes de calcul', 'Zéro donnée conservée'].map(t => (
+            {['Tables INSEE 2021', 'Réversion 60/80/100 %', '3 modes de calcul', 'Zéro donnée conservée'].map(t => (
               <span key={t} className="font-mono text-xs text-neutral-500">{t}</span>
             ))}
           </div>
@@ -172,7 +172,7 @@ export default function RenteViagerePage() {
                   {[
                     ['Annuité viagère (äx)', 'Σ (ₖpₓ × vᵏ) pour k = 0 à ω-x'],
                     ['Facteur d\'actualisation', 'v = 1 / (1 + i) — i = taux technique'],
-                    ['Probabilité de survie', 'ₖpₓ = lₓ₊ₖ / lₓ (table INSEE)'],
+                    ['Probabilité de survie', 'ₖpₓ = lₓ₊ₖ / lₓ (tables TGH05/TGF05)'],
                     ['Rente annuelle', 'Rente = Capital / äx'],
                     ['Avec réversion', 'Capital / (äx + α × äy|x)'],
                     ['Taux technique défaut', '0,5 % (standard marché)'],
@@ -203,7 +203,8 @@ export default function RenteViagerePage() {
               <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
                 <p className="text-sm text-primary-800">
                   <strong>Méthodologie vérifiée</strong> — calculs conformes aux formules actuarielles standard,
-                  tables INSEE 2020–2022. Dernière vérification : avril 2026.
+                  tables générationnelles TGH05 / TGF05 homologuées par arrêté du 1er août 2006 (art. A335-1 Code des assurances).
+                  Taux technique : 0,5 %. Table unisexe : pondération 48 % hommes / 52 % femmes. Dernière vérification : mai 2026.
                 </p>
               </div>
             </div>

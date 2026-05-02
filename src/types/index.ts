@@ -12,14 +12,18 @@ export interface MortalityData {
 export interface MortalityTables {
  metadata: {
  source: string
- year: number
+ source_legal?: string
+ year_ref?: number
  tech_rate: number
  description: string
  last_updated: string
+ note?: string
+ unisex_weights?: { homme: number; femme: number }
  }
  tables: {
  homme: MortalityData[]
  femme: MortalityData[]
+ unisexe?: MortalityData[]
  }
 }
 

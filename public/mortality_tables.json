@@ -1,508 +1,760 @@
 {
   "metadata": {
-    "source": "INSEE/INED",
-    "year": 2022,
+    "source": "TGF05 / TGH05",
+    "source_legal": "Arrêté du 1er août 2006 — JORFTEXT000000820127 — Art. A335-1 Code des assurances",
+    "year_ref": 2026,
     "tech_rate": 0.005,
-    "description": "Tables de mortalité par génération avec facteurs viagers précalculés",
-    "last_updated": "2026-04-12T23:15:23.654577",
-    "generation_method": "Calcul actuariel basé sur données INED 2020-2022",
-    "note": "Conforme aux pratiques du marché français de l'assurance-vie"
+    "description": "Tables de mortalité par génération homologuées pour les rentes viagères (tables générationnelles TGH05/TGF05)",
+    "unisex_weights": {
+      "homme": 0.48,
+      "femme": 0.52
+    },
+    "last_updated": "2026-05-03T01:13:37.929366",
+    "note": "Table unisexe obligatoire depuis le 21 décembre 2012 (CJUE Test-Achats). Pondération démographique France : 48 % hommes / 52 % femmes."
   },
   "tables": {
     "homme": [
       {
         "age": 50,
-        "annuity_factor": 30.4598,
-        "life_expectancy": 32.91,
-        "mortality_rate": 0.00342
+        "annuity_factor": 37.8892,
+        "life_expectancy": 41.17,
+        "mortality_rate": 0.00102
       },
       {
         "age": 51,
-        "annuity_factor": 29.7087,
-        "life_expectancy": 32.03,
-        "mortality_rate": 0.00365
+        "annuity_factor": 36.9869,
+        "life_expectancy": 40.06,
+        "mortality_rate": 0.00115
       },
       {
         "age": 52,
-        "annuity_factor": 28.9536,
-        "life_expectancy": 31.15,
-        "mortality_rate": 0.00391
+        "annuity_factor": 36.0831,
+        "life_expectancy": 38.96,
+        "mortality_rate": 0.00128
       },
       {
         "age": 53,
-        "annuity_factor": 28.1984,
-        "life_expectancy": 30.28,
-        "mortality_rate": 0.0042
+        "annuity_factor": 35.1783,
+        "life_expectancy": 37.86,
+        "mortality_rate": 0.00145
       },
       {
         "age": 54,
-        "annuity_factor": 27.4435,
-        "life_expectancy": 29.41,
-        "mortality_rate": 0.00452
+        "annuity_factor": 34.2736,
+        "life_expectancy": 36.76,
+        "mortality_rate": 0.00169
       },
       {
         "age": 55,
-        "annuity_factor": 26.6963,
-        "life_expectancy": 28.55,
-        "mortality_rate": 0.00487
+        "annuity_factor": 33.3711,
+        "life_expectancy": 35.67,
+        "mortality_rate": 0.002
       },
       {
         "age": 56,
-        "annuity_factor": 25.9437,
-        "life_expectancy": 27.69,
-        "mortality_rate": 0.00526
+        "annuity_factor": 32.4726,
+        "life_expectancy": 34.6,
+        "mortality_rate": 0.0022
       },
       {
         "age": 57,
-        "annuity_factor": 25.192,
-        "life_expectancy": 26.84,
-        "mortality_rate": 0.00569
+        "annuity_factor": 31.5742,
+        "life_expectancy": 33.52,
+        "mortality_rate": 0.00243
       },
       {
         "age": 58,
-        "annuity_factor": 24.4521,
-        "life_expectancy": 26.0,
-        "mortality_rate": 0.00618
+        "annuity_factor": 30.6771,
+        "life_expectancy": 32.46,
+        "mortality_rate": 0.00262
       },
       {
         "age": 59,
-        "annuity_factor": 23.7051,
-        "life_expectancy": 25.17,
-        "mortality_rate": 0.00671
+        "annuity_factor": 29.7793,
+        "life_expectancy": 31.4,
+        "mortality_rate": 0.00266
       },
       {
         "age": 60,
-        "annuity_factor": 22.9598,
-        "life_expectancy": 24.35,
-        "mortality_rate": 0.00731
+        "annuity_factor": 28.876,
+        "life_expectancy": 30.34,
+        "mortality_rate": 0.00276
       },
       {
         "age": 61,
-        "annuity_factor": 22.2321,
-        "life_expectancy": 23.53,
-        "mortality_rate": 0.00797
+        "annuity_factor": 27.9694,
+        "life_expectancy": 29.28,
+        "mortality_rate": 0.00296
       },
       {
         "age": 62,
-        "annuity_factor": 21.4939,
-        "life_expectancy": 22.72,
-        "mortality_rate": 0.00871
+        "annuity_factor": 27.0614,
+        "life_expectancy": 28.22,
+        "mortality_rate": 0.00315
       },
       {
         "age": 63,
-        "annuity_factor": 20.7585,
-        "life_expectancy": 21.92,
-        "mortality_rate": 0.00952
+        "annuity_factor": 26.1516,
+        "life_expectancy": 27.17,
+        "mortality_rate": 0.0034
       },
       {
         "age": 64,
-        "annuity_factor": 20.0482,
-        "life_expectancy": 21.13,
-        "mortality_rate": 0.01042
+        "annuity_factor": 25.2415,
+        "life_expectancy": 26.12,
+        "mortality_rate": 0.00388
       },
       {
         "age": 65,
-        "annuity_factor": 19.322,
-        "life_expectancy": 20.35,
-        "mortality_rate": 0.01142
+        "annuity_factor": 24.3362,
+        "life_expectancy": 25.09,
+        "mortality_rate": 0.00429
       },
       {
         "age": 66,
-        "annuity_factor": 18.6263,
-        "life_expectancy": 19.58,
-        "mortality_rate": 0.01253
+        "annuity_factor": 23.4337,
+        "life_expectancy": 24.06,
+        "mortality_rate": 0.00473
       },
       {
         "age": 67,
-        "annuity_factor": 17.9112,
-        "life_expectancy": 18.82,
-        "mortality_rate": 0.01375
+        "annuity_factor": 22.534,
+        "life_expectancy": 23.04,
+        "mortality_rate": 0.00534
       },
       {
         "age": 68,
-        "annuity_factor": 17.2327,
-        "life_expectancy": 18.07,
-        "mortality_rate": 0.0151
+        "annuity_factor": 21.6401,
+        "life_expectancy": 22.03,
+        "mortality_rate": 0.00612
       },
       {
         "age": 69,
-        "annuity_factor": 16.5294,
-        "life_expectancy": 17.33,
-        "mortality_rate": 0.01659
+        "annuity_factor": 20.7545,
+        "life_expectancy": 21.04,
+        "mortality_rate": 0.007
       },
       {
         "age": 70,
-        "annuity_factor": 15.8703,
-        "life_expectancy": 16.61,
-        "mortality_rate": 0.01824
+        "annuity_factor": 19.8782,
+        "life_expectancy": 20.06,
+        "mortality_rate": 0.00817
       },
       {
         "age": 71,
-        "annuity_factor": 15.1796,
-        "life_expectancy": 15.9,
-        "mortality_rate": 0.02006
+        "annuity_factor": 19.0159,
+        "life_expectancy": 19.1,
+        "mortality_rate": 0.00936
       },
       {
         "age": 72,
-        "annuity_factor": 14.5422,
-        "life_expectancy": 15.2,
-        "mortality_rate": 0.02207
+        "annuity_factor": 18.1661,
+        "life_expectancy": 18.15,
+        "mortality_rate": 0.01058
       },
       {
         "age": 73,
-        "annuity_factor": 13.9171,
-        "life_expectancy": 14.51,
-        "mortality_rate": 0.02429
+        "annuity_factor": 17.3278,
+        "life_expectancy": 17.23,
+        "mortality_rate": 0.01202
       },
       {
         "age": 74,
-        "annuity_factor": 13.25,
-        "life_expectancy": 13.84,
-        "mortality_rate": 0.02674
+        "annuity_factor": 16.5028,
+        "life_expectancy": 16.32,
+        "mortality_rate": 0.01332
       },
       {
         "age": 75,
-        "annuity_factor": 12.6494,
-        "life_expectancy": 13.19,
-        "mortality_rate": 0.02944
+        "annuity_factor": 15.6872,
+        "life_expectancy": 15.43,
+        "mortality_rate": 0.01448
       },
       {
         "age": 76,
-        "annuity_factor": 12.0628,
-        "life_expectancy": 12.55,
-        "mortality_rate": 0.03242
+        "annuity_factor": 14.8766,
+        "life_expectancy": 14.55,
+        "mortality_rate": 0.01618
       },
       {
         "age": 77,
-        "annuity_factor": 11.4186,
-        "life_expectancy": 11.93,
-        "mortality_rate": 0.03571
+        "annuity_factor": 14.0773,
+        "life_expectancy": 13.68,
+        "mortality_rate": 0.01768
       },
       {
         "age": 78,
-        "annuity_factor": 10.8585,
-        "life_expectancy": 11.33,
-        "mortality_rate": 0.03933
+        "annuity_factor": 13.2843,
+        "life_expectancy": 12.82,
+        "mortality_rate": 0.01999
       },
       {
         "age": 79,
-        "annuity_factor": 10.3134,
-        "life_expectancy": 10.75,
-        "mortality_rate": 0.04332
+        "annuity_factor": 12.506,
+        "life_expectancy": 11.99,
+        "mortality_rate": 0.02326
       },
       {
         "age": 80,
-        "annuity_factor": 9.7838,
-        "life_expectancy": 10.19,
-        "mortality_rate": 0.04772
+        "annuity_factor": 11.7508,
+        "life_expectancy": 11.18,
+        "mortality_rate": 0.0272
       },
       {
         "age": 81,
-        "annuity_factor": 9.2701,
-        "life_expectancy": 9.65,
-        "mortality_rate": 0.05256
+        "annuity_factor": 11.0222,
+        "life_expectancy": 10.4,
+        "mortality_rate": 0.03143
       },
       {
         "age": 82,
-        "annuity_factor": 8.7725,
-        "life_expectancy": 9.14,
-        "mortality_rate": 0.05789
+        "annuity_factor": 10.3184,
+        "life_expectancy": 9.65,
+        "mortality_rate": 0.03804
       },
       {
         "age": 83,
-        "annuity_factor": 8.2914,
-        "life_expectancy": 8.64,
-        "mortality_rate": 0.06376
+        "annuity_factor": 9.6585,
+        "life_expectancy": 8.95,
+        "mortality_rate": 0.04342
       },
       {
         "age": 84,
-        "annuity_factor": 7.8269,
-        "life_expectancy": 8.17,
-        "mortality_rate": 0.07022
+        "annuity_factor": 9.024,
+        "life_expectancy": 8.28,
+        "mortality_rate": 0.05067
       },
       {
         "age": 85,
-        "annuity_factor": 7.3792,
-        "life_expectancy": 7.73,
-        "mortality_rate": 0.07733
+        "annuity_factor": 8.4258,
+        "life_expectancy": 7.65,
+        "mortality_rate": 0.05806
       },
       {
         "age": 86,
-        "annuity_factor": 6.9484,
-        "life_expectancy": 7.31,
-        "mortality_rate": 0.08515
+        "annuity_factor": 7.858,
+        "life_expectancy": 7.06,
+        "mortality_rate": 0.06697
       },
       {
         "age": 87,
-        "annuity_factor": 6.5345,
-        "life_expectancy": 6.91,
-        "mortality_rate": 0.09376
+        "annuity_factor": 7.3259,
+        "life_expectancy": 6.5,
+        "mortality_rate": 0.07466
       },
       {
         "age": 88,
-        "annuity_factor": 6.2894,
-        "life_expectancy": 6.54,
-        "mortality_rate": 0.10322
+        "annuity_factor": 6.8132,
+        "life_expectancy": 5.96,
+        "mortality_rate": 0.08386
       },
       {
         "age": 89,
-        "annuity_factor": 5.9277,
-        "life_expectancy": 6.19,
-        "mortality_rate": 0.11364
+        "annuity_factor": 6.3233,
+        "life_expectancy": 5.45,
+        "mortality_rate": 0.09466
       },
       {
         "age": 90,
-        "annuity_factor": 5.5873,
-        "life_expectancy": 5.86,
-        "mortality_rate": 0.12511
+        "annuity_factor": 5.859,
+        "life_expectancy": 4.97,
+        "mortality_rate": 0.11101
       }
     ],
     "femme": [
       {
         "age": 50,
-        "annuity_factor": 33.5859,
-        "life_expectancy": 37.15,
-        "mortality_rate": 0.00215
+        "annuity_factor": 40.7627,
+        "life_expectancy": 44.76,
+        "mortality_rate": 0.00142
       },
       {
         "age": 51,
-        "annuity_factor": 32.8179,
-        "life_expectancy": 36.23,
-        "mortality_rate": 0.0023
+        "annuity_factor": 39.894,
+        "life_expectancy": 43.67,
+        "mortality_rate": 0.0015
       },
       {
         "age": 52,
-        "annuity_factor": 32.0488,
-        "life_expectancy": 35.31,
-        "mortality_rate": 0.00247
+        "annuity_factor": 39.0222,
+        "life_expectancy": 42.58,
+        "mortality_rate": 0.00161
       },
       {
         "age": 53,
-        "annuity_factor": 31.2791,
-        "life_expectancy": 34.4,
-        "mortality_rate": 0.00265
+        "annuity_factor": 38.1483,
+        "life_expectancy": 41.5,
+        "mortality_rate": 0.00171
       },
       {
         "age": 54,
-        "annuity_factor": 30.5088,
-        "life_expectancy": 33.49,
-        "mortality_rate": 0.00286
+        "annuity_factor": 37.2721,
+        "life_expectancy": 40.41,
+        "mortality_rate": 0.00176
       },
       {
         "age": 55,
-        "annuity_factor": 29.7414,
-        "life_expectancy": 32.58,
-        "mortality_rate": 0.00309
+        "annuity_factor": 36.391,
+        "life_expectancy": 39.33,
+        "mortality_rate": 0.00182
       },
       {
         "age": 56,
-        "annuity_factor": 28.9715,
-        "life_expectancy": 31.67,
-        "mortality_rate": 0.00334
+        "annuity_factor": 35.5059,
+        "life_expectancy": 38.25,
+        "mortality_rate": 0.00201
       },
       {
         "age": 57,
-        "annuity_factor": 28.2018,
-        "life_expectancy": 30.77,
-        "mortality_rate": 0.00362
+        "annuity_factor": 34.6209,
+        "life_expectancy": 37.17,
+        "mortality_rate": 0.00217
       },
       {
         "age": 58,
-        "annuity_factor": 27.4327,
-        "life_expectancy": 29.87,
-        "mortality_rate": 0.00394
+        "annuity_factor": 33.7355,
+        "life_expectancy": 36.1,
+        "mortality_rate": 0.00227
       },
       {
         "age": 59,
-        "annuity_factor": 26.6646,
-        "life_expectancy": 28.98,
-        "mortality_rate": 0.00428
+        "annuity_factor": 32.8467,
+        "life_expectancy": 35.03,
+        "mortality_rate": 0.00241
       },
       {
         "age": 60,
-        "annuity_factor": 25.9038,
-        "life_expectancy": 28.09,
-        "mortality_rate": 0.00466
+        "annuity_factor": 31.9557,
+        "life_expectancy": 33.97,
+        "mortality_rate": 0.00248
       },
       {
         "age": 61,
-        "annuity_factor": 25.1391,
-        "life_expectancy": 27.2,
-        "mortality_rate": 0.00509
+        "annuity_factor": 31.0603,
+        "life_expectancy": 32.9,
+        "mortality_rate": 0.00255
       },
       {
         "age": 62,
-        "annuity_factor": 24.3762,
-        "life_expectancy": 26.32,
-        "mortality_rate": 0.00556
+        "annuity_factor": 30.1602,
+        "life_expectancy": 31.83,
+        "mortality_rate": 0.0026
       },
       {
         "age": 63,
-        "annuity_factor": 23.6153,
-        "life_expectancy": 25.45,
-        "mortality_rate": 0.00608
+        "annuity_factor": 29.2546,
+        "life_expectancy": 30.77,
+        "mortality_rate": 0.00268
       },
       {
         "age": 64,
-        "annuity_factor": 22.8674,
-        "life_expectancy": 24.58,
-        "mortality_rate": 0.00666
+        "annuity_factor": 28.3445,
+        "life_expectancy": 29.7,
+        "mortality_rate": 0.00292
       },
       {
         "age": 65,
-        "annuity_factor": 22.113,
-        "life_expectancy": 23.71,
-        "mortality_rate": 0.0073
+        "annuity_factor": 27.4342,
+        "life_expectancy": 28.64,
+        "mortality_rate": 0.00315
       },
       {
         "age": 66,
-        "annuity_factor": 21.3613,
-        "life_expectancy": 22.85,
-        "mortality_rate": 0.00801
+        "annuity_factor": 26.5227,
+        "life_expectancy": 27.59,
+        "mortality_rate": 0.00345
       },
       {
         "age": 67,
-        "annuity_factor": 20.6284,
-        "life_expectancy": 22.0,
-        "mortality_rate": 0.0088
+        "annuity_factor": 25.6119,
+        "life_expectancy": 26.54,
+        "mortality_rate": 0.00375
       },
       {
         "age": 68,
-        "annuity_factor": 19.8856,
-        "life_expectancy": 21.16,
-        "mortality_rate": 0.00968
+        "annuity_factor": 24.7014,
+        "life_expectancy": 25.49,
+        "mortality_rate": 0.00411
       },
       {
         "age": 69,
-        "annuity_factor": 19.1462,
-        "life_expectancy": 20.32,
-        "mortality_rate": 0.01066
+        "annuity_factor": 23.7918,
+        "life_expectancy": 24.45,
+        "mortality_rate": 0.00448
       },
       {
         "age": 70,
-        "annuity_factor": 18.4102,
-        "life_expectancy": 19.49,
-        "mortality_rate": 0.01174
+        "annuity_factor": 22.8831,
+        "life_expectancy": 23.42,
+        "mortality_rate": 0.00501
       },
       {
         "age": 71,
-        "annuity_factor": 17.7051,
-        "life_expectancy": 18.67,
-        "mortality_rate": 0.01294
+        "annuity_factor": 21.9787,
+        "life_expectancy": 22.4,
+        "mortality_rate": 0.00554
       },
       {
         "age": 72,
-        "annuity_factor": 16.9803,
-        "life_expectancy": 17.86,
-        "mortality_rate": 0.01427
+        "annuity_factor": 21.0775,
+        "life_expectancy": 21.39,
+        "mortality_rate": 0.00606
       },
       {
         "age": 73,
-        "annuity_factor": 16.2927,
-        "life_expectancy": 17.06,
-        "mortality_rate": 0.01574
+        "annuity_factor": 20.1785,
+        "life_expectancy": 20.38,
+        "mortality_rate": 0.00689
       },
       {
         "age": 74,
-        "annuity_factor": 15.58,
-        "life_expectancy": 16.27,
-        "mortality_rate": 0.01738
+        "annuity_factor": 19.2872,
+        "life_expectancy": 19.39,
+        "mortality_rate": 0.00772
       },
       {
         "age": 75,
-        "annuity_factor": 14.9121,
-        "life_expectancy": 15.5,
-        "mortality_rate": 0.01919
+        "annuity_factor": 18.4023,
+        "life_expectancy": 18.41,
+        "mortality_rate": 0.00874
       },
       {
         "age": 76,
-        "annuity_factor": 14.2119,
-        "life_expectancy": 14.73,
-        "mortality_rate": 0.02119
+        "annuity_factor": 17.5263,
+        "life_expectancy": 17.44,
+        "mortality_rate": 0.00987
       },
       {
         "age": 77,
-        "annuity_factor": 13.5128,
-        "life_expectancy": 13.99,
-        "mortality_rate": 0.02341
+        "annuity_factor": 16.6597,
+        "life_expectancy": 16.49,
+        "mortality_rate": 0.01132
       },
       {
         "age": 78,
-        "annuity_factor": 12.8768,
-        "life_expectancy": 13.26,
-        "mortality_rate": 0.02586
+        "annuity_factor": 15.8061,
+        "life_expectancy": 15.56,
+        "mortality_rate": 0.0128
       },
       {
         "age": 79,
-        "annuity_factor": 12.253,
-        "life_expectancy": 12.55,
-        "mortality_rate": 0.02856
+        "annuity_factor": 14.9638,
+        "life_expectancy": 14.64,
+        "mortality_rate": 0.01466
       },
       {
         "age": 80,
-        "annuity_factor": 11.5735,
-        "life_expectancy": 11.85,
-        "mortality_rate": 0.03155
+        "annuity_factor": 14.1364,
+        "life_expectancy": 13.74,
+        "mortality_rate": 0.01683
       },
       {
         "age": 81,
-        "annuity_factor": 10.9725,
-        "life_expectancy": 11.18,
-        "mortality_rate": 0.03485
+        "annuity_factor": 13.3256,
+        "life_expectancy": 12.87,
+        "mortality_rate": 0.01947
       },
       {
         "age": 82,
-        "annuity_factor": 10.3843,
-        "life_expectancy": 10.53,
-        "mortality_rate": 0.03849
+        "annuity_factor": 12.5346,
+        "life_expectancy": 12.02,
+        "mortality_rate": 0.02262
       },
       {
         "age": 83,
-        "annuity_factor": 9.7175,
-        "life_expectancy": 9.9,
-        "mortality_rate": 0.04252
+        "annuity_factor": 11.7665,
+        "life_expectancy": 11.19,
+        "mortality_rate": 0.02633
       },
       {
         "age": 84,
-        "annuity_factor": 9.1502,
-        "life_expectancy": 9.3,
-        "mortality_rate": 0.04698
+        "annuity_factor": 11.0235,
+        "life_expectancy": 10.4,
+        "mortality_rate": 0.03072
       },
       {
         "age": 85,
-        "annuity_factor": 8.5947,
-        "life_expectancy": 8.72,
-        "mortality_rate": 0.0519
+        "annuity_factor": 10.3083,
+        "life_expectancy": 9.64,
+        "mortality_rate": 0.03583
       },
       {
         "age": 86,
-        "annuity_factor": 8.0505,
-        "life_expectancy": 8.17,
-        "mortality_rate": 0.05735
+        "annuity_factor": 9.6229,
+        "life_expectancy": 8.92,
+        "mortality_rate": 0.04192
       },
       {
         "age": 87,
-        "annuity_factor": 7.5169,
-        "life_expectancy": 7.64,
-        "mortality_rate": 0.06337
+        "annuity_factor": 8.9707,
+        "life_expectancy": 8.23,
+        "mortality_rate": 0.04899
       },
       {
         "age": 88,
-        "annuity_factor": 6.9926,
-        "life_expectancy": 7.14,
-        "mortality_rate": 0.07003
+        "annuity_factor": 8.3537,
+        "life_expectancy": 7.58,
+        "mortality_rate": 0.05778
       },
       {
         "age": 89,
-        "annuity_factor": 6.476,
-        "life_expectancy": 6.67,
-        "mortality_rate": 0.0774
+        "annuity_factor": 7.7791,
+        "life_expectancy": 6.98,
+        "mortality_rate": 0.06705
       },
       {
         "age": 90,
-        "annuity_factor": 5.9651,
-        "life_expectancy": 6.23,
-        "mortality_rate": 0.08555
+        "annuity_factor": 7.2425,
+        "life_expectancy": 6.41,
+        "mortality_rate": 0.07796
+      }
+    ],
+    "unisexe": [
+      {
+        "age": 50,
+        "annuity_factor": 39.3834,
+        "life_expectancy": 43.04,
+        "mortality_rate": 0.00123
+      },
+      {
+        "age": 51,
+        "annuity_factor": 38.4986,
+        "life_expectancy": 41.94,
+        "mortality_rate": 0.00133
+      },
+      {
+        "age": 52,
+        "annuity_factor": 37.6114,
+        "life_expectancy": 40.84,
+        "mortality_rate": 0.00145
+      },
+      {
+        "age": 53,
+        "annuity_factor": 36.7227,
+        "life_expectancy": 39.75,
+        "mortality_rate": 0.00159
+      },
+      {
+        "age": 54,
+        "annuity_factor": 35.8328,
+        "life_expectancy": 38.66,
+        "mortality_rate": 0.00173
+      },
+      {
+        "age": 55,
+        "annuity_factor": 34.9414,
+        "life_expectancy": 37.57,
+        "mortality_rate": 0.00191
+      },
+      {
+        "age": 56,
+        "annuity_factor": 34.0499,
+        "life_expectancy": 36.5,
+        "mortality_rate": 0.0021
+      },
+      {
+        "age": 57,
+        "annuity_factor": 33.1585,
+        "life_expectancy": 35.42,
+        "mortality_rate": 0.00229
+      },
+      {
+        "age": 58,
+        "annuity_factor": 32.2675,
+        "life_expectancy": 34.35,
+        "mortality_rate": 0.00244
+      },
+      {
+        "age": 59,
+        "annuity_factor": 31.3743,
+        "life_expectancy": 33.29,
+        "mortality_rate": 0.00253
+      },
+      {
+        "age": 60,
+        "annuity_factor": 30.4774,
+        "life_expectancy": 32.23,
+        "mortality_rate": 0.00261
+      },
+      {
+        "age": 61,
+        "annuity_factor": 29.5767,
+        "life_expectancy": 31.16,
+        "mortality_rate": 0.00275
+      },
+      {
+        "age": 62,
+        "annuity_factor": 28.6728,
+        "life_expectancy": 30.1,
+        "mortality_rate": 0.00286
+      },
+      {
+        "age": 63,
+        "annuity_factor": 27.7652,
+        "life_expectancy": 29.04,
+        "mortality_rate": 0.00303
+      },
+      {
+        "age": 64,
+        "annuity_factor": 26.8551,
+        "life_expectancy": 27.98,
+        "mortality_rate": 0.00338
+      },
+      {
+        "age": 65,
+        "annuity_factor": 25.9472,
+        "life_expectancy": 26.94,
+        "mortality_rate": 0.0037
+      },
+      {
+        "age": 66,
+        "annuity_factor": 25.04,
+        "life_expectancy": 25.9,
+        "mortality_rate": 0.00406
+      },
+      {
+        "age": 67,
+        "annuity_factor": 24.1345,
+        "life_expectancy": 24.86,
+        "mortality_rate": 0.00451
+      },
+      {
+        "age": 68,
+        "annuity_factor": 23.232,
+        "life_expectancy": 23.83,
+        "mortality_rate": 0.00507
+      },
+      {
+        "age": 69,
+        "annuity_factor": 22.3339,
+        "life_expectancy": 22.81,
+        "mortality_rate": 0.00569
+      },
+      {
+        "age": 70,
+        "annuity_factor": 21.4407,
+        "life_expectancy": 21.81,
+        "mortality_rate": 0.00653
+      },
+      {
+        "age": 71,
+        "annuity_factor": 20.5566,
+        "life_expectancy": 20.82,
+        "mortality_rate": 0.00737
+      },
+      {
+        "age": 72,
+        "annuity_factor": 19.68,
+        "life_expectancy": 19.83,
+        "mortality_rate": 0.00823
+      },
+      {
+        "age": 73,
+        "annuity_factor": 18.8102,
+        "life_expectancy": 18.87,
+        "mortality_rate": 0.00935
+      },
+      {
+        "age": 74,
+        "annuity_factor": 17.9507,
+        "life_expectancy": 17.92,
+        "mortality_rate": 0.01041
+      },
+      {
+        "age": 75,
+        "annuity_factor": 17.0991,
+        "life_expectancy": 16.98,
+        "mortality_rate": 0.0115
+      },
+      {
+        "age": 76,
+        "annuity_factor": 16.2544,
+        "life_expectancy": 16.05,
+        "mortality_rate": 0.0129
+      },
+      {
+        "age": 77,
+        "annuity_factor": 15.4201,
+        "life_expectancy": 15.14,
+        "mortality_rate": 0.01437
+      },
+      {
+        "age": 78,
+        "annuity_factor": 14.5956,
+        "life_expectancy": 14.24,
+        "mortality_rate": 0.01625
+      },
+      {
+        "age": 79,
+        "annuity_factor": 13.7841,
+        "life_expectancy": 13.37,
+        "mortality_rate": 0.01879
+      },
+      {
+        "age": 80,
+        "annuity_factor": 12.9913,
+        "life_expectancy": 12.51,
+        "mortality_rate": 0.02181
+      },
+      {
+        "age": 81,
+        "annuity_factor": 12.22,
+        "life_expectancy": 11.68,
+        "mortality_rate": 0.02521
+      },
+      {
+        "age": 82,
+        "annuity_factor": 11.4708,
+        "life_expectancy": 10.88,
+        "mortality_rate": 0.03002
+      },
+      {
+        "age": 83,
+        "annuity_factor": 10.7547,
+        "life_expectancy": 10.11,
+        "mortality_rate": 0.03453
+      },
+      {
+        "age": 84,
+        "annuity_factor": 10.0637,
+        "life_expectancy": 9.38,
+        "mortality_rate": 0.0403
+      },
+      {
+        "age": 85,
+        "annuity_factor": 9.4047,
+        "life_expectancy": 8.68,
+        "mortality_rate": 0.0465
+      },
+      {
+        "age": 86,
+        "annuity_factor": 8.7757,
+        "life_expectancy": 8.03,
+        "mortality_rate": 0.05394
+      },
+      {
+        "age": 87,
+        "annuity_factor": 8.1812,
+        "life_expectancy": 7.4,
+        "mortality_rate": 0.06131
+      },
+      {
+        "age": 88,
+        "annuity_factor": 7.6143,
+        "life_expectancy": 6.8,
+        "mortality_rate": 0.0703
+      },
+      {
+        "age": 89,
+        "annuity_factor": 7.0803,
+        "life_expectancy": 6.25,
+        "mortality_rate": 0.0803
+      },
+      {
+        "age": 90,
+        "annuity_factor": 6.5784,
+        "life_expectancy": 5.72,
+        "mortality_rate": 0.09382
       }
     ]
   }

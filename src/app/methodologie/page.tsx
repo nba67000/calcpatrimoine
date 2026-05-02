@@ -1,4 +1,4 @@
-// src/app/methodologie/page.tsx
+﻿// src/app/methodologie/page.tsx
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CrossLink from '@/components/CrossLink'
@@ -82,18 +82,18 @@ export default function Methodologie() {
  <div className="bg-primary-50 border-l-4 border-primary-600 p-6 mb-6">
  <h3 className="font-semibold text-primary-900 mb-2">Tables de mortalité INSEE officielles</h3>
  <p className="text-primary-800 mb-3">
- Nous utilisons les <strong>tables de mortalité par génération</strong> les plus récentes publiées par l&apos;INSEE et l&apos;INED (données 2020-2022).
+ Nous utilisons les <strong>tables de mortalité par génération</strong> les plus récentes publiées par l&apos;INSEE et l&apos;INED (données 2021 — publication INSEE juin 2023).
  </p>
  <ul className="space-y-2 text-sm text-primary-700">
  <li>• <strong>Source principale</strong> : Institut National d&apos;Études Démographiques (INED)</li>
- <li>• <strong>Période observée</strong> : 2020-2022 (données post-COVID actualisées)</li>
+ <li>• <strong>Période observée</strong> : 2021 (publication INSEE juin 2023)</li>
  <li>• <strong>Mise à jour</strong> : Automatique chaque année le 1er octobre via GitHub Actions</li>
  <li>• <strong>Disponibilité</strong> : <a href="https://www.ined.fr/fr/tout-savoir-population/chiffres/france/mortalite-cause-deces/table-mortalite/" className="underline hover:text-primary-900" target="_blank" rel="noopener">www.ined.fr</a></li>
  </ul>
  </div>
 
  <div className="bg-white border border-neutral-200 rounded-lg p-6">
- <h4 className="font-medium text-neutral-900 mb-3">Exemples d&apos;espérance de vie (données INSEE 2020-2022)</h4>
+ <h4 className="font-medium text-neutral-900 mb-3">Exemples d&apos;espérance de vie (données INSEE 2021)</h4>
  <div className="grid md:grid-cols-2 gap-4 text-sm">
  <div>
  <div className="font-semibold text-primary-600 mb-1">Hommes</div>

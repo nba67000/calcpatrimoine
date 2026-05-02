@@ -1,4 +1,4 @@
-// src/components/Calculator/RenteCalculator.tsx
+﻿// src/components/Calculator/RenteCalculator.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -47,7 +47,7 @@ export default function RenteCalculator() {
  {/* Zone formulaire */}
  <div className="bg-neutral-100 rounded-lg shadow-md p-5 sm:p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
  <h2 className="text-2xl font-semibold text-neutral-900 mb-2">Calculez votre rente viagère</h2>
- <p className="text-sm text-neutral-600 mb-6">Simulation basée sur les tables de mortalité INSEE 2022</p>
+ <p className="text-sm text-neutral-600 mb-6">Simulation basée sur les tables de mortalité INSEE 2021</p>
  
  {/* Âge */}
  <div className="mb-6">
@@ -97,7 +97,7 @@ export default function RenteCalculator() {
  <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
  <label className="text-sm text-neutral-600 flex items-center">
  Capital disponible
- <Tooltip content="Montant total de votre épargne (PER, Assurance-vie, livrets...) que vous souhaitez convertir en rente viagère." />
+ <Tooltip content="Montant à convertir en rente viagère. La fiscalité varie selon l'origine : assurance-vie ou capital propre → fraction imposable selon l'âge (30–70 %) ; PER avec versements déduits → imposé comme une pension (abattement 10 %)." />
  </label>
  <div className="flex items-center gap-2">
  <input
