@@ -25,6 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
  priority: 0.9,
  },
  {
+ url: `${baseUrl}/plus-value-immobiliere`,
+ lastModified,
+ changeFrequency: 'monthly',
+ priority: 0.9,
+ },
+ {
  url: `${baseUrl}/rente-viagere`,
  lastModified,
  changeFrequency: 'monthly',

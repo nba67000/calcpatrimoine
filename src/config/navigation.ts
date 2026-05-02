@@ -14,6 +14,7 @@ export const NAV_ITEMS: NavItem[] = [
   // Calculateurs
   { href: '/tmi',           label: 'TMI / IR',        category: 'calculateur', showInHeader: true  },
   { href: '/per-individuel', label: 'PER',             category: 'calculateur', showInHeader: true  },
+  { href: '/plus-value-immobiliere', label: 'Plus-value immo', category: 'calculateur', showInHeader: true  },
   { href: '/rente-viagere', label: 'Rente Viagère',    category: 'calculateur', showInHeader: true  },
   { href: '/assurance-vie', label: 'Assurance-Vie',    category: 'calculateur', showInHeader: true  },
 
