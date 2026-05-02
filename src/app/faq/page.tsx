@@ -12,6 +12,12 @@ export const metadata: Metadata = {
 
 const FAQ_SECTIONS = [
   {
+    href: '/faq/plus-value-immobiliere',
+    label: 'FAQ Plus-value immobilière',
+    desc: 'Frais déductibles, abattements IR vs PS, surtaxe, exonérations — tout sur l\'imposition d\'une cession immobilière.',
+    count: '16 questions',
+  },
+  {
     href: '/faq/rente-viagere',
     label: 'FAQ Rente Viagère',
     desc: 'Fonctionnement, réversion, fiscalité, couple, bon âge pour souscrire — tout savoir avant de décider.',

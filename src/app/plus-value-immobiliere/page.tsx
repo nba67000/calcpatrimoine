@@ -68,8 +68,8 @@ export default function PlusValueImmobilierePage() {
           </h1>
 
           <p className="text-lg text-neutral-600 max-w-3xl leading-relaxed mb-8">
-            Calculez l&apos;impôt sur votre cession immobilière&nbsp;: IR 19&nbsp;%, prélèvements sociaux
-            17,2&nbsp;%, abattements pour durée de détention, surtaxe. Résidence secondaire, bien locatif.
+            Calculez l&apos;impôt sur votre cession immobilière: IR 19%, prélèvements sociaux
+            17,2%, abattements pour durée de détention, surtaxe. Résidence secondaire, bien locatif.
           </p>
 
           <div className="flex flex-wrap gap-x-8 gap-y-2">
@@ -98,32 +98,32 @@ export default function PlusValueImmobilierePage() {
         {/* Explications */}
         <section className="max-w-4xl mx-auto px-6 py-8">
           <div className="bg-white border border-neutral-200 p-8 space-y-6">
-            <h2 className="font-serif text-2xl font-bold text-neutral-900">Comment ça marche&nbsp;?</h2>
+            <h2 className="font-serif text-2xl font-bold text-neutral-900">Comment ça marche?</h2>
 
             <div className="space-y-4 text-neutral-700 leading-relaxed">
               <p>
-                <strong>La plus-value brute&nbsp;: prix de vente moins prix de revient ajusté.</strong>{' '}
+                <strong>La plus-value brute: prix de vente moins prix de revient ajusté.</strong>{' '}
                 Le prix de revient ajusté inclut le prix d&apos;acquisition, les frais (droits d&apos;enregistrement + frais de notaire,
-                en forfait 7,5&nbsp;% ou en réel) et les travaux (forfait 15&nbsp;% si détention&nbsp;&gt;&nbsp;5&nbsp;ans, ou montant réel justifié).
+                en forfait 7,5% ou en réel) et les travaux (forfait 15% si détention&gt;5ans, ou montant réel justifié).
               </p>
 
               <p>
                 <strong>Deux abattements différents selon IR et prélèvements sociaux.</strong>{' '}
-                L&apos;IR (19&nbsp;%) et les PS (17,2&nbsp;%) n&apos;utilisent pas le même barème d&apos;abattement.
-                L&apos;IR est exonéré dès 22&nbsp;ans de détention&nbsp;; les prélèvements sociaux seulement à 30&nbsp;ans.
+                L&apos;IR (19%) et les PS (17,2%) n&apos;utilisent pas le même barème d&apos;abattement.
+                L&apos;IR est exonéré dès 22ans de détention; les prélèvements sociaux seulement à 30ans.
               </p>
 
               <p>
-                <strong>La surtaxe s&apos;ajoute si la plus-value nette dépasse 50&nbsp;000&nbsp;€.</strong>{' '}
-                Calculée sur la même base que l&apos;IR 19&nbsp;%, elle est prélevée par le notaire lors de la cession.
-                Son taux varie de 2&nbsp;% à 6&nbsp;% selon le montant, avec un mécanisme de tempérament à chaque seuil.
+                <strong>La surtaxe s&apos;ajoute si la plus-value nette dépasse 50000€.</strong>{' '}
+                Calculée sur la même base que l&apos;IR 19%, elle est prélevée par le notaire lors de la cession.
+                Son taux varie de 2% à 6% selon le montant, avec un mécanisme de tempérament à chaque seuil.
               </p>
 
               <p>
                 <strong>Exonérations principales.</strong>{' '}
-                La résidence principale est toujours exonérée. Le prix de cession&nbsp;≤&nbsp;15&nbsp;000&nbsp;€ également.
-                La 1ère cession d&apos;une résidence secondaire est exonérée sous conditions&nbsp;: non-propriétaire de la résidence
-                principale depuis 4&nbsp;ans et remploi du produit dans les 24&nbsp;mois (Art.&nbsp;150 U II 7° CGI).
+                La résidence principale est toujours exonérée. Le prix de cession≤15000€ également.
+                La 1ère cession d&apos;une résidence secondaire est exonérée sous conditions: non-propriétaire de la résidence
+                principale depuis 4ans et remploi du produit dans les 24mois (Art.150 U II 7° CGI).
               </p>
             </div>
           </div>
@@ -194,23 +194,23 @@ export default function PlusValueImmobilierePage() {
             <div className="space-y-5">
               {[
                 {
-                  q: 'Le forfait travaux de 15 % est-il toujours applicable&nbsp;?',
+                  q: 'Le forfait travaux de 15 % est-il toujours applicable?',
                   r: 'Non. Le forfait de 15 % n\'est utilisable que si vous détenez le bien depuis plus de 5 ans complets ET que les travaux concernés n\'ont pas déjà été déduits des revenus fonciers. Si vous êtes en mesure de justifier un montant réel supérieur, il est préférable d\'utiliser les frais réels.',
                 },
                 {
-                  q: 'Quelle différence entre IR et prélèvements sociaux dans les abattements&nbsp;?',
+                  q: 'Quelle différence entre IR et prélèvements sociaux dans les abattements?',
                   r: 'Les deux taxes utilisent des barèmes d\'abattement différents : l\'IR est exonéré à 22 ans de détention, mais les prélèvements sociaux (CSG/CRDS) ne sont exonérés qu\'à 30 ans. Une cession après 23 ans peut donc être exonérée d\'IR (19 %) tout en restant partiellement imposée aux PS.',
                 },
                 {
-                  q: 'La surtaxe s\'applique-t-elle avant ou après abattements&nbsp;?',
+                  q: 'La surtaxe s\'applique-t-elle avant ou après abattements?',
                   r: 'La surtaxe s\'applique sur la même base que l\'IR, c\'est-à-dire sur la plus-value nette après abattement pour durée de détention. Si la plus-value nette imposable (base IR) est inférieure ou égale à 50 000 €, aucune surtaxe n\'est due.',
                 },
                 {
-                  q: 'Qui calcule et prélève les impôts&nbsp;?',
+                  q: 'Qui calcule et prélève les impôts?',
                   r: 'C\'est le notaire qui calcule et verse l\'ensemble des prélèvements (IR 19 %, PS 17,2 %, surtaxe éventuelle) au Trésor Public lors de la signature de l\'acte de vente. Le vendeur perçoit directement le prix net après déduction.',
                 },
                 {
-                  q: 'Que se passe-t-il en cas de moins-value&nbsp;?',
+                  q: 'Que se passe-t-il en cas de moins-value?',
                   r: 'Aucun impôt n\'est dû. En revanche, la moins-value immobilière d\'un particulier n\'est pas imputable sur d\'autres revenus ni reportable sur des plus-values futures. Elle est définitivement perdue fiscalement.',
                 },
               ].map(({ q, r }) => (
@@ -274,8 +274,8 @@ export default function PlusValueImmobilierePage() {
 
               <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
                 <p className="text-sm text-primary-800">
-                  <strong>Millésime fiscal&nbsp;: 2026.</strong> Barèmes applicables aux cessions réalisées en 2026.
-                  Dernière vérification des sources&nbsp;: 02/05/2026. Ce calculateur est indicatif&nbsp;;
+                  <strong>Millésime fiscal: 2026.</strong> Barèmes applicables aux cessions réalisées en 2026.
+                  Dernière vérification des sources: 02/05/2026. Ce calculateur est indicatif;
                   le notaire calcule et prélève les impôts définitifs lors de la cession.
                 </p>
               </div>
