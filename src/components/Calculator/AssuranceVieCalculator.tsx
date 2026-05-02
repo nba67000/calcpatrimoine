@@ -86,7 +86,7 @@ export default function AssuranceVieCalculator() {
  <input
  type="range"
  min="5000"
- max={capitalTotal}
+ max="500000"
  step="5000"
  value={versementTotal}
  onChange={(e) => setVersementTotal(Number(e.target.value))}
@@ -94,7 +94,7 @@ export default function AssuranceVieCalculator() {
  />
  <div className="flex justify-between text-xs text-neutral-500 mt-1">
  <span>5 000€</span>
- <span>{capitalTotal.toLocaleString('fr-FR')}€</span>
+ <span>500 000€</span>
  </div>
  </div>
 
@@ -120,13 +120,13 @@ export default function AssuranceVieCalculator() {
 
  {/* Plus-value (calculée) */}
  {results && (
- <div className="bg-neutral-50 rounded-lg p-4 border border-neutral-200">
+ <div className={`rounded-lg p-4 border ${results.plusValueTotale >= 0 ? 'bg-neutral-50 border-neutral-200' : 'bg-amber-50 border-amber-200'}`}>
  <div className="flex justify-between items-center">
  <span className="text-sm font-medium text-neutral-700">
- Plus-value totale
+ {results.plusValueTotale >= 0 ? 'Plus-value totale' : 'Moins-value totale'}
  </span>
- <span className="text-lg font-bold text-primary-600">
- +{results.plusValueTotale.toLocaleString('fr-FR')} €
+ <span className={`text-lg font-bold ${results.plusValueTotale >= 0 ? 'text-primary-600' : 'text-amber-600'}`}>
+ {results.plusValueTotale >= 0 ? '+' : ''}{results.plusValueTotale.toLocaleString('fr-FR')} €
  </span>
  </div>
  <div className="text-xs text-neutral-500 mt-1">
