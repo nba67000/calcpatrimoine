@@ -94,7 +94,7 @@ export default function TransmissionPage() {
           </div>
         </section>
 
-        {/* Lien croisé */}
+        {/* Liens croisés */}
         <section className="max-w-4xl mx-auto px-6 pb-8">
           <div className="border-t border-neutral-300">
             <Link
@@ -105,6 +105,8 @@ export default function TransmissionPage() {
               <div>
                 <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">Vous voulez retirer de l&apos;argent de votre contrat ?</p>
                 <p className="text-sm text-neutral-500">Calculateur de fiscalité des rachats — comparaison automatique PFU vs IR.</p>
+              </div>
+              <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
             </Link>
             <Link
               href="/faq/transmission"
@@ -113,7 +115,7 @@ export default function TransmissionPage() {
             >
               <div>
                 <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">FAQ Transmission Assurance-Vie</p>
-                <p className="text-sm text-neutral-500">Article 990 I, 757 B, clause bénéficiaire, abattements — toutes vos questions.
+                <p className="text-sm text-neutral-500">Article 990 I, 757 B, clause bénéficiaire, abattements — toutes vos questions.</p>
               </div>
               <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
             </Link>
