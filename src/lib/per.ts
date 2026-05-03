@@ -22,7 +22,7 @@ const MAX_ABATTEMENT_FRAIS_PRO = 14_555
  *   abattement_10 % = max(MIN_ABATT, min(salaire × 10 %, MAX_ABATT))
  */
 function calculerDetailPlafond(inputs: PERInputs): PERDetailPlafond {
-  const { salaireNetAnnuel, versementEnvisage, plafondsReportesN1, plafondsReportesN2, plafondsReportesN3 } = inputs
+  const { salaireNetAnnuel, versementEnvisage, plafondsReportesN1, plafondsReportesN2, plafondsReportesN3, plafondsReportesN4, plafondsReportesN5 } = inputs
 
   // 1. Abattement forfaitaire frais professionnels (Art. 83 CGI)
   const abattementBrut = salaireNetAnnuel * 0.10
@@ -39,10 +39,12 @@ function calculerDetailPlafond(inputs: PERInputs): PERDetailPlafond {
     Math.max(MIN_PLAFOND_PER, Math.min(plafondBrut, MAX_PLAFOND_PER))
   )
 
-  // 4. Total des reports (N-1, N-2, N-3) — Art. 163 quatervicies I al. 3 CGI
+  // 4. Total des reports (N-1 à N-5) — Art. 163 quatervicies I b) CGI, LF 2026 art. 10 (5 ans)
   const plafondsReportesTotal = Math.max(0, plafondsReportesN1)
     + Math.max(0, plafondsReportesN2)
     + Math.max(0, plafondsReportesN3)
+    + Math.max(0, plafondsReportesN4)
+    + Math.max(0, plafondsReportesN5)
 
   // 5. Plafond total disponible
   const plafondTotal = plafondAnnuel + plafondsReportesTotal
@@ -146,7 +148,7 @@ export function calculerPER(inputs: PERInputs): PERResults {
   if (detail.plafondsReportesTotal === 0 && tmi >= 30) {
     optimisations.push({
       type: 'info',
-      message: `Les plafonds non utilisés des années N-1, N-2 et N-3 sont reportables. Ces montants figurent sur votre avis d'imposition (rubrique "Plafonds disponibles pour les versements retraite").`,
+      message: `Les plafonds non utilisés des 5 dernières années (N-1 à N-5) sont reportables depuis la LF 2026 (Art. 163 quatervicies I b) CGI). Ces montants figurent sur votre avis d'imposition (rubrique "Plafonds disponibles pour les versements retraite").`,
     })
   }
 

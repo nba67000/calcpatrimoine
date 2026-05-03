@@ -7,11 +7,11 @@ import PERCalculator from '@/components/Calculator/PERCalculator'
 
 export const metadata: Metadata = {
   title: 'Simulateur PER individuel — économie d\'impôt',
-  description: 'Calculez l\'économie d\'impôt réalisée en versant sur un PER individuel. Plafond de déduction 2026, report 3 ans, TMI. Barème officiel, gratuit et open-source.',
+  description: 'Calculez l\'économie d\'impôt réalisée en versant sur un PER individuel. Plafond de déduction 2026, report 5 ans (LF 2026), TMI. Barème officiel, gratuit et open-source.',
   keywords: 'PER individuel, plan épargne retraite, économie impôt, plafond déduction, TMI, versement PER, fiscalité PER, simulateur PER 2026',
   openGraph: {
     title: 'Simulateur PER individuel — économie d\'impôt sur versement',
-    description: 'Calculez votre économie d\'impôt sur un versement PER individuel. Plafond 2026, report des plafonds N-1/N-2/N-3.',
+    description: 'Calculez votre économie d\'impôt sur un versement PER individuel. Plafond 2026, report des plafonds N-1 à N-5 (LF 2026).',
     type: 'article',
   },
 }
@@ -78,11 +78,11 @@ export default function PERIndividuelPage() {
           <p className="text-lg text-neutral-600 max-w-3xl leading-relaxed mb-8">
             Calculez l&apos;économie d&apos;impôt générée par un versement volontaire sur votre Plan
             d&apos;Épargne Retraite individuel (PERIN). Plafond de déduction 2026, report des
-            plafonds non utilisés sur 3 ans, coût net réel du versement.
+            plafonds non utilisés sur les 5 années suivantes (LF 2026), coût net réel du versement.
           </p>
 
           <div className="flex flex-wrap gap-x-8 gap-y-2">
-            {['Art. 163 quatervicies CGI', 'PASS 2025 — plafonds 2026', 'Report plafonds N-1 / N-2 / N-3', 'Zéro donnée conservée'].map(t => (
+            {['Art. 163 quatervicies CGI', 'PASS 2025 — plafonds 2026', 'Report plafonds N-1 à N-5 (LF 2026)', 'Zéro donnée conservée'].map(t => (
               <span key={t} className="font-mono text-xs text-neutral-500">{t}</span>
             ))}
           </div>
@@ -143,8 +143,8 @@ export default function PERIndividuelPage() {
                 <h3 className="font-bold text-neutral-900 mb-2">Le report des plafonds non utilisés</h3>
                 <p>
                   Si vous n&apos;avez pas utilisé tout votre plafond les années précédentes, vous
-                  pouvez reporter la part non consommée sur les 3 années suivantes
-                  (Art. 163 quatervicies I alinéa 3 CGI).
+                  pouvez reporter la part non consommée sur les 5 années suivantes
+                  (Art. 163 quatervicies I b) CGI, modifié par LF 2026 art. 10 — auparavant 3 ans).
                 </p>
               </div>
 
@@ -154,7 +154,7 @@ export default function PERIndividuelPage() {
                   <p>abattement = max(509 €, min(salaire × 10 %, 14 555 €))</p>
                   <p>revenu net professionnel = salaire − abattement</p>
                   <p>plafond annuel = max(4 710 €, min(revenu × 10 %, 37 680 €))</p>
-                  <p>plafond total = plafond annuel + reports N-1 + N-2 + N-3</p>
+                  <p>plafond total = plafond annuel + reports N-1 + N-2 + N-3 + N-4 + N-5</p>
                   <p>économie d&apos;impôt = min(versement, plafond total) × TMI</p>
                 </div>
               </div>
@@ -263,7 +263,7 @@ export default function PERIndividuelPage() {
             >
               <div>
                 <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">FAQ PER Individuel</p>
-                <p className="text-sm text-neutral-500">Plafonds 2026, report N-1/N-2/N-3, sortie en capital ou rente, stratégies.</p>
+                <p className="text-sm text-neutral-500">Plafonds 2026, report N-1 à N-5 (LF 2026), sortie en capital ou rente, stratégies.</p>
               </div>
               <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
             </Link>

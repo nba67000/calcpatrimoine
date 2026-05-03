@@ -22,6 +22,8 @@ const DEFAULT_INPUTS: PERInputs = {
   plafondsReportesN1: 0,
   plafondsReportesN2: 0,
   plafondsReportesN3: 0,
+  plafondsReportesN4: 0,
+  plafondsReportesN5: 0,
 }
 
 function formatEur(n: number): string {
@@ -35,6 +37,8 @@ export default function PERCalculator() {
   const reportN1 = useNumericInput(0, { min: 0, max: 200_000 })
   const reportN2 = useNumericInput(0, { min: 0, max: 200_000 })
   const reportN3 = useNumericInput(0, { min: 0, max: 200_000 })
+  const reportN4 = useNumericInput(0, { min: 0, max: 200_000 })
+  const reportN5 = useNumericInput(0, { min: 0, max: 200_000 })
 
   const inputs: PERInputs = {
     salaireNetAnnuel: salaire.value,
@@ -43,11 +47,13 @@ export default function PERCalculator() {
     plafondsReportesN1: reportN1.value,
     plafondsReportesN2: reportN2.value,
     plafondsReportesN3: reportN3.value,
+    plafondsReportesN4: reportN4.value,
+    plafondsReportesN5: reportN5.value,
   }
 
   const results = useMemo(
     () => calculerPER(inputs),
-    [salaire.value, tmi, versement.value, reportN1.value, reportN2.value, reportN3.value]
+    [salaire.value, tmi, versement.value, reportN1.value, reportN2.value, reportN3.value, reportN4.value, reportN5.value]
   )
 
   const { detail, economieFiscale, coutNetReel, rendementFiscal, warnings, optimisations } = results
@@ -176,6 +182,8 @@ export default function PERCalculator() {
               { label: 'Report N-1 (2024)', field: reportN1 },
               { label: 'Report N-2 (2023)', field: reportN2 },
               { label: 'Report N-3 (2022)', field: reportN3 },
+              { label: 'Report N-4 (2021)', field: reportN4 },
+              { label: 'Report N-5 (2020)', field: reportN5 },
             ] as const).map((r) => (
               <div key={r.label} className="flex items-center gap-3">
                 <label className="text-sm text-neutral-600 w-36 flex-shrink-0">{r.label}</label>
@@ -253,7 +261,7 @@ export default function PERCalculator() {
             </div>
             {detail.plafondsReportesTotal > 0 && (
               <div className="flex justify-between text-neutral-600">
-                <span>Reports N-1 / N-2 / N-3</span>
+                <span>Reports N-1 à N-5</span>
                 <span className="font-medium">+ {formatEur(detail.plafondsReportesTotal)}</span>
               </div>
             )}

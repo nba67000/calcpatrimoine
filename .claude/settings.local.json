@@ -31,7 +31,17 @@
       "Bash(Select-String -Pattern \"tmi\" -List)",
       "Bash(Select-Object Path)",
       "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\\\\app\" -Recurse -File -ErrorAction SilentlyContinue | Where-Object {$_.Name -match \"tmi|TMI\"} | Select-Object -ExpandProperty FullName)",
-      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\docs\\\\sources\" -Recurse -File -ErrorAction SilentlyContinue | Where-Object {$_.Name -match \"tmi|TMI\"} | Select-Object -ExpandProperty FullName)"
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\docs\\\\sources\" -Recurse -File -ErrorAction SilentlyContinue | Where-Object {$_.Name -match \"tmi|TMI\"} | Select-Object -ExpandProperty FullName)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\" -Recurse -Filter \"*per*\" -File)",
+      "Bash(Select-Object FullName)",
+      "WebFetch(domain:www.urssaf.fr)",
+      "WebFetch(domain:www.securite-sociale.fr)",
+      "WebFetch(domain:www.net-entreprises.fr)",
+      "WebFetch(domain:www.economie.gouv.fr)",
+      "WebFetch(domain:www.cleiss.fr)",
+      "WebFetch(domain:www.legislation.cnav.fr)",
+      "WebFetch(domain:www.cogidev.com)",
+      "WebFetch(domain:www.lafinancepourtous.com)"
     ]
   }
 }
