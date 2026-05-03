@@ -41,7 +41,11 @@
       "WebFetch(domain:www.cleiss.fr)",
       "WebFetch(domain:www.legislation.cnav.fr)",
       "WebFetch(domain:www.cogidev.com)",
-      "WebFetch(domain:www.lafinancepourtous.com)"
+      "WebFetch(domain:www.lafinancepourtous.com)",
+      "WebFetch(domain:impots.gouv.fr)",
+      "WebFetch(domain:www.notaires.fr)",
+      "WebFetch(domain:www.assemblee-nationale.fr)",
+      "WebFetch(domain:www.conseil-etat.fr)"
     ]
   }
 }

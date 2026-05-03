@@ -1,7 +1,7 @@
 # Sources — Plus-value immobilière
 
-**Dernière vérification** : 2026-05-02
-**Millésime fiscal** : Cessions en 2026 / Barème applicable au 02/05/2026
+**Dernière vérification** : 2026-05-03
+**Millésime fiscal** : Cessions en 2026 / Barème applicable au 03/05/2026
 
 ## Textes de loi
 
@@ -22,9 +22,17 @@
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044994142
   Extrait pertinent : "6 % pour chaque année de détention au-delà de la cinquième et jusqu'à la vingt et unième ; 4 % au titre de la vingt-deuxième"
 
-- **Article 150 VD du CGI** — Abattements pour durée de détention (prélèvements sociaux)
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023374015
-  Extrait pertinent : "1,65 % pour chaque année de détention au-delà de la cinquième et jusqu'à la vingt et unième ; 1,60 % pour la vingt-deuxième ; 9 % pour chaque année au-delà de la vingt-deuxième"
+- **Article L136-7 CSS (2° du I et VI 2)** — Prélèvements sociaux sur les plus-values immobilières et abattements pour durée de détention
+  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053584839
+  Version en vigueur : 21 février 2026 (modifié par LF 2026 art. 24 — modif. hors PVI)
+  Extrait 2° du I : "Les plus-values mentionnées aux articles 150 U à 150 UC du code général des impôts"
+  Extrait VI 2 (abattements PS) : "a) 1,65 % pour chaque année de détention au-delà de la cinquième ; b) 1,60 % pour la vingt-deuxième année de détention ; c) 9 % pour chaque année de détention au-delà de la vingt-deuxième."
+  Note : Art. 150 VD CGI (anciennement cité) renvoie à L136-7 CSS — source primaire des abattements PS.
+
+- **Article 150 U du CGI** — Champ d'application, exonérations
+  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053544910
+  Version en vigueur : 21 février 2026 (modifié par LF 2026 art. 52)
+  Note LF 2026 : les exonérations pour cessions à organismes HLM (7°) et collectivités (8°) sont prolongées jusqu'au 31 décembre 2027. Exonération droit de surélévation (9°) valable jusqu'au 31 décembre 2026. Le seuil 15 000 € (6°) est inchangé.
 
 - **Article 1609 nonies G du CGI** — Taxe additionnelle (surtaxe) sur les plus-values > 50 000 €
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028432433
@@ -38,30 +46,31 @@
 ## Doctrine administrative
 
 - **BOFiP BOI-RFPI-PVI** — Série Plus-values immobilières
-  URL : https://bofip.impots.gouv.fr/bofip/2013-PGP.html
+  URL : https://bofip.impots.gouv.fr/bofip/208-PGP.html/identifiant=BOI-RFPI-PVI
+  Note : les URLs PGP numériques (ex. 2013-PGP.html) sont instables — utiliser les identifiants BOI.
 
 - **BOFiP BOI-RFPI-PVI-20-10** — Calcul du prix d'acquisition (frais et travaux)
-  URL : https://bofip.impots.gouv.fr/bofip/2018-PGP.html
+  URL : https://bofip.impots.gouv.fr/bofip/208-PGP.html/identifiant=BOI-RFPI-PVI-20-10
 
 - **BOFiP BOI-RFPI-PVI-20-20** — Calcul du montant imposable (abattements et surtaxe)
-  URL : https://bofip.impots.gouv.fr/bofip/2019-PGP.html
+  URL : https://bofip.impots.gouv.fr/bofip/208-PGP.html/identifiant=BOI-RFPI-PVI-20-20
 
 ## Barèmes et taux
 
 | Paramètre | Valeur | Source | Millésime |
 |-----------|--------|--------|-----------|
 | Taux IR plus-value | 19 % | Art. 200 B CGI | 2026 |
-| Prélèvements sociaux | 17,2 % | Art. L.136-6 CSS | 2026 |
+| Prélèvements sociaux | 17,2 % | Art. L.136-7 CSS (2° du I) | 2026 |
 | Forfait frais d'acquisition | 7,5 % du prix d'achat | Art. 150 VB CGI | 2026 |
 | Forfait travaux (si > 5 ans) | 15 % du prix d'achat | Art. 150 VB CGI | 2026 |
 | Exonération prix de cession | ≤ 15 000 € | Art. 150 U II 6° CGI | 2026 |
 | Abattement IR (années 6-21) | 6 %/an | Art. 150 VC CGI | 2026 |
 | Abattement IR (22e année) | 4 % | Art. 150 VC CGI | 2026 |
 | Exonération IR totale | à 22 ans de détention | Art. 150 VC CGI | 2026 |
-| Abattement PS (années 6-21) | 1,65 %/an | Art. 150 VD CGI | 2026 |
-| Abattement PS (22e année) | 1,60 % | Art. 150 VD CGI | 2026 |
-| Abattement PS (années 23-29) | 9 %/an | Art. 150 VD CGI | 2026 |
-| Exonération PS totale | à 30 ans de détention | Art. 150 VD CGI | 2026 |
+| Abattement PS (années 6-21) | 1,65 %/an | Art. L136-7 CSS VI 2 a) | 2026 |
+| Abattement PS (22e année) | 1,60 % | Art. L136-7 CSS VI 2 b) | 2026 |
+| Abattement PS (années 23-29) | 9 %/an | Art. L136-7 CSS VI 2 c) | 2026 |
+| Exonération PS totale | à 30 ans de détention | Art. L136-7 CSS VI 2 c) | 2026 |
 | Surtaxe PV 50 001 – 60 000 € | PV × 2% − (60 000 − PV) / 20 | Art. 1609 nonies G CGI | 2026 |
 | Surtaxe PV 60 001 – 100 000 € | 2 % | Art. 1609 nonies G CGI | 2026 |
 | Surtaxe PV 100 001 – 110 000 € | PV × 3% − (110 000 − PV) / 10 | Art. 1609 nonies G CGI | 2026 |

@@ -5,7 +5,7 @@ import type { PlusValueImmobiliereInputs, PlusValueImmobiliereResults } from '@/
 // --- Constantes fiscales ---
 
 const TAUX_IR = 0.19                     // Art. 200 B CGI
-const TAUX_PS = 0.172                    // Art. L.136-6 CSS
+const TAUX_PS = 0.172                    // Art. L.136-7 CSS (2° du I) — plus-values Art. 150 U à 150 UC CGI
 const FORFAIT_FRAIS = 0.075              // Art. 150 VB CGI
 const FORFAIT_TRAVAUX = 0.15             // Art. 150 VB CGI (si détention > 5 ans)
 const SEUIL_EXONERATION_PRIX = 15000    // Art. 150 U II 6° CGI
@@ -37,7 +37,7 @@ function calculerAnneesDetention(dateAcquisition: Date, dateCession: Date): numb
  *   - 6 %/an de la 6e à la 21e année
  *   - +4 % à la 22e → exonération totale
  *
- * PS (Art. 150 VD CGI) :
+ * PS (Art. L136-7 CSS VI 2) :
  *   - 0 % si ≤ 5 ans
  *   - 1,65 %/an de la 6e à la 21e année
  *   - +1,60 % à la 22e → 28 %
