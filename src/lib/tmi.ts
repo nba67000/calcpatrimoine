@@ -11,11 +11,11 @@ const BAREME_2026: Array<{ taux: number; min: number; max: number }> = [
   { taux: 45, min: 181917, max: Number.MAX_VALUE },
 ]
 
-// Décote 2026 — Art. 197-I-4 CGI, indexation +0,9%
-// Coefficient dérivé : limite / seuil = 897/1982 ≈ 0,4525
+// Décote 2026 — Art. 197-I-4-a CGI (LF 2026 art. 4, version en vigueur 21/02/2026)
+// Formule officielle : décote = limite − 45,25 % × IR brut (Art. 197 CGI)
 const DECOTE_2026 = {
-  celibataire: { limite: 897,  seuil: 1982 },
-  couple:      { limite: 1483, seuil: 3277 },
+  celibataire: { limite: 897,  coefficient: 0.4525 },
+  couple:      { limite: 1483, coefficient: 0.4525 },
 }
 
 // Plafond QF — Art. 197-IV CGI, LF 2026
@@ -165,9 +165,9 @@ export function calculerTMIResult(inputs: TMIInputs): TMIResults {
   const enCouple = situationFamiliale === 'marie-pacse'
   const decoteParams = enCouple ? DECOTE_2026.couple : DECOTE_2026.celibataire
   let decoteApplicable = 0
-  if (irBrut > 0 && irBrut < decoteParams.seuil) {
+  if (irBrut > 0) {
     decoteApplicable = Math.round(
-      Math.max(0, decoteParams.limite - (decoteParams.limite / decoteParams.seuil) * irBrut)
+      Math.max(0, decoteParams.limite - decoteParams.coefficient * irBrut)
     )
   }
 

@@ -19,7 +19,19 @@
       "Bash(npm install *)",
       "Bash(Start-Sleep -Seconds 30)",
       "Bash(npm --version)",
-      "PowerShell(npm install *)"
+      "PowerShell(npm install *)",
+      "WebFetch(domain:www.insee.fr)",
+      "WebFetch(domain:catalogue-donnees.insee.fr)",
+      "Read(//c/Users/nicol/Downloads/irsocsd2021_dec/**)",
+      "Read(//c/Users/nicol/**)",
+      "PowerShell(pip *)",
+      "PowerShell(python \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\check_values.py\")",
+      "PowerShell(python \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\check_lx.py\")",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\\\\app\" -Recurse -File)",
+      "Bash(Select-String -Pattern \"tmi\" -List)",
+      "Bash(Select-Object Path)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\\\\app\" -Recurse -File -ErrorAction SilentlyContinue | Where-Object {$_.Name -match \"tmi|TMI\"} | Select-Object -ExpandProperty FullName)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\docs\\\\sources\" -Recurse -File -ErrorAction SilentlyContinue | Where-Object {$_.Name -match \"tmi|TMI\"} | Select-Object -ExpandProperty FullName)"
     ]
   }
 }

@@ -1,13 +1,14 @@
 # Sources — Calculateur TMI (Tranche Marginale d'Imposition)
 
-**Dernière vérification** : 2026-04-19
+**Dernière vérification** : 2026-05-03
 **Millésime fiscal** : Revenus 2025 / Barème 2026
 
 ## Textes de loi
 
 - **Article 197 du Code général des impôts** — Barème progressif de l'impôt sur le revenu et décote
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051212954
-  Extrait pertinent : "Il est fait application d'une décote lorsque le montant de l'impôt brut est inférieur à [limite]"
+  Version en vigueur : 21 février 2026 (modifié par LF 2026 art. 4)
+  Extrait pertinent décote : "diminué [...] de la différence entre 897 € et 45,25 % de son montant pour les contribuables célibataires [...] et de la différence entre 1 483 € et 45,25 % de son montant pour les contribuables soumis à imposition commune"
 
 - **Article 194 du Code général des impôts** — Quotient familial, nombre de parts
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006302756
@@ -31,7 +32,8 @@
 
 - **BOFiP BOI-IR-LIQ-20-20-30** — Décote
   URL : https://bofip.impots.gouv.fr/bofip/2495-PGP.html/identifiant=BOI-IR-LIQ-20-20-30-20250414
-  Date publication : 2025-04-14 (valeurs 2024 — 2026 extrapolées par indexation +0,9%)
+  Date publication : 2025-04-14 (valeurs 2024 affichées — non mis à jour pour 2025 au 2026-05-03)
+  Note : l'actualité BOFiP du 07/04/2026 (ACTU-2026-00022) confirme l'indexation +0,9% s'applique à ce document. Les valeurs 2025 sont confirmées par Art. 197-I-4-a CGI (Légifrance, version 21/02/2026).
 
 - **Actualité BOFiP ACTU-2026-00022** — Indexation barème +0,9% LF 2026
   URL : https://bofip.impots.gouv.fr/bofip/14954-PGP.html/ACTU-2026-00022
@@ -45,8 +47,8 @@
 | Tranche 30% | 29 579 € – 84 577 € / part | Art. 197 CGI — LF 2026 art. 4 | 2026 |
 | Tranche 41% | 84 577 € – 181 917 € / part | Art. 197 CGI — LF 2026 art. 4 | 2026 |
 | Tranche 45% | > 181 917 € / part | Art. 197 CGI — LF 2026 art. 4 | 2026 |
-| Décote célibataire | 897 € − 45,25 % × IR brut (seuil 1 982 €) | Art. 197-I-4 CGI, indexé +0,9% | 2026 |
-| Décote couple/pacsé | 1 483 € − 45,25 % × IR brut (seuil 3 277 €) | Art. 197-I-4 CGI, indexé +0,9% | 2026 |
+| Décote célibataire | 897 € − 45,25 % × IR brut | Art. 197-I-4-a CGI (LF 2026 art. 4) | 2026 |
+| Décote couple/pacsé | 1 483 € − 45,25 % × IR brut | Art. 197-I-4-a CGI (LF 2026 art. 4) | 2026 |
 | Plafond QF / demi-part | 1 807 € | Art. 197-IV CGI — LF 2026 | 2026 |
 | Plafond QF 1er enfant parent isolé | 4 262 € (1 part entière = 0,5 enfant + 0,5 case T) | Art. 197-IV CGI — LF 2026 | 2026 |
 
