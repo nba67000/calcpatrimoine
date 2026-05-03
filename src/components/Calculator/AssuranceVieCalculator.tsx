@@ -15,6 +15,7 @@ export default function AssuranceVieCalculator() {
   const [versementAvant2017, setVersementAvant2017] = useState<number>(40000)
   const [tmi, setTmi] = useState<AssuranceVieInputs['tmi']>(30)
   const [enCouple, setEnCouple] = useState<boolean>(false)
+  const [encoursTotalContrats, setEncoursTotalContrats] = useState<number>(70000)
   const [results, setResults] = useState<AssuranceVieResults | null>(null)
 
   useEffect(() => {
@@ -25,11 +26,12 @@ export default function AssuranceVieCalculator() {
       montantRachat,
       versementAvant2017,
       tmi,
-      enCouple
+      enCouple,
+      encoursTotalContrats
     }
     const calculatedResults = calculerFiscaliteRachat(inputs)
     setResults(calculatedResults)
-  }, [capitalTotal, versementTotal, dateOuverture, montantRachat, versementAvant2017, tmi, enCouple])
+  }, [capitalTotal, versementTotal, dateOuverture, montantRachat, versementAvant2017, tmi, enCouple, encoursTotalContrats])
 
   return (
     <div className="grid lg:grid-cols-2 gap-8">
@@ -214,7 +216,7 @@ export default function AssuranceVieCalculator() {
             </label>
           </div>
 
-          <div>
+          <div className="mb-6">
             <div className="flex justify-between items-baseline mb-2">
               <label className="text-sm font-medium text-neutral-700">Versements avant le 27/09/2017</label>
               <span className="text-lg font-bold text-neutral-900">
@@ -229,8 +231,34 @@ export default function AssuranceVieCalculator() {
             <div className="flex justify-between text-xs text-neutral-500 mt-1">
               <span>0€</span><span>{versementTotal.toLocaleString('fr-FR')}€</span>
             </div>
-            {versementAvant2017 > 0 && (
-              <p className="text-xs text-primary-600 mt-2">✓ Fiscalité réduite : 24,7% au lieu de 30%</p>
+          </div>
+
+          <div>
+            <div className="flex justify-between items-baseline mb-2">
+              <label className="text-sm font-medium text-neutral-700">
+                Encours total tous contrats AV
+              </label>
+              <span className={`text-lg font-bold ${encoursTotalContrats > 150000 ? 'text-amber-600' : 'text-neutral-900'}`}>
+                {encoursTotalContrats.toLocaleString('fr-FR')} €
+              </span>
+            </div>
+            <input
+              type="range" min="0" max="1000000" step="5000" value={encoursTotalContrats}
+              onChange={(e) => setEncoursTotalContrats(Number(e.target.value))}
+              className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
+            />
+            <div className="flex justify-between text-xs text-neutral-500 mt-1">
+              <span>0€</span><span>1 000 000€</span>
+            </div>
+            <p className="text-xs text-neutral-500 mt-2">
+              Versements nets sur l&apos;ensemble de vos contrats AV (tous assureurs).
+              Si un seul contrat : égal aux versements totaux ci-dessus.
+              Seuil 150 000€ : au-delà, le PFU passe de 7,5% à 12,8% (Art. 125-0 A CGI).
+            </p>
+            {encoursTotalContrats <= 150000 ? (
+              <p className="text-xs text-primary-600 mt-1">PFU reduit : 7,5% IR (encours &le; 150 000€)</p>
+            ) : (
+              <p className="text-xs text-amber-600 mt-1">PFU normal : 12,8% IR (encours &gt; 150 000€)</p>
             )}
           </div>
         </div>

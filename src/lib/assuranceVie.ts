@@ -17,54 +17,63 @@ export function calculerAnciennete(dateOuverture: Date): { annees: number; mois:
  return { annees, mois }
 }
 
+// Art. 125-0 A CGI — seuil encours pour PFU réduit à 7,5% (versements post-27/09/2017, contrat > 8 ans)
+const SEUIL_ENCOURS_PFU_REDUIT = 150_000
+
 /**
- * Calcule le taux PFU selon ancienneté et versements avant 2017
+ * Taux IR PFU applicable aux versements post-27/09/2017 dans un contrat > 8 ans.
+ * 7,5% si encours total ≤ 150 000€, sinon prorata 7,5%/12,8% (Art. 125-0 A CGI).
+ */
+function tauxIRPost2017(encoursTotalContrats: number): number {
+ if (encoursTotalContrats <= SEUIL_ENCOURS_PFU_REDUIT) return 0.075
+ const ratioReduit = SEUIL_ENCOURS_PFU_REDUIT / encoursTotalContrats
+ return ratioReduit * 0.075 + (1 - ratioReduit) * 0.128
+}
+
+/**
+ * Calcule le taux PFU selon ancienneté, versements avant 2017 et encours total
  */
 function calculerTauxPFU(
  anciennete: number,
  versementAvant2017: number,
  plusValueDansRachat: number,
- versementTotal: number
+ versementTotal: number,
+ encoursTotalContrats: number
 ): { tauxMoyen: number; detailAvant2017: any } {
- 
+
  if (anciennete < 8) {
  // Contrat < 8 ans : 30% (12,8% IR + 17,2% PS)
- return {
- tauxMoyen: 0.30,
- detailAvant2017: null
+ return { tauxMoyen: 0.30, detailAvant2017: null }
  }
- }
- 
- // Contrat> 8 ans
+
+ // Contrat > 8 ans : taux post-2017 dépend du seuil 150 000€
+ const tauxPost = tauxIRPost2017(encoursTotalContrats) + 0.172
+
  if (versementAvant2017 === 0) {
- // Pas de versements avant 2017 : 30% (12,8% IR + 17,2% PS)
- return {
- tauxMoyen: 0.30,
- detailAvant2017: null
+ return { tauxMoyen: tauxPost, detailAvant2017: null }
  }
- }
- 
- // Il y a des versements avant 2017
- // Calcul de la répartition de la plus-value
+
+ // Versements mixtes avant/après 2017
  const ratioAvant2017 = versementAvant2017 / versementTotal
  const plusValueAvant2017 = plusValueDansRachat * ratioAvant2017
  const plusValueApres2017 = plusValueDansRachat - plusValueAvant2017
- 
- // Taux pour versements avant 2017 : 7,5% + 17,2% = 24,7%
- // Taux pour versements après 2017 : 12,8% + 17,2% = 30%
+
+ // Avant 2017 : toujours 7,5% + 17,2% = 24,7%
  const impotAvant = plusValueAvant2017 * 0.247
- const impotApres = plusValueApres2017 * 0.30
- 
- const tauxMoyen = (impotAvant + impotApres) / plusValueDansRachat
- 
+ const impotApres = plusValueApres2017 * tauxPost
+
+ const tauxMoyen = plusValueDansRachat > 0
+ ? (impotAvant + impotApres) / plusValueDansRachat
+ : 0.247
+
  return {
  tauxMoyen,
  detailAvant2017: {
  plusValueAvant2017,
  plusValueApres2017,
  tauxAvant: 0.247,
- tauxApres: 0.30,
- avantage: plusValueAvant2017 * (0.30 - 0.247)
+ tauxApres: tauxPost,
+ avantage: plusValueAvant2017 * (tauxPost - 0.247)
  }
  }
 }
@@ -101,7 +110,8 @@ export function calculerFiscaliteRachat(inputs: AssuranceVieInputs): AssuranceVi
  ancienneteAnnees,
  inputs.versementAvant2017,
  partPlusValue,
- inputs.versementTotal
+ inputs.versementTotal,
+ inputs.encoursTotalContrats
  )
  
  const impotPFU = plusValueTaxable * calculPFU.tauxMoyen
@@ -207,10 +217,11 @@ export function calculerFiscaliteRachat(inputs: AssuranceVieInputs): AssuranceVi
  }
  
  // Info : versements avant 2017
- if (partAvant2017 && partAvant2017.avantage> 100) {
+ if (partAvant2017 && partAvant2017.avantage > 100) {
+ const tauxApresPct = (calculPFU.detailAvant2017.tauxApres * 100).toFixed(1)
  optimisations.push({
  type: 'info',
- message: `✓ Vos versements avant le 27/09/2017 bénéficient d'un taux réduit (24,7% au lieu de 30%), ce qui vous fait économiser ${Math.round(partAvant2017.avantage).toLocaleString('fr-FR')}€.`
+ message: `Vos versements avant le 27/09/2017 bénéficient d'un taux réduit (24,7% au lieu de ${tauxApresPct}%), ce qui vous fait économiser ${Math.round(partAvant2017.avantage).toLocaleString('fr-FR')}€.`
  })
  }
  

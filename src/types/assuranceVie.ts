@@ -17,6 +17,9 @@ export interface AssuranceVieInputs {
  
  // Couple (pour abattement)
  enCouple: boolean; // true = 9200€ abattement, false = 4600€
+
+ // Encours total tous contrats AV (seuil 150 000€ pour PFU réduit — Art. 125-0 A CGI)
+ encoursTotalContrats: number;
 }
 
 export interface FiscaliteOption {
