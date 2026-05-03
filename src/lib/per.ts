@@ -112,6 +112,12 @@ export function calculerPER(inputs: PERInputs): PERResults {
   const warnings: PERResults['warnings'] = []
   const optimisations: PERResults['optimisations'] = []
 
+  // Avertissement systématique : l'avantage à l'entrée est un report d'imposition
+  warnings.push({
+    type: 'info',
+    message: `L'économie affichée est un avantage fiscal à l'entrée, pas une exonération définitive. À la sortie, la part du capital issue des versements déductibles sera imposée à l'IR (au barème de l'année de sortie) ; les gains seront soumis aux prélèvements sociaux (17,2 %). L'avantage net réel dépend de l'écart entre votre TMI actuelle (${tmi} %) et votre TMI à la retraite.`,
+  })
+
   if (detail.partNonDeductible > 0) {
     warnings.push({
       type: 'danger',
