@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Tooltip from '@/components/Tooltip'
 import ProjectionChart from '@/components/ProjectionChart'
 import Icon from '@/components/Icon'
+import ChatWidget from '@/components/ChatWidget'
 
 export default function RenteCalculator() {
  const [age, setAge] = useState<number>(65)
@@ -43,6 +44,7 @@ export default function RenteCalculator() {
  }, [age, capital, showReversion, spouseAge, reversionPercentage])
 
  return (
+ <>
  <div className="max-w-4xl mx-auto" suppressHydrationWarning>
  {/* Zone formulaire */}
  <div className="bg-neutral-100 rounded-lg shadow-md p-5 sm:p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
@@ -439,5 +441,21 @@ export default function RenteCalculator() {
  </motion.div>
  )}
  </div>
+ {result && (
+   <ChatWidget
+     contexte={{
+       calculateur: 'rente-viagere',
+       inputs: {
+         age,
+         capital,
+         reversion: showReversion
+           ? { enabled: true, spouse_age: spouseAge, percentage: reversionPercentage }
+           : { enabled: false },
+       },
+       results: result,
+     }}
+   />
+ )}
+ </>
  )
 }

@@ -6,6 +6,7 @@ import { calculerPER } from '@/lib/per'
 import type { PERInputs, TMIOption } from '@/types/per'
 import { useNumericInput } from '@/hooks/useNumericInput'
 import AlertList from '@/components/AlertList'
+import ChatWidget from '@/components/ChatWidget'
 
 const TMI_OPTIONS: Array<{ value: TMIOption; label: string; color: string }> = [
   { value: 0,  label: '0 %',  color: 'bg-neutral-100 text-neutral-800' },
@@ -59,6 +60,7 @@ export default function PERCalculator() {
   const { detail, economieFiscale, coutNetReel, rendementFiscal, warnings, optimisations } = results
 
   return (
+    <>
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* COLONNE GAUCHE — INPUTS */}
@@ -297,5 +299,7 @@ export default function PERCalculator() {
         <AlertList items={optimisations} />
       </div>
     </div>
+    <ChatWidget contexte={{ calculateur: 'per-individuel', inputs, results }} />
+    </>
   )
 }

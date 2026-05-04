@@ -49,3 +49,7 @@ scripts/mortality_data/
 scripts/*.xls
 scripts/*.xlsx
 
+# Claude Code
+.claude/worktrees/
+.claude/settings.local.json
+

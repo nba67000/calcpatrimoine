@@ -6,6 +6,7 @@ import { calculerTMIResult } from '@/lib/tmi'
 import type { TMIInputs, SituationFamiliale } from '@/types/tmi'
 import { useNumericInput } from '@/hooks/useNumericInput'
 import AlertList from '@/components/AlertList'
+import ChatWidget from '@/components/ChatWidget'
 
 const TMI_COLORS: Record<number, { badge: string; text: string; bg: string }> = {
   0:  { badge: 'bg-neutral-200 text-neutral-800',  text: 'text-neutral-700',  bg: 'bg-neutral-50'  },
@@ -45,6 +46,7 @@ export default function TMICalculator() {
   const tmiColors = TMI_COLORS[results.tmi]
 
   return (
+    <>
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* COLONNE GAUCHE — INPUTS */}
@@ -274,5 +276,7 @@ export default function TMICalculator() {
         <AlertList items={results.optimisations} />
       </div>
     </div>
+    <ChatWidget contexte={{ calculateur: 'tmi', inputs, results }} />
+    </>
   )
 }

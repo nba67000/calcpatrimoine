@@ -6,6 +6,7 @@ import FiscaliteComparisonChart from '@/components/FiscaliteComparisonChart'
 import { calculerFiscaliteRachat, formatDateForInput, parseDateFromInput } from '@/lib/assuranceVie'
 import type { AssuranceVieInputs, AssuranceVieResults } from '@/types/assuranceVie'
 import AlertList from '@/components/AlertList'
+import ChatWidget from '@/components/ChatWidget'
 
 export default function AssuranceVieCalculator() {
   const [capitalTotal, setCapitalTotal] = useState<number>(100000)
@@ -34,6 +35,7 @@ export default function AssuranceVieCalculator() {
   }, [capitalTotal, versementTotal, dateOuverture, montantRachat, versementAvant2017, tmi, enCouple, encoursTotalContrats])
 
   return (
+    <>
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* COLONNE GAUCHE - INPUTS */}
@@ -325,5 +327,24 @@ export default function AssuranceVieCalculator() {
         )}
       </div>
     </div>
+    {results && (
+      <ChatWidget
+        contexte={{
+          calculateur: 'assurance-vie/fiscalite-rachat',
+          inputs: {
+            capitalTotal,
+            versementTotal,
+            dateOuverture,
+            montantRachat,
+            versementAvant2017,
+            tmi,
+            enCouple,
+            encoursTotalContrats,
+          },
+          results,
+        }}
+      />
+    )}
+    </>
   )
 }

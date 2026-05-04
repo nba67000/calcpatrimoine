@@ -12,11 +12,12 @@ import {
  equilibrerParts,
  modifierPartBeneficiaire,
 } from '@/lib/transmission'
-import type { 
- TransmissionInputs, 
+import type {
+ TransmissionInputs,
  TransmissionResults,
- Beneficiaire 
+ Beneficiaire
 } from '@/types/transmission'
+import ChatWidget from '@/components/ChatWidget'
 
 export default function TransmissionCalculator() {
  // États inputs
@@ -66,6 +67,7 @@ export default function TransmissionCalculator() {
  const totalParts = beneficiaires.reduce((sum, b) => sum + b.partPourcentage, 0)
 
  return (
+ <>
  <div className="grid lg:grid-cols-2 gap-8">
  
  {/* COLONNE GAUCHE - INPUTS */}
@@ -375,5 +377,22 @@ export default function TransmissionCalculator() {
  {results && <TransmissionChart results={results} />}
  </div>
  </div>
+ {results && (
+   <ChatWidget
+     contexte={{
+       calculateur: 'assurance-vie/transmission',
+       inputs: {
+         capitalTotal,
+         versementsAvant70,
+         versementsApres70,
+         dateOuverture: new Date(2010, 0, 1),
+         ageSouscripteur,
+         beneficiaires,
+       },
+       results,
+     }}
+   />
+ )}
+ </>
  )
 }

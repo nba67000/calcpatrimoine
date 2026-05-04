@@ -45,7 +45,10 @@
       "WebFetch(domain:impots.gouv.fr)",
       "WebFetch(domain:www.notaires.fr)",
       "WebFetch(domain:www.assemblee-nationale.fr)",
-      "WebFetch(domain:www.conseil-etat.fr)"
+      "WebFetch(domain:www.conseil-etat.fr)",
+      "Bash(node -e \"require\\('@anthropic-ai/sdk'\\); console.log\\('OK'\\)\")",
+      "Bash(node -e \"const a = require\\('@anthropic-ai/sdk'\\); console.log\\('SDK version:', require\\('./node_modules/@anthropic-ai/sdk/package.json'\\).version\\)\")",
+      "Bash(Test-Path *)"
     ]
   }
 }
