@@ -54,7 +54,7 @@ export default function ArticlePERPage() {
               Le PER individuel est souvent présenté comme un outil d&apos;optimisation fiscale simple : vous versez, vous déduisez, vous économisez. Les publicités s&apos;arrêtent là. Ce qu&apos;elles omettent de préciser, c&apos;est que cet argent épargné aujourd&apos;hui sera imposé demain, au moment où vous le retirerez à la retraite.
             </p>
             <p className="text-neutral-700 mb-4">
-              Ce n&apos;est pas un piège. C&apos;est le fonctionnement normal du produit. Mais comprendre exactement ce qui se passe à l&apos;entrée, pendant la phase d&apos;épargne, et à la sortie change complètement l&apos;analyse de son intérêt réel selon votre situation.
+              Ce n&apos;est pas un piège. C&apos;est le fonctionnement normal du produit. Comprendre précisément ce qui se joue à l&apos;entrée, durant la phase d&apos;épargne et à la sortie modifie totalement l&apos;évaluation de son véritable intérêt en fonction de votre situation.
             </p>
             <p className="text-neutral-700">
               Dans cet article : les mécanismes expliqués sans jargon, les formules, les plafonds, la fiscalité des retraits, et une comparaison chiffrée avec l&apos;assurance-vie.
@@ -104,7 +104,7 @@ export default function ArticlePERPage() {
                 },
                 {
                   terme: 'La rente viagère',
-                  def: "Un revenu mensuel versé jusqu'à votre décès, en échange d'un capital que vous cédez définitivement à un assureur. L'assureur prend le risque de vous payer longtemps si vous vivez vieux. Vous prenez le risque de ne pas récupérer votre capital si vous décédez tôt.",
+                  def: "Un revenu mensuel versé jusqu'à votre décès, en échange d'un capital que vous cédez définitivement à un assureur. L'assureur prend le risque de vous payer longtemps si vous vivez longtemps. En contre partie, vous prenez le risque de ne pas percevoir l'équivalent de votre capital si la durée de perception est plus courte.",
                 },
               ].map(({ terme, def }) => (
                 <div key={terme} className="border-b border-neutral-100 pb-5 last:border-0 last:pb-0">
@@ -656,10 +656,10 @@ export default function ArticlePERPage() {
                 <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Textes de loi</h3>
                 <ul className="space-y-2 text-sm">
                   {[
-                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985573', label: 'Article 163 quatervicies du CGI', desc: 'Déductibilité des cotisations versées au PER individuel' },
-                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044979614', label: 'Article 158, 5° bis du CGI', desc: 'Imposition des rentes issues des PER — régime des pensions' },
-                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038612513', label: 'Article L224-1 du Code monétaire et financier', desc: 'Définition légale du PER individuel (loi PACTE 2019)' },
-                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038612527', label: 'Article L224-28 du CMF', desc: 'Cas de déblocage anticipé — liste exhaustive' },
+                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053542827', label: 'Article 163 quatervicies du CGI', desc: 'Déductibilité des cotisations versées au PER individuel' },
+                    { href: 'https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042158853', label: 'Article 158, 5° bis du CGI', desc: 'Imposition des rentes issues des PER — régime des pensions' },
+                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038507575', label: 'Article L224-1 du Code monétaire et financier', desc: 'Définition légale du PER individuel (loi PACTE 2019)' },
+                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805604', label: 'Article L224-28 du CMF', desc: 'Cas de déblocage anticipé — liste exhaustive' },
                     { href: 'https://www.service-public.fr/particuliers/vosdroits/F34982', label: 'Service-Public.fr — PER individuel', desc: 'Fiche pratique officielle : ouverture, versements, fiscalité, déblocages' },
                   ].map(s => (
                     <li key={s.href} className="flex items-start gap-3">
