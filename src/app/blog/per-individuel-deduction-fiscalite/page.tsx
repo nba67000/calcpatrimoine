@@ -276,7 +276,7 @@ export default function ArticlePERPage() {
             <h3 className="font-bold text-neutral-900 mb-3">Comment ce plafond est calculé</h3>
 
             <p className="text-neutral-700 mb-4">
-              Le plafond est égal à 10 % de vos revenus professionnels de l&apos;année précédente. L&apos;État fixe également un minimum, pour que même les personnes à faibles revenus puissent déduire quelque chose, et un maximum, pour éviter que les hauts revenus déduisent des sommes très élevées.
+              Le plafond est égal à 10 % de vos revenus professionnels de l&apos;année précédente. Supposons que vous ayez gagné 30 000 euros en 2024. Votre plafond 2025 sera de 3 000 euros. Mais 3 000 euros est inférieur au minimum garanti de 4 637 euros. Vous pourrez donc déduire 4 637 euros, même si le calcul de base donnait moins. À l&apos;inverse, si vous avez gagné 500 000 euros, le calcul donnerait 50 000 euros. Mais le plafond maximum est de 37 094 euros. Vous ne pourrez pas dépasser ce montant, quelle que soit la hauteur de vos revenus.
             </p>
 
             <p className="text-neutral-700 mb-6">
@@ -659,7 +659,7 @@ export default function ArticlePERPage() {
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053542827', label: 'Article 163 quatervicies du CGI', desc: 'Déductibilité des cotisations versées au PER individuel' },
                     { href: 'https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042158853', label: 'Article 158, 5° bis du CGI', desc: 'Imposition des rentes issues des PER — régime des pensions' },
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038507575', label: 'Article L224-1 du Code monétaire et financier', desc: 'Définition légale du PER individuel (loi PACTE 2019)' },
-                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805604', label: 'Article L224-28 du CMF', desc: 'Cas de déblocage anticipé — liste exhaustive' },
+                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805604', label: 'Article L224-28 du Code monétaire et financier', desc: 'Cas de déblocage anticipé — liste exhaustive' },
                     { href: 'https://www.service-public.fr/particuliers/vosdroits/F34982', label: 'Service-Public.fr — PER individuel', desc: 'Fiche pratique officielle : ouverture, versements, fiscalité, déblocages' },
                   ].map(s => (
                     <li key={s.href} className="flex items-start gap-3">
