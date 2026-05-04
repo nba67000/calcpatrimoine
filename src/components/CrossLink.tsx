@@ -11,7 +11,7 @@ export default function CrossLink({ title, description, href }: CrossLinkProps) 
   return (
     <Link
       href={href}
-      className="group flex items-center justify-between py-5 border-b border-neutral-200 hover:bg-white transition-colors pr-4"
+      className="group flex items-center justify-between py-5 border-b border-neutral-200 hover:bg-surface-card transition-colors pr-4"
       style={{ borderLeft: '3px solid #D4AF37', paddingLeft: '1.25rem' }}
     >
       <div>

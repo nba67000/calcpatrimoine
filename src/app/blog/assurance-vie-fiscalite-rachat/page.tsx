@@ -70,7 +70,7 @@ export default function ArticleAssuranceViePage() {
           </div>
 
           {/* Lexique */}
-          <div className="bg-white border border-neutral-200 p-6 mb-12">
+          <div className="bg-surface-card border border-neutral-200 p-6 mb-12">
             <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-5">Lexique — avant de commencer</p>
             <div className="space-y-5">
               {[
@@ -110,13 +110,13 @@ export default function ArticleAssuranceViePage() {
             <p className="text-primary-200 text-sm mb-4">
               Notre calculateur applique automatiquement toutes les règles : règle proportionnelle, abattement 8 ans, taux réduit 2017, comparaison PFU vs IR.
             </p>
-            <Link href="/assurance-vie" className="inline-block bg-white text-primary-700 px-6 py-2.5 font-medium text-sm hover:bg-neutral-100 transition-colors font-mono">
+            <Link href="/assurance-vie" className="inline-block bg-surface-card text-primary-700 px-6 py-2.5 font-medium text-sm hover:bg-neutral-100 transition-colors font-mono">
               Accéder au calculateur →
             </Link>
           </div>
 
           {/* Sommaire */}
-          <nav className="bg-white border border-neutral-200 p-6 mb-12">
+          <nav className="bg-surface-card border border-neutral-200 p-6 mb-12">
             <p className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-4">Sommaire</p>
             <ol className="space-y-2 text-sm font-mono">
               <li><a href="#piege-1" className="text-primary-600 hover:underline">1. Le piège n°1 : croire qu&apos;on taxe tout le rachat</a></li>
@@ -152,7 +152,7 @@ export default function ArticleAssuranceViePage() {
               Si votre contrat est composé à 30 % de gains, alors chaque euro que vous retirez contient 30 centimes de gains taxables. Pas plus.
             </p>
 
-            <div className="bg-white border border-neutral-200 p-5 my-6">
+            <div className="bg-surface-card border border-neutral-200 p-5 my-6">
               <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-2">Formule</p>
               <p className="font-mono text-sm text-neutral-800">Plus-value dans le rachat = Montant retiré × (Plus-value totale ÷ Capital total)</p>
             </div>
@@ -190,7 +190,7 @@ export default function ArticleAssuranceViePage() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-              <div className="bg-white border border-neutral-200 p-5">
+              <div className="bg-surface-card border border-neutral-200 p-5">
                 <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-3">Contrat de moins de 8 ans</p>
                 <div className="font-mono text-sm space-y-1 text-neutral-700">
                   <p>Plus-value dans le rachat : 15 000 euros</p>
@@ -198,7 +198,7 @@ export default function ArticleAssuranceViePage() {
                   <p className="font-bold text-primary-700 pt-2">Plus-value taxable : 15 000 euros</p>
                 </div>
               </div>
-              <div className="bg-white border border-neutral-200 p-5">
+              <div className="bg-surface-card border border-neutral-200 p-5">
                 <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-3">Contrat de plus de 8 ans (personne seule)</p>
                 <div className="font-mono text-sm space-y-1 text-neutral-700">
                   <p>Plus-value dans le rachat : 15 000 euros</p>
@@ -221,7 +221,7 @@ export default function ArticleAssuranceViePage() {
               Votre contrat a 7 ans et 11 mois. Vous avez un besoin urgent de liquidités. Deux options s&apos;offrent à vous.
             </p>
 
-            <div className="bg-white border border-neutral-200 p-5 my-6">
+            <div className="bg-surface-card border border-neutral-200 p-5 my-6">
               <div className="space-y-5 text-sm">
                 <div>
                   <p className="font-bold text-neutral-900 font-mono mb-1">Option A — Retirer maintenant</p>
@@ -253,14 +253,14 @@ export default function ArticleAssuranceViePage() {
             </p>
 
             <div className="space-y-4 mb-8">
-              <div className="bg-white border border-neutral-200 p-5">
+              <div className="bg-surface-card border border-neutral-200 p-5">
                 <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-2">Option 1 — PFU (Prélèvement Forfaitaire Unique)</p>
                 <p className="text-sm text-neutral-700 mb-3">
                   Taux fixe de 30 % sur vos plus-values, quelle que soit votre tranche d&apos;imposition. Il se décompose en 12,8 % d&apos;impôt sur le revenu et 17,2 % de prélèvements sociaux. C&apos;est l&apos;option appliquée par défaut si vous ne demandez rien.
                 </p>
                 <p className="font-mono text-xs text-neutral-400">Avantage : simple. Inconvénient : peut être coûteux si votre taux marginal est faible.</p>
               </div>
-              <div className="bg-white border border-neutral-200 p-5">
+              <div className="bg-surface-card border border-neutral-200 p-5">
                 <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-2">Option 2 — IR + prélèvements sociaux</p>
                 <p className="text-sm text-neutral-700 mb-3">
                   Vos plus-values sont intégrées à votre revenu imposable et taxées à votre taux marginal, auquel s&apos;ajoutent les 17,2 % de prélèvements sociaux. Vous devez le demander explicitement lors de votre déclaration.
@@ -432,7 +432,7 @@ export default function ArticleAssuranceViePage() {
                 <p className="text-sm text-neutral-700 mb-4 leading-relaxed">{desc}</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                   {cols.map(col => (
-                    <div key={col.label} className="bg-white border border-neutral-200 p-4">
+                    <div key={col.label} className="bg-surface-card border border-neutral-200 p-4">
                       <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-2">{col.label}</p>
                       <div className="font-mono text-xs space-y-1 text-neutral-700">
                         {col.lines.map(l => <p key={l}>{l}</p>)}
@@ -531,7 +531,7 @@ export default function ArticleAssuranceViePage() {
                   <p className="text-white font-bold text-lg">{cas.titre}</p>
                   <p className="text-primary-300 text-sm mt-1">{cas.profil}</p>
                 </div>
-                <div className="bg-white border border-neutral-200 border-t-0 p-6">
+                <div className="bg-surface-card border border-neutral-200 border-t-0 p-6">
                   <p className="text-sm text-neutral-600 mb-5 italic">{cas.besoin}</p>
                   <div className="space-y-2 mb-5">
                     {cas.etapes.map(e => (
@@ -582,7 +582,7 @@ export default function ArticleAssuranceViePage() {
                   desc: 'Clôturer votre contrat pour en ouvrir un nouveau remet le compteur à zéro. Vous perdez votre antériorité fiscale et votre abattement des 8 ans, s\'il était acquis. Un rachat partiel préserve tout cela.',
                 },
               ].map(opt => (
-                <div key={opt.titre} className="bg-white border border-neutral-200 px-5 py-4">
+                <div key={opt.titre} className="bg-surface-card border border-neutral-200 px-5 py-4">
                   <p className="font-bold text-neutral-900 mb-1.5 text-sm">{opt.titre}</p>
                   <p className="text-sm text-neutral-600 leading-relaxed">{opt.desc}</p>
                 </div>
@@ -596,13 +596,13 @@ export default function ArticleAssuranceViePage() {
             <p className="text-primary-200 text-sm mb-4">
               Notre calculateur applique toutes les règles de cet article automatiquement. Gratuit, sans inscription, zéro donnée conservée.
             </p>
-            <Link href="/assurance-vie" className="inline-block bg-white text-primary-700 px-6 py-2.5 font-medium text-sm hover:bg-neutral-100 transition-colors font-mono">
+            <Link href="/assurance-vie" className="inline-block bg-surface-card text-primary-700 px-6 py-2.5 font-medium text-sm hover:bg-neutral-100 transition-colors font-mono">
               Accéder au calculateur →
             </Link>
           </div>
 
           {/* Sources */}
-          <div className="bg-white border border-neutral-200 p-8">
+          <div className="bg-surface-card border border-neutral-200 p-8">
             <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">Méthodologie et sources</h2>
             <div className="space-y-6">
               <div>

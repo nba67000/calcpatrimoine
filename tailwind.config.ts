@@ -32,6 +32,11 @@ const config: Config = {
           600: '#9A7209',
           700: '#7C5E07',
         },
+        // Blancs chauds harmonisés avec le fond #F7F3EC
+        surface: {
+          header: '#FEFCF8',
+          card: '#F5F0E8',
+        },
         neutral: {
           50: '#F8FAFC',
           100: '#F1F5F9',

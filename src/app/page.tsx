@@ -132,7 +132,7 @@ export default function HomePage() {
             {CATEGORIES_CALC.map((cat) => (
               <div
                 key={cat.id}
-                className="bg-white border border-neutral-200"
+                className="bg-surface-card border border-neutral-200"
                 style={{ boxShadow: '3px 3px 0 #E8E0D0' }}
               >
                 {/* En-tête catégorie */}
@@ -205,7 +205,7 @@ export default function HomePage() {
               <Link
                 key={article.href}
                 href={article.href}
-                className="group flex flex-col gap-1.5 py-6 border-b border-neutral-200 hover:bg-white transition-colors px-5"
+                className="group flex flex-col gap-1.5 py-6 border-b border-neutral-200 hover:bg-surface-card transition-colors px-5"
                 style={{ borderLeft: '3px solid #D4AF37' }}
               >
                 <div className="flex items-center gap-3">

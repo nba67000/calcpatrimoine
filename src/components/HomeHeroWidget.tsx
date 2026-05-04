@@ -35,7 +35,7 @@ export default function HomeHeroWidget() {
   }, [age])
 
   return (
-    <div className="bg-white border border-neutral-200" style={{ boxShadow: '4px 4px 0 #D4AF37' }}>
+    <div className="bg-surface-card border border-neutral-200" style={{ boxShadow: '4px 4px 0 #D4AF37' }}>
       {/* Header widget */}
       <div className="border-b border-neutral-100 px-6 py-4">
         <p className="font-mono text-xs text-neutral-400 uppercase tracking-widest">

@@ -76,13 +76,13 @@ export default function ArticlePERPage() {
             <p className="text-primary-200 text-sm mb-4">
               Notre calculateur PER simule votre économie à l&apos;entrée et la fiscalité à la sortie selon votre taux d&apos;imposition actuel et prévisible à la retraite.
             </p>
-            <Link href="/per-individuel" className="inline-block bg-white text-primary-700 px-6 py-2.5 font-medium text-sm hover:bg-neutral-100 transition-colors font-mono">
+            <Link href="/per-individuel" className="inline-block bg-surface-card text-primary-700 px-6 py-2.5 font-medium text-sm hover:bg-neutral-100 transition-colors font-mono">
               Accéder au calculateur →
             </Link>
           </div>
 
           {/* Lexique */}
-          <div className="bg-white border border-neutral-200 p-6 mb-12">
+          <div className="bg-surface-card border border-neutral-200 p-6 mb-12">
             <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-5">Lexique — avant de commencer</p>
             <div className="space-y-5">
               {[
@@ -116,7 +116,7 @@ export default function ArticlePERPage() {
           </div>
 
           {/* Sommaire */}
-          <nav className="bg-white border border-neutral-200 p-6 mb-12">
+          <nav className="bg-surface-card border border-neutral-200 p-6 mb-12">
             <p className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-4">Sommaire</p>
             <ol className="space-y-2 text-sm font-mono">
               <li><a href="#fonctionnement" className="text-primary-600 hover:underline">1. Ce que le PER fait exactement</a></li>
@@ -145,7 +145,7 @@ export default function ArticlePERPage() {
               En contrepartie, quand vous retirerez cet argent à la retraite, il sera imposé à ce moment-là. Le PER ne supprime pas l&apos;impôt. Il le déplace dans le temps.
             </p>
 
-            <div className="bg-white border border-neutral-200 p-6 my-6">
+            <div className="bg-surface-card border border-neutral-200 p-6 my-6">
               <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-5">Les trois phases d&apos;un PER</p>
               <div className="space-y-5">
                 {[
@@ -176,7 +176,7 @@ export default function ArticlePERPage() {
               </div>
             </div>
 
-            <div className="border-l-4 border-neutral-300 bg-white px-5 py-4 my-6">
+            <div className="border-l-4 border-neutral-300 bg-surface-card px-5 py-4 my-6">
               <p className="text-sm text-neutral-700 leading-relaxed">
                 L&apos;idée centrale est la suivante. Si vous payez plus d&apos;impôts aujourd&apos;hui qu&apos;à la retraite, ce qui est fréquent quand on passe d&apos;un salaire de cadre à une pension, le PER est mathématiquement avantageux. Si votre taux d&apos;imposition reste identique, l&apos;avantage est bien moindre.
               </p>
@@ -200,7 +200,7 @@ export default function ArticlePERPage() {
               L&apos;économie réalisée dépend de votre taux marginal d&apos;imposition. Plus ce taux est élevé, plus le PER est efficace à l&apos;entrée. La formule est simple.
             </p>
 
-            <div className="bg-white border border-neutral-200 p-5 my-6">
+            <div className="bg-surface-card border border-neutral-200 p-5 my-6">
               <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-2">Formule</p>
               <p className="font-mono text-sm text-neutral-800">Impôt économisé = Montant versé × Votre taux marginal</p>
               <p className="text-xs text-neutral-400 mt-3">Exemple : vous versez 5 000 euros et votre taux marginal est de 30 %. Vous économisez 5 000 × 30 % = 1 500 euros d&apos;impôt.</p>
@@ -302,7 +302,7 @@ export default function ArticlePERPage() {
                 { revenu: 'Revenus 2024 : 60 000€', plafond: 'Calcul : 6 000€', note: 'Situé entre le minimum et le maximum. Vous pouvez déduire 6 000 euros.' },
                 { revenu: 'Revenus 2024 : 400 000€', plafond: 'Calcul : 40 000€', note: 'Supérieur au maximum autorisé. La déduction est plafonnée à 37 094 euros.' },
               ].map(ex => (
-                <div key={ex.revenu} className="bg-white border border-neutral-200 p-4">
+                <div key={ex.revenu} className="bg-surface-card border border-neutral-200 p-4">
                   <p className="font-mono text-xs text-neutral-400 uppercase mb-2">{ex.revenu}</p>
                   <p className="font-bold text-sm text-primary-700 mb-2">{ex.plafond}</p>
                   <p className="text-xs text-neutral-500 leading-relaxed">{ex.note}</p>
@@ -350,7 +350,7 @@ export default function ArticlePERPage() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <div className="bg-white border border-neutral-200 p-5">
+              <div className="bg-surface-card border border-neutral-200 p-5">
                 <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-3">Vos versements</p>
                 <p className="text-sm text-neutral-700 leading-relaxed mb-3">
                   L&apos;argent que vous avez versé et qui a été déduit de vos impôts est considéré comme un revenu ordinaire au moment du retrait. Il est ajouté à vos autres revenus de l&apos;année et taxé à votre taux marginal du moment.
@@ -359,7 +359,7 @@ export default function ArticlePERPage() {
                   Exemple : vous retirez 10 000 euros de versements, votre taux marginal à la retraite est de 11 % → 1 100 euros d&apos;impôt.
                 </p>
               </div>
-              <div className="bg-white border border-neutral-200 p-5">
+              <div className="bg-surface-card border border-neutral-200 p-5">
                 <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-3">Les gains accumulés</p>
                 <p className="text-sm text-neutral-700 leading-relaxed mb-3">
                   Les intérêts et plus-values générés pendant la phase d&apos;épargne sont imposés au taux fixe de 30 % : 12,8 % d&apos;impôt sur le revenu et 17,2 % de prélèvements sociaux. Ce taux s&apos;applique quel que soit votre niveau de revenus à la retraite.
@@ -445,11 +445,11 @@ export default function ArticlePERPage() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-              <div className="bg-white border-l-4 border-l-primary-700 border border-neutral-200 p-5">
+              <div className="bg-surface-card border-l-4 border-l-primary-700 border border-neutral-200 p-5">
                 <p className="font-bold text-sm text-neutral-900 mb-3">Le PER</p>
                 <p className="text-sm text-neutral-600 leading-relaxed">Réduit votre impôt dès cette année. L&apos;argent est bloqué jusqu&apos;à la retraite, sauf exceptions. Les versements et les gains sont imposés à la sortie.</p>
               </div>
-              <div className="bg-white border-l-4 border-l-accent-400 border border-neutral-200 p-5">
+              <div className="bg-surface-card border-l-4 border-l-accent-400 border border-neutral-200 p-5">
                 <p className="font-bold text-sm text-neutral-900 mb-3">L&apos;assurance-vie</p>
                 <p className="text-sm text-neutral-600 leading-relaxed">Aucun avantage fiscal à l&apos;entrée. Le capital est disponible à tout moment. Seuls les gains sont imposés à la sortie, pas les versements. Fiscalité allégée après 8 ans.</p>
               </div>
@@ -519,7 +519,7 @@ export default function ArticlePERPage() {
                   <p className="text-white font-bold text-lg">{cas.titre}</p>
                   <p className="text-primary-300 text-sm mt-1">{cas.detail}</p>
                 </div>
-                <div className="bg-white border border-neutral-200 border-t-0 p-6">
+                <div className="bg-surface-card border border-neutral-200 border-t-0 p-6">
                   <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-4">{cas.versement}</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
                     <div className="bg-neutral-50 border-l-4 border-l-primary-700 border border-neutral-200 p-4">
@@ -607,7 +607,7 @@ export default function ArticlePERPage() {
                   favorable: false,
                 },
               ].map((col, i) => (
-                <div key={i} className={`border p-5 flex flex-col gap-3 ${col.favorable ? 'bg-accent-50 border-accent-300' : 'bg-white border-neutral-200'}`}>
+                <div key={i} className={`border p-5 flex flex-col gap-3 ${col.favorable ? 'bg-accent-50 border-accent-300' : 'bg-surface-card border-neutral-200'}`}>
                   <p className="text-xs font-bold text-neutral-700">{col.label}</p>
                   <div>
                     <p className="font-mono text-xs text-neutral-500">{col.tmia}</p>
@@ -643,13 +643,13 @@ export default function ArticlePERPage() {
             <p className="text-primary-200 text-sm mb-4">
               Notre calculateur PER simule votre économie à l&apos;entrée et la fiscalité à la sortie selon votre taux d&apos;imposition actuel et prévisible. Gratuit, sans inscription, zéro donnée conservée.
             </p>
-            <Link href="/per-individuel" className="inline-block bg-white text-primary-700 px-6 py-2.5 font-medium text-sm hover:bg-neutral-100 transition-colors font-mono">
+            <Link href="/per-individuel" className="inline-block bg-surface-card text-primary-700 px-6 py-2.5 font-medium text-sm hover:bg-neutral-100 transition-colors font-mono">
               Accéder au calculateur PER →
             </Link>
           </div>
 
           {/* Sources */}
-          <div className="bg-white border border-neutral-200 p-8">
+          <div className="bg-surface-card border border-neutral-200 p-8">
             <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">Méthodologie et sources</h2>
             <div className="space-y-6">
               <div>

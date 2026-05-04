@@ -27,7 +27,7 @@ export default function Header() {
   }
 
   return (
-    <header className="border-b border-neutral-200 bg-white sticky top-0 z-50 shadow-sm">
+    <header className="border-b border-neutral-200 bg-surface-header sticky top-0 z-50 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
 
         {/* Logo */}
@@ -71,7 +71,7 @@ export default function Header() {
             {/* Dropdown panel */}
             {dropdownOpen && (
               <div
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-white border border-neutral-200 shadow-lg w-[560px]"
+                className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-surface-header border border-neutral-200 shadow-lg w-[560px]"
                 style={{ boxShadow: '4px 4px 0 #E8E0D0' }}
                 onMouseEnter={openDropdown}
                 onMouseLeave={closeDropdown}
@@ -148,7 +148,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <nav className="lg:hidden border-t border-neutral-200 bg-white">
+        <nav className="lg:hidden border-t border-neutral-200 bg-surface-header">
           <div className="max-w-6xl mx-auto px-4 py-3 space-y-1">
 
             {/* Calculateurs accordion */}

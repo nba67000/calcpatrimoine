@@ -76,11 +76,11 @@ export default function BlogIndex() {
               <Link
                 key={article.slug}
                 href={`/blog/${article.slug}`}
-                className="group flex flex-col gap-2 py-7 border-b border-neutral-200 hover:bg-white transition-colors px-5"
+                className="group flex flex-col gap-2 py-7 border-b border-neutral-200 hover:bg-surface-card transition-colors px-5"
                 style={{ borderLeft: '3px solid #D4AF37' }}
               >
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-xs text-neutral-500 border border-neutral-300 px-2 py-0.5 bg-white">
+                  <span className="font-mono text-xs text-neutral-500 border border-neutral-300 px-2 py-0.5 bg-surface-card">
                     {article.tag}
                   </span>
                   <span className="font-mono text-xs text-neutral-400">{article.duree} de lecture</span>

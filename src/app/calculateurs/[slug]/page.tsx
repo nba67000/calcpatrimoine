@@ -74,7 +74,7 @@ export default async function CategorieCalcPage({ params }: Props) {
                       <Link
                         key={calc.href}
                         href={calc.href}
-                        className="group bg-white border border-neutral-200 hover:border-primary-300 transition-all"
+                        className="group bg-surface-card border border-neutral-200 hover:border-primary-300 transition-all"
                         style={{ boxShadow: '3px 3px 0 #E8E0D0' }}
                       >
                         <div className="px-5 pt-5 pb-4 border-b border-neutral-100 border-l-4 border-l-primary-700">
@@ -104,7 +104,7 @@ export default async function CategorieCalcPage({ params }: Props) {
                     {bientot.map(calc => (
                       <div
                         key={calc.nom}
-                        className="bg-white border border-neutral-100 opacity-50"
+                        className="bg-surface-card border border-neutral-100 opacity-50"
                         style={{ boxShadow: '2px 2px 0 #EDE9E0' }}
                       >
                         <div className="px-5 pt-5 pb-4 border-b border-neutral-100 border-l-4 border-l-neutral-300">
@@ -125,7 +125,7 @@ export default async function CategorieCalcPage({ params }: Props) {
 
             {/* Sidebar */}
             <div className="lg:sticky lg:top-24 space-y-4">
-              <div className="bg-white border border-neutral-200" style={{ boxShadow: '3px 3px 0 #E8E0D0' }}>
+              <div className="bg-surface-card border border-neutral-200" style={{ boxShadow: '3px 3px 0 #E8E0D0' }}>
                 <div className="px-5 py-4 border-b border-neutral-100">
                   <p className="font-mono text-xs text-neutral-400 uppercase tracking-widest">Autres catégories</p>
                 </div>
@@ -150,7 +150,7 @@ export default async function CategorieCalcPage({ params }: Props) {
                 </div>
               </div>
 
-              <div className="px-5 py-4 border border-neutral-200 bg-white">
+              <div className="px-5 py-4 border border-neutral-200 bg-surface-card">
                 <p className="font-mono text-xs text-neutral-400 leading-relaxed">
                   Tous les calculs s&apos;exécutent dans votre navigateur. Aucune donnée ne nous parvient.
                 </p>
