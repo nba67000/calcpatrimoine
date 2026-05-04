@@ -3,59 +3,27 @@ import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import HomeHeroWidget from '@/components/HomeHeroWidget'
+import { CATEGORIES_CALC } from '@/config/navigation'
 
 export const metadata: Metadata = {
   title: 'CalcPatrimoine — Calculateurs patrimoniaux gratuits et open-source',
-  description: 'Rente viagère, assurance-vie, PER, impôt sur le revenu. Calculs basés sur les textes officiels. Aucune donnée conservée. Code source ouvert.',
+  description: 'Des calculateurs patrimoniaux gratuits basés sur les textes officiels en vigueur. Aucune donnée conservée. Code source ouvert.',
   keywords: 'calculateur patrimoine, rente viagère, assurance vie, PER, TMI, retraite, simulateur gratuit, open-source',
   openGraph: {
     title: 'CalcPatrimoine — Calculateurs patrimoniaux gratuits',
-    description: 'Quatre outils de calcul patrimonial basés sur les textes officiels. Aucun conseil, aucune donnée conservée.',
+    description: 'Des calculateurs patrimoniaux basés sur les textes officiels. Aucun conseil, aucune donnée conservée.',
     type: 'website',
   },
 }
 
-const CALCULATEURS_ACTIFS = [
-  {
-    href: '/rente-viagere',
-    nom: 'Rente Viagère',
-    tag: 'Assurance',
-    desc: 'Convertit un capital en revenu mensuel garanti à vie. Seuil de rentabilité, espérance INSEE, stratégies couple.',
-  },
-  {
-    href: '/assurance-vie',
-    nom: 'Assurance-Vie',
-    tag: 'Fiscalité',
-    desc: 'Fiscalité des rachats (PFU vs barème IR) et transmission aux bénéficiaires (succession).',
-  },
-  {
-    href: '/tmi',
-    nom: 'TMI — Impôt sur le revenu',
-    tag: 'Fiscalité',
-    desc: 'Visualise les tranches marginales, le taux effectif et l\'impôt annuel selon le barème en vigueur.',
-  },
-  {
-    href: '/per-individuel',
-    nom: 'PER Individuel',
-    tag: 'Retraite',
-    desc: 'Économie d\'impôt sur versement et comparaison avec l\'assurance-vie selon votre TMI.',
-  },
-]
-
-const CALCULATEURS_A_VENIR = [
-  {
-    nom: 'SCPI',
-    tag: 'Immobilier',
-    desc: 'Revenus locatifs papier et rentabilité comparée entre véhicules.',
-  },
-  {
-    nom: 'Immobilier locatif',
-    tag: 'Immobilier',
-    desc: 'Rendement brut/net, cash-flow, fiscalité LMNP et SCI.',
-  },
-]
-
 const ARTICLES = [
+  {
+    href: '/blog/per-individuel-deduction-fiscalite',
+    tag: 'Fiscalité',
+    duree: '12 min',
+    titre: 'PER individuel : ce que vous gagnez à l\'entrée, ce que vous payez à la sortie',
+    accroche: 'Déduction fiscale, plafond épargne retraite, fiscalité des retraits. Les mécanismes exacts avec formules et comparaison PER vs assurance-vie.',
+  },
   {
     href: '/blog/assurance-vie-fiscalite-rachat',
     tag: 'Fiscalité',
@@ -72,12 +40,17 @@ const ARTICLES = [
   },
 ]
 
+// Flat list of active calculators for mobile quick-access
+const CALCULATEURS_ACTIFS = CATEGORIES_CALC.flatMap(cat =>
+  cat.calculateurs.filter(c => c.disponible).map(c => ({ ...c, tag: cat.label }))
+)
+
 export default function HomePage() {
+  const nbActifs = CATEGORIES_CALC.flatMap(c => c.calculateurs.filter(x => x.disponible)).length
+
   return (
     <>
       <Header />
-
-      {/* Liseré or accent en haut du contenu */}
       <div className="h-[3px] bg-accent-400 w-full" />
 
       <div style={{ backgroundColor: '#F7F3EC' }}>
@@ -92,96 +65,113 @@ export default function HomePage() {
                 Calcul patrimonial — France
               </p>
 
-              {/* Filet or */}
               <div className="h-[2px] w-14 bg-accent-400 mb-8" />
 
               <h1 className="font-serif text-5xl lg:text-[3.6rem] text-neutral-900 leading-tight tracking-tight mb-6">
-                Des chiffres précis.<br />
-                Pas de conseil.
+                Prenez vos décisions<br />
+                avec les bons chiffres.
               </h1>
 
               <p className="text-lg text-neutral-600 leading-relaxed mb-10 max-w-xl">
-                Rente viagère, assurance-vie, PER, impôt sur le revenu.
-                Quatre calculateurs basés sur les textes officiels en vigueur.
-                Les calculs s&apos;exécutent entièrement dans votre navigateur.
+                Des calculateurs patrimoniaux gratuits, basés sur les textes officiels en vigueur.
+                Les calculs s&apos;exécutent entièrement dans votre navigateur — aucune donnée ne nous parvient.
               </p>
 
-              {/* Données de confiance en monospace */}
+              {/* Accès rapide mobile uniquement */}
+              <div className="lg:hidden mb-10">
+                <p className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-3">
+                  Accéder à un calculateur
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {CALCULATEURS_ACTIFS.map((calc) => (
+                    <Link
+                      key={calc.href}
+                      href={calc.href}
+                      className="flex flex-col gap-1 border border-primary-300 px-3 py-3 hover:bg-primary-700 hover:border-primary-700 transition-colors group"
+                      style={{ borderLeft: '3px solid #2E4A6F' }}
+                    >
+                      <span className="font-mono text-xs text-primary-500 group-hover:text-primary-200">
+                        {calc.tag}
+                      </span>
+                      <span className="font-bold text-sm text-neutral-900 group-hover:text-white leading-snug">
+                        {calc.nom} →
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Trust markers */}
               <div className="flex flex-wrap gap-x-8 gap-y-2.5">
                 {[
                   '0 donnée collectée',
-                  '4 calculateurs actifs',
+                  `${nbActifs} calculateurs actifs`,
                   'Sources : CGI · BOFiP · INSEE',
                   'Code source ouvert',
                 ].map(label => (
-                  <span key={label} className="font-mono text-xs text-neutral-500">
-                    {label}
-                  </span>
+                  <span key={label} className="font-mono text-xs text-neutral-500">{label}</span>
                 ))}
               </div>
             </div>
 
-            {/* Colonne droite — widget interactif */}
-            <div>
+            {/* Widget desktop uniquement */}
+            <div className="hidden lg:block">
               <HomeHeroWidget />
             </div>
           </div>
         </section>
 
-        {/* ── CALCULATEURS ─────────────────────────────────────── */}
+        {/* ── CALCULATEURS PAR CATÉGORIE ───────────────────────── */}
         <section className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
-
-          {/* En-tête de section */}
-          <div className="flex items-center gap-6 mb-0">
-            <h2 className="font-serif text-3xl text-neutral-900 shrink-0">
-              Les outils
-            </h2>
+          <div className="flex items-center gap-6 mb-10">
+            <h2 className="font-serif text-3xl text-neutral-900 shrink-0">Les outils</h2>
             <div className="flex-1 h-[1px] bg-neutral-300" />
           </div>
 
-          {/* Calculateurs disponibles */}
-          <div className="border-t border-neutral-300">
-            {CALCULATEURS_ACTIFS.map((calc) => (
-              <Link
-                key={calc.href}
-                href={calc.href}
-                className="group flex items-center gap-4 lg:gap-8 py-5 border-b border-neutral-200 hover:bg-white transition-colors pr-6"
-                style={{ borderLeft: '3px solid #2E4A6F', paddingLeft: '1.25rem' }}
-              >
-                <span className="font-mono text-xs text-primary-600 border border-primary-300 px-2 py-0.5 shrink-0 hidden sm:inline bg-white">
-                  {calc.tag}
-                </span>
-                <span className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors shrink-0 min-w-0 sm:min-w-[10rem] lg:min-w-[14rem]">
-                  {calc.nom}
-                </span>
-                <span className="text-neutral-500 text-sm flex-1 hidden md:block leading-snug">
-                  {calc.desc}
-                </span>
-                <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-auto shrink-0">
-                  →
-                </span>
-              </Link>
-            ))}
-
-            {/* Calculateurs à venir — atténués */}
-            {CALCULATEURS_A_VENIR.map((calc) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {CATEGORIES_CALC.map((cat) => (
               <div
-                key={calc.nom}
-                className="flex items-center gap-4 lg:gap-8 py-5 border-b border-neutral-200 pr-6 opacity-35"
-                style={{ borderLeft: '3px solid #94A3B8', paddingLeft: '1.25rem' }}
+                key={cat.id}
+                className="bg-white border border-neutral-200"
+                style={{ boxShadow: '3px 3px 0 #E8E0D0' }}
               >
-                <span className="font-mono text-xs text-neutral-500 border border-neutral-300 px-2 py-0.5 shrink-0 hidden sm:inline">
-                  {calc.tag}
-                </span>
-                <span className="font-bold text-neutral-500 shrink-0 min-w-0 sm:min-w-[10rem] lg:min-w-[14rem]">
-                  {calc.nom}
-                </span>
-                <span className="text-neutral-400 text-sm flex-1 hidden md:block leading-snug">
-                  {calc.desc}
-                </span>
-                <span className="font-mono text-xs text-neutral-400 ml-auto shrink-0">
-                  Bientôt
-                </span>
+                {/* En-tête catégorie */}
+                <div className="px-5 py-4 border-b border-neutral-100 border-l-4 border-l-primary-700">
+                  <p className="font-serif text-base font-bold text-neutral-900">{cat.label}</p>
+                  <p className="font-mono text-xs text-neutral-400 mt-0.5">{cat.description}</p>
+                </div>
+
+                {/* Calculateurs */}
+                <div>
+                  {cat.calculateurs.map((calc, i) => (
+                    calc.disponible ? (
+                      <Link
+                        key={calc.href}
+                        href={calc.href}
+                        className={`group flex items-start gap-4 px-5 py-4 hover:bg-neutral-50 transition-colors ${i < cat.calculateurs.length - 1 ? 'border-b border-neutral-100' : ''}`}
+                      >
+                        <div className="flex-1 min-w-0">
+                          <p className="font-bold text-sm text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">
+                            {calc.nom}
+                          </p>
+                          <p className="font-mono text-xs text-neutral-400 leading-relaxed">{calc.desc}</p>
+                        </div>
+                        <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform shrink-0 mt-0.5">→</span>
+                      </Link>
+                    ) : (
+                      <div
+                        key={calc.nom}
+                        className={`flex items-start gap-4 px-5 py-4 opacity-40 ${i < cat.calculateurs.length - 1 ? 'border-b border-neutral-100' : ''}`}
+                      >
+                        <div className="flex-1 min-w-0">
+                          <p className="font-bold text-sm text-neutral-500 mb-0.5">{calc.nom}</p>
+                          <p className="font-mono text-xs text-neutral-400 leading-relaxed">{calc.desc}</p>
+                        </div>
+                        <span className="font-mono text-xs text-neutral-400 shrink-0 mt-0.5">Bientôt</span>
+                      </div>
+                    )
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -190,29 +180,23 @@ export default function HomePage() {
         {/* ── MANIFESTE ────────────────────────────────────────── */}
         <section className="max-w-2xl mx-auto px-6 py-16 lg:py-20 text-center">
           <div className="h-[1px] w-20 bg-accent-400 mx-auto mb-10" />
-
           <h2 className="font-serif text-3xl lg:text-4xl font-bold text-neutral-900 leading-tight mb-6">
-            CalcPatrimoine calcule.<br />
-            Il ne conseille pas.
+            Des calculs rigoureux.<br />
+            Une décision qui vous appartient.
           </h2>
-
           <p className="text-neutral-600 leading-relaxed">
             Chaque résultat repose sur les textes officiels en vigueur —
             Code général des impôts, BOFiP, tables de mortalité INSEE 2022.
             Le code source est public et auditable.
             Les données ne quittent pas votre navigateur.
           </p>
-
           <div className="h-[1px] w-20 bg-accent-400 mx-auto mt-10" />
         </section>
 
         {/* ── ARTICLES ─────────────────────────────────────────── */}
         <section className="max-w-7xl mx-auto px-6 py-12 pb-24">
-
           <div className="flex items-center gap-6 mb-0">
-            <h2 className="font-serif text-3xl text-neutral-900 shrink-0">
-              À lire avant de calculer
-            </h2>
+            <h2 className="font-serif text-3xl text-neutral-900 shrink-0">À lire avant de calculer</h2>
             <div className="flex-1 h-[1px] bg-neutral-300" />
           </div>
 
@@ -232,9 +216,7 @@ export default function HomePage() {
                 <h3 className="text-lg font-bold text-neutral-900 group-hover:text-primary-700 transition-colors leading-snug">
                   {article.titre}
                 </h3>
-                <p className="text-sm text-neutral-500 leading-snug">
-                  {article.accroche}
-                </p>
+                <p className="text-sm text-neutral-500 leading-snug">{article.accroche}</p>
               </Link>
             ))}
           </div>

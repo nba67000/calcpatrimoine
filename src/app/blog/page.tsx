@@ -5,10 +5,18 @@ import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Blog — CalcPatrimoine',
-  description: 'Articles sur la rente viagère, les calculs actuariels, et la finance personnelle. Tout ce que votre conseiller ne vous dit pas.',
+  description: 'Articles sur la fiscalité du patrimoine, les calculs actuariels, et la finance personnelle. Mécanismes exacts, exemples chiffrés, sources officielles.',
 }
 
 const ARTICLES = [
+  {
+    slug: 'per-individuel-deduction-fiscalite',
+    titre: 'PER individuel : ce que vous gagnez à l\'entrée, ce que vous payez à la sortie',
+    extrait: 'Déduction fiscale, plafond épargne retraite, fiscalité des retraits en capital ou en rente. Les mécanismes exacts, avec formules et comparaison PER vs assurance-vie.',
+    date: '2026-05-05',
+    duree: '12 min',
+    tag: 'Fiscalité',
+  },
   {
     slug: 'assurance-vie-fiscalite-rachat',
     titre: 'Assurance-vie : combien vous allez vraiment payer sur un rachat',
@@ -38,7 +46,6 @@ export default function BlogIndex() {
       <div className="h-[3px] bg-accent-400 w-full" />
       <div style={{ backgroundColor: '#F7F3EC' }}>
 
-        {/* Hero */}
         <section className="max-w-6xl mx-auto px-6 py-12">
           <nav className="flex items-center gap-2 font-mono text-xs text-neutral-400 mb-8">
             <Link href="/" className="hover:text-primary-600 transition-colors">Accueil</Link>
@@ -53,15 +60,14 @@ export default function BlogIndex() {
           </h1>
 
           <p className="text-lg text-neutral-600 max-w-2xl leading-relaxed">
-            Tout ce que votre conseiller ne vous dit pas sur la rente viagère,
-            les calculs actuariels, et la finance personnelle.
+            Mécanismes fiscaux, exemples chiffrés, sources officielles.
+            Pour comprendre avant de calculer.
           </p>
         </section>
 
-        {/* Liste articles */}
-        <section className="max-w-6xl mx-auto px-6 pb-16">
+        <section className="max-w-6xl mx-auto px-6 pb-24">
           <div className="flex items-center gap-6 mb-0">
-            <h2 className="font-serif text-2xl text-neutral-900 shrink-0">Articles publiés</h2>
+            <h2 className="font-serif text-2xl text-neutral-900 shrink-0">Articles</h2>
             <div className="flex-1 h-[1px] bg-neutral-300" />
           </div>
 
@@ -70,36 +76,30 @@ export default function BlogIndex() {
               <Link
                 key={article.slug}
                 href={`/blog/${article.slug}`}
-                className="group flex flex-col gap-1.5 py-7 border-b border-neutral-200 hover:bg-white transition-colors pr-4"
-                style={{ borderLeft: '3px solid #D4AF37', paddingLeft: '1.25rem' }}
+                className="group flex flex-col gap-2 py-7 border-b border-neutral-200 hover:bg-white transition-colors px-5"
+                style={{ borderLeft: '3px solid #D4AF37' }}
               >
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-xs text-neutral-500">{article.tag}</span>
+                  <span className="font-mono text-xs text-neutral-500 border border-neutral-300 px-2 py-0.5 bg-white">
+                    {article.tag}
+                  </span>
+                  <span className="font-mono text-xs text-neutral-400">{article.duree} de lecture</span>
                   <span className="font-mono text-xs text-neutral-300">·</span>
-                  <time dateTime={article.date} className="font-mono text-xs text-neutral-500">{formatDate(article.date)}</time>
-                  <span className="font-mono text-xs text-neutral-300">·</span>
-                  <span className="font-mono text-xs text-neutral-500">{article.duree} de lecture</span>
+                  <span className="font-mono text-xs text-neutral-400">{formatDate(article.date)}</span>
                 </div>
-                <h2 className="text-xl font-bold text-neutral-900 group-hover:text-primary-700 transition-colors leading-snug">
+                <h3 className="text-xl font-bold text-neutral-900 group-hover:text-primary-700 transition-colors leading-snug">
                   {article.titre}
-                </h2>
-                <p className="text-sm text-neutral-500 leading-snug max-w-2xl">
+                </h3>
+                <p className="text-sm text-neutral-500 leading-relaxed max-w-2xl">
                   {article.extrait}
                 </p>
+                <span className="font-mono text-xs text-primary-600 group-hover:translate-x-1 transition-transform mt-1">
+                  Lire l&apos;article →
+                </span>
               </Link>
             ))}
-
-            {/* Teaser à venir */}
-            <div
-              className="py-7 pr-4 opacity-40"
-              style={{ borderLeft: '3px solid #94A3B8', paddingLeft: '1.25rem' }}
-            >
-              <p className="font-mono text-xs text-neutral-400 mb-1">Prochainement</p>
-              <p className="font-bold text-neutral-500">PER vs assurance-vie, fiscalité des rentes, stratégies couple optimisées</p>
-            </div>
           </div>
         </section>
-
       </div>
       <Footer />
     </>
