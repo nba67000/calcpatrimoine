@@ -699,7 +699,7 @@ export default function ArticlePERPage() {
           <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
             <p className="font-mono text-xs text-neutral-400 leading-relaxed">
               Outil indicatif uniquement. Ne constitue pas un conseil fiscal ou en investissement personnalisé.{' '}
-              <a href="https://github.com/nba67000/calcpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
+              <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
             </p>
           </div>
 

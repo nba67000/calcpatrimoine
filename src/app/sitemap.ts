@@ -2,7 +2,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
- const baseUrl = 'https://calcpatrimoine.fr'
+ const baseUrl = 'https://calculpatrimoine.fr'
  const lastModified = new Date()
 
  return [

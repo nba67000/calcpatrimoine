@@ -9,10 +9,10 @@ const nextConfig = {
         has: [
           {
             type: 'host',
-            value: 'www.calcpatrimoine.fr',
+            value: 'www.calculpatrimoine.fr',
           },
         ],
-        destination: 'https://calcpatrimoine.fr/:path*',
+        destination: 'https://calculpatrimoine.fr/:path*',
         permanent: true, // 301 redirect
       },
     ]

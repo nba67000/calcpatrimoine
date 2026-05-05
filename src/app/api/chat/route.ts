@@ -14,7 +14,7 @@ const MAX_INPUT_LEN = 1000 // chars par message utilisateur
 // ---------------------------------------------------------------------------
 
 const PROMPT_STATIQUE = `\
-Tu es l'assistant pédagogique de CalcPatrimoine (calcpatrimoine.fr), un site de calculateurs patrimoniaux gratuits et open-source.
+Tu es l'assistant pédagogique de CalcPatrimoine (calculpatrimoine.fr), un site de calculateurs patrimoniaux gratuits et open-source.
 
 ## Ton rôle
 Tu expliques les résultats affichés dans le calculateur actif. Tu aides l'utilisateur à comprendre comment le résultat a été calculé et quelles règles fiscales s'appliquent. Tu peux rediriger vers des ressources complémentaires (articles de blog, autres calculateurs, textes de loi).
@@ -135,22 +135,42 @@ export async function POST(req: Request) {
   const { messages, contexteTexte, slugCalculateur } = validated
   const dynamicPrompt = buildDynamicPrompt(contexteTexte, slugCalculateur)
 
-  const stream = anthropic.messages.stream({
-    model: MODEL,
-    max_tokens: MAX_TOKENS,
-    system: [
-      {
-        type: 'text',
-        text: PROMPT_STATIQUE,
-        cache_control: { type: 'ephemeral' },
-      },
-      {
-        type: 'text',
-        text: dynamicPrompt,
-      },
-    ],
-    messages,
-  })
+  let stream: ReturnType<typeof anthropic.messages.stream>
+  try {
+    stream = anthropic.messages.stream({
+      model: MODEL,
+      max_tokens: MAX_TOKENS,
+      system: [
+        {
+          type: 'text',
+          text: PROMPT_STATIQUE,
+          cache_control: { type: 'ephemeral' },
+        },
+        {
+          type: 'text',
+          text: dynamicPrompt,
+        },
+      ],
+      messages,
+    })
+    // Force l'initialisation du stream pour capturer les erreurs de quota immédiatement
+    await stream.initialMessage()
+  } catch (err: unknown) {
+    // Anthropic renvoie status 529 ou une APIError avec type 'credit_balance_too_low'
+    const isQuotaError =
+      (typeof err === 'object' && err !== null && 'status' in err && (err as { status: number }).status === 529) ||
+      (typeof err === 'object' && err !== null && 'error' in err &&
+        typeof (err as { error: unknown }).error === 'object' &&
+        (err as { error: { type?: string } }).error !== null &&
+        (err as { error: { type?: string } }).error?.type === 'credit_balance_too_low')
+    if (isQuotaError) {
+      return new Response(JSON.stringify({ error: 'quota_depleted' }), {
+        status: 402,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    }
+    return new Response('Erreur interne', { status: 500 })
+  }
 
   // Stream les deltas texte bruts vers le client
   const readable = new ReadableStream({
@@ -164,6 +184,14 @@ export async function POST(req: Request) {
           ) {
             controller.enqueue(encoder.encode(chunk.delta.text))
           }
+        }
+      } catch (err: unknown) {
+        // Quota épuisé en cours de stream (rare mais possible)
+        const isQuota =
+          typeof err === 'object' && err !== null && 'status' in err &&
+          (err as { status: number }).status === 529
+        if (isQuota) {
+          controller.enqueue(encoder.encode('\x00QUOTA_DEPLETED'))
         }
       } finally {
         controller.close()

@@ -95,7 +95,7 @@ export default function CGUPage() {
  <div className="mt-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
  <p className="text-sm">
  <strong>En cas d&apos;erreur constatée</strong>, nous vous encourageons vivement à nous 
- la signaler à l&apos;adresse : <a href="mailto:contact@calcpatrimoine.fr" className="text-primary-600 hover:underline">contact@calcpatrimoine.fr</a>
+ la signaler à l&apos;adresse : <a href="mailto:contact@calculpatrimoine.fr" className="text-primary-600 hover:underline">contact@calculpatrimoine.fr</a>
  </p>
  </div>
 
@@ -169,8 +169,8 @@ export default function CGUPage() {
  <h2 className="text-2xl font-semibold mb-4">10. Contact</h2>
  <p className="text-neutral-700">
  Pour toute question concernant ces CGU :<br />
- <a href="mailto:contact@calcpatrimoine.fr" className="text-primary-600 hover:underline font-medium">
- contact@calcpatrimoine.fr
+ <a href="mailto:contact@calculpatrimoine.fr" className="text-primary-600 hover:underline font-medium">
+ contact@calculpatrimoine.fr
  </a>
  </p>
  </section>

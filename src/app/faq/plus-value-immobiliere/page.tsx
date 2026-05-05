@@ -536,7 +536,7 @@ const sections: FAQSection[] = [
             </p>
             <p>
               Le code source est open-source et vérifiable sur{' '}
-              <a href="https://github.com/nba67000/calcpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
+              <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
                 GitHub
               </a>.
             </p>
@@ -635,7 +635,7 @@ export default function FAQPlusValueImmobilierePage() {
           <div className="bg-primary-700 p-8 text-center text-white mt-12">
             <h3 className="font-serif text-2xl font-bold mb-3">Vous avez d&apos;autres questions ?</h3>
             <p className="text-primary-200 mb-6 font-mono text-sm">Réponse par email sous 48h.</p>
-            <a href="mailto:contact@calcpatrimoine.fr" className="inline-block bg-white text-primary-700 px-8 py-3 font-medium hover:bg-neutral-100 transition-colors">
+            <a href="mailto:contact@calculpatrimoine.fr" className="inline-block bg-white text-primary-700 px-8 py-3 font-medium hover:bg-neutral-100 transition-colors">
               Nous contacter →
             </a>
           </div>

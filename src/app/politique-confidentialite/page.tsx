@@ -163,7 +163,7 @@ export default function PolitiqueConfidentialitePage() {
  </ul>
  <p className="mt-4">
  Pour exercer ces droits ou pour toute question concernant vos données personnelles, 
- contactez-nous à : <a href="mailto:contact@calcpatrimoine.fr" className="text-primary-600 hover:underline font-medium">contact@calcpatrimoine.fr</a>
+ contactez-nous à : <a href="mailto:contact@calculpatrimoine.fr" className="text-primary-600 hover:underline font-medium">contact@calculpatrimoine.fr</a>
  </p>
  </div>
  </section>
@@ -236,8 +236,8 @@ export default function PolitiqueConfidentialitePage() {
  </p>
  <p className="mt-2">
  <strong>Email : </strong>{' '}
- <a href="mailto:contact@calcpatrimoine.fr" className="text-primary-600 hover:underline font-medium">
- contact@calcpatrimoine.fr
+ <a href="mailto:contact@calculpatrimoine.fr" className="text-primary-600 hover:underline font-medium">
+ contact@calculpatrimoine.fr
  </a>
  </p>
  </div>

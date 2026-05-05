@@ -82,6 +82,6 @@ export const LINKS = {
  insee_data: 'https://www.insee.fr/fr/statistiques/3303333',
  methodology: '/methodologie',
  about: '/a-propos',
- contact: 'mailto:contact@calcpatrimoine.fr',
- github: 'https://github.com/nba67000/calcpatrimoine',
+ contact: 'mailto:contact@calculpatrimoine.fr',
+ github: 'https://github.com/nba67000/calculpatrimoine',
 } as const

@@ -25,7 +25,7 @@ export default function MentionsLegalesPage() {
  <p><strong>Statut :</strong>Micro-entrepreneur</p>
  <p><strong>SIRET :</strong> [Ton SIRET si applicable]</p>
  <p><strong>Adresse :</strong> [Ton adresse postale complète]</p>
- <p><strong>Email :</strong> contact@calcpatrimoine.fr</p>
+ <p><strong>Email :</strong> contact@calculpatrimoine.fr</p>
  <p><strong>Directeur de publication :</strong>Nicolas Barbier</p>
  </div>
  </section>
@@ -96,8 +96,8 @@ export default function MentionsLegalesPage() {
  <div className="text-neutral-700">
  <p>
  Pour toute question concernant le site : <br />
- <a href="mailto:contact@calcpatrimoine.fr" className="text-primary-600 hover:underline font-medium">
- contact@calcpatrimoine.fr
+ <a href="mailto:contact@calculpatrimoine.fr" className="text-primary-600 hover:underline font-medium">
+ contact@calculpatrimoine.fr
  </a>
  </p>
  </div>

@@ -7,7 +7,7 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'FAQ — Questions fréquentes | CalcPatrimoine',
   description: 'Toutes les réponses sur nos calculateurs patrimoniaux : rente viagère, assurance-vie, PER, TMI, transmission. Retrouvez la FAQ dédiée à chaque outil.',
-  keywords: 'faq calcpatrimoine, questions fréquentes, aide calculateur, rente viagère, assurance vie, PER, TMI',
+  keywords: 'faq calculpatrimoine, questions fréquentes, aide calculateur, rente viagère, assurance vie, PER, TMI',
 }
 
 const FAQ_SECTIONS = [
@@ -94,7 +94,7 @@ export default function FAQIndexPage() {
             <h3 className="font-serif text-2xl font-bold mb-3">Vous ne trouvez pas votre réponse ?</h3>
             <p className="text-primary-200 mb-6 font-mono text-sm">Réponse par email sous 48h.</p>
             <a
-              href="mailto:contact@calcpatrimoine.fr"
+              href="mailto:contact@calculpatrimoine.fr"
               className="inline-block bg-white text-primary-700 px-8 py-3 font-medium hover:bg-neutral-100 transition-colors"
             >
               Nous contacter →

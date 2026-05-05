@@ -162,7 +162,7 @@ export default function AssuranceVieHubPage() {
             <p className="font-mono text-xs text-neutral-400 leading-relaxed">
               Outils indicatifs uniquement. Ne constituent pas un conseil fiscal ou patrimonial personnalisé.
               Consultez un notaire, un expert-comptable ou un conseiller en gestion de patrimoine.{' '}
-              <a href="https://github.com/nba67000/calcpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
+              <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
             </p>
           </div>
         </section>

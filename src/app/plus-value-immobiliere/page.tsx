@@ -286,7 +286,7 @@ export default function PlusValueImmobilierePage() {
             <p className="font-mono text-xs text-neutral-400 leading-relaxed">
               Outil indicatif uniquement. Ne constitue pas un conseil fiscal personnalisé.
               Consultez un notaire ou un conseiller en gestion de patrimoine avant toute décision.{' '}
-              <a href="https://github.com/nba67000/calcpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
+              <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
                 Code source ouvert
               </a>
             </p>

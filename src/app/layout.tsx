@@ -21,7 +21,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
- metadataBase: new URL('https://calcpatrimoine.fr'),
+ metadataBase: new URL('https://calculpatrimoine.fr'),
  title: {
  default: 'CalcPatrimoine - Calculateur de Rente Viagère Gratuit',
  template: '%s | CalcPatrimoine'
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
  'simulateur viager',
  'open source finance'
  ],
- authors: [{ name: 'CalcPatrimoine', url: 'https://calcpatrimoine.fr' }],
+ authors: [{ name: 'CalcPatrimoine', url: 'https://calculpatrimoine.fr' }],
  creator: 'CalcPatrimoine',
  publisher: 'CalcPatrimoine',
  
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
  type: 'website',
  locale: 'fr_FR',
  siteName: 'CalcPatrimoine',
- url: 'https://calcpatrimoine.fr',
+ url: 'https://calculpatrimoine.fr',
  title: 'CalcPatrimoine - Calculateur de Rente Viagère Gratuit',
  description: 'Calculez votre rente viagère en quelques secondes. Outil gratuit basé sur les tables de mortalité INSEE 2022. Sans inscription, open-source, données non conservées.',
  images: [
@@ -79,8 +79,8 @@ export const metadata: Metadata = {
  
  twitter: {
  card: 'summary_large_image',
- site: '@calcpatrimoine',
- creator: '@calcpatrimoine',
+ site: '@calculpatrimoine',
+ creator: '@calculpatrimoine',
  title: 'CalcPatrimoine - Calculateur de Rente Viagère Gratuit',
  description: 'Calculez votre rente viagère gratuitement. Tables INSEE 2022, open-source, sans inscription.',
  images: ['/og-image.png'],
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
  },
  
  alternates: {
- canonical: 'https://calcpatrimoine.fr',
+ canonical: 'https://calculpatrimoine.fr',
  },
  
  // Autres metadatas SEO

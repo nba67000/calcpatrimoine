@@ -18,7 +18,7 @@ export default function SchemaMarkup() {
  },
  description:
  'Calculateur de rente viagère gratuit et open-source. Estimez vos revenus mensuels à vie à partir d\'un capital, basé sur les tables de mortalité officielles INSEE.',
- url: 'https://calcpatrimoine.fr',
+ url: 'https://calculpatrimoine.fr',
  softwareVersion: '1.0',
  featureList: [
  'Calcul rente viagère',
@@ -28,11 +28,11 @@ export default function SchemaMarkup() {
  'Sans inscription',
  'Données non conservées',
  ],
- screenshot: 'https://calcpatrimoine.fr/og-image.png',
+ screenshot: 'https://calculpatrimoine.fr/og-image.png',
  author: {
  '@type': 'Organization',
  name: 'CalcPatrimoine',
- url: 'https://calcpatrimoine.fr',
+ url: 'https://calculpatrimoine.fr',
  },
  aggregateRating: {
  '@type': 'AggregateRating',
@@ -44,14 +44,14 @@ export default function SchemaMarkup() {
  {
  '@type': 'Organization',
  name: 'CalcPatrimoine',
- url: 'https://calcpatrimoine.fr',
- logo: 'https://calcpatrimoine.fr/logo.svg',
+ url: 'https://calculpatrimoine.fr',
+ logo: 'https://calculpatrimoine.fr/logo.svg',
  sameAs: [
- 'https://github.com/votre-username/calcpatrimoine', // À REMPLACER
+ 'https://github.com/votre-username/calculpatrimoine', // À REMPLACER
  ],
  contactPoint: {
  '@type': 'ContactPoint',
- email: 'contact@calcpatrimoine.fr',
+ email: 'contact@calculpatrimoine.fr',
  contactType: 'Customer Service',
  },
  },
@@ -59,14 +59,14 @@ export default function SchemaMarkup() {
  {
  '@type': 'WebSite',
  name: 'CalcPatrimoine',
- url: 'https://calcpatrimoine.fr',
+ url: 'https://calculpatrimoine.fr',
  description:
  'Calculateur de rente viagère gratuit basé sur les tables de mortalité INSEE',
  potentialAction: {
  '@type': 'SearchAction',
  target: {
  '@type': 'EntryPoint',
- urlTemplate: 'https://calcpatrimoine.fr/?q={search_term_string}',
+ urlTemplate: 'https://calculpatrimoine.fr/?q={search_term_string}',
  },
  'query-input': 'required name=search_term_string',
  },

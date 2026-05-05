@@ -10,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
  disallow: ['/api/', '/_next/', '/static/'],
  },
  ],
- sitemap: 'https://calcpatrimoine.fr/sitemap.xml',
+ sitemap: 'https://calculpatrimoine.fr/sitemap.xml',
  }
 }

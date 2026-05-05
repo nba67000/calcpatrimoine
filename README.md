@@ -1,7 +1,7 @@
 # CalcPatrimoine — Design System
 
 **Calculateurs patrimoniaux open-source et transparents pour la France.**
-CalcPatrimoine (calcpatrimoine.fr) is a French-language site providing free,
+CalcPatrimoine (calculpatrimoine.fr) is a French-language site providing free,
 open-source, source-cited calculators for personal finance decisions: life
 annuities (rente viagère), life-insurance taxation (assurance-vie),
 inheritance transmission, TMI, PER, etc. The editorial voice is strictly
@@ -30,8 +30,8 @@ technical, transparent, source-cited, and anti-marketing.
 
 The entire system was extracted from the production codebase:
 
-- **Repo:** `github.com/nba67000/calcpatrimoine` (branch `main`)
-- **Site:** `https://calcpatrimoine.fr`
+- **Repo:** `github.com/nba67000/calculpatrimoine` (branch `main`)
+- **Site:** `https://calculpatrimoine.fr`
 - Key files consulted:
   - `tailwind.config.ts` — color palette, font families, shadows, radii
   - `src/app/globals.css` — slider styling, focus ring
@@ -297,7 +297,7 @@ deliberate austerity.
   shipped UI. The `shadow-premium` recipe is waiting for a "premium tier"
   or editorial moment — worth a call on whether to activate it.
 - **Slide templates** were not part of this brand — no `slides/` folder.
-- This system covers **one product** (the calcpatrimoine.fr web app).
+- This system covers **one product** (the calculpatrimoine.fr web app).
   Separate calculators (Rente, AssuranceVie, Transmission, Couple, Inverse)
   all share the same shell and component vocabulary.
 
@@ -306,7 +306,7 @@ deliberate austerity.
 ## Bold ask
 
 **Please pressure-test the calculator-shell recreation in `ui_kits/web/`
-against live calcpatrimoine.fr** (especially the range-slider thumb, the
+against live calculpatrimoine.fr** (especially the range-slider thumb, the
 warning-block spacing, and the 60px result number tracking). These are the
 brand-critical surfaces. If the slider track gradient or the result panel's
 top-border color feels off by even a shade, tell me — we'll tune the

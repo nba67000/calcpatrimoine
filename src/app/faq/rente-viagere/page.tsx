@@ -639,7 +639,7 @@ export default function FAQRenteViagerePage() {
             <h3 className="font-serif text-2xl font-bold mb-3">Vous avez d&apos;autres questions ?</h3>
             <p className="text-primary-200 mb-6 font-mono text-sm">Réponse par email sous 48h.</p>
             <a
-              href="mailto:contact@calcpatrimoine.fr"
+              href="mailto:contact@calculpatrimoine.fr"
               className="inline-block bg-white text-primary-700 px-8 py-3 font-medium hover:bg-neutral-100 transition-colors"
             >
               Nous contacter →

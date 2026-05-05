@@ -247,7 +247,7 @@ export default function PERIndividuelPage() {
             <p className="font-mono text-xs text-neutral-400 leading-relaxed">
               Outil indicatif uniquement. Ne constitue pas un conseil fiscal ou patrimonial personnalisé.
               Consultez un conseiller en gestion de patrimoine ou un expert-comptable.{' '}
-              <a href="https://github.com/nba67000/calcpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
+              <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
             </p>
           </div>
         </section>

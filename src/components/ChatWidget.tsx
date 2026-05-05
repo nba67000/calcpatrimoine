@@ -88,6 +88,7 @@ export default function ChatWidget({ contexte }: Props) {
   const [input, setInput] = useState('')
   const [isStreaming, setIsStreaming] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [depleted, setDepleted] = useState(false)
 
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -126,6 +127,12 @@ export default function ChatWidget({ contexte }: Props) {
         }),
       })
 
+      // Quota épuisé côté serveur
+      if (res.status === 402) {
+        setDepleted(true)
+        return
+      }
+
       if (!res.ok || !res.body) {
         throw new Error(`Erreur ${res.status}`)
       }
@@ -137,11 +144,21 @@ export default function ChatWidget({ contexte }: Props) {
       while (true) {
         const { done, value } = await reader.read()
         if (done) break
-        accumulated += decoder.decode(value, { stream: true })
+        const chunk = decoder.decode(value, { stream: true })
+        // Sentinel quota épuisé en cours de stream
+        if (chunk.includes('\x00QUOTA_DEPLETED')) {
+          accumulated += chunk.replace('\x00QUOTA_DEPLETED', '')
+          setStreamingText(accumulated)
+          setDepleted(true)
+          break
+        }
+        accumulated += chunk
         setStreamingText(accumulated)
       }
 
-      setMessages(prev => [...prev, { role: 'assistant', content: accumulated }])
+      if (accumulated) {
+        setMessages(prev => [...prev, { role: 'assistant', content: accumulated }])
+      }
       setStreamingText('')
     } catch {
       setError('Une erreur est survenue. Vérifiez votre connexion et réessayez.')
@@ -235,32 +252,43 @@ export default function ChatWidget({ contexte }: Props) {
             <div ref={bottomRef} />
           </div>
 
-          {/* Zone de saisie */}
-          <div className="border-t border-neutral-200 px-3 py-2.5 flex gap-2 items-end shrink-0">
-            <textarea
-              ref={inputRef}
-              value={input}
-              onChange={handleTextareaChange}
-              onKeyDown={handleKeyDown}
-              placeholder="Votre question... (Entrée pour envoyer)"
-              rows={1}
-              disabled={isStreaming}
-              className="flex-1 resize-none text-sm border border-neutral-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400 disabled:bg-neutral-50 disabled:text-neutral-400 leading-relaxed"
-              style={{ minHeight: '38px', maxHeight: '120px' }}
-            />
-            <button
-              onClick={sendMessage}
-              disabled={!input.trim() || isStreaming}
-              className="bg-primary-700 text-white rounded-lg p-2.5 hover:bg-primary-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
-              aria-label="Envoyer"
-            >
-              <SendIcon />
-            </button>
-          </div>
-
-          <p className="text-center text-[10px] text-neutral-400 pb-2 px-4">
-            Informations indicatives — pas de conseil personnalisé
-          </p>
+          {/* Zone de saisie ou message quota épuisé */}
+          {depleted ? (
+            <div className="border-t border-amber-200 bg-amber-50 px-4 py-3 shrink-0">
+              <p className="text-xs text-amber-800 text-center leading-relaxed">
+                L&apos;assistant est temporairement indisponible.
+                <br />
+                Les calculateurs restent entièrement accessibles.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="border-t border-neutral-200 px-3 py-2.5 flex gap-2 items-end shrink-0">
+                <textarea
+                  ref={inputRef}
+                  value={input}
+                  onChange={handleTextareaChange}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Votre question... (Entrée pour envoyer)"
+                  rows={1}
+                  disabled={isStreaming}
+                  className="flex-1 resize-none text-sm border border-neutral-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400 disabled:bg-neutral-50 disabled:text-neutral-400 leading-relaxed"
+                  style={{ minHeight: '38px', maxHeight: '120px' }}
+                />
+                <button
+                  onClick={sendMessage}
+                  disabled={!input.trim() || isStreaming}
+                  className="bg-primary-700 text-white rounded-lg p-2.5 hover:bg-primary-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+                  aria-label="Envoyer"
+                >
+                  <SendIcon />
+                </button>
+              </div>
+              <p className="text-center text-[10px] text-neutral-400 pb-2 px-4">
+                Informations indicatives — pas de conseil personnalisé
+              </p>
+            </>
+          )}
         </div>
       )}
 

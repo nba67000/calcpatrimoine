@@ -1,7 +1,7 @@
 // src/components/Header.tsx
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { CATEGORIES_CALC, RESSOURCES } from '@/config/navigation'
@@ -13,7 +13,19 @@ export default function Header() {
   const [mobileCalcOpen, setMobileCalcOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
+
+  // Ferme le dropdown si clic en dehors (Edge, tactile, accessibilité)
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   const isCalcActive = pathname.startsWith('/calculateurs') ||
     CATEGORIES_CALC.flatMap(c => c.calculateurs).some(c => pathname === c.href || pathname.startsWith(c.href + '/'))
@@ -50,11 +62,15 @@ export default function Header() {
 
           {/* Dropdown Calculateurs */}
           <div
+            ref={dropdownRef}
             className="relative"
             onMouseEnter={openDropdown}
             onMouseLeave={closeDropdown}
           >
             <button
+              onClick={() => setDropdownOpen(prev => !prev)}
+              aria-expanded={dropdownOpen}
+              aria-haspopup="true"
               className={`flex items-center gap-1.5 px-3 py-2 font-medium transition-colors rounded-sm ${
                 isCalcActive ? 'text-primary-700' : 'text-neutral-600 hover:text-neutral-900'
               }`}

@@ -28,6 +28,26 @@ export default function APropos() {
           <h1 className="font-serif text-4xl font-bold text-neutral-900 mb-4 leading-tight">
             Pourquoi CalcPatrimoine existe
           </h1>
+
+          {/* Intro Les 3 Frères */}
+          <div className="bg-white border border-neutral-200 p-6 mb-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 h-full bg-accent-400" />
+            <p className="font-mono text-xs uppercase tracking-wider text-neutral-400 mb-3 pl-4">Scène d&apos;ouverture</p>
+            <blockquote className="pl-4">
+              <p className="text-neutral-700 leading-relaxed mb-3">
+                Vous connaissez la scène des <em>Trois Frères</em> chez le notaire ?{' '}
+                Les frères Latour débarquent pour l&apos;héritage, et le notaire les noie sous un flot de jargon
+                juridico-financier — <em>&laquo;&nbsp;l&apos;usufruit viager afférent aux biens immobiliers
+                indivis se trouve, en vertu des dispositions testamentaires, dévolu au conjoint survivant&nbsp;&raquo;</em> —
+                pendant que les trois regardent le plafond en hochant la tête, l&apos;air de parfaitement comprendre.
+              </p>
+              <p className="text-neutral-700 leading-relaxed">
+                La fiscalité patrimoniale, c&apos;est un peu ça pour tout le monde.{' '}
+                <strong className="text-neutral-900">CalcPatrimoine existe pour qu&apos;on n&apos;ait plus à faire semblant.</strong>
+              </p>
+            </blockquote>
+          </div>
+
           <p className="text-lg text-neutral-600 mb-12 leading-relaxed">
             Un développeur dans l&apos;assurance-vie. Des simulateurs qui ne répondaient pas.
             Un outil fait pour en finir avec l&apos;opacité des calculs patrimoniaux.
@@ -102,8 +122,8 @@ export default function APropos() {
                   <div className="space-y-1.5 text-sm text-neutral-600 font-mono">
                     <p><span className="text-neutral-400">Stack :</span> Next.js 16, TypeScript, Tailwind CSS</p>
                     <p><span className="text-neutral-400">Open source :</span>{' '}
-                      <a href="https://github.com/nba67000/calcpatrimoine" className="text-primary-600 hover:underline" target="_blank" rel="noopener">
-                        github.com/nba67000/calcpatrimoine
+                      <a href="https://github.com/nba67000/calculpatrimoine" className="text-primary-600 hover:underline" target="_blank" rel="noopener">
+                        github.com/nba67000/calculpatrimoine
                       </a>
                     </p>
                   </div>
@@ -175,15 +195,15 @@ export default function APropos() {
                 <div>
                   <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Développeurs</h3>
                   <ul className="space-y-2 text-sm">
-                    <li><a href="https://github.com/nba67000/calcpatrimoine" className="text-primary-600 hover:underline" target="_blank" rel="noopener">Code source GitHub →</a></li>
-                    <li><a href="https://github.com/nba67000/calcpatrimoine/issues" className="text-primary-600 hover:underline" target="_blank" rel="noopener">Reporter un bug →</a></li>
-                    <li><a href="https://github.com/nba67000/calcpatrimoine/pulls" className="text-primary-600 hover:underline" target="_blank" rel="noopener">Contribuer (Pull Requests) →</a></li>
+                    <li><a href="https://github.com/nba67000/calculpatrimoine" className="text-primary-600 hover:underline" target="_blank" rel="noopener">Code source GitHub →</a></li>
+                    <li><a href="https://github.com/nba67000/calculpatrimoine/issues" className="text-primary-600 hover:underline" target="_blank" rel="noopener">Reporter un bug →</a></li>
+                    <li><a href="https://github.com/nba67000/calculpatrimoine/pulls" className="text-primary-600 hover:underline" target="_blank" rel="noopener">Contribuer (Pull Requests) →</a></li>
                   </ul>
                 </div>
                 <div>
                   <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Contact</h3>
                   <ul className="space-y-2 text-sm">
-                    <li><a href="mailto:contact@calcpatrimoine.fr" className="text-primary-600 hover:underline">contact@calcpatrimoine.fr →</a></li>
+                    <li><a href="mailto:contact@calculpatrimoine.fr" className="text-primary-600 hover:underline">contact@calculpatrimoine.fr →</a></li>
                   </ul>
                 </div>
               </div>

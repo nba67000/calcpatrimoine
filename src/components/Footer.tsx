@@ -70,7 +70,7 @@ export default function Footer() {
  </Link>
  ))}
  <a
- href="https://github.com/nba67000/calcpatrimoine"
+ href="https://github.com/nba67000/calculpatrimoine"
  target="_blank"
  rel="noopener noreferrer"
  className="text-xs text-neutral-500 hover:text-white transition-colors"

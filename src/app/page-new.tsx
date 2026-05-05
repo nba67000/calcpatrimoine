@@ -235,7 +235,7 @@ export default function HomePage() {
  Vous pouvez vérifier les calculs, contribuer ou déployer votre propre version.
  </p>
  <a 
- href="https://github.com/nba67000/calcpatrimoine"
+ href="https://github.com/nba67000/calculpatrimoine"
  target="_blank"
  rel="noopener noreferrer"
  className="inline-flex items-center gap-2 bg-white text-primary-700 font-bold px-8 py-3 rounded-lg hover:bg-neutral-50 transition-colors"

@@ -61,7 +61,7 @@ const faqItems: FAQItem[] = [
  <p className="mb-3">
  Le code source est open-source et vérifiable sur{' '}
  <a 
- href="https://github.com/nba67000/calcpatrimoine"
+ href="https://github.com/nba67000/calculpatrimoine"
  target="_blank"
  rel="noopener noreferrer"
  className="text-primary-600 hover:underline"
