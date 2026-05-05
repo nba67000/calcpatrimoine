@@ -30,9 +30,9 @@ export default function APropos() {
           </h1>
 
           <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-            Vous vous souvenez de la scène des <em>Trois Frères</em> chez le notaire ? Les frères Latour
-            se retrouvent face à un homme de loi qui débite son jargon à toute vitesse, imperturbable,
-            pendant qu&apos;eux hochent la tête en regardant le plafond, l&apos;air de parfaitement suivre.
+            Vous vous souvenez de la scène des "Trois Frères" chez le notaire ? Les frères Latour
+            se retrouvent face à un homme qui débite son jargon à toute vitesse, imperturbable,
+            pendant qu&apos;eux hochent la tête, l&apos;air de parfaitement suivre (il est où le pognon ?).
             C&apos;est une des scènes les plus drôles du film, mais elle dit quelque chose de vrai : face
             aux questions d&apos;argent, la plupart d&apos;entre nous faisons semblant de comprendre.
           </p>
