@@ -95,6 +95,12 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
     description: 'Rendement et fiscalité de vos investissements locatifs',
     calculateurs: [
       {
+        href: '/plus-value-immobiliere',
+        nom: 'Plus-value immobilière',
+        desc: 'Fiscalité de la cession : IR 19 %, PS 17,2 %, abattements par durée de détention, surtaxe.',
+        disponible: true,
+      },
+      {
         href: '/scpi',
         nom: 'SCPI',
         desc: 'Revenus locatifs papier et rentabilité comparée entre véhicules.',

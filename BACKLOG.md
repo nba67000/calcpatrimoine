@@ -63,7 +63,9 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
   différentes.
 
 #### `plus-value-immobiliere` — Plus-value immobilière (résidence secondaire / investissement)
-- **Statut** : `todo`
+- **Statut** : `done`
+- **Date** : 2026-05-06
+- **Assignee** : claude-code-session-2026-05-06
 - **Volume recherche estimé** : ~5 000/mois
 - **Description** : Calcul de la plus-value imposable avec abattements pour
   durée de détention (IR et prélèvements sociaux ont des cadences différentes).

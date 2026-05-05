@@ -49,6 +49,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
  priority: 0.9,
  },
  {
+ url: `${baseUrl}/plus-value-immobiliere`,
+ lastModified,
+ changeFrequency: 'monthly',
+ priority: 0.9,
+ },
+ {
  url: `${baseUrl}/blog`,
  lastModified,
  changeFrequency: 'weekly',
