@@ -4,8 +4,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'À propos — CalcPatrimoine',
-  description: 'CalcPatrimoine : un développeur dans l\'assurance-vie, des outils de calcul open-source, une ligne éditoriale anti-conseil. L\'histoire du projet.',
+  title: 'À propos — CalculPatrimoine',
+  description: 'CalculPatrimoine : un développeur dans l\'assurance-vie, des outils de calcul open-source, une ligne éditoriale anti-conseil. L\'histoire du projet.',
 }
 
 export default function APropos() {
@@ -25,59 +25,53 @@ export default function APropos() {
 
           <div className="h-[2px] w-10 bg-accent-400 mb-6" />
 
-          <h1 className="font-serif text-4xl font-bold text-neutral-900 mb-4 leading-tight">
-            Pourquoi CalcPatrimoine existe
+          <h1 className="font-serif text-4xl font-bold text-neutral-900 mb-8 leading-tight">
+            Pourquoi CalculPatrimoine existe
           </h1>
 
-          {/* Intro Les 3 Frères */}
-          <div className="bg-white border border-neutral-200 p-6 mb-8 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-1 h-full bg-accent-400" />
-            <p className="font-mono text-xs uppercase tracking-wider text-neutral-400 mb-3 pl-4">Scène d&apos;ouverture</p>
-            <blockquote className="pl-4">
-              <p className="text-neutral-700 leading-relaxed mb-3">
-                Vous connaissez la scène des <em>Trois Frères</em> chez le notaire ?{' '}
-                Les frères Latour débarquent pour l&apos;héritage, et le notaire les noie sous un flot de jargon
-                juridico-financier — <em>&laquo;&nbsp;l&apos;usufruit viager afférent aux biens immobiliers
-                indivis se trouve, en vertu des dispositions testamentaires, dévolu au conjoint survivant&nbsp;&raquo;</em> —
-                pendant que les trois regardent le plafond en hochant la tête, l&apos;air de parfaitement comprendre.
-              </p>
-              <p className="text-neutral-700 leading-relaxed">
-                La fiscalité patrimoniale, c&apos;est un peu ça pour tout le monde.{' '}
-                <strong className="text-neutral-900">CalcPatrimoine existe pour qu&apos;on n&apos;ait plus à faire semblant.</strong>
-              </p>
-            </blockquote>
-          </div>
+          <p className="text-lg text-neutral-700 leading-relaxed mb-6">
+            Vous vous souvenez de la scène des <em>Trois Frères</em> chez le notaire ? Les frères Latour
+            se retrouvent face à un homme de loi qui débite son jargon à toute vitesse, imperturbable,
+            pendant qu&apos;eux hochent la tête en regardant le plafond, l&apos;air de parfaitement suivre.
+            C&apos;est une des scènes les plus drôles du film, mais elle dit quelque chose de vrai : face
+            aux questions d&apos;argent, la plupart d&apos;entre nous faisons semblant de comprendre.
+          </p>
 
-          <p className="text-lg text-neutral-600 mb-12 leading-relaxed">
-            Un développeur dans l&apos;assurance-vie. Des simulateurs qui ne répondaient pas.
-            Un outil fait pour en finir avec l&apos;opacité des calculs patrimoniaux.
+          <p className="text-lg text-neutral-700 leading-relaxed mb-6">
+            J&apos;ai eu exactement ce sentiment il y a quelques mois. Je travaille comme développeur
+            dans une compagnie d&apos;assurance-vie, je côtoie les contrats et les chiffres tous les jours,
+            et pourtant le jour où j&apos;ai voulu simuler le rachat de ma propre assurance-vie, je me suis
+            retrouvé face à des simulateurs vagues, des interfaces pensées pour vous orienter vers un
+            conseiller plutôt que pour vous donner une réponse claire. Même moi, avec mon bagage technique,
+            je ne trouvais pas ce que je cherchais.
+          </p>
+
+          <p className="text-lg text-neutral-700 leading-relaxed mb-12">
+            Alors j&apos;ai construit l&apos;outil que j&apos;aurais voulu trouver. Pas pour remplacer un conseiller,
+            mais pour arriver à la conversation avec des chiffres concrets en tête plutôt qu&apos;une vague
+            intuition. CalculPatrimoine, c&apos;est ça : des calculs transparents, des formules accessibles,
+            et aucune raison de faire semblant de comprendre.
           </p>
 
           {/* Le constat */}
           <section className="mb-12">
-            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-5">Le constat</h2>
+            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-5">Ce qui manquait</h2>
 
-            <div className="bg-white border border-neutral-200 p-6 mb-5">
-              <p className="text-neutral-700 mb-4">
-                En 2026, j&apos;ai cherché à estimer une rente viagère pour un projet personnel.
-                Les outils disponibles ne répondaient pas à mes besoins.
-              </p>
-              <div className="space-y-1 text-sm text-neutral-700 font-mono">
-                <p className="text-neutral-400 text-xs uppercase tracking-wider mb-2">Ce qui manquait :</p>
-                <p>— Calculateur inverse (quel capital pour obtenir X €/mois ?)</p>
-                <p>— Comparaison automatique des stratégies pour un couple</p>
-                <p>— Accès mobile fluide et responsive</p>
-                <p>— Transparence sur les formules utilisées</p>
-                <p>— Code source ouvert pour vérification</p>
-              </div>
-            </div>
+            <p className="text-neutral-700 leading-relaxed mb-5">
+              Les simulateurs que j&apos;ai trouvés avaient tous le même problème : ils vous donnaient
+              un résultat sans expliquer d&apos;où il venait. Impossible de vérifier le calcul, impossible
+              de modifier un paramètre sans recommencer depuis le début, et souvent impossible d&apos;accéder
+              à la page correctement depuis un téléphone. Sans parler de ceux qui bloquent les résultats
+              derrière un formulaire de contact.
+            </p>
 
-            <div className="border-l-4 border-primary-300 bg-primary-50 px-5 py-4">
-              <p className="text-sm text-primary-800">
-                <strong>Contexte :</strong> Développeur dans l&apos;assurance-vie, je travaille quotidiennement
-                sur des systèmes qui calculent des rentes viagères. J&apos;ai voulu créer l&apos;outil que j&apos;aurais aimé trouver.
-              </p>
-            </div>
+            <p className="text-neutral-700 leading-relaxed">
+              Ce que je voulais était simple : voir la formule, comprendre chaque variable, pouvoir
+              tester différents scénarios en temps réel, et repartir avec des chiffres que je pouvais
+              réutiliser. Le code source de CalculPatrimoine est public sur GitHub, les tables de
+              mortalité utilisées sont celles de l&apos;INSEE, et aucune donnée n&apos;est collectée.
+              Chaque résultat est reproductible.
+            </p>
           </section>
 
           {/* La solution */}
