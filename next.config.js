@@ -1,23 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Redirections
-  async redirects() {
-    return [
-      // Redirection www → non-www
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'www.calculpatrimoine.fr',
-          },
-        ],
-        destination: 'https://calculpatrimoine.fr/:path*',
-        permanent: true, // 301 redirect
-      },
-    ]
-  },
-  
+const nextConfig = {   
   // Headers de sécurité
   async headers() {
     return [
