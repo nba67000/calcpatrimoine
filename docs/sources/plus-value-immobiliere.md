@@ -6,7 +6,7 @@
 ## Textes de loi
 
 - **Article 150 U du Code général des impôts** — Champ d'application de l'imposition des plus-values immobilières
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044989702
+  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053544910
   Extrait pertinent : "Les plus-values réalisées lors de la cession de biens immobiliers [...] sont passibles de l'impôt sur le revenu"
 
 - **Article 150 VA du CGI** — Calcul de la plus-value brute (prix d'acquisition)
@@ -14,12 +14,12 @@
   Extrait pertinent : "Le prix d'acquisition est [...] majoré des charges et indemnités mentionnées à l'article 683"
 
 - **Article 150 VB du CGI** — Majoration du prix d'acquisition (frais et travaux)
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036382543
+  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053544785
   Extrait pertinent : "Les frais d'acquisition [...] sont fixés forfaitairement à 7,5 % du prix d'acquisition"
   Et : "Les dépenses de travaux [...] peuvent être évalués forfaitairement à 15 % du prix d'acquisition si l'immeuble est détenu depuis plus de cinq ans"
 
 - **Article 150 VC du CGI** — Abattements pour durée de détention (IR)
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044994142
+  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047970756
   Extrait pertinent : "6 % pour chaque année de détention au-delà de la cinquième et jusqu'à la vingt et unième ; 4 % au titre de la vingt-deuxième"
 
 - **Article L136-7 CSS (2° du I et VI 2)** — Prélèvements sociaux sur les plus-values immobilières et abattements pour durée de détention
@@ -35,7 +35,7 @@
   Note LF 2026 : les exonérations pour cessions à organismes HLM (7°) et collectivités (8°) sont prolongées jusqu'au 31 décembre 2027. Exonération droit de surélévation (9°) valable jusqu'au 31 décembre 2026. Le seuil 15 000 € (6°) est inchangé.
 
 - **Article 1609 nonies G du CGI** — Taxe additionnelle (surtaxe) sur les plus-values > 50 000 €
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028432433
+  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048806252
 
 - **Article 150 U II 1° du CGI** — Exonération résidence principale
   Extrait pertinent : "les immeubles constituant la résidence principale du cédant au jour de la cession"
@@ -112,6 +112,7 @@ Source de référence vérifiée : service-public.gouv.fr/particuliers/vosdroits
 ## Notes et limites connues
 
 - Ce calculateur ne traite pas :
+  - **LMNP — amortissements réintégrés (Art. 150 VB III CGI, applicable depuis le 15/02/2025) :** si le bien a été loué en meublé non professionnel et que des amortissements ont été déduits des revenus, la loi réduit le prix d'achat de référence du montant de ces amortissements, ce qui augmente mécaniquement la plus-value imposable. Ce calculateur ne demande pas ces informations et sous-estimera l'impôt pour les anciens loueurs en meublé.
   - Les biens exonérés pour d'autres motifs : expropriation, vente à un organisme HLM, personnes âgées en maison de retraite sous conditions de ressources (Art. 150 U II CGI)
   - La règle spéciale des "non-résidents" (taux de 19 % + contribution additionnelle)
   - Les SCPI et indivision (règles spécifiques)

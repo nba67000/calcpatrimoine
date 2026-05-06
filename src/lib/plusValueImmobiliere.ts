@@ -76,8 +76,9 @@ function calculerTauxAbattement(annees: number): { ir: number; ps: number } {
  *
  * @example
  * calculerSurtaxe(0) === 0
- * calculerSurtaxe(55000) === 850  // 55000 × 2% − (60000 − 55000) / 20 = 1100 − 250 = 850
- * calculerSurtaxe(80000) === 1600 // 80000 × 2%
+ * calculerSurtaxe(55000) === 850   // 55000 × 2% − (60000 − 55000) / 20 = 1100 − 250 = 850
+ * calculerSurtaxe(80000) === 1600  // 80000 × 2%
+ * calculerSurtaxe(255000) === 14050 // 255000 × 6% − (260000 − 255000) × 25% = 15300 − 1250
  */
 function calculerSurtaxe(pvNetteIR: number): number {
   if (pvNetteIR <= SEUIL_SURTAXE) return 0
@@ -89,6 +90,7 @@ function calculerSurtaxe(pvNetteIR: number): number {
   if (pvNetteIR <= 200000) return pvNetteIR * 0.04
   if (pvNetteIR <= 210000) return pvNetteIR * 0.05 - (210000 - pvNetteIR) / 5
   if (pvNetteIR <= 250000) return pvNetteIR * 0.05
+  if (pvNetteIR <= 260000) return pvNetteIR * 0.06 - (260000 - pvNetteIR) * 0.25
   return pvNetteIR * 0.06
 }
 

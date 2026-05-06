@@ -10,19 +10,20 @@ export const metadata: Metadata = {
   description: 'Calculez l\'impôt sur votre plus-value immobilière (19 % IR + 17,2 % PS). Abattements par durée, surtaxe, forfait travaux. Résidence secondaire et locatif.',
   keywords: 'plus-value immobilière, calculateur, impôt, prélèvements sociaux, abattement, durée détention, résidence secondaire, surtaxe',
   openGraph: {
-    title: 'Calculateur plus-value immobilière — IR + PS + surtaxe',
+    title: 'Calculateur plus-value immobilière, IR + PS + surtaxe',
     description: 'Simulez la fiscalité de votre cession immobilière : 19 % IR, 17,2 % PS, abattements pour durée, surtaxe éventuelle.',
     type: 'article',
   },
 }
 
 const SOURCES = [
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044989702', label: 'Article 150 U du CGI', desc: 'Champ d\'application — plus-values immobilières des particuliers' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036382543', label: 'Article 150 VB du CGI', desc: 'Frais d\'acquisition (forfait 7,5 %) et travaux (forfait 15 % si > 5 ans)' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044994142', label: 'Article 150 VC du CGI', desc: 'Abattement IR : 6 %/an de la 6e à la 21e année, 4 % la 22e — exonération à 22 ans' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023374015', label: 'Article 150 VD du CGI', desc: 'Abattement PS : 1,65 %/an (6e-21e), 1,60 % (22e), 9 %/an (23e-29e) — exonération à 30 ans' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028432433', label: 'Article 1609 nonies G du CGI', desc: 'Taxe additionnelle (surtaxe) sur plus-values > 50 000 € — de 2 % à 6 %' },
-  { href: 'https://www.service-public.gouv.fr/particuliers/vosdroits/F10864', label: 'Service-Public.fr — Plus-value immobilière', desc: 'Synthèse officielle des règles applicables (consulté le 02/05/2026)' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053544910', label: 'Article 150 U du CGI', desc: 'Champ d\'application — plus-values immobilières des particuliers' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053544785', label: 'Article 150 VB du CGI', desc: 'Frais d\'acquisition (forfait 7,5 %) et travaux (forfait 15 % si > 5 ans)' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047970756', label: 'Article 150 VC du CGI', desc: 'Abattement IR : 6 %/an de la 6e à la 21e année, 4 % la 22e — exonération à 22 ans' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053584839', label: 'Article L136-7 CSS (VI 2)', desc: 'Abattements PS pour durée de détention : 1,65 %/an (6e-21e), 1,60 % (22e), 9 %/an (23e-29e) — exonération à 30 ans' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047970809', label: 'Article 150 VD du CGI', desc: 'Moins-values immobilières — non imputables sauf vente d\'immeuble acquis par fractions successives' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048806252', label: 'Article 1609 nonies G du CGI', desc: 'Taxe additionnelle (surtaxe) sur plus-values > 50 000 € — de 2 % à 6 %' },
+  { href: 'https://www.service-public.fr/particuliers/vosdroits/F10864', label: 'Service-Public.fr — Plus-value immobilière', desc: 'Synthèse officielle des règles applicables (vérifié le 15/04/2026)' },
 ]
 
 const ABATTEMENTS_IR = [
@@ -102,28 +103,34 @@ export default function PlusValueImmobilierePage() {
 
             <div className="space-y-4 text-neutral-700 leading-relaxed">
               <p>
-                <strong>La plus-value brute: prix de vente moins prix de revient ajusté.</strong>{' '}
-                Le prix de revient ajusté inclut le prix d&apos;acquisition, les frais (droits d&apos;enregistrement + frais de notaire,
-                en forfait 7,5% ou en réel) et les travaux (forfait 15% si détention&gt;5ans, ou montant réel justifié).
+                <strong>Vous avez vendu plus cher que vous n&apos;avez acheté : vous payez des impôts sur la différence.</strong>{' '}
+                Mais le prix d&apos;achat pris en compte n&apos;est pas que le prix que vous avez payé à l&apos;époque.
+                On y ajoute les frais de notaire (ou 7,5% en forfait) et les travaux que vous avez réalisés
+                (ou 15% en forfait si vous détenez le bien depuis plus de 5 ans). Plus vous avez dépensé,
+                moins le gain imposable est élevé.
               </p>
 
               <p>
-                <strong>Deux abattements différents selon IR et prélèvements sociaux.</strong>{' '}
-                L&apos;IR (19%) et les PS (17,2%) n&apos;utilisent pas le même barème d&apos;abattement.
-                L&apos;IR est exonéré dès 22ans de détention; les prélèvements sociaux seulement à 30ans.
+                <strong>Plus vous gardez longtemps, moins vous payez, et à partir d&apos;un certain stade, vous ne payez plus rien.</strong>{' '}
+                Deux taxes s&apos;appliquent sur le gain : l&apos;impôt sur le revenu (19%) et les prélèvements sociaux (17,2%).
+                Chaque année supplémentaire de détention réduit ces deux taxes, mais pas à la même vitesse :
+                l&apos;impôt sur le revenu tombe à zéro à 22 ans, les prélèvements sociaux seulement à 30 ans.
               </p>
 
               <p>
-                <strong>La surtaxe s&apos;ajoute si la plus-value nette dépasse 50000€.</strong>{' '}
-                Calculée sur la même base que l&apos;IR 19%, elle est prélevée par le notaire lors de la cession.
-                Son taux varie de 2% à 6% selon le montant, avec un mécanisme de tempérament à chaque seuil.
+                <strong>Si votre gain dépasse 50 000€, une taxe supplémentaire s&apos;ajoute.</strong>{' '}
+                Elle varie de 2% à 6% selon le montant. C&apos;est le notaire qui la calcule et la prélève
+                directement le jour de la vente. Vous recevez le prix net, déjà déduit de tous les impôts.
               </p>
 
               <p>
-                <strong>Exonérations principales.</strong>{' '}
-                La résidence principale est toujours exonérée. Le prix de cession≤15000€ également.
-                La 1ère cession d&apos;une résidence secondaire est exonérée sous conditions: non-propriétaire de la résidence
-                principale depuis 4ans et remploi du produit dans les 24mois (Art.150 U II 7° CGI).
+                <strong>Certains cas = zéro impôt.</strong>{' '}
+                Votre résidence principale est toujours exonérée, sans condition.
+                Si le prix de vente est inférieur à 15 000€, même chose.
+                Et si c&apos;est votre première vente d&apos;un bien autre que votre résidence principale,
+                vous pouvez être exonéré à condition de ne pas avoir été propriétaire de votre résidence
+                principale dans les 4 ans avant la vente, et de réinvestir le produit de la vente dans votre
+                future résidence principale dans les 2 ans.
               </p>
             </div>
           </div>
@@ -132,18 +139,22 @@ export default function PlusValueImmobilierePage() {
         {/* Tableau abattements */}
         <section className="max-w-4xl mx-auto px-6 py-4 pb-8">
           <div className="bg-white border border-neutral-200 p-8">
-            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
-              Barème des abattements pour durée de détention
+            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-2">
+              Combien économisez-vous selon le nombre d&apos;années de détention?
             </h2>
+            <p className="text-sm text-neutral-500 mb-6">
+              Chaque année supplémentaire réduit le gain imposable. Les deux taxes (impôt sur le revenu et prélèvements sociaux)
+              ne suivent pas le même rythme, d&apos;où deux colonnes.
+            </p>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">IR — 19 %</h3>
+                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Impôt sur le revenu: 19 %</h3>
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-neutral-200">
-                      <th className="text-left py-2 text-neutral-500 font-mono text-xs">Durée</th>
-                      <th className="text-right py-2 text-neutral-500 font-mono text-xs">Abattement cumulé</th>
+                      <th className="text-left py-2 text-neutral-500 font-mono text-xs">Durée de détention</th>
+                      <th className="text-right py-2 text-neutral-500 font-mono text-xs">Réduction du gain imposable</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -161,12 +172,12 @@ export default function PlusValueImmobilierePage() {
               </div>
 
               <div>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Prélèvements sociaux — 17,2 %</h3>
+                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Prélèvements sociaux (CSG/CRDS): 17,2 %</h3>
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-neutral-200">
-                      <th className="text-left py-2 text-neutral-500 font-mono text-xs">Durée</th>
-                      <th className="text-right py-2 text-neutral-500 font-mono text-xs">Abattement cumulé</th>
+                      <th className="text-left py-2 text-neutral-500 font-mono text-xs">Durée de détention</th>
+                      <th className="text-right py-2 text-neutral-500 font-mono text-xs">Réduction du gain imposable</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -180,7 +191,7 @@ export default function PlusValueImmobilierePage() {
                     ))}
                   </tbody>
                 </table>
-                <p className="text-xs text-neutral-500 mt-2">Source : Art. 150 VD CGI</p>
+                <p className="text-xs text-neutral-500 mt-2">Source : Art. L136-7 CSS VI 2</p>
               </div>
             </div>
           </div>
@@ -194,24 +205,28 @@ export default function PlusValueImmobilierePage() {
             <div className="space-y-5">
               {[
                 {
-                  q: 'Le forfait travaux de 15 % est-il toujours applicable?',
-                  r: 'Non. Le forfait de 15 % n\'est utilisable que si vous détenez le bien depuis plus de 5 ans complets ET que les travaux concernés n\'ont pas déjà été déduits des revenus fonciers. Si vous êtes en mesure de justifier un montant réel supérieur, il est préférable d\'utiliser les frais réels.',
+                  q: 'De quelles manières puis je déduire les travaux que j\'ai réalisé ?',
+                  r: 'Vous pouvez déduire les travaux de deux façons : soit avec vos factures (montant réel), soit avec un forfait de 15% du prix d\'achat, sans justificatif. Mais ce forfait n\'est accessible que si vous avez possédé le bien plus de 5 ans, et uniquement pour des travaux que vous n\'avez pas déjà déduits de vos loyers imposables. Si vous avez déclaré des revenus fonciers avec des travaux en charges, vous ne pouvez pas les compter une deuxième fois ici.',
                 },
                 {
-                  q: 'Quelle différence entre IR et prélèvements sociaux dans les abattements?',
-                  r: 'Les deux taxes utilisent des barèmes d\'abattement différents : l\'IR est exonéré à 22 ans de détention, mais les prélèvements sociaux (CSG/CRDS) ne sont exonérés qu\'à 30 ans. Une cession après 23 ans peut donc être exonérée d\'IR (19 %) tout en restant partiellement imposée aux PS.',
+                  q: 'Pourquoi l\'impôt et les "prélèvements sociaux" ne disparaissent pas au même moment?',
+                  r: 'Ce sont deux taxes différentes qui suivent des règles différentes. L\'impôt sur le revenu (19%) disparaît complètement après 22 ans. Les prélèvements sociaux, la CSG et la CRDS que vous connaissez sur vos fiches de paie, eux, ne disparaissent qu\'après 30 ans. Donc entre 22 et 30 ans de détention, vous ne payez plus les 19% mais vous payez encore une partie des 17,2%.',
                 },
                 {
-                  q: 'La surtaxe s\'applique-t-elle avant ou après abattements?',
-                  r: 'La surtaxe s\'applique sur la même base que l\'IR, c\'est-à-dire sur la plus-value nette après abattement pour durée de détention. Si la plus-value nette imposable (base IR) est inférieure ou égale à 50 000 €, aucune surtaxe n\'est due.',
+                  q: 'La taxe supplémentaire au-dessus de 50 000€, comment ça marche?',
+                  r: 'C\'est une taxe qui s\'ajoute quand votre gain (après réduction pour ancienneté) dépasse 50 000€. Elle monte de 2% à 6% par paliers. Pour éviter un effet de seuil brutal, chaque palier intègre une formule de lissage, en clair, si vous êtes juste au-dessus de 50 000€, vous ne payez que quelques euros de surtaxe, pas 2% sur tout le montant d\'un coup.',
                 },
                 {
-                  q: 'Qui calcule et prélève les impôts?',
-                  r: 'C\'est le notaire qui calcule et verse l\'ensemble des prélèvements (IR 19 %, PS 17,2 %, surtaxe éventuelle) au Trésor Public lors de la signature de l\'acte de vente. Le vendeur perçoit directement le prix net après déduction.',
+                  q: 'Qui s\'occupe de calculer et payer les impôts le jour de la vente?',
+                  r: 'C\'est le notaire. Il calcule tout, prélève les impôts sur le prix de vente, et verse le solde au fisc. Vous, vous recevez directement la somme nette sur votre compte, tout déduit. Ce calculateur vous donne une estimation, le chiffre définitif, c\'est lui qui l\'établit.',
                 },
                 {
-                  q: 'Que se passe-t-il en cas de moins-value?',
-                  r: 'Aucun impôt n\'est dû. En revanche, la moins-value immobilière d\'un particulier n\'est pas imputable sur d\'autres revenus ni reportable sur des plus-values futures. Elle est définitivement perdue fiscalement.',
+                  q: 'J\'ai vendu moins cher que j\'ai acheté, est-ce que je peux récupérer quelque chose?',
+                  r: 'Non. Vous ne payez aucun impôt bien sûr, mais la perte n\'est pas récupérable : elle ne se déduit pas de vos revenus ni de vos futurs gains immobiliers. Elle est simplement "perdue" fiscalement.',
+                },
+                {
+                  q: 'J\'ai loué mon bien en meublé (LMNP), ce calculateur est-il fiable?',
+                  r: 'Pas complètement. Depuis le 15 février 2025, si vous avez déduit des amortissements sur ce bien dans le cadre d\'une location meublée, la loi réduit votre prix d\'achat de référence du montant de ces amortissements, ce qui augmente le gain imposable. Ce calculateur ne vous pose pas la question et donnera un résultat trop optimiste dans ce cas. Consultez un notaire pour un calcul précis.',
                 },
               ].map(({ q, r }) => (
                 <div key={q} className="border-l-2 border-accent-400 pl-4">
