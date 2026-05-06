@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { calculerPER } from '@/lib/per'
 import type { PERInputs, TMIOption } from '@/types/per'
+import { formatEur } from '@/lib/formatters'
 import { useNumericInput } from '@/hooks/useNumericInput'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
@@ -27,9 +28,6 @@ const DEFAULT_INPUTS: PERInputs = {
   plafondsReportesN5: 0,
 }
 
-function formatEur(n: number): string {
-  return n.toLocaleString('fr-FR') + ' €'
-}
 
 export default function PERCalculator() {
   const salaire = useNumericInput(DEFAULT_INPUTS.salaireNetAnnuel, { min: 0, max: 500_000 })

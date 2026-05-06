@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import PERCalculator from '@/components/Calculator/PERCalculator'
+import { SOURCES_PER } from '@/lib/per'
 
 export const metadata: Metadata = {
   title: 'Simulateur PER individuel — économie d\'impôt',
@@ -16,11 +17,6 @@ export const metadata: Metadata = {
   },
 }
 
-const SOURCES = [
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048776042', label: 'Article 163 quatervicies du CGI', desc: 'Déductibilité et plafonnement des versements PER (PERIN, salarié et TNS)' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044986838', label: 'Article 83 du CGI', desc: 'Abattement forfaitaire de 10 % pour frais professionnels sur les salaires (min. 509 €, max. 14 555 € pour revenus 2025)' },
-  { href: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072026/LEGISCTA000038619671/', label: 'Articles L.224-1 et suivants du Code monétaire et financier', desc: 'Régime juridique du Plan d\'Épargne Retraite (PER) — compartiments, versements, sortie' },
-]
 
 const BAREMES = [
   { param: 'PASS 2025', valeur: '47 100 €', base: 'Décret nov. 2024' },
@@ -185,7 +181,7 @@ export default function PERIndividuelPage() {
               <div>
                 <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Textes de loi</h3>
                 <ul className="space-y-3 text-sm">
-                  {SOURCES.map(s => (
+                  {SOURCES_PER.map(s => (
                     <li key={s.href} className="flex items-start gap-3">
                       <span className="text-accent-400 mt-0.5 shrink-0">—</span>
                       <div>

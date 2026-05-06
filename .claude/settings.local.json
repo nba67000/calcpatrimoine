@@ -48,7 +48,8 @@
       "WebFetch(domain:www.conseil-etat.fr)",
       "Bash(node -e \"require\\('@anthropic-ai/sdk'\\); console.log\\('OK'\\)\")",
       "Bash(node -e \"const a = require\\('@anthropic-ai/sdk'\\); console.log\\('SDK version:', require\\('./node_modules/@anthropic-ai/sdk/package.json'\\).version\\)\")",
-      "Bash(Test-Path *)"
+      "Bash(Test-Path *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\" -Recurse -Directory)"
     ]
   }
 }

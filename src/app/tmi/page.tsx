@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import TMICalculator from '@/components/Calculator/TMICalculator'
+import { SOURCES_TMI } from '@/lib/tmi'
 
 export const metadata: Metadata = {
   title: 'Calculateur TMI : Tranche Marginale Imposition 2026',
@@ -16,13 +17,6 @@ export const metadata: Metadata = {
   },
 }
 
-const SOURCES = [
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051212954', label: 'Article 197 du CGI', desc: 'Barème progressif IR 2026 (revenus 2025), décote, plafonnement QF' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006302756', label: 'Article 194 du CGI', desc: 'Quotient familial : parts de base et parts pour enfants à charge' },
-  { href: 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179579/', label: 'Article 195 du CGI', desc: 'Demi-parts supplémentaires : parent isolé (case T), invalidité, etc.' },
-  { href: 'https://bofip.impots.gouv.fr/bofip/2491-PGP.html/identifiant=BOI-IR-LIQ-20-10-20260407', label: 'BOFiP BOI-IR-LIQ-20-10', desc: 'Barème de l\'impôt sur le revenu 2026 — publié le 07/04/2026' },
-  { href: 'https://bofip.impots.gouv.fr/bofip/2495-PGP.html/identifiant=BOI-IR-LIQ-20-20-30-20250414', label: 'BOFiP BOI-IR-LIQ-20-20-30', desc: 'Décote — paramètres 2026 (indexation +0,9 % sur la base 2025)' },
-]
 
 const TRANCHES = [
   { tranche: 'Jusqu\'à 11 600 €', taux: '0 %', color: 'text-neutral-500' },
@@ -164,7 +158,7 @@ export default function TMIPage() {
               <div>
                 <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Textes de loi</h3>
                 <ul className="space-y-3 text-sm">
-                  {SOURCES.map(s => (
+                  {SOURCES_TMI.map(s => (
                     <li key={s.href} className="flex items-start gap-3">
                       <span className="text-accent-400 mt-0.5 shrink-0">—</span>
                       <div>

@@ -2,6 +2,12 @@
 
 import type { PERInputs, PERResults, PERDetailPlafond } from '@/types/per'
 
+export const SOURCES_PER = [
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048776042', label: 'Article 163 quatervicies du CGI', desc: 'Déductibilité et plafonnement des versements PER (PERIN, salarié et TNS)' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044986838', label: 'Article 83 du CGI', desc: "Abattement forfaitaire de 10 % pour frais professionnels sur les salaires (min. 509 €, max. 14 555 € pour revenus 2025)" },
+  { href: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072026/LEGISCTA000038619671/', label: "Articles L.224-1 et suivants du Code monétaire et financier", desc: "Régime juridique du Plan d'Épargne Retraite (PER) — compartiments, versements, sortie" },
+]
+
 // PASS 2025 — Décret du 29 novembre 2024
 const PASS_2025 = 47_100
 

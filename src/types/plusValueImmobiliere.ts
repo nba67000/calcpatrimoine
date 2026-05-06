@@ -1,5 +1,7 @@
 // src/types/plusValueImmobiliere.ts
 
+import type { Warning, Optimisation } from '@/types/alerts'
+
 export interface PlusValueImmobiliereInputs {
   // Acquisition
   dateAcquisition: string      // ISO date (YYYY-MM-DD)
@@ -60,13 +62,6 @@ export interface PlusValueImmobiliereResults {
   anneesAvantExoPS: number      // 0 si déjà exonéré PS
 
   // Warnings et optimisations (pattern standard)
-  warnings: Array<{
-    type: 'danger' | 'warning' | 'info'
-    message: string
-  }>
-  optimisations: Array<{
-    type: 'success' | 'info'
-    message: string
-    gain?: number
-  }>
+  warnings: Warning[]
+  optimisations: Optimisation[]
 }

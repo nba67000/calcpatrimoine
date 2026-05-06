@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import AssuranceVieCalculator from '@/components/Calculator/AssuranceVieCalculator'
+import { SOURCES_ASSURANCE_VIE } from '@/lib/assuranceVie'
 
 export const metadata: Metadata = {
   title: 'Calculateur Assurance-Vie : Fiscalité Rachat PFU vs IR | CalculPatrimoine',
@@ -15,13 +16,6 @@ export const metadata: Metadata = {
   },
 }
 
-const SOURCES = [
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047956718', label: 'Article 125-0 A du CGI', desc: 'Fiscalité des rachats d\'assurance-vie, abattements annuels' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045583309', label: 'Article 990 I du CGI', desc: 'Prélèvement spécifique sur versements > 150 000 €' },
-  { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036339197', label: 'Loi de finances 2018 (article 28)', desc: 'Réforme PFU (flat tax), date pivot du 27 septembre 2017' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047958086', label: 'Article L136-7 du Code de la Sécurité Sociale', desc: 'Prélèvements sociaux : CSG 9,2 % + CRDS 0,5 % + PS 7,5 % = 17,2 %' },
-  { href: 'https://bofip.impots.gouv.fr/bofip/2823-PGP.html', label: 'BOFiP RPPM-RCM-20-10-20', desc: 'Règle proportionnelle, exemples de calculs détaillés' },
-]
 
 const CROSS_LINKS = [
   { href: '/assurance-vie/transmission', label: 'Vous préparez votre succession ?', desc: 'Calculateur de transmission — droits de succession avant et après 70 ans.' },
@@ -149,7 +143,7 @@ export default function AssuranceViePage() {
               <div>
                 <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Textes de loi</h3>
                 <ul className="space-y-3 text-sm">
-                  {SOURCES.map(s => (
+                  {SOURCES_ASSURANCE_VIE.map(s => (
                     <li key={s.href} className="flex items-start gap-3">
                       <span className="text-accent-400 mt-0.5 shrink-0">—</span>
                       <div>

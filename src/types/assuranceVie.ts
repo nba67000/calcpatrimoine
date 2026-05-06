@@ -1,5 +1,7 @@
 // src/types/assuranceVie.ts
 
+import type { Warning, Optimisation } from '@/types/alerts'
+
 export interface AssuranceVieInputs {
  // Caractéristiques du contrat
  capitalTotal: number; // Capital actuel total du contrat
@@ -64,16 +66,8 @@ export interface AssuranceVieResults {
  } | null;
  
  // Warnings et optimisations
- warnings: Array<{
- type: 'danger' | 'warning' | 'info';
- message: string;
- }>;
- 
- optimisations: Array<{
- type: 'success' | 'info';
- message: string;
- gain?: number;
- }>;
+ warnings: Warning[]
+ optimisations: Optimisation[]
 }
 
 export interface FractionnementSuggestion {

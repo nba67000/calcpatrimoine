@@ -1,5 +1,7 @@
 // src/types/per.ts
 
+import type { Warning, Optimisation } from '@/types/alerts'
+
 export type TMIOption = 0 | 11 | 30 | 41 | 45
 
 export interface PERInputs {
@@ -32,6 +34,6 @@ export interface PERResults {
   coutNetReel: number        // versementEnvisage - economieFiscale
   rendementFiscal: number    // economieFiscale / versementEnvisage × 100
 
-  warnings: Array<{ type: 'danger' | 'warning' | 'info'; message: string }>
-  optimisations: Array<{ type: 'success' | 'info'; message: string; gain?: number }>
+  warnings: Warning[]
+  optimisations: Optimisation[]
 }

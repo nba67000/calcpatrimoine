@@ -1,5 +1,7 @@
 // src/types/tmi.ts
 
+import type { Warning, Optimisation } from '@/types/alerts'
+
 export type SituationFamiliale = 'celibataire' | 'marie-pacse' | 'parent-isole'
 
 export interface TMIInputs {
@@ -41,6 +43,6 @@ export interface TMIResults {
   // Détail par tranche (sur le revenu total)
   detailTranches: TrancheDetail[]
 
-  warnings: Array<{ type: 'danger' | 'warning' | 'info'; message: string }>
-  optimisations: Array<{ type: 'success' | 'info'; message: string; gain?: number }>
+  warnings: Warning[]
+  optimisations: Optimisation[]
 }

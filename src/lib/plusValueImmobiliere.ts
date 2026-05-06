@@ -2,6 +2,16 @@
 
 import type { PlusValueImmobiliereInputs, PlusValueImmobiliereResults } from '@/types/plusValueImmobiliere'
 
+export const SOURCES_PLUS_VALUE = [
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053544910', label: 'Article 150 U du CGI', desc: "Champ d'application — plus-values immobilières des particuliers" },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053544785', label: 'Article 150 VB du CGI', desc: "Frais d'acquisition (forfait 7,5 %) et travaux (forfait 15 % si > 5 ans)" },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047970756', label: 'Article 150 VC du CGI', desc: "Abattement IR : 6 %/an de la 6e à la 21e année, 4 % la 22e — exonération à 22 ans" },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053584839', label: 'Article L136-7 CSS (VI 2)', desc: 'Abattements PS pour durée de détention : 1,65 %/an (6e-21e), 1,60 % (22e), 9 %/an (23e-29e) — exonération à 30 ans' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047970809', label: 'Article 150 VD du CGI', desc: "Moins-values immobilières — non imputables sauf vente d'immeuble acquis par fractions successives" },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048806252', label: 'Article 1609 nonies G du CGI', desc: 'Taxe additionnelle (surtaxe) sur plus-values > 50 000 € — de 2 % à 6 %' },
+  { href: 'https://www.service-public.fr/particuliers/vosdroits/F10864', label: 'Service-Public.fr — Plus-value immobilière', desc: 'Synthèse officielle des règles applicables (vérifié le 15/04/2026)' },
+]
+
 // --- Constantes fiscales ---
 
 const TAUX_IR = 0.19                     // Art. 200 B CGI
