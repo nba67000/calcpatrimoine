@@ -1,5 +1,13 @@
 // src/lib/transmission.ts
 
+export const SOURCES_TRANSMISSION = [
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045583309', label: 'Article 990 I du CGI', desc: 'Prélèvement sur versements avant 70 ans, abattement 152 500 € par bénéficiaire' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006305484', label: 'Article 757 B du CGI', desc: 'Réintégration succession versements après 70 ans, abattement 30 500 €' },
+  { href: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000278649', label: 'Loi TEPA 2007', desc: 'Exonération totale conjoint/PACS pour les successions' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042160878', label: 'Articles 777 et suivants du CGI', desc: 'Barème des droits de succession en ligne directe' },
+  { href: 'https://bofip.impots.gouv.fr/bofip/3296-PGP.html', label: 'BOFiP — Assurance-vie et successions', desc: 'Bulletin Officiel des Finances Publiques sur la transmission' },
+]
+
 import type {
  TransmissionInputs,
  TransmissionResults,

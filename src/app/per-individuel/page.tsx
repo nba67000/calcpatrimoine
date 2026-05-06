@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import PERCalculator from '@/components/Calculator/PERCalculator'
 import { SOURCES_PER } from '@/lib/per'
+import SourcesSection from '@/components/SourcesSection'
 
 export const metadata: Metadata = {
   title: 'Simulateur PER individuel — économie d\'impôt',
@@ -179,18 +180,7 @@ export default function PERIndividuelPage() {
 
             <div className="space-y-6">
               <div>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Textes de loi</h3>
-                <ul className="space-y-3 text-sm">
-                  {SOURCES_PER.map(s => (
-                    <li key={s.href} className="flex items-start gap-3">
-                      <span className="text-accent-400 mt-0.5 shrink-0">—</span>
-                      <div>
-                        <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
-                        <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <SourcesSection sources={SOURCES_PER} />
               </div>
 
               <div>

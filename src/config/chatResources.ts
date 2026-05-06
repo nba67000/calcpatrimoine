@@ -9,6 +9,7 @@ export type SlugCalculateur =
   | 'rente-viagere'
   | 'assurance-vie/fiscalite-rachat'
   | 'assurance-vie/transmission'
+  | 'plus-value-immobiliere'
 
 export type RessourceCalculateur = {
   type: 'calculateur'
@@ -89,6 +90,13 @@ export const CALCULATEURS: RessourceCalculateur[] = [
     description: 'Calcule les droits à la transmission pour chaque bénéficiaire selon le régime applicable (versements avant/après 70 ans).',
     motsCles: ['transmission', 'succession', 'bénéficiaire', '990 i', '757 b', '70 ans', 'abattement 152500', 'droits décès'],
   },
+  {
+    type: 'calculateur',
+    slug: 'plus-value-immobiliere',
+    titre: 'Plus-value immobilière',
+    description: 'Calcule la fiscalité d\'une cession immobilière : IR 19 %, PS 17,2 %, abattements par durée de détention, surtaxe sur PV > 50 000 €.',
+    motsCles: ['plus-value', 'immobilier', 'cession', 'abattement détention', 'surtaxe', '150 VC', '757 B', 'notaire', 'résidence secondaire'],
+  },
 ]
 
 // ---------------------------------------------------------------------------
@@ -167,6 +175,27 @@ export const ARTICLES_LOI: RessourceLoi[] = [
     url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044981244',
     sujet: 'Barème progressif IR et décote — tranches 0%/11%/30%/41%/45%',
     calculateursLies: ['tmi', 'per-individuel'],
+  },
+  {
+    type: 'loi',
+    ref: 'Art. 150 U CGI',
+    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053544910',
+    sujet: 'Champ d\'application des plus-values immobilières des particuliers — résidence principale, cessions exonérées',
+    calculateursLies: ['plus-value-immobiliere'],
+  },
+  {
+    type: 'loi',
+    ref: 'Art. 150 VC CGI',
+    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047970756',
+    sujet: 'Abattement IR pour durée de détention : 6 %/an de la 6e à la 21e année, 4 % la 22e — exonération totale à 22 ans',
+    calculateursLies: ['plus-value-immobiliere'],
+  },
+  {
+    type: 'loi',
+    ref: 'Art. 1609 nonies G CGI',
+    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048806252',
+    sujet: 'Surtaxe sur plus-values élevées : s\'applique si PV nette IR > 50 000 € — taux de 2 % à 6 %',
+    calculateursLies: ['plus-value-immobiliere'],
   },
 ]
 

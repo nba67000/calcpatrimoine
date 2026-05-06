@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import PlusValueImmobiliereCalculator from '@/components/Calculator/PlusValueImmobiliereCalculator'
 import { SOURCES_PLUS_VALUE } from '@/lib/plusValueImmobiliere'
+import SourcesSection from '@/components/SourcesSection'
 
 export const metadata: Metadata = {
   title: 'Plus-value immobilière : calculateur IR et PS 2026',
@@ -262,22 +263,7 @@ export default function PlusValueImmobilierePage() {
                 </div>
               </div>
 
-              <div>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Textes de loi</h3>
-                <ul className="space-y-3 text-sm">
-                  {SOURCES_PLUS_VALUE.map((s) => (
-                    <li key={s.href} className="flex items-start gap-3">
-                      <span className="text-accent-400 mt-0.5 shrink-0">—</span>
-                      <div>
-                        <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">
-                          {s.label}
-                        </a>
-                        <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <SourcesSection sources={SOURCES_PLUS_VALUE} />
 
               <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
                 <p className="text-sm text-primary-800">

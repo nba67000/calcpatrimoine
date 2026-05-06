@@ -61,6 +61,18 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
         disponible: true,
       },
       {
+        href: '/assurance-vie/fiscalite-rachat',
+        nom: 'Fiscalité des rachats',
+        desc: 'Comparez PFU et barème IR pour un rachat partiel ou total.',
+        disponible: true,
+      },
+      {
+        href: '/assurance-vie/transmission',
+        nom: 'Transmission',
+        desc: 'Droits à la transmission par bénéficiaire selon Art. 990 I et 757 B.',
+        disponible: true,
+      },
+      {
         href: '/succession',
         nom: 'Droits de succession',
         desc: 'Calcul des droits par héritier selon les abattements légaux et le barème progressif.',
