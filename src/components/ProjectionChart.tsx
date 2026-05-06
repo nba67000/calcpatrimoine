@@ -3,6 +3,7 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts'
 import { formatEurRounded as formatEuro } from '@/lib/formatters'
+import { BRAND_COLORS } from '@/lib/constants'
 
 interface ProjectionChartProps {
  capital: number
@@ -76,31 +77,31 @@ export default function ProjectionChart({ capital, monthlyRent, lifeExpectancy }
  <Legend 
  wrapperStyle={{ fontSize: 12, paddingTop: 10 }}
  />
- <ReferenceLine 
- x={breakEvenYear} 
- stroke="#2E4A6F" 
+ <ReferenceLine
+ x={breakEvenYear}
+ stroke={BRAND_COLORS.primary}
  strokeDasharray="4 4"
- label={{ 
- value: `Seuil : ${breakEvenYearDisplay} ans`, 
+ label={{
+ value: `Seuil : ${breakEvenYearDisplay} ans`,
  position: 'top',
- fill: '#2E4A6F',
+ fill: BRAND_COLORS.primary,
  fontSize: 11,
  fontWeight: 600
  }}
  />
- <Line 
- type="monotone" 
- dataKey="capital" 
+ <Line
+ type="monotone"
+ dataKey="capital"
  name="Capital initial"
- stroke="#1E3A5F"
+ stroke={BRAND_COLORS.primaryDark}
  strokeWidth={2}
  dot={false}
  />
- <Line 
- type="monotone" 
- dataKey="renteCumulee" 
+ <Line
+ type="monotone"
+ dataKey="renteCumulee"
  name="Rente cumulée"
- stroke="#2E4A6F"
+ stroke={BRAND_COLORS.primary}
  strokeWidth={2.5}
  dot={false}
  />

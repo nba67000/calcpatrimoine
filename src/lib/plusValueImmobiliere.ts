@@ -1,6 +1,7 @@
 // src/lib/plusValueImmobiliere.ts
 
 import type { PlusValueImmobiliereInputs, PlusValueImmobiliereResults } from '@/types/plusValueImmobiliere'
+import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_PLUS_VALUE = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053544910', label: 'Article 150 U du CGI', desc: "Champ d'application — plus-values immobilières des particuliers" },
@@ -327,6 +328,55 @@ function buildResultExoneree(
     warnings: [],
     optimisations: [],
   }
+}
+
+export function formatContextePlusValue(inputs: PlusValueImmobiliereInputs, r: PlusValueImmobiliereResults): string {
+  const lines = [
+    'Calculateur : Plus-value immobilière',
+    '',
+    'Acquisition / cession',
+    ligne('Date acquisition', inputs.dateAcquisition),
+    ligne('Prix acquisition', eur(inputs.prixAcquisition)),
+    ligne('Frais acquisition', inputs.fraisAcquisition === 'forfait' ? `forfait 7,5 % (${eur(r.fraisDeductibles)})` : `réels (${eur(r.fraisDeductibles)})`),
+    ligne('Travaux', inputs.travaux === 'aucun' ? 'aucun' : inputs.travaux === 'forfait' ? `forfait 15 % (${eur(r.travauxDeductibles)})` : `réels (${eur(r.travauxDeductibles)})`),
+    ligne('Date cession', inputs.dateCession),
+    ligne('Prix cession', eur(inputs.prixCession)),
+    ligne('Durée détention', `${r.anneesDetention} an${r.anneesDetention > 1 ? 's' : ''}`),
+    ligne('Nature du bien', inputs.typeBien === 'principal' ? 'résidence principale' : 'autre (secondaire / locatif)'),
+    '',
+    'Résultats',
+    ligne('Prix de revient ajusté', eur(r.prixRevient)),
+    ligne('Plus-value brute', eur(r.pvBrute)),
+  ]
+
+  if (r.exoneree) {
+    lines.push(ligne('Exonération', r.motifExoneration ?? 'totale'))
+    lines.push(ligne('Total impôts', '0 €'))
+  } else if (r.pvBrute <= 0) {
+    lines.push(ligne('Résultat', 'moins-value — aucune imposition'))
+  } else {
+    lines.push(
+      ligne('Abattement IR', `${pct(r.tauxAbattementIR)} → base ${eur(r.pvNetteIR)}`),
+      ligne('Abattement PS', `${pct(r.tauxAbattementPS)} → base ${eur(r.pvNettePS)}`),
+      ligne('IR 19 %', eur(r.impotRevenu)),
+      ligne('Prélèvements sociaux 17,2 %', eur(r.prelevementsSociaux)),
+    )
+    if (r.surtaxe > 0) {
+      lines.push(ligne(`Surtaxe (taux eff. ${pct(r.tauxSurtaxeEffectif, 2)})`, eur(r.surtaxe)))
+    }
+    lines.push(
+      ligne('Total impôts', eur(r.totalImpots)),
+      ligne('Net perçu (cession − impôts)', eur(r.netPercu)),
+    )
+    if (r.anneesAvantExoIR > 0) {
+      lines.push(ligne('Exo IR dans', `${r.anneesAvantExoIR} an${r.anneesAvantExoIR > 1 ? 's' : ''}`))
+    }
+    if (r.anneesAvantExoPS > 0) {
+      lines.push(ligne('Exo PS totale dans', `${r.anneesAvantExoPS} an${r.anneesAvantExoPS > 1 ? 's' : ''}`))
+    }
+  }
+
+  return lines.join('\n')
 }
 
 function buildResultMoinsValue(base: BaseResult): PlusValueImmobiliereResults {

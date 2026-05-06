@@ -53,7 +53,11 @@
       "Bash(dir \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\")",
       "Bash(xargs grep -l \"type.*Alert\\\\|Warning\\\\|Optimisation\")",
       "Bash(Select-Object -First 20)",
-      "Bash(PowerShell *)"
+      "Bash(PowerShell *)",
+      "Bash(grep -v \"^[^:]*:[^:]*:.*=//\")",
+      "Bash(grep -E \"\\\\.ts$\")",
+      "Bash(xargs -I {} bash -c 'echo \"=== {} ===\" && head -30 {}')",
+      "Bash(Remove-Item *)"
     ]
   }
 }

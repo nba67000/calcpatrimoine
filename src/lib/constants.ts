@@ -77,6 +77,13 @@ investissement personnalisé. Pour une offre définitive, consultez un courtier 
 conseiller en gestion de patrimoine.
 ` as const
 
+export const BRAND_COLORS = {
+  primary:       '#2E4A6F',
+  primaryDark:   '#1E3A5F',
+  trackLight:    '#D1DDE9',
+  trackBorder:   '#94A3B8',
+} as const
+
 // URLs utiles
 export const LINKS = {
  insee_data: 'https://www.insee.fr/fr/statistiques/3303333',

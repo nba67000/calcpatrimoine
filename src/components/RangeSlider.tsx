@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { BRAND_COLORS } from '@/lib/constants'
 
 interface RangeSliderProps {
  min: number
@@ -51,19 +52,20 @@ export default function RangeSlider({ min, max, step, value, onChange, className
  const styleTag = document.createElement('style')
  styleTag.id = styleId
  
+ const { primary, primaryDark, trackLight, trackBorder } = BRAND_COLORS
  styleTag.innerHTML = `
  /* WebKit (Chrome, Safari, Edge) */
  input[data-slider-id="${uniqueId}"]::-webkit-slider-track {
- background: linear-gradient(to right, #D1DDE9 0%, #2E4A6F 100%) !important;
+ background: linear-gradient(to right, ${trackLight} 0%, ${primary} 100%) !important;
  height: 0.5rem !important;
  border-radius: 0.5rem !important;
- border: 1px solid #94A3B8 !important;
+ border: 1px solid ${trackBorder} !important;
  }
 
  input[data-slider-id="${uniqueId}"]::-webkit-slider-thumb {
  -webkit-appearance: none !important;
  appearance: none !important;
- background-color: #2E4A6F !important;
+ background-color: ${primary} !important;
  height: 1.25rem !important;
  width: 1.25rem !important;
  border-radius: 50% !important;
@@ -75,7 +77,7 @@ export default function RangeSlider({ min, max, step, value, onChange, className
  }
 
  input[data-slider-id="${uniqueId}"]::-webkit-slider-thumb:hover {
- background-color: #1E3A5F !important;
+ background-color: ${primaryDark} !important;
  transform: scale(1.2) !important;
  box-shadow: 0 4px 12px rgba(46, 74, 111, 0.4) !important;
  }
@@ -86,14 +88,14 @@ export default function RangeSlider({ min, max, step, value, onChange, className
 
  /* Firefox */
  input[data-slider-id="${uniqueId}"]::-moz-range-track {
- background: linear-gradient(to right, #D1DDE9 0%, #2E4A6F 100%) !important;
+ background: linear-gradient(to right, ${trackLight} 0%, ${primary} 100%) !important;
  height: 0.5rem !important;
  border-radius: 0.5rem !important;
- border: 1px solid #94A3B8 !important;
+ border: 1px solid ${trackBorder} !important;
  }
 
  input[data-slider-id="${uniqueId}"]::-moz-range-thumb {
- background-color: #2E4A6F !important;
+ background-color: ${primary} !important;
  height: 1.25rem !important;
  width: 1.25rem !important;
  border-radius: 50% !important;
@@ -105,7 +107,7 @@ export default function RangeSlider({ min, max, step, value, onChange, className
  }
 
  input[data-slider-id="${uniqueId}"]::-moz-range-thumb:hover {
- background-color: #1E3A5F !important;
+ background-color: ${primaryDark} !important;
  transform: scale(1.2) !important;
  box-shadow: 0 4px 12px rgba(46, 74, 111, 0.4) !important;
  }

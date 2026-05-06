@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import { calculerPlusValueImmobiliere } from '@/lib/plusValueImmobiliere'
 import type { PlusValueImmobiliereInputs } from '@/types/plusValueImmobiliere'
 import AlertList from '@/components/AlertList'
+import ChatWidget from '@/components/ChatWidget'
 import { formatEur, formatPct } from '@/lib/formatters'
 
 export default function PlusValueImmobiliereCalculator() {
@@ -41,6 +42,7 @@ export default function PlusValueImmobiliereCalculator() {
   const forfaitDisponible = results.anneesDetention > 5
 
   return (
+    <>
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* === COLONNE GAUCHE — INPUTS === */}
@@ -420,5 +422,24 @@ export default function PlusValueImmobiliereCalculator() {
 
       </div>
     </div>
+    <ChatWidget
+      contexte={{
+        calculateur: 'plus-value-immobiliere',
+        inputs: {
+          dateAcquisition,
+          prixAcquisition,
+          fraisAcquisition,
+          fraisAcquisitionReels,
+          travaux,
+          travauxReels,
+          dateCession,
+          prixCession,
+          typeBien,
+          premiereCession,
+        },
+        results,
+      }}
+    />
+    </>
   )
 }
