@@ -7,6 +7,7 @@ import { calculerFiscaliteRachat, formatDateForInput, parseDateFromInput } from 
 import type { AssuranceVieInputs, AssuranceVieResults } from '@/types/assuranceVie'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
+import { formatEur } from '@/lib/formatters'
 
 export default function AssuranceVieCalculator() {
   const [capitalTotal, setCapitalTotal] = useState<number>(100000)
@@ -52,7 +53,7 @@ export default function AssuranceVieCalculator() {
             <div className="flex justify-between items-baseline mb-2">
               <label className="text-sm font-medium text-neutral-700">Capital actuel total</label>
               <span className="text-2xl font-bold text-primary-600">
-                {capitalTotal.toLocaleString('fr-FR')} €
+                {formatEur(capitalTotal)}
               </span>
             </div>
             <input
@@ -70,7 +71,7 @@ export default function AssuranceVieCalculator() {
             <div className="flex justify-between items-baseline mb-2">
               <label className="text-sm font-medium text-neutral-700">Versements totaux</label>
               <span className="text-2xl font-bold text-neutral-900">
-                {versementTotal.toLocaleString('fr-FR')} €
+                {formatEur(versementTotal)}
               </span>
             </div>
             <input
@@ -111,7 +112,7 @@ export default function AssuranceVieCalculator() {
                   {results.plusValueTotale >= 0 ? 'Plus-value totale' : 'Moins-value totale'}
                 </span>
                 <span className={`text-lg font-bold ${results.plusValueTotale >= 0 ? 'text-primary-600' : 'text-amber-600'}`}>
-                  {results.plusValueTotale >= 0 ? '+' : ''}{results.plusValueTotale.toLocaleString('fr-FR')} €
+                  {results.plusValueTotale >= 0 ? '+' : ''}{formatEur(results.plusValueTotale)}
                 </span>
               </div>
               <div className="text-xs text-neutral-500 mt-1">
@@ -129,7 +130,7 @@ export default function AssuranceVieCalculator() {
             <div className="flex justify-between items-baseline mb-2">
               <label className="text-sm font-medium text-neutral-700">Montant du rachat partiel</label>
               <span className="text-2xl font-bold text-primary-600">
-                {montantRachat.toLocaleString('fr-FR')} €
+                {formatEur(montantRachat)}
               </span>
             </div>
             <input
@@ -147,11 +148,11 @@ export default function AssuranceVieCalculator() {
               <div className="bg-neutral-50 rounded-lg p-4 border border-neutral-200">
                 <div className="flex justify-between items-center mb-1">
                   <span className="text-sm font-medium text-neutral-700">Capital (non taxé)</span>
-                  <span className="font-bold text-neutral-900">{results.partCapital.toLocaleString('fr-FR')} €</span>
+                  <span className="font-bold text-neutral-900">{formatEur(results.partCapital)}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium text-neutral-700">Plus-value (taxée)</span>
-                  <span className="font-bold text-primary-600">{results.partPlusValue.toLocaleString('fr-FR')} €</span>
+                  <span className="font-bold text-primary-600">{formatEur(results.partPlusValue)}</span>
                 </div>
               </div>
 
@@ -159,7 +160,7 @@ export default function AssuranceVieCalculator() {
                 <div className="bg-primary-50 rounded-lg p-4 border border-primary-200">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-primary-700">✓ Abattement (contrat &gt; 8 ans)</span>
-                    <span className="font-bold text-primary-600">-{results.abattementApplicable.toLocaleString('fr-FR')} €</span>
+                    <span className="font-bold text-primary-600">-{formatEur(results.abattementApplicable)}</span>
                   </div>
                   <div className="text-xs text-primary-600 mt-1">
                     {enCouple ? 'Couple : 9 200€' : 'Personne seule : 4 600€'}
@@ -170,7 +171,7 @@ export default function AssuranceVieCalculator() {
               <div className="bg-primary-50 rounded-lg p-4 border border-primary-200">
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium text-primary-700">Plus-value taxable finale</span>
-                  <span className="text-lg font-bold text-primary-600">{results.plusValueTaxable.toLocaleString('fr-FR')} €</span>
+                  <span className="text-lg font-bold text-primary-600">{formatEur(results.plusValueTaxable)}</span>
                 </div>
               </div>
             </div>
@@ -222,7 +223,7 @@ export default function AssuranceVieCalculator() {
             <div className="flex justify-between items-baseline mb-2">
               <label className="text-sm font-medium text-neutral-700">Versements avant le 27/09/2017</label>
               <span className="text-lg font-bold text-neutral-900">
-                {versementAvant2017.toLocaleString('fr-FR')} €
+                {formatEur(versementAvant2017)}
               </span>
             </div>
             <input
@@ -241,7 +242,7 @@ export default function AssuranceVieCalculator() {
                 Encours total tous contrats AV
               </label>
               <span className={`text-lg font-bold ${encoursTotalContrats > 150000 ? 'text-amber-600' : 'text-neutral-900'}`}>
-                {encoursTotalContrats.toLocaleString('fr-FR')} €
+                {formatEur(encoursTotalContrats)}
               </span>
             </div>
             <input
@@ -309,7 +310,7 @@ export default function AssuranceVieCalculator() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-neutral-600">Plus-value taxable</span>
-                  <span className="font-bold text-neutral-900">{results.plusValueTaxable.toLocaleString('fr-FR')}€</span>
+                  <span className="font-bold text-neutral-900">{formatEur(results.plusValueTaxable)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-neutral-600">Option la moins imposée</span>
@@ -318,7 +319,7 @@ export default function AssuranceVieCalculator() {
                 {results.difference > 50 && (
                   <div className="flex justify-between pt-2 border-t border-neutral-300">
                     <span className="text-neutral-600">Différence</span>
-                    <span className="font-bold text-primary-600">{results.difference.toLocaleString('fr-FR')}€</span>
+                    <span className="font-bold text-primary-600">{formatEur(results.difference)}</span>
                   </div>
                 )}
               </div>

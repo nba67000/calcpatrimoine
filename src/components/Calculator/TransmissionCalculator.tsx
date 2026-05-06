@@ -18,6 +18,7 @@ import type {
  Beneficiaire
 } from '@/types/transmission'
 import ChatWidget from '@/components/ChatWidget'
+import AlertList from '@/components/AlertList'
 
 export default function TransmissionCalculator() {
  // États inputs
@@ -375,6 +376,8 @@ export default function TransmissionCalculator() {
 
  {/* Graphique résultats */}
  {results && <TransmissionChart results={results} />}
+ {results && <AlertList items={results.warnings} />}
+ {results && <AlertList items={results.infos} />}
  </div>
  </div>
  {results && (

@@ -284,7 +284,7 @@ export default function TransmissionChart({ results }: TransmissionChartProps) {
  {results.warnings.length > 0 && (
  <div className="bg-primary-50 border-2 border-primary-300 rounded-xl p-4 space-y-2">
  {results.warnings.map((w, i) => (
- <p key={i} className="text-sm text-primary-900">{w}</p>
+ <p key={i} className="text-sm text-primary-900">{w.message}</p>
  ))}
  </div>
  )}
@@ -293,7 +293,7 @@ export default function TransmissionChart({ results }: TransmissionChartProps) {
  {results.infos.length > 0 && (
  <div className="bg-primary-50 border border-primary-200 rounded-xl p-4 space-y-2">
  {results.infos.map((info, i) => (
- <p key={i} className="text-sm text-primary-900">{info}</p>
+ <p key={i} className="text-sm text-primary-900">{info.message}</p>
  ))}
  </div>
  )}

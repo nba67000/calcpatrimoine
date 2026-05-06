@@ -4,14 +4,7 @@ import { useState, useMemo } from 'react'
 import { calculerPlusValueImmobiliere } from '@/lib/plusValueImmobiliere'
 import type { PlusValueImmobiliereInputs } from '@/types/plusValueImmobiliere'
 import AlertList from '@/components/AlertList'
-
-function formatEur(n: number) {
-  return n.toLocaleString('fr-FR') + ' €'
-}
-
-function formatPct(n: number, decimals = 1) {
-  return n.toFixed(decimals) + ' %'
-}
+import { formatEur, formatPct } from '@/lib/formatters'
 
 export default function PlusValueImmobiliereCalculator() {
   const [dateAcquisition, setDateAcquisition] = useState('2018-05-02')

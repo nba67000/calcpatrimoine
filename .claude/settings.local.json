@@ -49,7 +49,9 @@
       "Bash(node -e \"require\\('@anthropic-ai/sdk'\\); console.log\\('OK'\\)\")",
       "Bash(node -e \"const a = require\\('@anthropic-ai/sdk'\\); console.log\\('SDK version:', require\\('./node_modules/@anthropic-ai/sdk/package.json'\\).version\\)\")",
       "Bash(Test-Path *)",
-      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\" -Recurse -Directory)"
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\" -Recurse -Directory)",
+      "Bash(dir \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\")",
+      "Bash(xargs grep -l \"type.*Alert\\\\|Warning\\\\|Optimisation\")"
     ]
   }
 }

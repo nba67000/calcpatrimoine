@@ -2,6 +2,7 @@
 // Formateurs de contexte calculateur → texte lisible pour le système prompt du chatbot.
 // Chaque formateur produit un résumé concis que Claude peut citer directement.
 
+import { formatEurRounded as eur, formatPct as pct } from '@/lib/formatters'
 import type { TMIInputs, TMIResults } from '@/types/tmi'
 import type { PERInputs, PERResults } from '@/types/per'
 import type { AssuranceVieInputs, AssuranceVieResults } from '@/types/assuranceVie'
@@ -23,8 +24,6 @@ export type ContexteChat =
 // Helpers de formatage
 // ---------------------------------------------------------------------------
 
-const eur = (n: number) => Math.round(n).toLocaleString('fr-FR') + ' €'
-const pct = (n: number, dec = 1) => n.toFixed(dec) + ' %'
 const ligne = (label: string, valeur: string) => `  ${label} : ${valeur}`
 
 // ---------------------------------------------------------------------------

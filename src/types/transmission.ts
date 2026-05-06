@@ -1,5 +1,7 @@
 // src/types/transmission.ts
 
+import type { Warning, Optimisation } from '@/types/alerts'
+
 export interface Beneficiaire {
  id: string
  nom: string // Optionnel, juste pour affichage
@@ -68,7 +70,7 @@ export interface TransmissionResults {
  economieVsClassique: number
  
  // Warnings / infos
- warnings: string[]
- infos: string[]
+ warnings: Warning[]
+ infos: Optimisation[]
 }
 

@@ -6,6 +6,7 @@ import type {
  RepartitionBeneficiaire,
  Beneficiaire
 } from '@/types/transmission'
+import type { Warning, Optimisation } from '@/types/alerts'
 
 // Barème droits de succession ligne directe — Art. 777 CGI (LF 2026)
 const BAREME_LIGNE_DIRECTE = [
@@ -76,20 +77,20 @@ export function calculerTransmission(inputs: TransmissionInputs): TransmissionRe
  beneficiaires
  } = inputs
  
- const warnings: string[] = []
- const infos: string[] = []
- 
+ const warnings: Warning[] = []
+ const infos: Optimisation[] = []
+
  // Validation : somme des parts = 100%
  const totalParts = beneficiaires.reduce((sum, b) => sum + b.partPourcentage, 0)
  if (Math.abs(totalParts - 100)> 0.01) {
- warnings.push(`Les parts totalisent ${totalParts.toFixed(1)}% au lieu de 100%`)
+ warnings.push({ type: 'danger', message: `Les parts totalisent ${totalParts.toFixed(1)}% au lieu de 100%` })
  }
- 
+
  // Plus-value totale (versements après 70 ans : intérêts exonérés)
  const plusValueTotale = capitalTotal - (versementsAvant70 + versementsApres70)
- 
+
  if (plusValueTotale < 0) {
- warnings.push('Les versements dépassent le capital actuel')
+ warnings.push({ type: 'warning', message: 'Les versements dépassent le capital actuel' })
  }
  
  // Capital taxable via 990 I = capital total - versements après 70 ans
@@ -217,15 +218,15 @@ export function calculerTransmission(inputs: TransmissionInputs): TransmissionRe
  
  // Infos contextuelles
  if (versementsApres70> 0 && capital757BTotal - abattement757BGlobal> 0) {
- infos.push(`Les versements après 70 ans (${versementsApres70.toLocaleString('fr-FR')}€) sont soumis à l'Article 757 B avec un abattement global de 30 500€ partagé.`)
+ infos.push({ type: 'info', message: `Les versements après 70 ans (${versementsApres70.toLocaleString('fr-FR')} €) sont soumis à l'Article 757 B avec un abattement global de 30 500 € partagé.` })
  }
- 
+
  if (plusValueTotale> 0) {
- infos.push(`Les plus-values générées par les versements après 70 ans sont totalement exonérées de droits.`)
+ infos.push({ type: 'info', message: 'Les plus-values générées par les versements après 70 ans sont totalement exonérées de droits.' })
  }
- 
+
  if (beneficiaires.some(b => b.lien === 'conjoint')) {
- infos.push(`Le conjoint/partenaire PACS est totalement exonéré (Loi TEPA 2007).`)
+ infos.push({ type: 'success', message: 'Le conjoint/partenaire PACS est totalement exonéré (Loi TEPA 2007).' })
  }
  
  return {
