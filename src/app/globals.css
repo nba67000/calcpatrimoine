@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -25,7 +25,7 @@ body {
   }
 }
 
-/* Style des sliders - Palette CalcPatrimoine */
+/* Style des sliders - Palette CalculPatrimoine */
 input[type="range"],
 .custom-range {
   -webkit-appearance: none;

@@ -1,12 +1,12 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
- title: 'CalcPatrimoine - Calculateurs gratuits patrimoine & retraite',
+ title: 'CalculPatrimoine - Calculateurs gratuits patrimoine & retraite',
  description: 'Calculateurs gratuits et open-source pour vos décisions patrimoniales : rente viagère, assurance-vie, PER. Zéro donnée conservée.',
  keywords: 'calculateur patrimoine, rente viagère, assurance vie, PER, retraite, simulateur gratuit',
  openGraph: {
- title: 'CalcPatrimoine - Calculateurs gratuits patrimoine',
+ title: 'CalculPatrimoine - Calculateurs gratuits patrimoine',
  description: 'Outils open-source pour simuler rente viagère, fiscalité assurance-vie, et optimiser votre patrimoine.',
  type: 'website',
  },

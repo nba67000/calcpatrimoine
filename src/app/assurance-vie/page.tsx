@@ -1,10 +1,10 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Calculateurs Assurance-Vie : Fiscalité Rachat & Transmission | CalcPatrimoine',
+  title: 'Calculateurs Assurance-Vie : Fiscalité Rachat & Transmission | CalculPatrimoine',
   description: 'Deux calculateurs gratuits pour l\'assurance-vie : fiscalité des rachats (PFU vs IR) et transmission aux bénéficiaires (succession). Calculs officiels, zéro donnée conservée.',
   keywords: 'assurance vie, calculateur, fiscalité rachat, transmission succession, PFU, IR, bénéficiaires, abattement',
   openGraph: {

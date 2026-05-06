@@ -1,4 +1,4 @@
-// src/components/Header.tsx
+﻿// src/components/Header.tsx
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
@@ -52,7 +52,7 @@ export default function Header() {
             <span className="text-white font-bold text-2xl">C</span>
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-neutral-900 text-lg leading-tight">CalcPatrimoine</span>
+            <span className="font-bold text-neutral-900 text-lg leading-tight">CalculPatrimoine</span>
             <span className="text-xs text-neutral-500 leading-tight">Calculateurs open-source</span>
           </div>
         </Link>

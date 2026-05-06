@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @fileoverview Bibliothèque de calculs actuariels pour rentes viagères
  * 
  * Ce fichier contient toute la logique métier pour calculer des rentes viagères
@@ -9,7 +9,7 @@
  * - Rente avec réversion : R = C / [a(x) + p·a_xy̅]
  * - Capital requis (inverse) : C = R · a(x)
  * 
- * @author CalcPatrimoine
+ * @author CalculPatrimoine
  * @version 1.0.0
  */
 

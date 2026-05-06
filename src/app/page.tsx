@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -6,11 +6,11 @@ import HomeHeroWidget from '@/components/HomeHeroWidget'
 import { CATEGORIES_CALC } from '@/config/navigation'
 
 export const metadata: Metadata = {
-  title: 'CalcPatrimoine — Calculateurs patrimoniaux gratuits et open-source',
+  title: 'CalculPatrimoine — Calculateurs patrimoniaux gratuits et open-source',
   description: 'Des calculateurs patrimoniaux gratuits basés sur les textes officiels en vigueur. Aucune donnée conservée. Code source ouvert.',
   keywords: 'calculateur patrimoine, rente viagère, assurance vie, PER, TMI, retraite, simulateur gratuit, open-source',
   openGraph: {
-    title: 'CalcPatrimoine — Calculateurs patrimoniaux gratuits',
+    title: 'CalculPatrimoine — Calculateurs patrimoniaux gratuits',
     description: 'Des calculateurs patrimoniaux basés sur les textes officiels. Aucun conseil, aucune donnée conservée.',
     type: 'website',
   },

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { formatContexteChat, type ContexteChat } from '@/lib/chatContext'
@@ -191,7 +191,7 @@ export default function ChatWidget({ contexte }: Props) {
           {/* En-tête */}
           <div className="flex items-center justify-between px-4 py-3 bg-primary-800 text-white shrink-0">
             <div>
-              <p className="font-semibold text-sm">Assistant CalcPatrimoine</p>
+              <p className="font-semibold text-sm">Assistant CalculPatrimoine</p>
               <p className="text-xs text-primary-300">Questions sur les résultats affichés</p>
             </div>
             <button

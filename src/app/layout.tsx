@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import SchemaMarkup from "@/components/SchemaMarkup";
 
-// Fontsource imports pour CalcPatrimoine
+// Fontsource imports pour CalculPatrimoine
 import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
@@ -23,8 +23,8 @@ const inter = Inter({
 export const metadata: Metadata = {
  metadataBase: new URL('https://calculpatrimoine.fr'),
  title: {
- default: 'CalcPatrimoine - Calculateur de Rente Viagère Gratuit',
- template: '%s | CalcPatrimoine'
+ default: 'CalculPatrimoine - Calculateur de Rente Viagère Gratuit',
+ template: '%s | CalculPatrimoine'
  },
  description: 'Calculateur de rente viagère gratuit et open-source. Estimez vos revenus mensuels à vie basés sur les tables de mortalité officielles INSEE 2022. Sans inscription, données non conservées.',
  keywords: [
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
  'simulateur viager',
  'open source finance'
  ],
- authors: [{ name: 'CalcPatrimoine', url: 'https://calculpatrimoine.fr' }],
- creator: 'CalcPatrimoine',
- publisher: 'CalcPatrimoine',
+ authors: [{ name: 'CalculPatrimoine', url: 'https://calculpatrimoine.fr' }],
+ creator: 'CalculPatrimoine',
+ publisher: 'CalculPatrimoine',
  
  robots: {
  index: true,
@@ -62,16 +62,16 @@ export const metadata: Metadata = {
  openGraph: {
  type: 'website',
  locale: 'fr_FR',
- siteName: 'CalcPatrimoine',
+ siteName: 'CalculPatrimoine',
  url: 'https://calculpatrimoine.fr',
- title: 'CalcPatrimoine - Calculateur de Rente Viagère Gratuit',
+ title: 'CalculPatrimoine - Calculateur de Rente Viagère Gratuit',
  description: 'Calculez votre rente viagère en quelques secondes. Outil gratuit basé sur les tables de mortalité INSEE 2022. Sans inscription, open-source, données non conservées.',
  images: [
  {
  url: '/og-image.png',
  width: 1200,
  height: 630,
- alt: 'CalcPatrimoine - Calculateur de Rente Viagère',
+ alt: 'CalculPatrimoine - Calculateur de Rente Viagère',
  type: 'image/png',
  },
  ],
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
  card: 'summary_large_image',
  site: '@calculpatrimoine',
  creator: '@calculpatrimoine',
- title: 'CalcPatrimoine - Calculateur de Rente Viagère Gratuit',
+ title: 'CalculPatrimoine - Calculateur de Rente Viagère Gratuit',
  description: 'Calculez votre rente viagère gratuitement. Tables INSEE 2022, open-source, sans inscription.',
  images: ['/og-image.png'],
  },

@@ -1,10 +1,10 @@
-// src/app/mentions-legales/page.tsx
+﻿// src/app/mentions-legales/page.tsx
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata = {
- title: 'Mentions Légales - CalcPatrimoine',
- description: 'Mentions légales et informations obligatoires du site CalcPatrimoine.fr'
+ title: 'Mentions Légales - CalculPatrimoine',
+ description: 'Mentions légales et informations obligatoires du site CalculPatrimoine.fr'
 }
 
 export default function MentionsLegalesPage() {
@@ -45,7 +45,7 @@ export default function MentionsLegalesPage() {
  <h2 className="text-2xl font-semibold mb-4">Propriété intellectuelle</h2>
  <div className="text-neutral-700 space-y-3">
  <p>
- Le code source de CalcPatrimoine est sous licence MIT et disponible publiquement sur GitHub.
+ Le code source de CalculPatrimoine est sous licence MIT et disponible publiquement sur GitHub.
  Toute personne peut l'utiliser, le modifier et le redistribuer selon les termes de cette licence.
  </p>
  <p>

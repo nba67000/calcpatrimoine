@@ -1,11 +1,11 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import TransmissionCalculator from '@/components/Calculator/TransmissionCalculator'
 
 export const metadata: Metadata = {
-  title: 'Calculateur Transmission Assurance-Vie : Succession & Bénéficiaires | CalcPatrimoine',
+  title: 'Calculateur Transmission Assurance-Vie : Succession & Bénéficiaires | CalculPatrimoine',
   description: 'Calculez les droits de transmission de votre assurance-vie. Article 990 I (avant 70 ans) et Article 757 B (après 70 ans). Gestion multi-bénéficiaires.',
   keywords: 'transmission assurance vie, succession, bénéficiaires, abattement 152 500, article 990 I, article 757 B, droits succession',
   openGraph: {

@@ -1,4 +1,4 @@
-// src/components/SchemaMarkup.tsx
+﻿// src/components/SchemaMarkup.tsx
 import Script from 'next/script'
 
 export default function SchemaMarkup() {
@@ -8,7 +8,7 @@ export default function SchemaMarkup() {
  // SoftwareApplication
  {
  '@type': 'SoftwareApplication',
- name: 'CalcPatrimoine',
+ name: 'CalculPatrimoine',
  applicationCategory: 'FinanceApplication',
  operatingSystem: 'Web',
  offers: {
@@ -31,7 +31,7 @@ export default function SchemaMarkup() {
  screenshot: 'https://calculpatrimoine.fr/og-image.png',
  author: {
  '@type': 'Organization',
- name: 'CalcPatrimoine',
+ name: 'CalculPatrimoine',
  url: 'https://calculpatrimoine.fr',
  },
  aggregateRating: {
@@ -43,7 +43,7 @@ export default function SchemaMarkup() {
  // Organization
  {
  '@type': 'Organization',
- name: 'CalcPatrimoine',
+ name: 'CalculPatrimoine',
  url: 'https://calculpatrimoine.fr',
  logo: 'https://calculpatrimoine.fr/logo.svg',
  sameAs: [
@@ -58,7 +58,7 @@ export default function SchemaMarkup() {
  // WebSite
  {
  '@type': 'WebSite',
- name: 'CalcPatrimoine',
+ name: 'CalculPatrimoine',
  url: 'https://calculpatrimoine.fr',
  description:
  'Calculateur de rente viagère gratuit basé sur les tables de mortalité INSEE',
@@ -79,7 +79,7 @@ export default function SchemaMarkup() {
  'Outil de calcul de rente viagère permettant de convertir un capital en revenus mensuels garantis à vie',
  provider: {
  '@type': 'Organization',
- name: 'CalcPatrimoine',
+ name: 'CalculPatrimoine',
  },
  feesAndCommissionsSpecification: 'Gratuit - Aucuns frais',
  },

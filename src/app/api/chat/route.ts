@@ -1,4 +1,4 @@
-// src/app/api/chat/route.ts
+﻿// src/app/api/chat/route.ts
 import Anthropic from '@anthropic-ai/sdk'
 import { getRessourcesPourCalculateur, getAutresCalculateurs, type SlugCalculateur } from '@/config/chatResources'
 
@@ -14,7 +14,7 @@ const MAX_INPUT_LEN = 1000 // chars par message utilisateur
 // ---------------------------------------------------------------------------
 
 const PROMPT_STATIQUE = `\
-Tu es l'assistant pédagogique de CalcPatrimoine (calculpatrimoine.fr), un site de calculateurs patrimoniaux gratuits et open-source.
+Tu es l'assistant pédagogique de CalculPatrimoine (calculpatrimoine.fr), un site de calculateurs patrimoniaux gratuits et open-source.
 
 ## Ton rôle
 Tu expliques les résultats affichés dans le calculateur actif. Tu aides l'utilisateur à comprendre comment le résultat a été calculé et quelles règles fiscales s'appliquent. Tu peux rediriger vers des ressources complémentaires (articles de blog, autres calculateurs, textes de loi).

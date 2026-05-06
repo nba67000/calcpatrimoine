@@ -1,4 +1,4 @@
-// src/components/Calculator/InverseCalculator.tsx
+﻿// src/components/Calculator/InverseCalculator.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -347,7 +347,7 @@ export default function InverseCalculator() {
  
  <div className="text-sm text-primary-800 space-y-3">
  <p className="font-semibold">
- CalcPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
+ CalculPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
  Il ne constitue en aucun cas :
  </p>
  
@@ -383,7 +383,7 @@ export default function InverseCalculator() {
  
  <div className="border-t border-primary-300 pt-3 mt-3">
  <p className="text-xs text-primary-700">
- <strong>Limitation de responsabilité :</strong>CalcPatrimoine décline toute responsabilité 
+ <strong>Limitation de responsabilité :</strong>CalculPatrimoine décline toute responsabilité 
  en cas de décision prise uniquement sur la base des calculs fournis. L'éditeur ne peut être 
  tenu responsable d'éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
  postérieures à la dernière mise à jour (avril 2026).

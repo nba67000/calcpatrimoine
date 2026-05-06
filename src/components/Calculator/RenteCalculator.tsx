@@ -355,7 +355,7 @@ export default function RenteCalculator() {
  
  <div className="text-sm text-warning-900 space-y-3">
  <p className="font-semibold">
- CalcPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
+ CalculPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
  Il ne constitue en aucun cas :
  </p>
  
@@ -426,7 +426,7 @@ export default function RenteCalculator() {
  
  <div className="border-t border-warning-300 pt-3 mt-3">
  <p className="text-xs">
- <strong>Limitation de responsabilité :</strong>CalcPatrimoine décline toute responsabilité 
+ <strong>Limitation de responsabilité :</strong>CalculPatrimoine décline toute responsabilité 
  en cas de décision prise uniquement sur la base des calculs fournis. L&apos;éditeur ne peut être 
  tenu responsable d&apos;éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
  postérieures à la dernière mise à jour (avril 2026).

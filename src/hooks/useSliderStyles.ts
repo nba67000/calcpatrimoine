@@ -1,4 +1,4 @@
-// src/hooks/useSliderStyles.ts
+﻿// src/hooks/useSliderStyles.ts
 'use client'
 
 import { useEffect } from 'react'
@@ -18,7 +18,7 @@ export function useSliderStyles() {
  const styleTag = document.createElement('style')
  styleTag.id = 'slider-force-styles'
  styleTag.innerHTML = `
- /* Styles forcés pour sliders - CalcPatrimoine */
+ /* Styles forcés pour sliders - CalculPatrimoine */
  input[type="range"] {
  -webkit-appearance: none !important;
  appearance: none !important;

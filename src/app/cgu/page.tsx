@@ -1,10 +1,10 @@
-// src/app/cgu/page.tsx
+﻿// src/app/cgu/page.tsx
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata = {
- title: 'Conditions Générales d\'Utilisation - CalcPatrimoine',
- description: 'Conditions générales d\'utilisation du calculateur de rente viagère CalcPatrimoine'
+ title: 'Conditions Générales d\'Utilisation - CalculPatrimoine',
+ description: 'Conditions générales d\'utilisation du calculateur de rente viagère CalculPatrimoine'
 }
 
 export default function CGUPage() {
@@ -21,7 +21,7 @@ export default function CGUPage() {
  <section>
  <h2 className="text-2xl font-semibold mb-4">1. Objet</h2>
  <p className="text-neutral-700">
- CalcPatrimoine est un outil pédagogique gratuit de simulation de rente viagère, 
+ CalculPatrimoine est un outil pédagogique gratuit de simulation de rente viagère, 
  développé et maintenu par Nicolas Barbier. Le site propose des calculs indicatifs 
  basés sur des formules actuarielles standard et des tables de mortalité officielles 
  de l&apos;INSEE.
@@ -32,7 +32,7 @@ export default function CGUPage() {
  <section>
  <h2 className="text-2xl font-semibold mb-4">2. Acceptation des CGU</h2>
  <p className="text-neutral-700">
- L&apos;utilisation du site CalcPatrimoine implique l&apos;acceptation pleine et entière 
+ L&apos;utilisation du site CalculPatrimoine implique l&apos;acceptation pleine et entière 
  des présentes Conditions Générales d&apos;Utilisation. Si vous n&apos;acceptez pas ces 
  conditions, veuillez ne pas utiliser ce site.
  </p>
@@ -44,7 +44,7 @@ export default function CGUPage() {
  
  <div className="space-y-4">
  <div>
- <h3 className="font-semibold text-lg mb-2 text-primary-700">CalcPatrimoine FOURNIT :</h3>
+ <h3 className="font-semibold text-lg mb-2 text-primary-700">CalculPatrimoine FOURNIT :</h3>
  <ul className="list-disc list-inside space-y-1 text-neutral-700 ml-4">
  <li>Des calculs indicatifs basés sur des formules actuarielles reconnues</li>
  <li>Des informations pédagogiques sur la rente viagère et son fonctionnement</li>
@@ -54,7 +54,7 @@ export default function CGUPage() {
  </div>
 
  <div>
- <h3 className="font-semibold text-lg mb-2 text-primary-700">CalcPatrimoine NE FOURNIT PAS :</h3>
+ <h3 className="font-semibold text-lg mb-2 text-primary-700">CalculPatrimoine NE FOURNIT PAS :</h3>
  <ul className="list-disc list-inside space-y-1 text-neutral-700 ml-4">
  <li>De conseil personnalisé en investissement financier</li>
  <li>De recommandation de souscription d&apos;un produit spécifique</li>
@@ -69,7 +69,7 @@ export default function CGUPage() {
  {/* Article 4 */}
  <section>
  <h2 className="text-2xl font-semibold mb-4">4. Responsabilité de l&apos;utilisateur</h2>
- <p className="text-neutral-700 mb-3">En utilisant CalcPatrimoine, l&apos;utilisateur reconnaît et accepte :</p>
+ <p className="text-neutral-700 mb-3">En utilisant CalculPatrimoine, l&apos;utilisateur reconnaît et accepte :</p>
  <ul className="list-disc list-inside space-y-2 text-neutral-700 ml-4">
  <li>Utiliser l&apos;outil à titre <strong>indicatif et pédagogique uniquement</strong></li>
  <li>Que les résultats ne constituent en aucun cas un conseil personnalisé</li>
@@ -100,7 +100,7 @@ export default function CGUPage() {
  </div>
 
  <p className="mt-4">
- L&apos;utilisateur reconnaît utiliser CalcPatrimoine à ses propres risques. En aucun cas, 
+ L&apos;utilisateur reconnaît utiliser CalculPatrimoine à ses propres risques. En aucun cas, 
  l&apos;éditeur ne pourra être tenu responsable de dommages directs ou indirects résultant 
  de l&apos;utilisation du site ou de l&apos;impossibilité de l&apos;utiliser.
  </p>
@@ -112,7 +112,7 @@ export default function CGUPage() {
  <h2 className="text-2xl font-semibold mb-4">6. Propriété intellectuelle</h2>
  <div className="text-neutral-700 space-y-3">
  <p>
- Le <strong>code source</strong> de CalcPatrimoine est distribué sous licence MIT (open-source). 
+ Le <strong>code source</strong> de CalculPatrimoine est distribué sous licence MIT (open-source). 
  Vous êtes libre de l&apos;utiliser, le modifier et le redistribuer selon les termes de cette licence.
  </p>
  <p>
@@ -130,7 +130,7 @@ export default function CGUPage() {
  <section>
  <h2 className="text-2xl font-semibold mb-4">7. Données personnelles</h2>
  <p className="text-neutral-700">
- CalcPatrimoine ne collecte <strong>aucune donnée personnelle identifiable</strong>. 
+ CalculPatrimoine ne collecte <strong>aucune donnée personnelle identifiable</strong>. 
  Tous les calculs sont effectués localement dans votre navigateur. Pour plus de détails, 
  consultez notre{' '}
  <a href="/politique-confidentialite" className="text-primary-600 hover:underline">

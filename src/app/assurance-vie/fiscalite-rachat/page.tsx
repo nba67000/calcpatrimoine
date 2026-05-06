@@ -1,11 +1,11 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import AssuranceVieCalculator from '@/components/Calculator/AssuranceVieCalculator'
 
 export const metadata: Metadata = {
-  title: 'Calculateur Assurance-Vie : Fiscalité Rachat PFU vs IR | CalcPatrimoine',
+  title: 'Calculateur Assurance-Vie : Fiscalité Rachat PFU vs IR | CalculPatrimoine',
   description: 'Calculez la fiscalité exacte de votre rachat d\'assurance-vie. Comparez PFU et IR selon votre TMI. Simulateur gratuit conforme au CGI, zéro donnée conservée.',
   keywords: 'assurance vie, fiscalité rachat, PFU, flat tax, IR, impôts, simulation, calculateur gratuit, abattement 8 ans',
   openGraph: {

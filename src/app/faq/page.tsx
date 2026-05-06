@@ -1,11 +1,11 @@
-// src/app/faq/page.tsx
+﻿// src/app/faq/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'FAQ — Questions fréquentes | CalcPatrimoine',
+  title: 'FAQ — Questions fréquentes | CalculPatrimoine',
   description: 'Toutes les réponses sur nos calculateurs patrimoniaux : rente viagère, assurance-vie, PER, TMI, transmission. Retrouvez la FAQ dédiée à chaque outil.',
   keywords: 'faq calculpatrimoine, questions fréquentes, aide calculateur, rente viagère, assurance vie, PER, TMI',
 }

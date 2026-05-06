@@ -1,9 +1,9 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { ReactElement } from 'react'
 
 export const metadata: Metadata = {
- title: 'FAQ Assurance-Vie : Fiscalité, Rachat et Optimisation | CalcPatrimoine',
+ title: 'FAQ Assurance-Vie : Fiscalité, Rachat et Optimisation | CalculPatrimoine',
  description: 'Questions fréquentes sur la fiscalité de l\'assurance-vie : PFU vs IR, abattement 8 ans, versements avant 2017, optimisation fiscale. Réponses d\'expert.',
  keywords: 'faq assurance vie, fiscalité rachat, pfu ou ir, abattement 8 ans, versements 2017, questions assurance vie',
 }
@@ -408,7 +408,7 @@ const faqItems: FAQItem[] = [
  answer: (
  <>
  <p className="mb-3">
- <strong>Ressources CalcPatrimoine :</strong>
+ <strong>Ressources CalculPatrimoine :</strong>
  </p>
  <ul className="list-disc list-inside mb-3">
  <li>

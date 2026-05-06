@@ -1,4 +1,4 @@
-// src/app/faq/rente-viagere/page.tsx
+﻿// src/app/faq/rente-viagere/page.tsx
 'use client'
 
 import { useState } from 'react'
@@ -551,7 +551,7 @@ const sections: FAQSection[] = [
               </p>
             </div>
             <p className="mt-4 text-sm text-neutral-600">
-              <strong>Note</strong> : CalcPatrimoine est un outil de calcul gratuit et indépendant.
+              <strong>Note</strong> : CalculPatrimoine est un outil de calcul gratuit et indépendant.
               Nous ne vendons pas de rentes viagères. Utilisez nos calculateurs pour estimer vos montants,
               puis contactez un courtier certifié pour souscrire.
             </p>

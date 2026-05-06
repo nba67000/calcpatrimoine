@@ -1,10 +1,10 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Blog — CalcPatrimoine',
+  title: 'Blog — CalculPatrimoine',
   description: 'Articles sur la fiscalité du patrimoine, les calculs actuariels, et la finance personnelle. Mécanismes exacts, exemples chiffrés, sources officielles.',
 }
 
@@ -56,7 +56,7 @@ export default function BlogIndex() {
           <div className="h-[2px] w-10 bg-accent-400 mb-6" />
 
           <h1 className="font-serif text-5xl font-bold text-neutral-900 mb-4 leading-tight">
-            Blog CalcPatrimoine
+            Blog CalculPatrimoine
           </h1>
 
           <p className="text-lg text-neutral-600 max-w-2xl leading-relaxed">

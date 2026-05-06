@@ -1,4 +1,4 @@
-// src/app/faq/tmi/page.tsx
+﻿// src/app/faq/tmi/page.tsx
 'use client'
 
 import { useState } from 'react'
@@ -139,7 +139,7 @@ const sections: FAQSection[] = [
               <p>= Revenu net imposable</p>
             </div>
             <p className="text-sm text-neutral-600">
-              Le calculateur TMI de CalcPatrimoine part directement du revenu net imposable.
+              Le calculateur TMI de CalculPatrimoine part directement du revenu net imposable.
               Si vous saisissez votre salaire brut, utilisez d&apos;abord le simulateur impots.gouv.fr
               pour obtenir votre revenu net imposable exact.
             </p>

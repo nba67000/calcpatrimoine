@@ -1,4 +1,4 @@
-// src/components/Footer.tsx
+﻿// src/components/Footer.tsx
 'use client'
 
 import Link from 'next/link'
@@ -17,7 +17,7 @@ export default function Footer() {
  <div className="w-10 h-10 bg-primary-700 flex items-center justify-center">
  <span className="text-white font-bold text-xl">C</span>
  </div>
- <span className="text-white text-lg font-bold">CalcPatrimoine</span>
+ <span className="text-white text-lg font-bold">CalculPatrimoine</span>
  </Link>
  <p className="text-sm text-neutral-400 leading-relaxed max-w-sm">
  Calculateurs patrimoniaux gratuits et open-source. Sans inscription, 
@@ -61,7 +61,7 @@ export default function Footer() {
  {/* Ligne bas */}
  <div className="pt-8 border-t border-neutral-800 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
  <div className="text-xs text-neutral-500">
- © {new Date().getFullYear()} CalcPatrimoine · Tous droits réservés
+ © {new Date().getFullYear()} CalculPatrimoine · Tous droits réservés
  </div>
  <div className="flex flex-wrap gap-x-6 gap-y-2">
  {LIENS_LEGAUX.map(item => (

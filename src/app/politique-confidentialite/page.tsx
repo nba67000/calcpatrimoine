@@ -1,10 +1,10 @@
-// src/app/politique-confidentialite/page.tsx
+﻿// src/app/politique-confidentialite/page.tsx
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata = {
- title: 'Politique de Confidentialité - CalcPatrimoine',
- description: 'Politique de confidentialité et protection des données personnelles sur CalcPatrimoine'
+ title: 'Politique de Confidentialité - CalculPatrimoine',
+ description: 'Politique de confidentialité et protection des données personnelles sur CalculPatrimoine'
 }
 
 export default function PolitiqueConfidentialitePage() {
@@ -21,12 +21,12 @@ export default function PolitiqueConfidentialitePage() {
  <section>
  <div className="bg-primary-50 border border-primary-200 rounded-lg p-4 mb-6">
  <p className="text-primary-900 font-medium">
- CalcPatrimoine ne collecte <strong>aucune donnée personnelle identifiable</strong> et n&apos;utilise aucun cookie de tracking.
+ CalculPatrimoine ne collecte <strong>aucune donnée personnelle identifiable</strong> et n&apos;utilise aucun cookie de tracking.
  </p>
  </div>
  <p className="text-neutral-700">
  Cette politique de confidentialité explique comment nous traitons les informations 
- dans le cadre de votre utilisation du site CalcPatrimoine.fr.
+ dans le cadre de votre utilisation du site CalculPatrimoine.fr.
  </p>
  <p className="text-sm text-neutral-500 mt-2">
  Dernière mise à jour : 24 avril 2026
@@ -186,7 +186,7 @@ export default function PolitiqueConfidentialitePage() {
  <h2 className="text-2xl font-semibold mb-4">Cookies</h2>
  <div className="text-neutral-700 space-y-3">
  <p>
- CalcPatrimoine <strong>n&apos;utilise pas de cookies de tracking</strong> nécessitant 
+ CalculPatrimoine <strong>n&apos;utilise pas de cookies de tracking</strong> nécessitant 
  votre consentement.
  </p>
  <p>
