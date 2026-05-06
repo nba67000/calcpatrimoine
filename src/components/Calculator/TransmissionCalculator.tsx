@@ -19,6 +19,7 @@ import type {
 } from '@/types/transmission'
 import ChatWidget from '@/components/ChatWidget'
 import AlertList from '@/components/AlertList'
+import { formatEur } from '@/lib/formatters'
 
 export default function TransmissionCalculator() {
  // États inputs
@@ -87,7 +88,7 @@ export default function TransmissionCalculator() {
  Capital actuel total
  </label>
  <span className="text-2xl font-bold text-primary-600">
- {capitalTotal.toLocaleString('fr-FR')} €
+ {formatEur(capitalTotal)}
  </span>
  </div>
  <input
@@ -113,7 +114,7 @@ export default function TransmissionCalculator() {
  <span className="text-xs text-neutral-500 ml-2">(Art. 990 I)</span>
  </label>
  <span className="text-xl font-bold text-neutral-900">
- {versementsAvant70.toLocaleString('fr-FR')} €
+ {formatEur(versementsAvant70)}
  </span>
  </div>
  <input
@@ -146,7 +147,7 @@ export default function TransmissionCalculator() {
  <span className="text-xs text-neutral-500 ml-2">(Art. 757 B)</span>
  </label>
  <span className="text-xl font-bold text-neutral-900">
- {versementsApres70.toLocaleString('fr-FR')} €
+ {formatEur(versementsApres70)}
  </span>
  </div>
  <input

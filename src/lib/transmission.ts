@@ -7,6 +7,7 @@ import type {
  Beneficiaire
 } from '@/types/transmission'
 import type { Warning, Optimisation } from '@/types/alerts'
+import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 // Barème droits de succession ligne directe — Art. 777 CGI (LF 2026)
 const BAREME_LIGNE_DIRECTE = [
@@ -341,4 +342,33 @@ export function modifierPartBeneficiaire(
    // Si toutes les parts après étaient à 0 : répartition égale
    return { ...b, partPourcentage: Math.round((resteAPartager / benefApres.length) * 100) / 100 }
  })
+}
+
+/** Formatte le contexte transmission assurance-vie pour le chatbot. */
+export function formatContexteTransmission(inputs: TransmissionInputs, r: TransmissionResults): string {
+  const lines = [
+    'Calculateur : Transmission assurance-vie (Art. 990 I / 757 B)',
+    '',
+    'Contrat',
+    ligne('Capital total', eur(r.capitalTotal)),
+    ligne('Versements avant 70 ans', eur(r.totalVersementsAvant70)),
+    ligne('Versements après 70 ans', eur(r.totalVersementsApres70)),
+    ligne('Plus-value totale', eur(r.plusValueTotale)),
+    '',
+    'Résultats globaux',
+    ligne('Total impôts / droits', eur(r.totalImpots)),
+    ligne('Total net transmis', eur(r.totalNet)),
+    ligne('Taux effectif global', pct(r.tauxEffectifGlobal)),
+    ligne('Économie vs succession classique', eur(r.economieVsClassique)),
+    '',
+    `Bénéficiaires (${r.nombreBeneficiaires})`,
+  ]
+  r.repartition.forEach(b => {
+    lines.push(`  — ${b.nom} (${b.lien}, ${b.partPourcentage} %)`)
+    lines.push(`     Part brute : ${eur(b.part)}`)
+    if (b.impot990I > 0) lines.push(`     Prélèvement 990 I : ${eur(b.impot990I)} (base ${eur(b.baseTaxable990I)})`)
+    if (b.droitsSuccession757B > 0) lines.push(`     Droits 757 B : ${eur(b.droitsSuccession757B)} (base ${eur(b.baseTaxable757B)})`)
+    lines.push(`     Net reçu : ${eur(b.montantNet)} (taux effectif ${pct(b.tauxEffectif)})`)
+  })
+  return lines.join('\n')
 }

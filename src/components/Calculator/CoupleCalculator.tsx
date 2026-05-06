@@ -2,7 +2,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { calculateCoupleStrategies, formatEuro } from '@/lib/mortality'
+import { calculateCoupleStrategies } from '@/lib/mortality'
+import { formatEurRounded as formatEuro, formatNombre as formatCapitalInput } from '@/lib/formatters'
 import type { CoupleProfile, CoupleCalculation } from '@/types'
 import { motion } from 'framer-motion'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
@@ -15,14 +16,7 @@ export default function CoupleCalculator() {
  const [strategies, setStrategies] = useState<CoupleCalculation[]>([])
  const [isCalculating, setIsCalculating] = useState(false)
 
- // Formatage montant avec espaces
- const formatCapitalInput = (value: number): string => {
- return value.toLocaleString('fr-FR')
- }
-
- const parseCapitalInput = (value: string): number => {
- return Number(value.replace(/\s/g, ''))
- }
+ const parseCapitalInput = (value: string): number => Number(value.replace(/\s/g, ''))
 
  useEffect(() => {
  setIsCalculating(true)

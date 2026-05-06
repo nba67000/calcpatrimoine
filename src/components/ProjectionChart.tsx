@@ -2,7 +2,7 @@
 'use client'
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts'
-import { formatEuro } from '@/lib/mortality'
+import { formatEurRounded as formatEuro } from '@/lib/formatters'
 
 interface ProjectionChartProps {
  capital: number

@@ -1,6 +1,7 @@
 // src/lib/assuranceVie.ts
 
 import type { AssuranceVieInputs, AssuranceVieResults, FiscaliteOption } from '@/types/assuranceVie'
+import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_ASSURANCE_VIE = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047956718', label: 'Article 125-0 A du CGI', desc: "Fiscalité des rachats d'assurance-vie, abattements annuels" },
@@ -276,4 +277,52 @@ export function formatDateForInput(date: Date): string {
  */
 export function parseDateFromInput(dateString: string): Date {
  return new Date(dateString)
+}
+
+/** Formatte le contexte assurance-vie (rachat) pour le chatbot. */
+export function formatContexteAVRachat(inputs: AssuranceVieInputs, r: AssuranceVieResults): string {
+  const regimePFU = inputs.encoursTotalContrats <= 150_000
+    ? `PFU réduit 7,5 % (encours ${Math.round(inputs.encoursTotalContrats / 1000)}k€ ≤ 150 000€)`
+    : `PFU normal 12,8 % (encours ${Math.round(inputs.encoursTotalContrats / 1000)}k€ > 150 000€)`
+  const lines = [
+    'Calculateur : Fiscalité rachat assurance-vie',
+    '',
+    'Contrat',
+    ligne('Ancienneté', `${r.ancienneteContrat} ans et ${r.ancienneteMois} mois`),
+    ligne('Capital actuel', eur(inputs.capitalTotal)),
+    ligne('Versements totaux', eur(inputs.versementTotal)),
+    ligne('Versements avant 27/09/2017', eur(inputs.versementAvant2017)),
+    ligne('Encours total tous contrats AV', eur(inputs.encoursTotalContrats)),
+    ligne('Plus-value totale du contrat', eur(r.plusValueTotale)),
+    ligne('Taux de plus-value', pct(r.tauxPlusValue)),
+    '',
+    'Rachat envisagé',
+    ligne('Montant du rachat', eur(inputs.montantRachat)),
+    ligne('Part capital (non taxée)', eur(r.partCapital)),
+    ligne('Part plus-value (taxable)', eur(r.partPlusValue)),
+    ligne('Abattement applicable', eur(r.abattementApplicable)),
+    ligne('Plus-value taxable finale', eur(r.plusValueTaxable)),
+    '',
+    'Règle PFU appliquée',
+    `  ${regimePFU}`,
+    '',
+    'Comparaison fiscale',
+    ligne('Option PFU — total prélèvements', eur(r.optionPFU.totalPrelevement)),
+    ligne('Option PFU — net perçu', eur(r.optionPFU.netPercu)),
+    ligne('Option IR — total prélèvements', eur(r.optionIR.totalPrelevement)),
+    ligne('Option IR — net perçu', eur(r.optionIR.netPercu)),
+    ligne('Écart entre les deux options', eur(r.difference)),
+    ligne('TMI retenue', pct(inputs.tmi, 0)),
+    ligne('Situation', inputs.enCouple ? 'Couple' : 'Personne seule'),
+  ]
+  if (r.partAvant2017) {
+    lines.push(
+      '',
+      'Avantage versements avant 2017',
+      ligne('Plus-value concernée', eur(r.partAvant2017.montant)),
+      ligne('Taux réduit appliqué', pct(r.partAvant2017.tauxFiscal)),
+      ligne('Économie vs taux normal', eur(r.partAvant2017.avantage)),
+    )
+  }
+  return lines.join('\n')
 }

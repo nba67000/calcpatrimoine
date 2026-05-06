@@ -1,6 +1,7 @@
 // src/lib/per.ts
 
 import type { PERInputs, PERResults, PERDetailPlafond } from '@/types/per'
+import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_PER = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048776042', label: 'Article 163 quatervicies du CGI', desc: 'Déductibilité et plafonnement des versements PER (PERIN, salarié et TNS)' },
@@ -172,4 +173,34 @@ export function calculerPER(inputs: PERInputs): PERResults {
     warnings,
     optimisations,
   }
+}
+
+/** Formatte le contexte PER pour le chatbot. */
+export function formatContextePER(inputs: PERInputs, r: PERResults): string {
+  const d = r.detail
+  const lines = [
+    "Calculateur : PER individuel — économie d'impôt sur versement",
+    '',
+    'Situation fiscale',
+    ligne('Salaire net annuel', eur(inputs.salaireNetAnnuel)),
+    ligne('TMI', pct(inputs.tmi, 0)),
+    ligne('Versement PER envisagé', eur(inputs.versementEnvisage)),
+    '',
+    'Plafond disponible',
+    ligne("Plafond de l'année (10 % du revenu net)", eur(d.plafondAnnuel)),
+    ligne('Reports N-1 à N-5 cumulés', eur(d.plafondsReportesTotal)),
+    ligne('Plafond total utilisable', eur(d.plafondTotal)),
+    ligne('Montant effectivement déductible', eur(d.montantDeductible)),
+  ]
+  if (d.partNonDeductible > 0) {
+    lines.push(ligne('Part non déductible (dépassement plafond)', eur(d.partNonDeductible)))
+  }
+  lines.push(
+    '',
+    'Résultats',
+    ligne('Économie fiscale', eur(r.economieFiscale)),
+    ligne('Coût net réel du versement', eur(r.coutNetReel)),
+    ligne('Rendement fiscal immédiat', pct(r.rendementFiscal)),
+  )
+  return lines.join('\n')
 }

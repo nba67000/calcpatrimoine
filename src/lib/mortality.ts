@@ -13,16 +13,25 @@
  * @version 1.0.0
  */
 
-import type { 
- MortalityTables, 
- Gender, 
- CalculatorInput, 
+import type {
+ MortalityTables,
+ Gender,
+ CalculatorInput,
  AnnuityResult,
  MortalityData,
  InverseResult,
  CoupleProfile,
  CoupleCalculation
 } from '@/types'
+import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
+
+export const SOURCES_RENTE_VIAGERE = [
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035514601', label: 'Article A132-1 du Code des assurances', desc: 'Taux technique maximum autorisé pour les contrats de rente viagère (75 % du taux OAT, plafonné à 3,5 %)' },
+  { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000820127', label: 'Arrêté du 1er août 2006 — tables TGH 05 / TGF 05', desc: 'Homologation des tables de mortalité par génération pour les rentes viagères (art. A335-1 Code des assurances)' },
+  { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023744555', label: 'Loi n° 2011-1906 du 21 décembre 2011', desc: "Interdiction de la tarification différenciée selon le sexe (tables unisexes obligatoires depuis le 21 décembre 2012)" },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053542725', label: 'Article 158-6 du CGI', desc: "Fractions imposables des rentes viagères à titre onéreux selon l'âge : 70 % (< 50 ans), 50 % (50-59 ans), 40 % (60-69 ans), 30 % (> 69 ans)" },
+  { href: 'https://www.insee.fr/fr/statistiques/7624538', label: 'INSEE — Tables de mortalité 2021', desc: "Tables statistiques utilisées pour les projections d'espérance de vie (publication juin 2023)" },
+]
 
 // =============================================================================
 // CONSTANTES
@@ -274,23 +283,6 @@ export function getUnisexMortalityData(age: number): MortalityData | null {
  annuity_factor: (dataHomme.annuity_factor * WEIGHT_HOMME) + (dataFemme.annuity_factor * WEIGHT_FEMME),
  life_expectancy: (dataHomme.life_expectancy * WEIGHT_HOMME) + (dataFemme.life_expectancy * WEIGHT_FEMME)
  }
-}
-
-/**
- * Formatte un montant en euros avec séparateurs de milliers
- * 
- * @param amount - Montant à formater
- * @returns Chaîne formatée (ex: "1 234 €")
- * 
- * @example
- * formatEuro(1234.56) // "1 235 €" (arrondi)
- */
-export function formatEuro(amount: number): string {
- return new Intl.NumberFormat('fr-FR', {
- style: 'currency',
- currency: 'EUR',
- maximumFractionDigits: 0
- }).format(amount)
 }
 
 // =============================================================================
@@ -710,4 +702,40 @@ export function calculateCoupleStrategies(
  }
  
  return results
+}
+
+/** Formatte le contexte rente viagère pour le chatbot. */
+export function formatContexteRente(inputs: CalculatorInput, r: AnnuityResult): string {
+  const lines = [
+    'Calculateur : Rente viagère',
+    '',
+    'Paramètres',
+    ligne('Âge du souscripteur', `${inputs.age} ans`),
+    ligne('Capital converti', eur(inputs.capital)),
+    ligne('Taux technique', pct(r.tech_rate * 100)),
+    ligne('Facteur de rente (a(x))', r.annuity_factor.toFixed(4)),
+  ]
+  if (inputs.reversion?.enabled) {
+    lines.push(
+      ligne('Réversion', `activée à ${inputs.reversion.percentage} %`),
+      ligne('Âge du conjoint', `${inputs.reversion.spouse_age} ans`),
+    )
+  }
+  lines.push(
+    '',
+    'Résultats',
+    ligne('Rente mensuelle', eur(r.monthly_amount)),
+    ligne('Rente annuelle', eur(r.annual_amount)),
+    ligne("Espérance de vie résiduelle", `${r.life_expectancy.toFixed(1)} ans`),
+    ligne("Total attendu sur espérance de vie", eur(r.total_expected_payout)),
+    ligne('Seuil de rentabilité', `${r.roi_years.toFixed(1)} ans`),
+  )
+  if (r.with_reversion) {
+    lines.push(
+      '',
+      'Après décès du souscripteur (réversion)',
+      ligne('Rente réversionnaire mensuelle', eur(r.with_reversion.spouse_monthly_amount)),
+    )
+  }
+  return lines.join('\n')
 }

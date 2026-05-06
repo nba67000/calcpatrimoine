@@ -7,6 +7,7 @@ import type { TMIInputs, SituationFamiliale } from '@/types/tmi'
 import { useNumericInput } from '@/hooks/useNumericInput'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
+import { formatEur } from '@/lib/formatters'
 
 const TMI_COLORS: Record<number, { badge: string; text: string; bg: string }> = {
   0:  { badge: 'bg-neutral-200 text-neutral-800',  text: 'text-neutral-700',  bg: 'bg-neutral-50'  },
@@ -153,7 +154,7 @@ export default function TMICalculator() {
             <div className="bg-white rounded-lg p-3 border border-neutral-200">
               <div className="text-xs text-neutral-500 mb-1">Revenu / part</div>
               <div className="text-xl font-bold text-neutral-900">
-                {results.revenuParPart.toLocaleString('fr-FR')} €
+                {formatEur(results.revenuParPart)}
               </div>
             </div>
           </div>
@@ -175,7 +176,7 @@ export default function TMICalculator() {
             <div>
               <div className="text-xs text-neutral-500 mb-1">Impôt sur le revenu net</div>
               <div className="text-3xl font-bold text-neutral-900">
-                {results.irNet.toLocaleString('fr-FR')} €
+                {formatEur(results.irNet)}
               </div>
             </div>
             <div>
@@ -203,12 +204,12 @@ export default function TMICalculator() {
                     <span className="font-medium">
                       Tranche {tranche.taux} %
                       {tranche.borneSup
-                        ? ` (jusqu'à ${(tranche.borneSup).toLocaleString('fr-FR')} €)`
+                        ? ` (jusqu'à ${formatEur(tranche.borneSup)})`
                         : ''}
                     </span>
                     <span>
                       {tranche.impotDansLaTranche > 0
-                        ? `${tranche.impotDansLaTranche.toLocaleString('fr-FR')} €`
+                        ? formatEur(tranche.impotDansLaTranche)
                         : '–'}
                     </span>
                   </div>
@@ -219,7 +220,7 @@ export default function TMICalculator() {
                     />
                   </div>
                   <div className="text-xs text-neutral-400 mt-0.5">
-                    {tranche.revenuDansLaTranche.toLocaleString('fr-FR')} € dans cette tranche
+                    {formatEur(tranche.revenuDansLaTranche)} dans cette tranche
                   </div>
                 </div>
               )
@@ -230,7 +231,7 @@ export default function TMICalculator() {
           <div className="space-y-2 pt-4 border-t border-neutral-200 text-sm">
             <div className="flex justify-between">
               <span className="text-neutral-600">IR avec QF (avant plafonnement)</span>
-              <span className="font-medium">{results.irAvecQF.toLocaleString('fr-FR')} €</span>
+              <span className="font-medium">{formatEur(results.irAvecQF)}</span>
             </div>
 
             {results.plafonnementActif && (
@@ -238,7 +239,7 @@ export default function TMICalculator() {
                 <div className="flex justify-between text-orange-700">
                   <span>Plafonnement QF actif</span>
                   <span className="font-medium">
-                    +{(results.reductionQFBrute - results.reductionQFAppliquee).toLocaleString('fr-FR')} € ajouté
+                    +{formatEur(results.reductionQFBrute - results.reductionQFAppliquee)} ajouté
                   </span>
                 </div>
               </>
@@ -248,26 +249,26 @@ export default function TMICalculator() {
               <div className="flex justify-between text-green-700">
                 <span>Réduction quotient familial</span>
                 <span className="font-medium">
-                  -{results.reductionQFAppliquee.toLocaleString('fr-FR')} €
+                  -{formatEur(results.reductionQFAppliquee)}
                 </span>
               </div>
             )}
 
             <div className="flex justify-between font-medium pt-1 border-t border-neutral-200">
               <span className="text-neutral-700">IR brut</span>
-              <span>{results.irBrut.toLocaleString('fr-FR')} €</span>
+              <span>{formatEur(results.irBrut)}</span>
             </div>
 
             {results.decoteApplicable > 0 && (
               <div className="flex justify-between text-green-700">
                 <span>Décote</span>
-                <span className="font-medium">-{results.decoteApplicable.toLocaleString('fr-FR')} €</span>
+                <span className="font-medium">-{formatEur(results.decoteApplicable)}</span>
               </div>
             )}
 
             <div className="flex justify-between font-bold text-base pt-2 border-t-2 border-neutral-300">
               <span className="text-neutral-900">IR net</span>
-              <span className="text-primary-700">{results.irNet.toLocaleString('fr-FR')} €</span>
+              <span className="text-primary-700">{formatEur(results.irNet)}</span>
             </div>
           </div>
         </div>

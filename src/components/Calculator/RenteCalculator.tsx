@@ -2,7 +2,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { calculateAnnuity, formatEuro } from '@/lib/mortality'
+import { calculateAnnuity } from '@/lib/mortality'
+import { formatEurRounded as formatEuro, formatNombre as formatCapitalInput } from '@/lib/formatters'
 import type { CalculatorInput, AnnuityResult } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 import Tooltip from '@/components/Tooltip'
@@ -19,7 +20,6 @@ export default function RenteCalculator() {
  
  const [result, setResult] = useState<AnnuityResult | null>(null)
 
- const formatCapitalInput = (value: number): string => value.toLocaleString('fr-FR')
  const parseCapitalInput = (value: string): number => Number(value.replace(/\s/g, ''))
 
  useEffect(() => {

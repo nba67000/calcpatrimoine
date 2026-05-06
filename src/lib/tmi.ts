@@ -1,6 +1,7 @@
 // src/lib/tmi.ts
 
 import type { TMIInputs, TMIResults, TrancheDetail, SituationFamiliale } from '@/types/tmi'
+import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_TMI = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051212954', label: 'Article 197 du CGI', desc: 'Barème progressif IR 2026 (revenus 2025), décote, plafonnement QF' },
@@ -237,4 +238,41 @@ export function calculerTMIResult(inputs: TMIInputs): TMIResults {
     warnings,
     optimisations,
   }
+}
+
+/** Formatte le contexte TMI pour le chatbot. */
+export function formatContexteTMI(inputs: TMIInputs, r: TMIResults): string {
+  const situation: Record<string, string> = {
+    celibataire: 'célibataire',
+    'marie-pacse': 'marié / pacsé',
+    'parent-isole': 'parent isolé',
+  }
+  const lines = [
+    "Calculateur : Tranche marginale d'imposition (TMI / IR)",
+    '',
+    'Situation fiscale',
+    ligne('Revenu net imposable', eur(inputs.revenuNetImposable)),
+    ligne('Situation familiale', situation[inputs.situationFamiliale] ?? inputs.situationFamiliale),
+    ligne('Enfants à charge', String(inputs.nombreEnfants)),
+    ligne('Nombre de parts QF', r.nombreParts.toFixed(2)),
+    '',
+    'Résultats',
+    ligne('IR brut (avant décote)', eur(r.irBrut)),
+    ligne('Décote appliquée', eur(r.decoteApplicable)),
+    ligne('IR net à payer', eur(r.irNet)),
+    ligne('Tranche marginale (TMI)', pct(r.tmi, 0)),
+    ligne("Taux moyen d'imposition", pct(r.tauxMoyen)),
+  ]
+  if (r.plafonnementActif) {
+    lines.push(ligne('Plafonnement QF', `actif — réduction limitée à ${eur(r.reductionQFPlafond)}`))
+  }
+  if (r.detailTranches.length > 0) {
+    lines.push('', 'Détail par tranche')
+    r.detailTranches
+      .filter((t: TrancheDetail) => t.revenuDansLaTranche > 0)
+      .forEach((t: TrancheDetail) => lines.push(
+        ligne(`Tranche ${pct(t.taux, 0)}`, `${eur(t.revenuDansLaTranche)} imposés → ${eur(t.impotDansLaTranche)}`)
+      ))
+  }
+  return lines.join('\n')
 }

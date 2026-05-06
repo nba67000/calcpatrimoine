@@ -2,7 +2,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { calculateRequiredCapital, formatEuro } from '@/lib/mortality'
+import { calculateRequiredCapital } from '@/lib/mortality'
+import { formatEurRounded as formatEuro, formatNombre } from '@/lib/formatters'
 import type { InverseResult } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LIMITS } from '@/lib/constants'
@@ -18,14 +19,8 @@ export default function InverseCalculator() {
  const [reversionPercentage, setReversionPercentage] = useState<60 | 80 | 100>(60)
  const [result, setResult] = useState<InverseResult | null>(null)
 
- // Formatage montant avec espaces (100 000 au lieu de 100000)
- const formatAmountInput = (value: number): string => {
- return value.toLocaleString('fr-FR')
- }
-
- const parseAmountInput = (value: string): number => {
- return Number(value.replace(/\s/g, ''))
- }
+ const formatAmountInput = formatNombre
+ const parseAmountInput = (value: string): number => Number(value.replace(/\s/g, ''))
 
  useEffect(() => {
  const calculatedResult = calculateRequiredCapital(
