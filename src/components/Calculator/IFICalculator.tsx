@@ -46,7 +46,7 @@ export default function IFICalculator() {
           {/* Valeur brute totale */}
           <div className="mb-5">
             <label className="text-sm font-medium text-neutral-700 block mb-2">
-              Valeur vénale brute totale des biens immobiliers
+              Valeur de marché totale de vos biens immobiliers
             </label>
             <div className="relative">
               <input
@@ -60,7 +60,7 @@ export default function IFICalculator() {
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
             </div>
             <p className="text-xs text-neutral-500 mt-1">
-              Estimation de marché au 1er janvier 2026. Inclure tous les biens détenus en France et à l&apos;étranger.
+              Prix auquel vous pourriez vendre chacun de vos biens au 1er janvier 2026. Total de tous vos biens (France et étranger).
             </p>
           </div>
 
@@ -108,7 +108,7 @@ export default function IFICalculator() {
           {/* Dettes déductibles */}
           <div>
             <label className="text-sm font-medium text-neutral-700 block mb-2">
-              Dettes déductibles (Art. 974 CGI)
+              Emprunts et dettes liés à vos biens immobiliers
             </label>
             <div className="relative">
               <input
@@ -122,7 +122,7 @@ export default function IFICalculator() {
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
             </div>
             <p className="text-xs text-neutral-500 mt-1">
-              Capital restant dû sur emprunts liés aux biens taxables + taxes foncières au 1er janvier.
+              Capital restant dû sur crédits immobiliers + taxes foncières au 1er janvier. Les crédits à la consommation ne sont pas déductibles.
             </p>
           </div>
         </div>

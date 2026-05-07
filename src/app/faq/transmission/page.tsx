@@ -30,9 +30,9 @@ const sections: FAQSection[] = [
         answer: (
           <>
             <p className="mb-3">
-              L&apos;assurance-vie bénéficie d&apos;une fiscalité successorale dérogatoire au droit commun.
-              Elle <strong>échappe en grande partie aux droits de succession</strong> classiques et permet
-              de transmettre des capitaux importants avec des abattements spécifiques.
+              L&apos;assurance-vie n&apos;entre pas dans la succession classique. Elle suit ses propres règles fiscales,
+              beaucoup plus favorables. Elle <strong>échappe en grande partie aux droits de succession</strong> classiques
+              et permet de transmettre des capitaux importants avec des abattements spécifiques.
             </p>
             <p className="mb-3">
               Deux régimes coexistent selon l&apos;âge auquel les versements ont été effectués :
@@ -43,8 +43,8 @@ const sections: FAQSection[] = [
             </ul>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4">
               <p className="text-sm text-primary-900">
-                <strong>Clé</strong> : c&apos;est l&apos;âge au moment du versement qui compte,
-                pas l&apos;âge au décès.
+                <strong>À retenir</strong> : c&apos;est la date du versement qui compte, pas la date du décès.
+                Les versements réalisés avant 70 ans relèvent du régime 990 I, celui dont les abattements sont les plus élevés.
               </p>
             </div>
           </>

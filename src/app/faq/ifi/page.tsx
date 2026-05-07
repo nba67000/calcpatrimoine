@@ -35,10 +35,10 @@ const sections: FAQSection[] = [
               Il est dû par les personnes physiques dont le patrimoine immobilier net dépasse <strong>1 300 000 €</strong> au 1er janvier de l&apos;année d&apos;imposition (Art. 964 CGI).
             </p>
             <p className="mb-3">
-              Ce seuil s&apos;apprécie au niveau du <strong>foyer fiscal</strong>, pas par individu. Un couple marié ou pacsé n&apos;a qu&apos;un seul seuil à 1 300 000 €, même si les biens sont détenus séparément.
+              Ce seuil concerne le <strong>foyer fiscal</strong> dans son ensemble, pas chaque personne séparément. Un couple marié ou pacsé n&apos;a qu&apos;un seul seuil à 1 300 000 €, même si les biens sont détenus séparément.
             </p>
             <p>
-              Les non-résidents fiscaux sont assujettis uniquement sur leurs biens situés en France. Les résidents sont taxés sur l&apos;ensemble de leur patrimoine immobilier mondial, sous réserve des conventions fiscales internationales.
+              Si vous habitez à l&apos;étranger, seuls vos biens situés en France entrent dans le calcul. Les résidents français sont taxés sur l&apos;ensemble de leur patrimoine immobilier mondial, sous réserve des conventions fiscales internationales.
             </p>
           </>
         ),
@@ -167,7 +167,7 @@ const sections: FAQSection[] = [
           <>
             <p className="mb-3">
               Selon l&apos;Art. 979 CGI, la somme IFI + impôt sur le revenu ne peut excéder 75 % des revenus
-              imposables de l&apos;année. Si ce seuil est dépassé, l&apos;IFI est réduit à due concurrence.
+              imposables de l&apos;année. Si ce seuil est dépassé, l&apos;IFI est réduit du montant qui dépasse 75 %.
             </p>
             <p className="mb-3">
               Exemple : revenus = 60 000 €, IR = 40 000 €, IFI calculé = 15 000 €.

@@ -60,9 +60,9 @@ export default function RenteViagerePage() {
               Un homme et une femme du même âge obtiennent donc la même rente à capital identique.
             </p>
             <p>
-              <strong>Le taux technique gonfle la rente initiale.</strong>{' '}
-              Les assureurs anticipent un rendement futur pour majorer votre rente dès le départ.
-              Notre calculateur utilise 0,5 % par défaut.
+              <strong>Les assureurs intègrent une hypothèse de rendement futur dans le calcul.</strong>{' '}
+              Ce rendement supposé (appelé taux technique) augmente légèrement la rente versée dès le premier mois,
+              en contrepartie d&apos;une revalorisation réduite par la suite. Notre calculateur utilise 0,5 %, valeur standard du marché.
             </p>
             <p>
               <strong>La réversion réduit la rente, mais protège le conjoint.</strong>{' '}
