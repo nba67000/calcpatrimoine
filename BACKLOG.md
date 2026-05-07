@@ -84,7 +84,8 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
 ### P2 — À faire ensuite
 
 #### `ifi` — Impôt sur la fortune immobilière
-- **Statut** : `todo`
+- **Statut** : `in-progress`
+- **Assignee** : claude-code-session-2026-05-07
 - **Volume recherche estimé** : ~3 000/mois
 - **Description** : Calcul de l'IFI à partir du patrimoine immobilier net.
 - **Entrées** : valeur biens immo, dettes déductibles, décote résidence

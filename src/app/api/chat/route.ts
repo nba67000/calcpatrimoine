@@ -6,8 +6,19 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
 const MODEL = process.env.CHAT_MODEL ?? 'claude-haiku-4-5-20251001'
 const MAX_TOKENS = 1024
-const MAX_MESSAGES = 20    // 10 tours max
-const MAX_INPUT_LEN = 1000 // chars par message utilisateur
+const MAX_MESSAGES = 20      // 10 tours max
+const MAX_INPUT_LEN = 1000   // chars par message utilisateur
+const MAX_CONTEXTE_LEN = 3000 // chars pour le contexte calculateur
+
+// Liste blanche des slugs valides — toute valeur hors liste est rejetée (protection prompt injection)
+const SLUGS_VALIDES: readonly string[] = [
+  'tmi',
+  'per-individuel',
+  'rente-viagere',
+  'assurance-vie/fiscalite-rachat',
+  'assurance-vie/transmission',
+  'plus-value-immobiliere',
+]
 
 // ---------------------------------------------------------------------------
 // Partie statique du prompt — mise en cache (TTL 5 min Anthropic)
@@ -97,6 +108,10 @@ function validerRequete(body: unknown): { messages: Message[]; contexteTexte: st
   if (typeof b.contexteTexte !== 'string' || b.contexteTexte.length === 0) return null
   if (typeof b.slugCalculateur !== 'string' || b.slugCalculateur.length === 0) return null
 
+  // Validation stricte du slug contre la liste blanche — rejette tout slug non reconnu,
+  // y compris les tentatives d'injection de prompt via ce champ.
+  if (!SLUGS_VALIDES.includes(b.slugCalculateur)) return null
+
   const messages: Message[] = []
   for (const m of b.messages.slice(-MAX_MESSAGES)) {
     if (typeof m !== 'object' || m === null) return null
@@ -108,7 +123,10 @@ function validerRequete(body: unknown): { messages: Message[]; contexteTexte: st
 
   if (messages.length === 0 || messages[messages.length - 1].role !== 'user') return null
 
-  return { messages, contexteTexte: b.contexteTexte as string, slugCalculateur: b.slugCalculateur as SlugCalculateur }
+  // Tronque le contexte à MAX_CONTEXTE_LEN pour éviter les abus de coût API
+  const contexteTexte = String(b.contexteTexte).slice(0, MAX_CONTEXTE_LEN)
+
+  return { messages, contexteTexte, slugCalculateur: b.slugCalculateur as SlugCalculateur }
 }
 
 // ---------------------------------------------------------------------------
