@@ -35,9 +35,11 @@ export default function TransmissionChart({ results }: TransmissionChartProps) {
  })
 
  useEffect(() => {
- setIsVisible(false)
  const timer = setTimeout(() => setIsVisible(true), 100)
- return () => clearTimeout(timer)
+ return () => {
+ clearTimeout(timer)
+ setIsVisible(false)
+ }
  }, [results])
 
  // Animation des chiffres
@@ -165,7 +167,7 @@ export default function TransmissionChart({ results }: TransmissionChartProps) {
  {benef.nom}
  </h4>
  <p className="text-sm text-neutral-600">
- {getLibelleLien(benef.lien as any)} · {benef.partPourcentage.toFixed(1)}% du capital
+ {getLibelleLien(benef.lien)} · {benef.partPourcentage.toFixed(1)}% du capital
  </p>
  </div>
  <div className="text-right">

@@ -3,30 +3,34 @@
 
 import { useState, useMemo } from 'react'
 import { calculateAnnuity } from '@/lib/mortality'
-import { formatEurRounded as formatEuro, formatNombre as formatCapitalInput } from '@/lib/formatters'
-import type { CalculatorInput, AnnuityResult } from '@/types'
+import { formatEurRounded as formatEuro, formatNombre } from '@/lib/formatters'
+import type { AnnuityResult } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 import Tooltip from '@/components/Tooltip'
 import ProjectionChart from '@/components/ProjectionChart'
 import Icon from '@/components/Icon'
 import ChatWidget from '@/components/ChatWidget'
+import { useNumericInput } from '@/hooks/useNumericInput'
+import { LIMITS, DEFAULT_VALUES } from '@/lib/constants'
 
 export default function RenteCalculator() {
- const [age, setAge] = useState<number>(65)
- const [capital, setCapital] = useState<number>(100000)
+ const [age, setAge] = useState<number>(DEFAULT_VALUES.AGE)
+ const capitalInput = useNumericInput(DEFAULT_VALUES.CAPITAL, {
+   min: LIMITS.CAPITAL_MIN,
+   max: LIMITS.CAPITAL_MAX,
+   format: formatNombre,
+ })
  const [showReversion, setShowReversion] = useState(false)
- const [spouseAge, setSpouseAge] = useState<number>(63)
+ const [spouseAge, setSpouseAge] = useState<number>(DEFAULT_VALUES.AGE - DEFAULT_VALUES.SPOUSE_AGE_DIFF)
  const [reversionPercentage, setReversionPercentage] = useState<60 | 80 | 100>(60)
- 
- const parseCapitalInput = (value: string): number => Number(value.replace(/\s/g, ''))
 
  const result = useMemo<AnnuityResult | null>(() => calculateAnnuity({
    age,
-   capital,
+   capital: capitalInput.value,
    reversion: showReversion
      ? { enabled: true, spouse_age: spouseAge, percentage: reversionPercentage }
      : { enabled: false },
- }), [age, capital, showReversion, spouseAge, reversionPercentage])
+ }), [age, capitalInput.value, showReversion, spouseAge, reversionPercentage])
 
  return (
  <>
@@ -43,22 +47,22 @@ export default function RenteCalculator() {
  <div className="flex items-center gap-2">
  <input
  type="number"
- min="50"
- max="90"
+ min={LIMITS.AGE_MIN}
+ max={LIMITS.AGE_MAX}
  value={age}
  onChange={(e) => {
  const val = e.target.value
  if (val === '' || !isNaN(Number(val))) {
- setAge(val === '' ? 50 : Number(val))
+ setAge(val === '' ? LIMITS.AGE_MIN : Number(val))
  }
  }}
  onBlur={(e) => {
- let val = Number(e.target.value)
- if (isNaN(val) || val < 50) setAge(50)
- else if (val> 90) setAge(90)
+ const val = Number(e.target.value)
+ if (isNaN(val) || val < LIMITS.AGE_MIN) setAge(LIMITS.AGE_MIN)
+ else if (val > LIMITS.AGE_MAX) setAge(LIMITS.AGE_MAX)
  }}
  onFocus={(e) => e.target.select()}
- className="w-20 px-3 py-1 text-lg font-medium text-center border border-neutral-300 rounded-lg 
+ className="w-20 px-3 py-1 text-lg font-medium text-center border border-neutral-300 rounded-lg
  focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
  />
  <span className="text-lg font-medium text-neutral-600">ans</span>
@@ -66,16 +70,16 @@ export default function RenteCalculator() {
  </div>
  <input
  type="range"
- min={50}
- max={90}
+ min={LIMITS.AGE_MIN}
+ max={LIMITS.AGE_MAX}
  step={1}
  value={age}
  onChange={(e) => setAge(Number(e.target.value))}
  className="w-full"
  />
  <div className="flex justify-between text-xs text-neutral-400 mt-1">
- <span>50 ans</span>
- <span>90 ans</span>
+ <span>{LIMITS.AGE_MIN} ans</span>
+ <span>{LIMITS.AGE_MAX} ans</span>
  </div>
  </div>
 
@@ -90,18 +94,9 @@ export default function RenteCalculator() {
  <input
  type="text"
  inputMode="numeric"
- value={formatCapitalInput(capital)}
- onChange={(e) => {
- const val = e.target.value.replace(/\s/g, '')
- if (val === '' || !isNaN(Number(val))) {
- setCapital(val === '' ? 10000 : Number(val))
- }
- }}
- onBlur={(e) => {
- let val = parseCapitalInput(e.target.value)
- if (isNaN(val) || val < 10000) setCapital(10000)
- else if (val> 500000) setCapital(500000)
- }}
+ value={capitalInput.display}
+ onChange={(e) => capitalInput.onChange(e.target.value)}
+ onBlur={capitalInput.onBlur}
  onFocus={(e) => e.target.select()}
  className="w-28 sm:w-40 px-3 py-1 text-lg font-medium text-right border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
  />
@@ -110,11 +105,11 @@ export default function RenteCalculator() {
  </div>
  <input
  type="range"
- min={10000}
- max={500000}
- step={5000}
- value={capital}
- onChange={(e) => setCapital(Number(e.target.value))}
+ min={LIMITS.CAPITAL_MIN}
+ max={LIMITS.CAPITAL_MAX}
+ step={LIMITS.CAPITAL_STEP}
+ value={capitalInput.value}
+ onChange={(e) => capitalInput.set(Number(e.target.value))}
  className="w-full"
  />
  <div className="flex justify-between text-xs text-neutral-400 mt-1">
@@ -187,22 +182,22 @@ export default function RenteCalculator() {
  <div className="flex items-center gap-2">
  <input
  type="number"
- min="50"
- max="90"
+ min={LIMITS.AGE_MIN}
+ max={LIMITS.AGE_MAX}
  value={spouseAge}
  onChange={(e) => {
  const val = e.target.value
  if (val === '' || !isNaN(Number(val))) {
- setSpouseAge(val === '' ? 50 : Number(val))
+ setSpouseAge(val === '' ? LIMITS.AGE_MIN : Number(val))
  }
  }}
  onBlur={(e) => {
- let val = Number(e.target.value)
- if (isNaN(val) || val < 50) setSpouseAge(50)
- else if (val> 90) setSpouseAge(90)
+ const val = Number(e.target.value)
+ if (isNaN(val) || val < LIMITS.AGE_MIN) setSpouseAge(LIMITS.AGE_MIN)
+ else if (val > LIMITS.AGE_MAX) setSpouseAge(LIMITS.AGE_MAX)
  }}
  onFocus={(e) => e.target.select()}
- className="w-16 px-2 py-1 text-sm font-medium text-center border border-primary-300 rounded-lg 
+ className="w-16 px-2 py-1 text-sm font-medium text-center border border-primary-300 rounded-lg
  focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
  />
  <span className="text-sm font-medium text-neutral-600">ans</span>
@@ -210,8 +205,8 @@ export default function RenteCalculator() {
  </div>
  <input
  type="range"
- min={50}
- max={90}
+ min={LIMITS.AGE_MIN}
+ max={LIMITS.AGE_MAX}
  step={1}
  value={spouseAge}
  onChange={(e) => setSpouseAge(Number(e.target.value))}
@@ -318,7 +313,7 @@ export default function RenteCalculator() {
  className="mt-6 bg-white rounded-lg shadow-lg p-4 sm:p-8 border border-neutral-200"
 >
  <ProjectionChart
- capital={capital}
+ capital={capitalInput.value}
  monthlyRent={result.monthly_amount}
  lifeExpectancy={result.life_expectancy}
  />
@@ -432,7 +427,7 @@ export default function RenteCalculator() {
        calculateur: 'rente-viagere',
        inputs: {
          age,
-         capital,
+         capital: capitalInput.value,
          reversion: showReversion
            ? { enabled: true, spouse_age: spouseAge, percentage: reversionPercentage }
            : { enabled: false },
@@ -444,3 +439,4 @@ export default function RenteCalculator() {
  </>
  )
 }
+

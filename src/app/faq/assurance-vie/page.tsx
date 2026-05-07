@@ -23,11 +23,11 @@ const faqItems: FAQItem[] = [
  <>
  <p className="mb-3">
  <strong>Non, absolument pas.</strong>Tous les calculs sont effectués localement 
- dans votre navigateur, en JavaScript. Aucune donnée n'est envoyée à un serveur, 
+ dans votre navigateur, en JavaScript. Aucune donnée n&apos;est envoyée à un serveur, 
  stockée dans une base de données, ou conservée après la fermeture de votre navigateur.
  </p>
  <p>
- C'est 100% privé et confidentiel. Vous pouvez même utiliser le calculateur 
+ C&apos;est 100% privé et confidentiel. Vous pouvez même utiliser le calculateur 
  hors ligne si vous téléchargez la page.
  </p>
  </>
@@ -39,12 +39,12 @@ const faqItems: FAQItem[] = [
  answer: (
  <>
  <p className="mb-3">
- <strong>Oui</strong>, le calculateur s'applique à tous les contrats d'assurance-vie 
+ <strong>Oui</strong>, le calculateur s&apos;applique à tous les contrats d&apos;assurance-vie 
  français (monosupport, multisupport, fonds euros, unités de compte).
  </p>
  <p>
  La fiscalité au rachat est identique quel que soit le type de contrat. 
- Seules l'ancienneté du contrat et la date des versements influencent les calculs.
+ Seules l&apos;ancienneté du contrat et la date des versements influencent les calculs.
  </p>
  </>
  )
@@ -86,11 +86,11 @@ const faqItems: FAQItem[] = [
  <p className="mb-3">
  <strong>PFU (Prélèvement Forfaitaire Unique)</strong> :<br />
  Taux fixe de 30% (12,8% impôt + 17,2% prélèvements sociaux), 
- quelle que soit votre tranche d'imposition.
+ quelle que soit votre tranche d&apos;imposition.
  </p>
  <p className="mb-3">
  <strong>IR + PS (Impôt sur le Revenu + Prélèvements Sociaux)</strong> :<br />
- Votre Tranche Marginale d'Imposition (TMI) + 17,2% de prélèvements sociaux.
+ Votre Tranche Marginale d&apos;Imposition (TMI) + 17,2% de prélèvements sociaux.
  </p>
  <p className="mb-3">
  <strong>Comment comparer les deux ?</strong>
@@ -115,7 +115,7 @@ const faqItems: FAQItem[] = [
  answer: (
  <>
  <p className="mb-3">
- Si votre contrat a <strong>plus de 8 ans</strong>, vous bénéficiez d'un abattement 
+ Si votre contrat a <strong>plus de 8 ans</strong>, vous bénéficiez d&apos;un abattement 
  annuel sur la plus-value taxable :
  </p>
  <ul className="list-disc list-inside mb-3">
@@ -123,7 +123,7 @@ const faqItems: FAQItem[] = [
  <li>9 200€ pour un couple marié ou pacsé</li>
  </ul>
  <p className="mb-3">
- Cet abattement s'applique <strong>chaque année civile</strong>.
+ Cet abattement s&apos;applique <strong>chaque année civile</strong>.
  </p>
  <p className="bg-primary-50 border-l-4 border-primary-500 p-4 rounded">
  <strong>Exemple :</strong>Vous retirez 20 000€ avec 10 000€ de plus-value. 
@@ -181,11 +181,11 @@ const faqItems: FAQItem[] = [
  answer: (
  <>
  <p className="mb-3">
- Les versements effectués <strong>avant le 27/09/2017</strong> bénéficient d'un taux 
- d'imposition réduit pour les contrats de plus de 8 ans :
+ Les versements effectués <strong>avant le 27/09/2017</strong> bénéficient d&apos;un taux 
+ d&apos;imposition réduit pour les contrats de plus de 8 ans :
  </p>
  <ul className="list-disc list-inside mb-3">
- <li>7,5% d'impôt (au lieu de 12,8%)</li>
+ <li>7,5% d&apos;impôt (au lieu de 12,8%)</li>
  <li>+ 17,2% de prélèvements sociaux</li>
  <li>= <strong>24,7% au total</strong> (au lieu de 30%)</li>
  </ul>
@@ -194,7 +194,7 @@ const faqItems: FAQItem[] = [
  </p>
  <p className="bg-primary-50 border-l-4 border-primary-500 p-4 rounded">
  <strong>Conseil :</strong>Si vous avez fait des versements avant cette date, 
- pensez à l'indiquer dans le calculateur pour bénéficier de cet avantage fiscal.
+ pensez à l&apos;indiquer dans le calculateur pour bénéficier de cet avantage fiscal.
  </p>
  </>
  )
@@ -205,7 +205,7 @@ const faqItems: FAQItem[] = [
  answer: (
  <>
  <p className="mb-3">
- Consultez vos <strong>relevés annuels d'assurance-vie</strong>. 
+ Consultez vos <strong>relevés annuels d&apos;assurance-vie</strong>. 
  Ils indiquent toutes les dates et montants de vos versements.
  </p>
  <p className="mb-3">
@@ -224,11 +224,11 @@ const faqItems: FAQItem[] = [
  answer: (
  <>
  <p className="mb-3">
- <strong>Impact fiscal d'attendre :</strong>En attendant 2 mois, vous bénéficierez 
- de l'abattement de 4 600€ (ou 9 200€ en couple).
+ <strong>Impact fiscal d&apos;attendre :</strong>En attendant 2 mois, vous bénéficierez 
+ de l&apos;abattement de 4 600€ (ou 9 200€ en couple).
  </p>
  <p className="mb-3">
- La différence fiscale peut atteindre plusieurs milliers d'euros selon le montant 
+ La différence fiscale peut atteindre plusieurs milliers d&apos;euros selon le montant 
  de votre plus-value.
  </p>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded">
@@ -251,7 +251,7 @@ const faqItems: FAQItem[] = [
  <strong>Exemple :</strong><br />
  Au lieu de retirer 50 000€ cette année :<br />
  • 25 000€ cette année<br />
- • 25 000€ l'année prochaine<br /><br />
+ • 25 000€ l&apos;année prochaine<br /><br />
  Abattement utilisé deux fois :<br />
  2 × 4 600€ = <strong>9 200€ au total</strong>
  </p>
@@ -270,16 +270,16 @@ const faqItems: FAQItem[] = [
  <>
  <p className="mb-3">
  Au-delà de 150 000€ de versements par personne, un prélèvement additionnel 
- s'applique sur la fraction des versements qui dépasse ce seuil.
+ s&apos;applique sur la fraction des versements qui dépasse ce seuil.
  </p>
  <p className="mb-3">
- Le taux d'imposition passe de 12,8% à 12,8% (inchangé pour l'IR) mais avec 
- des modalités spécifiques définies à l'article 990 I du CGI.
+ Le taux d&apos;imposition passe de 12,8% à 12,8% (inchangé pour l&apos;IR) mais avec 
+ des modalités spécifiques définies à l&apos;article 990 I du CGI.
  </p>
  <p className="bg-primary-50 border-l-4 border-primary-500 p-4 rounded">
  <strong>Note :</strong>Le calculateur actuel ne gère pas encore ce cas complexe. 
  Si vous êtes concerné, nous vous recommandons de consulter un conseiller en 
- gestion de patrimoine ou d'utiliser le simulateur impots.gouv.fr en complément.
+ gestion de patrimoine ou d&apos;utiliser le simulateur impots.gouv.fr en complément.
  </p>
  </>
  )
@@ -298,10 +298,10 @@ const faqItems: FAQItem[] = [
  <strong>Caractéristiques du rachat partiel :</strong>
  </p>
  <ul className="list-disc list-inside mb-3">
- <li>Conservation de l'ancienneté du contrat (important si &gt; 8 ans)</li>
- <li>Possibilité de reverser de l'argent plus tard sans repartir de zéro</li>
+ <li>Conservation de l&apos;ancienneté du contrat (important si &gt; 8 ans)</li>
+ <li>Possibilité de reverser de l&apos;argent plus tard sans repartir de zéro</li>
  <li>Fractionnement de la fiscalité sur plusieurs années</li>
- <li>Utilisation de l'abattement annuel sur plusieurs rachats</li>
+ <li>Utilisation de l&apos;abattement annuel sur plusieurs rachats</li>
  </ul>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded text-sm">
  <strong>À noter :</strong>Même pour un besoin total de capital, conserver 
@@ -317,12 +317,12 @@ const faqItems: FAQItem[] = [
  answer: (
  <>
  <p className="mb-3">
- <strong>5 éléments qui influencent le montant d'impôt :</strong>
+ <strong>5 éléments qui influencent le montant d&apos;impôt :</strong>
  </p>
  <div className="space-y-3">
  <div className="bg-neutral-50 p-4 rounded">
  <strong>1. Ancienneté du contrat (seuil 8 ans)</strong><br />
- Contrat &lt; 8 ans : pas d'abattement<br />
+ Contrat &lt; 8 ans : pas d&apos;abattement<br />
  Contrat ≥ 8 ans : abattement 4 600€ / 9 200€
  </div>
  <div className="bg-neutral-50 p-4 rounded">
@@ -360,7 +360,7 @@ const faqItems: FAQItem[] = [
  <strong>Oui !</strong>Vous pouvez tester différents scénarios en temps réel :
  </p>
  <ul className="list-disc list-inside mb-3">
- <li>Rachat 50 000€ d'un coup vs 25 000€ sur 2 ans</li>
+ <li>Rachat 50 000€ d&apos;un coup vs 25 000€ sur 2 ans</li>
  <li>Retrait immédiat vs dans 6 mois (si proche des 8 ans)</li>
  <li>PFU vs IR selon votre TMI</li>
  <li>Impact des versements avant 2017</li>
@@ -391,7 +391,7 @@ const faqItems: FAQItem[] = [
  </p>
  <ul className="list-disc list-inside mb-3">
  <li>Simuler différents montants de rachat</li>
- <li>Tester l'impact d'une modification de votre TMI</li>
+ <li>Tester l&apos;impact d&apos;une modification de votre TMI</li>
  <li>Anticiper la fiscalité si vous attendez X mois/années</li>
  <li>Comparer plusieurs scénarios côte à côte</li>
  </ul>
@@ -500,7 +500,7 @@ export default function FAQAssuranceViePage() {
  </h1>
  
  <p className="text-xl text-neutral-700 leading-relaxed">
- Tout ce que vous devez savoir sur la fiscalité du rachat d'assurance-vie : 
+ Tout ce que vous devez savoir sur la fiscalité du rachat d&apos;assurance-vie : 
  PFU vs IR, abattement 8 ans, versements avant 2017, optimisations fiscales.
  </p>
  </div>
@@ -583,7 +583,7 @@ export default function FAQAssuranceViePage() {
  et les optimisations que personne ne vous dit. 2 500 mots pour tout comprendre.
  </p>
  <div className="flex items-center gap-2 text-primary-600 font-medium group-hover:gap-3 transition-all">
- <span>Lire l'article complet</span>
+ <span>Lire l&apos;article complet</span>
  <span>→</span>
  </div>
  </div>

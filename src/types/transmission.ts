@@ -21,7 +21,7 @@ export interface TransmissionInputs {
 export interface RepartitionBeneficiaire {
  id: string
  nom: string
- lien: string
+ lien: Beneficiaire['lien']
  part: number // Montant en €
  partPourcentage: number
  

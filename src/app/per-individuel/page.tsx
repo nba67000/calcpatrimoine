@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import LegalDisclaimer from '@/components/LegalDisclaimer'
+import CalculateurPageLayout from '@/components/CalculateurPageLayout'
 import PERCalculator from '@/components/Calculator/PERCalculator'
-import { SOURCES_PER } from '@/lib/per'
 import SourcesSection from '@/components/SourcesSection'
 
 export const metadata: Metadata = {
@@ -17,7 +14,6 @@ export const metadata: Metadata = {
     type: 'article',
   },
 }
-
 
 const BAREMES = [
   { param: 'PASS 2025', valeur: '47 100 €', base: 'Décret nov. 2024' },
@@ -52,212 +48,174 @@ const LIMITES = [
 
 export default function PERIndividuelPage() {
   return (
-    <>
-      <Header />
-      <div className="h-[3px] bg-accent-400 w-full" />
-      <div style={{ backgroundColor: '#F7F3EC' }}>
+    <CalculateurPageLayout
+      breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'PER individuel — économie d\'impôt' }]}
+      titre={<>Simulateur PER individuel<br />Économie d&apos;impôt sur versement</>}
+      description="Calculez l'économie d'impôt générée par un versement volontaire sur votre Plan
+        d'Épargne Retraite individuel (PERIN). Plafond de déduction 2026, report des
+        plafonds non utilisés sur les 5 années suivantes (LF 2026), coût net réel du versement."
+      features={['Art. 163 quatervicies CGI', 'PASS 2025 — plafonds 2026', 'Report plafonds N-1 à N-5 (LF 2026)', 'Zéro donnée conservée']}
+      calculator={<PERCalculator />}
+    >
 
-        {/* Hero */}
-        <section className="max-w-6xl mx-auto px-6 py-12">
-          <nav className="flex items-center gap-2 font-mono text-xs text-neutral-400 mb-8">
-            <Link href="/" className="hover:text-primary-600 transition-colors">Accueil</Link>
-            <span>/</span>
-            <span className="text-neutral-600">PER individuel — économie d&apos;impôt</span>
-          </nav>
-
-          <div className="h-[2px] w-10 bg-accent-400 mb-6" />
-
-          <h1 className="font-serif text-5xl font-bold text-neutral-900 mb-4 leading-tight">
-            Simulateur PER individuel<br />
-            Économie d&apos;impôt sur versement
-          </h1>
-
-          <p className="text-lg text-neutral-600 max-w-3xl leading-relaxed mb-8">
-            Calculez l&apos;économie d&apos;impôt générée par un versement volontaire sur votre Plan
-            d&apos;Épargne Retraite individuel (PERIN). Plafond de déduction 2026, report des
-            plafonds non utilisés sur les 5 années suivantes (LF 2026), coût net réel du versement.
-          </p>
-
-          <div className="flex flex-wrap gap-x-8 gap-y-2">
-            {['Art. 163 quatervicies CGI', 'PASS 2025 — plafonds 2026', 'Report plafonds N-1 à N-5 (LF 2026)', 'Zéro donnée conservée'].map(t => (
-              <span key={t} className="font-mono text-xs text-neutral-500">{t}</span>
-            ))}
+      {/* Lien TMI */}
+      <div className="max-w-4xl mx-auto px-6 pb-4">
+        <div className="bg-white border border-neutral-200 px-5 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium text-neutral-800 mb-0.5">Vous ne connaissez pas votre TMI ?</p>
+              <p className="text-sm text-neutral-500">Calculez votre tranche marginale d&apos;imposition à partir de votre revenu net imposable.</p>
+            </div>
+            <Link href="/tmi" className="font-mono text-xs text-primary-600 border border-primary-300 px-3 py-2 hover:bg-primary-600 hover:text-white transition-colors shrink-0 ml-4">
+              Calculateur TMI →
+            </Link>
           </div>
-        </section>
-
-        {/* Disclaimer */}
-        <div className="max-w-6xl mx-auto px-6">
-          <LegalDisclaimer />
         </div>
+      </div>
 
-        {/* Calculateur */}
-        <div className="max-w-6xl mx-auto px-6 py-8">
-          <PERCalculator />
-        </div>
+      {/* Explications */}
+      <section className="max-w-4xl mx-auto px-6 py-8">
+        <div className="bg-white border border-neutral-200 p-8 space-y-6">
+          <h2 className="font-serif text-2xl font-bold text-neutral-900">
+            Comment fonctionne la déduction PER ?
+          </h2>
 
-        {/* Lien TMI */}
-        <div className="max-w-4xl mx-auto px-6 pb-4">
-          <div className="bg-white border border-neutral-200 px-5 py-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium text-neutral-800 mb-0.5">Vous ne connaissez pas votre TMI ?</p>
-                <p className="text-sm text-neutral-500">Calculez votre tranche marginale d&apos;imposition à partir de votre revenu net imposable.</p>
+          <div className="space-y-5 text-neutral-700 leading-relaxed">
+            <div>
+              <h3 className="font-bold text-neutral-900 mb-2">Un versement qui réduit votre revenu imposable</h3>
+              <p>
+                Un versement volontaire sur un PER individuel est déductible du revenu net global
+                (Art. 163 quatervicies CGI). Si vous versez 5 000 € et que votre TMI est de 30 %,
+                votre impôt sur le revenu diminue de 1 500 €.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-neutral-900 mb-2">Le plafond de déduction pour les salariés</h3>
+              <p>
+                La déduction est limitée à 10 % de vos revenus professionnels nets de frais professionnels
+                de l&apos;année précédente. Pour 2026, ce plafond est borné entre 4 710 € et 37 680 €
+                (10 % × 8 × PASS 2025 = 10 % × 8 × 47 100 €).
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-neutral-900 mb-2">Le report des plafonds non utilisés</h3>
+              <p>
+                Si vous n&apos;avez pas utilisé tout votre plafond les années précédentes, vous
+                pouvez reporter la part non consommée sur les 5 années suivantes
+                (Art. 163 quatervicies I b) CGI, modifié par LF 2026 art. 10 — auparavant 3 ans).
+              </p>
+            </div>
+
+            <div className="bg-neutral-50 border border-neutral-200 p-5">
+              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formule de calcul</h3>
+              <div className="text-sm text-neutral-700 space-y-1 font-mono">
+                <p>abattement = max(509 €, min(salaire × 10 %, 14 555 €))</p>
+                <p>revenu net professionnel = salaire − abattement</p>
+                <p>plafond annuel = max(4 710 €, min(revenu × 10 %, 37 680 €))</p>
+                <p>plafond total = plafond annuel + reports N-1 + N-2 + N-3 + N-4 + N-5</p>
+                <p>économie d&apos;impôt = min(versement, plafond total) × TMI</p>
               </div>
-              <Link href="/tmi" className="font-mono text-xs text-primary-600 border border-primary-300 px-3 py-2 hover:bg-primary-600 hover:text-white transition-colors shrink-0 ml-4">
-                Calculateur TMI →
-              </Link>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="font-serif text-xl font-bold text-neutral-900 mb-4">Exemples chiffrés</h2>
+            <div className="space-y-3">
+              {EXEMPLES.map(ex => (
+                <div key={ex.titre} className="bg-neutral-50 border border-neutral-200 p-5">
+                  <p className="font-bold text-neutral-900 text-sm mb-2">{ex.titre}</p>
+                  <p className="text-sm text-neutral-700 font-mono leading-relaxed">{ex.detail}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Explications */}
-        <section className="max-w-4xl mx-auto px-6 py-8">
-          <div className="bg-white border border-neutral-200 p-8 space-y-6">
-            <h2 className="font-serif text-2xl font-bold text-neutral-900">
-              Comment fonctionne la déduction PER ?
-            </h2>
+      {/* Méthodologie */}
+      <section className="max-w-4xl mx-auto px-6 py-8 pb-16">
+        <div className="bg-white border border-neutral-200 p-8">
+          <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
+            Méthodologie et sources officielles
+          </h2>
 
-            <div className="space-y-5 text-neutral-700 leading-relaxed">
-              <div>
-                <h3 className="font-bold text-neutral-900 mb-2">Un versement qui réduit votre revenu imposable</h3>
-                <p>
-                  Un versement volontaire sur un PER individuel est déductible du revenu net global
-                  (Art. 163 quatervicies CGI). Si vous versez 5 000 € et que votre TMI est de 30 %,
-                  votre impôt sur le revenu diminue de 1 500 €.
-                </p>
-              </div>
+          <div className="space-y-6">
+            <SourcesSection slug="per-individuel" />
 
-              <div>
-                <h3 className="font-bold text-neutral-900 mb-2">Le plafond de déduction pour les salariés</h3>
-                <p>
-                  La déduction est limitée à 10 % de vos revenus professionnels nets de frais professionnels
-                  de l&apos;année précédente. Pour 2026, ce plafond est borné entre 4 710 € et 37 680 €
-                  (10 % × 8 × PASS 2025 = 10 % × 8 × 47 100 €).
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-bold text-neutral-900 mb-2">Le report des plafonds non utilisés</h3>
-                <p>
-                  Si vous n&apos;avez pas utilisé tout votre plafond les années précédentes, vous
-                  pouvez reporter la part non consommée sur les 5 années suivantes
-                  (Art. 163 quatervicies I b) CGI, modifié par LF 2026 art. 10 — auparavant 3 ans).
-                </p>
-              </div>
-
-              <div className="bg-neutral-50 border border-neutral-200 p-5">
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formule de calcul</h3>
-                <div className="text-sm text-neutral-700 space-y-1 font-mono">
-                  <p>abattement = max(509 €, min(salaire × 10 %, 14 555 €))</p>
-                  <p>revenu net professionnel = salaire − abattement</p>
-                  <p>plafond annuel = max(4 710 €, min(revenu × 10 %, 37 680 €))</p>
-                  <p>plafond total = plafond annuel + reports N-1 + N-2 + N-3 + N-4 + N-5</p>
-                  <p>économie d&apos;impôt = min(versement, plafond total) × TMI</p>
-                </div>
+            <div>
+              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Barèmes vérifiés — 2026</h3>
+              <div className="bg-neutral-50 border border-neutral-200 p-4">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-neutral-200">
+                      <th className="text-left py-2 text-neutral-500 font-mono text-xs">Paramètre</th>
+                      <th className="text-right py-2 text-neutral-500 font-mono text-xs">Valeur 2026</th>
+                      <th className="text-right py-2 text-neutral-500 font-mono text-xs hidden sm:table-cell">Base</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-neutral-100 text-neutral-700">
+                    {BAREMES.map(b => (
+                      <tr key={b.param}>
+                        <td className="py-2">{b.param}</td>
+                        <td className="py-2 text-right font-medium font-mono">{b.valeur}</td>
+                        <td className="py-2 text-right text-neutral-400 text-xs hidden sm:table-cell">{b.base}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="font-mono text-xs text-neutral-400 mt-3">Dernière vérification : 1er mai 2026 — service-public.gouv.fr</p>
               </div>
             </div>
 
             <div>
-              <h2 className="font-serif text-xl font-bold text-neutral-900 mb-4">Exemples chiffrés</h2>
-              <div className="space-y-3">
-                {EXEMPLES.map(ex => (
-                  <div key={ex.titre} className="bg-neutral-50 border border-neutral-200 p-5">
-                    <p className="font-bold text-neutral-900 text-sm mb-2">{ex.titre}</p>
-                    <p className="text-sm text-neutral-700 font-mono leading-relaxed">{ex.detail}</p>
-                  </div>
+              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
+              <ul className="text-sm text-neutral-600 space-y-1.5">
+                {LIMITES.map((l, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-neutral-400 mt-0.5 shrink-0">—</span>
+                    <span>{l}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
+            </div>
+
+            <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
+              <p className="text-sm text-primary-800">
+                <strong>Méthodologie vérifiée</strong> — calculs validés sur trois cas de référence.
+                Sources : service-public.gouv.fr, Art. 163 quatervicies CGI. Dernière vérification : 1er mai 2026.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Méthodologie */}
-        <section className="max-w-4xl mx-auto px-6 py-8 pb-16">
-          <div className="bg-white border border-neutral-200 p-8">
-            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
-              Méthodologie et sources officielles
-            </h2>
+        <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
+          <p className="font-mono text-xs text-neutral-400 leading-relaxed">
+            Outil indicatif uniquement. Ne constitue pas un conseil fiscal ou patrimonial personnalisé.
+            Consultez un conseiller en gestion de patrimoine ou un expert-comptable.{' '}
+            <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
+          </p>
+        </div>
+      </section>
 
-            <div className="space-y-6">
-              <div>
-                <SourcesSection sources={SOURCES_PER} />
-              </div>
-
-              <div>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Barèmes vérifiés — 2026</h3>
-                <div className="bg-neutral-50 border border-neutral-200 p-4">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-neutral-200">
-                        <th className="text-left py-2 text-neutral-500 font-mono text-xs">Paramètre</th>
-                        <th className="text-right py-2 text-neutral-500 font-mono text-xs">Valeur 2026</th>
-                        <th className="text-right py-2 text-neutral-500 font-mono text-xs hidden sm:table-cell">Base</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-neutral-100 text-neutral-700">
-                      {BAREMES.map(b => (
-                        <tr key={b.param}>
-                          <td className="py-2">{b.param}</td>
-                          <td className="py-2 text-right font-medium font-mono">{b.valeur}</td>
-                          <td className="py-2 text-right text-neutral-400 text-xs hidden sm:table-cell">{b.base}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <p className="font-mono text-xs text-neutral-400 mt-3">Dernière vérification : 1er mai 2026 — service-public.gouv.fr</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
-                <ul className="text-sm text-neutral-600 space-y-1.5">
-                  {LIMITES.map((l, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-neutral-400 mt-0.5 shrink-0">—</span>
-                      <span>{l}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-                <p className="text-sm text-primary-800">
-                  <strong>Méthodologie vérifiée</strong> — calculs validés sur trois cas de référence.
-                  Sources : service-public.gouv.fr, Art. 163 quatervicies CGI. Dernière vérification : 1er mai 2026.
-                </p>
-              </div>
+      {/* FAQ cross-link */}
+      <section className="max-w-4xl mx-auto px-6 pb-16">
+        <div className="border-t border-neutral-300">
+          <Link
+            href="/faq/per"
+            className="group flex items-center justify-between py-5 border-b border-neutral-200 hover:bg-white transition-colors pr-4"
+            style={{ borderLeft: '3px solid #D4AF37', paddingLeft: '1.25rem' }}
+          >
+            <div>
+              <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">FAQ PER Individuel</p>
+              <p className="text-sm text-neutral-500">Plafonds 2026, report N-1 à N-5 (LF 2026), sortie en capital ou rente, stratégies.</p>
             </div>
-          </div>
+            <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
+          </Link>
+        </div>
+      </section>
 
-          <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
-            <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-              Outil indicatif uniquement. Ne constitue pas un conseil fiscal ou patrimonial personnalisé.
-              Consultez un conseiller en gestion de patrimoine ou un expert-comptable.{' '}
-              <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
-            </p>
-          </div>
-        </section>
-
-
-        {/* FAQ cross-link */}
-        <section className="max-w-4xl mx-auto px-6 pb-16">
-          <div className="border-t border-neutral-300">
-            <Link
-              href="/faq/per"
-              className="group flex items-center justify-between py-5 border-b border-neutral-200 hover:bg-white transition-colors pr-4"
-              style={{ borderLeft: '3px solid #D4AF37', paddingLeft: '1.25rem' }}
-            >
-              <div>
-                <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">FAQ PER Individuel</p>
-                <p className="text-sm text-neutral-500">Plafonds 2026, report N-1 à N-5 (LF 2026), sortie en capital ou rente, stratégies.</p>
-              </div>
-              <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
-            </Link>
-          </div>
-        </section>
-
-      </div>
-      <Footer />
-    </>
+    </CalculateurPageLayout>
   )
 }

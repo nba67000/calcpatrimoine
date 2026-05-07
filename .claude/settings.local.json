@@ -68,7 +68,11 @@
       "Bash(du -sh node_modules/framer-motion node_modules/recharts node_modules/date-fns node_modules/@anthropic-ai)",
       "Bash(python3 -c \"import os; deps = ['framer-motion','recharts','date-fns']; [print\\(d, sum\\(os.path.getsize\\(os.path.join\\(w,f\\)\\) for w,_,fs in os.walk\\(f'node_modules/{d}'\\) for f in fs\\)/1024/1024, 'MB'\\) for d in deps]\")",
       "PowerShell(Get-ChildItem \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\public\" -Recurse -File | Select-Object Name, @{N='SizeKB';E={[math]::Round\\($_.Length/1KB,1\\)}} | Sort-Object SizeKB -Descending | Select-Object -First 15)",
-      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\public\" -Recurse -File | ForEach-Object { [PSCustomObject]@{ Name=$_.Name; SizeKB=[math]::Round\\($_.Length/1KB,1\\) } } | Sort-Object SizeKB -Descending | Select-Object -First 15 | Format-Table -AutoSize)"
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\public\" -Recurse -File | ForEach-Object { [PSCustomObject]@{ Name=$_.Name; SizeKB=[math]::Round\\($_.Length/1KB,1\\) } } | Sort-Object SizeKB -Descending | Select-Object -First 15 | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\node_modules\\\\eslint-config-next\" -Name | Where-Object { $_ -match '\\\\.js$|^package\\\\.json$' })",
+      "PowerShell(npm run *)",
+      "Bash(python3 -c ' *)",
+      "Bash(npx eslint *)"
     ]
   }
 }

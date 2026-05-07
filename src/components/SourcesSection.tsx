@@ -1,4 +1,5 @@
 // src/components/SourcesSection.tsx
+import { SOURCES_REGISTRY } from '@/lib/sourcesRegistry'
 
 interface Source {
   href: string
@@ -7,18 +8,22 @@ interface Source {
 }
 
 interface Props {
-  sources: Source[]
+  sources?: Source[]
+  /** Slug du calculateur pour résolution automatique via le registre. */
+  slug?: string
   title?: string
 }
 
-export default function SourcesSection({ sources, title = 'Textes de loi' }: Props) {
+export default function SourcesSection({ sources, slug, title = 'Textes de loi' }: Props) {
+  const items: Source[] = sources ?? (slug ? SOURCES_REGISTRY[slug] ?? [] : [])
+
   return (
     <div>
       <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">
         {title}
       </h3>
       <ul className="space-y-3 text-sm">
-        {sources.map(s => (
+        {items.map(s => (
           <li key={s.href} className="flex items-start gap-3">
             <span className="text-accent-400 mt-0.5 shrink-0">—</span>
             <div>

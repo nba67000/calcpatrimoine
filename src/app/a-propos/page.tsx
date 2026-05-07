@@ -30,7 +30,7 @@ export default function APropos() {
           </h1>
 
           <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-            Vous vous souvenez de la scène des "Trois Frères" chez le notaire ? Les frères Latour
+            Vous vous souvenez de la scène des &quot;Trois Frères&quot; chez le notaire ? Les frères Latour
             se retrouvent face à un homme qui débite son jargon à toute vitesse, imperturbable,
             pendant qu&apos;eux hochent la tête, l&apos;air de parfaitement suivre (il est où le pognon ?).
             C&apos;est une des scènes les plus drôles du film, mais elle dit quelque chose de vrai : face

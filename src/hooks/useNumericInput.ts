@@ -3,6 +3,7 @@ import { useState } from 'react'
 type Options = {
   min?: number
   max?: number
+  format?: (n: number) => string
 }
 
 type NumericInput = {
@@ -19,9 +20,9 @@ type NumericInput = {
  * Au blur, le display est normalisé vers la dernière valeur valide.
  */
 export function useNumericInput(initial: number, options: Options = {}): NumericInput {
-  const { min = 0, max = Infinity } = options
+  const { min = 0, max = Infinity, format } = options
   const [value, setValue] = useState(initial)
-  const [display, setDisplay] = useState(String(initial))
+  const [display, setDisplay] = useState(format ? format(initial) : String(initial))
 
   function onChange(raw: string) {
     const cleaned = raw.replace(/\s/g, '')
@@ -33,13 +34,13 @@ export function useNumericInput(initial: number, options: Options = {}): Numeric
   }
 
   function onBlur() {
-    setDisplay(String(value))
+    setDisplay(format ? format(value) : String(value))
   }
 
   function set(n: number) {
     const clamped = Math.min(max, Math.max(min, n))
     setValue(clamped)
-    setDisplay(String(clamped))
+    setDisplay(format ? format(clamped) : String(clamped))
   }
 
   return { value, display, onChange, onBlur, set }

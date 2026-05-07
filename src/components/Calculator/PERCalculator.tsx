@@ -70,7 +70,7 @@ export default function PERCalculator() {
             Salaire net annuel (N-1)
           </h3>
           <p className="text-xs text-neutral-500 mb-4">
-            Votre salaire net à payer annuel de l'année précédente (avant déclaration d'impôts). L'abattement forfaitaire de 10 % pour frais professionnels est calculé automatiquement.
+            Votre salaire net à payer annuel de l&apos;année précédente (avant déclaration d&apos;impôts). L&apos;abattement forfaitaire de 10 % pour frais professionnels est calculé automatiquement.
           </p>
 
           <div className="mb-4">
@@ -106,7 +106,7 @@ export default function PERCalculator() {
           <div className="flex items-start justify-between mb-4">
             <div>
               <h3 className="text-xl font-bold text-neutral-900 mb-1">
-                Tranche marginale d'imposition
+                Tranche marginale d&apos;imposition
               </h3>
               <p className="text-xs text-neutral-500">
                 Sélectionnez votre TMI.{' '}
@@ -174,7 +174,7 @@ export default function PERCalculator() {
             Plafonds non utilisés (reports)
           </h3>
           <p className="text-xs text-neutral-500 mb-4">
-            Ces montants figurent sur votre avis d'imposition, rubrique "Plafonds disponibles pour les versements retraite". Laissez à 0 si vous n'avez pas d'information.
+            Ces montants figurent sur votre avis d&apos;imposition, rubrique &quot;Plafonds disponibles pour les versements retraite&quot;. Laissez à 0 si vous n&apos;avez pas d&apos;information.
           </p>
 
           <div className="space-y-3">
@@ -213,7 +213,7 @@ export default function PERCalculator() {
           economieFiscale > 0 ? 'bg-green-50 border-green-300' : 'bg-neutral-50 border-neutral-300'
         }`}>
           <div className="mb-4">
-            <h3 className="text-lg font-bold text-neutral-900 mb-1">Économie d'impôt</h3>
+            <h3 className="text-lg font-bold text-neutral-900 mb-1">Économie d&apos;impôt</h3>
             <p className="text-xs text-neutral-500">Sur la part déductible du versement</p>
           </div>
           <div className="text-5xl font-bold text-green-700 mb-6">

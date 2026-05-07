@@ -3,7 +3,6 @@
 
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import LegalDisclaimer from '@/components/LegalDisclaimer'
 
 type CalculatorMode = 'standard' | 'inverse' | 'couple'
 
@@ -22,9 +21,6 @@ export default function RenteModeContent() {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto px-6 pt-6">
-        <LegalDisclaimer />
-      </div>
       <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="flex mb-2">
           <div className="flex border border-neutral-300 overflow-x-auto">

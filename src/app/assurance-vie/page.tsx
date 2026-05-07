@@ -116,7 +116,7 @@ export default function AssuranceVieHubPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="border-l-4 border-primary-200 pl-5 py-2">
                 <h3 className="font-bold text-primary-900 mb-3">Fiscalité Rachat</h3>
-                <p className="text-sm text-neutral-500 mb-2 font-mono uppercase tracking-wider text-xs">Quand l'utiliser ?</p>
+                <p className="text-sm text-neutral-500 mb-2 font-mono uppercase tracking-wider text-xs">Quand l&apos;utiliser ?</p>
                 <ul className="text-sm text-neutral-700 space-y-1">
                   <li>— Vous voulez retirer de l&apos;argent de votre contrat</li>
                   <li>— Vous voulez anticiper les impôts sur ce retrait</li>
@@ -125,7 +125,7 @@ export default function AssuranceVieHubPage() {
               </div>
               <div className="border-l-4 border-accent-400 pl-5 py-2">
                 <h3 className="font-bold text-neutral-900 mb-3">Transmission</h3>
-                <p className="text-sm text-neutral-500 mb-2 font-mono uppercase tracking-wider text-xs">Quand l'utiliser ?</p>
+                <p className="text-sm text-neutral-500 mb-2 font-mono uppercase tracking-wider text-xs">Quand l&apos;utiliser ?</p>
                 <ul className="text-sm text-neutral-700 space-y-1">
                   <li>— Vous préparez votre succession</li>
                   <li>— Vous voulez optimiser la répartition entre bénéficiaires</li>

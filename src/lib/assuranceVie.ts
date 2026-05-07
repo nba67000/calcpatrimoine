@@ -48,7 +48,7 @@ function calculerTauxPFU(
  plusValueDansRachat: number,
  versementTotal: number,
  encoursTotalContrats: number
-): { tauxMoyen: number; detailAvant2017: any } {
+): { tauxMoyen: number; detailAvant2017: null | { plusValueAvant2017: number; plusValueApres2017: number; tauxAvant: number; tauxApres: number; avantage: number } } {
 
  if (anciennete < 8) {
  // Contrat < 8 ans : 30% (12,8% IR + 17,2% PS)
@@ -226,7 +226,7 @@ export function calculerFiscaliteRachat(inputs: AssuranceVieInputs): AssuranceVi
  }
  
  // Info : versements avant 2017
- if (partAvant2017 && partAvant2017.avantage > 100) {
+ if (partAvant2017 && partAvant2017.avantage > 100 && calculPFU.detailAvant2017) {
  const tauxApresPct = (calculPFU.detailAvant2017.tauxApres * 100).toFixed(1)
  optimisations.push({
  type: 'info',

@@ -54,7 +54,7 @@ export default function InverseCalculator() {
  }
  }}
  onBlur={(e) => {
- let val = parseAmountInput(e.target.value)
+ const val = parseAmountInput(e.target.value)
  if (isNaN(val) || val < 300) {
  setDesiredAmount(300)
  } else if (val> 5000) {
@@ -100,7 +100,7 @@ export default function InverseCalculator() {
  }
  }}
  onBlur={(e) => {
- let val = Number(e.target.value)
+ const val = Number(e.target.value)
  if (isNaN(val) || val < LIMITS.AGE_MIN) {
  setAge(LIMITS.AGE_MIN)
  } else if (val>LIMITS.AGE_MAX) {
@@ -198,7 +198,7 @@ export default function InverseCalculator() {
  }
  }}
  onBlur={(e) => {
- let val = Number(e.target.value)
+ const val = Number(e.target.value)
  if (isNaN(val) || val < 50) {
  setSpouseAge(50)
  } else if (val> 90) {
@@ -359,7 +359,7 @@ export default function InverseCalculator() {
  </ul>
  
  <p className="font-bold text-primary-900 mt-3">
- Avant toute décision d'investissement, consultez IMPÉRATIVEMENT :
+ Avant toute décision d&apos;investissement, consultez IMPÉRATIVEMENT :
  </p>
  
  <ul className="list-disc list-inside space-y-1 ml-4 text-primary-700">
@@ -371,13 +371,13 @@ export default function InverseCalculator() {
  <div className="border-t border-primary-300 pt-3 mt-3">
  <p className="text-xs text-primary-700">
  <strong>Limitation de responsabilité :</strong>CalculPatrimoine décline toute responsabilité 
- en cas de décision prise uniquement sur la base des calculs fournis. L'éditeur ne peut être 
- tenu responsable d'éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
+ en cas de décision prise uniquement sur la base des calculs fournis. L&apos;éditeur ne peut être 
+ tenu responsable d&apos;éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
  postérieures à la dernière mise à jour (avril 2026).
  </p>
  <p className="text-xs text-primary-700 mt-2">
  <a href="/cgu" className="underline hover:text-primary-900 font-medium">
- Conditions d'utilisation complètes →
+ Conditions d&apos;utilisation complètes →
  </a>
  </p>
  </div>

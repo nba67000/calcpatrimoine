@@ -65,10 +65,10 @@ export default function MentionsLegalesPage() {
  <div className="text-neutral-700 space-y-3">
  <p>
  Le code source de CalculPatrimoine est sous licence MIT et disponible publiquement sur GitHub.
- Toute personne peut l'utiliser, le modifier et le redistribuer selon les termes de cette licence.
+ Toute personne peut l&apos;utiliser, le modifier et le redistribuer selon les termes de cette licence.
  </p>
  <p>
- Les tables de mortalité utilisées sont issues de l'INSEE (Institut National de la Statistique 
+ Les tables de mortalité utilisées sont issues de l&apos;INSEE (Institut National de la Statistique 
  et des Études Économiques) et sont dans le domaine public.
  </p>
  <p>

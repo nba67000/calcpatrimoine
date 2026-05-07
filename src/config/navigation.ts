@@ -12,6 +12,8 @@ export type Calculateur = {
   nom: string
   desc: string
   disponible: boolean
+  /** Titre SEO alternatif pour la balise <title> (si différent de `nom`). */
+  seoTitle?: string
 }
 
 export type CategorieCalc = {
@@ -160,3 +162,15 @@ export const NAV_HEADER    = NAV_ITEMS.filter(i => i.showInHeader)
 
 // Alias compat Footer (liste les catégories dans la colonne "Calculateurs")
 export const CALCULATEURS  = CATEGORIES
+
+/** Retourne les métadonnées SEO de base pour un calculateur donné par href. */
+export function getCalculateurMeta(href: string): { title: string; description: string } | null {
+  const calc = CATEGORIES_CALC
+    .flatMap(c => c.calculateurs)
+    .find(c => c.href === href)
+  if (!calc) return null
+  return {
+    title: calc.seoTitle ?? calc.nom,
+    description: calc.desc,
+  }
+}

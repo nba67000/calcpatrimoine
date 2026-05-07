@@ -210,7 +210,7 @@ export default function TransmissionCalculator() {
  {beneficiaires.length > 1 && (
  <div className="bg-primary-50 border border-primary-200 rounded-lg p-3 mb-4 text-xs text-primary-800">
  <p>
- Déplacer le curseur d'un bénéficiaire ajuste automatiquement les bénéficiaires 
+ Déplacer le curseur d&apos;un bénéficiaire ajuste automatiquement les bénéficiaires 
  situés en dessous pour maintenir 100%.
  </p>
  </div>

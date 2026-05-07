@@ -153,7 +153,7 @@ export default function FiscaliteComparisonChart({
  {economie.toLocaleString('fr-FR')}€
  </div>
  <p className="text-xs text-primary-600 mt-2">
- Le choix de l'option vous appartient
+ Le choix de l&apos;option vous appartient
  </p>
  </div>
  )}

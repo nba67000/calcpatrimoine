@@ -49,7 +49,7 @@ export default function CoupleCalculator() {
  <p>
  <strong>Contrats individuels séparés :</strong>Si Personne 1 a une assurance-vie 
  à son nom (100k€) et Personne 2 une autre (80k€), seules les stratégies 
- "P1 seule" et "P2 seule" sont directement applicables. Les autres 
+ &quot;P1 seule&quot; et &quot;P2 seule&quot; sont directement applicables. Les autres 
  stratégies nécessiteraient de transférer les fonds sur un compte 
  commun avant conversion en rente.
  </p>
@@ -266,7 +266,7 @@ export default function CoupleCalculator() {
  <div className="mt-6 p-4 bg-primary-50 border-l-4 border-primary-300 rounded-lg">
  <p className="text-sm text-primary-900">
  <strong>Important</strong> : La réversion est <strong>unidirectionnelle</strong>.
- Si "P1 titulaire, 80% à P2" : P1 décède → P2 reçoit 80%. Mais si P2 décède d'abord → P1 garde 100%.
+ Si &quot;P1 titulaire, 80% à P2&quot; : P1 décède → P2 reçoit 80%. Mais si P2 décède d&apos;abord → P1 garde 100%.
  </p>
  </div>
 
@@ -304,7 +304,7 @@ export default function CoupleCalculator() {
  </ul>
  
  <p className="font-bold text-primary-900 mt-3">
- Avant toute décision d'investissement, consultez IMPÉRATIVEMENT :
+ Avant toute décision d&apos;investissement, consultez IMPÉRATIVEMENT :
  </p>
  
  <ul className="list-disc list-inside space-y-1 ml-4 text-primary-700">
@@ -316,13 +316,13 @@ export default function CoupleCalculator() {
  <div className="border-t border-primary-300 pt-3 mt-3">
  <p className="text-xs text-primary-700">
  <strong>Limitation de responsabilité :</strong>CalculPatrimoine décline toute responsabilité 
- en cas de décision prise uniquement sur la base des calculs fournis. L'éditeur ne peut être 
- tenu responsable d'éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
+ en cas de décision prise uniquement sur la base des calculs fournis. L&apos;éditeur ne peut être 
+ tenu responsable d&apos;éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
  postérieures à la dernière mise à jour (avril 2026).
  </p>
  <p className="text-xs text-primary-700 mt-2">
  <a href="/cgu" className="underline hover:text-primary-900 font-medium">
- Conditions d'utilisation complètes →
+ Conditions d&apos;utilisation complètes →
  </a>
  </p>
  </div>

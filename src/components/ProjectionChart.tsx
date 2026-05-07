@@ -2,6 +2,7 @@
 'use client'
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts'
+import type { TooltipProps } from 'recharts'
 import { formatEurRounded as formatEuro } from '@/lib/formatters'
 import { BRAND_COLORS } from '@/lib/constants'
 
@@ -11,9 +12,32 @@ interface ProjectionChartProps {
  lifeExpectancy: number
 }
 
+function formatYAxis(value: number): string {
+ if (value >= 1000000) return `${(value / 1000000).toFixed(1)}M€`
+ if (value >= 1000) return `${(value / 1000).toFixed(0)}k€`
+ return `${value}€`
+}
+
+function CustomTooltip({ active, payload, label }: TooltipProps<number, string>) {
+ if (active && payload && payload.length) {
+ return (
+ <div className="bg-white border border-neutral-300 rounded-lg shadow-lg p-3">
+ <p className="text-sm font-semibold text-neutral-900 mb-2">Année {label}</p>
+ <p className="text-sm text-primary-700">
+ Capital initial : <span className="font-medium">{formatEuro(payload[0].value ?? 0)}</span>
+ </p>
+ <p className="text-sm text-primary-600">
+ Rente cumulée : <span className="font-medium">{formatEuro(payload[1]?.value ?? 0)}</span>
+ </p>
+ </div>
+ )
+ }
+ return null
+}
+
 export default function ProjectionChart({ capital, monthlyRent, lifeExpectancy }: ProjectionChartProps) {
  const maxYears = Math.min(30, Math.ceil(lifeExpectancy) + 5)
- 
+
  const data = Array.from({ length: maxYears + 1 }, (_, year) => {
  const renteCumulee = monthlyRent * 12 * year
  return {
@@ -25,29 +49,6 @@ export default function ProjectionChart({ capital, monthlyRent, lifeExpectancy }
 
  const breakEvenYear = capital / (monthlyRent * 12)
  const breakEvenYearDisplay = breakEvenYear.toFixed(1)
-
- const formatYAxis = (value: number) => {
- if (value>= 1000000) return `${(value / 1000000).toFixed(1)}M€`
- if (value>= 1000) return `${(value / 1000).toFixed(0)}k€`
- return `${value}€`
- }
-
- const CustomTooltip = ({ active, payload, label }: any) => {
- if (active && payload && payload.length) {
- return (
- <div className="bg-white border border-neutral-300 rounded-lg shadow-lg p-3">
- <p className="text-sm font-semibold text-neutral-900 mb-2">Année {label}</p>
- <p className="text-sm text-primary-700">
- Capital initial : <span className="font-medium">{formatEuro(payload[0].value)}</span>
- </p>
- <p className="text-sm text-primary-600">
- Rente cumulée : <span className="font-medium">{formatEuro(payload[1].value)}</span>
- </p>
- </div>
- )
- }
- return null
- }
 
  return (
  <div className="w-full">

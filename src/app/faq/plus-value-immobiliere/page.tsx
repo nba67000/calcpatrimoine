@@ -66,7 +66,7 @@ const sections: FAQSection[] = [
               frais de notaire payés lors de l&apos;acquisition.
             </p>
             <p className="mb-3">
-              Si vos frais réels dépassent 7,5 % du prix d&apos;achat, utilisez le mode "montant réel" pour déduire
+              Si vos frais réels dépassent 7,5 % du prix d&apos;achat, utilisez le mode &quot;montant réel&quot; pour déduire
               la somme exacte que vous avez payée (vous aurez besoin de l&apos;acte notarié).
             </p>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4">

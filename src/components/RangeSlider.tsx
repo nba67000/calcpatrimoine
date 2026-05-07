@@ -1,7 +1,7 @@
 // src/components/RangeSlider.tsx
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useId, useRef } from 'react'
 import { BRAND_COLORS } from '@/lib/constants'
 
 interface RangeSliderProps {
@@ -19,7 +19,8 @@ interface RangeSliderProps {
  */
 export default function RangeSlider({ min, max, step, value, onChange, className = '' }: RangeSliderProps) {
  const inputRef = useRef<HTMLInputElement>(null)
- const uniqueIdRef = useRef(`slider-${Math.random().toString(36).substr(2, 9)}`)
+ const reactId = useId()
+ const uniqueIdRef = useRef(`slider-${reactId.replace(/:/g, '-')}`)
 
  useEffect(() => {
  if (!inputRef.current) return

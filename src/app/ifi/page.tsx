@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import LegalDisclaimer from '@/components/LegalDisclaimer'
+import CalculateurPageLayout from '@/components/CalculateurPageLayout'
 import IFICalculator from '@/components/Calculator/IFICalculator'
-import { SOURCES_IFI } from '@/lib/ifi'
 import SourcesSection from '@/components/SourcesSection'
 
 export const metadata: Metadata = {
@@ -59,54 +56,22 @@ export default function IFIPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <Header />
-      <div className="h-[3px] bg-accent-400 w-full" />
-      <div style={{ backgroundColor: '#F7F3EC' }}>
-
-        {/* Hero */}
-        <section className="max-w-6xl mx-auto px-6 py-12">
-          <nav className="flex items-center gap-2 font-mono text-xs text-neutral-400 mb-8">
-            <Link href="/" className="hover:text-primary-600 transition-colors">Accueil</Link>
-            <span>/</span>
-            <span className="text-neutral-600">IFI</span>
-          </nav>
-
-          <div className="h-[2px] w-10 bg-accent-400 mb-6" />
-
-          <h1 className="font-serif text-5xl font-bold text-neutral-900 mb-4 leading-tight">
-            Calculateur IFI 2026 :<br />
-            impôt sur la fortune immobilière
-          </h1>
-
-          <p className="text-lg text-neutral-600 max-w-3xl leading-relaxed mb-8">
-            Calculez votre IFI à partir de la valeur vénale de vos biens immobiliers :
-            abattement résidence principale (30 %), barème progressif en 6 tranches,
-            décote pour les patrimoines proches du seuil, et plafonnement IFI + IR.
-          </p>
-
-          <div className="flex flex-wrap gap-x-8 gap-y-2">
-            {[
-              'Seuil 1 300 000 €',
-              'Barème 0 % à 1,50 %',
-              'Abattement RP 30 %',
-              'Décote progressive',
-              'Plafonnement 75 % revenus',
-              'Zéro donnée conservée',
-            ].map((t) => (
-              <span key={t} className="font-mono text-xs text-neutral-500">{t}</span>
-            ))}
-          </div>
-        </section>
-
-        {/* Disclaimer */}
-        <div className="max-w-6xl mx-auto px-6 pb-4">
-          <LegalDisclaimer />
-        </div>
-
-        {/* Calculateur */}
-        <div className="max-w-6xl mx-auto px-6 py-4 pb-12">
-          <IFICalculator />
-        </div>
+      <CalculateurPageLayout
+        breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'IFI' }]}
+        titre={<>Calculateur IFI 2026 :<br />impôt sur la fortune immobilière</>}
+        description="Calculez votre IFI à partir de la valeur vénale de vos biens immobiliers :
+          abattement résidence principale (30 %), barème progressif en 6 tranches,
+          décote pour les patrimoines proches du seuil, et plafonnement IFI + IR."
+        features={[
+          'Seuil 1 300 000 €',
+          'Barème 0 % à 1,50 %',
+          'Abattement RP 30 %',
+          'Décote progressive',
+          'Plafonnement 75 % revenus',
+          'Zéro donnée conservée',
+        ]}
+        calculator={<IFICalculator />}
+      >
 
         {/* Comment ça marche */}
         <section className="max-w-4xl mx-auto px-6 py-8">
@@ -277,7 +242,7 @@ export default function IFIPage() {
                 </div>
               </div>
 
-              <SourcesSection sources={SOURCES_IFI} />
+              <SourcesSection slug="ifi" />
 
               <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
                 <p className="text-sm text-primary-800">
@@ -301,8 +266,7 @@ export default function IFIPage() {
           </div>
         </section>
 
-      </div>
-      <Footer />
+      </CalculateurPageLayout>
     </>
   )
 }
