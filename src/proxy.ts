@@ -1,4 +1,4 @@
-// src/middleware.ts
+// src/proxy.ts
 // Rate limiting sur /api/chat — protection contre l'abus de quota Anthropic.
 //
 // Implémentation : sliding window en mémoire par instance Lambda.
@@ -48,7 +48,7 @@ function isRateLimited(ip: string): boolean {
   return false
 }
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   if (req.nextUrl.pathname === '/api/chat' && req.method === 'POST') {
     const ip = getClientIp(req)
     if (isRateLimited(ip)) {
