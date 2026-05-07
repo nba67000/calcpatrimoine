@@ -37,8 +37,9 @@ export default function TransmissionPage() {
           <div className="space-y-4 text-neutral-700 leading-relaxed">
             <p>
               <strong>Deux régimes selon l&apos;âge des versements.</strong>{' '}
-              L&apos;assurance-vie bénéficie d&apos;une fiscalité successorale favorable, mais différente
-              selon que les versements ont été effectués avant ou après 70 ans.
+              Quand vous transmettez une assurance-vie à votre décès, les impôts dus par vos héritiers
+              dépendent d&apos;une règle simple : l&apos;argent versé avant 70 ans n&apos;est pas traité
+              comme l&apos;argent versé après. Deux régimes, deux calculs.
             </p>
             <p>
               <strong>Article 990 I — versements avant 70 ans.</strong>{' '}
@@ -48,7 +49,7 @@ export default function TransmissionPage() {
             <p>
               <strong>Article 757 B — versements après 70 ans.</strong>{' '}
               Abattement global de 30 500 € partagé entre tous les bénéficiaires (sauf conjoint).
-              Les plus-values générées sont totalement exonérées.
+              Les gains réalisés sur le contrat (intérêts, valorisation) ne sont pas imposés à la succession. Seules les primes versées après 70 ans entrent dans le calcul.
               Au-delà : barème de succession classique.
             </p>
             <p>

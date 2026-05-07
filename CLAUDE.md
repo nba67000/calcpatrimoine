@@ -348,3 +348,19 @@ approximatifs.
 - `.claude/commands/` — slash-commands personnalisées.
 
 Last updated: 2026-04-19.
+
+---
+
+## Agent skills
+
+### Issue tracker
+
+Issues dans GitHub Issues sur `github.com/nba67000/calculpatrimoine` (CLI `gh`). Voir `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Vocabulaire cinq labels : `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. Voir `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context : un `CONTEXT.md` à la racine + `docs/adr/`. Voir `docs/agents/domain.md`.

@@ -81,7 +81,7 @@ export default function IFIPage() {
             <div className="space-y-4 text-neutral-700 leading-relaxed">
               <p>
                 <strong>L&apos;IFI s&apos;applique si votre patrimoine immobilier net dépasse 1 300 000 €.</strong>{' '}
-                Ce seuil est apprécié au 1er janvier de chaque année. En dessous, vous n&apos;êtes pas assujetti
+                Ce seuil est vérifié au 1er janvier de chaque année. En dessous, vous n&apos;êtes pas concerné
                 et aucune déclaration n&apos;est requise au titre de l&apos;IFI.
               </p>
 
@@ -192,8 +192,8 @@ export default function IFIPage() {
             <div className="space-y-5">
               {[
                 {
-                  q: 'Qui est assujetti à l\'IFI ?',
-                  r: 'Toute personne physique dont le patrimoine immobilier net (biens moins dettes) dépasse 1 300 000 € au 1er janvier est assujettie à l\'IFI. Le seuil s\'applique à l\'ensemble du foyer fiscal, pas par individu. Les non-résidents sont assujettis uniquement sur leurs biens situés en France.',
+                  q: 'Qui doit payer l\'IFI ?',
+                  r: 'Si votre patrimoine immobilier net (valeur des biens moins les dettes) dépasse 1 300 000 € au 1er janvier, vous devez payer l\'IFI. Ce seuil s\'applique à l\'ensemble du foyer fiscal, pas par individu. Si vous habitez à l\'étranger, seuls vos biens situés en France comptent.',
                 },
                 {
                   q: 'Quels biens entrent dans l\'IFI ?',
@@ -201,7 +201,7 @@ export default function IFIPage() {
                 },
                 {
                   q: 'Le plafonnement IFI + IR, c\'est quoi exactement ?',
-                  r: 'Selon l\'Art. 979 CGI, la somme IFI + impôt sur le revenu ne peut pas dépasser 75 % des revenus imposables de l\'année. Si c\'est le cas, l\'IFI est réduit à due concurrence. Ce plafonnement bénéficie surtout aux contribuables dont les revenus sont faibles par rapport au patrimoine (ex. retraités avec un gros patrimoine immobilier peu productif).',
+                  r: 'Selon l\'Art. 979 CGI, la somme IFI + impôt sur le revenu ne peut pas dépasser 75 % de vos revenus de l\'année. Si c\'est le cas, l\'IFI est réduit du montant qui dépasse ce plafond. Cela concerne surtout les personnes dont les revenus sont faibles par rapport à leur patrimoine (ex. retraités avec un gros patrimoine immobilier peu productif).',
                 },
               ].map(({ q, r }) => (
                 <div key={q} className="border-l-2 border-accent-400 pl-4">

@@ -93,17 +93,17 @@ export default function PERIndividuelPage() {
             <div>
               <h3 className="font-bold text-neutral-900 mb-2">Le plafond de déduction pour les salariés</h3>
               <p>
-                La déduction est limitée à 10 % de vos revenus professionnels nets de frais professionnels
-                de l&apos;année précédente. Pour 2026, ce plafond est borné entre 4 710 € et 37 680 €
-                (10 % × 8 × PASS 2025 = 10 % × 8 × 47 100 €).
+                Ce que vous pouvez déduire est plafonné à 10 % de votre salaire brut de l&apos;an dernier
+                (après déduction des frais professionnels). Pour 2026, ce plafond ne peut pas être
+                inférieur à 4 710 € ni supérieur à 37 680 €.
               </p>
             </div>
 
             <div>
               <h3 className="font-bold text-neutral-900 mb-2">Le report des plafonds non utilisés</h3>
               <p>
-                Si vous n&apos;avez pas utilisé tout votre plafond les années précédentes, vous
-                pouvez reporter la part non consommée sur les 5 années suivantes
+                Si vous n&apos;avez pas versé jusqu&apos;au plafond les années précédentes, vous
+                pouvez rattraper ce manque sur les 5 années suivantes
                 (Art. 163 quatervicies I b) CGI, modifié par LF 2026 art. 10 — auparavant 3 ans).
               </p>
             </div>

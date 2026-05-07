@@ -73,7 +73,7 @@ export default function HomePage() {
               </h1>
 
               <p className="text-lg text-neutral-600 leading-relaxed mb-10 max-w-xl">
-                Des calculateurs patrimoniaux gratuits, basés sur les textes officiels en vigueur.
+                Des calculateurs gratuits pour vos décisions financières, basés sur les textes officiels en vigueur.
                 Les calculs s&apos;exécutent entièrement dans votre navigateur — aucune donnée ne nous parvient.
               </p>
 

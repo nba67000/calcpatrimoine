@@ -65,8 +65,10 @@ export default function TMIPage() {
             </p>
             <p>
               <strong>La décote protège les revenus modestes.</strong>{' '}
-              Si l&apos;impôt brut reste inférieur à 1 982 € (célibataire) ou 3 277 € (couple), une décote
-              s&apos;applique automatiquement et réduit l&apos;impôt proportionnellement (Art. 197-I-4 CGI).
+              Si votre impôt (calculé par le barème, avant toute réduction) est inférieur à 1 982 €
+              (célibataire) ou 3 277 € (couple), l&apos;État réduit automatiquement la note. Plus votre
+              impôt est proche de zéro, plus la réduction est grande, jusqu&apos;à l&apos;annuler complètement
+              (Art. 197-I-4 CGI).
             </p>
           </div>
 

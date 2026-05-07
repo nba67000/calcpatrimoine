@@ -5,12 +5,11 @@ export default function LegalDisclaimer() {
         Avertissement
       </p>
       <p className="text-sm text-warning-700 leading-relaxed">
-        Outil indicatif à titre pédagogique uniquement. Ne constitue pas un conseil en investissement
-        au sens de la directive MIF II, un avis fiscal ou un conseil patrimonial personnalisé.
-        CalculPatrimoine n&apos;est pas enregistré comme conseiller en investissements financiers (CIF)
-        auprès de l&apos;AMF ou de l&apos;ACPR. Les calculs reposent sur des formules standard
-        (barèmes 2026) et ne tiennent pas compte de votre situation personnelle.
-        Consultez un professionnel qualifié avant toute décision patrimoniale.
+        Ce calculateur fait des simulations. Il ne remplace pas un conseiller. Les résultats
+        dépendent uniquement des données que vous saisissez et des barèmes officiels en vigueur.
+        CalculPatrimoine n&apos;est pas un conseiller financier agréé (non enregistré comme CIF
+        auprès de l&apos;AMF/ACPR, au sens de la directive MIF II). Consultez un professionnel
+        qualifié avant toute décision.
       </p>
     </div>
   )
