@@ -245,7 +245,7 @@ export default function ChatWidget({ contexte }: Props) {
                 </button>
               </div>
               <p className="text-center text-[10px] text-neutral-400 pb-2 px-4">
-                Informations indicatives — pas de conseil personnalisé
+                Informations indicatives, aucun conseil personnalisé
               </p>
             </>
           )}

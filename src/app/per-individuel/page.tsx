@@ -40,7 +40,7 @@ const EXEMPLES = [
 
 const LIMITES = [
   'Ce calculateur couvre uniquement le PERIN (PER individuel), compartiment versements volontaires déductibles. Le PERCOL et le PERO ne sont pas simulés.',
-  'Le régime TNS (Madelin) n\'est pas pris en compte — les plafonds sont différents.',
+  'Le régime TNS (Madelin) n\'est pas pris en compte car les plafonds sont différents.',
   'La mutualisation des plafonds entre conjoints (mariage ou PACS) n\'est pas simulée.',
   'La fiscalité à la sortie (imposition de la rente ou du capital) n\'est pas simulée.',
   'Il est supposé que les frais professionnels sont couverts par l\'abattement forfaitaire. Les frais réels ne sont pas gérés.',

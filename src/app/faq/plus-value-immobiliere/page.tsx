@@ -50,7 +50,7 @@ const sections: FAQSection[] = [
               <p>+ Travaux</p>
             </div>
             <p className="mb-3">
-              Plus le prix de revient est élevé, plus la plus-value brute est faible — et donc moins vous payez d&apos;impôts.
+              Plus le prix de revient est élevé, plus la plus-value brute est faibl, et donc moins vous payez d&apos;impôts.
               C&apos;est pourquoi il est utile de bien justifier ou d&apos;utiliser les forfaits disponibles.
             </p>
           </>
@@ -72,7 +72,7 @@ const sections: FAQSection[] = [
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4">
               <p className="text-sm text-primary-900">
                 <strong>Exemple :</strong> achat à 200 000 €. Forfait = 15 000 €.
-                Si vos frais réels étaient 16 500 €, utilisez le montant réel — cela réduit la plus-value
+                Si vos frais réels étaient 16 500 €, utilisez le montant réel, cela réduit la plus-value
                 imposable de 1 500 € supplémentaires.
               </p>
             </div>
@@ -118,7 +118,7 @@ const sections: FAQSection[] = [
             <ul className="list-disc pl-6 mb-3 space-y-1">
               <li>Les travaux de construction, reconstruction ou agrandissement</li>
               <li>Les travaux d&apos;amélioration (isolation, chauffage, etc.)</li>
-              <li>Les travaux de réparation et d&apos;entretien — <strong>uniquement</strong> si non déductibles des revenus fonciers</li>
+              <li>Les travaux de réparation et d&apos;entretien <strong>uniquement</strong> si non déductibles des revenus fonciers</li>
             </ul>
             <p className="mb-3">
               Ne sont <strong>pas déductibles</strong> : les dépenses d&apos;entretien courant (nettoyage,
@@ -284,7 +284,7 @@ const sections: FAQSection[] = [
             </div>
             <p className="mb-3">
               Si la plus-value nette IR est inférieure ou égale à 50 000 €, aucune surtaxe
-              n&apos;est due — même si la plus-value brute est bien supérieure à ce montant.
+              n&apos;est due même si la plus-value brute est bien supérieure à ce montant.
             </p>
           </>
         ),

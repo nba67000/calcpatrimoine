@@ -124,7 +124,7 @@ export default function RenteViagerePage() {
 
             <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
               <p className="text-sm text-primary-800">
-                <strong>Méthodologie vérifiée</strong> — calculs conformes aux formules actuarielles standard,
+                <strong>Méthodologie vérifiée :</strong> calculs conformes aux formules actuarielles standard,
                 tables générationnelles TGH05 / TGF05 homologuées par arrêté du 1er août 2006 (art. A335-1 Code des assurances).
                 Taux technique : 0,5 %. Table unisexe : pondération 48 % hommes / 52 % femmes. Dernière vérification : mai 2026.
               </p>
