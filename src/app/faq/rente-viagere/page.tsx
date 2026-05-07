@@ -1,54 +1,25 @@
 ﻿// src/app/faq/rente-viagere/page.tsx
-'use client'
-
-import { useState } from 'react'
-import type { ReactElement } from 'react'
+import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CrossLink from '@/components/CrossLink'
+import FAQAccordionClient from '@/components/FAQAccordionClient'
+
+export const metadata: Metadata = {
+  title: 'FAQ Rente Viagère — Fonctionnement, réversion, fiscalité | CalculPatrimoine',
+  description: "Questions fréquentes sur la rente viagère : fonctionnement, réversion au conjoint, fiscalité, couples, bon âge pour souscrire.",
+}
 
 interface FAQItem {
   question: string
-  answer: string | ReactElement
+  answer: ReactNode
 }
 
 interface FAQSection {
   title: string
   items: FAQItem[]
-}
-
-function FAQAccordion({ item }: { item: FAQItem }) {
-  const [isOpen, setIsOpen] = useState(false)
-
-  return (
-    <div className="border border-neutral-200 mb-2 overflow-hidden">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-5 py-4 flex justify-between items-center bg-white hover:bg-[#F7F3EC] transition-colors text-left"
-      >
-        <span className="font-medium text-neutral-900 pr-4">{item.question}</span>
-        <svg
-          className={`w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform ${
-            isOpen ? 'rotate-180' : ''
-          }`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-
-      {isOpen && (
-        <div className="px-6 py-4 bg-neutral-50 border-t border-neutral-200">
-          <div className="text-neutral-700 leading-relaxed prose prose-sm max-w-none">
-            {item.answer}
-          </div>
-        </div>
-      )}
-    </div>
-  )
 }
 
 const sections: FAQSection[] = [
@@ -606,7 +577,7 @@ export default function FAQRenteViagerePage() {
               </h2>
               <div>
                 {section.items.map((item, itemIndex) => (
-                  <FAQAccordion key={itemIndex} item={item} />
+                  <FAQAccordionClient key={itemIndex} question={item.question}>{item.answer}</FAQAccordionClient>
                 ))}
               </div>
             </section>

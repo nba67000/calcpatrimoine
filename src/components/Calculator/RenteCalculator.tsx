@@ -1,7 +1,7 @@
 ﻿// src/components/Calculator/RenteCalculator.tsx
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { calculateAnnuity } from '@/lib/mortality'
 import { formatEurRounded as formatEuro, formatNombre as formatCapitalInput } from '@/lib/formatters'
 import type { CalculatorInput, AnnuityResult } from '@/types'
@@ -18,30 +18,15 @@ export default function RenteCalculator() {
  const [spouseAge, setSpouseAge] = useState<number>(63)
  const [reversionPercentage, setReversionPercentage] = useState<60 | 80 | 100>(60)
  
- const [result, setResult] = useState<AnnuityResult | null>(null)
-
  const parseCapitalInput = (value: string): number => Number(value.replace(/\s/g, ''))
 
- useEffect(() => {
- const input: CalculatorInput = {
- age,
- capital,
- reversion: showReversion ? {
- enabled: true,
- spouse_age: spouseAge,
- percentage: reversionPercentage
- } : {
- enabled: false
- }
- }
- 
- const timer = setTimeout(() => {
- const calculatedResult = calculateAnnuity(input)
- setResult(calculatedResult)
- }, 150)
- 
- return () => clearTimeout(timer)
- }, [age, capital, showReversion, spouseAge, reversionPercentage])
+ const result = useMemo<AnnuityResult | null>(() => calculateAnnuity({
+   age,
+   capital,
+   reversion: showReversion
+     ? { enabled: true, spouse_age: spouseAge, percentage: reversionPercentage }
+     : { enabled: false },
+ }), [age, capital, showReversion, spouseAge, reversionPercentage])
 
  return (
  <>

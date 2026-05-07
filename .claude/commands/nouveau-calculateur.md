@@ -188,7 +188,89 @@ tentatives, s'arrêter et résumer l'erreur.
 
 ---
 
-### 12. Amélioration architecture
+### 12. Audit performance
+
+Tu es un performance engineer spécialisé Next.js. Diagnostique le projet
+sur les axes suivants et applique les corrections validées.
+
+#### 12a. Bundle & imports
+
+```bash
+npm run build -- --debug
+npx @next/bundle-analyzer
+```
+
+Vérifier :
+- Imports barrel (`index.ts`) qui tirent des modules non utilisés → remplacer
+  par imports directs.
+- Librairies importées en entier alors qu'un seul export est utilisé
+  (ex. `lodash`, `date-fns`, `recharts`) → tree-shaking ou import ciblé.
+- Chunks > 200 kB non justifiés → identifier le coupable avec
+  `ANALYZE=true npm run build`.
+
+#### 12b. Mémoire & fuites React
+
+Inspecter tous les composants Calculator créés ou modifiés :
+- `useEffect` sans cleanup (listeners, timers, subscriptions) → ajouter
+  la fonction de retour.
+- `useMemo` / `useCallback` manquants sur des calculs fiscaux lourds
+  (provisions mathématiques, tables de mortalité) → wrapper.
+- State inutilement global qui force des re-renders en cascade → localiser.
+
+#### 12c. Latence SSR / ISR
+
+Vérifier `src/app/<slug>/page.tsx` et `src/app/<slug>/faq/page.tsx` :
+- Page en `'use client'` alors qu'elle pourrait être Server Component → convertir
+  les parties statiques.
+- Données statiques (barèmes, taux) hardcodées dans le composant client →
+  déplacer en `generateStaticParams` ou `export const revalidate`.
+- Absence de `loading.tsx` pour les routes dynamiques → créer si manquant.
+
+#### 12d. Images & assets
+
+```bash
+find public/ -name "*.png" -o -name "*.jpg" | xargs ls -lh
+```
+
+- Images > 50 kB non passées par `next/image` → remplacer.
+- SVG inline volumineux dans les composants → externaliser ou optimiser avec
+  `svgo`.
+
+#### 12e. Core Web Vitals
+
+```bash
+npx lighthouse http://localhost:3000/<slug> --output=json --quiet \
+  | jq '{LCP:.audits["largest-contentful-paint"].displayValue,
+         CLS:.audits["cumulative-layout-shift"].displayValue,
+         FID:.audits["total-blocking-time"].displayValue}'
+```
+
+Seuils cibles :
+- LCP < 2,5 s
+- CLS < 0,1
+- TBT (proxy FID) < 200 ms
+
+Si un seuil est dépassé → identifier l'audit Lighthouse incriminé et corriger.
+
+#### 12f. Rapport & corrections
+
+Produire un rapport en tableau :
+
+| Axe | Problème détecté | Impact | Correction appliquée |
+|---|---|---|---|
+| Bundle | ... | High / Med / Low | ... |
+| Mémoire | ... | High / Med / Low | ... |
+| SSR/ISR | ... | High / Med / Low | ... |
+| Images | ... | High / Med / Low | ... |
+| CWV | ... | High / Med / Low | ... |
+
+- Corrections **Low** → appliquer directement sans STOP.
+- Corrections **Med / High** → lister en diff, **STOP — attends validation.**
+- Relancer `npm run build` après chaque correction pour valider.
+
+---
+
+### 13. Amélioration architecture
 
 Invoquer le skill `/improve-codebase-architecture`.
 
@@ -196,7 +278,7 @@ Invoquer le skill `/improve-codebase-architecture`.
 
 ---
 
-### 13. Audit sécurité
+### 14. Audit sécurité
 
 Tu es un security specialist. Audite le projet sur les points suivants :
 
@@ -226,21 +308,333 @@ Produire un rapport en tableau :
 
 ---
 
-### 14. Commit
+### 15. Audit conformité légale
+
+Tu es un juriste spécialisé en droit financier français et en droit du
+numérique (RGPD, LCEN). Audite **l'intégralité des textes produits** dans
+ce calculateur : UI, FAQ, metadata SEO, et `docs/sources/<slug>.md`.
+
+#### 15a. Périmètre des fichiers à analyser
+
+Scanner phrase par phrase :
+- `src/app/<slug>/page.tsx` — tous les textes visibles (H1, sous-titre,
+  sections SEO, sources)
+- `src/app/<slug>/faq/page.tsx` — toutes les questions et réponses
+- `src/components/Calculator/<Nom>Calculator.tsx` — labels, tooltips,
+  warnings, messages d'optimisation
+- Metadata : `title`, `description`, `openGraph.description`
+- `docs/sources/<slug>.md` — formulations des cas de référence
+
+#### 15b. Détection des formulations conseil
+
+**Règle absolue** : CalcPatrimoine est un outil de simulation, pas un
+conseiller en investissements financiers (CIF). Aucune phrase ne doit
+pouvoir être interprétée comme une recommandation personnalisée.
+
+Signaler toute formulation tombant dans l'une de ces catégories :
+
+| Catégorie | Exemple problématique | Reformulation cible |
+|---|---|---|
+| Injonction directe | "Vous devriez racheter avant 8 ans" | "La simulation indique que..." |
+| Promesse de résultat | "Vous économiserez X€" | "La simulation estime une économie de X€ selon les paramètres saisis" |
+| Certitude fiscale | "Vous êtes exonéré" | "Selon les paramètres saisis, le calcul indique une exonération" |
+| Conseil implicite | "Il est préférable d'opter pour..." | "Certains épargnants choisissent... — à valider avec un conseiller" |
+| Généralisation | "Les contrats d'assurance-vie permettent toujours..." | "En règle générale... (sous réserve des conditions contractuelles)" |
+
+Pour chaque occurrence détectée → proposer la reformulation corrigée.
+
+#### 15c. Présence et qualité du disclaimer légal
+
+Vérifier que `<LegalDisclaimer />` est présent et visible sur :
+- La page calculateur (au-dessus du composant)
+- La page FAQ
+
+Vérifier le contenu du composant `LegalDisclaimer` :
+- Mentionne explicitement que l'outil ne constitue pas un conseil en
+  investissement au sens de la directive MIF II.
+- Recommande de consulter un conseiller en gestion de patrimoine (CGP)
+  ou un notaire pour toute décision.
+- Indique que les résultats dépendent des paramètres saisis et de la
+  législation en vigueur à la date affichée.
+- Précise l'année de la dernière mise à jour des barèmes.
+
+Si le disclaimer est absent ou incomplet → proposer le texte corrigé,
+**STOP — attends validation.**
+
+#### 15d. Conformité RGPD
+
+Vérifier selon la présence effective dans le projet
+(skip les checks non applicables) :
+
+**Analytics** (Plausible, GA, etc.) :
+- Bandeau de consentement présent et conforme (opt-in avant collecte) ?
+- Politique de confidentialité accessible depuis le footer ?
+- Durée de conservation des données mentionnée ?
+
+**Formulaires** (contact, newsletter) :
+- Case à cocher opt-in non pré-cochée ?
+- Mention de la finalité du traitement au moment de la collecte ?
+- Lien vers la politique de confidentialité au point de collecte ?
+- Droit d'accès/rectification/suppression mentionné ?
+
+**Cookies** :
+- `next.config.js` ou middleware : headers `Set-Cookie` avec `SameSite`
+  et `Secure` ?
+- Si cookies tiers → listés dans la politique de confidentialité ?
+
+**Hébergement** :
+- Le prestataire d'hébergement est-il établi dans l'UE ou dispose-t-il
+  de garanties adéquates (clauses contractuelles types) ?
+
+#### 15e. Conformité LCEN (loi pour la confiance dans l'économie numérique)
+
+Vérifier la présence dans le footer ou une page dédiée :
+- Nom ou raison sociale de l'éditeur du site.
+- Adresse de contact (email suffit pour un particulier sous micro-entreprise).
+- Mention de l'hébergeur (nom, adresse, contact).
+- Si applicable : numéro SIRET / SIREN de la micro-entreprise.
+
+#### 15f. Mentions obligatoires spécifiques finance
+
+Pour un outil traitant d'assurance-vie, rentes, et fiscalité patrimoniale :
+- Vérifier qu'aucune page ne présente les résultats comme une projection
+  garantie au sens AMF.
+- Vérifier l'absence de toute mention pouvant laisser entendre que
+  CalcPatrimoine est agréé AMF, ACPR, ou enregistré comme CIF.
+- Si des taux de rendement sont affichés (ex. taux fonds euros) → vérifier
+  la présence de la mention "Les performances passées ne préjugent pas des
+  performances futures" ou équivalent.
+
+#### 15g. Rapport & corrections
+
+Produire un rapport structuré :
+
+**Formulations conseil détectées :**
+
+| Fichier | Texte actuel | Problème | Texte corrigé |
+|---|---|---|---|
+| ... | ... | ... | ... |
+
+**Disclaimer légal :**
+
+| Check | Statut | Action |
+|---|---|---|
+| Présent page calculateur | ✅ / ❌ | ... |
+| Présent page FAQ | ✅ / ❌ | ... |
+| Mention MIF II | ✅ / ❌ | ... |
+| Année barèmes | ✅ / ❌ | ... |
+
+**RGPD :**
+
+| Check | Applicable | Statut | Action |
+|---|---|---|---|
+| Bandeau consentement | O/N | ✅ / ❌ | ... |
+| Politique confidentialité | O/N | ✅ / ❌ | ... |
+| Opt-in formulaires | O/N | ✅ / ❌ | ... |
+
+**LCEN :**
+
+| Check | Statut | Action |
+|---|---|---|
+| Mentions éditeur | ✅ / ❌ | ... |
+| Mentions hébergeur | ✅ / ❌ | ... |
+
+**Finance :**
+
+| Check | Statut | Action |
+|---|---|---|
+| Absence mention agrément AMF/ACPR | ✅ / ❌ | ... |
+| Disclaimer performances passées | ✅ / ❌ | ... |
+
+- Corrections textuelles (reformulations) → appliquer directement.
+- Corrections structurelles (nouveau composant, nouvelle page mentions
+  légales) → proposer en diff, **STOP — attends validation.**
+
+---
+
+### 16. Audit SEO
+
+Tu es un expert SEO spécialisé dans les outils financiers francophones.
+Audite et optimise le nouveau calculateur pour maximiser sa visibilité
+organique, en priorisant la longue traîne avant les requêtes génériques.
+
+#### 16a. Recherche de mots-clés cibles
+
+Sans outil externe, reconstituer l'univers sémantique à partir des sources
+légales et de la logique métier (étapes 2 et 4) :
+
+- **Requêtes principales** (volume élevé, concurrence forte) :
+  ex. "calculateur rente viagère", "simulateur assurance vie".
+- **Requêtes longue traîne** (volume faible, intention forte) :
+  ex. "calcul rente viagère homme 65 ans taux 3%".
+- **Requêtes question** (People Also Ask) :
+  ex. "comment calculer une rente viagère ?"
+
+Identifier 1 requête principale cible et 5 à 8 longue traîne prioritaires.
+
+| Requête | Type | Intention | Priorité |
+|---|---|---|---|
+| ... | Principale / Longue traîne / Question | Informationnelle / Transactionnelle | P1/P2/P3 |
+
+#### 16b. Optimisation on-page
+
+Vérifier et corriger dans `src/app/<slug>/page.tsx` :
+
+**Balises fondamentales :**
+- `<title>` : requête principale + "| CalcPatrimoine" — 60 caractères max.
+- `<meta description>` : requête principale + bénéfice concret + CTA
+  implicite — 155 caractères max.
+- `openGraph.title` / `openGraph.description` : adaptés au partage social,
+  pas une copie des balises standard.
+
+**Structure H1/H2/H3 :**
+- H1 unique contenant la requête principale.
+- H2 pour chaque section sous le fold — contiennent des variantes ou
+  requêtes longue traîne.
+- H3 pour les sous-sections FAQ — chaque H3 formulé comme une requête
+  question naturelle.
+- Pas de saut de niveaux (H1 → H3 sans H2).
+- Mot-clé principal présent dans le premier paragraphe visible.
+
+**Contenu textuel :**
+- Section "Comment ça marche" : ≥ 150 mots, 2 à 3 variantes de la requête.
+- Section "Exemples" : chaque exemple chiffré répond implicitement à une
+  requête longue traîne identifiée en 16a.
+- Liens vers Légifrance/BOFiP : `rel="noopener noreferrer"` sans `nofollow`
+  (les sources officielles sont des signaux de crédibilité).
+
+#### 16c. Optimisation FAQ (`/<slug>/faq`)
+
+- Chaque question formulée en langage naturel — pas "Définition de la rente
+  viagère" mais "Qu'est-ce qu'une rente viagère ?".
+- Les 8 questions couvrent les requêtes question identifiées en 16a.
+- Chaque réponse ≥ 80 mots (seuil featured snippets).
+- Schema `FAQPage` en JSON-LD :
+
+```typescript
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+}
+
+// Dans le return :
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+/>
+```
+
+#### 16d. Données structurées (Schema.org)
+
+Ajouter dans `src/app/<slug>/page.tsx` :
+
+```typescript
+const toolSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "<Nom du calculateur>",
+  "description": "<description courte>",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "inLanguage": "fr-FR",
+  "author": { "@type": "Organization", "name": "CalcPatrimoine" }
+}
+```
+
+Vérifier que `BreadcrumbList` est présent ou l'ajouter si le composant
+`Breadcrumb` ne le génère pas automatiquement.
+
+#### 16e. Maillage interne
+
+- Page calculateur → FAQ : ancre descriptive (ex. "Questions fréquentes
+  sur la rente viagère"), pas "cliquez ici".
+- FAQ → calculateur : ancre descriptive en retour.
+- Page calculateur liée depuis ≥ 1 page existante (calculateur voisin,
+  accueil, footer) — vérifier `Header.tsx` et `src/app/page.tsx`.
+- Bloc "Calculateurs liés" en bas de page si un pattern similaire existe.
+
+#### 16f. Signaux techniques
+
+`src/app/sitemap.ts` :
+- `/<slug>` : `priority: 0.8`, `changeFrequency: 'monthly'`.
+- `/<slug>/faq` : `priority: 0.6`, `changeFrequency: 'monthly'`.
+
+`robots.txt` / `src/app/robots.ts` :
+- Aucun `Disallow` ne bloque `/<slug>` ou `/<slug>/faq`.
+- `Sitemap:` pointe vers l'URL absolue.
+
+Balises canoniques :
+- `<link rel="canonical">` présente sur les deux pages, pointant sur
+  leur propre URL.
+
+#### 16g. Rapport & corrections
+
+**Mots-clés retenus :** (tableau 16a complété)
+
+**On-page :**
+
+| Check | Fichier | Statut | Correction |
+|---|---|---|---|
+| Title optimisé | page.tsx | ✅ / ❌ | ... |
+| Meta description | page.tsx | ✅ / ❌ | ... |
+| H1 avec requête cible | page.tsx | ✅ / ❌ | ... |
+| H2/H3 avec variantes | page.tsx | ✅ / ❌ | ... |
+| Contenu ≥ 150 mots | page.tsx | ✅ / ❌ | ... |
+
+**FAQ :**
+
+| Check | Statut | Correction |
+|---|---|---|
+| Questions en langage naturel | ✅ / ❌ | ... |
+| Réponses ≥ 80 mots | ✅ / ❌ | ... |
+| Schema FAQPage JSON-LD | ✅ / ❌ | ... |
+
+**Données structurées :**
+
+| Schema | Présent | Valide |
+|---|---|---|
+| WebApplication | ✅ / ❌ | ✅ / ❌ |
+| BreadcrumbList | ✅ / ❌ | ✅ / ❌ |
+| FAQPage | ✅ / ❌ | ✅ / ❌ |
+
+**Technique :**
+
+| Check | Statut | Correction |
+|---|---|---|
+| Sitemap à jour | ✅ / ❌ | ... |
+| Robots.txt OK | ✅ / ❌ | ... |
+| Canonical présent | ✅ / ❌ | ... |
+| Maillage interne | ✅ / ❌ | ... |
+
+- Corrections textuelles (title, description, H1/H2, ancres) et schemas
+  JSON-LD → appliquer directement.
+- Modifications structurelles (nouveau composant, refonte maillage) →
+  proposer en diff, **STOP — attends validation.**
+
+---
+
+### 17. Commit
 
 - Un seul commit (ou plusieurs atomiques bien découpés : types / lib / UI /
-  page / faq / tests / docs).
+  page / faq / tests / docs / perf / conformité / seo).
 - Message : `feat(calc): ajout calculateur <slug>` avec description courte
   dans le corps.
 - **Ne pas pousser automatiquement.** C'est Nicolas qui décide quand pousser.
 
 ---
 
-### 15. Fermeture
+### 18. Fermeture
 
 - Mettre à jour `BACKLOG.md` : statut `in-progress` → `done` avec la date.
-- Résumer en bullets courts : fichiers créés, sources utilisées, points de
-  vigilance, commande `npm run dev` pour tester.
+- Résumer en bullets courts : fichiers créés, sources utilisées, gains perf
+  mesurés, points de conformité corrigés, mots-clés cibles retenus, commande
+  `npm run dev` pour tester.
 - **S'arrêter.** Ne pas enchaîner sur un autre calculateur sauf si
   `/mode-autonome` a été invoqué.
 
@@ -254,6 +648,10 @@ Produire un rapport en tableau :
 - **Build qui échoue malgré 2 tentatives** → s'arrêter, résumer l'erreur,
   demander.
 - **Tests qui échouent malgré 2 tentatives** → s'arrêter, résumer, demander.
+- **Correction perf Med/High non validée** → ne pas appliquer, attendre.
+- **Correction conformité structurelle non validée** → ne pas appliquer,
+  attendre.
+- **Modification SEO structurelle non validée** → ne pas appliquer, attendre.
 - **Fichier existant en conflit** → s'arrêter, montrer le chemin, demander.
 
 Mieux vaut 1 calculateur juste que 3 approximatifs.

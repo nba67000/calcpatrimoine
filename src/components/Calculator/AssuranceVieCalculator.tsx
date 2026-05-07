@@ -1,7 +1,7 @@
 // src/components/Calculator/AssuranceVieCalculator.tsx
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import FiscaliteComparisonChart from '@/components/FiscaliteComparisonChart'
 import { calculerFiscaliteRachat, formatDateForInput, parseDateFromInput } from '@/lib/assuranceVie'
 import type { AssuranceVieInputs, AssuranceVieResults } from '@/types/assuranceVie'
@@ -18,22 +18,16 @@ export default function AssuranceVieCalculator() {
   const [tmi, setTmi] = useState<AssuranceVieInputs['tmi']>(30)
   const [enCouple, setEnCouple] = useState<boolean>(false)
   const [encoursTotalContrats, setEncoursTotalContrats] = useState<number>(70000)
-  const [results, setResults] = useState<AssuranceVieResults | null>(null)
-
-  useEffect(() => {
-    const inputs: AssuranceVieInputs = {
-      capitalTotal,
-      versementTotal,
-      dateOuverture,
-      montantRachat,
-      versementAvant2017,
-      tmi,
-      enCouple,
-      encoursTotalContrats
-    }
-    const calculatedResults = calculerFiscaliteRachat(inputs)
-    setResults(calculatedResults)
-  }, [capitalTotal, versementTotal, dateOuverture, montantRachat, versementAvant2017, tmi, enCouple, encoursTotalContrats])
+  const results = useMemo<AssuranceVieResults>(() => calculerFiscaliteRachat({
+    capitalTotal,
+    versementTotal,
+    dateOuverture,
+    montantRachat,
+    versementAvant2017,
+    tmi,
+    enCouple,
+    encoursTotalContrats,
+  }), [capitalTotal, versementTotal, dateOuverture, montantRachat, versementAvant2017, tmi, enCouple, encoursTotalContrats])
 
   return (
     <>

@@ -1,7 +1,7 @@
 // src/components/Calculator/TransmissionCalculator.tsx
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import TransmissionChart from '@/components/TransmissionChart'
 import {
  calculerTransmission,
@@ -43,23 +43,14 @@ export default function TransmissionCalculator() {
  }
  ])
 
- // État résultats
- const [results, setResults] = useState<TransmissionResults | null>(null)
-
- // Calcul automatique
- useEffect(() => {
- const inputs: TransmissionInputs = {
- capitalTotal,
- versementsAvant70,
- versementsApres70,
- dateOuverture: new Date(2010, 0, 1),
- ageSouscripteur,
- beneficiaires
- }
- 
- const calculatedResults = calculerTransmission(inputs)
- setResults(calculatedResults)
- }, [capitalTotal, versementsAvant70, versementsApres70, ageSouscripteur, beneficiaires])
+ const results = useMemo<TransmissionResults>(() => calculerTransmission({
+   capitalTotal,
+   versementsAvant70,
+   versementsApres70,
+   dateOuverture: new Date(2010, 0, 1),
+   ageSouscripteur,
+   beneficiaires,
+ }), [capitalTotal, versementsAvant70, versementsApres70, ageSouscripteur, beneficiaires])
 
  // Actions bénéficiaires — délèguent aux fonctions pures de lib/transmission
  const modifierBeneficiaire = (id: string, updates: Partial<Beneficiaire>) => {

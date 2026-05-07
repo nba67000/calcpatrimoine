@@ -1,7 +1,7 @@
 ﻿// src/components/Calculator/InverseCalculator.tsx
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { calculateRequiredCapital } from '@/lib/mortality'
 import { formatEurRounded as formatEuro, formatNombre } from '@/lib/formatters'
 import type { InverseResult } from '@/types'
@@ -17,22 +17,14 @@ export default function InverseCalculator() {
  const [showReversion, setShowReversion] = useState(false)
  const [spouseAge, setSpouseAge] = useState<number>(63)
  const [reversionPercentage, setReversionPercentage] = useState<60 | 80 | 100>(60)
- const [result, setResult] = useState<InverseResult | null>(null)
-
  const formatAmountInput = formatNombre
  const parseAmountInput = (value: string): number => Number(value.replace(/\s/g, ''))
 
- useEffect(() => {
- const calculatedResult = calculateRequiredCapital(
- desiredAmount,
- age,
- showReversion ? {
- spouse_age: spouseAge,
- percentage: reversionPercentage
- } : undefined
- )
- setResult(calculatedResult)
- }, [desiredAmount, age, showReversion, spouseAge, reversionPercentage])
+ const result = useMemo<InverseResult | null>(() => calculateRequiredCapital(
+   desiredAmount,
+   age,
+   showReversion ? { spouse_age: spouseAge, percentage: reversionPercentage } : undefined,
+ ), [desiredAmount, age, showReversion, spouseAge, reversionPercentage])
 
  return (
  <div className="max-w-4xl mx-auto" suppressHydrationWarning>

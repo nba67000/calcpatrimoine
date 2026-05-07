@@ -1,23 +1,28 @@
 ﻿import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display, Lora } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import SchemaMarkup from "@/components/SchemaMarkup";
 
-// Fontsource imports pour CalculPatrimoine
-import '@fontsource/inter/400.css'
-import '@fontsource/inter/500.css'
-import '@fontsource/inter/600.css'
-import '@fontsource/inter/700.css'
-import '@fontsource/playfair-display/700.css'
-import '@fontsource/lora/400.css'
-import '@fontsource/lora/400-italic.css'
-import '@fontsource/lora/600.css'
-import '@fontsource/lora/600-italic.css'
-
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
+  variable: '--font-inter',
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: 'swap',
+  weight: ['700'],
+  variable: '--font-playfair',
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  display: 'swap',
+  weight: ['400', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-lora',
 });
 
 export const metadata: Metadata = {
@@ -113,7 +118,7 @@ export default function RootLayout({
  <link rel="alternate icon" href="/favicon.ico" />
  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
  </head>
- <body className={`${inter.className} antialiased`}>
+ <body className={`${inter.variable} ${playfair.variable} ${lora.variable} antialiased`}>
  {/* Schema.org JSON-LD pour SEO */}
  <SchemaMarkup />
  

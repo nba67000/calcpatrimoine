@@ -1,7 +1,7 @@
 ﻿// src/components/Calculator/CoupleCalculator.tsx
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { calculateCoupleStrategies } from '@/lib/mortality'
 import { formatEurRounded as formatEuro, formatNombre as formatCapitalInput } from '@/lib/formatters'
 import type { CoupleProfile, CoupleCalculation } from '@/types'
@@ -13,28 +13,13 @@ export default function CoupleCalculator() {
  const [person2Age, setPerson2Age] = useState<number>(64)
  const [totalCapital, setTotalCapital] = useState<number>(180000)
  
- const [strategies, setStrategies] = useState<CoupleCalculation[]>([])
- const [isCalculating, setIsCalculating] = useState(false)
-
  const parseCapitalInput = (value: string): number => Number(value.replace(/\s/g, ''))
 
- useEffect(() => {
- setIsCalculating(true)
- 
- const timer = setTimeout(() => {
- const profile: CoupleProfile = {
- person1_age: person1Age,
- person2_age: person2Age,
- total_capital: totalCapital
- }
- 
- const result = calculateCoupleStrategies(profile)
- setStrategies(result)
- setIsCalculating(false)
- }, 150)
- 
- return () => clearTimeout(timer)
- }, [person1Age, person2Age, totalCapital])
+ const strategies = useMemo<CoupleCalculation[]>(() => calculateCoupleStrategies({
+   person1_age: person1Age,
+   person2_age: person2Age,
+   total_capital: totalCapital,
+ }), [person1Age, person2Age, totalCapital])
 
  return (
  <div className="max-w-5xl mx-auto" suppressHydrationWarning>
@@ -346,13 +331,6 @@ export default function CoupleCalculator() {
  </div>
  )}
 
- {/* État calcul */}
- {isCalculating && (
- <div className="text-center py-8 text-neutral-500">
- <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
- <p className="mt-2 text-sm">Calcul en cours...</p>
- </div>
- )}
  </div>
  )
 }

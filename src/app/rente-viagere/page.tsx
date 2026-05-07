@@ -1,35 +1,24 @@
-'use client'
-
-import { useState } from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import RenteCalculator from '@/components/Calculator/RenteCalculator'
-import InverseCalculator from '@/components/Calculator/InverseCalculator'
-import CoupleCalculator from '@/components/Calculator/CoupleCalculator'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import LegalDisclaimer from '@/components/LegalDisclaimer'
 import { SOURCES_RENTE_VIAGERE } from '@/lib/mortality'
 import SourcesSection from '@/components/SourcesSection'
+import RenteModeContent from '@/components/Calculator/RenteModeContent'
 
-type CalculatorMode = 'standard' | 'inverse' | 'couple'
-
-const MODES: { id: CalculatorMode; label: string; desc: string }[] = [
-  { id: 'standard', label: 'Calculateur classique', desc: 'Calculez le montant de votre rente mensuelle à partir d\'un capital.' },
-  { id: 'inverse',  label: 'Calculateur inverse',   desc: 'Découvrez quel capital est nécessaire pour obtenir la rente souhaitée.' },
-  { id: 'couple',   label: 'Mode couple',            desc: 'Comparez toutes les stratégies pour optimiser vos rentes à deux.' },
-]
+export const metadata: Metadata = {
+  title: 'Calculateur Rente Viagère — Tables INSEE 2021 | CalculPatrimoine',
+  description: 'Calculez votre rente viagère à partir d\'un capital. Tables de mortalité INSEE 2021 unisexes. Gestion de la réversion au conjoint, 3 modes de calcul.',
+  alternates: { canonical: 'https://calculpatrimoine.fr/rente-viagere' },
+}
 
 const CROSS_LINKS = [
-  { href: '/assurance-vie/fiscalite-rachat', label: 'Plutôt un rachat qu\'une rente ?', desc: 'Calculez la fiscalité exacte d\'un rachat partiel ou total d\'assurance-vie.' },
+  { href: '/assurance-vie/fiscalite-rachat', label: "Plutôt un rachat qu'une rente ?", desc: 'Calculez la fiscalité exacte d\'un rachat partiel ou total d\'assurance-vie.' },
   { href: '/blog/rente-viagere-seuil-rentabilite', label: 'Article — Le seuil de rentabilité', desc: 'À 72 ans avec 250 000 €, le seuil tombe à 15,8 ans. Ce n\'est pas une anomalie.' },
   { href: '/faq/rente-viagere', label: 'FAQ rente viagère', desc: 'Espérance de vie, réversion, fiscalité, couple, bon âge pour souscrire.' },
 ]
 
-const SOURCES = SOURCES_RENTE_VIAGERE
-
 export default function RenteViagerePage() {
-  const [mode, setMode] = useState<CalculatorMode>('standard')
-
   return (
     <>
       <Header />
@@ -75,36 +64,8 @@ export default function RenteViagerePage() {
           </div>
         </div>
 
-        {/* Calculateur + tabs */}
-        <div className="max-w-6xl mx-auto px-6 pt-6">
-          <LegalDisclaimer />
-        </div>
-        <div className="max-w-6xl mx-auto px-6 py-10">
-          <div className="flex mb-2">
-            <div className="flex border border-neutral-300 overflow-x-auto">
-              {MODES.map(m => (
-                <button
-                  key={m.id}
-                  onClick={() => setMode(m.id)}
-                  className={`px-4 sm:px-6 py-3 font-mono text-xs font-medium transition-colors whitespace-nowrap ${
-                    mode === m.id
-                      ? 'bg-primary-700 text-white'
-                      : 'bg-white text-neutral-600 hover:bg-neutral-50'
-                  }`}
-                >
-                  {m.label}
-                </button>
-              ))}
-            </div>
-          </div>
-          <p className="font-mono text-xs text-neutral-500 mb-8">
-            {MODES.find(m => m.id === mode)?.desc}
-          </p>
-
-          {mode === 'standard' && <RenteCalculator />}
-          {mode === 'inverse'  && <InverseCalculator />}
-          {mode === 'couple'   && <CoupleCalculator />}
-        </div>
+        {/* Calculateur — client component (mode tabs + framer-motion dynamique) */}
+        <RenteModeContent />
 
         {/* Explications */}
         <section className="max-w-4xl mx-auto px-6 py-8">
@@ -171,7 +132,7 @@ export default function RenteViagerePage() {
                 <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5 grid sm:grid-cols-2 gap-x-8 gap-y-3 overflow-hidden">
                   {[
                     ['Annuité viagère (äx)', 'Σ (ₖpₓ × vᵏ) pour k = 0 à ω-x'],
-                    ['Facteur d\'actualisation', 'v = 1 / (1 + i) — i = taux technique'],
+                    ["Facteur d'actualisation", 'v = 1 / (1 + i) — i = taux technique'],
                     ['Probabilité de survie', 'ₖpₓ = lₓ₊ₖ / lₓ (tables TGH05/TGF05)'],
                     ['Rente annuelle', 'Rente = Capital / äx'],
                     ['Avec réversion', 'Capital / (äx + α × äy|x)'],
@@ -185,7 +146,7 @@ export default function RenteViagerePage() {
                 </div>
               </div>
 
-              <SourcesSection sources={SOURCES} title="Textes réglementaires" />
+              <SourcesSection sources={SOURCES_RENTE_VIAGERE} title="Textes réglementaires" />
 
               <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
                 <p className="text-sm text-primary-800">
