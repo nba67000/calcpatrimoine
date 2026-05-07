@@ -4,6 +4,8 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import AssuranceVieCalculator from '@/components/Calculator/AssuranceVieCalculator'
 import { SOURCES_ASSURANCE_VIE } from '@/lib/assuranceVie'
+import LegalDisclaimer from '@/components/LegalDisclaimer'
+import SourcesSection from '@/components/SourcesSection'
 
 export const metadata: Metadata = {
   title: 'Calculateur Assurance-Vie : Fiscalité Rachat PFU vs IR | CalculPatrimoine',
@@ -60,6 +62,9 @@ export default function AssuranceViePage() {
         </section>
 
         {/* Calculateur */}
+        <div className="max-w-6xl mx-auto px-6 pt-6">
+          <LegalDisclaimer />
+        </div>
         <div className="max-w-6xl mx-auto px-6 py-8">
           <AssuranceVieCalculator />
         </div>
@@ -140,20 +145,7 @@ export default function AssuranceViePage() {
                 </div>
               </div>
 
-              <div>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Textes de loi</h3>
-                <ul className="space-y-3 text-sm">
-                  {SOURCES_ASSURANCE_VIE.map(s => (
-                    <li key={s.href} className="flex items-start gap-3">
-                      <span className="text-accent-400 mt-0.5 shrink-0">—</span>
-                      <div>
-                        <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
-                        <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <SourcesSection sources={SOURCES_ASSURANCE_VIE} />
 
               <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
                 <p className="text-sm text-primary-800">
