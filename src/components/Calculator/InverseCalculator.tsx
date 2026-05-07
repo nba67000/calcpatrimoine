@@ -245,7 +245,7 @@ export default function InverseCalculator() {
  </div>
  <p className="text-xs text-neutral-500 mt-2">
  {reversionPercentage === 60 && ' Capital réduit, protection modérée'}
- {reversionPercentage === 80 && ' Équilibre idéal (le plus courant)'}
+ {reversionPercentage === 80 && ' Équilibre entre les deux (le plus courant)'}
  {reversionPercentage === 100 && ' Protection maximale du conjoint'}
  </p>
  </div>

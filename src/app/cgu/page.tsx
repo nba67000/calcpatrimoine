@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 
 export const metadata = {
  title: 'Conditions Générales d\'Utilisation - CalculPatrimoine',
- description: 'Conditions générales d\'utilisation du calculateur de rente viagère CalculPatrimoine'
+ description: 'Conditions générales d\'utilisation de CalculPatrimoine — simulateurs patrimoniaux gratuits (rente viagère, assurance-vie, IFI, PER, TMI, plus-value immobilière)'
 }
 
 export default function CGUPage() {
@@ -21,10 +21,13 @@ export default function CGUPage() {
  <section>
  <h2 className="text-2xl font-semibold mb-4">1. Objet</h2>
  <p className="text-neutral-700">
- CalculPatrimoine est un outil pédagogique gratuit de simulation de rente viagère, 
- développé et maintenu par Nicolas Barbier. Le site propose des calculs indicatifs 
- basés sur des formules actuarielles standard et des tables de mortalité officielles 
- de l&apos;INSEE.
+ CalculPatrimoine est un ensemble d&apos;outils pédagogiques gratuits de simulation
+ patrimoniale, développé et maintenu par Nicolas Barbier. Le site propose des calculs
+ indicatifs dans les domaines suivants : rente viagère, fiscalité de l&apos;assurance-vie,
+ impôt sur la fortune immobilière (IFI), plan d&apos;épargne retraite (PER), taux marginal
+ d&apos;imposition (TMI) et plus-value immobilière.
+ Les calculs sont basés sur les textes officiels en vigueur (Code général des impôts,
+ BOFiP, tables de mortalité INSEE) et les barèmes fiscaux 2026.
  </p>
  </section>
 
@@ -41,27 +44,31 @@ export default function CGUPage() {
  {/* Article 3 */}
  <section>
  <h2 className="text-2xl font-semibold mb-4">3. Nature du service</h2>
- 
+
  <div className="space-y-4">
  <div>
  <h3 className="font-semibold text-lg mb-2 text-primary-700">CalculPatrimoine FOURNIT :</h3>
  <ul className="list-disc list-inside space-y-1 text-neutral-700 ml-4">
- <li>Des calculs indicatifs basés sur des formules actuarielles reconnues</li>
- <li>Des informations pédagogiques sur la rente viagère et son fonctionnement</li>
+ <li>Des calculs indicatifs basés sur des textes officiels et formules actuarielles reconnues</li>
+ <li>Des informations pédagogiques sur la fiscalité et les produits patrimoniaux</li>
  <li>Un code source ouvert et vérifiable sur GitHub</li>
- <li>Des explications sur la réglementation applicable (tables unisexes 2012)</li>
+ <li>Des explications sur la réglementation applicable (CGI, BOFiP, tables INSEE)</li>
  </ul>
  </div>
 
  <div>
  <h3 className="font-semibold text-lg mb-2 text-primary-700">CalculPatrimoine NE FOURNIT PAS :</h3>
  <ul className="list-disc list-inside space-y-1 text-neutral-700 ml-4">
- <li>De conseil personnalisé en investissement financier</li>
+ <li>De conseil personnalisé en investissement financier au sens de la directive MIF II</li>
  <li>De recommandation de souscription d&apos;un produit spécifique</li>
  <li>De garantie de résultat ou d&apos;exactitude absolue</li>
- <li>D&apos;intermédiation avec des compagnies d&apos;assurance</li>
- <li>D&apos;avis juridique, fiscal ou successoral</li>
+ <li>D&apos;intermédiation avec des compagnies d&apos;assurance ou tout autre acteur financier</li>
+ <li>D&apos;avis juridique, fiscal ou successoral personnalisé</li>
  </ul>
+ <p className="text-sm text-neutral-600 mt-3 italic">
+ CalculPatrimoine n&apos;est pas enregistré comme conseiller en investissements financiers (CIF)
+ auprès de l&apos;AMF, ni comme intermédiaire en assurance auprès de l&apos;ACPR.
+ </p>
  </div>
  </div>
  </section>
@@ -177,7 +184,7 @@ export default function CGUPage() {
 
  {/* Footer */}
  <section className="text-sm text-neutral-500 border-t pt-4">
- <p>Version 1.0 - Dernière mise à jour : 15 avril 2026</p>
+ <p>Version 1.1 - Dernière mise à jour : 07 mai 2026</p>
  </section>
 
  </div>

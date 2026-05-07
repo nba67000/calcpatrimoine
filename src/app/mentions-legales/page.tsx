@@ -22,11 +22,30 @@ export default function MentionsLegalesPage() {
  <h2 className="text-2xl font-semibold mb-4">Éditeur du site</h2>
  <div className="text-neutral-700 space-y-2">
  <p><strong>Nom :</strong>Nicolas Barbier</p>
- <p><strong>Statut :</strong>Micro-entrepreneur</p>
- <p><strong>SIRET :</strong> [Ton SIRET si applicable]</p>
- <p><strong>Adresse :</strong> [Ton adresse postale complète]</p>
+ <p><strong>Statut :</strong> Micro-entrepreneur</p>
+ <p><strong>SIRET :</strong> À compléter</p>
+ <p><strong>Adresse :</strong> Disponible sur demande à contact@calculpatrimoine.fr</p>
  <p><strong>Email :</strong> contact@calculpatrimoine.fr</p>
  <p><strong>Directeur de publication :</strong>Nicolas Barbier</p>
+ </div>
+ </section>
+
+ {/* Statut réglementaire */}
+ <section>
+ <h2 className="text-2xl font-semibold mb-4">Statut réglementaire</h2>
+ <div className="text-neutral-700 space-y-2">
+ <p>
+ CalculPatrimoine est un outil pédagogique à titre indicatif uniquement.
+ Ce site <strong>n&apos;est pas enregistré</strong> comme :
+ </p>
+ <ul className="list-disc list-inside space-y-1 ml-4">
+ <li>Conseiller en investissements financiers (CIF) au sens de l&apos;article L. 541-1 du Code monétaire et financier</li>
+ <li>Intermédiaire en assurance auprès de l&apos;ACPR</li>
+ <li>Prestataire de services d&apos;investissement au sens de la directive MIF II</li>
+ </ul>
+ <p className="text-sm text-neutral-500 mt-2">
+ Les résultats produits ne constituent pas des recommandations personnalisées d&apos;investissement.
+ </p>
  </div>
  </section>
 
@@ -105,7 +124,7 @@ export default function MentionsLegalesPage() {
 
  {/* Dernière MAJ */}
  <section className="text-sm text-neutral-500 border-t pt-4">
- <p>Dernière mise à jour : 24 avril 2026</p>
+ <p>Dernière mise à jour : 07 mai 2026</p>
  </section>
 
  </div>
