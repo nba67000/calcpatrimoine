@@ -62,6 +62,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/faq/ifi`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
 
     // Static pages
     {

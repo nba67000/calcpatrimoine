@@ -1,0 +1,308 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import LegalDisclaimer from '@/components/LegalDisclaimer'
+import IFICalculator from '@/components/Calculator/IFICalculator'
+import { SOURCES_IFI } from '@/lib/ifi'
+import SourcesSection from '@/components/SourcesSection'
+
+export const metadata: Metadata = {
+  title: 'Calculateur IFI 2026 : impôt sur la fortune immobilière',
+  description: 'Calculez votre IFI 2026 : patrimoine net taxable, barème progressif, abattement résidence principale 30 %, décote et plafonnement IFI + IR.',
+  keywords: 'calculateur IFI, impôt fortune immobilière, barème IFI 2026, seuil IFI, abattement résidence principale, plafonnement IFI',
+  openGraph: {
+    title: 'Calculateur IFI 2026 — impôt sur la fortune immobilière',
+    description: 'Simulez votre IFI : abattement RP 30 %, barème 6 tranches, décote progressive, plafonnement IFI + IR à 75 % des revenus.',
+    type: 'article',
+  },
+}
+
+const toolSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Calculateur IFI — Impôt sur la Fortune Immobilière',
+  description: 'Outil gratuit de simulation de l\'IFI 2026 : barème progressif, abattement résidence principale, décote, plafonnement.',
+  applicationCategory: 'FinanceApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  inLanguage: 'fr-FR',
+  author: { '@type': 'Organization', name: 'CalcPatrimoine' },
+}
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://calculpatrimoine.fr' },
+    { '@type': 'ListItem', position: 2, name: 'IFI', item: 'https://calculpatrimoine.fr/ifi' },
+  ],
+}
+
+const BAREME_IFI = [
+  { de: '0 €',          a: '800 000 €',    taux: '0 %' },
+  { de: '800 000 €',    a: '1 300 000 €',  taux: '0,50 %' },
+  { de: '1 300 000 €',  a: '2 570 000 €',  taux: '0,70 %' },
+  { de: '2 570 000 €',  a: '5 000 000 €',  taux: '1,00 %' },
+  { de: '5 000 000 €',  a: '10 000 000 €', taux: '1,25 %' },
+  { de: '10 000 000 €', a: 'Sans limite',   taux: '1,50 %' },
+]
+
+export default function IFIPage() {
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toolSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Header />
+      <div className="h-[3px] bg-accent-400 w-full" />
+      <div style={{ backgroundColor: '#F7F3EC' }}>
+
+        {/* Hero */}
+        <section className="max-w-6xl mx-auto px-6 py-12">
+          <nav className="flex items-center gap-2 font-mono text-xs text-neutral-400 mb-8">
+            <Link href="/" className="hover:text-primary-600 transition-colors">Accueil</Link>
+            <span>/</span>
+            <span className="text-neutral-600">IFI</span>
+          </nav>
+
+          <div className="h-[2px] w-10 bg-accent-400 mb-6" />
+
+          <h1 className="font-serif text-5xl font-bold text-neutral-900 mb-4 leading-tight">
+            Calculateur IFI 2026 :<br />
+            impôt sur la fortune immobilière
+          </h1>
+
+          <p className="text-lg text-neutral-600 max-w-3xl leading-relaxed mb-8">
+            Calculez votre IFI à partir de la valeur vénale de vos biens immobiliers :
+            abattement résidence principale (30 %), barème progressif en 6 tranches,
+            décote pour les patrimoines proches du seuil, et plafonnement IFI + IR.
+          </p>
+
+          <div className="flex flex-wrap gap-x-8 gap-y-2">
+            {[
+              'Seuil 1 300 000 €',
+              'Barème 0 % à 1,50 %',
+              'Abattement RP 30 %',
+              'Décote progressive',
+              'Plafonnement 75 % revenus',
+              'Zéro donnée conservée',
+            ].map((t) => (
+              <span key={t} className="font-mono text-xs text-neutral-500">{t}</span>
+            ))}
+          </div>
+        </section>
+
+        {/* Disclaimer */}
+        <div className="max-w-6xl mx-auto px-6 pb-4">
+          <LegalDisclaimer />
+        </div>
+
+        {/* Calculateur */}
+        <div className="max-w-6xl mx-auto px-6 py-4 pb-12">
+          <IFICalculator />
+        </div>
+
+        {/* Comment ça marche */}
+        <section className="max-w-4xl mx-auto px-6 py-8">
+          <div className="bg-white border border-neutral-200 p-8 space-y-6">
+            <h2 className="font-serif text-2xl font-bold text-neutral-900">Comment l&apos;IFI est-il calculé ?</h2>
+
+            <div className="space-y-4 text-neutral-700 leading-relaxed">
+              <p>
+                <strong>L&apos;IFI s&apos;applique si votre patrimoine immobilier net dépasse 1 300 000 €.</strong>{' '}
+                Ce seuil est apprécié au 1er janvier de chaque année. En dessous, vous n&apos;êtes pas assujetti
+                et aucune déclaration n&apos;est requise au titre de l&apos;IFI.
+              </p>
+
+              <p>
+                <strong>La résidence principale bénéficie d&apos;un abattement de 30 %.</strong>{' '}
+                Concrètement, si votre maison vaut 600 000 €, seuls 420 000 € entrent dans l&apos;assiette.
+                Cet abattement s&apos;applique automatiquement sur déclaration, sans démarche particulière.
+              </p>
+
+              <p>
+                <strong>Les emprunts immobiliers en cours réduisent l&apos;assiette.</strong>{' '}
+                Seul le capital restant dû au 1er janvier est déductible, et uniquement pour les dettes
+                contractées pour acquérir, construire, rénover ou entretenir les biens taxables.
+                Les prêts à la consommation ou personnels ne sont pas déductibles.
+              </p>
+
+              <p>
+                <strong>Le barème est progressif, comme l&apos;impôt sur le revenu.</strong>{' '}
+                La première tranche (jusqu&apos;à 800 000 €) est taxée à 0 %, ce qui signifie que seule
+                la fraction au-dessus de ce seuil est imposée. Chaque euro de patrimoine ne paye
+                que le taux de sa tranche.
+              </p>
+
+              <p>
+                <strong>Pour les patrimoines proches du seuil, une décote atténue l&apos;entrée dans l&apos;IFI.</strong>{' '}
+                Entre 1 300 000 € et 1 400 000 €, une réduction progressive s&apos;applique (formule : 17 500 € − 1,25 % × patrimoine).
+                À 1 300 000 € net exactement, la décote est de 1 250 €. Elle s&apos;annule à 1 400 000 €.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Barème IFI */}
+        <section className="max-w-4xl mx-auto px-6 py-4 pb-8">
+          <div className="bg-white border border-neutral-200 p-8">
+            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-2">
+              Barème IFI 2026
+            </h2>
+            <p className="text-sm text-neutral-500 mb-6">
+              Inchangé depuis la création de l&apos;IFI par la loi de finances 2018 (Art. 977 CGI).
+            </p>
+
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-neutral-200">
+                  <th className="text-left py-2 text-neutral-500 font-mono text-xs">Fraction du patrimoine net</th>
+                  <th className="text-right py-2 text-neutral-500 font-mono text-xs">Taux</th>
+                </tr>
+              </thead>
+              <tbody>
+                {BAREME_IFI.map(({ de, a, taux }) => (
+                  <tr key={de} className="border-b border-neutral-100">
+                    <td className="py-2 text-neutral-700">De {de} à {a}</td>
+                    <td className={`py-2 text-right font-bold ${taux === '0 %' ? 'text-green-700' : 'text-neutral-900'}`}>
+                      {taux}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="text-xs text-neutral-500 mt-3">Source : Art. 977 CGI — applicable au patrimoine au 1er janvier 2026.</p>
+          </div>
+        </section>
+
+        {/* Exemples chiffrés */}
+        <section className="max-w-4xl mx-auto px-6 py-4 pb-8">
+          <div className="bg-white border border-neutral-200 p-8 space-y-6">
+            <h2 className="font-serif text-2xl font-bold text-neutral-900">Exemples de calcul IFI</h2>
+
+            <div className="space-y-5">
+              {[
+                {
+                  titre: 'Patrimoine net 2 000 000 € (sans emprunt, sans RP)',
+                  calcul: '500 000 × 0,50 % + 700 000 × 0,70 % = 2 500 + 4 900',
+                  resultat: 'IFI = 7 400 €',
+                },
+                {
+                  titre: 'Patrimoine brut 1 900 000 €, dont RP valeur 600 000 €, emprunt 200 000 €',
+                  calcul: 'Assiette = 1 900 000 − 180 000 (30% RP) − 200 000 = 1 520 000 €\n500 000 × 0,50 % + 220 000 × 0,70 % = 2 500 + 1 540',
+                  resultat: 'IFI = 4 040 €',
+                },
+                {
+                  titre: 'Patrimoine net 1 350 000 € (décote progressive)',
+                  calcul: '500 000 × 0,50 % + 50 000 × 0,70 % = 2 500 + 350 = 2 850 €\nDécote : 17 500 − 1,25 % × 1 350 000 = 625 €',
+                  resultat: 'IFI net = 2 225 €',
+                },
+              ].map(({ titre, calcul, resultat }) => (
+                <div key={titre} className="border-l-2 border-accent-400 pl-4">
+                  <p className="font-bold text-neutral-900 mb-1">{titre}</p>
+                  <p className="text-sm text-neutral-600 font-mono whitespace-pre-line leading-relaxed">{calcul}</p>
+                  <p className="text-sm font-bold text-primary-700 mt-1">{resultat}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ intégrée */}
+        <section className="max-w-4xl mx-auto px-6 py-4 pb-8">
+          <div className="bg-white border border-neutral-200 p-8 space-y-6">
+            <div className="flex justify-between items-baseline">
+              <h2 className="font-serif text-2xl font-bold text-neutral-900">Questions fréquentes sur l&apos;IFI</h2>
+              <Link href="/faq/ifi" className="text-sm text-primary-600 hover:underline font-medium">
+                Toutes les questions sur l&apos;IFI
+              </Link>
+            </div>
+
+            <div className="space-y-5">
+              {[
+                {
+                  q: 'Qui est assujetti à l\'IFI ?',
+                  r: 'Toute personne physique dont le patrimoine immobilier net (biens moins dettes) dépasse 1 300 000 € au 1er janvier est assujettie à l\'IFI. Le seuil s\'applique à l\'ensemble du foyer fiscal, pas par individu. Les non-résidents sont assujettis uniquement sur leurs biens situés en France.',
+                },
+                {
+                  q: 'Quels biens entrent dans l\'IFI ?',
+                  r: 'Tous les biens et droits immobiliers détenus directement (maisons, appartements, terrains, parkings) ou indirectement via des parts de sociétés (SCI, SCPI). La résidence principale bénéficie d\'un abattement de 30 %. Certains biens sont partiellement ou totalement exonérés : biens professionnels, bois et forêts (75 %), biens ruraux loués par bail à long terme, œuvres d\'art.',
+                },
+                {
+                  q: 'Le plafonnement IFI + IR, c\'est quoi exactement ?',
+                  r: 'Selon l\'Art. 979 CGI, la somme IFI + impôt sur le revenu ne peut pas dépasser 75 % des revenus imposables de l\'année. Si c\'est le cas, l\'IFI est réduit à due concurrence. Ce plafonnement bénéficie surtout aux contribuables dont les revenus sont faibles par rapport au patrimoine (ex. retraités avec un gros patrimoine immobilier peu productif).',
+                },
+              ].map(({ q, r }) => (
+                <div key={q} className="border-l-2 border-accent-400 pl-4">
+                  <p className="font-bold text-neutral-900 mb-1">{q}</p>
+                  <p className="text-sm text-neutral-700 leading-relaxed">{r}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Méthodologie et sources */}
+        <section className="max-w-4xl mx-auto px-6 py-4 pb-16">
+          <div className="bg-white border border-neutral-200 p-8">
+            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
+              Méthodologie et sources officielles
+            </h2>
+
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formules de calcul</h3>
+                <div className="bg-neutral-50 border border-neutral-200 p-5 grid md:grid-cols-2 gap-x-8 gap-y-3">
+                  {[
+                    ['Assiette brute', 'Valeur vénale totale des biens au 1er janvier'],
+                    ['Abattement RP', '30 % de la valeur de la résidence principale'],
+                    ['Patrimoine net taxable', 'Assiette brute − abattement RP − dettes'],
+                    ['IFI brut', 'Application du barème progressif par tranche'],
+                    ['Décote (si 1,3M ≤ P < 1,4M €)', '17 500 € − 1,25 % × patrimoine net'],
+                    ['IFI net', 'IFI brut − décote progressive'],
+                    ['Plafonnement', 'Si IFI + IR > 75 % revenus → IFI réduit'],
+                    ['Taux effectif', 'IFI net / patrimoine net × 100'],
+                  ].map(([label, val]) => (
+                    <div key={label} className="font-mono">
+                      <p className="text-xs text-neutral-400 mb-0.5">{label}</p>
+                      <p className="text-xs text-neutral-700">{val}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <SourcesSection sources={SOURCES_IFI} />
+
+              <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
+                <p className="text-sm text-primary-800">
+                  <strong>Millésime fiscal : 2026.</strong> Barème applicable au patrimoine au 1er janvier 2026.
+                  Inchangé depuis la LF 2018. Dernière vérification des sources : 07/05/2026.
+                  Ce calculateur est indicatif ; les exonérations partielles (biens professionnels, forêts,
+                  démembrement) et les réductions pour dons ne sont pas prises en compte.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
+            <p className="font-mono text-xs text-neutral-400 leading-relaxed">
+              Outil indicatif uniquement. Ne constitue pas un conseil fiscal personnalisé.
+              Consultez un notaire ou un conseiller en gestion de patrimoine avant toute décision.{' '}
+              <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
+                Code source ouvert
+              </a>
+            </p>
+          </div>
+        </section>
+
+      </div>
+      <Footer />
+    </>
+  )
+}

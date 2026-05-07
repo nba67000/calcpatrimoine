@@ -41,6 +41,12 @@ const FAQ_SECTIONS = [
     desc: 'Calcul de la TMI, barème IR 2026, quotient familial, décote, différence TMI et taux moyen.',
     count: '8 questions',
   },
+  {
+    href: '/faq/ifi',
+    label: 'FAQ IFI — Fortune immobilière',
+    desc: 'Seuil 1 300 000 €, barème progressif, abattement résidence principale, décote, plafonnement IFI + IR.',
+    count: '10 questions',
+  },
 ]
 
 export default function FAQIndexPage() {
