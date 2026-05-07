@@ -20,12 +20,19 @@ const SITUATIONS: { value: SituationFamiliale; label: string }[] = [
 ]
 
 export default function HomeHeroWidget() {
-  const [revenu, setRevenu]       = useState(45000)
-  const [situation, setSituation] = useState<SituationFamiliale>('celibataire')
+  const [revenu, setRevenu]             = useState(45000)
+  const [situation, setSituation]       = useState<SituationFamiliale>('celibataire')
+  const [nombreEnfants, setNombreEnfants] = useState(0)
+
+  function handleSituation(s: SituationFamiliale) {
+    setSituation(s)
+    // Parent isolé sans enfant est juridiquement impossible (case T Art. 195-1-c CGI)
+    if (s === 'parent-isole' && nombreEnfants === 0) setNombreEnfants(1)
+  }
 
   const result = useMemo(
-    () => calculerTMIResult({ revenuNetImposable: revenu, situationFamiliale: situation, nombreEnfants: 0 }),
-    [revenu, situation]
+    () => calculerTMIResult({ revenuNetImposable: revenu, situationFamiliale: situation, nombreEnfants }),
+    [revenu, situation, nombreEnfants]
   )
 
   const palette = TMI_PALETTE[result.tmi]
@@ -38,13 +45,13 @@ export default function HomeHeroWidget() {
           TMI — Barème IR 2026
         </p>
         <p className="font-mono text-xs text-neutral-400 mt-0.5">
-          Revenus 2025 · Estimation sans enfant
+          Revenus 2025
         </p>
       </div>
 
       <div className="px-6 py-5">
         {/* Situation familiale */}
-        <div className="mb-5">
+        <div className="mb-4">
           <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-2">
             Situation
           </p>
@@ -52,7 +59,7 @@ export default function HomeHeroWidget() {
             {SITUATIONS.map(s => (
               <button
                 key={s.value}
-                onClick={() => setSituation(s.value)}
+                onClick={() => handleSituation(s.value)}
                 className={`font-mono text-xs py-2 px-1 border transition-colors ${
                   situation === s.value
                     ? 'bg-primary-700 text-white border-primary-700'
@@ -62,6 +69,35 @@ export default function HomeHeroWidget() {
                 {s.label}
               </button>
             ))}
+          </div>
+        </div>
+
+        {/* Enfants à charge */}
+        <div className="mb-5">
+          <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-2">
+            Enfants à charge
+          </p>
+          <div className="flex gap-1.5">
+            {[0, 1, 2, 3, 4].map(n => {
+              const disabled = situation === 'parent-isole' && n === 0
+              return (
+                <button
+                  key={n}
+                  disabled={disabled}
+                  onClick={() => !disabled && setNombreEnfants(n)}
+                  title={disabled ? 'Parent isolé : au moins 1 enfant requis (Art. 195-1-c CGI)' : undefined}
+                  className={`w-10 h-10 font-mono text-sm border transition-colors ${
+                    disabled
+                      ? 'text-neutral-200 border-neutral-100 cursor-not-allowed'
+                      : nombreEnfants === n
+                        ? 'bg-primary-700 text-white border-primary-700'
+                        : 'text-neutral-600 border-neutral-200 hover:border-primary-400'
+                  }`}
+                >
+                  {n}
+                </button>
+              )
+            })}
           </div>
         </div>
 
@@ -90,7 +126,7 @@ export default function HomeHeroWidget() {
           </div>
         </div>
 
-        {/* Résultat principal — TMI */}
+        {/* Résultat — TMI */}
         <div
           className="border p-4 mb-4 flex items-center justify-between gap-4"
           style={{ backgroundColor: palette.bg, borderColor: palette.border }}
@@ -126,7 +162,7 @@ export default function HomeHeroWidget() {
         </Link>
 
         <p className="font-mono text-xs text-neutral-400 text-center mt-3 leading-relaxed">
-          Estimation barème 2026. Sans enfant à charge.
+          Estimation barème 2026. Sans conseil personnalisé.
         </p>
       </div>
     </div>

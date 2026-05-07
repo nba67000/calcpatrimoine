@@ -36,6 +36,12 @@ export default function TMICalculator() {
   const [situationFamiliale, setSituationFamiliale] = useState<SituationFamiliale>('celibataire')
   const [nombreEnfants, setNombreEnfants] = useState<number>(0)
 
+  function handleSituation(s: SituationFamiliale) {
+    setSituationFamiliale(s)
+    // Parent isolé sans enfant est juridiquement impossible (case T Art. 195-1-c CGI)
+    if (s === 'parent-isole' && nombreEnfants === 0) setNombreEnfants(1)
+  }
+
   const inputs: TMIInputs = {
     revenuNetImposable: revenu.value,
     situationFamiliale,
@@ -101,7 +107,7 @@ export default function TMICalculator() {
             {SITUATIONS.map((s) => (
               <button
                 key={s.value}
-                onClick={() => setSituationFamiliale(s.value)}
+                onClick={() => handleSituation(s.value)}
                 className={`w-full text-left px-4 py-3 rounded-lg font-medium text-sm transition-all border-2 ${
                   situationFamiliale === s.value
                     ? 'bg-primary-600 text-white border-primary-600 shadow-md'
@@ -119,22 +125,31 @@ export default function TMICalculator() {
               Enfants à charge fiscalement
             </label>
             <div className="flex gap-2 flex-wrap">
-              {[0, 1, 2, 3, 4, 5].map((n) => (
-                <button
-                  key={n}
-                  onClick={() => setNombreEnfants(n)}
-                  className={`w-12 h-12 rounded-lg font-bold text-sm transition-all ${
-                    nombreEnfants === n
-                      ? 'bg-primary-600 text-white shadow-md scale-105'
-                      : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
-                  }`}
-                >
-                  {n}
-                </button>
-              ))}
+              {[0, 1, 2, 3, 4, 5].map((n) => {
+                const disabled = situationFamiliale === 'parent-isole' && n === 0
+                return (
+                  <button
+                    key={n}
+                    disabled={disabled}
+                    onClick={() => setNombreEnfants(n)}
+                    title={disabled ? 'Parent isolé : au moins 1 enfant requis (Art. 195-1-c CGI)' : undefined}
+                    className={`w-12 h-12 rounded-lg font-bold text-sm transition-all ${
+                      disabled
+                        ? 'bg-neutral-50 text-neutral-300 cursor-not-allowed'
+                        : nombreEnfants === n
+                          ? 'bg-primary-600 text-white shadow-md scale-105'
+                          : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                    }`}
+                  >
+                    {n}
+                  </button>
+                )
+              })}
             </div>
             <p className="text-xs text-neutral-500 mt-2">
-              Enfants rattachés au foyer fiscal (art. 196 CGI).
+              {situationFamiliale === 'parent-isole'
+                ? 'Parent isolé (case T) : au moins 1 enfant requis — Art. 195-1-c CGI.'
+                : 'Enfants rattachés au foyer fiscal (art. 196 CGI).'}
             </p>
           </div>
         </div>
