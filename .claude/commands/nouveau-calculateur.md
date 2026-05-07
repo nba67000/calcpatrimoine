@@ -7,6 +7,14 @@ description: Implémente un nouveau calculateur de bout en bout, en suivant le w
 Tu vas implémenter **un seul** calculateur de A à Z. Tu suis le workflow
 défini dans `CLAUDE.md` §7 sans dévier.
 
+**MODE SOBRIÉTÉ ACTIVE** — Token efficiency obligatoire :
+- Chemins de fichiers only (pas de contenu complet sauf si demandé)
+- Diffs plutôt que fichiers entiers pour les modifications
+- Pas d'explication si l'action est évidente
+- Réponses en français
+
+---
+
 ## Étapes à suivre dans l'ordre
 
 ### 1. Lire la backlog et choisir
@@ -17,8 +25,12 @@ défini dans `CLAUDE.md` §7 sans dévier.
   l'ordre du fichier.
 - **Mettre à jour son statut à `in-progress`** immédiatement, avec la date
   du jour.
-- Annoncer à l'utilisateur : "Je commence le calculateur `<slug>` — <nom>.
+- Annoncer : "Je commence le calculateur `<slug>` — <nom>.
   Estimation : <X> étapes, <Y> fichiers."
+
+**STOP — attends validation avant de continuer.**
+
+---
 
 ### 2. Recherche des sources légales
 
@@ -29,11 +41,26 @@ défini dans `CLAUDE.md` §7 sans dévier.
   1. `legifrance.gouv.fr`
   2. `bofip.impots.gouv.fr`
   3. `boss.gouv.fr` (pour la protection sociale)
-  4. `service-public.fr` (dernier recours — confirme les chiffres mais citer
+  4. `service-public.fr` (dernier recours — confirme les chiffres mais cite
      la source primaire dans le code)
+- Pour chaque article ou barème tenté :
+  - Si succès → extrait les données clés (montants, seuils, taux) en tableau
+    compact.
+  - Si échec → écrire EXACTEMENT :
+    ```
+    ⚠️ ACCÈS IMPOSSIBLE
+    Article : <nom complet>
+    URL tentée : <url>
+    Donnée manquante : <ce qu'il faut chercher>
+    Action requise : fournis-moi ce chiffre avant que je continue.
+    ```
 - **Créer `docs/sources/<slug>.md`** selon le template de `CLAUDE.md` §6.
-- Lister au moins 3 cas chiffrés de référence venant de sources officielles
-  (exemples BOFiP, cas types service-public).
+- Lister au moins 3 cas chiffrés de référence venant de sources officielles.
+
+**STOP si au moins un ⚠️ — attends que Nicolas fournisse les données
+manquantes avant de continuer.**
+
+---
 
 ### 3. Types
 
@@ -41,6 +68,8 @@ défini dans `CLAUDE.md` §7 sans dévier.
 - Créer ou étendre `src/types/<domaine>.ts`.
 - Inclure au minimum : `<Nom>Inputs`, `<Nom>Results`, les types intermédiaires,
   et les structures `warnings` / `optimisations` standards.
+
+---
 
 ### 4. Logique pure
 
@@ -52,12 +81,16 @@ défini dans `CLAUDE.md` §7 sans dévier.
   - Au moins 2 exemples de référence en JSDoc `@example` avec valeurs
     attendues issues des cas identifiés en étape 2.
 
+---
+
 ### 5. Auto-validation
 
 - **Simuler mentalement** chaque exemple de référence : la fonction doit
   retourner exactement les valeurs attendues (tolérance ±1 € sur les arrondis).
 - Si un écart est constaté, corriger avant de continuer.
-- **Si tu n'arrives pas à reproduire un cas officiel, t'arrêter et demander**.
+- **Si tu n'arrives pas à reproduire un cas officiel → s'arrêter et demander.**
+
+---
 
 ### 6. UI — composant calculateur
 
@@ -66,10 +99,13 @@ défini dans `CLAUDE.md` §7 sans dévier.
 - Créer `src/components/Calculator/<Nom>Calculator.tsx`.
 - Pattern : `useState` pour les inputs, `useMemo` pour le calcul, deux
   colonnes responsive.
+- Palette : bleu unique, zéro emoji, amber warning only.
 - Rendu des warnings / optimisations selon la convention Tailwind des
   `CONVENTIONS_CALCULATEUR.md`.
 
-### 7. Page
+---
+
+### 7. Page calculateur
 
 - Lire `src/app/assurance-vie/fiscalite-rachat/page.tsx` (ou équivalent) pour
   calquer la structure.
@@ -79,20 +115,65 @@ défini dans `CLAUDE.md` §7 sans dévier.
   - H1 + sous-titre.
   - `<LegalDisclaimer />` au-dessus du calculateur.
   - Le composant calculateur.
-  - Sections SEO sous le fold : "Comment ça marche", "Formule", "Exemples",
-    FAQ si pertinent.
-  - Section "Sources" reprenant `docs/sources/<slug>.md` (via
-    `<CalculatorSources>` si le composant existe déjà, sinon inline
-    pour l'instant et on factorisera).
+  - Sections SEO sous le fold : "Comment ça marche", "Formule", "Exemples".
+  - Section "Sources" reprenant `docs/sources/<slug>.md`.
 
-### 8. Intégration
+---
+
+### 8. Page FAQ associée
+
+- Identifier la page FAQ existante la plus proche (lire son fichier pour
+  calquer le pattern exact : structure, composants, style).
+- Créer `src/app/<slug>/faq/page.tsx` avec :
+  - Metadata complète (title, description, openGraph).
+  - Breadcrumb incluant le lien retour vers `/<slug>`.
+  - H1 + sous-titre orienté questions fréquentes.
+  - Au minimum 8 questions/réponses pertinentes issues des cas identifiés
+    en étape 2 et de la logique métier de l'étape 4.
+  - `<LegalDisclaimer />`.
+  - Lien retour vers le calculateur.
+- Ajouter le lien FAQ dans la page calculateur (étape 7) si un pattern
+  de lien inter-pages existe déjà.
+
+**STOP — liste les fichiers créés (chemins uniquement). Attends validation.**
+
+---
+
+### 9. Intégration navigation
 
 - Ajouter le lien dans `src/components/Header.tsx` si la navigation principale
-  doit le contenir (vérifier la convention actuelle — P1 oui, P2/P3 en
-  "sous-menu" ou footer).
-- Ajouter l'URL dans `src/app/sitemap.ts`.
+  doit le contenir (P1 oui, P2/P3 en sous-menu ou footer).
+- Ajouter les URLs (`/<slug>` et `/<slug>/faq`) dans `src/app/sitemap.ts`.
 
-### 9. Vérifications
+---
+
+### 10. Tests
+
+- Identifier les fichiers de tests existants et lire un test proche pour
+  calquer le pattern.
+- Créer les tests pour le nouveau calculateur (logique pure + composant si
+  couverture UI existe déjà).
+- Lancer **tous** les tests existants :
+
+```bash
+npm run test
+```
+
+- Produire un rapport en tableau compact :
+
+| Fichier test | Statut | Écart vs pattern |
+|---|---|---|
+| ... | ✅ / ❌ | ... |
+
+- Si des écarts de pattern sont détectés entre tests existants →
+  proposer une harmonisation en diff minimal.
+
+**STOP si des tests échouent ou si une harmonisation est proposée —
+attends validation avant toute modification.**
+
+---
+
+### 11. Vérifications build
 
 Lancer dans l'ordre, corriger au fur et à mesure :
 
@@ -102,25 +183,66 @@ npm run lint
 npm run build
 ```
 
-**Tous doivent passer.** Si un échec semble impossible à corriger rapidement,
-s'arrêter et demander.
+**Tous doivent passer.** Si un échec semble impossible à corriger en 2
+tentatives, s'arrêter et résumer l'erreur.
 
-### 10. Commit
+---
+
+### 12. Amélioration architecture
+
+Invoquer le skill `/improve-codebase-architecture`.
+
+**STOP après le rapport — attends validation avant tout refactor.**
+
+---
+
+### 13. Audit sécurité
+
+Tu es un security specialist. Audite le projet sur les points suivants :
+
+- **Security headers** : CSP, HSTS, X-Frame-Options, X-Content-Type-Options,
+  Referrer-Policy, Permissions-Policy — vérifier la config
+  `next.config.js` / middleware.
+- **Exposition côté client** : variables d'env publiques, données sensibles
+  dans le bundle.
+- **Dépendances vulnérables** :
+
+```bash
+npm audit
+```
+
+- **Surface d'attaque** : formulaires, inputs non sanitisés, absence de
+  rate limiting si API routes présentes.
+- **Fichiers sensibles exposés** : `.env`, configs, routes admin sans
+  protection.
+
+Produire un rapport en tableau :
+
+| Faille | Sévérité | Fix recommandé |
+|---|---|---|
+| ... | Critical / High / Medium / Low | ... |
+
+**STOP — attends validation avant d'appliquer les fixes.**
+
+---
+
+### 14. Commit
 
 - Un seul commit (ou plusieurs atomiques bien découpés : types / lib / UI /
-  page / docs).
+  page / faq / tests / docs).
 - Message : `feat(calc): ajout calculateur <slug>` avec description courte
   dans le corps.
 - **Ne pas pousser automatiquement.** C'est Nicolas qui décide quand pousser.
 
-### 11. Fermeture
+---
+
+### 15. Fermeture
 
 - Mettre à jour `BACKLOG.md` : statut `in-progress` → `done` avec la date.
-- Résumer ce qui a été fait à l'utilisateur : fichiers créés, sources
-  utilisées, points de vigilance éventuels, commande pour lancer
-  `npm run dev` et tester.
+- Résumer en bullets courts : fichiers créés, sources utilisées, points de
+  vigilance, commande `npm run dev` pour tester.
 - **S'arrêter.** Ne pas enchaîner sur un autre calculateur sauf si
-  `/mode-autonome` a été invoquée.
+  `/mode-autonome` a été invoqué.
 
 ---
 
@@ -128,10 +250,10 @@ s'arrêter et demander.
 
 - **Doute sur un chiffre fiscal** → s'arrêter, demander à Nicolas.
 - **Source non trouvée** → ne pas inventer, documenter le manque dans
-  `docs/sources/<slug>.md`, demander.
-- **Build qui échoue malgré 2 tentatives de fix** → s'arrêter, résumer
-  l'erreur, demander.
-- **Fichier existant qui semble entrer en conflit** → s'arrêter, montrer
-  le fichier, demander.
+  `docs/sources/<slug>.md`, signaler avec ⚠️, attendre.
+- **Build qui échoue malgré 2 tentatives** → s'arrêter, résumer l'erreur,
+  demander.
+- **Tests qui échouent malgré 2 tentatives** → s'arrêter, résumer, demander.
+- **Fichier existant en conflit** → s'arrêter, montrer le chemin, demander.
 
 Mieux vaut 1 calculateur juste que 3 approximatifs.
