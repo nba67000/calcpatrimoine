@@ -36,8 +36,8 @@ input[type="range"],
   height: 0.5rem;
 }
 
-input[type="range"]::-webkit-slider-track,
-.custom-range::-webkit-slider-track {
+input[type="range"]::-webkit-slider-runnable-track,
+.custom-range::-webkit-slider-runnable-track {
   background: linear-gradient(to right, #D1DDE9 0%, #2E4A6F 100%) !important;
   height: 0.5rem !important;
   border-radius: 0.5rem !important;
