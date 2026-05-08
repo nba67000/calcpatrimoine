@@ -137,7 +137,7 @@ export default function IFICalculator() {
               className="w-5 h-5 mt-0.5 text-primary-600 rounded focus:ring-2 focus:ring-primary-500 shrink-0"
             />
             <span className="text-sm text-neutral-700">
-              <span className="font-medium">Calculer le plafonnement IFI + IR</span>
+              <span className="font-medium">Vérifier le plafonnement IFI + IR</span>
               <span className="block text-xs text-neutral-500 mt-0.5">
                 IFI + IR ne peut excéder 75 % des revenus (Art. 979 CGI)
               </span>
@@ -161,7 +161,7 @@ export default function IFICalculator() {
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
                 </div>
-                <p className="text-xs text-neutral-500 mt-1">Revenus soumis à l&apos;IR, y compris revenus de capitaux mobiliers.</p>
+                <p className="text-xs text-neutral-500 mt-1">Revenus soumis à l&apos;IR, y compris dividendes, intérêts et loyers.</p>
               </div>
               <div>
                 <label className="text-sm font-medium text-neutral-700 block mb-2">

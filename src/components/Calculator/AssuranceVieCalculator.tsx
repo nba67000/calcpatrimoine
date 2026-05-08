@@ -253,9 +253,9 @@ export default function AssuranceVieCalculator() {
               Au-delà de 150 000 € : le PFU passe de 7,5 % à 12,8 % (Art. 125-0 A CGI).
             </p>
             {encoursTotalContrats <= 150000 ? (
-              <p className="text-xs text-primary-600 mt-1">PFU reduit : 7,5% IR (encours &le; 150 000€)</p>
+              <p className="text-xs text-primary-600 mt-1">Taux réduit : 7,5 % (total versé ≤ 150 000 €)</p>
             ) : (
-              <p className="text-xs text-amber-600 mt-1">PFU normal : 12,8% IR (encours &gt; 150 000€)</p>
+              <p className="text-xs text-amber-600 mt-1">Taux normal : 12,8 % (total versé &gt; 150 000 €)</p>
             )}
           </div>
         </div>

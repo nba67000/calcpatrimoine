@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import CalculateurPageLayout from '@/components/CalculateurPageLayout'
 import IFICalculator from '@/components/Calculator/IFICalculator'
@@ -87,12 +87,12 @@ export default function IFIPage() {
 
               <p>
                 <strong>La résidence principale bénéficie d&apos;un abattement de 30 %.</strong>{' '}
-                Concrètement, si votre maison vaut 600 000 €, seuls 420 000 € entrent dans l&apos;assiette.
+                Concrètement, si votre maison vaut 600 000 €, seuls 420 000 € entrent dans votre patrimoine taxable.
                 Cet abattement s&apos;applique automatiquement sur déclaration, sans démarche particulière.
               </p>
 
               <p>
-                <strong>Les emprunts immobiliers en cours réduisent l&apos;assiette.</strong>{' '}
+                <strong>Les emprunts immobiliers en cours réduisent votre patrimoine taxable.</strong>{' '}
                 Seul le capital restant dû au 1er janvier est déductible, et uniquement pour les dettes
                 contractées pour acquérir, construire, rénover ou entretenir les biens taxables.
                 Les prêts à la consommation ou personnels ne sont pas déductibles.

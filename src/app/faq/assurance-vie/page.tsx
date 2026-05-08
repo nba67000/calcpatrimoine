@@ -22,7 +22,7 @@ const faqItems: FAQItem[] = [
  answer: (
  <>
  <p className="mb-3">
- <strong>Non, absolument pas.</strong>Tous les calculs sont effectués localement 
+ <strong>Non, absolument pas.</strong>{' '}Tous les calculs sont effectués localement 
  dans votre navigateur, en JavaScript. Aucune donnée n&apos;est envoyée à un serveur, 
  stockée dans une base de données, ou conservée après la fermeture de votre navigateur.
  </p>
@@ -55,7 +55,7 @@ const faqItems: FAQItem[] = [
  answer: (
  <>
  <p className="mb-3">
- <strong>Oui.</strong>Toutes les formules sont conformes au Code Général des Impôts 
+ <strong>Oui.</strong>{' '}Toutes les formules sont conformes au Code Général des Impôts 
  (article 125-0 A) et au Bulletin Officiel des Finances Publiques.
  </p>
  <p className="mb-3">

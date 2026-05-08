@@ -41,7 +41,7 @@ const EXEMPLES = [
 const LIMITES = [
   'Ce calculateur couvre uniquement la partie déductible des versements volontaires du PER individuel (PERIN). Le PER d\'entreprise collectif (PERCOL), le PER obligatoire (PERO) et le régime TNS (Madelin) ne sont pas simulés.',
   'Le régime TNS (Madelin) n\'est pas pris en compte car les plafonds sont différents.',
-  'La mutualisation des plafonds entre conjoints (mariage ou PACS) n\'est pas simulée.',
+  'Le partage du plafond de déduction entre conjoints ou partenaires de PACS n\'est pas simulé.',
   'La fiscalité à la sortie (imposition de la rente ou du capital) n\'est pas simulée.',
   'Il est supposé que les frais professionnels sont couverts par l\'abattement forfaitaire. Les frais réels ne sont pas gérés.',
 ]

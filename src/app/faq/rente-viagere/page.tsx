@@ -392,8 +392,8 @@ const sections: FAQSection[] = [
         answer: (
           <>
             <p className="mb-3">
-              <strong>Le calculateur &quot;Mode Couple&quot;</strong> compare plusieurs stratégies pour optimiser
-              vos revenus en couple et protéger le survivant.
+              <strong>Le calculateur &quot;Mode Couple&quot;</strong> compare plusieurs stratégies de rente pour un couple
+              et montre leur impact sur le survivant.
             </p>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4 mb-4">
               <p className="text-sm text-primary-900 mb-2"><strong>Principe clé</strong> : deux options principales :</p>
