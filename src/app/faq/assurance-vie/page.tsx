@@ -465,10 +465,10 @@ const faqItems: FAQItem[] = [
 ]
 
 const categoryLabels = {
- 'utilisation': '🖥️ Utilisation du calculateur',
- 'fiscalite': ' Fiscalité de base',
- 'cas-specifiques': ' Cas spécifiques',
- 'optimisation': ' Comparaisons et scénarios',
+ 'utilisation': 'Utilisation du calculateur',
+ 'fiscalite': 'Fiscalité de base',
+ 'cas-specifiques': 'Cas spécifiques',
+ 'optimisation': 'Comparaisons et scénarios',
 }
 
 export default function FAQAssuranceViePage() {

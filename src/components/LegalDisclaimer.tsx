@@ -8,8 +8,7 @@ export default function LegalDisclaimer() {
         Ce calculateur fait des simulations. Il ne remplace pas un conseiller. Les résultats
         dépendent uniquement des données que vous saisissez et des barèmes officiels en vigueur.
         CalculPatrimoine n&apos;est pas un conseiller financier agréé (non enregistré comme CIF
-        auprès de l&apos;AMF/ACPR, au sens de la directive MIF II). Consultez un professionnel
-        qualifié avant toute décision.
+        auprès de l&apos;AMF/ACPR). Consultez un professionnel qualifié avant toute décision.
       </p>
     </div>
   )

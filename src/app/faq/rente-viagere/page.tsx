@@ -143,8 +143,9 @@ const sections: FAQSection[] = [
             </ul>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4 mt-4">
               <p className="text-sm text-primary-900">
-                <strong>Conseil</strong> : Ne mettez pas TOUT votre capital en rente viagère.
-                Gardez une réserve de sécurité (10-20k€) accessible en cas d&apos;urgence (santé, travaux...).
+                <strong>À noter</strong> : une réserve accessible (Livret A, assurance-vie) en dehors de la rente
+                permet de faire face aux dépenses imprévues (santé, travaux).
+                La rente viagère immobilise définitivement le capital converti.
               </p>
             </div>
           </>

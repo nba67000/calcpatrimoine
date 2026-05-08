@@ -116,8 +116,9 @@ const sections: FAQSection[] = [
             </ul>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4">
               <p className="text-sm text-primary-900">
-                <strong>Conclusion pratique</strong> : si possible, effectuez vos versements
-                importants avant vos 70 ans pour bénéficier du régime 990 I.
+                <strong>À retenir</strong> : les versements avant 70 ans relèvent du régime 990 I — abattement de 152 500 € par bénéficiaire.
+                Les versements après 70 ans relèvent du 757 B — abattement global de 30 500 €.
+                L&apos;écart peut représenter plusieurs dizaines de milliers d&apos;euros selon le capital transmis.
               </p>
             </div>
           </>

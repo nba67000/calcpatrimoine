@@ -8,7 +8,7 @@ import FAQAccordionClient from '@/components/FAQAccordionClient'
 
 export const metadata: Metadata = {
   title: 'FAQ PER Individuel 2026 — Versements et déductibilité | CalculPatrimoine',
-  description: "Questions fréquentes sur le PER individuel : plafonds 2026, déductibilité, report sur 3 ans, TMI, sortie en capital ou rente.",
+  description: "Questions fréquentes sur le PER individuel : plafonds 2026, déductibilité, report sur 5 ans (LF 2026), TMI, sortie en capital ou rente.",
 }
 
 interface FAQItem {
@@ -149,18 +149,18 @@ const sections: FAQSection[] = [
         ),
       },
       {
-        question: 'Qu\'est-ce que le report des plafonds N-1, N-2, N-3 ?',
+        question: 'Qu\'est-ce que le report des plafonds N-1 à N-5 ?',
         answer: (
           <>
             <p className="mb-3">
-              Si vous n&apos;avez pas utilisé tout votre plafond PER les 3 années précédentes,
+              Si vous n&apos;avez pas utilisé tout votre plafond PER dans les <strong>5 années précédentes</strong> (depuis la LF 2026 — auparavant 3 ans),
               vous pouvez <strong>reporter le solde non utilisé</strong> sur l&apos;année en cours.
             </p>
             <p className="mb-3">
               <strong>Comment ça s&apos;additionne :</strong>
             </p>
             <div className="bg-neutral-100 border border-neutral-200 p-4 mb-3 font-mono text-sm">
-              Plafond total = Plafond N + Report N-1 + Report N-2 + Report N-3
+              Plafond total = Plafond N + Report N-1 + N-2 + N-3 + N-4 + N-5
             </div>
             <div className="bg-primary-100 p-4 border border-neutral-200 mb-3">
               <p className="mb-2 font-bold text-sm">Exemple :</p>
@@ -169,7 +169,9 @@ const sections: FAQSection[] = [
                 <li>Plafond N-1 : 4 800€, versé 4 800€ → solde 0€</li>
                 <li>Plafond N-2 : 4 500€, versé 1 500€ → solde 3 000€</li>
                 <li>Plafond N-3 : 4 200€, versé 4 200€ → solde 0€</li>
-                <li className="font-bold mt-2">Plafond total disponible : 5 000 + 3 000 + 3 000 = <strong>11 000€</strong></li>
+                <li>Plafond N-4 : 4 000€, versé 4 000€ → solde 0€</li>
+                <li>Plafond N-5 : 3 800€, versé 1 800€ → solde 2 000€</li>
+                <li className="font-bold mt-2">Plafond total disponible : 5 000 + 3 000 + 3 000 + 2 000 = <strong>13 000€</strong></li>
               </ul>
             </div>
             <p className="text-sm text-neutral-600">
