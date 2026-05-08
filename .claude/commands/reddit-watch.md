@@ -1,11 +1,46 @@
 ---
-description: Scanne r/vosfinances pour détecter (1) les posts où un calculateur existant peut répondre, (2) les idées de nouveaux calculateurs à proposer en backlog. Rapport uniquement — aucune modification sans validation.
+description: Analyse des posts r/vosfinances pour détecter (1) les posts où un calculateur existant peut répondre, (2) les idées de nouveaux calculateurs à proposer en backlog. Rapport uniquement — aucune modification sans validation. Deux modes : auto-fetch (bloqué chez Anthropic) ou analyse manuelle d'un post collé.
 ---
 
 # /reddit-watch
 
-Tu es un veilleur produit pour CalcPatrimoine. Ta mission : lire les posts récents de
+Tu es un veilleur produit pour CalcPatrimoine. Ta mission : analyser des posts de
 r/vosfinances et produire un rapport en deux sections.
+
+---
+
+## ⚠️ Contrainte technique — Reddit bloqué
+
+Reddit (www.reddit.com, old.reddit.com) est **bloqué au niveau du crawler Anthropic**.
+WebFetch et WebSearch retournent une erreur explicite sur tout domaine reddit.com.
+Les API miroir (pushshift, pullpush.io) sont également inaccessibles.
+
+**Deux modes de fonctionnement :**
+
+### Mode A — Analyse manuelle (mode par défaut opérationnel)
+
+L'utilisateur colle directement un ou plusieurs posts dans la conversation, au format :
+
+```
+/reddit-watch
+[TITRE] Titre du post
+[SCORE] 42
+[URL] https://reddit.com/r/vosfinances/comments/xxxxx/titre/
+[CORPS] Corps du post (texte libre)
+```
+
+Aller directement à l'**Étape 1** (lire l'état du projet), puis analyser les posts fournis.
+
+### Mode B — Auto-fetch (bloqué actuellement)
+
+Si Reddit redevient accessible, appeler les deux URLs via WebFetch :
+```
+https://www.reddit.com/r/vosfinances/hot.json?limit=50
+https://www.reddit.com/r/vosfinances/top.json?t=week&limit=50
+```
+
+Si WebFetch échoue sur les deux URLs → signaler le blocage à Nicolas et basculer
+en Mode A ou s'arrêter selon son choix.
 
 ---
 
@@ -13,7 +48,7 @@ r/vosfinances et produire un rapport en deux sections.
 
 ### 1. Lire l'état du projet
 
-Avant de toucher Reddit, lire :
+Avant d'analyser les posts, lire :
 - `BACKLOG.md` — calculateurs livrés et idées déjà notées (`proposed`)
 - `src/config/navigation.ts` — slugs et noms des calculateurs déployés
 
@@ -21,27 +56,18 @@ Mémoriser :
 - Les slugs et descriptions des calculateurs **existants** (pour la section Réponses).
 - Les idées déjà en `proposed` (pour éviter les doublons dans la section Idées).
 
-### 2. Fetcher les posts Reddit
+### 2. Récupérer les posts
 
-Appeler successivement ces deux URLs via **WebFetch** :
+**Mode A :** utiliser les posts collés par l'utilisateur.
 
-```
-https://www.reddit.com/r/vosfinances/hot.json?limit=50
-https://www.reddit.com/r/vosfinances/top.json?t=week&limit=50
-```
+**Mode B :** appeler les deux URLs (voir ci-dessus). Dédupliquer par `id`.
+Pour chaque post, extraire : `title`, `selftext` (tronqué à 800 car.), `score`,
+`num_comments`, `link_flair_text`, `permalink`.
 
-Dédupliquer par `id`. Pour chaque post retenu, extraire :
-- `title` — titre
-- `selftext` — corps du post (tronquer à 800 caractères pour l'analyse)
-- `score` — upvotes
-- `num_comments`
-- `link_flair_text` — flair
-- `permalink` — URL relative (construire `https://reddit.com<permalink>`)
-
-**Filtrer les posts non pertinents** avant l'analyse :
-- Ignorer les posts sans selftext (liens externes purs, images).
-- Ignorer les flairs manifestement hors sujet : `Humour`, `Méta`, `Offre d'emploi`.
-- Ne retenir que les posts avec score ≥ 5 **ou** num_comments ≥ 3.
+**Filtrer les posts non pertinents** :
+- Ignorer sans `selftext` (liens externes purs, images).
+- Ignorer les flairs `Humour`, `Méta`, `Offre d'emploi`.
+- Ne retenir que score ≥ 5 **ou** num_comments ≥ 3.
 
 ### 3. Analyser chaque post
 
@@ -119,4 +145,4 @@ Si Nicolas dit "go backlog [numéros]", ajouter les idées correspondantes dans
 - **Volume raisonnable** : si plus de 10 posts méritent chaque section, ne retenir
   que les 10 plus pertinents (score × pertinence thématique).
 - **Liens vérifiés** : construire l'URL Reddit complète à partir du `permalink`
-  de l'API (`https://reddit.com` + permalink).
+  de l'API (`https://reddit.com` + permalink), ou utiliser l'URL fournie en Mode A.
