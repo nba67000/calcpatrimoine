@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cat = CATEGORIES_CALC.find(c => c.slug === slug)
   if (!cat) return {}
   return {
-    title: `${cat.label} — Calculateurs | CalculPatrimoine`,
+    title: `${cat.label} - Calculateurs | CalculPatrimoine`,
     description: `${cat.description}. Calculateurs gratuits basés sur les textes officiels. Aucune donnée conservée.`,
   }
 }
@@ -52,7 +52,7 @@ export default async function CategorieCalcPage({ params }: Props) {
             <div>
               <div className="mb-10">
                 <p className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-4">
-                  Calculateurs — {cat.label}
+                  Calculateurs - {cat.label}
                 </p>
                 <div className="h-[2px] w-14 bg-accent-400 mb-6" />
                 <h1 className="font-serif text-4xl lg:text-5xl text-neutral-900 leading-tight tracking-tight mb-4">

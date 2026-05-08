@@ -5,7 +5,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'FAQ — Questions fréquentes | CalculPatrimoine',
+  title: 'FAQ - Questions fréquentes | CalculPatrimoine',
   description: 'Toutes les réponses sur nos calculateurs patrimoniaux : rente viagère, assurance-vie, PER, TMI, transmission. Retrouvez la FAQ dédiée à chaque outil.',
   keywords: 'faq calculpatrimoine, questions fréquentes, aide calculateur, rente viagère, assurance vie, PER, TMI',
 }
@@ -14,7 +14,7 @@ const FAQ_SECTIONS = [
   {
     href: '/faq/rente-viagere',
     label: 'FAQ Rente Viagère',
-    desc: 'Fonctionnement, réversion, fiscalité, couple, bon âge pour souscrire — tout savoir avant de décider.',
+    desc: 'Fonctionnement, réversion, fiscalité, couple, bon âge pour souscrire - tout savoir avant de décider.',
     count: '15 questions',
   },
   {
@@ -43,7 +43,7 @@ const FAQ_SECTIONS = [
   },
   {
     href: '/faq/ifi',
-    label: 'FAQ IFI — Fortune immobilière',
+    label: 'FAQ IFI - Fortune immobilière',
     desc: 'Seuil 1 300 000 €, barème progressif, abattement résidence principale, décote, plafonnement IFI + IR.',
     count: '10 questions',
   },

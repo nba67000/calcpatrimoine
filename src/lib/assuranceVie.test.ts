@@ -35,10 +35,10 @@ function inputsBase(overrides: Partial<AssuranceVieInputs> = {}): AssuranceVieIn
 }
 
 // ---------------------------------------------------------------------------
-// Contrat > 8 ans — vérification du bug fix Art. 125-0 A CGI
+// Contrat > 8 ans - vérification du bug fix Art. 125-0 A CGI
 // (encours ≤ 150 000 € → taux IR 7,5 %, pas 12,8 %)
 // ---------------------------------------------------------------------------
-describe('calculerFiscaliteRachat — contrat > 8 ans', () => {
+describe('calculerFiscaliteRachat - contrat > 8 ans', () => {
   it('encours ≤ 150 000 € → taux PFU global ≈ 24,7 % (7,5 % IR + 17,2 % PS)', () => {
     const r = calculerFiscaliteRachat(inputsBase({ encoursTotalContrats: 100000 }))
     expect(r.ancienneteContrat).toBeGreaterThanOrEqual(8)
@@ -70,7 +70,7 @@ describe('calculerFiscaliteRachat — contrat > 8 ans', () => {
 // ---------------------------------------------------------------------------
 // Contrat < 8 ans → flat tax 30 % sans abattement
 // ---------------------------------------------------------------------------
-describe('calculerFiscaliteRachat — contrat < 8 ans', () => {
+describe('calculerFiscaliteRachat - contrat < 8 ans', () => {
   it("taux PFU = 30 % (12,8 % IR + 17,2 % PS), pas d'abattement", () => {
     const r = calculerFiscaliteRachat(inputsBase({ dateOuverture: new Date('2024-01-01') }))
     expect(r.ancienneteContrat).toBeLessThan(8)
@@ -88,7 +88,7 @@ describe('calculerFiscaliteRachat — contrat < 8 ans', () => {
 // ---------------------------------------------------------------------------
 // Répartition proportionnelle capital / plus-value
 // ---------------------------------------------------------------------------
-describe('calculerFiscaliteRachat — répartition rachat', () => {
+describe('calculerFiscaliteRachat - répartition rachat', () => {
   it('50 % de plus-value dans le contrat → 50 % du rachat est de la PV', () => {
     const r = calculerFiscaliteRachat(inputsBase({ capitalTotal: 100000, versementTotal: 50000 }))
     // tauxPlusValue = 50%, partPlusValue = 20000 × 0.5 = 10000

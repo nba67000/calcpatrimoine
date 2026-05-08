@@ -31,9 +31,9 @@ Produire un rapport `docs/audits/audit-YYYY-MM-DD.md` avec :
 
 - Calculateurs dont les sources sont **à jour** (OK).
 - Calculateurs nécessitant une **mise à jour mineure** (date de consultation,
-  reformulation) — lister les fichiers.
+  reformulation) - lister les fichiers.
 - Calculateurs nécessitant une **mise à jour majeure** (changement de taux,
-  nouveau barème, évolution légale) — lister avec la nature du changement.
+  nouveau barème, évolution légale) - lister avec la nature du changement.
 - Calculateurs avec **risque de divergence** (l'article cité a changé mais
   l'impact sur le calcul n'est pas évident à juger).
 

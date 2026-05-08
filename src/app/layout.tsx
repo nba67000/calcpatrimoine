@@ -124,7 +124,7 @@ export default function RootLayout({
  
  {children}
  
- {/* Vercel Web Analytics — page views et performance, sans cookies */}
+ {/* Vercel Web Analytics - page views et performance, sans cookies */}
  <Analytics />
  </body>
  </html>

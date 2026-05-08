@@ -45,7 +45,7 @@ export default function PlusValueImmobiliereCalculator() {
     <>
     <div className="grid lg:grid-cols-2 gap-8">
 
-      {/* === COLONNE GAUCHE — INPUTS === */}
+      {/* === COLONNE GAUCHE - INPUTS === */}
       <div className="space-y-6">
 
         {/* Carte : Acquisition */}
@@ -236,7 +236,7 @@ export default function PlusValueImmobiliereCalculator() {
             </div>
             {typeBien === 'principal' && (
               <p className="text-xs text-green-700 bg-green-50 px-3 py-2 rounded-lg mt-2">
-                Exonération totale — résidence principale (Art. 150 U II 1° CGI)
+                Exonération totale - résidence principale (Art. 150 U II 1° CGI)
               </p>
             )}
           </div>
@@ -263,7 +263,7 @@ export default function PlusValueImmobiliereCalculator() {
         </div>
       </div>
 
-      {/* === COLONNE DROITE — RÉSULTATS === */}
+      {/* === COLONNE DROITE - RÉSULTATS === */}
       <div className="space-y-5">
 
         {/* Exonération totale */}
@@ -343,7 +343,7 @@ export default function PlusValueImmobiliereCalculator() {
             {/* Abattements */}
             <div className="bg-white rounded-xl border border-neutral-200 p-5 shadow-sm">
               <h4 className="text-sm font-bold text-neutral-700 uppercase tracking-wider mb-3">
-                Abattements — {results.anneesDetention} an{results.anneesDetention !== 1 ? 's' : ''} de détention
+                Abattements - {results.anneesDetention} an{results.anneesDetention !== 1 ? 's' : ''} de détention
               </h4>
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-neutral-50 rounded-lg p-3">
@@ -359,13 +359,13 @@ export default function PlusValueImmobiliereCalculator() {
               </div>
               {results.anneesAvantExoIR > 0 && (
                 <p className="text-xs text-neutral-500 mt-3">
-                  Exonération IR dans <span className="font-bold text-neutral-700">{results.anneesAvantExoIR} an{results.anneesAvantExoIR > 1 ? 's' : ''}</span> —
+                  Exonération IR dans <span className="font-bold text-neutral-700">{results.anneesAvantExoIR} an{results.anneesAvantExoIR > 1 ? 's' : ''}</span> -
                   Exonération PS totale dans <span className="font-bold text-neutral-700">{results.anneesAvantExoPS} an{results.anneesAvantExoPS > 1 ? 's' : ''}</span>
                 </p>
               )}
               {results.anneesAvantExoIR === 0 && results.anneesAvantExoPS > 0 && (
                 <p className="text-xs text-neutral-500 mt-3">
-                  IR exonéré — Exonération PS totale dans <span className="font-bold text-neutral-700">{results.anneesAvantExoPS} an{results.anneesAvantExoPS > 1 ? 's' : ''}</span>
+                  IR exonéré - Exonération PS totale dans <span className="font-bold text-neutral-700">{results.anneesAvantExoPS} an{results.anneesAvantExoPS > 1 ? 's' : ''}</span>
                 </p>
               )}
             </div>
@@ -400,7 +400,7 @@ export default function PlusValueImmobiliereCalculator() {
                       <span>Surtaxe (Art. 1609 nonies G CGI)</span>
                       <span className="font-bold">{formatEur(results.surtaxe)}</span>
                     </div>
-                    <p className="text-xs text-orange-600 mt-1">Taux effectif : {formatPct(results.tauxSurtaxeEffectif, 2)} — montant indicatif, calcul définitif par le notaire</p>
+                    <p className="text-xs text-orange-600 mt-1">Taux effectif : {formatPct(results.tauxSurtaxeEffectif, 2)} - montant indicatif, calcul définitif par le notaire</p>
                   </div>
                 )}
                 <div className="border-t border-neutral-200 pt-3 flex justify-between font-bold">

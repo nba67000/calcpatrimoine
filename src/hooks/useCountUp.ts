@@ -9,7 +9,7 @@ interface UseCountUpOptions {
  easing?: (t: number) => number
 }
 
-// easeOutExpo — très smooth, ralentit vers la fin
+// easeOutExpo - très smooth, ralentit vers la fin
 const defaultEasing = (t: number): number => {
  return t === 1 ? 1 : 1 - Math.pow(2, -10 * t)
 }

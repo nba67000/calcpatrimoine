@@ -72,7 +72,20 @@
       "PowerShell(Get-ChildItem \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\node_modules\\\\eslint-config-next\" -Name | Where-Object { $_ -match '\\\\.js$|^package\\\\.json$' })",
       "PowerShell(npm run *)",
       "Bash(python3 -c ' *)",
-      "Bash(npx eslint *)"
+      "Bash(npx eslint *)",
+      "PowerShell(Get-Content *)",
+      "Bash(python3 *)",
+      "WebFetch(domain:www.reddit.com)",
+      "WebFetch(domain:old.reddit.com)",
+      "WebFetch(domain:api.pullpush.io)",
+      "WebFetch(domain:www.devenir-rentier.fr)",
+      "WebFetch(domain:www.investisseursheureux.co)",
+      "WebFetch(domain:forum.boursorama.com)",
+      "WebFetch(domain:forum.hardware.fr)",
+      "WebFetch(domain:www.moneyvox.fr)",
+      "WebFetch(domain:www.cafe-de-la-bourse.com)",
+      "WebFetch(domain:www.lesdeplafonnes.fr)",
+      "WebFetch(domain:community.fortuneo.fr)"
     ]
   }
 }

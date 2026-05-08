@@ -8,7 +8,7 @@ import CrossLink from '@/components/CrossLink'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
 
 export const metadata: Metadata = {
-  title: 'FAQ Rente Viagère — Fonctionnement, réversion, fiscalité | CalculPatrimoine',
+  title: 'FAQ Rente Viagère - Fonctionnement, réversion, fiscalité | CalculPatrimoine',
   description: "Questions fréquentes sur la rente viagère : fonctionnement, réversion au conjoint, fiscalité, couples, bon âge pour souscrire.",
 }
 
@@ -190,7 +190,7 @@ const sections: FAQSection[] = [
         answer: (
           <>
             <p className="mb-3">
-              <strong>Utilisez notre calculateur</strong> — gratuit, instantané, basé sur les vraies tables de mortalité INSEE.
+              <strong>Utilisez notre calculateur</strong>  gratuit, instantané, basé sur les vraies tables de mortalité INSEE.
             </p>
             <p className="mb-3"><strong>Ordre de grandeur</strong> (pour 100 000€ de capital) :</p>
             <ul className="list-none pl-0 mb-3 space-y-2">
@@ -333,7 +333,7 @@ const sections: FAQSection[] = [
             </ol>
             <div className="bg-primary-50 border-l-4 border-primary-500 p-4 mt-4">
               <p className="text-sm text-primary-900">
-                <strong>CRUCIAL</strong> — Avant de signer, assurez-vous de garder une épargne de sécurité.
+                <strong>CRUCIAL:</strong> Avant de signer, assurez-vous de garder une épargne de sécurité.
                 La rente viagère doit compléter vos revenus, pas être votre unique ressource.
               </p>
             </div>
@@ -565,7 +565,7 @@ export default function FAQRenteViagerePage() {
             {/* Lien vers calculateur */}
             <CrossLink
               title="Calculez votre rente en 30 secondes"
-              description="Simulateur gratuit basé sur les tables de mortalité INSEE — 3 modes disponibles"
+              description="Simulateur gratuit basé sur les tables de mortalité INSEE: 3 modes disponibles"
               href="/"
             />
           </header>
@@ -588,7 +588,7 @@ export default function FAQRenteViagerePage() {
           <div className="mb-12 border-t border-neutral-300">
             {[
               { href: '/faq/assurance-vie', label: 'FAQ Assurance-Vie', desc: 'Fiscalité du rachat : PFU vs IR, abattement, optimisations.' },
-              { href: '/blog/rente-viagere-seuil-rentabilite', label: 'Article — Seuil de rentabilité de la rente viagère', desc: 'À quel âge récupérez-vous votre capital ? Analyse complète.' },
+              { href: '/blog/rente-viagere-seuil-rentabilite', label: 'Article  - Seuil de rentabilité de la rente viagère', desc: 'À quel âge récupérez-vous votre capital ? Analyse complète.' },
               { href: '/methodologie', label: 'Méthodologie & sources', desc: 'Formules de calcul, tables INSEE, références légales.' },
             ].map(link => (
               <Link

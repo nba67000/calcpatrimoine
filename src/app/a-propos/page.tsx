@@ -4,7 +4,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'À propos — CalculPatrimoine',
+  title: 'À propos - CalculPatrimoine',
   description: 'CalculPatrimoine : un développeur dans l\'assurance-vie, des outils de calcul open-source, une ligne éditoriale anti-conseil. L\'histoire du projet.',
 }
 

@@ -1,6 +1,6 @@
 // src/lib/chatContext.ts
 // Formateurs de contexte calculateur → texte lisible pour le système prompt du chatbot.
-// Chaque calculateur exporte son propre formateur dans son lib — centralisé ici pour dispatch.
+// Chaque calculateur exporte son propre formateur dans son lib - centralisé ici pour dispatch.
 
 import type { TMIInputs, TMIResults } from '@/types/tmi'
 import type { PERInputs, PERResults } from '@/types/per'
@@ -31,7 +31,7 @@ export type ContexteChat =
   | { calculateur: 'ifi'; inputs: IFIInputs; results: IFIResults }
 
 // ---------------------------------------------------------------------------
-// Point d'entrée unique — TypeScript vérifie l'exhaustivité via le type de retour
+// Point d'entrée unique - TypeScript vérifie l'exhaustivité via le type de retour
 // ---------------------------------------------------------------------------
 
 export function formatContexteChat(contexte: ContexteChat): string {

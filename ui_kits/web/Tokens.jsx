@@ -26,7 +26,7 @@ const Tokens = () => (
     button{font:inherit;cursor:pointer;border:none;background:none;padding:0;color:inherit}
     a{color:inherit;text-decoration:none}
     input,select,textarea{font:inherit}
-    /* Slider — visible track on WebKit + Firefox */
+    /* Slider - visible track on WebKit + Firefox */
     input[type=range]{-webkit-appearance:none;-moz-appearance:none;appearance:none;background:transparent;width:100%;height:24px;margin:0;padding:0;cursor:pointer;display:block}
     input[type=range]:focus{outline:none}
     /* WebKit */

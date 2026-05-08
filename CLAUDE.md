@@ -1,4 +1,4 @@
-# CLAUDE.md — Instructions pour Claude Code sur calcpatrimoine
+# CLAUDE.md - Instructions pour Claude Code sur calcpatrimoine
 
 Ce fichier est lu automatiquement par Claude Code à chaque session dans ce repo.
 Il contient **tout** ce qui est nécessaire pour implémenter un nouveau calculateur
@@ -54,7 +54,7 @@ src/types/<domaine>.ts                          ← Interfaces Inputs / Results
 src/lib/<domaine>.ts                            ← Logique pure (fonctions de calcul)
 src/components/Calculator/<Nom>Calculator.tsx   ← UI React (saisie + affichage)
 src/app/<slug>/page.tsx                         ← Page Next.js
-docs/sources/<slug>.md                          ← Sources légales (NOUVEAU — voir §6)
+docs/sources/<slug>.md                          ← Sources légales (NOUVEAU - voir §6)
 ```
 
 ### 3.1. Le fichier `types/<domaine>.ts`
@@ -87,7 +87,7 @@ Conventions de style :
   // 3. ...
   ```
 - Constantes fiscales et seuils : soit inline avec commentaire citant la source
-  (`// Art. 150-0 A CGI — PFU 12,8%`), soit dans `lib/constants.ts` si réutilisés.
+  (`// Art. 150-0 A CGI - PFU 12,8%`), soit dans `lib/constants.ts` si réutilisés.
 - Aucune dépendance externe non justifiée. `date-fns` est dispo si utile.
 
 ### 3.3. Le composant `<Nom>Calculator.tsx`
@@ -121,7 +121,7 @@ Règles UI :
 - **Warnings danger** : bordure/fond rouge discret. **Warning** : orange. **Info** : bleu.
 - **Optimisations success** : bordure/fond vert discret.
 - **Pas d'icônes emoji dans le code source** (UTF-8 mojibake fréquent). Utilise
-  `lucide-react` si besoin — mais il n'est pas encore installé, donc préfère des
+  `lucide-react` si besoin - mais il n'est pas encore installé, donc préfère des
   textes courts ou des badges Tailwind tant qu'on ne l'a pas ajouté.
 
 ### 3.4. La page `app/<slug>/page.tsx`
@@ -136,7 +136,7 @@ import LegalDisclaimer from '@/components/LegalDisclaimer'
 import <Nom>Calculator from '@/components/Calculator/<Nom>Calculator'
 
 export const metadata: Metadata = {
-  title: '<Titre SEO — h1 compris entre 50 et 60 caractères>',
+  title: '<Titre SEO - h1 compris entre 50 et 60 caractères>',
   description: '<Meta description 140-160 caractères, factuelle, sans superlatif>',
 }
 
@@ -197,36 +197,36 @@ un **bloc sources** avec :
 - Les articles de loi cités (CGI, Code des assurances, etc.) avec lien Légifrance.
 - Les doctrines administratives (BOFiP, BOSS) avec lien officiel.
 - La **date de dernière consultation** des sources.
-- Le millésime fiscal applicable (ex: "Barème IR 2026 — revenus 2025").
+- Le millésime fiscal applicable (ex: "Barème IR 2026 - revenus 2025").
 
 Le fichier `docs/sources/<slug>.md` (voir §6) contient ces infos sous forme
 structurée et sert de source unique pour le rendu.
 
 ---
 
-## 6. Sourçage légal — obligation par calculateur
+## 6. Sourçage légal - obligation par calculateur
 
 **Chaque nouveau calculateur nécessite un fichier `docs/sources/<slug>.md`** au
 format suivant :
 
 ```markdown
-# Sources — <Nom du calculateur>
+# Sources - <Nom du calculateur>
 
 **Dernière vérification** : YYYY-MM-DD
 **Millésime fiscal** : Revenus <année> / Barème <année+1>
 
 ## Textes de loi
 
-- **Article <numéro> du Code général des impôts** — <objet>
+- **Article <numéro> du Code général des impôts** - <objet>
   URL Légifrance : https://www.legifrance.gouv.fr/...
-  Extrait pertinent : "<citation courte — 1 phrase max>"
+  Extrait pertinent : "<citation courte - 1 phrase max>"
 
-- **Article L.<...> du Code des assurances** — <objet>
+- **Article L.<...> du Code des assurances** - <objet>
   URL Légifrance : https://...
 
 ## Doctrine administrative
 
-- **BOFiP BOI-<ref>** — <titre>
+- **BOFiP BOI-<ref>** - <titre>
   URL : https://bofip.impots.gouv.fr/bofip/...
   Date publication : YYYY-MM-DD
 
@@ -297,12 +297,12 @@ La slash-command `/nouveau-calculateur` déclenche exactement ce workflow.
 ## 8. Conventions Git
 
 - Branches : `feat/calc-<slug>`, `fix/<slug>`, `docs/<sujet>`.
-- Messages : préfixe conventional commits en français — `feat(calc):`,
+- Messages : préfixe conventional commits en français - `feat(calc):`,
   `fix(ui):`, `docs(sources):`, `chore(deps):`.
 - **Commits atomiques** : un calculateur = un gros commit bien décrit, ou
   plusieurs commits découpés proprement (types / logique / UI / page).
 - **Pas de fichiers de brouillon** dans les commits. Pas de `test_xxx.js` à la
-  racine — si besoin de scratch, utiliser `/tmp`.
+  racine - si besoin de scratch, utiliser `/tmp`.
 
 ---
 
@@ -342,10 +342,10 @@ approximatifs.
 
 ## 11. Pour aller plus loin
 
-- `BACKLOG.md` — liste priorisée des calculateurs.
-- `docs/CONVENTIONS_CALCULATEUR.md` — détail technique complet (extension de §3).
-- `docs/sources/` — sources légales par calculateur.
-- `.claude/commands/` — slash-commands personnalisées.
+- `BACKLOG.md` - liste priorisée des calculateurs.
+- `docs/CONVENTIONS_CALCULATEUR.md` - détail technique complet (extension de §3).
+- `docs/sources/` - sources légales par calculateur.
+- `.claude/commands/` - slash-commands personnalisées.
 
 Last updated: 2026-04-19.
 

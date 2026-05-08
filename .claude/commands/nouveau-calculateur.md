@@ -7,7 +7,7 @@ description: Implémente un nouveau calculateur de bout en bout, en suivant le w
 Tu vas implémenter **un seul** calculateur de A à Z. Tu suis le workflow
 défini dans `CLAUDE.md` §7 sans dévier.
 
-**MODE SOBRIÉTÉ ACTIVE** — Token efficiency obligatoire :
+**MODE SOBRIÉTÉ ACTIVE** - Token efficiency obligatoire :
 - Chemins de fichiers only (pas de contenu complet sauf si demandé)
 - Diffs plutôt que fichiers entiers pour les modifications
 - Pas d'explication si l'action est évidente
@@ -25,10 +25,10 @@ défini dans `CLAUDE.md` §7 sans dévier.
   l'ordre du fichier.
 - **Mettre à jour son statut à `in-progress`** immédiatement, avec la date
   du jour.
-- Annoncer : "Je commence le calculateur `<slug>` — <nom>.
+- Annoncer : "Je commence le calculateur `<slug>` - <nom>.
   Estimation : <X> étapes, <Y> fichiers."
 
-**STOP — attends validation avant de continuer.**
+**STOP - attends validation avant de continuer.**
 
 ---
 
@@ -36,12 +36,12 @@ défini dans `CLAUDE.md` §7 sans dévier.
 
 - **Utiliser WebFetch** pour vérifier les articles de loi et barèmes sur
   Légifrance et BOFiP. **Ne pas s'en remettre à la mémoire du modèle** pour
-  les chiffres — toujours vérifier la version en vigueur.
+  les chiffres - toujours vérifier la version en vigueur.
 - URLs à privilégier (du plus fiable au moins fiable) :
   1. `legifrance.gouv.fr`
   2. `bofip.impots.gouv.fr`
   3. `boss.gouv.fr` (pour la protection sociale)
-  4. `service-public.fr` (dernier recours — confirme les chiffres mais cite
+  4. `service-public.fr` (dernier recours - confirme les chiffres mais cite
      la source primaire dans le code)
 - Pour chaque article ou barème tenté :
   - Si succès → extrait les données clés (montants, seuils, taux) en tableau
@@ -57,7 +57,7 @@ défini dans `CLAUDE.md` §7 sans dévier.
 - **Créer `docs/sources/<slug>.md`** selon le template de `CLAUDE.md` §6.
 - Lister au moins 3 cas chiffrés de référence venant de sources officielles.
 
-**STOP si au moins un ⚠️ — attends que Nicolas fournisse les données
+**STOP si au moins un ⚠️ - attends que Nicolas fournisse les données
 manquantes avant de continuer.**
 
 ---
@@ -92,7 +92,7 @@ manquantes avant de continuer.**
 
 ---
 
-### 6. UI — composant calculateur
+### 6. UI - composant calculateur
 
 - Lire un composant existant (`AssuranceVieCalculator.tsx` pour la mise en
   page deux colonnes, `RenteCalculator.tsx` pour les sliders).
@@ -135,7 +135,7 @@ manquantes avant de continuer.**
 - Ajouter le lien FAQ dans la page calculateur (étape 7) si un pattern
   de lien inter-pages existe déjà.
 
-**STOP — liste les fichiers créés (chemins uniquement). Attends validation.**
+**STOP - liste les fichiers créés (chemins uniquement). Attends validation.**
 
 ---
 
@@ -168,7 +168,7 @@ npm run test
 - Si des écarts de pattern sont détectés entre tests existants →
   proposer une harmonisation en diff minimal.
 
-**STOP si des tests échouent ou si une harmonisation est proposée —
+**STOP si des tests échouent ou si une harmonisation est proposée -
 attends validation avant toute modification.**
 
 ---
@@ -265,7 +265,7 @@ Produire un rapport en tableau :
 | CWV | ... | High / Med / Low | ... |
 
 - Corrections **Low** → appliquer directement sans STOP.
-- Corrections **Med / High** → lister en diff, **STOP — attends validation.**
+- Corrections **Med / High** → lister en diff, **STOP - attends validation.**
 - Relancer `npm run build` après chaque correction pour valider.
 
 ---
@@ -274,7 +274,7 @@ Produire un rapport en tableau :
 
 Invoquer le skill `/improve-codebase-architecture`.
 
-**STOP après le rapport — attends validation avant tout refactor.**
+**STOP après le rapport - attends validation avant tout refactor.**
 
 ---
 
@@ -283,7 +283,7 @@ Invoquer le skill `/improve-codebase-architecture`.
 Tu es un security specialist. Audite le projet sur les points suivants :
 
 - **Security headers** : CSP, HSTS, X-Frame-Options, X-Content-Type-Options,
-  Referrer-Policy, Permissions-Policy — vérifier la config
+  Referrer-Policy, Permissions-Policy - vérifier la config
   `next.config.js` / middleware.
 - **Exposition côté client** : variables d'env publiques, données sensibles
   dans le bundle.
@@ -304,7 +304,7 @@ Produire un rapport en tableau :
 |---|---|---|
 | ... | Critical / High / Medium / Low | ... |
 
-**STOP — attends validation avant d'appliquer les fixes.**
+**STOP - attends validation avant d'appliquer les fixes.**
 
 ---
 
@@ -317,13 +317,13 @@ ce calculateur : UI, FAQ, metadata SEO, et `docs/sources/<slug>.md`.
 #### 15a. Périmètre des fichiers à analyser
 
 Scanner phrase par phrase :
-- `src/app/<slug>/page.tsx` — tous les textes visibles (H1, sous-titre,
+- `src/app/<slug>/page.tsx` - tous les textes visibles (H1, sous-titre,
   sections SEO, sources)
-- `src/app/<slug>/faq/page.tsx` — toutes les questions et réponses
-- `src/components/Calculator/<Nom>Calculator.tsx` — labels, tooltips,
+- `src/app/<slug>/faq/page.tsx` - toutes les questions et réponses
+- `src/components/Calculator/<Nom>Calculator.tsx` - labels, tooltips,
   warnings, messages d'optimisation
 - Metadata : `title`, `description`, `openGraph.description`
-- `docs/sources/<slug>.md` — formulations des cas de référence
+- `docs/sources/<slug>.md` - formulations des cas de référence
 
 #### 15b. Détection des formulations conseil
 
@@ -338,7 +338,7 @@ Signaler toute formulation tombant dans l'une de ces catégories :
 | Injonction directe | "Vous devriez racheter avant 8 ans" | "La simulation indique que..." |
 | Promesse de résultat | "Vous économiserez X€" | "La simulation estime une économie de X€ selon les paramètres saisis" |
 | Certitude fiscale | "Vous êtes exonéré" | "Selon les paramètres saisis, le calcul indique une exonération" |
-| Conseil implicite | "Il est préférable d'opter pour..." | "Certains épargnants choisissent... — à valider avec un conseiller" |
+| Conseil implicite | "Il est préférable d'opter pour..." | "Certains épargnants choisissent... - à valider avec un conseiller" |
 | Généralisation | "Les contrats d'assurance-vie permettent toujours..." | "En règle générale... (sous réserve des conditions contractuelles)" |
 
 Pour chaque occurrence détectée → proposer la reformulation corrigée.
@@ -359,7 +359,7 @@ Vérifier le contenu du composant `LegalDisclaimer` :
 - Précise l'année de la dernière mise à jour des barèmes.
 
 Si le disclaimer est absent ou incomplet → proposer le texte corrigé,
-**STOP — attends validation.**
+**STOP - attends validation.**
 
 #### 15d. Conformité RGPD
 
@@ -448,7 +448,7 @@ Produire un rapport structuré :
 
 - Corrections textuelles (reformulations) → appliquer directement.
 - Corrections structurelles (nouveau composant, nouvelle page mentions
-  légales) → proposer en diff, **STOP — attends validation.**
+  légales) → proposer en diff, **STOP - attends validation.**
 
 ---
 
@@ -481,17 +481,17 @@ Identifier 1 requête principale cible et 5 à 8 longue traîne prioritaires.
 Vérifier et corriger dans `src/app/<slug>/page.tsx` :
 
 **Balises fondamentales :**
-- `<title>` : requête principale + "| CalcPatrimoine" — 60 caractères max.
+- `<title>` : requête principale + "| CalcPatrimoine" - 60 caractères max.
 - `<meta description>` : requête principale + bénéfice concret + CTA
-  implicite — 155 caractères max.
+  implicite - 155 caractères max.
 - `openGraph.title` / `openGraph.description` : adaptés au partage social,
   pas une copie des balises standard.
 
 **Structure H1/H2/H3 :**
 - H1 unique contenant la requête principale.
-- H2 pour chaque section sous le fold — contiennent des variantes ou
+- H2 pour chaque section sous le fold - contiennent des variantes ou
   requêtes longue traîne.
-- H3 pour les sous-sections FAQ — chaque H3 formulé comme une requête
+- H3 pour les sous-sections FAQ - chaque H3 formulé comme une requête
   question naturelle.
 - Pas de saut de niveaux (H1 → H3 sans H2).
 - Mot-clé principal présent dans le premier paragraphe visible.
@@ -505,7 +505,7 @@ Vérifier et corriger dans `src/app/<slug>/page.tsx` :
 
 #### 16c. Optimisation FAQ (`/<slug>/faq`)
 
-- Chaque question formulée en langage naturel — pas "Définition de la rente
+- Chaque question formulée en langage naturel - pas "Définition de la rente
   viagère" mais "Qu'est-ce qu'une rente viagère ?".
 - Les 8 questions couvrent les requêtes question identifiées en 16a.
 - Chaque réponse ≥ 80 mots (seuil featured snippets).
@@ -556,7 +556,7 @@ Vérifier que `BreadcrumbList` est présent ou l'ajouter si le composant
   sur la rente viagère"), pas "cliquez ici".
 - FAQ → calculateur : ancre descriptive en retour.
 - Page calculateur liée depuis ≥ 1 page existante (calculateur voisin,
-  accueil, footer) — vérifier `Header.tsx` et `src/app/page.tsx`.
+  accueil, footer) - vérifier `Header.tsx` et `src/app/page.tsx`.
 - Bloc "Calculateurs liés" en bas de page si un pattern similaire existe.
 
 #### 16f. Signaux techniques
@@ -615,7 +615,7 @@ Balises canoniques :
 - Corrections textuelles (title, description, H1/H2, ancres) et schemas
   JSON-LD → appliquer directement.
 - Modifications structurelles (nouveau composant, refonte maillage) →
-  proposer en diff, **STOP — attends validation.**
+  proposer en diff, **STOP - attends validation.**
 
 ---
 

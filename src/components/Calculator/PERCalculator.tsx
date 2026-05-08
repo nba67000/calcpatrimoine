@@ -61,7 +61,7 @@ export default function PERCalculator() {
     <>
     <div className="grid lg:grid-cols-2 gap-8">
 
-      {/* COLONNE GAUCHE — INPUTS */}
+      {/* COLONNE GAUCHE - INPUTS */}
       <div className="space-y-6">
 
         {/* Salaire net annuel */}
@@ -204,10 +204,10 @@ export default function PERCalculator() {
         </div>
       </div>
 
-      {/* COLONNE DROITE — RÉSULTATS */}
+      {/* COLONNE DROITE - RÉSULTATS */}
       <div className="space-y-6">
 
-        {/* Économie fiscale — résultat principal */}
+        {/* Économie fiscale - résultat principal */}
         <div className={`rounded-xl border-2 p-6 ${
           tmi === 0 ? 'bg-neutral-50 border-neutral-300' :
           economieFiscale > 0 ? 'bg-green-50 border-green-300' : 'bg-neutral-50 border-neutral-300'

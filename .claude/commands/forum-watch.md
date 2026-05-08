@@ -1,5 +1,5 @@
 ---
-description: Scanne les forums MoneyVox (assurance-vie, épargne retraite, transmission patrimoine, immobilier locatif, bourse) pour détecter (1) les posts où un calculateur existant peut répondre, (2) les idées de nouveaux calculateurs à proposer en backlog. Rapport uniquement — aucune modification sans validation.
+description: Scanne les forums MoneyVox (assurance-vie, épargne retraite, transmission patrimoine, immobilier locatif, bourse) pour détecter (1) les posts où un calculateur existant peut répondre, (2) les idées de nouveaux calculateurs à proposer en backlog. Rapport uniquement - aucune modification sans validation.
 ---
 
 # /forum-watch
@@ -14,8 +14,8 @@ de MoneyVox et produire un rapport en deux sections.
 ### 1. Lire l'état du projet
 
 Avant de toucher les forums, lire :
-- `BACKLOG.md` — calculateurs livrés et idées déjà notées (`proposed`)
-- `src/config/navigation.ts` — slugs et noms des calculateurs déployés
+- `BACKLOG.md` - calculateurs livrés et idées déjà notées (`proposed`)
+- `src/config/navigation.ts` - slugs et noms des calculateurs déployés
 
 Mémoriser :
 - Les slugs et descriptions des calculateurs **existants** (pour la section Réponses).
@@ -34,10 +34,10 @@ https://www.moneyvox.fr/forums/discussion/bourse/
 ```
 
 Pour chaque page, extraire la liste des fils visibles :
-- `titre` — titre du fil
-- `date` — date du dernier message (ou date de création si seule disponible)
-- `url` — URL complète du fil (construire `https://www.moneyvox.fr` + path relatif si besoin)
-- `categorie` — nom de la catégorie source
+- `titre` - titre du fil
+- `date` - date du dernier message (ou date de création si seule disponible)
+- `url` - URL complète du fil (construire `https://www.moneyvox.fr` + path relatif si besoin)
+- `categorie` - nom de la catégorie source
 
 **Filtrer avant l'analyse :**
 - Ignorer les fils dont le titre est manifestement hors sujet (litiges bancaires,
@@ -50,13 +50,13 @@ Pour chaque page, extraire la liste des fils visibles :
 
 Pour chaque fil retenu, répondre à deux questions :
 
-**Question A — Réponse existante ?**
+**Question A - Réponse existante ?**
 Un calculateur déployé sur CalcPatrimoine peut-il aider directement ?
 - Oui → noter le slug, expliquer en une phrase comment il répond.
 - Partiellement → noter le slug + ce qui manque.
 - Non → passer à la question B.
 
-**Question B — Idée de calculateur ?**
+**Question B - Idée de calculateur ?**
 Le fil révèle-t-il un besoin de calcul récurrent qui n'est pas encore couvert ?
 - Oui → noter le concept en une phrase, évaluer la fréquence estimée du besoin.
 - Non → ignorer le fil.
@@ -70,7 +70,7 @@ Présenter le rapport dans la conversation dans ce format exact :
 
 ---
 
-## Forum Watch — MoneyVox — [date du jour]
+## Forum Watch - MoneyVox - [date du jour]
 
 ### Opportunités réponse
 *Fils où un calculateur existant peut aider.*
@@ -104,7 +104,7 @@ Présenter le rapport dans la conversation dans ce format exact :
 
 ---
 
-### 5. STOP — attendre instruction
+### 5. STOP - attendre instruction
 
 Présenter le rapport. **Ne modifier ni BACKLOG.md ni aucun autre fichier.**
 
@@ -129,8 +129,8 @@ Si Nicolas dit "go backlog [numéros]", ajouter les idées correspondantes dans
 
 | Catégorie MoneyVox | Calculateurs existants | Calculateurs backlog |
 |-------------------|----------------------|---------------------|
-| assurance-vie | `/assurance-vie/fiscalite-rachat`, `/assurance-vie/transmission` | — |
-| epargne-retraite | `/per-individuel` | — |
-| transmission-patrimoine | — | `donation` (P2 todo), `succession` (P2 todo) |
+| assurance-vie | `/assurance-vie/fiscalite-rachat`, `/assurance-vie/transmission` | - |
+| epargne-retraite | `/per-individuel` | - |
+| transmission-patrimoine | - | `donation` (P2 todo), `succession` (P2 todo) |
 | immobilier-locatif | `/plus-value-immobiliere` | `lmnp-reel-vs-micro` (P3), `sci-is-vs-ir` (P3) |
-| bourse | — | `pea` (P3) |
+| bourse | - | `pea` (P3) |

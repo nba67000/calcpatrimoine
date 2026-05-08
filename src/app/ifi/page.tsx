@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Calculez votre IFI 2026 : patrimoine net taxable, barème progressif, abattement résidence principale 30 %, décote et plafonnement IFI + IR.',
   keywords: 'calculateur IFI, impôt fortune immobilière, barème IFI 2026, seuil IFI, abattement résidence principale, plafonnement IFI',
   openGraph: {
-    title: 'Calculateur IFI 2026 — impôt sur la fortune immobilière',
+    title: 'Calculateur IFI 2026 - impôt sur la fortune immobilière',
     description: 'Simulez votre IFI : abattement RP 30 %, barème 6 tranches, décote progressive, plafonnement IFI + IR à 75 % des revenus.',
     type: 'article',
   },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const toolSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'Calculateur IFI — Impôt sur la Fortune Immobilière',
+  name: 'Calculateur IFI - Impôt sur la Fortune Immobilière',
   description: 'Outil gratuit de simulation de l\'IFI 2026 : barème progressif, abattement résidence principale, décote, plafonnement.',
   applicationCategory: 'FinanceApplication',
   operatingSystem: 'Web',
@@ -142,7 +142,7 @@ export default function IFIPage() {
                 ))}
               </tbody>
             </table>
-            <p className="text-xs text-neutral-500 mt-3">Source : Art. 977 CGI — applicable au patrimoine au 1er janvier 2026.</p>
+            <p className="text-xs text-neutral-500 mt-3">Source : Art. 977 CGI - applicable au patrimoine au 1er janvier 2026.</p>
           </div>
         </section>
 

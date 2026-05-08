@@ -173,7 +173,7 @@ export default function Home() {
               </h3>
               <p className="text-primary-100 mb-6">
                 À 72 ans avec 250 000€, le seuil tombe à 15,8 ans alors que l'espérance est de 14 ans. 
-                Découvrez pourquoi c'est normal — et ce que personne ne vous dit sur la rente viagère.
+                Découvrez pourquoi c'est normal - et ce que personne ne vous dit sur la rente viagère.
               </p>
               <a 
                 href="/blog/rente-viagere-seuil-rentabilite"

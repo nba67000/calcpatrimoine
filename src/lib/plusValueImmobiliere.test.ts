@@ -19,10 +19,10 @@ function base(overrides: Partial<PlusValueImmobiliereInputs> = {}): PlusValueImm
 }
 
 // ---------------------------------------------------------------------------
-// Cas nominaux — issus du JSDoc (Art. 150 U, 150 VB, 150 VC CGI)
+// Cas nominaux - issus du JSDoc (Art. 150 U, 150 VB, 150 VC CGI)
 // ---------------------------------------------------------------------------
-describe('calculerPlusValueImmobiliere — cas nominaux', () => {
-  it('8 ans détention, PV brute 75 000 € — IR 11 685 €, PS 12 261 €, surtaxe 1 230 €', () => {
+describe('calculerPlusValueImmobiliere - cas nominaux', () => {
+  it('8 ans détention, PV brute 75 000 € - IR 11 685 €, PS 12 261 €, surtaxe 1 230 €', () => {
     // frais forfait = 200000 × 7,5% = 15000, travaux = 200000 × 15% = 30000
     // prixRevient = 245000, pvBrute = 75000
     // 8 ans : abattement IR = (8-5) × 6% = 18%, PS = (8-5) × 1,65% = 4,95%
@@ -34,7 +34,7 @@ describe('calculerPlusValueImmobiliere — cas nominaux', () => {
     expect(r.totalImpots).toBe(25176)
   })
 
-  it('moins-value — totalImpots 0 €', () => {
+  it('moins-value - totalImpots 0 €', () => {
     const r = calculerPlusValueImmobiliere(base({
       dateAcquisition: '2022-01-01',
       prixAcquisition: 350000,
@@ -51,7 +51,7 @@ describe('calculerPlusValueImmobiliere — cas nominaux', () => {
 // ---------------------------------------------------------------------------
 // Exonérations
 // ---------------------------------------------------------------------------
-describe('calculerPlusValueImmobiliere — exonérations', () => {
+describe('calculerPlusValueImmobiliere - exonérations', () => {
   it('résidence principale → exonération totale (Art. 150 U II 1° CGI)', () => {
     const r = calculerPlusValueImmobiliere(base({ typeBien: 'principal' }))
     expect(r.exoneree).toBe(true)
@@ -73,7 +73,7 @@ describe('calculerPlusValueImmobiliere — exonérations', () => {
 // ---------------------------------------------------------------------------
 // Abattements par durée de détention
 // ---------------------------------------------------------------------------
-describe('calculerPlusValueImmobiliere — abattements', () => {
+describe('calculerPlusValueImmobiliere - abattements', () => {
   it('< 6 ans → abattement IR 0 %, PS 0 %', () => {
     const r = calculerPlusValueImmobiliere(base({
       dateAcquisition: '2022-01-01', dateCession: '2026-01-01',
@@ -104,7 +104,7 @@ describe('calculerPlusValueImmobiliere — abattements', () => {
 // ---------------------------------------------------------------------------
 // Surtaxe (Art. 1609 nonies G CGI)
 // ---------------------------------------------------------------------------
-describe('calculerPlusValueImmobiliere — surtaxe', () => {
+describe('calculerPlusValueImmobiliere - surtaxe', () => {
   it('PV nette IR ≤ 50 000 € → surtaxe 0', () => {
     // 5 ans détention : abattement 0, PV brute < 50k
     const r = calculerPlusValueImmobiliere(base({

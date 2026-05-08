@@ -5,14 +5,14 @@ import SourcesSection from '@/components/SourcesSection'
 import RenteModeContent from '@/components/Calculator/RenteModeContent'
 
 export const metadata: Metadata = {
-  title: 'Calculateur Rente Viagère — Tables INSEE 2021 | CalculPatrimoine',
+  title: 'Calculateur Rente Viagère - Tables INSEE 2021 | CalculPatrimoine',
   description: 'Calculez votre rente viagère à partir d\'un capital. Tables de mortalité INSEE 2021 unisexes. Gestion de la réversion au conjoint, 3 modes de calcul.',
   alternates: { canonical: 'https://calculpatrimoine.fr/rente-viagere' },
 }
 
 const CROSS_LINKS = [
   { href: '/assurance-vie/fiscalite-rachat', label: "Plutôt un rachat qu'une rente ?", desc: 'Calculez la fiscalité exacte d\'un rachat partiel ou total d\'assurance-vie.' },
-  { href: '/blog/rente-viagere-seuil-rentabilite', label: 'Article — Le seuil de rentabilité', desc: 'À 72 ans avec 250 000 €, le seuil tombe à 15,8 ans. Ce n\'est pas une anomalie.' },
+  { href: '/blog/rente-viagere-seuil-rentabilite', label: 'Article - Le seuil de rentabilité', desc: 'À 72 ans avec 250 000 €, le seuil tombe à 15,8 ans. Ce n\'est pas une anomalie.' },
   { href: '/faq/rente-viagere', label: 'FAQ rente viagère', desc: 'Espérance de vie, réversion, fiscalité, couple, bon âge pour souscrire.' },
 ]
 
@@ -106,7 +106,7 @@ export default function RenteViagerePage() {
               <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5 grid sm:grid-cols-2 gap-x-8 gap-y-3 overflow-hidden">
                 {[
                   ['Annuité viagère (äx)', 'Σ (ₖpₓ × vᵏ) pour k = 0 à ω-x'],
-                  ["Facteur d'actualisation", 'v = 1 / (1 + i) — i = taux technique'],
+                  ["Facteur d'actualisation", 'v = 1 / (1 + i) - i = taux technique'],
                   ['Probabilité de survie', 'ₖpₓ = lₓ₊ₖ / lₓ (tables TGH05/TGF05)'],
                   ['Rente annuelle', 'Rente = Capital / äx'],
                   ['Avec réversion', 'Capital / (äx + α × äy|x)'],

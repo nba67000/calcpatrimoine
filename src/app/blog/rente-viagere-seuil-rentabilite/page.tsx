@@ -79,7 +79,7 @@ export default function ArticleRenteViagere() {
 
           {/* Lexique */}
           <div className="bg-surface-card border border-neutral-200 p-6 mb-12">
-            <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-5">Lexique — avant de commencer</p>
+            <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-5">Lexique - avant de commencer</p>
             <div className="space-y-5">
               {[
                 {
@@ -149,13 +149,13 @@ export default function ArticleRenteViagere() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
               <div className="bg-surface-card border border-neutral-200 p-5 border-l-4 border-l-neutral-400">
-                <p className="font-bold text-sm text-neutral-900 mb-3">Stratégie A — Retraits programmés</p>
+                <p className="font-bold text-sm text-neutral-900 mb-3">Stratégie A - Retraits programmés</p>
                 <p className="text-sm text-neutral-600 leading-relaxed">
                   Vous gardez votre capital. Vous retirez chaque mois ce dont vous avez besoin. Vous conservez la propriété de l&apos;argent et pouvez le transmettre à vos héritiers. Mais si vous vivez très longtemps, vous risquez d&apos;épuiser votre épargne avant votre décès.
                 </p>
               </div>
               <div className="bg-surface-card border border-neutral-200 p-5 border-l-4 border-l-primary-700">
-                <p className="font-bold text-sm text-neutral-900 mb-3">Stratégie B — Rente viagère</p>
+                <p className="font-bold text-sm text-neutral-900 mb-3">Stratégie B - Rente viagère</p>
                 <p className="text-sm text-neutral-600 leading-relaxed">
                   Vous cédez définitivement vos 200 000 euros à un assureur. Il s&apos;engage à vous verser par exemple 1 100 euros par mois jusqu&apos;à votre décès. Peu importe si vous vivez jusqu&apos;à 75 ans ou jusqu&apos;à 105 ans. En contrepartie, si vous décédez tôt, vos héritiers ne récupèrent rien.
                 </p>
@@ -380,10 +380,10 @@ export default function ArticleRenteViagere() {
               {[
                 { label: 'Tables de mortalité INSEE 2022', desc: 'Source des espérances de vie par âge et par sexe utilisées dans les calculs.' },
                 { label: 'Article 158, 6° du CGI', desc: 'Fiscalité des rentes viagères à titre onéreux : fractions imposables selon l\'âge.', href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044979614' },
-                { label: 'Service-Public.fr — Rente viagère', desc: 'Fiche pratique officielle sur le fonctionnement et la fiscalité de la rente viagère.', href: 'https://www.service-public.fr/particuliers/vosdroits/F3173' },
+                { label: 'Service-Public.fr - Rente viagère', desc: 'Fiche pratique officielle sur le fonctionnement et la fiscalité de la rente viagère.', href: 'https://www.service-public.fr/particuliers/vosdroits/F3173' },
               ].map(s => (
                 <div key={s.label} className="flex items-start gap-3">
-                  <span className="text-accent-400 mt-0.5 shrink-0">—</span>
+                  <span className="text-accent-400 mt-0.5 shrink-0">-</span>
                   <div>
                     {s.href
                       ? <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>

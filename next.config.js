@@ -8,9 +8,9 @@ const CSP = [
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
-  // Vercel Analytics (beacon) + Umami (stats) — connexions sortantes légitimes
+  // Vercel Analytics (beacon) + Umami (stats) - connexions sortantes légitimes
   "connect-src 'self' https://vitals.vercel-insights.com https://eu.umami.is",
-  // Polices servies localement via @fontsource — pas besoin de Google Fonts
+  // Polices servies localement via @fontsource - pas besoin de Google Fonts
   "font-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",

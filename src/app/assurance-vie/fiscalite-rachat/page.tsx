@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 }
 
 const CROSS_LINKS = [
-  { href: '/assurance-vie/transmission', label: 'Vous préparez votre succession ?', desc: 'Calculateur de transmission — droits de succession avant et après 70 ans.' },
-  { href: '/blog/assurance-vie-fiscalite-rachat', label: 'Article complet — Assurance-vie, combien allez-vous vraiment payer ?', desc: 'Mécanismes fiscaux, 5 erreurs courantes, optimisations. 2 500 mots pour tout comprendre.' },
+  { href: '/assurance-vie/transmission', label: 'Vous préparez votre succession ?', desc: 'Calculateur de transmission - droits de succession avant et après 70 ans.' },
+  { href: '/blog/assurance-vie-fiscalite-rachat', label: 'Article complet - Assurance-vie, combien allez-vous vraiment payer ?', desc: 'Mécanismes fiscaux, 5 erreurs courantes, optimisations. 2 500 mots pour tout comprendre.' },
   { href: '/faq/assurance-vie', label: 'FAQ assurance-vie', desc: '15 questions/réponses : PFU vs IR, abattement 8 ans, versements avant 2017, optimisations.' },
 ]
 
@@ -116,7 +116,7 @@ export default function AssuranceViePage() {
 
             <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
               <p className="text-sm text-primary-800">
-                <strong>Méthodologie vérifiée</strong> — calculs validés par recoupement avec le BOFiP et Service-Public.fr.
+                <strong>Méthodologie vérifiée</strong> - calculs validés par recoupement avec le BOFiP et Service-Public.fr.
                 Dernière vérification : avril 2026.
               </p>
             </div>

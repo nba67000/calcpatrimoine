@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://calculpatrimoine.fr'
   const lastModified = new Date()
 
-  // Calculator pages — derived from CATEGORIES_CALC, single source of truth
+  // Calculator pages - derived from CATEGORIES_CALC, single source of truth
   const calculatorPages: MetadataRoute.Sitemap = CATEGORIES_CALC
     .flatMap(cat => cat.calculateurs)
     .filter(calc => calc.disponible)

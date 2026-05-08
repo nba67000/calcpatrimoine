@@ -82,7 +82,7 @@ export default function Methodologie() {
  <div className="bg-primary-50 border-l-4 border-primary-600 p-6 mb-6">
  <h3 className="font-semibold text-primary-900 mb-2">Tables de mortalité INSEE officielles</h3>
  <p className="text-primary-800 mb-3">
- Nous utilisons les <strong>tables de mortalité par génération</strong> les plus récentes publiées par l&apos;INSEE et l&apos;INED (données 2021 — publication INSEE juin 2023).
+ Nous utilisons les <strong>tables de mortalité par génération</strong> les plus récentes publiées par l&apos;INSEE et l&apos;INED (données 2021 - publication INSEE juin 2023).
  </p>
  <ul className="space-y-2 text-sm text-primary-700">
  <li>• <strong>Source principale</strong> : Institut National d&apos;Études Démographiques (INED)</li>

@@ -90,7 +90,7 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
     calculateurs: [
       {
         href: '/tmi',
-        nom: 'TMI — Impôt sur le revenu',
+        nom: 'TMI - Impôt sur le revenu',
         desc: "Tranches marginales, taux effectif et impôt annuel selon le barème en vigueur.",
         disponible: true,
       },
@@ -116,7 +116,7 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
       },
       {
         href: '/ifi',
-        nom: 'IFI — Fortune immobilière',
+        nom: 'IFI - Fortune immobilière',
         desc: 'Calcul IFI : seuil 1 300 000 €, barème progressif, abattement RP 30 %, décote, plafonnement.',
         disponible: true,
       },

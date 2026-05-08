@@ -7,7 +7,7 @@ import {
 } from './mortality'
 
 // ---------------------------------------------------------------------------
-// calculateSimpleAnnuity — rente simple unisexe
+// calculateSimpleAnnuity - rente simple unisexe
 // ---------------------------------------------------------------------------
 describe('calculateSimpleAnnuity', () => {
   it('retourne un résultat non-null pour un âge valide (65 ans)', () => {
@@ -56,7 +56,7 @@ describe('calculateSimpleAnnuity', () => {
 })
 
 // ---------------------------------------------------------------------------
-// calculateReversionAnnuity — rente avec réversion
+// calculateReversionAnnuity - rente avec réversion
 // ---------------------------------------------------------------------------
 describe('calculateReversionAnnuity', () => {
   it('retourne un résultat non-null pour des âges valides', () => {
@@ -90,7 +90,7 @@ describe('calculateReversionAnnuity', () => {
 })
 
 // ---------------------------------------------------------------------------
-// calculateRequiredCapital — calculateur inverse
+// calculateRequiredCapital - calculateur inverse
 // ---------------------------------------------------------------------------
 describe('calculateRequiredCapital', () => {
   it("retourne un résultat non-null pour des paramètres valides", () => {
@@ -124,7 +124,7 @@ describe('calculateRequiredCapital', () => {
 })
 
 // ---------------------------------------------------------------------------
-// calculateCoupleStrategies — comparaison des 7 stratégies
+// calculateCoupleStrategies - comparaison des 7 stratégies
 // ---------------------------------------------------------------------------
 describe('calculateCoupleStrategies', () => {
   it('retourne au moins 5 stratégies pour un couple standard', () => {

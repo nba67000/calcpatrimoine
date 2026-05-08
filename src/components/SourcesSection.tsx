@@ -25,7 +25,7 @@ export default function SourcesSection({ sources, slug, title = 'Textes de loi' 
       <ul className="space-y-3 text-sm">
         {items.map(s => (
           <li key={s.href} className="flex items-start gap-3">
-            <span className="text-accent-400 mt-0.5 shrink-0">—</span>
+            <span className="text-accent-400 mt-0.5 shrink-0">-</span>
             <div>
               <a
                 href={s.href}

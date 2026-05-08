@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Calculez votre tranche marginale d\'imposition (TMI) et votre IR net 2026. Barème officiel, quotient familial, décote. Revenus 2025, gratuit et open-source.',
   keywords: 'TMI, tranche marginale imposition, impôt sur le revenu, barème IR 2026, quotient familial, décote, calculateur impôts, revenus 2025',
   openGraph: {
-    title: 'Calculateur TMI — Tranche Marginale d\'Imposition 2026',
+    title: 'Calculateur TMI - Tranche Marginale d\'Imposition 2026',
     description: 'Calculez votre TMI et votre IR net avec le barème officiel 2026, le quotient familial et la décote.',
     type: 'article',
   },
@@ -27,7 +27,7 @@ const LIMITES = [
   'Le revenu saisi est le revenu net imposable (après abattement 10 % ou frais réels).',
   'Les revenus soumis à taux fixe (plus-values mobilières au PFU, etc.) ne sont pas pris en compte.',
   'Les réductions et crédits d\'impôt ne sont pas simulés.',
-  'La contribution exceptionnelle sur les hauts revenus (CEHR — surtaxe de 3 % à 4 % au-delà de 250 000 € de revenu fiscal de référence — Art. 223 sexies CGI) n\'est pas calculée.',
+  'La contribution exceptionnelle sur les hauts revenus (CEHR - surtaxe de 3 % à 4 % au-delà de 250 000 € de revenu fiscal de référence - Art. 223 sexies CGI) n\'est pas calculée.',
   'La résidence alternée (demi-parts à 0,25) n\'est pas gérée.',
 ]
 
@@ -61,7 +61,7 @@ export default function TMIPage() {
               <strong>Quotient familial : diviser pour mieux imposer.</strong>{' '}
               Le revenu est divisé par le nombre de parts fiscales avant d&apos;appliquer le barème, puis
               l&apos;impôt est multiplié par ce même nombre de parts. Le gain est limité par le plafonnement
-              du quotient familial (1 807 € par demi-part supplémentaire — Art. 197-IV CGI).
+              du quotient familial (1 807 € par demi-part supplémentaire - Art. 197-IV CGI).
             </p>
             <p>
               <strong>La décote protège les revenus modestes.</strong>{' '}
@@ -74,7 +74,7 @@ export default function TMIPage() {
 
           <div className="bg-neutral-50 border border-neutral-200 p-5">
             <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">
-              Barème 2026 — revenus 2025 (Art. 197 CGI, LF 2026)
+              Barème 2026 - revenus 2025 (Art. 197 CGI, LF 2026)
             </h3>
             <table className="w-full text-sm">
               <thead>
@@ -128,7 +128,7 @@ export default function TMIPage() {
               <ul className="text-sm text-neutral-600 space-y-1.5">
                 {LIMITES.map((l, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-neutral-400 mt-0.5 shrink-0">—</span>
+                    <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
                     <span>{l}</span>
                   </li>
                 ))}
@@ -137,7 +137,7 @@ export default function TMIPage() {
 
             <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
               <p className="text-sm text-primary-800">
-                <strong>Méthodologie vérifiée</strong> — calculs validés sur trois cas de référence issus des barèmes LF 2026,
+                <strong>Méthodologie vérifiée</strong> - calculs validés sur trois cas de référence issus des barèmes LF 2026,
                 dont un cas de plafonnement du quotient familial. Dernière vérification : 19 avril 2026.
               </p>
             </div>

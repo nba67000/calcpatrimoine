@@ -7,7 +7,7 @@ import {
 } from './transmission'
 import type { Beneficiaire } from '@/types/transmission'
 
-// Helpers de test — IDs stables pour les assertions
+// Helpers de test - IDs stables pour les assertions
 function benef(id: string, part: number, lien: Beneficiaire['lien'] = 'enfant'): Beneficiaire {
   return { id, nom: `B${id}`, lien, partPourcentage: part }
 }

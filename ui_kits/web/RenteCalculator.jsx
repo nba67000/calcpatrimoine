@@ -1,6 +1,6 @@
 const fmtEuro = (n) => Math.round(n).toLocaleString('fr-FR');
 
-// Stubbed calculation — linear approximation so the UI kit renders
+// Stubbed calculation - linear approximation so the UI kit renders
 // without shipping INSEE mortality tables. Not for production.
 function stubAnnuity(age, capital, reversion) {
   const lifeExp = Math.max(8, 85 - age + (Math.random()*0.001)); // ~anchor

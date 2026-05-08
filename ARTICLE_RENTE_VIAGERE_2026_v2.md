@@ -8,7 +8,7 @@
 
 Vous avez 100 000 € sur un PER ou une assurance-vie. Votre conseiller vous propose de les convertir en rente viagère pour toucher 510 € par mois, à vie. D'où vient ce chiffre ?
 
-Pas d'un chapeau, mais d'une formule actuarielle que les brochures commerciales n'ont pas l'habitude d'expliquer. Pourtant, comprendre ce calcul vous permet de prendre une décision éclairée — et parfois d'éviter des erreurs à plusieurs dizaines de milliers d'euros.
+Pas d'un chapeau, mais d'une formule actuarielle que les brochures commerciales n'ont pas l'habitude d'expliquer. Pourtant, comprendre ce calcul vous permet de prendre une décision éclairée - et parfois d'éviter des erreurs à plusieurs dizaines de milliers d'euros.
 
 Dans cet article, on ouvre le capot. Formules, tables INSEE, code source, points d'attention. Tout ce qu'il faut savoir avant de signer.
 
@@ -34,7 +34,7 @@ Imaginez 150 000 € d'épargne à la retraite. Deux chemins s'offrent à vous.
 
 C'est ça, la rente viagère. Un transfert du risque de longévité vers l'assureur.
 
-L'assureur supporte le risque que vous viviez très longtemps. Vous acceptez que le capital ne soit pas transmis à vos héritiers. C'est pourquoi on parle d'**assurance longévité** — une façon de garantir ses revenus jusqu'au bout, quelle que soit la durée.
+L'assureur supporte le risque que vous viviez très longtemps. Vous acceptez que le capital ne soit pas transmis à vos héritiers. C'est pourquoi on parle d'**assurance longévité** - une façon de garantir ses revenus jusqu'au bout, quelle que soit la durée.
 
 ---
 
@@ -113,7 +113,7 @@ Depuis le 21 décembre 2012, suite à un arrêt de la Cour de justice de l'Union
 - 65 ans, 100 000 € (homme) → 614 €/mois
 - 65 ans, 100 000 € (femme) → 551 €/mois
 
-Les femmes ayant en moyenne une espérance de vie plus longue, la rente mensuelle était plus faible à capital égal — le total versé sur la durée restant comparable.
+Les femmes ayant en moyenne une espérance de vie plus longue, la rente mensuelle était plus faible à capital égal - le total versé sur la durée restant comparable.
 
 **Depuis décembre 2012** :
 - 65 ans, 100 000 € (homme ou femme) → **580 €/mois** (table unisexe)
@@ -141,7 +141,7 @@ Plus la conversion intervient tard, plus la rente mensuelle est élevée. L'assu
 
 | Âge | Rente mensuelle | Par rapport à 60 ans |
 |-----|----------------|----------------------|
-| 60 ans | 390 € | — |
+| 60 ans | 390 € | - |
 | 65 ans | 510 € | +31% |
 | 70 ans | 680 € | +74% |
 | 75 ans | 920 € | +136% |
@@ -215,7 +215,7 @@ Rente nette : 800 − 65 = 735 €/mois
 
 Plus la conversion intervient tard, plus la fraction exonérée est élevée. C'est l'un des rares mécanismes fiscaux qui récompensent une décision différée.
 
-**Source officielle** : [Service-Public.fr — Rentes viagères](https://www.service-public.gouv.fr/particuliers/vosdroits/F3173)
+**Source officielle** : [Service-Public.fr - Rentes viagères](https://www.service-public.gouv.fr/particuliers/vosdroits/F3173)
 
 ---
 
@@ -252,7 +252,7 @@ Ces trois options répondent à des besoins différents. Voici un tableau factue
 - Assurance-vie : capital épuisé depuis 82 ans, rien depuis 16 ans
 - **Rente viagère nettement plus avantageuse**
 
-La rente viagère est d'autant plus favorable que la longévité est élevée. C'est structurellement ainsi — c'est la nature même du produit, pas un défaut.
+La rente viagère est d'autant plus favorable que la longévité est élevée. C'est structurellement ainsi - c'est la nature même du produit, pas un défaut.
 
 ---
 
@@ -311,7 +311,7 @@ La rente n'est pas universellement adaptée. Voici les cas où elle peut être p
 
 La différence est de 435 €/mois, soit 5 220 €/an. Sur 20 ans : **104 400 € d'écart**.
 
-Pendant les 10 années d'attente, elle peut vivre sur des retraits programmés (500 €/mois = 60 000 € sur 10 ans). Il lui reste 90 000 € à 70 ans, convertis en 780 €/mois — encore supérieur aux 585 € initiaux.
+Pendant les 10 années d'attente, elle peut vivre sur des retraits programmés (500 €/mois = 60 000 € sur 10 ans). Il lui reste 90 000 € à 70 ans, convertis en 780 €/mois - encore supérieur aux 585 € initiaux.
 
 Sauf besoin immédiat, différer la conversion est souvent la décision la plus avantageuse.
 
@@ -324,7 +324,7 @@ Sauf besoin immédiat, différer la conversion est souvent la décision la plus 
 
 Marc accepte 170 €/mois de moins. Sur 20 ans : **40 800 €**.
 
-Si Julie a sa propre retraite et une assurance-vie, la protection est peut-être surdimensionnée. La réversion se justifie quand le besoin est réel — pas par précaution automatique.
+Si Julie a sa propre retraite et une assurance-vie, la protection est peut-être surdimensionnée. La réversion se justifie quand le besoin est réel - pas par précaution automatique.
 
 ### 3. Les frais : comparer les contrats
 
@@ -401,7 +401,7 @@ Au-delà, une répartition sur deux assureurs distincts peut limiter ce risque :
 - **Rente PER** : imposée comme une pension de retraite (abattement 10 %)
 - **Rente assurance-vie** : imposée selon la fraction en fonction de l'âge (30 à 70 % exonéré)
 
-À 70 ans, la rente assurance-vie est généralement plus avantageuse fiscalement. Le PER, en revanche, permet de déduire les versements pendant la vie active — l'avantage se situe à l'entrée, pas à la sortie.
+À 70 ans, la rente assurance-vie est généralement plus avantageuse fiscalement. Le PER, en revanche, permet de déduire les versements pendant la vie active - l'avantage se situe à l'entrée, pas à la sortie.
 
 Le bon choix dépend de votre TMI actuel par rapport à celui attendu à la retraite.
 
@@ -444,19 +444,19 @@ Le bon choix dépend de votre TMI actuel par rapport à celui attendu à la retr
 ## Pour aller plus loin
 
 **Calculateurs** :
-- [CalcPatrimoine](https://calculpatrimoine.fr) — Simulateur gratuit, code open-source
+- [CalcPatrimoine](https://calculpatrimoine.fr) - Simulateur gratuit, code open-source
 
 **Sources officielles** :
-- [Tables INSEE 2022](https://www.ined.fr/fr/tout-savoir-population/graphiques-cartes/graphiques-interpretes/esperance-vie-france/) — Espérance de vie par âge
-- [Service-Public.fr](https://www.service-public.gouv.fr/particuliers/vosdroits/F3173) — Fiscalité rentes viagères
-- Code des assurances, articles A331-1 à A331-11 — Réglementation rentes
+- [Tables INSEE 2022](https://www.ined.fr/fr/tout-savoir-population/graphiques-cartes/graphiques-interpretes/esperance-vie-france/) - Espérance de vie par âge
+- [Service-Public.fr](https://www.service-public.gouv.fr/particuliers/vosdroits/F3173) - Fiscalité rentes viagères
+- Code des assurances, articles A331-1 à A331-11 - Réglementation rentes
 
 **Lecture complémentaire** :
 - Louis Esch, *Calcul actuariel*, pages 15–22 (formules détaillées)
-- [ACPR](https://acpr.banque-france.fr/) — Autorité de contrôle des assurances
+- [ACPR](https://acpr.banque-france.fr/) - Autorité de contrôle des assurances
 
 **Code source** :
-- [GitHub CalcPatrimoine](https://github.com/nba67000/calculpatrimoine) — Formules Python, tables JSON
+- [GitHub CalcPatrimoine](https://github.com/nba67000/calculpatrimoine) - Formules Python, tables JSON
 
 ---
 

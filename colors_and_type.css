@@ -1,18 +1,18 @@
 /* ==========================================================================
-   CalcPatrimoine — Design Tokens
+   CalcPatrimoine - Design Tokens
    Source of truth: tailwind.config.ts + globals.css in nba67000/calcpatrimoine
    ========================================================================== */
 
 :root {
   /* --------------------------------------------------------------------
-     COLORS — "Confiance bancaire moderne"
+     COLORS - "Confiance bancaire moderne"
      Bleu marine primary, or/ambre accent, neutres slate, warning ambre.
      Note: success and error in the source Tailwind config are aliased to
-     the SAME primary bleu (intentional — the brand unifies trust color).
+     the SAME primary bleu (intentional - the brand unifies trust color).
      Only the warning orange ever breaks out (for disclaimers only).
      -------------------------------------------------------------------- */
 
-  /* Primary — Bleu marine */
+  /* Primary - Bleu marine */
   --primary-50:  #E8EEF5;
   --primary-100: #D1DDE9;
   --primary-200: #A3BBD3;
@@ -24,7 +24,7 @@
   --primary-800: #1A2F4F;
   --primary-900: #0A2540; /* Bleu marine profond */
 
-  /* Accent — Or / ambré (utilisé avec parcimonie: premium markers) */
+  /* Accent - Or / ambré (utilisé avec parcimonie: premium markers) */
   --accent-100: #F5EFE0;
   --accent-200: #EBE0C1;
   --accent-300: #E5C77F;
@@ -33,7 +33,7 @@
   --accent-600: #9A7209;
   --accent-700: #7C5E07;
 
-  /* Neutral — Slate */
+  /* Neutral - Slate */
   --neutral-50:  #F8FAFC;
   --neutral-100: #F1F5F9;
   --neutral-200: #E2E8F0;
@@ -45,7 +45,7 @@
   --neutral-800: #1E293B;
   --neutral-900: #0F172A;
 
-  /* Warning — Ambre (réservé aux disclaimers légaux) */
+  /* Warning - Ambre (réservé aux disclaimers légaux) */
   --warning-50:  #FFFBEB;
   --warning-100: #FEF3C7;
   --warning-200: #FDE68A;
@@ -57,9 +57,9 @@
   --warning-800: #92400E;
   --warning-900: #78350F;
 
-  /* Semantic status icons (from Icon.tsx — only 3 icons are allowed) */
-  --icon-check: #10B981; /* green — single usage, in Icon component */
-  --icon-cross: #DC2626; /* red  — single usage, in Icon component */
+  /* Semantic status icons (from Icon.tsx - only 3 icons are allowed) */
+  --icon-check: #10B981; /* green - single usage, in Icon component */
+  --icon-cross: #DC2626; /* red  - single usage, in Icon component */
   --icon-warning: #F59E0B; /* matches warning-500 */
 
   /* --------------------------------------------------------------------
@@ -88,7 +88,7 @@
   --focus-ring: var(--primary-600);
 
   /* --------------------------------------------------------------------
-     TYPOGRAPHY — Inter / Playfair Display / Roboto Mono
+     TYPOGRAPHY - Inter / Playfair Display / Roboto Mono
      Inter is the workhorse; Playfair reserved for editorial (h1 blog/a-propos);
      Roboto Mono for tabular numbers in results.
      -------------------------------------------------------------------- */
@@ -105,8 +105,8 @@
   --fs-2xl:     1.5rem;    /* 24px */
   --fs-3xl:     1.875rem;  /* 30px */
   --fs-4xl:     2.25rem;   /* 36px */
-  --fs-5xl:     3rem;      /* 48px — hero */
-  --fs-6xl:     3.75rem;   /* 60px — display (result numbers) */
+  --fs-5xl:     3rem;      /* 48px - hero */
+  --fs-6xl:     3.75rem;   /* 60px - display (result numbers) */
 
   --lh-tight: 1;
   --lh-snug:  1.1;
@@ -123,16 +123,16 @@
   --tracking-wider: 0.05em;
 
   /* --------------------------------------------------------------------
-     RADII — deliberately modest (4–8px max). No pill/rounded-full.
+     RADII - deliberately modest (4–8px max). No pill/rounded-full.
      -------------------------------------------------------------------- */
-  --radius-sm:      0.125rem;  /* 2px  — rarely used */
-  --radius-default: 0.25rem;   /* 4px  — default */
-  --radius-md:      0.375rem;  /* 6px  — logo tile */
-  --radius-lg:      0.5rem;    /* 8px  — cards, inputs, buttons */
-  --radius-xl:      0.75rem;   /* 12px — hero calc cards */
+  --radius-sm:      0.125rem;  /* 2px  - rarely used */
+  --radius-default: 0.25rem;   /* 4px  - default */
+  --radius-md:      0.375rem;  /* 6px  - logo tile */
+  --radius-lg:      0.5rem;    /* 8px  - cards, inputs, buttons */
+  --radius-xl:      0.75rem;   /* 12px - hero calc cards */
 
   /* --------------------------------------------------------------------
-     SHADOWS — flat, subtle. No dramatic elevation.
+     SHADOWS - flat, subtle. No dramatic elevation.
      -------------------------------------------------------------------- */
   --shadow-subtle:    0 1px 2px 0 rgba(0,0,0,0.05);
   --shadow-card:      0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.06);
@@ -159,11 +159,11 @@
 
   /* Max-widths used throughout the site */
   --container-sm: 42rem;
-  --container-md: 56rem;  /* 4xl — main calculator column */
-  --container-lg: 72rem;  /* 6xl — site shell */
+  --container-md: 56rem;  /* 4xl - main calculator column */
+  --container-lg: 72rem;  /* 6xl - site shell */
 
   /* --------------------------------------------------------------------
-     MOTION — Framer-Motion defaults observed in the codebase.
+     MOTION - Framer-Motion defaults observed in the codebase.
      Short, quiet. No bounces, no springs beyond a gentle fade/slide.
      -------------------------------------------------------------------- */
   --duration-fast:   150ms;

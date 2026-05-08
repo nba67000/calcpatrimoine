@@ -8,7 +8,7 @@ import LegalDisclaimer from '@/components/LegalDisclaimer'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
 
 export const metadata: Metadata = {
-  title: 'FAQ IFI 2026 — Impôt sur la fortune immobilière | CalculPatrimoine',
+  title: 'FAQ IFI 2026 - Impôt sur la fortune immobilière | CalculPatrimoine',
   description: "Seuil 1 300 000 €, barème progressif, abattement résidence principale 30 %, décote et plafonnement IFI + IR.",
 }
 
@@ -109,7 +109,7 @@ const sections: FAQSection[] = [
               </tbody>
             </table>
             <p className="text-sm text-neutral-600">
-              Rappel : chaque taux ne s&apos;applique que sur la partie du patrimoine qui tombe dans cette tranche — pas sur l&apos;ensemble. Un patrimoine de 2 000 000 € génère un IFI de 7 400 €, soit 0,37 % de taux effectif.
+              Rappel : chaque taux ne s&apos;applique que sur la partie du patrimoine qui tombe dans cette tranche - pas sur l&apos;ensemble. Un patrimoine de 2 000 000 € génère un IFI de 7 400 €, soit 0,37 % de taux effectif.
             </p>
           </>
         ),
@@ -230,7 +230,7 @@ const sections: FAQSection[] = [
             Partiellement. Pour une SCI, seule la fraction des actifs immobiliers représentant des biens
             taxables doit être déclarée, proportionnellement aux parts détenues. Ce calculateur vous
             permet de saisir directement la valeur IFI de vos parts, si vous l&apos;avez calculée par ailleurs.
-            Le calcul interne de la quote-part taxable d&apos;une SCI n&apos;est pas automatisé ici — il dépend de
+            Le calcul interne de la quote-part taxable d&apos;une SCI n&apos;est pas automatisé ici - il dépend de
             la structure bilancielle de la société.
           </p>
         ),
@@ -287,7 +287,7 @@ export default function FAQIFIPage() {
           <div className="h-[2px] w-10 bg-accent-400 mb-6" />
 
           <h1 className="font-serif text-4xl font-bold text-neutral-900 mb-4">
-            FAQ — Impôt sur la fortune immobilière (IFI)
+            FAQ - Impôt sur la fortune immobilière (IFI)
           </h1>
           <p className="text-lg text-neutral-600 max-w-2xl leading-relaxed mb-8">
             Tout ce qu&apos;il faut savoir sur l&apos;IFI : seuil, barème, abattement résidence principale,

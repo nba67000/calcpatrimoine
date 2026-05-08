@@ -7,11 +7,11 @@ export const SOURCES_TMI = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051212954', label: 'Article 197 du CGI', desc: 'Barème progressif IR 2026 (revenus 2025), décote, plafonnement QF' },
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006302756', label: 'Article 194 du CGI', desc: 'Quotient familial : parts de base et parts pour enfants à charge' },
   { href: 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179579/', label: 'Article 195 du CGI', desc: 'Demi-parts supplémentaires : parent isolé (case T), invalidité, etc.' },
-  { href: 'https://bofip.impots.gouv.fr/bofip/2491-PGP.html/identifiant=BOI-IR-LIQ-20-10-20260407', label: 'BOFiP BOI-IR-LIQ-20-10', desc: "Barème de l'impôt sur le revenu 2026 — publié le 07/04/2026" },
-  { href: 'https://bofip.impots.gouv.fr/bofip/2495-PGP.html/identifiant=BOI-IR-LIQ-20-20-30-20250414', label: 'BOFiP BOI-IR-LIQ-20-20-30', desc: 'Décote — paramètres 2026 (indexation +0,9 % sur la base 2025)' },
+  { href: 'https://bofip.impots.gouv.fr/bofip/2491-PGP.html/identifiant=BOI-IR-LIQ-20-10-20260407', label: 'BOFiP BOI-IR-LIQ-20-10', desc: "Barème de l'impôt sur le revenu 2026 - publié le 07/04/2026" },
+  { href: 'https://bofip.impots.gouv.fr/bofip/2495-PGP.html/identifiant=BOI-IR-LIQ-20-20-30-20250414', label: 'BOFiP BOI-IR-LIQ-20-20-30', desc: 'Décote - paramètres 2026 (indexation +0,9 % sur la base 2025)' },
 ]
 
-// Barème IR 2026 (revenus 2025) — Art. 197 CGI, LF 2026 art. 4, indexation +0,9%
+// Barème IR 2026 (revenus 2025) - Art. 197 CGI, LF 2026 art. 4, indexation +0,9%
 const BAREME_2026: Array<{ taux: number; min: number; max: number }> = [
   { taux: 0,  min: 0,      max: 11600 },
   { taux: 11, min: 11600,  max: 29579 },
@@ -20,14 +20,14 @@ const BAREME_2026: Array<{ taux: number; min: number; max: number }> = [
   { taux: 45, min: 181917, max: Number.MAX_VALUE },
 ]
 
-// Décote 2026 — Art. 197-I-4-a CGI (LF 2026 art. 4, version en vigueur 21/02/2026)
+// Décote 2026 - Art. 197-I-4-a CGI (LF 2026 art. 4, version en vigueur 21/02/2026)
 // Formule officielle : décote = limite − 45,25 % × IR brut (Art. 197 CGI)
 const DECOTE_2026 = {
   celibataire: { limite: 897,  coefficient: 0.4525 },
   couple:      { limite: 1483, coefficient: 0.4525 },
 }
 
-// Plafond QF — Art. 197-IV CGI, LF 2026
+// Plafond QF - Art. 197-IV CGI, LF 2026
 const PLAFOND_DEMI_PART = 1807
 // Parent isolé : 1re part entière (enfant + case T) plafonnée à 4 262 € au lieu de 2 × 1 807 = 3 614 €
 const PLAFOND_PARENT_ISOLE_1ERE_PART = 4262
@@ -48,7 +48,7 @@ function calculerNombreParts(
     partsEnfants += i <= 2 ? 0.5 : 1
   }
 
-  // Case T (parent isolé avec au moins 1 enfant) — Art. 195-1-c CGI
+  // Case T (parent isolé avec au moins 1 enfant) - Art. 195-1-c CGI
   const partsCaseT = situationFamiliale === 'parent-isole' && nombreEnfants >= 1 ? 0.5 : 0
 
   return {
@@ -150,7 +150,7 @@ export function calculerTMIResult(inputs: TMIInputs): TMIResults {
   // 3. Réduction QF brute
   const reductionQFBrute = Math.max(0, irSansQF - irAvecQF)
 
-  // 4. Plafond de la réduction QF — Art. 197-IV CGI
+  // 4. Plafond de la réduction QF - Art. 197-IV CGI
   // Nombre de demi-parts enfants : 1er et 2e enfants = 1 demi-part chacun ; 3e+ = 2 demi-parts chacun
   const demiPartsEnfants = partsEnfants / 0.5
 
@@ -169,7 +169,7 @@ export function calculerTMIResult(inputs: TMIInputs): TMIResults {
   const plafonnementActif = nombreEnfants > 0 && reductionQFBrute > reductionQFPlafond
   const irBrut = Math.round(irSansQF - reductionQFAppliquee)
 
-  // 6. Décote — Art. 197-I-4 CGI
+  // 6. Décote - Art. 197-I-4 CGI
   // Formule : décote = limite − (limite / seuil) × IR brut
   const enCouple = situationFamiliale === 'marie-pacse'
   const decoteParams = enCouple ? DECOTE_2026.couple : DECOTE_2026.celibataire
@@ -264,7 +264,7 @@ export function formatContexteTMI(inputs: TMIInputs, r: TMIResults): string {
     ligne("Taux moyen d'imposition", pct(r.tauxMoyen)),
   ]
   if (r.plafonnementActif) {
-    lines.push(ligne('Plafonnement QF', `actif — réduction limitée à ${eur(r.reductionQFPlafond)}`))
+    lines.push(ligne('Plafonnement QF', `actif - réduction limitée à ${eur(r.reductionQFPlafond)}`))
   }
   if (r.detailTranches.length > 0) {
     lines.push('', 'Détail par tranche')

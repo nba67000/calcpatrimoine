@@ -185,7 +185,7 @@ const sections: FAQSection[] = [
               </tbody>
             </table>
             <p className="text-sm text-neutral-600">
-              Source : BOFiP BOI-IR-LIQ-20-20-30 — paramètres 2026.
+              Source : BOFiP BOI-IR-LIQ-20-20-30 - paramètres 2026.
             </p>
           </>
         ),
@@ -267,7 +267,7 @@ export default function FAQTMIPage() {
               Questions fréquentes<br />Tranche Marginale d&apos;Imposition
             </h1>
             <p className="text-lg text-neutral-600 max-w-2xl mb-10">
-              TMI vs taux moyen, barème 2026, quotient familial, décote —
+              TMI vs taux moyen, barème 2026, quotient familial, décote -
               tout ce qu&apos;il faut savoir pour lire correctement votre avis d&apos;imposition.
             </p>
 
@@ -300,7 +300,7 @@ export default function FAQTMIPage() {
             {[
               { href: '/faq/per', label: 'FAQ PER Individuel', desc: 'La TMI détermine l\'économie d\'impôt sur vos versements PER.' },
               { href: '/faq/assurance-vie', label: 'FAQ Assurance-Vie', desc: 'PFU vs IR : votre TMI détermine quelle option est moins taxée.' },
-              { href: '/faq', label: 'Toutes les FAQ', desc: 'Rente viagère, transmission, PER — retrouvez chaque FAQ.' },
+              { href: '/faq', label: 'Toutes les FAQ', desc: 'Rente viagère, transmission, PER - retrouvez chaque FAQ.' },
             ].map(link => (
               <Link
                 key={link.href}

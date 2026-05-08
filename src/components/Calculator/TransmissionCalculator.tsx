@@ -52,7 +52,7 @@ export default function TransmissionCalculator() {
    beneficiaires,
  }), [capitalTotal, versementsAvant70, versementsApres70, ageSouscripteur, beneficiaires])
 
- // Actions bénéficiaires — délèguent aux fonctions pures de lib/transmission
+ // Actions bénéficiaires - délèguent aux fonctions pures de lib/transmission
  const modifierBeneficiaire = (id: string, updates: Partial<Beneficiaire>) => {
    setBeneficiaires(beneficiaires.map(b => b.id === id ? { ...b, ...updates } : b))
  }

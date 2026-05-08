@@ -1,4 +1,4 @@
-# Sources — <Nom du calculateur>
+# Sources - <Nom du calculateur>
 
 **Dernière vérification** : YYYY-MM-DD
 **Millésime fiscal** : Revenus YYYY / Barème YYYY+1
@@ -10,14 +10,14 @@
 
 ### Code général des impôts
 
-- **Article XXX CGI** — <objet, 1 phrase>
+- **Article XXX CGI** - <objet, 1 phrase>
   - URL : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI...
   - Version en vigueur : <date>
   - Point clé repris dans le calcul : <reformulation, 15 mots max>
 
 ### Autres codes applicables
 
-- **Article L.XXX du Code <...>** — <objet>
+- **Article L.XXX du Code <...>** - <objet>
   - URL : https://...
 
 ---
@@ -26,14 +26,14 @@
 
 ### BOFiP
 
-- **BOI-<référence>** — <titre>
+- **BOI-<référence>** - <titre>
   - URL : https://bofip.impots.gouv.fr/bofip/<id>-PGP.html
   - Date publication : YYYY-MM-DD
   - Sections utilisées : §<numéros>
 
 ### BOSS (si applicable)
 
-- **BOSS <référence>** — <titre>
+- **BOSS <référence>** - <titre>
   - URL : https://boss.gouv.fr/portail/accueil/...
 
 ---
@@ -51,7 +51,7 @@
 
 Cas chiffrés vérifiés pour validation des calculs :
 
-### Exemple 1 — <nom du cas>
+### Exemple 1 - <nom du cas>
 Source : <BOFiP / service-public / communiqué>
 
 **Inputs** :
@@ -64,7 +64,7 @@ Source : <BOFiP / service-public / communiqué>
 
 **Écart toléré** : ± 1 € (arrondis)
 
-### Exemple 2 — <nom du cas>
+### Exemple 2 - <nom du cas>
 <...>
 
 ---

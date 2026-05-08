@@ -7,7 +7,7 @@ import Footer from '@/components/Footer'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
 
 export const metadata: Metadata = {
-  title: 'FAQ Plus-Value Immobilière — Résidence secondaire | CalculPatrimoine',
+  title: 'FAQ Plus-Value Immobilière - Résidence secondaire | CalculPatrimoine',
   description: "Abattements pour durée de détention, IR 19 %, prélèvements sociaux 17,2 %, surtaxe. Questions fréquentes sur la plus-value immobilière.",
 }
 
@@ -140,7 +140,7 @@ const sections: FAQSection[] = [
           <>
             <p className="mb-3">
               L&apos;IR et les prélèvements sociaux sont deux impôts distincts, avec chacun leur propre barème d&apos;exonération.
-              Le législateur n&apos;a pas aligné les durées — résultat : entre 22 et 30 ans de détention, l&apos;IR de 19 % est à zéro mais vous payez encore une partie des prélèvements sociaux.
+              Le législateur n&apos;a pas aligné les durées - résultat : entre 22 et 30 ans de détention, l&apos;IR de 19 % est à zéro mais vous payez encore une partie des prélèvements sociaux.
             </p>
             <ul className="list-disc pl-6 mb-3 space-y-2">
               <li>
@@ -558,7 +558,7 @@ export default function FAQPlusValueImmobilierePage() {
               Questions fréquentes<br />Plus-value immobilière
             </h1>
             <p className="text-lg text-neutral-600 max-w-2xl mb-10">
-              Frais déductibles, abattements IR vs PS, surtaxe, exonérations —
+              Frais déductibles, abattements IR vs PS, surtaxe, exonérations -
               tout comprendre sur l&apos;imposition d&apos;une cession immobilière.
             </p>
 
@@ -591,7 +591,7 @@ export default function FAQPlusValueImmobilierePage() {
             {[
               { href: '/faq/tmi', label: 'FAQ TMI', desc: 'Connaître sa TMI est utile pour comprendre l\'impact d\'une plus-value sur votre IR global.' },
               { href: '/faq/assurance-vie', label: 'FAQ Assurance-Vie', desc: 'Les règles d\'imposition de l\'assurance-vie sont très différentes de l\'immobilier.' },
-              { href: '/faq', label: 'Toutes les FAQ', desc: 'Rente viagère, PER, TMI, transmission — retrouvez chaque FAQ.' },
+              { href: '/faq', label: 'Toutes les FAQ', desc: 'Rente viagère, PER, TMI, transmission - retrouvez chaque FAQ.' },
             ].map((link) => (
               <Link
                 key={link.href}

@@ -22,7 +22,7 @@ Choisis **l'option "Claude Pro / Max subscription"** pour utiliser ton
 abonnement existant plutôt que l'API facturée à l'usage.
 
 **Note** : avant de lancer pour la première fois, vérifie la doc officielle
-— l'outil évolue vite. Page à consulter :
+- l'outil évolue vite. Page à consulter :
 `https://docs.claude.com/en/docs/claude-code/overview`.
 
 ---
@@ -84,12 +84,12 @@ Relire le commit, tester en `npm run dev`, pousser quand tu es content.
 ### Pendant
 
 - Claude Code te demande confirmation avant chaque modification de fichier.
-  **Relis systématiquement** les diffs la première semaine — c'est comme ça
+  **Relis systématiquement** les diffs la première semaine - c'est comme ça
   que tu calibres ta confiance.
 - Si une réponse commence à dériver (verbeuse, hors-sujet, bug qui tourne en
   boucle), utilise `Esc` pour interrompre et reformule.
 - Si tu veux que Claude Code **teste manuellement** un calculateur : demande-lui
-  explicitement "lance npm run dev et dis-moi si ça compile" — il sait le faire.
+  explicitement "lance npm run dev et dis-moi si ça compile" - il sait le faire.
 
 ### Après
 
@@ -110,7 +110,7 @@ réinitialisent toutes les 5 heures. Quelques repères :
   fenêtre de 5h selon sa complexité.
 - Si tu atteins la limite, l'outil te le dira et tu pourras simplement attendre
   la prochaine réinitialisation.
-- **Les chiffres exacts de limites évoluent** — consulte la page tarifs
+- **Les chiffres exacts de limites évoluent** - consulte la page tarifs
   Anthropic si besoin, je n'invente rien ici.
 
 ### Économiser des tokens

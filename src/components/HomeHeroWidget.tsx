@@ -42,7 +42,7 @@ export default function HomeHeroWidget() {
       {/* En-tête */}
       <div className="border-b border-neutral-100 px-6 py-4">
         <p className="font-mono text-xs text-neutral-400 uppercase tracking-widest">
-          TMI — Barème IR 2026
+          TMI - Barème IR 2026
         </p>
         <p className="font-mono text-xs text-neutral-400 mt-0.5">
           Revenus 2025
@@ -126,7 +126,7 @@ export default function HomeHeroWidget() {
           </div>
         </div>
 
-        {/* Résultat — TMI */}
+        {/* Résultat - TMI */}
         <div
           className="border p-4 mb-4 flex items-center justify-between gap-4"
           style={{ backgroundColor: palette.bg, borderColor: palette.border }}
@@ -158,7 +158,7 @@ export default function HomeHeroWidget() {
           href="/tmi"
           className="block text-center font-mono text-xs font-medium text-primary-700 border border-primary-700 px-4 py-2.5 hover:bg-primary-700 hover:text-white transition-colors"
         >
-          Calculateur complet — quotient familial, décote →
+          Calculateur complet - quotient familial, décote →
         </Link>
 
         <p className="font-mono text-xs text-neutral-400 text-center mt-3 leading-relaxed">

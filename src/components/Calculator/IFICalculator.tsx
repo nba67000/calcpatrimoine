@@ -36,7 +36,7 @@ export default function IFICalculator() {
     <>
     <div className="grid lg:grid-cols-2 gap-8">
 
-      {/* === COLONNE GAUCHE — INPUTS === */}
+      {/* === COLONNE GAUCHE - INPUTS === */}
       <div className="space-y-6">
 
         {/* Carte : Patrimoine immobilier */}
@@ -184,7 +184,7 @@ export default function IFICalculator() {
         </div>
       </div>
 
-      {/* === COLONNE DROITE — RÉSULTATS === */}
+      {/* === COLONNE DROITE - RÉSULTATS === */}
       <div className="space-y-5">
 
         {/* Patrimoine net taxable */}
@@ -226,7 +226,7 @@ export default function IFICalculator() {
           </div>
         )}
 
-        {/* Assujetti — résultats */}
+        {/* Assujetti - résultats */}
         {results.assujetti && (
           <>
             {/* IFI total */}
@@ -291,7 +291,7 @@ export default function IFICalculator() {
                   )}
                   {!results.plafonnementApplicable && (
                     <p className="text-xs text-green-700 mt-1">
-                      Sous le seuil de {formatEur(results.seuilPlafonnement)} — pas de plafonnement.
+                      Sous le seuil de {formatEur(results.seuilPlafonnement)} - pas de plafonnement.
                     </p>
                   )}
                 </div>
@@ -301,7 +301,7 @@ export default function IFICalculator() {
             {/* Détail barème */}
             <div className="bg-white rounded-xl border border-neutral-200 p-5 shadow-sm">
               <h4 className="text-sm font-bold text-neutral-700 uppercase tracking-wider mb-3">
-                Détail du barème — {formatEur(results.patrimoineNetTaxable)} net taxable
+                Détail du barème - {formatEur(results.patrimoineNetTaxable)} net taxable
               </h4>
               <table className="w-full text-sm">
                 <thead>

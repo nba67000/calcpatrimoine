@@ -1,4 +1,4 @@
-# Sources — Fiscalité Rachat Assurance-Vie
+# Sources - Fiscalité Rachat Assurance-Vie
 
 **Dernière vérification** : 2026-05-03
 **Millésime fiscal** : Revenus 2025 / Barème 2026
@@ -7,21 +7,21 @@
 
 ## Textes de loi
 
-- **Article 125-0 A du Code général des impôts** — Imposition des produits des bons ou contrats de capitalisation et assurance-vie
+- **Article 125-0 A du Code général des impôts** - Imposition des produits des bons ou contrats de capitalisation et assurance-vie
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044989424
   Extrait pertinent : "Les produits [...] sont soumis à l'impôt sur le revenu selon les modalités prévues au 1 du II de l'article 200 A"
 
-- **Article 200 A du Code général des impôts** — Taux PFU (12,8%)
+- **Article 200 A du Code général des impôts** - Taux PFU (12,8%)
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985080
   Extrait pertinent : "Le taux forfaitaire mentionné au 1 est fixé à 12,8 %"
 
 ## Doctrine administrative
 
-- **BOFiP BOI-RPPM-RCM-20-10-20-50** — Produits des contrats d'assurance-vie : taux d'imposition
+- **BOFiP BOI-RPPM-RCM-20-10-20-50** - Produits des contrats d'assurance-vie : taux d'imposition
   URL : https://bofip.impots.gouv.fr/bofip/3951-PGP.html/identifiant=BOI-RPPM-RCM-20-10-20-50-20220630
   Date publication : 2022-06-30
 
-- **impots.gouv.fr** — "J'ai effectué des retraits sur mon contrat d'assurance-vie, quelles sont les règles fiscales ?"
+- **impots.gouv.fr** - "J'ai effectué des retraits sur mon contrat d'assurance-vie, quelles sont les règles fiscales ?"
   URL : https://www.impots.gouv.fr/particulier/questions/jai-effectue-des-retraits-sur-mon-contrat-dassurance-vie-quelles-sont-les
   Date mise à jour : 2026-03-20
 
@@ -44,17 +44,17 @@
 
 ## Exemples de référence
 
-### Exemple 1 — Contrat < 8 ans, versement 10 000€ dont 2 000€ de plus-value
+### Exemple 1 - Contrat < 8 ans, versement 10 000€ dont 2 000€ de plus-value
 - PFU : 2 000 × 30 % = 600€
 - Net perçu : 9 400€
 
-### Exemple 2 — Contrat > 8 ans (célibataire, encours < 150k€), rachat 50 000€ dont 5 000€ de plus-value, versements post-2017
+### Exemple 2 - Contrat > 8 ans (célibataire, encours < 150k€), rachat 50 000€ dont 5 000€ de plus-value, versements post-2017
 - Abattement : 4 600€
 - PV taxable : 400€
 - PFU : 400 × 24,7 % = 98,80€
 - Net perçu : 49 901,20€
 
-### Exemple 3 — Contrat > 8 ans, 50 % versements avant 27/09/2017
+### Exemple 3 - Contrat > 8 ans, 50 % versements avant 27/09/2017
 - PV dans rachat : 3 000€ (dont 1 500€ pre-2017, 1 500€ post-2017)
 - Taux moyen : (1 500 × 24,7 % + 1 500 × 30 %) / 3 000 = 27,35 %
 

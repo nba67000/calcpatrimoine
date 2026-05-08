@@ -71,7 +71,7 @@ export default function ArticleAssuranceViePage() {
 
           {/* Lexique */}
           <div className="bg-surface-card border border-neutral-200 p-6 mb-12">
-            <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-5">Lexique — avant de commencer</p>
+            <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-5">Lexique - avant de commencer</p>
             <div className="space-y-5">
               {[
                 {
@@ -83,11 +83,11 @@ export default function ArticleAssuranceViePage() {
                   def: "La différence entre ce que votre contrat vaut aujourd'hui et ce que vous avez versé. Si vous avez versé 70 000 euros et que votre contrat vaut 100 000 euros, votre plus-value est de 30 000 euros. C'est uniquement sur cette plus-value que l'impôt est calculé, pas sur l'ensemble du contrat.",
                 },
                 {
-                  terme: 'PFU — Prélèvement Forfaitaire Unique',
+                  terme: 'PFU - Prélèvement Forfaitaire Unique',
                   def: "Un taux d'imposition fixe de 30 % qui s'applique sur les gains financiers. Il se décompose en 12,8 % d'impôt sur le revenu et 17,2 % de prélèvements sociaux. On l'appelle aussi « flat tax ». Il s'applique par défaut sur vos rachats d'assurance-vie, sauf si vous choisissez l'option IR.",
                 },
                 {
-                  terme: 'TMI — Taux Marginal d\'Imposition',
+                  terme: 'TMI - Taux Marginal d\'Imposition',
                   def: "Le taux qui s'applique sur votre dernière tranche de revenus. En 2025, les tranches sont 0 %, 11 %, 30 %, 41 % et 45 %. Un salarié qui gagne 45 000 euros nets imposables est à 30 % de TMI. Ce taux est important parce qu'il détermine si le PFU ou l'option IR est plus avantageuse pour vous.",
                 },
                 {
@@ -174,7 +174,7 @@ export default function ArticleAssuranceViePage() {
 
             <p className="text-xs text-neutral-500 font-mono">
               Source :{' '}
-              <a href="https://bofip.impots.gouv.fr/bofip/2823-PGP.html" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">BOFiP — RPPM-RCM-20-10-20</a>
+              <a href="https://bofip.impots.gouv.fr/bofip/2823-PGP.html" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">BOFiP - RPPM-RCM-20-10-20</a>
             </p>
           </section>
 
@@ -224,12 +224,12 @@ export default function ArticleAssuranceViePage() {
             <div className="bg-surface-card border border-neutral-200 p-5 my-6">
               <div className="space-y-5 text-sm">
                 <div>
-                  <p className="font-bold text-neutral-900 font-mono mb-1">Option A — Retirer maintenant</p>
+                  <p className="font-bold text-neutral-900 font-mono mb-1">Option A - Retirer maintenant</p>
                   <p className="text-neutral-600 font-mono">Plus-value taxable : 15 000 euros (aucun abattement)</p>
                   <p className="text-neutral-600 font-mono">Impôt : 15 000 × 30 % = <strong>4 500 euros</strong></p>
                 </div>
                 <div className="border-t border-neutral-100 pt-5">
-                  <p className="font-bold text-neutral-900 font-mono mb-1">Option B — Attendre 1 mois</p>
+                  <p className="font-bold text-neutral-900 font-mono mb-1">Option B - Attendre 1 mois</p>
                   <p className="text-neutral-600 font-mono">Plus-value taxable : 10 400 euros (après abattement de 4 600 euros)</p>
                   <p className="text-neutral-600 font-mono">Impôt : 10 400 × 30 % = <strong>3 120 euros</strong></p>
                 </div>
@@ -254,14 +254,14 @@ export default function ArticleAssuranceViePage() {
 
             <div className="space-y-4 mb-8">
               <div className="bg-surface-card border border-neutral-200 p-5">
-                <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-2">Option 1 — PFU (Prélèvement Forfaitaire Unique)</p>
+                <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-2">Option 1 - PFU (Prélèvement Forfaitaire Unique)</p>
                 <p className="text-sm text-neutral-700 mb-3">
                   Taux fixe de 30 % sur vos plus-values, quelle que soit votre tranche d&apos;imposition. Il se décompose en 12,8 % d&apos;impôt sur le revenu et 17,2 % de prélèvements sociaux. C&apos;est l&apos;option appliquée par défaut si vous ne demandez rien.
                 </p>
                 <p className="font-mono text-xs text-neutral-400">Avantage : simple. Inconvénient : peut être coûteux si votre taux marginal est faible.</p>
               </div>
               <div className="bg-surface-card border border-neutral-200 p-5">
-                <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-2">Option 2 — IR + prélèvements sociaux</p>
+                <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-2">Option 2 - IR + prélèvements sociaux</p>
                 <p className="text-sm text-neutral-700 mb-3">
                   Vos plus-values sont intégrées à votre revenu imposable et taxées à votre taux marginal, auquel s&apos;ajoutent les 17,2 % de prélèvements sociaux. Vous devez le demander explicitement lors de votre déclaration.
                 </p>
@@ -615,7 +615,7 @@ export default function ArticleAssuranceViePage() {
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047958086', label: 'Article L136-7 du Code de la Sécurité Sociale', desc: 'Prélèvements sociaux : CSG + CRDS = 17,2 %' },
                   ].map(s => (
                     <li key={s.href} className="flex items-start gap-3">
-                      <span className="text-accent-400 mt-0.5 shrink-0">—</span>
+                      <span className="text-accent-400 mt-0.5 shrink-0">-</span>
                       <div>
                         <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
                         <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>
@@ -628,11 +628,11 @@ export default function ArticleAssuranceViePage() {
                 <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Documentation officielle</h3>
                 <ul className="space-y-2 text-sm">
                   {[
-                    { href: 'https://bofip.impots.gouv.fr/bofip/2823-PGP.html', label: 'BOFiP — RPPM-RCM-20-10-20', desc: 'Règle proportionnelle et exemples de calculs détaillés' },
+                    { href: 'https://bofip.impots.gouv.fr/bofip/2823-PGP.html', label: 'BOFiP - RPPM-RCM-20-10-20', desc: 'Règle proportionnelle et exemples de calculs détaillés' },
                     { href: 'https://www.service-public.fr/particuliers/vosdroits/F22414', label: 'Service-Public.fr', desc: 'Fiche pratique sur la fiscalité de l\'assurance-vie' },
                   ].map(s => (
                     <li key={s.href} className="flex items-start gap-3">
-                      <span className="text-accent-400 mt-0.5 shrink-0">—</span>
+                      <span className="text-accent-400 mt-0.5 shrink-0">-</span>
                       <div>
                         <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
                         <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>

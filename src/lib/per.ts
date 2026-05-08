@@ -6,17 +6,17 @@ import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from 
 export const SOURCES_PER = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048776042', label: 'Article 163 quatervicies du CGI', desc: 'Déductibilité et plafonnement des versements PER (PERIN, salarié et TNS)' },
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044986838', label: 'Article 83 du CGI', desc: "Abattement forfaitaire de 10 % pour frais professionnels sur les salaires (min. 509 €, max. 14 555 € pour revenus 2025)" },
-  { href: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072026/LEGISCTA000038619671/', label: "Articles L.224-1 et suivants du Code monétaire et financier", desc: "Régime juridique du Plan d'Épargne Retraite (PER) — compartiments, versements, sortie" },
+  { href: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072026/LEGISCTA000038619671/', label: "Articles L.224-1 et suivants du Code monétaire et financier", desc: "Régime juridique du Plan d'Épargne Retraite (PER) - compartiments, versements, sortie" },
 ]
 
-// PASS 2025 — Décret du 29 novembre 2024
+// PASS 2025 - Décret du 29 novembre 2024
 const PASS_2025 = 47_100
 
-// Art. 163 quatervicies I CGI — plafonds versements 2026 (base PASS 2025)
+// Art. 163 quatervicies I CGI - plafonds versements 2026 (base PASS 2025)
 const MAX_PLAFOND_PER = Math.round(PASS_2025 * 8 * 0.10)  // 37 680 €
 const MIN_PLAFOND_PER = Math.round(PASS_2025 * 1 * 0.10)  // 4 710 €
 
-// Abattement forfaitaire 10 % frais professionnels — Art. 83 CGI, LF 2026 (revenus 2025)
+// Abattement forfaitaire 10 % frais professionnels - Art. 83 CGI, LF 2026 (revenus 2025)
 const MIN_ABATTEMENT_FRAIS_PRO = 509
 const MAX_ABATTEMENT_FRAIS_PRO = 14_555
 
@@ -40,13 +40,13 @@ function calculerDetailPlafond(inputs: PERInputs): PERDetailPlafond {
   // 2. Revenu net professionnel (base de calcul du plafond PER)
   const revenuNetProfessionnel = Math.max(0, salaireNetAnnuel - abattementFraisPro)
 
-  // 3. Plafond annuel — borné entre MIN et MAX légaux
+  // 3. Plafond annuel - borné entre MIN et MAX légaux
   const plafondBrut = revenuNetProfessionnel * 0.10
   const plafondAnnuel = Math.round(
     Math.max(MIN_PLAFOND_PER, Math.min(plafondBrut, MAX_PLAFOND_PER))
   )
 
-  // 4. Total des reports (N-1 à N-5) — Art. 163 quatervicies I b) CGI, LF 2026 art. 10 (5 ans)
+  // 4. Total des reports (N-1 à N-5) - Art. 163 quatervicies I b) CGI, LF 2026 art. 10 (5 ans)
   const plafondsReportesTotal = Math.max(0, plafondsReportesN1)
     + Math.max(0, plafondsReportesN2)
     + Math.max(0, plafondsReportesN3)
@@ -179,7 +179,7 @@ export function calculerPER(inputs: PERInputs): PERResults {
 export function formatContextePER(inputs: PERInputs, r: PERResults): string {
   const d = r.detail
   const lines = [
-    "Calculateur : PER individuel — économie d'impôt sur versement",
+    "Calculateur : PER individuel - économie d'impôt sur versement",
     '',
     'Situation fiscale',
     ligne('Salaire net annuel', eur(inputs.salaireNetAnnuel)),

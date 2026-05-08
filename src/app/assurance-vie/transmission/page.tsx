@@ -42,12 +42,12 @@ export default function TransmissionPage() {
               comme l&apos;argent versé après. Deux régimes, deux calculs.
             </p>
             <p>
-              <strong>Article 990 I — versements avant 70 ans.</strong>{' '}
+              <strong>Article 990 I - versements avant 70 ans.</strong>{' '}
               Abattement de 152 500 € par bénéficiaire (non partagé).
               Au-delà : 20 % jusqu&apos;à 700 000 €, puis 31,25 % au-delà.
             </p>
             <p>
-              <strong>Article 757 B — versements après 70 ans.</strong>{' '}
+              <strong>Article 757 B - versements après 70 ans.</strong>{' '}
               Abattement global de 30 500 € partagé entre tous les bénéficiaires (sauf conjoint).
               Les gains réalisés sur le contrat (intérêts, valorisation) ne sont pas imposés à la succession. Seules les primes versées après 70 ans entrent dans le calcul.
               Au-delà : barème de succession classique.
@@ -71,7 +71,7 @@ export default function TransmissionPage() {
           >
             <div>
               <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">Vous voulez retirer de l&apos;argent de votre contrat ?</p>
-              <p className="text-sm text-neutral-500">Calculateur de fiscalité des rachats — comparaison automatique PFU vs IR.</p>
+              <p className="text-sm text-neutral-500">Calculateur de fiscalité des rachats - comparaison automatique PFU vs IR.</p>
             </div>
             <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
           </Link>
@@ -82,7 +82,7 @@ export default function TransmissionPage() {
           >
             <div>
               <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">FAQ Transmission Assurance-Vie</p>
-              <p className="text-sm text-neutral-500">Article 990 I, 757 B, clause bénéficiaire, abattements — toutes vos questions.</p>
+              <p className="text-sm text-neutral-500">Article 990 I, 757 B, clause bénéficiaire, abattements - toutes vos questions.</p>
             </div>
             <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
           </Link>
@@ -125,7 +125,7 @@ export default function TransmissionPage() {
 
             <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
               <p className="text-sm text-primary-800">
-                <strong>Méthodologie vérifiée</strong> — calculs conformes au CGI et au BOFiP.
+                <strong>Méthodologie vérifiée</strong> - calculs conformes au CGI et au BOFiP.
                 Barèmes et abattements mis à jour en avril 2026.
               </p>
             </div>

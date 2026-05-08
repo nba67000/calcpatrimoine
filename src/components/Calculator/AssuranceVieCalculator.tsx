@@ -60,7 +60,7 @@ export default function AssuranceVieCalculator() {
             </div>
           </div>
 
-          {/* Versements totaux — max déplafonné (moins-value possible) */}
+          {/* Versements totaux - max déplafonné (moins-value possible) */}
           <div className="mb-6">
             <div className="flex justify-between items-baseline mb-2">
               <label className="text-sm font-medium text-neutral-700">Versements totaux</label>

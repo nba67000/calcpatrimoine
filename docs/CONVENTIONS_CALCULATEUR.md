@@ -83,8 +83,8 @@ types et de lib est partagé.
   ```
 - **Citer la source en commentaire** pour chaque taux / seuil magique :
   ```ts
-  const PFU_IR = 0.128        // Art. 200 A CGI — 12,8%
-  const PRELEVEMENTS_SOCIAUX = 0.172  // CSG 9,2 + CRDS 0,5 + PS 7,5 — Art. L.136-6 CSS
+  const PFU_IR = 0.128        // Art. 200 A CGI - 12,8%
+  const PRELEVEMENTS_SOCIAUX = 0.172  // CSG 9,2 + CRDS 0,5 + PS 7,5 - Art. L.136-6 CSS
   ```
 
 ---
@@ -194,13 +194,13 @@ export const metadata: Metadata = {
 
 En plus du calculateur, une page doit contenir, sous le fold :
 
-1. **Section "Comment ça marche"** — 3-5 étapes, prose courte.
-2. **Section "Formule utilisée"** — la formule mathématique + explication.
-3. **Section "Exemples"** — 2-3 cas chiffrés pris du BOFiP / de sources
+1. **Section "Comment ça marche"** - 3-5 étapes, prose courte.
+2. **Section "Formule utilisée"** - la formule mathématique + explication.
+3. **Section "Exemples"** - 2-3 cas chiffrés pris du BOFiP / de sources
    officielles.
-4. **Section "FAQ"** (optionnelle, selon volume de recherches) — 4-6
+4. **Section "FAQ"** (optionnelle, selon volume de recherches) - 4-6
    questions avec réponses courtes.
-5. **Bloc "Sources"** — réutilisant `docs/sources/<slug>.md` (voir §5).
+5. **Bloc "Sources"** - réutilisant `docs/sources/<slug>.md` (voir §5).
 
 ### Schema.org
 

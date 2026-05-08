@@ -1,5 +1,5 @@
 // src/proxy.ts
-// Rate limiting sur /api/chat — protection contre l'abus de quota Anthropic.
+// Rate limiting sur /api/chat - protection contre l'abus de quota Anthropic.
 //
 // Implémentation : sliding window en mémoire par instance Lambda.
 // Limitation : les instances Vercel serverless ne partagent pas de mémoire ;
@@ -52,7 +52,7 @@ export function proxy(req: NextRequest) {
   if (req.nextUrl.pathname === '/api/chat' && req.method === 'POST') {
     const ip = getClientIp(req)
     if (isRateLimited(ip)) {
-      return new NextResponse('Trop de requêtes — réessayez dans une minute.', {
+      return new NextResponse('Trop de requêtes - réessayez dans une minute.', {
         status: 429,
         headers: {
           'Content-Type': 'text/plain; charset=utf-8',

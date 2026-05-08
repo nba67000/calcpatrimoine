@@ -7,7 +7,7 @@ import Footer from '@/components/Footer'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
 
 export const metadata: Metadata = {
-  title: 'FAQ PER Individuel 2026 — Versements et déductibilité | CalculPatrimoine',
+  title: 'FAQ PER Individuel 2026 - Versements et déductibilité | CalculPatrimoine',
   description: "Questions fréquentes sur le PER individuel : plafonds 2026, déductibilité, report sur 5 ans (LF 2026), TMI, sortie en capital ou rente.",
 }
 
@@ -153,7 +153,7 @@ const sections: FAQSection[] = [
         answer: (
           <>
             <p className="mb-3">
-              Si vous n&apos;avez pas utilisé tout votre plafond PER dans les <strong>5 années précédentes</strong> (depuis la LF 2026 — auparavant 3 ans),
+              Si vous n&apos;avez pas utilisé tout votre plafond PER dans les <strong>5 années précédentes</strong> (depuis la LF 2026 - auparavant 3 ans),
               vous pouvez <strong>reporter le solde non utilisé</strong> sur l&apos;année en cours.
             </p>
             <p className="mb-3">
@@ -348,7 +348,7 @@ export default function FAQPERPage() {
               Questions fréquentes<br />PER Individuel
             </h1>
             <p className="text-lg text-neutral-600 max-w-2xl mb-10">
-              Plafonds 2026, déductibilité, report des années antérieures, stratégie de sortie —
+              Plafonds 2026, déductibilité, report des années antérieures, stratégie de sortie -
               tout comprendre sur le Plan d&apos;Épargne Retraite individuel.
             </p>
 

@@ -1,60 +1,60 @@
-# Sources — Calculateur TMI (Tranche Marginale d'Imposition)
+# Sources - Calculateur TMI (Tranche Marginale d'Imposition)
 
 **Dernière vérification** : 2026-05-03
 **Millésime fiscal** : Revenus 2025 / Barème 2026
 
 ## Textes de loi
 
-- **Article 197 du Code général des impôts** — Barème progressif de l'impôt sur le revenu et décote
+- **Article 197 du Code général des impôts** - Barème progressif de l'impôt sur le revenu et décote
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051212954
   Version en vigueur : 21 février 2026 (modifié par LF 2026 art. 4)
   Extrait pertinent décote : "diminué [...] de la différence entre 897 € et 45,25 % de son montant pour les contribuables célibataires [...] et de la différence entre 1 483 € et 45,25 % de son montant pour les contribuables soumis à imposition commune"
 
-- **Article 194 du Code général des impôts** — Quotient familial, nombre de parts
+- **Article 194 du Code général des impôts** - Quotient familial, nombre de parts
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006302756
   Extrait pertinent : "Chaque enfant [à charge] ouvre droit à une demi-part supplémentaire"
 
-- **Article 195 du Code général des impôts** — Demi-parts supplémentaires (invalidité, etc.)
+- **Article 195 du Code général des impôts** - Demi-parts supplémentaires (invalidité, etc.)
   URL Légifrance : https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179579/
 
-- **Article 196 du Code général des impôts** — Enfants à charge
+- **Article 196 du Code général des impôts** - Enfants à charge
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006302765
 
 ## Doctrine administrative
 
-- **BOFiP BOI-IR-LIQ-20-10** — Barème de l'impôt sur le revenu 2026
+- **BOFiP BOI-IR-LIQ-20-10** - Barème de l'impôt sur le revenu 2026
   URL : https://bofip.impots.gouv.fr/bofip/2491-PGP.html/identifiant=BOI-IR-LIQ-20-10-20260407
   Date publication : 2026-04-07
 
-- **BOFiP BOI-IR-LIQ-20-20-20** — Plafonnement des effets du quotient familial
+- **BOFiP BOI-IR-LIQ-20-20-20** - Plafonnement des effets du quotient familial
   URL : https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20260407
   Date publication : 2026-04-07
 
-- **BOFiP BOI-IR-LIQ-20-20-30** — Décote
+- **BOFiP BOI-IR-LIQ-20-20-30** - Décote
   URL : https://bofip.impots.gouv.fr/bofip/2495-PGP.html/identifiant=BOI-IR-LIQ-20-20-30-20250414
-  Date publication : 2025-04-14 (valeurs 2024 affichées — non mis à jour pour 2025 au 2026-05-03)
+  Date publication : 2025-04-14 (valeurs 2024 affichées - non mis à jour pour 2025 au 2026-05-03)
   Note : l'actualité BOFiP du 07/04/2026 (ACTU-2026-00022) confirme l'indexation +0,9% s'applique à ce document. Les valeurs 2025 sont confirmées par Art. 197-I-4-a CGI (Légifrance, version 21/02/2026).
 
-- **Actualité BOFiP ACTU-2026-00022** — Indexation barème +0,9% LF 2026
+- **Actualité BOFiP ACTU-2026-00022** - Indexation barème +0,9% LF 2026
   URL : https://bofip.impots.gouv.fr/bofip/14954-PGP.html/ACTU-2026-00022
 
 ## Barèmes et taux
 
 | Paramètre | Valeur | Source | Millésime |
 |-----------|--------|--------|-----------|
-| Tranche 0% | jusqu'à 11 600 € / part | Art. 197 CGI — LF 2026 art. 4 | 2026 |
-| Tranche 11% | 11 600 € – 29 579 € / part | Art. 197 CGI — LF 2026 art. 4 | 2026 |
-| Tranche 30% | 29 579 € – 84 577 € / part | Art. 197 CGI — LF 2026 art. 4 | 2026 |
-| Tranche 41% | 84 577 € – 181 917 € / part | Art. 197 CGI — LF 2026 art. 4 | 2026 |
-| Tranche 45% | > 181 917 € / part | Art. 197 CGI — LF 2026 art. 4 | 2026 |
+| Tranche 0% | jusqu'à 11 600 € / part | Art. 197 CGI - LF 2026 art. 4 | 2026 |
+| Tranche 11% | 11 600 € – 29 579 € / part | Art. 197 CGI - LF 2026 art. 4 | 2026 |
+| Tranche 30% | 29 579 € – 84 577 € / part | Art. 197 CGI - LF 2026 art. 4 | 2026 |
+| Tranche 41% | 84 577 € – 181 917 € / part | Art. 197 CGI - LF 2026 art. 4 | 2026 |
+| Tranche 45% | > 181 917 € / part | Art. 197 CGI - LF 2026 art. 4 | 2026 |
 | Décote célibataire | 897 € − 45,25 % × IR brut | Art. 197-I-4-a CGI (LF 2026 art. 4) | 2026 |
 | Décote couple/pacsé | 1 483 € − 45,25 % × IR brut | Art. 197-I-4-a CGI (LF 2026 art. 4) | 2026 |
-| Plafond QF / demi-part | 1 807 € | Art. 197-IV CGI — LF 2026 | 2026 |
-| Plafond QF 1er enfant parent isolé | 4 262 € (1 part entière = 0,5 enfant + 0,5 case T) | Art. 197-IV CGI — LF 2026 | 2026 |
+| Plafond QF / demi-part | 1 807 € | Art. 197-IV CGI - LF 2026 | 2026 |
+| Plafond QF 1er enfant parent isolé | 4 262 € (1 part entière = 0,5 enfant + 0,5 case T) | Art. 197-IV CGI - LF 2026 | 2026 |
 
 ## Exemples de référence
 
-### Exemple 1 — Célibataire, 30 000 € de revenu net imposable, sans enfant
+### Exemple 1 - Célibataire, 30 000 € de revenu net imposable, sans enfant
 (Source : service-public.gouv.fr, calcul vérifié le 2026-04-19)
 - 1 part fiscale
 - Tranche 0% : 0 € (jusqu'à 11 600 €)
@@ -65,7 +65,7 @@
 - IR net = 2 104 €
 - TMI = 30 %, taux moyen ≈ 7,0 %
 
-### Exemple 2 — Marié, 2 enfants, 60 000 € de revenu net imposable
+### Exemple 2 - Marié, 2 enfants, 60 000 € de revenu net imposable
 (Source : calcul manuel vérifié sur les barèmes officiels LF 2026)
 - 3 parts (2 base + 0,5 × 2 enfants)
 - Revenu / 3 parts = 20 000 €
@@ -77,7 +77,7 @@
 - IR net = 2 772 – 229 = 2 543 €
 - TMI = 11 %, taux moyen ≈ 4,2 %
 
-### Exemple 3 — Célibataire, 1 enfant, 50 000 € (plafonnement QF)
+### Exemple 3 - Célibataire, 1 enfant, 50 000 € (plafonnement QF)
 (Source : calcul manuel démontrant le plafonnement)
 - 1,5 parts (1 base + 0,5 enfant)
 - IR QF (1,5 parts) : 33 333 € / part → 3 104 € × 1,5 = 4 656 €
@@ -94,7 +94,7 @@
   - L'abattement professionnel de 10 % (l'utilisateur saisit le revenu NET imposable, après abattement)
   - Les réductions d'impôt (dons, emploi à domicile, etc.)
   - Les crédits d'impôt
-  - La contribution sur les hauts revenus (CEHR — Art. 223 sexies CGI)
+  - La contribution sur les hauts revenus (CEHR - Art. 223 sexies CGI)
   - Les contribuables en résidence alternée (demi-parts partagées à 0,25)
   - Les cas spéciaux de veuf(ve) la première année du veuvage
   - Les membres de l'ordre de la Légion d'honneur, médailles militaires

@@ -7,7 +7,7 @@ import Footer from '@/components/Footer'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
 
 export const metadata: Metadata = {
-  title: 'FAQ Transmission Assurance-Vie — Art. 990I et 757B | CalculPatrimoine',
+  title: 'FAQ Transmission Assurance-Vie - Art. 990I et 757B | CalculPatrimoine',
   description: "Abattements avant et après 70 ans, clause bénéficiaire, droits de succession, optimisations transmission assurance-vie.",
 }
 
@@ -38,8 +38,8 @@ const sections: FAQSection[] = [
               Deux régimes coexistent selon l&apos;âge auquel les versements ont été effectués :
             </p>
             <ul className="list-disc pl-6 mb-3 space-y-2">
-              <li><strong>Avant 70 ans</strong> : Article 990 I du CGI — régime le plus avantageux</li>
-              <li><strong>Après 70 ans</strong> : Article 757 B du CGI — abattement global plus limité</li>
+              <li><strong>Avant 70 ans</strong> : Article 990 I du CGI - régime le plus avantageux</li>
+              <li><strong>Après 70 ans</strong> : Article 757 B du CGI - abattement global plus limité</li>
             </ul>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4">
               <p className="text-sm text-primary-900">
@@ -59,7 +59,7 @@ const sections: FAQSection[] = [
               désigné bénéficie d&apos;un abattement <strong>individuel de 152 500€</strong>.
             </p>
             <p className="mb-3">
-              Cet abattement est <strong>par bénéficiaire et non partagé</strong> — contrairement
+              Cet abattement est <strong>par bénéficiaire et non partagé</strong> - contrairement
               à l&apos;Article 757 B.
             </p>
             <p className="mb-3"><strong>Au-delà de 152 500€ par bénéficiaire :</strong></p>
@@ -102,7 +102,7 @@ const sections: FAQSection[] = [
             </p>
             <ul className="list-disc pl-6 mb-3 space-y-2">
               <li>
-                <strong>Abattement global de 30 500€</strong> — partagé entre tous les bénéficiaires
+                <strong>Abattement global de 30 500€</strong> - partagé entre tous les bénéficiaires
                 (sauf conjoint ou partenaire de PACS, exonéré)
               </li>
               <li>
@@ -116,8 +116,8 @@ const sections: FAQSection[] = [
             </ul>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4">
               <p className="text-sm text-primary-900">
-                <strong>À retenir</strong> : les versements avant 70 ans relèvent du régime 990 I — abattement de 152 500 € par bénéficiaire.
-                Les versements après 70 ans relèvent du 757 B — abattement global de 30 500 €.
+                <strong>À retenir</strong> : les versements avant 70 ans relèvent du régime 990 I - abattement de 152 500 € par bénéficiaire.
+                Les versements après 70 ans relèvent du 757 B - abattement global de 30 500 €.
                 L&apos;écart peut représenter plusieurs dizaines de milliers d&apos;euros selon le capital transmis.
               </p>
             </div>
@@ -135,7 +135,7 @@ const sections: FAQSection[] = [
           <>
             <p className="mb-3">
               La clause bénéficiaire désigne les personnes qui recevront le capital à votre décès.
-              <strong>Elle prime sur le testament et les règles successorales classiques</strong> —
+              <strong>Elle prime sur le testament et les règles successorales classiques</strong> -
               c&apos;est ce qui fait la puissance de l&apos;assurance-vie pour la transmission.
             </p>
             <p className="mb-3"><strong>Vous pouvez désigner :</strong></p>
@@ -181,13 +181,13 @@ const sections: FAQSection[] = [
           <>
             <p className="mb-3">
               <strong>Plusieurs bénéficiaires multiplient les abattements</strong> (dans le cadre de
-              l&apos;Article 990 I — versements avant 70 ans).
+              l&apos;Article 990 I - versements avant 70 ans).
             </p>
             <div className="bg-primary-100 p-4 border border-neutral-200 mb-3">
               <p className="mb-2 text-sm font-bold">Exemple :</p>
               <ul className="text-sm space-y-1">
-                <li>Capital : 500 000€ — 1 bénéficiaire → taxable : 347 500€</li>
-                <li>Capital : 500 000€ — 3 bénéficiaires (166 666€ chacun) → taxable : ~42 500€ total</li>
+                <li>Capital : 500 000€ - 1 bénéficiaire → taxable : 347 500€</li>
+                <li>Capital : 500 000€ - 3 bénéficiaires (166 666€ chacun) → taxable : ~42 500€ total</li>
               </ul>
             </div>
             <p className="mb-3">
@@ -307,7 +307,7 @@ export default function FAQTransmissionPage() {
               Questions fréquentes<br />Transmission Assurance-Vie
             </h1>
             <p className="text-lg text-neutral-600 max-w-2xl mb-10">
-              Article 990 I, Article 757 B, abattements par bénéficiaire, clause bénéficiaire —
+              Article 990 I, Article 757 B, abattements par bénéficiaire, clause bénéficiaire -
               tout comprendre sur la fiscalité successorale de l&apos;assurance-vie.
             </p>
 
@@ -338,8 +338,8 @@ export default function FAQTransmissionPage() {
 
           <div className="border-t border-neutral-300">
             {[
-              { href: '/faq/assurance-vie', label: 'FAQ Assurance-Vie — Fiscalité Rachat', desc: 'PFU vs IR, abattement 8 ans, optimisations sur le rachat.' },
-              { href: '/faq', label: 'Toutes les FAQ', desc: 'Rente viagère, PER, TMI — retrouvez chaque FAQ dédiée.' },
+              { href: '/faq/assurance-vie', label: 'FAQ Assurance-Vie - Fiscalité Rachat', desc: 'PFU vs IR, abattement 8 ans, optimisations sur le rachat.' },
+              { href: '/faq', label: 'Toutes les FAQ', desc: 'Rente viagère, PER, TMI - retrouvez chaque FAQ dédiée.' },
             ].map(link => (
               <Link
                 key={link.href}

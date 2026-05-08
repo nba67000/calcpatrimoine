@@ -11,7 +11,7 @@ export interface PERInputs {
   plafondsReportesN1: number  // plafond non utilisé N-1 (figurant sur avis d'imposition)
   plafondsReportesN2: number  // plafond non utilisé N-2
   plafondsReportesN3: number  // plafond non utilisé N-3
-  // Art. 163 quatervicies I b) CGI modifié par LF 2026 art. 10 — report étendu à 5 ans
+  // Art. 163 quatervicies I b) CGI modifié par LF 2026 art. 10 - report étendu à 5 ans
   plafondsReportesN4: number  // plafond non utilisé N-4
   plafondsReportesN5: number  // plafond non utilisé N-5
 }

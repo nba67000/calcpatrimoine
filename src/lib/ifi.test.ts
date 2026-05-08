@@ -18,7 +18,7 @@ function base(overrides: Partial<IFIInputs> = {}): IFIInputs {
 // ---------------------------------------------------------------------------
 // Seuil d'assujettissement
 // ---------------------------------------------------------------------------
-describe('calculerIFI — seuil', () => {
+describe('calculerIFI - seuil', () => {
   it('patrimoine < 1 300 000 € → non assujetti, IFI = 0', () => {
     const r = calculerIFI(base({ valeurBruteImmobilier: 1_200_000 }))
     expect(r.assujetti).toBe(false)
@@ -33,10 +33,10 @@ describe('calculerIFI — seuil', () => {
 })
 
 // ---------------------------------------------------------------------------
-// Cas nominaux — issus de l'application directe du barème Art. 977 CGI
+// Cas nominaux - issus de l'application directe du barème Art. 977 CGI
 // ---------------------------------------------------------------------------
-describe('calculerIFI — barème nominaux', () => {
-  it('Exemple 1 — patrimoine 2 000 000 € → IFI brut = 7 400 €, IFI net = 7 400 €', () => {
+describe('calculerIFI - barème nominaux', () => {
+  it('Exemple 1 - patrimoine 2 000 000 € → IFI brut = 7 400 €, IFI net = 7 400 €', () => {
     // Tranche 2: 500 000 × 0,5% = 2 500 €
     // Tranche 3: 700 000 × 0,7% = 4 900 €
     const r = calculerIFI(base({ valeurBruteImmobilier: 2_000_000 }))
@@ -46,7 +46,7 @@ describe('calculerIFI — barème nominaux', () => {
     expect(r.ifiNet).toBe(7_400)
   })
 
-  it('Exemple 3 — patrimoine 5 000 000 € → IFI brut = 35 690 €', () => {
+  it('Exemple 3 - patrimoine 5 000 000 € → IFI brut = 35 690 €', () => {
     // Tranche 2: 500 000 × 0,5% = 2 500 €
     // Tranche 3: 1 270 000 × 0,7% = 8 890 €
     // Tranche 4: 2 430 000 × 1% = 24 300 €
@@ -74,8 +74,8 @@ describe('calculerIFI — barème nominaux', () => {
 // ---------------------------------------------------------------------------
 // Décote progressive
 // ---------------------------------------------------------------------------
-describe('calculerIFI — décote progressive', () => {
-  it('Exemple 2 — patrimoine 1 350 000 € → ifiBrut = 2 850, décote = 625, ifiNet = 2 225', () => {
+describe('calculerIFI - décote progressive', () => {
+  it('Exemple 2 - patrimoine 1 350 000 € → ifiBrut = 2 850, décote = 625, ifiNet = 2 225', () => {
     // Tranche 2: 500 000 × 0,5% = 2 500
     // Tranche 3: 50 000 × 0,7% = 350
     // ifiBrut = 2 850
@@ -104,7 +104,7 @@ describe('calculerIFI — décote progressive', () => {
 // ---------------------------------------------------------------------------
 // Abattement résidence principale (Art. 973 CGI)
 // ---------------------------------------------------------------------------
-describe('calculerIFI — abattement résidence principale', () => {
+describe('calculerIFI - abattement résidence principale', () => {
   it('RP valeur 1 000 000 € → abattement 300 000 €', () => {
     const r = calculerIFI(base({
       valeurBruteImmobilier: 2_000_000,
@@ -129,7 +129,7 @@ describe('calculerIFI — abattement résidence principale', () => {
 // ---------------------------------------------------------------------------
 // Dettes déductibles
 // ---------------------------------------------------------------------------
-describe('calculerIFI — dettes déductibles', () => {
+describe('calculerIFI - dettes déductibles', () => {
   it('dettes 400 000 € → patrimoine réduit de 400 000 €', () => {
     const r = calculerIFI(base({
       valeurBruteImmobilier: 2_000_000,
@@ -151,7 +151,7 @@ describe('calculerIFI — dettes déductibles', () => {
 // ---------------------------------------------------------------------------
 // Plafonnement (Art. 979 CGI)
 // ---------------------------------------------------------------------------
-describe('calculerIFI — plafonnement', () => {
+describe('calculerIFI - plafonnement', () => {
   it('IFI + IR > 75% revenus → plafonnement applicable', () => {
     // Patrimoine 3 000 000 € → IFI ≈ 15 690 €
     // IR = 40 000 €, revenus = 60 000 € → seuil = 45 000 €
@@ -182,7 +182,7 @@ describe('calculerIFI — plafonnement', () => {
 // ---------------------------------------------------------------------------
 // Immutabilité et edge cases
 // ---------------------------------------------------------------------------
-describe('calculerIFI — edge cases', () => {
+describe('calculerIFI - edge cases', () => {
   it('patrimoine 0 € → non assujetti', () => {
     const r = calculerIFI(base({ valeurBruteImmobilier: 0 }))
     expect(r.assujetti).toBe(false)

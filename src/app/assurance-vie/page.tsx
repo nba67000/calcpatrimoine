@@ -67,7 +67,7 @@ export default function AssuranceVieHubPage() {
           </div>
         </section>
 
-        {/* 2 Calculateurs — table-style */}
+        {/* 2 Calculateurs - table-style */}
         <section className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex items-center gap-6 mb-0">
             <h2 className="font-serif text-2xl text-neutral-900 shrink-0">Choisissez votre outil</h2>
@@ -118,18 +118,18 @@ export default function AssuranceVieHubPage() {
                 <h3 className="font-bold text-primary-900 mb-3">Fiscalité Rachat</h3>
                 <p className="text-sm text-neutral-500 mb-2 font-mono uppercase tracking-wider text-xs">Quand l&apos;utiliser ?</p>
                 <ul className="text-sm text-neutral-700 space-y-1">
-                  <li>— Vous voulez retirer de l&apos;argent de votre contrat</li>
-                  <li>— Vous voulez anticiper les impôts sur ce retrait</li>
-                  <li>— Vous voulez comparer PFU et IR pour votre situation</li>
+                  <li>- Vous voulez retirer de l&apos;argent de votre contrat</li>
+                  <li>- Vous voulez anticiper les impôts sur ce retrait</li>
+                  <li>- Vous voulez comparer PFU et IR pour votre situation</li>
                 </ul>
               </div>
               <div className="border-l-4 border-accent-400 pl-5 py-2">
                 <h3 className="font-bold text-neutral-900 mb-3">Transmission</h3>
                 <p className="text-sm text-neutral-500 mb-2 font-mono uppercase tracking-wider text-xs">Quand l&apos;utiliser ?</p>
                 <ul className="text-sm text-neutral-700 space-y-1">
-                  <li>— Vous préparez votre succession</li>
-                  <li>— Vous voulez simuler la répartition entre bénéficiaires</li>
-                  <li>— Vous voulez anticiper les droits payés par vos héritiers</li>
+                  <li>- Vous préparez votre succession</li>
+                  <li>- Vous voulez simuler la répartition entre bénéficiaires</li>
+                  <li>- Vous voulez anticiper les droits payés par vos héritiers</li>
                 </ul>
               </div>
             </div>
@@ -140,7 +140,7 @@ export default function AssuranceVieHubPage() {
         <section className="max-w-4xl mx-auto px-6 pb-16">
           <div className="border-t border-neutral-300">
             {[
-              { href: '/blog/assurance-vie-fiscalite-rachat', label: 'Article complet — Assurance-vie, combien allez-vous vraiment payer ?', desc: 'Mécanismes fiscaux, règle proportionnelle, optimisations. Guide complet avec exemples chiffrés.' },
+              { href: '/blog/assurance-vie-fiscalite-rachat', label: 'Article complet - Assurance-vie, combien allez-vous vraiment payer ?', desc: 'Mécanismes fiscaux, règle proportionnelle, optimisations. Guide complet avec exemples chiffrés.' },
               { href: '/faq/assurance-vie', label: 'FAQ assurance-vie', desc: '15 questions/réponses sur la fiscalité, les abattements, les optimisations et la transmission.' },
             ].map(link => (
               <Link

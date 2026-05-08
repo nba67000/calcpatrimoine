@@ -1,11 +1,11 @@
-# CalcPatrimoine — Design System
+# CalcPatrimoine - Design System
 
 **Calculateurs patrimoniaux open-source et transparents pour la France.**
 CalcPatrimoine (calculpatrimoine.fr) is a French-language site providing free,
 open-source, source-cited calculators for personal finance decisions: life
 annuities (rente viagère), life-insurance taxation (assurance-vie),
 inheritance transmission, TMI, PER, etc. The editorial voice is strictly
-factual and **anti-advice** — the site _informs_, it does not _recommend_.
+factual and **anti-advice** - the site _informs_, it does not _recommend_.
 
 The creator, **Nicolas Barbier**, is a COBOL/AS400 analyst-developer in the
 French life-insurance industry. That shapes everything: the tone is
@@ -17,7 +17,7 @@ technical, transparent, source-cited, and anti-marketing.
 
 | File | What it is |
 |------|------------|
-| `README.md` | This file — brand context, content rules, visual foundations, iconography |
+| `README.md` | This file - brand context, content rules, visual foundations, iconography |
 | `SKILL.md` | Agent-Skills compatible entry point; read this if invoking as a Claude Skill |
 | `colors_and_type.css` | All CSS custom properties (colors, type scale, spacing, shadows, radii, motion) |
 | `assets/` | Logos (SVG), favicon |
@@ -33,15 +33,15 @@ The entire system was extracted from the production codebase:
 - **Repo:** `github.com/nba67000/calculpatrimoine` (branch `main`)
 - **Site:** `https://calculpatrimoine.fr`
 - Key files consulted:
-  - `tailwind.config.ts` — color palette, font families, shadows, radii
-  - `src/app/globals.css` — slider styling, focus ring
-  - `src/app/layout.tsx` — Inter + Playfair Display + Roboto Mono via Fontsource
-  - `src/components/Header.tsx`, `Footer.tsx` — logo lockup, nav patterns
-  - `src/components/Icon.tsx` — the only 3 approved icons in the product
-  - `src/components/Calculator/*Calculator.tsx` — calculator layout, result panel, disclaimer pattern
-  - `src/components/LegalDisclaimer.tsx` — warning pattern
+  - `tailwind.config.ts` - color palette, font families, shadows, radii
+  - `src/app/globals.css` - slider styling, focus ring
+  - `src/app/layout.tsx` - Inter + Playfair Display + Roboto Mono via Fontsource
+  - `src/components/Header.tsx`, `Footer.tsx` - logo lockup, nav patterns
+  - `src/components/Icon.tsx` - the only 3 approved icons in the product
+  - `src/components/Calculator/*Calculator.tsx` - calculator layout, result panel, disclaimer pattern
+  - `src/components/LegalDisclaimer.tsx` - warning pattern
   - `src/components/Tooltip.tsx`, `RangeSlider.tsx`
-  - `CLAUDE.md` — editorial rules
+  - `CLAUDE.md` - editorial rules
   - `public/logo.svg`, `public/favicon.svg`
 
 ---
@@ -53,7 +53,7 @@ The entire system was extracted from the production codebase:
 Decimal separator is a comma; thousands separator is a non-breaking space
 (`150 000 €`, `3,75 %`). Currency symbol follows the number with a space.
 
-### Editorial stance — _anti-advice_
+### Editorial stance - _anti-advice_
 The single most important rule: **CalcPatrimoine informs, it does not advise.**
 Quoting `CLAUDE.md` verbatim: _"on écrit 'l'option X aboutit à un impôt de Y€',
 'l'écart entre les deux est de Z€'"._ Never write _"vous devriez"_, _"choisissez"_,
@@ -79,7 +79,7 @@ Suggestions are factual + conditional only:
   Title Case.
 - **Proper nouns capitalized** (`INSEE`, `PFU`, `CGI`, `BOFiP`).
 - **ALL CAPS reserved for eyebrows** (`CALCULATEURS`, `RESSOURCES`) with
-  wider tracking — footer column labels only.
+  wider tracking - footer column labels only.
 - The brand is **CalcPatrimoine** (one word, two capital letters).
 
 ### Voice examples from the codebase
@@ -91,7 +91,7 @@ Suggestions are factual + conditional only:
 > navigateur."_ (lede)
 
 > _"À 72 ans avec 250 000 €, le seuil tombe à 15,8 ans. Ce n'est pas une
-> anomalie."_ (article dek — declarative, numerate, anti-clickbait)
+> anomalie."_ (article dek - declarative, numerate, anti-clickbait)
 
 Trust markers are short, factual badges: `100% gratuit`, `Open-source`,
 `Zéro tracking`, `Tables INSEE officielles`. No emoji.
@@ -100,13 +100,13 @@ Trust markers are short, factual badges: `100% gratuit`, `Open-source`,
 **None in the product UI.** `CLAUDE.md` is explicit: _"Pas d'icônes emoji
 dans le code source (UTF-8 mojibake fréquent)."_ The repo's README uses
 emoji decoratively (🎯 🧮 🚧) but the shipped product does not. For design
-system mocks, treat emoji as forbidden — use the three-icon `Icon` component
+system mocks, treat emoji as forbidden - use the three-icon `Icon` component
 (`check`, `cross`, `warning`) or short text badges.
 
 ### Disclaimers
 Every calculator ships with `<LegalDisclaimer />` at the top and a warning
 block at the bottom. Disclaimer tone is formal, exhaustive, almost legalistic
-— but still in sentence case. Always lists: _ce n'est pas un conseil,
+- but still in sentence case. Always lists: _ce n'est pas un conseil,
 consultez un CGP / notaire / expert-comptable, dernière mise à jour
 (mois année)_.
 
@@ -115,7 +115,7 @@ consultez un CGP / notaire / expert-comptable, dernière mise à jour
 ## VISUAL FOUNDATIONS
 
 ### The aesthetic in one sentence
-**"Confiance bancaire moderne"** — modern banking trust. Think: Stripe's
+**"Confiance bancaire moderne"** - modern banking trust. Think: Stripe's
 density + a French retail-bank's muted navy + INSEE's sobriety. Clean,
 quiet, numeric, low-chrome.
 
@@ -125,21 +125,21 @@ quiet, numeric, low-chrome.
   backgrounds (`primary-50` for info alerts, calculator highlight boxes).
 - **Accent: gold/amber.** `#D4AF37 → #B8860B`. Almost never used in UI;
   reserved for a "premium" shadow recipe and future accents. **Do not
-  introduce gold casually** — it's a brand lever held in reserve.
+  introduce gold casually** - it's a brand lever held in reserve.
 - **Neutrals: slate.** Tailwind-standard slate 50–900.
 - **Warning: amber** (`#F59E0B`). The only non-primary color shipped in
   the UI today, and exclusively for disclaimer blocks.
 - `success` and `error` tailwind tokens are **aliased to primary** in
   `tailwind.config.ts`. This is intentional: the brand unifies "trust"
   under one blue. Do not use green for success states or red for errors
-  in layouts — use primary blue. (The Icon component's green check /
+  in layouts - use primary blue. (The Icon component's green check /
   red cross are the one narrow exception.)
 
 ### Typography
-- **Inter** (400/500/600/700) — everything (nav, body, headings, numbers).
-- **Playfair Display** (700) — available via Fontsource, intended for
+- **Inter** (400/500/600/700) - everything (nav, body, headings, numbers).
+- **Playfair Display** (700) - available via Fontsource, intended for
   editorial moments (blog h1, _À propos_). Use sparingly.
-- **Roboto Mono** (500/700) — reserved for tabular numbers in the result
+- **Roboto Mono** (500/700) - reserved for tabular numbers in the result
   panels; applied via `.tabular-nums`.
 - **Hero sizes**: 60px for result displays (`--fs-6xl`), 48px for page h1
   (`--fs-5xl`). Tight letter-spacing (`-0.02em`).
@@ -160,7 +160,7 @@ quiet, numeric, low-chrome.
 - **4px colored left-border** is a recognized pattern here (see
   `card--accent-left`: `border-l-4 border-primary-600` on calculator form
   panels, `border-l-4 border-primary-300` on reversion block). Used
-  deliberately — not decoratively — to mark "this is input" vs "this is
+  deliberately - not decoratively - to mark "this is input" vs "this is
   result".
 - **Result cards use 4px colored TOP-border** (`border-t-4 border-primary-600`).
 
@@ -172,22 +172,22 @@ switches (which are genuinely circular). Cards use `rounded-lg` (8px) or
 
 ### Shadows
 Five recipes, all flat and quiet:
-- `subtle` — just a hairline, for pinned headers
-- `card` — default card elevation
-- `card-hover` — subtle lift on hover
-- `result` — stronger shadow for hero result panel
-- `premium` — amber-tinted glow, **unused in current UI** but defined
+- `subtle` - just a hairline, for pinned headers
+- `card` - default card elevation
+- `card-hover` - subtle lift on hover
+- `result` - stronger shadow for hero result panel
+- `premium` - amber-tinted glow, **unused in current UI** but defined
 
 No inner shadows. No glows except the amber "premium" recipe.
 
 ### Animation
 - **Framer Motion** for enter/exit. Durations are **0.2–0.3s**. Easings are
-  `ease-in` / `ease-out` — no springs, no bounces.
+  `ease-in` / `ease-out` - no springs, no bounces.
 - Entrance pattern: `initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}`.
 - Result-number animation: fade/slide on change (key={value}).
 - CSS: `transition-colors`, `transition-all duration-200`. Hover lift is
   subtle (`hover:shadow-lg`).
-- **No loading spinners in the product** — calculations are synchronous
+- **No loading spinners in the product** - calculations are synchronous
   (<10ms) and debounced by 150ms.
 
 ### Hover states
@@ -266,7 +266,7 @@ deliberate austerity.
    CalcPatrimoine than any icon.)
 2. If strictly necessary, hand-author an SVG in the pattern of `Icon.tsx`
    (circle-wrapped, bold stroke, flat color).
-3. **Flag the substitution** — the brand rule is "3 icons, no more".
+3. **Flag the substitution** - the brand rule is "3 icons, no more".
 
 ### Emoji
 **Never in shipped UI.** Only appears in `README.md`, not in rendered pages.
@@ -284,19 +284,19 @@ deliberate austerity.
 - **Fonts**: The source uses `@fontsource/*` npm packages. No `.ttf`/`.woff2`
   files are committed to the repo, and none were importable. This design
   system links Inter, Playfair Display, and Roboto Mono from **Google Fonts
-  CDN**. These are the same foundry versions — no visual substitution — but
+  CDN**. These are the same foundry versions - no visual substitution - but
   if you have self-hosted brand-approved font files, drop them in a `fonts/`
   folder and flag it.
 - **Logo**: The current `logo.svg` is a letterform "C" on a navy gradient
-  square — pragmatic but not a proper wordmark. `LOGO_ASSETS_README.md` in
+  square - pragmatic but not a proper wordmark. `LOGO_ASSETS_README.md` in
   the source repo explicitly flags this is a placeholder pending a Canva/
   Figma export. **Ask**: do you have a wordmark lockup?
 - **OG image** (`og-image.png`, 1200×630) was not imported because it's a
   binary PNG; we kept the template guidelines instead.
 - **Gold/amber accent** is defined in the token system but unused in
   shipped UI. The `shadow-premium` recipe is waiting for a "premium tier"
-  or editorial moment — worth a call on whether to activate it.
-- **Slide templates** were not part of this brand — no `slides/` folder.
+  or editorial moment - worth a call on whether to activate it.
+- **Slide templates** were not part of this brand - no `slides/` folder.
 - This system covers **one product** (the calculpatrimoine.fr web app).
   Separate calculators (Rente, AssuranceVie, Transmission, Couple, Inverse)
   all share the same shell and component vocabulary.
@@ -309,5 +309,5 @@ deliberate austerity.
 against live calculpatrimoine.fr** (especially the range-slider thumb, the
 warning-block spacing, and the 60px result number tracking). These are the
 brand-critical surfaces. If the slider track gradient or the result panel's
-top-border color feels off by even a shade, tell me — we'll tune the
+top-border color feels off by even a shade, tell me - we'll tune the
 tokens together.

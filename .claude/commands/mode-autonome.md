@@ -27,7 +27,7 @@ discipliné avec points de contrôle.
   1. Relire `BACKLOG.md` (elle peut avoir été modifiée).
   2. Faire un `git status` pour confirmer la propreté.
   3. Afficher un court bilan : "Calculateur X done. Prochain : Y. On continue ?"
-     — mais **ne pas attendre de réponse** si le flag "autonome" a été
+     - mais **ne pas attendre de réponse** si le flag "autonome" a été
      explicitement activé en début de session.
 
 ### Règles de pause (obligatoires)

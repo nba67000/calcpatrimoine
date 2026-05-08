@@ -1,33 +1,33 @@
-# Sources — IFI : Impôt sur la fortune immobilière
+# Sources - IFI : Impôt sur la fortune immobilière
 
 **Dernière vérification** : 2026-05-07
 **Millésime fiscal** : IFI 2026 (patrimoine au 1er janvier 2026)
 
 ## Textes de loi
 
-- **Article 964 du Code général des impôts** — Champ d'application et seuil IFI
+- **Article 964 du Code général des impôts** - Champ d'application et seuil IFI
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036472764
   Extrait pertinent : "Sont soumises à l'IFI les personnes physiques dont la valeur nette taxable du patrimoine immobilier est supérieure ou égale à 1 300 000 €."
 
-- **Article 973 du Code général des impôts** — Passif déductible et abattement résidence principale
+- **Article 973 du Code général des impôts** - Passif déductible et abattement résidence principale
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036472780
   Extrait pertinent : "La valeur de la résidence principale fait l'objet d'un abattement de 30 %."
 
-- **Article 977 du Code général des impôts** — Barème IFI
+- **Article 977 du Code général des impôts** - Barème IFI
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036473012
   Extrait pertinent : Barème progressif en 6 tranches de 0 % à 1,50 %. Décote pour patrimoines entre 1 300 000 € et 1 400 000 € : 17 500 € − 1,25 % × patrimoine net.
 
-- **Article 979 du Code général des impôts** — Plafonnement
+- **Article 979 du Code général des impôts** - Plafonnement
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036473018
   Extrait pertinent : "La somme de l'IFI et de l'impôt sur le revenu ne peut excéder 75 % des revenus."
 
-- **Article 974 du Code général des impôts** — Dettes déductibles
+- **Article 974 du Code général des impôts** - Dettes déductibles
   URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036472786
   Extrait pertinent : Dettes déductibles : emprunts contractés pour acquisition, construction, réparation ou amélioration des biens taxables ; taxes foncières.
 
 ## Doctrine administrative
 
-- **BOFiP BOI-PAT-IFI** — Documentation complète IFI
+- **BOFiP BOI-PAT-IFI** - Documentation complète IFI
   URL : https://bofip.impots.gouv.fr/bofip/11225-PGP.html
   Note : Accès par fetch automatisé non disponible au 2026-05-07 (403). Données vérifiées via Légifrance et Wikipedia FR.
 
@@ -50,7 +50,7 @@ Note : Le barème IFI n'a pas été modifié depuis la création de l'impôt par
 
 ## Exemples de référence
 
-### Exemple 1 — Patrimoine 2 000 000 € (art. 977 CGI — barème seul)
+### Exemple 1 - Patrimoine 2 000 000 € (art. 977 CGI - barème seul)
 - Inputs : valeur brute 2 000 000 €, pas de RP incluse, dettes 0 €
 - Calcul :
   - Tranche 2 : 500 000 × 0,50 % = 2 500 €
@@ -58,7 +58,7 @@ Note : Le barème IFI n'a pas été modifié depuis la création de l'impôt par
   - IFI brut = 7 400 €
 - Résultat attendu : IFI net = **7 400 €**
 
-### Exemple 2 — Patrimoine 1 350 000 € avec décote (art. 977 CGI)
+### Exemple 2 - Patrimoine 1 350 000 € avec décote (art. 977 CGI)
 - Inputs : valeur brute 1 350 000 €, pas de RP incluse, dettes 0 €
 - Calcul :
   - Tranche 2 : 500 000 × 0,50 % = 2 500 €
@@ -68,7 +68,7 @@ Note : Le barème IFI n'a pas été modifié depuis la création de l'impôt par
   - IFI net = 2 225 €
 - Résultat attendu : IFI net = **2 225 €**
 
-### Exemple 3 — Patrimoine 5 000 000 € (art. 977 CGI)
+### Exemple 3 - Patrimoine 5 000 000 € (art. 977 CGI)
 - Inputs : valeur brute 5 000 000 €, pas de RP incluse, dettes 0 €
 - Calcul :
   - Tranche 2 : 500 000 × 0,50 % = 2 500 €
@@ -81,11 +81,11 @@ Note : Le barème IFI n'a pas été modifié depuis la création de l'impôt par
 
 - Ce calculateur ne traite pas :
   - Les exonérations partielles : bois/forêts (75 %), biens ruraux loués par bail à long terme, actifs professionnels (Art. 975-976 CGI), œuvres d'art (100 %)
-  - Les réductions IFI pour dons (Art. 978 CGI) — 75 % du don dans la limite de 50 000 €
+  - Les réductions IFI pour dons (Art. 978 CGI) - 75 % du don dans la limite de 50 000 €
   - Les situations de non-résidents (règles spécifiques Art. 964 II CGI)
   - Le démembrement de propriété (nue-propriété / usufruit)
   - Les sociétés civiles immobilières (quote-part taxable)
-  - Le plafonnement des dettes déductibles (Art. 974 II CGI — plafond pour biens > 5 M€)
+  - Le plafonnement des dettes déductibles (Art. 974 II CGI - plafond pour biens > 5 M€)
 - Il suppose :
   - Biens détenus en pleine propriété directe
   - Valeurs vénales renseignées par l'utilisateur (aucune estimation automatique)

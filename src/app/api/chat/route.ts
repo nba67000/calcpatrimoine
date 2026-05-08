@@ -10,7 +10,7 @@ const MAX_MESSAGES = 20      // 10 tours max
 const MAX_INPUT_LEN = 1000   // chars par message utilisateur
 const MAX_CONTEXTE_LEN = 3000 // chars pour le contexte calculateur
 
-// Liste blanche des slugs valides — toute valeur hors liste est rejetée (protection prompt injection)
+// Liste blanche des slugs valides - toute valeur hors liste est rejetée (protection prompt injection)
 const SLUGS_VALIDES: readonly string[] = [
   'tmi',
   'per-individuel',
@@ -21,7 +21,7 @@ const SLUGS_VALIDES: readonly string[] = [
 ]
 
 // ---------------------------------------------------------------------------
-// Partie statique du prompt — mise en cache (TTL 5 min Anthropic)
+// Partie statique du prompt - mise en cache (TTL 5 min Anthropic)
 // ---------------------------------------------------------------------------
 
 const PROMPT_STATIQUE = `\
@@ -36,7 +36,7 @@ Tu expliques les résultats affichés dans le calculateur actif. Tu aides l'util
 - Tu proposes des liens vers des ressources disponibles si la question s'y prête
 - Tu reformules les résultats complexes en langage clair et accessible
 
-## Règles strictes — à respecter absolument
+## Règles strictes - à respecter absolument
 - Tu ne donnes JAMAIS de conseil personnalisé. Jamais "vous devriez", "je vous recommande", "il vaut mieux choisir".
 - Tu ne te prononces pas sur le choix entre deux options fiscales : tu exposes les faits, l'utilisateur décide.
 - Tu ne réponds pas aux questions sans rapport avec les calculateurs du site ou la fiscalité patrimoniale française.
@@ -69,22 +69,22 @@ function buildDynamicPrompt(contexteTexte: string, slug: SlugCalculateur): strin
   const lois = ressources.filter(r => r.type === 'loi')
   if (lois.length > 0) {
     lignesRessources.push('Textes de loi :')
-    lois.forEach(r => lignesRessources.push(`  - [${r.ref}](${r.url}) — ${r.sujet}`))
+    lois.forEach(r => lignesRessources.push(`  - [${r.ref}](${r.url}) - ${r.sujet}`))
   }
 
   const doctrine = ressources.filter(r => r.type === 'doctrine')
   if (doctrine.length > 0) {
     lignesRessources.push('Doctrine administrative :')
-    doctrine.forEach(r => lignesRessources.push(`  - [${r.ref}](${r.url}) — ${r.sujet}`))
+    doctrine.forEach(r => lignesRessources.push(`  - [${r.ref}](${r.url}) - ${r.sujet}`))
   }
 
   if (autresCalcs.length > 0) {
     lignesRessources.push('Autres calculateurs du site :')
-    autresCalcs.forEach(c => lignesRessources.push(`  - [${c.titre}](/${c.slug}) — ${c.description}`))
+    autresCalcs.forEach(c => lignesRessources.push(`  - [${c.titre}](/${c.slug}) - ${c.description}`))
   }
 
   return [
-    '## Contexte — résultats actuels du calculateur',
+    '## Contexte - résultats actuels du calculateur',
     '',
     contexteTexte,
     '',
@@ -108,7 +108,7 @@ function validerRequete(body: unknown): { messages: Message[]; contexteTexte: st
   if (typeof b.contexteTexte !== 'string' || b.contexteTexte.length === 0) return null
   if (typeof b.slugCalculateur !== 'string' || b.slugCalculateur.length === 0) return null
 
-  // Validation stricte du slug contre la liste blanche — rejette tout slug non reconnu,
+  // Validation stricte du slug contre la liste blanche - rejette tout slug non reconnu,
   // y compris les tentatives d'injection de prompt via ce champ.
   if (!SLUGS_VALIDES.includes(b.slugCalculateur)) return null
 

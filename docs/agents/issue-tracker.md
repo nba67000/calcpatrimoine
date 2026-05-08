@@ -22,6 +22,6 @@ Toutes les opérations utilisent le CLI `gh` (GitHub CLI). Supposer qu'il est au
 ## Conventions
 
 - Le numéro GitHub est la référence canonique (`#42`, pas un slug).
-- Les labels sont les métadonnées primaires — voir `docs/agents/triage-labels.md`.
+- Les labels sont les métadonnées primaires - voir `docs/agents/triage-labels.md`.
 - Les milestones ne sont pas utilisés dans les workflows agents.
 - Les issues créées par un agent doivent inclure le label `ready-for-agent` ou `needs-triage` selon leur état initial.

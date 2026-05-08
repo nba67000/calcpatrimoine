@@ -5,7 +5,7 @@ export const SOURCES_TRANSMISSION = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006305484', label: 'Article 757 B du CGI', desc: 'Réintégration succession versements après 70 ans, abattement 30 500 €' },
   { href: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000278649', label: 'Loi TEPA 2007', desc: 'Exonération totale conjoint/PACS pour les successions' },
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042160878', label: 'Articles 777 et suivants du CGI', desc: 'Barème des droits de succession en ligne directe' },
-  { href: 'https://bofip.impots.gouv.fr/bofip/3296-PGP.html', label: 'BOFiP — Assurance-vie et successions', desc: 'Bulletin Officiel des Finances Publiques sur la transmission' },
+  { href: 'https://bofip.impots.gouv.fr/bofip/3296-PGP.html', label: 'BOFiP - Assurance-vie et successions', desc: 'Bulletin Officiel des Finances Publiques sur la transmission' },
 ]
 
 import type {
@@ -17,7 +17,7 @@ import type {
 import type { Warning, Optimisation } from '@/types/alerts'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
-// Barème droits de succession ligne directe — Art. 777 CGI (LF 2026)
+// Barème droits de succession ligne directe - Art. 777 CGI (LF 2026)
 const BAREME_LIGNE_DIRECTE = [
  { min: 0,       max: 8072,    taux: 0.05 },
  { min: 8072,    max: 12109,   taux: 0.10 },
@@ -28,16 +28,16 @@ const BAREME_LIGNE_DIRECTE = [
  { min: 1805677, max: Infinity, taux: 0.45 },
 ]
 
-// Art. 779 CGI — abattement succession enfant (ligne directe)
+// Art. 779 CGI - abattement succession enfant (ligne directe)
 const ABATTEMENT_SUCCESSION_ENFANT = 100_000
 
-// Art. 757 B CGI — abattement global versements AV après 70 ans
+// Art. 757 B CGI - abattement global versements AV après 70 ans
 const ABATTEMENT_757B_GLOBAL = 30_500
 
-// Art. 990 I CGI — abattement par bénéficiaire versements AV avant 70 ans
+// Art. 990 I CGI - abattement par bénéficiaire versements AV avant 70 ans
 const ABATTEMENT_990I_PAR_BENEFICIAIRE = 152_500
 
-// Art. 990 I CGI — taux de prélèvement et seuil
+// Art. 990 I CGI - taux de prélèvement et seuil
 const TAUX_990I_REDUIT = 0.20
 const TAUX_990I_NORMAL = 0.3125
 const SEUIL_990I = 700_000
@@ -276,7 +276,7 @@ export function getLibelleLien(lien: Beneficiaire['lien']): string {
 }
 
 // ---------------------------------------------------------------------------
-// Opérations sur la liste des bénéficiaires — fonctions pures
+// Opérations sur la liste des bénéficiaires - fonctions pures
 // Chaque fonction retourne un nouveau tableau, sans muter l'entrée.
 // ---------------------------------------------------------------------------
 
@@ -372,7 +372,7 @@ export function formatContexteTransmission(inputs: TransmissionInputs, r: Transm
     `Bénéficiaires (${r.nombreBeneficiaires})`,
   ]
   r.repartition.forEach(b => {
-    lines.push(`  — ${b.nom} (${b.lien}, ${b.partPourcentage} %)`)
+    lines.push(`  - ${b.nom} (${b.lien}, ${b.partPourcentage} %)`)
     lines.push(`     Part brute : ${eur(b.part)}`)
     if (b.impot990I > 0) lines.push(`     Prélèvement 990 I : ${eur(b.impot990I)} (base ${eur(b.baseTaxable990I)})`)
     if (b.droitsSuccession757B > 0) lines.push(`     Droits 757 B : ${eur(b.droitsSuccession757B)} (base ${eur(b.baseTaxable757B)})`)

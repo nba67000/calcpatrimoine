@@ -27,7 +27,7 @@ export default function ArticlePERPage() {
             <nav className="flex items-center gap-2 font-mono text-xs text-neutral-400 mb-8">
               <Link href="/blog" className="hover:text-primary-600 transition-colors">Blog</Link>
               <span>/</span>
-              <span className="text-neutral-600">PER individuel — fiscalité</span>
+              <span className="text-neutral-600">PER individuel - fiscalité</span>
             </nav>
             <div className="h-[2px] w-10 bg-accent-400 mb-6" />
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-neutral-900 mb-6 leading-tight">
@@ -83,7 +83,7 @@ export default function ArticlePERPage() {
 
           {/* Lexique */}
           <div className="bg-surface-card border border-neutral-200 p-6 mb-12">
-            <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-5">Lexique — avant de commencer</p>
+            <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-5">Lexique - avant de commencer</p>
             <div className="space-y-5">
               {[
                 {
@@ -100,7 +100,7 @@ export default function ArticlePERPage() {
                 },
                 {
                   terme: 'Les prélèvements sociaux',
-                  def: "Des cotisations prélevées sur les revenus du capital — épargne, placements, loyers — au taux global de 17,2 %. Ils se décomposent principalement en CSG (9,2 %) et CRDS (0,5 %), complétés d'autres contributions. Ils s'ajoutent à l'impôt sur le revenu et sont dus même si vous n'êtes pas imposable sur le revenu.",
+                  def: "Des cotisations prélevées sur les revenus du capital - épargne, placements, loyers - au taux global de 17,2 %. Ils se décomposent principalement en CSG (9,2 %) et CRDS (0,5 %), complétés d'autres contributions. Ils s'ajoutent à l'impôt sur le revenu et sont dus même si vous n'êtes pas imposable sur le revenu.",
                 },
                 {
                   terme: 'La rente viagère',
@@ -318,7 +318,7 @@ export default function ArticlePERPage() {
             </div>
 
             <div className="bg-neutral-50 border border-neutral-200 p-5 my-6">
-              <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-3">Cas pratique — salarié, 60 000 euros de revenus en 2024</p>
+              <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-3">Cas pratique - salarié, 60 000 euros de revenus en 2024</p>
               <div className="font-mono text-sm space-y-2 text-neutral-800">
                 <p>Plafond 2025 : 10 % × 60 000 euros = 6 000 euros</p>
                 <p>Plafond 2024 non utilisé : 5 500 euros</p>
@@ -377,7 +377,7 @@ export default function ArticlePERPage() {
             </p>
 
             <div className="bg-neutral-50 border border-neutral-200 p-5 my-6">
-              <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-3">Exemple — Rente PER de 1 000 euros par mois</p>
+              <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-3">Exemple - Rente PER de 1 000 euros par mois</p>
               <div className="font-mono text-sm space-y-1.5 text-neutral-800">
                 <p>Rente annuelle perçue : 12 000 euros</p>
                 <p>Abattement de 10 % : 1 200 euros déduits automatiquement</p>
@@ -565,7 +565,7 @@ export default function ArticlePERPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               {[
                 {
-                  label: 'Scénario A — Favorable',
+                  label: 'Scénario A - Favorable',
                   tmia: 'Taux marginal actuel : 30 %',
                   tmib: 'Taux marginal retraite : 11 %',
                   calcul: [
@@ -579,7 +579,7 @@ export default function ArticlePERPage() {
                   favorable: true,
                 },
                 {
-                  label: 'Scénario B — Neutre',
+                  label: 'Scénario B - Neutre',
                   tmia: 'Taux marginal actuel : 30 %',
                   tmib: 'Taux marginal retraite : 30 %',
                   calcul: [
@@ -593,7 +593,7 @@ export default function ArticlePERPage() {
                   favorable: false,
                 },
                 {
-                  label: 'Scénario C — Défavorable',
+                  label: 'Scénario C - Défavorable',
                   tmia: 'Taux marginal actuel : 11 %',
                   tmib: 'Taux marginal retraite : 30 %',
                   calcul: [
@@ -657,13 +657,13 @@ export default function ArticlePERPage() {
                 <ul className="space-y-2 text-sm">
                   {[
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053542827', label: 'Article 163 quatervicies du CGI', desc: 'Déductibilité des cotisations versées au PER individuel' },
-                    { href: 'https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042158853', label: 'Article 158, 5° bis du CGI', desc: 'Imposition des rentes issues des PER — régime des pensions' },
+                    { href: 'https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042158853', label: 'Article 158, 5° bis du CGI', desc: 'Imposition des rentes issues des PER - régime des pensions' },
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038507575', label: 'Article L224-1 du Code monétaire et financier', desc: 'Définition légale du PER individuel (loi PACTE 2019)' },
-                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805604', label: 'Article L224-28 du Code monétaire et financier', desc: 'Cas de déblocage anticipé — liste exhaustive' },
-                    { href: 'https://www.service-public.fr/particuliers/vosdroits/F34982', label: 'Service-Public.fr — PER individuel', desc: 'Fiche pratique officielle : ouverture, versements, fiscalité, déblocages' },
+                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805604', label: 'Article L224-28 du Code monétaire et financier', desc: 'Cas de déblocage anticipé - liste exhaustive' },
+                    { href: 'https://www.service-public.fr/particuliers/vosdroits/F34982', label: 'Service-Public.fr - PER individuel', desc: 'Fiche pratique officielle : ouverture, versements, fiscalité, déblocages' },
                   ].map(s => (
                     <li key={s.href} className="flex items-start gap-3">
-                      <span className="text-accent-400 mt-0.5 shrink-0">—</span>
+                      <span className="text-accent-400 mt-0.5 shrink-0">-</span>
                       <div>
                         <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
                         <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>

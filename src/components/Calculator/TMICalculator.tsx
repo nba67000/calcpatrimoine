@@ -56,7 +56,7 @@ export default function TMICalculator() {
     <>
     <div className="grid lg:grid-cols-2 gap-8">
 
-      {/* COLONNE GAUCHE — INPUTS */}
+      {/* COLONNE GAUCHE - INPUTS */}
       <div className="space-y-6">
 
         {/* Revenu net imposable */}
@@ -148,7 +148,7 @@ export default function TMICalculator() {
             </div>
             <p className="text-xs text-neutral-500 mt-2">
               {situationFamiliale === 'parent-isole'
-                ? 'Parent isolé (case T) : au moins 1 enfant requis — Art. 195-1-c CGI.'
+                ? 'Parent isolé (case T) : au moins 1 enfant requis - Art. 195-1-c CGI.'
                 : 'Enfants rattachés au foyer fiscal (art. 196 CGI).'}
             </p>
           </div>
@@ -176,10 +176,10 @@ export default function TMICalculator() {
         </div>
       </div>
 
-      {/* COLONNE DROITE — RÉSULTATS */}
+      {/* COLONNE DROITE - RÉSULTATS */}
       <div className="space-y-6">
 
-        {/* TMI — résultat principal */}
+        {/* TMI - résultat principal */}
         <div className={`rounded-xl border-2 p-6 ${tmiColors.bg} border-current`}>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-neutral-900">Tranche marginale</h3>

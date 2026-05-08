@@ -5,11 +5,11 @@ import PERCalculator from '@/components/Calculator/PERCalculator'
 import SourcesSection from '@/components/SourcesSection'
 
 export const metadata: Metadata = {
-  title: 'Simulateur PER individuel — économie d\'impôt',
+  title: 'Simulateur PER individuel - économie d\'impôt',
   description: 'Calculez l\'économie d\'impôt réalisée en versant sur un PER individuel. Plafond de déduction 2026, report 5 ans (LF 2026), TMI. Barème officiel, gratuit et open-source.',
   keywords: 'PER individuel, plan épargne retraite, économie impôt, plafond déduction, TMI, versement PER, fiscalité PER, simulateur PER 2026',
   openGraph: {
-    title: 'Simulateur PER individuel — économie d\'impôt sur versement',
+    title: 'Simulateur PER individuel - économie d\'impôt sur versement',
     description: 'Calculez votre économie d\'impôt sur un versement PER individuel. Plafond 2026, report des plafonds N-1 à N-5 (LF 2026).',
     type: 'article',
   },
@@ -39,7 +39,7 @@ const EXEMPLES = [
 ]
 
 const LIMITES = [
-  'Ce calculateur couvre uniquement les versements volontaires déductibles du PERIN (salarié). Le PERCOL, le PERO et le régime TNS (Madelin) ne sont pas simulés — les plafonds TNS suivent une règle différente (Art. 154 bis CGI).',
+  'Ce calculateur couvre uniquement les versements volontaires déductibles du PERIN (salarié). Le PERCOL, le PERO et le régime TNS (Madelin) ne sont pas simulés - les plafonds TNS suivent une règle différente (Art. 154 bis CGI).',
   'Le partage du plafond de déduction entre conjoints ou partenaires de PACS n\'est pas simulé.',
   'La fiscalité à la sortie (imposition de la rente ou du capital) n\'est pas simulée.',
   'Il est supposé que les frais professionnels sont couverts par l\'abattement forfaitaire. Les frais réels ne sont pas gérés.',
@@ -48,12 +48,12 @@ const LIMITES = [
 export default function PERIndividuelPage() {
   return (
     <CalculateurPageLayout
-      breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'PER individuel — économie d\'impôt' }]}
+      breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'PER individuel - économie d\'impôt' }]}
       titre={<>Simulateur PER individuel<br />Économie d&apos;impôt sur versement</>}
       description="Calculez l'économie d'impôt générée par un versement volontaire sur votre Plan
         d'Épargne Retraite individuel (PERIN). Plafond de déduction 2026, report des
         plafonds non utilisés sur les 5 années suivantes (LF 2026), coût net réel du versement."
-      features={['Art. 163 quatervicies CGI', 'PASS 2025 — plafonds 2026', 'Report plafonds N-1 à N-5 (LF 2026)', 'Zéro donnée conservée']}
+      features={['Art. 163 quatervicies CGI', 'PASS 2025 - plafonds 2026', 'Report plafonds N-1 à N-5 (LF 2026)', 'Zéro donnée conservée']}
       calculator={<PERCalculator />}
     >
 
@@ -103,7 +103,7 @@ export default function PERIndividuelPage() {
               <p>
                 Si vous n&apos;avez pas versé jusqu&apos;au plafond les années précédentes, vous
                 pouvez rattraper ce manque sur les 5 années suivantes
-                (Art. 163 quatervicies I b) CGI, modifié par LF 2026 art. 10 — auparavant 3 ans).
+                (Art. 163 quatervicies I b) CGI, modifié par LF 2026 art. 10 - auparavant 3 ans).
               </p>
             </div>
 
@@ -144,7 +144,7 @@ export default function PERIndividuelPage() {
             <SourcesSection slug="per-individuel" />
 
             <div>
-              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Barèmes vérifiés — 2026</h3>
+              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Barèmes vérifiés - 2026</h3>
               <div className="bg-neutral-50 border border-neutral-200 p-4">
                 <table className="w-full text-sm">
                   <thead>
@@ -164,7 +164,7 @@ export default function PERIndividuelPage() {
                     ))}
                   </tbody>
                 </table>
-                <p className="font-mono text-xs text-neutral-400 mt-3">Dernière vérification : 1er mai 2026 — service-public.gouv.fr</p>
+                <p className="font-mono text-xs text-neutral-400 mt-3">Dernière vérification : 1er mai 2026 - service-public.gouv.fr</p>
               </div>
             </div>
 
@@ -173,7 +173,7 @@ export default function PERIndividuelPage() {
               <ul className="text-sm text-neutral-600 space-y-1.5">
                 {LIMITES.map((l, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-neutral-400 mt-0.5 shrink-0">—</span>
+                    <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
                     <span>{l}</span>
                   </li>
                 ))}
@@ -182,7 +182,7 @@ export default function PERIndividuelPage() {
 
             <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
               <p className="text-sm text-primary-800">
-                <strong>Méthodologie vérifiée</strong> — calculs validés sur trois cas de référence.
+                <strong>Méthodologie vérifiée</strong> - calculs validés sur trois cas de référence.
                 Sources : service-public.gouv.fr, Art. 163 quatervicies CGI. Dernière vérification : 1er mai 2026.
               </p>
             </div>

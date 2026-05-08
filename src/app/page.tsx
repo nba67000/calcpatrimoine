@@ -6,11 +6,11 @@ import HomeHeroWidget from '@/components/HomeHeroWidget'
 import { CATEGORIES_CALC } from '@/config/navigation'
 
 export const metadata: Metadata = {
-  title: 'CalculPatrimoine — Calculateurs patrimoniaux gratuits et open-source',
+  title: 'CalculPatrimoine - Calculateurs patrimoniaux gratuits et open-source',
   description: 'Des calculateurs patrimoniaux gratuits basés sur les textes officiels en vigueur. Aucune donnée conservée. Code source ouvert.',
   keywords: 'calculateur patrimoine, rente viagère, assurance vie, PER, TMI, retraite, simulateur gratuit, open-source',
   openGraph: {
-    title: 'CalculPatrimoine — Calculateurs patrimoniaux gratuits',
+    title: 'CalculPatrimoine - Calculateurs patrimoniaux gratuits',
     description: 'Des calculateurs patrimoniaux basés sur les textes officiels. Aucun conseil, aucune donnée conservée.',
     type: 'website',
   },
@@ -59,10 +59,10 @@ export default function HomePage() {
         <section className="max-w-7xl mx-auto px-6 pt-16 pb-12 lg:pt-24 lg:pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-[1.75fr_1fr] gap-10 lg:gap-16 items-start">
 
-            {/* Colonne gauche — éditoriale */}
+            {/* Colonne gauche - éditoriale */}
             <div>
               <p className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-6">
-                Calcul patrimonial — France
+                Calcul patrimonial - France
               </p>
 
               <div className="h-[2px] w-14 bg-accent-400 mb-8" />
@@ -185,7 +185,7 @@ export default function HomePage() {
             Une décision qui vous appartient.
           </h2>
           <p className="text-neutral-600 leading-relaxed">
-            Chaque résultat repose sur les textes officiels en vigueur —
+            Chaque résultat repose sur les textes officiels en vigueur -
             Code général des impôts, BOFiP, tables de mortalité INSEE 2022.
             Le code source est public et auditable.
             Les données ne quittent pas votre navigateur.

@@ -26,7 +26,7 @@ export function calculerAnciennete(dateOuverture: Date): { annees: number; mois:
  return { annees, mois }
 }
 
-// Art. 125-0 A CGI — seuil encours pour PFU réduit à 7,5% (versements post-27/09/2017, contrat > 8 ans)
+// Art. 125-0 A CGI - seuil encours pour PFU réduit à 7,5% (versements post-27/09/2017, contrat > 8 ans)
 const SEUIL_ENCOURS_PFU_REDUIT = 150_000
 
 /**
@@ -307,10 +307,10 @@ export function formatContexteAVRachat(inputs: AssuranceVieInputs, r: AssuranceV
     `  ${regimePFU}`,
     '',
     'Comparaison fiscale',
-    ligne('Option PFU — total prélèvements', eur(r.optionPFU.totalPrelevement)),
-    ligne('Option PFU — net perçu', eur(r.optionPFU.netPercu)),
-    ligne('Option IR — total prélèvements', eur(r.optionIR.totalPrelevement)),
-    ligne('Option IR — net perçu', eur(r.optionIR.netPercu)),
+    ligne('Option PFU - total prélèvements', eur(r.optionPFU.totalPrelevement)),
+    ligne('Option PFU - net perçu', eur(r.optionPFU.netPercu)),
+    ligne('Option IR - total prélèvements', eur(r.optionIR.totalPrelevement)),
+    ligne('Option IR - net perçu', eur(r.optionIR.netPercu)),
     ligne('Écart entre les deux options', eur(r.difference)),
     ligne('TMI retenue', pct(inputs.tmi, 0)),
     ligne('Situation', inputs.enCouple ? 'Couple' : 'Personne seule'),
