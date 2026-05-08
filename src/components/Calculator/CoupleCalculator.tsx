@@ -27,7 +27,7 @@ export default function CoupleCalculator() {
  <div className="bg-neutral-100 rounded-lg shadow-md p-5 sm:p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
  <h2 className="text-xl font-medium mb-2">Mode couple</h2>
  <p className="text-sm text-neutral-600 mb-6">
- Comparez 9 stratégies de rente pour optimiser votre situation à deux
+ Comparez 9 stratégies de rente pour un couple.
  </p>
 
  {/* Note épargne commune/séparée */}
@@ -43,11 +43,11 @@ export default function CoupleCalculator() {
  </summary>
  <div className="mt-3 text-xs text-primary-900 space-y-2 pl-4 border-l-2 border-primary-300">
  <p>
- <strong>Capital commun (compte joint) :</strong>Peut être alloué 
+ <strong>Capital commun (compte joint) :</strong>{' '}Peut être alloué 
  librement selon toutes les stratégies affichées ci-dessous.
  </p>
  <p>
- <strong>Contrats individuels séparés :</strong>Si Personne 1 a une assurance-vie 
+ <strong>Contrats individuels séparés :</strong>{' '}Si Personne 1 a une assurance-vie 
  à son nom (100k€) et Personne 2 une autre (80k€), seules les stratégies 
  &quot;P1 seule&quot; et &quot;P2 seule&quot; sont directement applicables. Les autres 
  stratégies nécessiteraient de transférer les fonds sur un compte 

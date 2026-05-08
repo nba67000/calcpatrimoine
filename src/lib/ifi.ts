@@ -180,7 +180,7 @@ export function calculerIFI(inputs: IFIInputs): IFIResults {
   if (inputs.dettesDeductibles === 0 && patrimoineNetTaxable >= SEUIL_IFI) {
     optimisations.push({
       type: 'info',
-      message: `Si des emprunts immobiliers sont en cours sur les biens déclarés, le capital restant dû est déductible de l'assiette IFI (Art. 974 CGI). Renseignez ce montant pour affiner le calcul.`,
+      message: `Si des emprunts immobiliers sont en cours sur les biens déclarés, le capital restant dû réduit le patrimoine taxable (Art. 974 CGI). Ajoutez ce montant dans le champ « Dettes déductibles » pour affiner le calcul.`,
     })
   }
 

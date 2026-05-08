@@ -346,7 +346,7 @@ export default function InverseCalculator() {
  </ul>
  
  <p className="font-semibold mt-3">
- Les calculs sont basés sur des formules actuarielles standard mais ne tiennent PAS compte de :
+ Les calculs sont basés sur des formules actuarielles standard mais ne tiennent pas compte de :
  </p>
  
  <ul className="list-disc list-inside space-y-1 ml-4 text-primary-700 text-xs">
@@ -359,18 +359,18 @@ export default function InverseCalculator() {
  </ul>
  
  <p className="font-bold text-primary-900 mt-3">
- Avant toute décision d&apos;investissement, consultez IMPÉRATIVEMENT :
+ Avant toute décision, consultez :
  </p>
  
  <ul className="list-disc list-inside space-y-1 ml-4 text-primary-700">
  <li>Un <strong>conseiller en gestion de patrimoine</strong> certifié (CGP)</li>
  <li>Un <strong>notaire</strong> pour les aspects successoraux et matrimoniaux</li>
- <li>Un <strong>expert-comptable</strong> pour optimiser la fiscalité</li>
+ <li>Un <strong>expert-comptable</strong> pour l&apos;analyse fiscale</li>
  </ul>
  
  <div className="border-t border-primary-300 pt-3 mt-3">
  <p className="text-xs text-primary-700">
- <strong>Limitation de responsabilité :</strong>CalculPatrimoine décline toute responsabilité 
+ <strong>Limitation de responsabilité :</strong>{' '}CalculPatrimoine décline toute responsabilité 
  en cas de décision prise uniquement sur la base des calculs fournis. L&apos;éditeur ne peut être 
  tenu responsable d&apos;éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
  postérieures à la dernière mise à jour (avril 2026).

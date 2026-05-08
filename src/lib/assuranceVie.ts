@@ -1,4 +1,4 @@
-// src/lib/assuranceVie.ts
+﻿// src/lib/assuranceVie.ts
 
 import type { AssuranceVieInputs, AssuranceVieResults, FiscaliteOption } from '@/types/assuranceVie'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
@@ -188,7 +188,7 @@ export function calculerFiscaliteRachat(inputs: AssuranceVieInputs): AssuranceVi
  if (economieAttente> 500) {
  warnings.push({
  type: 'danger',
- message: `⏰ Votre contrat a moins de 8 ans (${ancienneteAnnees} ans et ${ancienneteMois} mois). En attendant ${dureeTexte}, vous économiserez environ ${Math.round(economieAttente).toLocaleString('fr-FR')}€ grâce à l'abattement de ${abattementApplicable.toLocaleString('fr-FR')}€.`
+ message: `Votre contrat a moins de 8 ans (${ancienneteAnnees} ans et ${ancienneteMois} mois). En attendant ${dureeTexte}, vous économiserez environ ${Math.round(economieAttente).toLocaleString('fr-FR')}€ grâce à l'abattement de ${abattementApplicable.toLocaleString('fr-FR')}€.`
  })
  } else {
  warnings.push({
