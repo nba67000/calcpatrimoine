@@ -9,7 +9,7 @@ type CalculatorMode = 'standard' | 'inverse' | 'couple'
 const MODES: { id: CalculatorMode; label: string; desc: string }[] = [
   { id: 'standard', label: 'Calculateur classique', desc: "Calculez le montant de votre rente mensuelle à partir d'un capital." },
   { id: 'inverse',  label: 'Calculateur inverse',   desc: "Découvrez quel capital est nécessaire pour obtenir la rente souhaitée." },
-  { id: 'couple',   label: 'Mode couple',            desc: "Comparez toutes les stratégies pour optimiser vos rentes à deux." },
+  { id: 'couple',   label: 'Mode couple',            desc: "Comparez les stratégies de rente pour un couple." },
 ]
 
 const RenteCalculator   = dynamic(() => import('./RenteCalculator'),   { ssr: false })

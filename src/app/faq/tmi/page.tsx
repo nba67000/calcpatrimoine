@@ -298,8 +298,8 @@ export default function FAQTMIPage() {
 
           <div className="border-t border-neutral-300">
             {[
-              { href: '/faq/per', label: 'FAQ PER Individuel', desc: 'La TMI est la variable clé pour optimiser vos versements PER.' },
-              { href: '/faq/assurance-vie', label: 'FAQ Assurance-Vie', desc: 'PFU vs IR : votre TMI détermine la meilleure option.' },
+              { href: '/faq/per', label: 'FAQ PER Individuel', desc: 'La TMI détermine l\'économie d\'impôt sur vos versements PER.' },
+              { href: '/faq/assurance-vie', label: 'FAQ Assurance-Vie', desc: 'PFU vs IR : votre TMI détermine quelle option est moins taxée.' },
               { href: '/faq', label: 'Toutes les FAQ', desc: 'Rente viagère, transmission, PER — retrouvez chaque FAQ.' },
             ].map(link => (
               <Link

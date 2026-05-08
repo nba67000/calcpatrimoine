@@ -170,7 +170,7 @@ export default function RenteCalculator() {
  <div className="border-t border-primary-200 pt-4 mt-2">
  <div className="bg-white/50 rounded-lg p-4 mb-4">
  <p className="text-xs text-primary-900">
- <strong>Comment ça marche ?</strong>Votre rente sera légèrement réduite, 
+ <strong>Comment ça marche ?</strong>{' '}Votre rente sera légèrement réduite,
  mais votre conjoint continuera à recevoir {reversionPercentage}% après votre décès.
  </p>
  </div>

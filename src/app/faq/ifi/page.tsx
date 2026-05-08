@@ -44,17 +44,17 @@ const sections: FAQSection[] = [
         ),
       },
       {
-        question: 'Quels biens immobiliers entrent dans l\'assiette IFI ?',
+        question: 'Quels biens immobiliers entrent dans le calcul de l\'IFI ?',
         answer: (
           <>
-            <p className="mb-3">Entrent dans l&apos;assiette IFI :</p>
+            <p className="mb-3">Ces biens entrent dans l&apos;IFI :</p>
             <ul className="list-disc pl-5 mb-3 space-y-1">
               <li>Biens détenus directement : maisons, appartements, terrains, garages, parkings</li>
               <li>Biens détenus via des sociétés : quote-part des actifs immobiliers (SCI, SCPI, sociétés opérationnelles)</li>
               <li>Droits réels immobiliers : usufruit, nue-propriété (avec règles spécifiques)</li>
-              <li>Contrats d&apos;assurance-vie en unités de compte immobilières (fraction représentative de l&apos;immobilier)</li>
+              <li>Contrats d&apos;assurance-vie en unités de compte immobilières (part représentant de l&apos;immobilier)</li>
             </ul>
-            <p>Sont exclus de l&apos;assiette : les biens professionnels, les œuvres d&apos;art, les bois et forêts (75 % exonérés), les biens ruraux loués par bail à long terme (75 % exonérés selon conditions Art. 976 CGI).</p>
+            <p>Ne sont pas concernés : les biens professionnels, les œuvres d&apos;art, les bois et forêts (75 % exonérés), les biens ruraux loués par bail à long terme (75 % exonérés selon conditions Art. 976 CGI).</p>
           </>
         ),
       },
@@ -198,11 +198,11 @@ const sections: FAQSection[] = [
         question: 'La nue-propriété est-elle taxée à l\'IFI ?',
         answer: (
           <p>
-            En principe, la nue-propriété seule est exonérée d&apos;IFI : c&apos;est l&apos;usufruitier qui déclare
-            la valeur en pleine propriété dans son patrimoine (Art. 968 CGI). Cette règle incite certains
-            contribuables à consentir des donations avec réserve d&apos;usufruit pour réduire leur patrimoine
-            IFI — les enfants nus-propriétaires n&apos;ont rien à déclarer. Ce calculateur ne modélise pas
-            les démembrements de propriété.
+            Quand un bien est divisé entre quelqu&apos;un qui en a l&apos;usage (l&apos;usufruitier) et quelqu&apos;un qui en est
+            propriétaire sans pouvoir l&apos;utiliser (le nu-propriétaire), c&apos;est l&apos;usufruitier qui déclare
+            la valeur totale du bien dans son IFI (Art. 968 CGI). Le nu-propriétaire ne déclare rien.
+            Ce calculateur ne couvre pas les biens en démembrement : déduisez directement la valeur concernée
+            avant de saisir le total.
           </p>
         ),
       },

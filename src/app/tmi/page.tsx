@@ -27,7 +27,7 @@ const LIMITES = [
   'Le revenu saisi est le revenu net imposable (après abattement 10 % ou frais réels).',
   'Les revenus soumis à taux fixe (plus-values mobilières au PFU, etc.) ne sont pas pris en compte.',
   'Les réductions et crédits d\'impôt ne sont pas simulés.',
-  'La contribution sur les hauts revenus (CEHR — Art. 223 sexies CGI) n\'est pas calculée.',
+  'La contribution exceptionnelle sur les hauts revenus (CEHR — surtaxe de 3 % à 4 % au-delà de 250 000 € de revenu fiscal de référence — Art. 223 sexies CGI) n\'est pas calculée.',
   'La résidence alternée (demi-parts à 0,25) n\'est pas gérée.',
 ]
 

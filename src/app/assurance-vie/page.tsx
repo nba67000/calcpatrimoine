@@ -128,7 +128,7 @@ export default function AssuranceVieHubPage() {
                 <p className="text-sm text-neutral-500 mb-2 font-mono uppercase tracking-wider text-xs">Quand l&apos;utiliser ?</p>
                 <ul className="text-sm text-neutral-700 space-y-1">
                   <li>— Vous préparez votre succession</li>
-                  <li>— Vous voulez optimiser la répartition entre bénéficiaires</li>
+                  <li>— Vous voulez simuler la répartition entre bénéficiaires</li>
                   <li>— Vous voulez anticiper les droits payés par vos héritiers</li>
                 </ul>
               </div>
