@@ -189,7 +189,7 @@ export default function IFICalculator() {
 
         {/* Patrimoine net taxable */}
         <div className="bg-white rounded-xl border border-neutral-200 p-5 shadow-sm">
-          <h4 className="text-sm font-bold text-neutral-700 uppercase tracking-wider mb-3">Assiette taxable</h4>
+          <h4 className="text-sm font-bold text-neutral-700 uppercase tracking-wider mb-3">Patrimoine pris en compte</h4>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-neutral-600">Valeur brute immobilier</span>

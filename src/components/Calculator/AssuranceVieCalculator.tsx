@@ -233,7 +233,7 @@ export default function AssuranceVieCalculator() {
           <div>
             <div className="flex justify-between items-baseline mb-2">
               <label className="text-sm font-medium text-neutral-700">
-                Encours total tous contrats AV
+                Total versé sur tous vos contrats d&apos;assurance-vie
               </label>
               <span className={`text-lg font-bold ${encoursTotalContrats > 150000 ? 'text-amber-600' : 'text-neutral-900'}`}>
                 {formatEur(encoursTotalContrats)}
@@ -248,9 +248,9 @@ export default function AssuranceVieCalculator() {
               <span>0€</span><span>1 000 000€</span>
             </div>
             <p className="text-xs text-neutral-500 mt-2">
-              Versements nets sur l&apos;ensemble de vos contrats AV (tous assureurs).
-              Si un seul contrat : égal aux versements totaux ci-dessus.
-              Seuil 150 000€ : au-delà, le PFU passe de 7,5% à 12,8% (Art. 125-0 A CGI).
+              Primes cumulées sur l&apos;ensemble de vos contrats (tous assureurs).
+              Si vous n&apos;avez qu&apos;un seul contrat : saisir le même montant qu&apos;en « Versements totaux » ci-dessus.
+              Au-delà de 150 000 € : le PFU passe de 7,5 % à 12,8 % (Art. 125-0 A CGI).
             </p>
             {encoursTotalContrats <= 150000 ? (
               <p className="text-xs text-primary-600 mt-1">PFU reduit : 7,5% IR (encours &le; 150 000€)</p>
@@ -266,7 +266,6 @@ export default function AssuranceVieCalculator() {
 
         <div className="bg-primary-50 border-2 border-primary-300 rounded-xl p-5">
           <div className="flex gap-3">
-            <div className="text-2xl flex-shrink-0">⚖️</div>
             <div>
               <p className="font-bold text-primary-900 mb-2 text-sm">Outil de comparaison uniquement</p>
               <p className="text-xs text-primary-800 leading-relaxed">

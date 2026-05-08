@@ -50,7 +50,7 @@ const sections: FAQSection[] = [
               <p>+ Travaux</p>
             </div>
             <p className="mb-3">
-              Plus le prix de revient est élevé, plus la plus-value brute est faibl, et donc moins vous payez d&apos;impôts.
+              Plus le prix de revient est élevé, plus la plus-value brute est faible, et donc moins vous payez d&apos;impôts.
               C&apos;est pourquoi il est utile de bien justifier ou d&apos;utiliser les forfaits disponibles.
             </p>
           </>
@@ -139,8 +139,8 @@ const sections: FAQSection[] = [
         answer: (
           <>
             <p className="mb-3">
-              Les barèmes d&apos;abattement diffèrent parce qu&apos;il s&apos;agit de deux prélèvements
-              distincts, régis par des articles différents du CGI :
+              L&apos;IR et les prélèvements sociaux sont deux impôts distincts, avec chacun leur propre barème d&apos;exonération.
+              Le législateur n&apos;a pas aligné les durées — résultat : entre 22 et 30 ans de détention, l&apos;IR de 19 % est à zéro mais vous payez encore une partie des prélèvements sociaux.
             </p>
             <ul className="list-disc pl-6 mb-3 space-y-2">
               <li>
