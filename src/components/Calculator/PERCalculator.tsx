@@ -70,7 +70,7 @@ export default function PERCalculator() {
             Salaire net annuel (N-1)
           </h3>
           <p className="text-xs text-neutral-500 mb-4">
-            Votre salaire net à payer annuel de l&apos;année précédente (avant déclaration d&apos;impôts). L&apos;abattement forfaitaire de 10 % pour frais professionnels est calculé automatiquement.
+            Le salaire net reçu l&apos;an dernier, tel qu&apos;il apparaît sur votre bulletin de décembre ou votre déclaration d&apos;impôts. L&apos;abattement de 10 % pour frais professionnels est déduit automatiquement.
           </p>
 
           <div className="mb-4">

@@ -1,4 +1,4 @@
-// src/app/faq/ifi/page.tsx
+﻿// src/app/faq/ifi/page.tsx
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
@@ -67,7 +67,7 @@ const sections: FAQSection[] = [
               Cet abattement est automatique, sans démarche particulière.
             </p>
             <p className="mb-3">
-              Exemple : une résidence principale estimée à 800 000 € n&apos;entre dans l&apos;assiette IFI que pour 560 000 € (800 000 × 70 %).
+              Exemple : une résidence principale estimée à 800 000 € ne compte que pour 560 000 € dans le calcul de l&apos;IFI (800 000 × 70 %).
             </p>
             <p>
               Cet abattement ne s&apos;applique qu&apos;à la résidence principale effective du foyer, pas à une résidence secondaire même très utilisée. En cas de détention en indivision, l&apos;abattement s&apos;applique sur la part détenue.
@@ -136,7 +136,7 @@ const sections: FAQSection[] = [
         ),
       },
       {
-        question: 'Quelles dettes peut-on déduire de l\'assiette IFI ?',
+        question: 'Quelles dettes peut-on déduire dans le calcul de l\'IFI ?',
         answer: (
           <>
             <p className="mb-3">Sont déductibles les dettes existantes au 1er janvier et contractées pour (Art. 974 CGI) :</p>
@@ -210,7 +210,7 @@ const sections: FAQSection[] = [
         question: 'Les parts de SCPI entrent-elles dans l\'IFI ?',
         answer: (
           <p>
-            Oui. Les parts de SCPI (sociétés civiles de placement immobilier) entrent dans l&apos;assiette IFI
+            Oui. Les parts de SCPI (sociétés civiles de placement immobilier) entrent dans le calcul de l&apos;IFI
             à hauteur de la fraction représentant des actifs immobiliers. En pratique, la SCPI communique
             chaque année le coefficient de déductibilité ou d&apos;imposition à ses associés. Ce calculateur
             part du principe que vous intégrez directement la valeur IFI de vos parts dans le montant

@@ -1,4 +1,4 @@
-// src/app/faq/plus-value-immobiliere/page.tsx
+﻿// src/app/faq/plus-value-immobiliere/page.tsx
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
@@ -262,7 +262,7 @@ const sections: FAQSection[] = [
               </tbody>
             </table>
             <p className="text-sm text-neutral-600">
-              À chaque seuil, un mécanisme de tempérament (lissage) réduit l&apos;effet de palier.
+              À chaque seuil, un lissage automatique réduit l&apos;effet de palier.
               Le notaire calcule et prélève la surtaxe définitive lors de l&apos;acte de vente.
             </p>
           </>

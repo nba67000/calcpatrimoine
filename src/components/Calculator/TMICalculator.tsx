@@ -245,7 +245,7 @@ export default function TMICalculator() {
           {/* Synthèse chiffrée */}
           <div className="space-y-2 pt-4 border-t border-neutral-200 text-sm">
             <div className="flex justify-between">
-              <span className="text-neutral-600">IR avec QF (avant plafonnement)</span>
+              <span className="text-neutral-600">IR avec quotient familial (avant plafonnement)</span>
               <span className="font-medium">{formatEur(results.irAvecQF)}</span>
             </div>
 

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -311,9 +311,9 @@ export default function ArticlePERPage() {
             </div>
 
             <div className="border-l-4 border-accent-400 bg-accent-100 px-5 py-4 my-6">
-              <p className="font-bold text-sm text-neutral-900 mb-1.5">Les plafonds non utilisés se cumulent sur 3 ans</p>
+              <p className="font-bold text-sm text-neutral-900 mb-1.5">Les plafonds non utilisés se cumulent sur 5 ans (depuis la loi de finances 2026)</p>
               <p className="text-sm text-neutral-700 leading-relaxed">
-                Si vous n&apos;avez pas versé le maximum les trois dernières années, vous pouvez rattraper le retard cette année. Votre avis d&apos;imposition indique le plafond cumulé disponible, pas seulement celui de l&apos;année en cours. Beaucoup de personnes ont un solde disponible bien plus élevé qu&apos;elles ne le supposent.
+                Si vous n&apos;avez pas versé le maximum les cinq dernières années, vous pouvez rattraper le retard cette année. Votre avis d&apos;imposition indique le plafond cumulé disponible, pas seulement celui de l&apos;année en cours. Beaucoup de personnes ont un solde disponible bien plus élevé qu&apos;elles ne le supposent.
               </p>
             </div>
 
