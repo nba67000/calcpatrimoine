@@ -109,7 +109,7 @@ const sections: FAQSection[] = [
               </tbody>
             </table>
             <p className="text-sm text-neutral-600">
-              Rappel : le barème s&apos;applique sur la totalité du patrimoine net taxable, mais chaque tranche ne s&apos;applique qu&apos;à la fraction correspondante. Un patrimoine de 2 000 000 € génère un IFI de 7 400 €, soit un taux effectif de 0,37 %.
+              Rappel : chaque taux ne s&apos;applique que sur la partie du patrimoine qui tombe dans cette tranche — pas sur l&apos;ensemble. Un patrimoine de 2 000 000 € génère un IFI de 7 400 €, soit 0,37 % de taux effectif.
             </p>
           </>
         ),

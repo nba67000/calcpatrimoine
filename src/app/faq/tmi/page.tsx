@@ -268,7 +268,7 @@ export default function FAQTMIPage() {
             </h1>
             <p className="text-lg text-neutral-600 max-w-2xl mb-10">
               TMI vs taux moyen, barème 2026, quotient familial, décote —
-              tout comprendre pour optimiser votre fiscalité.
+              tout ce qu&apos;il faut savoir pour lire correctement votre avis d&apos;imposition.
             </p>
 
             <Link

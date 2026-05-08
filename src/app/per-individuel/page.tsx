@@ -39,8 +39,7 @@ const EXEMPLES = [
 ]
 
 const LIMITES = [
-  'Ce calculateur couvre uniquement la partie déductible des versements volontaires du PER individuel (PERIN). Le PER d\'entreprise collectif (PERCOL), le PER obligatoire (PERO) et le régime TNS (Madelin) ne sont pas simulés.',
-  'Le régime TNS (Madelin) n\'est pas pris en compte car les plafonds sont différents.',
+  'Ce calculateur couvre uniquement les versements volontaires déductibles du PERIN (salarié). Le PERCOL, le PERO et le régime TNS (Madelin) ne sont pas simulés — les plafonds TNS suivent une règle différente (Art. 154 bis CGI).',
   'Le partage du plafond de déduction entre conjoints ou partenaires de PACS n\'est pas simulé.',
   'La fiscalité à la sortie (imposition de la rente ou du capital) n\'est pas simulée.',
   'Il est supposé que les frais professionnels sont couverts par l\'abattement forfaitaire. Les frais réels ne sont pas gérés.',
@@ -84,9 +83,9 @@ export default function PERIndividuelPage() {
             <div>
               <h3 className="font-bold text-neutral-900 mb-2">Un versement qui réduit votre revenu imposable</h3>
               <p>
-                Un versement volontaire sur un PER individuel est déductible du revenu net global
-                (Art. 163 quatervicies CGI). Si vous versez 5 000 € et que votre TMI est de 30 %,
-                votre impôt sur le revenu diminue de 1 500 €.
+                Un versement volontaire sur un PER individuel vient en déduction de votre revenu
+                imposable (Art. 163 quatervicies CGI). Si vous versez 5 000 € et que votre TMI
+                est de 30 %, votre impôt diminue de 1 500 €.
               </p>
             </div>
 

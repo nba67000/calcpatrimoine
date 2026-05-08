@@ -265,8 +265,9 @@ const sections: FAQSection[] = [
               </tbody>
             </table>
             <p className="text-sm text-neutral-600">
-              Note : la fiscalité à la sortie n&apos;est pas simulée par ce calculateur. Pour une stratégie
-              complète, consultez un conseiller en gestion de patrimoine.
+              La fiscalité à la sortie n&apos;est pas simulée par ce calculateur. Pour un calcul précis
+              selon votre situation à la retraite, un conseiller en gestion de patrimoine dispose
+              des informations nécessaires.
             </p>
           </>
         ),
