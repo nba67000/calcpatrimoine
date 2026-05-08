@@ -230,8 +230,10 @@ const sections: FAQSection[] = [
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4">
               <p className="text-sm text-primary-900">
                 <strong>Attention à la réserve héréditaire</strong> : l&apos;assurance-vie est hors masse
-                successorale mais des primes &quot;manifestement exagérées&quot; peuvent être réintégrées
-                par les tribunaux. Consultez un notaire pour les patrimoines importants.
+                successorale, mais si les versements représentent la quasi-totalité du patrimoine
+                au détriment des héritiers réservataires, un tribunal peut les réintégrer.
+                Ce risque concerne les patrimoines où l&apos;AV pèse disproportionnément face au reste.
+                Consultez un notaire dans ce cas.
               </p>
             </div>
           </>

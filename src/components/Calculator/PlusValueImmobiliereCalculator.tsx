@@ -254,7 +254,7 @@ export default function PlusValueImmobiliereCalculator() {
                 <span className="text-sm text-neutral-700">
                   <span className="font-medium">1ère cession hors résidence principale</span>
                   <span className="block text-xs text-neutral-500 mt-0.5">
-                    Conditions : non-propriétaire de la résidence principale depuis 4 ans + remploi du produit dans 24 mois (Art. 150 U II 7° CGI)
+                    Conditions : ne pas avoir été propriétaire de sa résidence principale dans les 4 ans précédents + réinvestir le prix de vente dans l&apos;achat de sa résidence principale dans les 24 mois (Art. 150 U II 7° CGI)
                   </span>
                 </span>
               </label>

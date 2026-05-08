@@ -70,8 +70,7 @@ const faqItems: FAQItem[] = [
  </a>.
  </p>
  <p>
- Cependant, pour toute décision patrimoniale importante, nous vous recommandons 
- de consulter un conseiller en gestion de patrimoine indépendant.
+ Pour toute décision patrimoniale importante, un conseiller en gestion de patrimoine indépendant peut apporter une analyse adaptée à votre situation.
  </p>
  </>
  )

@@ -59,7 +59,7 @@ export default function IFIPage() {
       <CalculateurPageLayout
         breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'IFI' }]}
         titre={<>Calculateur IFI 2026 :<br />impôt sur la fortune immobilière</>}
-        description="Calculez votre IFI à partir de la valeur vénale de vos biens immobiliers :
+        description="Calculez votre IFI à partir de la valeur de marché de vos biens immobiliers :
           abattement résidence principale (30 %), barème progressif en 6 tranches,
           décote pour les patrimoines proches du seuil, et plafonnement IFI + IR."
         features={[
@@ -160,7 +160,7 @@ export default function IFIPage() {
                 },
                 {
                   titre: 'Patrimoine brut 1 900 000 €, dont RP valeur 600 000 €, emprunt 200 000 €',
-                  calcul: 'Assiette = 1 900 000 − 180 000 (30% RP) − 200 000 = 1 520 000 €\n500 000 × 0,50 % + 220 000 × 0,70 % = 2 500 + 1 540',
+                  calcul: 'Base taxable = 1 900 000 − 180 000 (30 % RP) − 200 000 = 1 520 000 €\n500 000 × 0,50 % + 220 000 × 0,70 % = 2 500 + 1 540',
                   resultat: 'IFI = 4 040 €',
                 },
                 {
@@ -225,7 +225,7 @@ export default function IFIPage() {
                 <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formules de calcul</h3>
                 <div className="bg-neutral-50 border border-neutral-200 p-5 grid md:grid-cols-2 gap-x-8 gap-y-3">
                   {[
-                    ['Assiette brute', 'Valeur vénale totale des biens au 1er janvier'],
+                    ['Valeur brute', 'Valeur de marché totale des biens au 1er janvier'],
                     ['Abattement RP', '30 % de la valeur de la résidence principale'],
                     ['Patrimoine net taxable', 'Assiette brute − abattement RP − dettes'],
                     ['IFI brut', 'Application du barème progressif par tranche'],

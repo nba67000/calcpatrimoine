@@ -7,8 +7,7 @@ export default function LegalDisclaimer() {
       <p className="text-sm text-warning-700 leading-relaxed">
         Ce calculateur fait des simulations. Il ne remplace pas un conseiller. Les résultats
         dépendent uniquement des données que vous saisissez et des barèmes officiels en vigueur.
-        CalculPatrimoine n&apos;est pas un conseiller financier agréé (non enregistré comme CIF
-        auprès de l&apos;AMF/ACPR). Consultez un professionnel qualifié avant toute décision.
+        CalculPatrimoine est un outil de calcul, pas un conseiller agréé. Les résultats ne constituent pas une recommandation d&apos;investissement personnalisée.
       </p>
     </div>
   )
