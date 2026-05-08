@@ -151,6 +151,38 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
 - **Description** : Calcul du taux CSG applicable (exonéré / réduit / médian /
   normal) selon le RFR.
 
+#### `per-sortie` — PER : fiscalité de liquidation (capital vs rente)
+- **Statut** : `proposed`
+- **Origine** : Forum MoneyVox r/épargne-retraite — 2026-05-08
+- **Description** : Complément de `/per-individuel` (côté sortie). Comparaison
+  fiscale entre sortie en capital et sortie en rente, selon la TMI à la retraite
+  et la durée de détention. Calcul de l'impôt sur le capital récupéré (versements
+  déduits imposables à l'IR + PV soumises à flat tax ou IR selon option).
+- **Besoin** : aussi fréquent que la question de l'entrée — plusieurs fils/mois
+  sur MoneyVox et r/vosfinances.
+
+#### `comparateur-locatif-placement` — Comparateur immobilier locatif vs placement financier
+- **Statut** : `proposed`
+- **Origine** : Forum MoneyVox r/immobilier-locatif — 2026-05-08
+- **Description** : Pour un même capital et une même durée, comparer le rendement
+  net after-tax d'un investissement locatif (loyers nets, plus-value de cession,
+  fiscalité LMNP/nu) vs un placement financier (AV fonds euros + UC, PEA).
+  Hypothèses paramétrables : rendement locatif, valorisation annuelle, TMI,
+  régime fiscal.
+- **Complexité** : élevée — ne pas sortir avant que la méthodologie soit validée.
+  Risque de comparer des pommes et des oranges si les hypothèses ne sont pas
+  explicites.
+
+#### `donation-demembrement` — Donation avec démembrement (nue-propriété / usufruit)
+- **Statut** : `proposed`
+- **Origine** : Forum MoneyVox r/transmission-patrimoine — 2026-05-08
+- **Description** : Extension naturelle du calculateur `donation` (P2 todo).
+  Calcul des droits de donation sur la valeur de la nue-propriété selon l'âge
+  du donateur (barème Art. 669 CGI). Visualisation de l'économie de droits par
+  rapport à une donation en pleine propriété, et impact sur la plus-value future
+  lors de la revente par le donataire.
+- **Prérequis** : implémenter `donation` (pleine propriété) en premier.
+
 ---
 
 ## Règles de mise à jour
@@ -162,4 +194,4 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
   une description minimale. Ne jamais faire un calculateur `proposed` sans
   validation humaine — seuls les `todo` sont autorisés à l'implémentation.
 
-Last updated: 2026-05-08.
+Last updated: 2026-05-08 (forum-watch ajout 3 idées P3).
