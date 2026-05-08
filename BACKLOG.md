@@ -114,10 +114,26 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
 
 ### P3 — Bonus / plus tard
 
-#### `pea` — Fiscalité PEA (durée détention + plafonds)
+#### `pea` — Fiscalité PEA (durée détention + passif fiscal latent)
 - **Statut** : `proposed`
-- **Description** : Impact de la durée de détention du PEA sur la fiscalité
-  du retrait (exonération IR après 5 ans, PS toujours dus).
+- **Description** : Deux besoins distincts, candidats à un même outil.
+
+  **1. Fiscalité de sortie** : exonération IR après 5 ans, PS (17,2 %) toujours
+  dus sur les plus-values. Calcul net perçu selon la date d'entrée et le capital.
+
+  **2. Suivi patrimonial brut / net (origine Reddit — r/vosfinances 2026-05)** :
+  un PEA ancien à 500 k€ ne vaut pas 500 k€ net car la CSG latente (~18,3 % sur
+  la plus-value) n'est pas encore réalisée. Trois approches coexistent :
+  - *Brut* : 500 k€ — représente l'exposition réelle aux marchés.
+  - *Net de sortie* : versements + (PV × 81,7 %) — ce qu'on toucherait aujourd'hui.
+  - *Bilan* : 500 k€ à l'actif, passif fiscal latent (~64 k€ dans l'exemple) mis
+    à jour dynamiquement. Analogue aux impôts différés (IAS 12 / deferred tax).
+  L'outil pourrait proposer les trois chiffres + le crédit lombard comme alternative
+  (accès liquidités sans déclencher la CSG).
+
+  **Complexité CSG historique** : pour les vieux PEA (années 90), les taux PS
+  ont varié dans le temps — il faut recalculer par période. Vérifier le degré
+  de précision attendu avant de spécifier.
 
 #### `sci-is-vs-ir` — SCI à l'IS vs à l'IR (comparateur simplifié)
 - **Statut** : `proposed`
@@ -146,4 +162,4 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
   une description minimale. Ne jamais faire un calculateur `proposed` sans
   validation humaine — seuls les `todo` sont autorisés à l'implémentation.
 
-Last updated: 2026-04-19.
+Last updated: 2026-05-08.
