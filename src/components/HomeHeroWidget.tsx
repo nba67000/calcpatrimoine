@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { calculerTMIResult } from '@/lib/tmi'
 import type { SituationFamiliale } from '@/types/tmi'
+import { saveSimHistory } from '@/hooks/useSimStorage'
 
 const TMI_PALETTE: Record<number, { text: string; bg: string; border: string }> = {
   0:  { text: '#6B7280', bg: '#F9FAFB', border: '#E5E7EB' },
@@ -156,6 +157,22 @@ export default function HomeHeroWidget() {
         {/* CTA */}
         <Link
           href="/tmi"
+          onClick={() => {
+            saveSimHistory({
+              slug: 'tmi',
+              nom: 'TMI - Impôt sur le revenu',
+              href: '/tmi',
+              resume: `TMI ${result.tmi} % · IR estimé ${result.irNet.toLocaleString('fr-FR')} €`,
+              date: new Date().toISOString(),
+            })
+            try {
+              localStorage.setItem('calcpatrimoine:state:tmi', JSON.stringify({
+                revenuNetImposable: revenu,
+                situationFamiliale: situation,
+                nombreEnfants,
+              }))
+            } catch {}
+          }}
           className="block text-center font-mono text-xs font-medium text-primary-700 border border-primary-700 px-4 py-2.5 hover:bg-primary-700 hover:text-white transition-colors"
         >
           Calculateur complet - quotient familial, décote →

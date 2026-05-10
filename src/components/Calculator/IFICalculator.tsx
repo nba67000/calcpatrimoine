@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { calculerIFI } from '@/lib/ifi'
 import type { IFIInputs } from '@/types/ifi'
+import { saveSimHistory } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import { formatEur, formatPct } from '@/lib/formatters'
@@ -31,6 +32,17 @@ export default function IFICalculator() {
   const results = useMemo(() => calculerIFI(inputs), [inputs])
 
   const ifiDefinitif = results.plafonnementApplicable ? results.ifiApresPlafonnement : results.ifiNet
+
+  useEffect(() => {
+    if (ifiDefinitif <= 0) return
+    saveSimHistory({
+      slug: 'ifi',
+      nom: 'IFI - Fortune immobilière',
+      href: '/ifi',
+      resume: `IFI : ${formatEur(ifiDefinitif)}`,
+      date: new Date().toISOString(),
+    })
+  }, [ifiDefinitif])
 
   return (
     <>

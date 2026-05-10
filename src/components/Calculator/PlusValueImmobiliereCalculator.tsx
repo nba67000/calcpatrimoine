@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { calculerPlusValueImmobiliere } from '@/lib/plusValueImmobiliere'
 import type { PlusValueImmobiliereInputs } from '@/types/plusValueImmobiliere'
+import { saveSimHistory } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import { formatEur, formatPct } from '@/lib/formatters'
@@ -40,6 +41,17 @@ export default function PlusValueImmobiliereCalculator() {
   )
 
   const forfaitDisponible = results.anneesDetention > 5
+
+  useEffect(() => {
+    if (results.pvBrute <= 0) return
+    saveSimHistory({
+      slug: 'plus-value-immobiliere',
+      nom: 'Plus-value immobilière',
+      href: '/plus-value-immobiliere',
+      resume: `PV brute : ${formatEur(results.pvBrute)} · Impôts : ${formatEur(results.totalImpots)}`,
+      date: new Date().toISOString(),
+    })
+  }, [results.pvBrute, results.totalImpots])
 
   return (
     <>

@@ -1,7 +1,7 @@
 // src/components/Calculator/TransmissionCalculator.tsx
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import TransmissionChart from '@/components/TransmissionChart'
 import {
  calculerTransmission,
@@ -19,6 +19,7 @@ import type {
 } from '@/types/transmission'
 import ChatWidget from '@/components/ChatWidget'
 import AlertList from '@/components/AlertList'
+import { saveSimHistory } from '@/hooks/useSimStorage'
 import { formatEur } from '@/lib/formatters'
 
 export default function TransmissionCalculator() {
@@ -58,6 +59,17 @@ export default function TransmissionCalculator() {
  }
 
  const totalParts = beneficiaires.reduce((sum, b) => sum + b.partPourcentage, 0)
+
+ useEffect(() => {
+   if (results.capitalTotal <= 0) return
+   saveSimHistory({
+     slug: 'assurance-vie-transmission',
+     nom: 'Transmission AV',
+     href: '/assurance-vie/transmission',
+     resume: `Capital : ${formatEur(results.capitalTotal)} · Impôts : ${formatEur(results.totalImpots)}`,
+     date: new Date().toISOString(),
+   })
+ }, [results.totalImpots, results.capitalTotal])
 
  return (
  <>

@@ -28,6 +28,7 @@ export default function TransmissionPage() {
         avant et après 70 ans, les abattements par bénéficiaire, et la répartition entre héritiers."
       features={['Article 990 I (avant 70 ans)', 'Article 757 B (après 70 ans)', 'Jusqu\'à 6 bénéficiaires', 'Zéro donnée conservée']}
       calculator={<TransmissionCalculator />}
+      currentHref="/assurance-vie/transmission"
     >
 
       {/* Explications */}

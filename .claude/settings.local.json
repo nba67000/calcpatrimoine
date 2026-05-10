@@ -85,7 +85,9 @@
       "WebFetch(domain:www.moneyvox.fr)",
       "WebFetch(domain:www.cafe-de-la-bourse.com)",
       "WebFetch(domain:www.lesdeplafonnes.fr)",
-      "WebFetch(domain:community.fortuneo.fr)"
+      "WebFetch(domain:community.fortuneo.fr)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\" -Force | Select-Object Name, @{Name=\"Type\";Expression={if\\($_.PSIsContainer\\){\"DIR\"}else{\"FILE\"}}} | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\" -Recurse -Directory | ForEach-Object { $_.FullName.Replace\\(\"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\\\\\", \"src\\\\\"\\) } | Sort-Object)"
     ]
   }
 }

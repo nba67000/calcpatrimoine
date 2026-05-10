@@ -39,6 +39,7 @@ export default function RenteViagerePage() {
       features={['Tables INSEE 2021', 'Réversion 60/80/100 %', '3 modes de calcul', 'Zéro donnée conservée']}
       aboveCalculator={NOTE_VIAGER}
       calculator={<RenteModeContent />}
+      currentHref="/rente-viagere"
     >
 
       {/* Explications */}

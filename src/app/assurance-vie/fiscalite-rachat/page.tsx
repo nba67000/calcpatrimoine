@@ -34,6 +34,7 @@ export default function AssuranceViePage() {
         Comparez PFU (flat tax) et IR selon votre tranche d'imposition."
       features={['Calculs officiels (CGI)', 'Règle des 8 ans appliquée', 'Versements avant 2017', 'Zéro donnée conservée']}
       calculator={<AssuranceVieCalculator />}
+      currentHref="/assurance-vie/fiscalite-rachat"
     >
 
       {/* Explications */}

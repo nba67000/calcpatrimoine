@@ -41,6 +41,7 @@ export default function TMIPage() {
         Barème officiel 2026 (revenus 2025), quotient familial et décote inclus."
       features={['Barème IR 2026 (LF 2026)', 'Quotient familial + plafonnement', 'Décote (Art. 197-I-4 CGI)', 'Zéro donnée conservée']}
       calculator={<TMICalculator />}
+      currentHref="/tmi"
     >
 
       {/* Explications */}

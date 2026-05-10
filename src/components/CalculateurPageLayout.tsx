@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
+import RelatedCalcSection from '@/components/RelatedCalcSection'
 
 interface BreadcrumbItem {
   href?: string
@@ -18,6 +19,8 @@ interface Props {
   /** Contenu à insérer entre la section héro et le disclaimer (ex. : note d'avertissement). */
   aboveCalculator?: ReactNode
   calculator: ReactNode
+  /** Slug href du calculateur courant (ex: "/per-individuel"). Active RelatedCalcSection. */
+  currentHref?: string
   children?: ReactNode
 }
 
@@ -28,6 +31,7 @@ export default function CalculateurPageLayout({
   features,
   aboveCalculator,
   calculator,
+  currentHref,
   children,
 }: Props) {
   return (
@@ -82,6 +86,8 @@ export default function CalculateurPageLayout({
         </div>
 
         {children}
+
+        {currentHref && <RelatedCalcSection currentHref={currentHref} />}
 
       </div>
       <Footer />

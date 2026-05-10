@@ -1,7 +1,7 @@
 ﻿// src/components/Calculator/RenteCalculator.tsx
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { calculateAnnuity } from '@/lib/mortality'
 import { formatEurRounded as formatEuro, formatNombre } from '@/lib/formatters'
 import type { AnnuityResult } from '@/types'
@@ -11,6 +11,7 @@ import ProjectionChart from '@/components/ProjectionChart'
 import Icon from '@/components/Icon'
 import ChatWidget from '@/components/ChatWidget'
 import { useNumericInput } from '@/hooks/useNumericInput'
+import { saveSimHistory } from '@/hooks/useSimStorage'
 import { LIMITS, DEFAULT_VALUES } from '@/lib/constants'
 
 export default function RenteCalculator() {
@@ -31,6 +32,17 @@ export default function RenteCalculator() {
      ? { enabled: true, spouse_age: spouseAge, percentage: reversionPercentage }
      : { enabled: false },
  }), [age, capitalInput.value, showReversion, spouseAge, reversionPercentage])
+
+ useEffect(() => {
+   if (!result || result.monthly_amount <= 0) return
+   saveSimHistory({
+     slug: 'rente-viagere',
+     nom: 'Rente Viagère',
+     href: '/rente-viagere',
+     resume: `Rente : ${formatEuro(result.monthly_amount)}/mois · Capital : ${formatNombre(capitalInput.value)} €`,
+     date: new Date().toISOString(),
+   })
+ }, [result?.monthly_amount, capitalInput.value])
 
  return (
  <>

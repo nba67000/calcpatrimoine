@@ -71,6 +71,7 @@ export default function IFIPage() {
           'Zéro donnée conservée',
         ]}
         calculator={<IFICalculator />}
+        currentHref="/ifi"
       >
 
         {/* Comment ça marche */}

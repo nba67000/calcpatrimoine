@@ -49,6 +49,7 @@ export default function PlusValueImmobilierePage() {
         'Zéro donnée conservée',
       ]}
       calculator={<PlusValueImmobiliereCalculator />}
+      currentHref="/plus-value-immobiliere"
     >
 
       {/* Explications */}

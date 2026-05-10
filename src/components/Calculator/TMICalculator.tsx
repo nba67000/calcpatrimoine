@@ -1,10 +1,11 @@
 // src/components/Calculator/TMICalculator.tsx
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { calculerTMIResult } from '@/lib/tmi'
 import type { TMIInputs, SituationFamiliale } from '@/types/tmi'
 import { useNumericInput } from '@/hooks/useNumericInput'
+import { saveSimHistory } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import { formatEur } from '@/lib/formatters'
@@ -51,6 +52,35 @@ export default function TMICalculator() {
   const results = useMemo(() => calculerTMIResult(inputs), [revenu.value, situationFamiliale, nombreEnfants])
 
   const tmiColors = TMI_COLORS[results.tmi]
+
+  // Restaure les inputs depuis localStorage (ex: transit depuis le widget homepage)
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('calcpatrimoine:state:tmi')
+      if (!raw) return
+      const stored = JSON.parse(raw)
+      if (typeof stored.revenuNetImposable === 'number') revenu.set(stored.revenuNetImposable)
+      if (stored.situationFamiliale) {
+        setSituationFamiliale(stored.situationFamiliale)
+        if (stored.situationFamiliale === 'parent-isole' && (stored.nombreEnfants ?? 0) === 0) {
+          setNombreEnfants(1)
+        } else if (typeof stored.nombreEnfants === 'number') {
+          setNombreEnfants(stored.nombreEnfants)
+        }
+      }
+    } catch {}
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    saveSimHistory({
+      slug: 'tmi',
+      nom: 'TMI - Impôt sur le revenu',
+      href: '/tmi',
+      resume: `TMI ${results.tmi} % · IR ${formatEur(results.irNet)}`,
+      date: new Date().toISOString(),
+    })
+  }, [results.tmi, results.irNet])
 
   return (
     <>

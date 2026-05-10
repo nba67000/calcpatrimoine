@@ -55,6 +55,7 @@ export default function PERIndividuelPage() {
         plafonds non utilisés sur les 5 années suivantes (LF 2026), coût net réel du versement."
       features={['Art. 163 quatervicies CGI', 'PASS 2025 - plafonds 2026', 'Report plafonds N-1 à N-5 (LF 2026)', 'Zéro donnée conservée']}
       calculator={<PERCalculator />}
+      currentHref="/per-individuel"
     >
 
       {/* Lien TMI */}

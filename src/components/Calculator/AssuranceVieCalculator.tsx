@@ -1,10 +1,11 @@
 // src/components/Calculator/AssuranceVieCalculator.tsx
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import FiscaliteComparisonChart from '@/components/FiscaliteComparisonChart'
 import { calculerFiscaliteRachat, formatDateForInput, parseDateFromInput } from '@/lib/assuranceVie'
 import type { AssuranceVieInputs, AssuranceVieResults } from '@/types/assuranceVie'
+import { saveSimHistory } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import { formatEur } from '@/lib/formatters'
@@ -28,6 +29,17 @@ export default function AssuranceVieCalculator() {
     enCouple,
     encoursTotalContrats,
   }), [capitalTotal, versementTotal, dateOuverture, montantRachat, versementAvant2017, tmi, enCouple, encoursTotalContrats])
+
+  useEffect(() => {
+    if (results.plusValueTaxable <= 0) return
+    saveSimHistory({
+      slug: 'assurance-vie-rachat',
+      nom: 'Fiscalité des rachats',
+      href: '/assurance-vie/fiscalite-rachat',
+      resume: `Rachat : ${formatEur(montantRachat)} · PV imposable : ${formatEur(results.plusValueTaxable)}`,
+      date: new Date().toISOString(),
+    })
+  }, [results.plusValueTaxable, montantRachat])
 
   return (
     <>

@@ -1,11 +1,12 @@
 ﻿'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { calculerPER } from '@/lib/per'
 import type { PERInputs, TMIOption } from '@/types/per'
 import { formatEur } from '@/lib/formatters'
 import { useNumericInput } from '@/hooks/useNumericInput'
+import { saveSimHistory } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 
@@ -56,6 +57,17 @@ export default function PERCalculator() {
   )
 
   const { detail, economieFiscale, coutNetReel, rendementFiscal, warnings, optimisations } = results
+
+  useEffect(() => {
+    if (economieFiscale <= 0) return
+    saveSimHistory({
+      slug: 'per-individuel',
+      nom: 'PER Individuel',
+      href: '/per-individuel',
+      resume: `Économie : ${formatEur(economieFiscale)} · TMI ${tmi} %`,
+      date: new Date().toISOString(),
+    })
+  }, [economieFiscale, tmi])
 
   return (
     <>
