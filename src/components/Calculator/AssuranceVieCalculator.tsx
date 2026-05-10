@@ -276,19 +276,6 @@ export default function AssuranceVieCalculator() {
       {/* COLONNE DROITE - RÉSULTATS */}
       <div className="space-y-6">
 
-        <div className="bg-primary-50 border-2 border-primary-300 rounded-xl p-5">
-          <div className="flex gap-3">
-            <div>
-              <p className="font-bold text-primary-900 mb-2 text-sm">Outil de comparaison uniquement</p>
-              <p className="text-xs text-primary-800 leading-relaxed">
-                Ce calculateur compare les options fiscales disponibles. Il ne constitue pas
-                un conseil fiscal personnalisé. Le choix final vous appartient. Pour une décision
-                adaptée à votre situation, consultez un expert-comptable, un avocat fiscaliste
-                ou un conseiller en gestion de patrimoine indépendant.
-              </p>
-            </div>
-          </div>
-        </div>
 
         {results && (
           <>
