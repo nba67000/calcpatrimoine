@@ -46,7 +46,7 @@ export default function RenteCalculator() {
 
  return (
  <>
- <div className="max-w-4xl mx-auto" suppressHydrationWarning>
+ <div className="max-w-6xl mx-auto" suppressHydrationWarning>
  {/* Zone formulaire */}
   <div className="bg-neutral-100 rounded-lg shadow-md p-5 sm:p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
   <div className="mb-6">

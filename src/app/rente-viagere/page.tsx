@@ -43,7 +43,7 @@ export default function RenteViagerePage() {
     >
 
       {/* Explications */}
-      <section className="max-w-4xl mx-auto px-6 py-8">
+      <section className="max-w-6xl mx-auto px-6 py-8">
         <div className="bg-white border border-neutral-200 p-8 space-y-5">
           <h2 className="font-serif text-2xl font-bold text-neutral-900">
             Comment ça marche ?
@@ -75,7 +75,7 @@ export default function RenteViagerePage() {
       </section>
 
       {/* Liens croisés */}
-      <section className="max-w-4xl mx-auto px-6 pb-8">
+      <section className="max-w-6xl mx-auto px-6 pb-8">
         <div className="border-t border-neutral-300">
           {CROSS_LINKS.map(link => (
             <Link
@@ -95,7 +95,7 @@ export default function RenteViagerePage() {
       </section>
 
       {/* Méthodologie */}
-      <section className="max-w-4xl mx-auto px-6 py-8 pb-16">
+      <section className="max-w-6xl mx-auto px-6 py-8 pb-16">
         <div className="bg-white border border-neutral-200 p-8">
           <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
             Méthodologie et sources officielles
