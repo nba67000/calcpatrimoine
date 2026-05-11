@@ -9,16 +9,24 @@ import ChatWidget from '@/components/ChatWidget'
 import { formatEur, formatPct } from '@/lib/formatters'
 
 export default function PlusValueImmobiliereCalculator() {
-  const [dateAcquisition, setDateAcquisition] = useState('2018-05-02')
-  const [prixAcquisition, setPrixAcquisition] = useState(200000)
-  const [fraisAcquisition, setFraisAcquisition] = useState<PlusValueImmobiliereInputs['fraisAcquisition']>('forfait')
-  const [fraisAcquisitionReels, setFraisAcquisitionReels] = useState(15000)
-  const [travaux, setTravaux] = useState<PlusValueImmobiliereInputs['travaux']>('forfait')
-  const [travauxReels, setTravauxReels] = useState(0)
-  const [dateCession, setDateCession] = useState('2026-05-02')
-  const [prixCession, setPrixCession] = useState(295000)
-  const [typeBien, setTypeBien] = useState<PlusValueImmobiliereInputs['typeBien']>('autre')
-  const [premiereCession, setPremiereCession] = useState(false)
+  const [init] = useState(() => {
+    if (typeof window === 'undefined') return null
+    try {
+      const raw = localStorage.getItem('calcpatrimoine:state:plus-value-immobiliere')
+      return raw ? JSON.parse(raw) : null
+    } catch { return null }
+  })
+
+  const [dateAcquisition, setDateAcquisition] = useState(init?.dateAcquisition ?? '2018-05-02')
+  const [prixAcquisition, setPrixAcquisition] = useState(init?.prixAcquisition ?? 200000)
+  const [fraisAcquisition, setFraisAcquisition] = useState<PlusValueImmobiliereInputs['fraisAcquisition']>(init?.fraisAcquisition ?? 'forfait')
+  const [fraisAcquisitionReels, setFraisAcquisitionReels] = useState(init?.fraisAcquisitionReels ?? 15000)
+  const [travaux, setTravaux] = useState<PlusValueImmobiliereInputs['travaux']>(init?.travaux ?? 'forfait')
+  const [travauxReels, setTravauxReels] = useState(init?.travauxReels ?? 0)
+  const [dateCession, setDateCession] = useState(init?.dateCession ?? '2026-05-02')
+  const [prixCession, setPrixCession] = useState(init?.prixCession ?? 295000)
+  const [typeBien, setTypeBien] = useState<PlusValueImmobiliereInputs['typeBien']>(init?.typeBien ?? 'autre')
+  const [premiereCession, setPremiereCession] = useState(init?.premiereCession ?? false)
 
   const results = useMemo(
     () =>
@@ -41,6 +49,15 @@ export default function PlusValueImmobiliereCalculator() {
   )
 
   const forfaitDisponible = results.anneesDetention > 5
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('calcpatrimoine:state:plus-value-immobiliere', JSON.stringify({
+        dateAcquisition, prixAcquisition, fraisAcquisition, fraisAcquisitionReels,
+        travaux, travauxReels, dateCession, prixCession, typeBien, premiereCession,
+      }))
+    } catch {}
+  }, [dateAcquisition, prixAcquisition, fraisAcquisition, fraisAcquisitionReels, travaux, travauxReels, dateCession, prixCession, typeBien, premiereCession])
 
   useEffect(() => {
     if (results.pvBrute <= 0) return

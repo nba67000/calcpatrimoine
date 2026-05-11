@@ -11,13 +11,21 @@ import { formatEur, formatPct } from '@/lib/formatters'
 const SEUIL_IFI = 1_300_000
 
 export default function IFICalculator() {
-  const [valeurBruteImmobilier, setValeurBruteImmobilier] = useState(2_000_000)
-  const [incluResidencePrincipale, setIncluResidencePrincipale] = useState(false)
-  const [valeurResidencePrincipale, setValeurResidencePrincipale] = useState(500_000)
-  const [dettesDeductibles, setDettesDeductibles] = useState(0)
-  const [appliquerPlafonnement, setAppliquerPlafonnement] = useState(false)
-  const [revenusAnnuels, setRevenusAnnuels] = useState(80_000)
-  const [irAnnuel, setIrAnnuel] = useState(15_000)
+  const [init] = useState(() => {
+    if (typeof window === 'undefined') return null
+    try {
+      const raw = localStorage.getItem('calcpatrimoine:state:ifi')
+      return raw ? JSON.parse(raw) : null
+    } catch { return null }
+  })
+
+  const [valeurBruteImmobilier, setValeurBruteImmobilier] = useState(init?.valeurBruteImmobilier ?? 2_000_000)
+  const [incluResidencePrincipale, setIncluResidencePrincipale] = useState(init?.incluResidencePrincipale ?? false)
+  const [valeurResidencePrincipale, setValeurResidencePrincipale] = useState(init?.valeurResidencePrincipale ?? 500_000)
+  const [dettesDeductibles, setDettesDeductibles] = useState(init?.dettesDeductibles ?? 0)
+  const [appliquerPlafonnement, setAppliquerPlafonnement] = useState(init?.appliquerPlafonnement ?? false)
+  const [revenusAnnuels, setRevenusAnnuels] = useState(init?.revenusAnnuels ?? 80_000)
+  const [irAnnuel, setIrAnnuel] = useState(init?.irAnnuel ?? 15_000)
 
   const inputs: IFIInputs = useMemo(() => ({
     valeurBruteImmobilier,
@@ -32,6 +40,15 @@ export default function IFICalculator() {
   const results = useMemo(() => calculerIFI(inputs), [inputs])
 
   const ifiDefinitif = results.plafonnementApplicable ? results.ifiApresPlafonnement : results.ifiNet
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('calcpatrimoine:state:ifi', JSON.stringify({
+        valeurBruteImmobilier, incluResidencePrincipale, valeurResidencePrincipale,
+        dettesDeductibles, appliquerPlafonnement, revenusAnnuels, irAnnuel,
+      }))
+    } catch {}
+  }, [valeurBruteImmobilier, incluResidencePrincipale, valeurResidencePrincipale, dettesDeductibles, appliquerPlafonnement, revenusAnnuels, irAnnuel])
 
   useEffect(() => {
     if (ifiDefinitif <= 0) return

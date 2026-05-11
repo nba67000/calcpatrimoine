@@ -11,14 +11,24 @@ import ChatWidget from '@/components/ChatWidget'
 import { formatEur } from '@/lib/formatters'
 
 export default function AssuranceVieCalculator() {
-  const [capitalTotal, setCapitalTotal] = useState<number>(100000)
-  const [versementTotal, setVersementTotal] = useState<number>(70000)
-  const [dateOuverture, setDateOuverture] = useState<Date>(new Date(2015, 0, 1))
-  const [montantRachat, setMontantRachat] = useState<number>(30000)
-  const [versementAvant2017, setVersementAvant2017] = useState<number>(40000)
-  const [tmi, setTmi] = useState<AssuranceVieInputs['tmi']>(30)
-  const [enCouple, setEnCouple] = useState<boolean>(false)
-  const [encoursTotalContrats, setEncoursTotalContrats] = useState<number>(70000)
+  const [init] = useState(() => {
+    if (typeof window === 'undefined') return null
+    try {
+      const raw = localStorage.getItem('calcpatrimoine:state:assurance-vie-rachat')
+      return raw ? JSON.parse(raw) : null
+    } catch { return null }
+  })
+
+  const [capitalTotal, setCapitalTotal] = useState<number>(init?.capitalTotal ?? 100000)
+  const [versementTotal, setVersementTotal] = useState<number>(init?.versementTotal ?? 70000)
+  const [dateOuverture, setDateOuverture] = useState<Date>(
+    init?.dateOuverture ? new Date(init.dateOuverture) : new Date(2015, 0, 1)
+  )
+  const [montantRachat, setMontantRachat] = useState<number>(init?.montantRachat ?? 30000)
+  const [versementAvant2017, setVersementAvant2017] = useState<number>(init?.versementAvant2017 ?? 40000)
+  const [tmi, setTmi] = useState<AssuranceVieInputs['tmi']>(init?.tmi ?? 30)
+  const [enCouple, setEnCouple] = useState<boolean>(init?.enCouple ?? false)
+  const [encoursTotalContrats, setEncoursTotalContrats] = useState<number>(init?.encoursTotalContrats ?? 70000)
   const results = useMemo<AssuranceVieResults>(() => calculerFiscaliteRachat({
     capitalTotal,
     versementTotal,
@@ -29,6 +39,15 @@ export default function AssuranceVieCalculator() {
     enCouple,
     encoursTotalContrats,
   }), [capitalTotal, versementTotal, dateOuverture, montantRachat, versementAvant2017, tmi, enCouple, encoursTotalContrats])
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('calcpatrimoine:state:assurance-vie-rachat', JSON.stringify({
+        capitalTotal, versementTotal, dateOuverture: dateOuverture.toISOString(),
+        montantRachat, versementAvant2017, tmi, enCouple, encoursTotalContrats,
+      }))
+    } catch {}
+  }, [capitalTotal, versementTotal, dateOuverture, montantRachat, versementAvant2017, tmi, enCouple, encoursTotalContrats])
 
   useEffect(() => {
     if (results.plusValueTaxable <= 0) return

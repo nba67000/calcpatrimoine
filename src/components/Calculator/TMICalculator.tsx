@@ -33,9 +33,20 @@ const SITUATIONS: Array<{ value: SituationFamiliale; label: string }> = [
 ]
 
 export default function TMICalculator() {
-  const revenu = useNumericInput(45000, { min: 0, max: 500000 })
-  const [situationFamiliale, setSituationFamiliale] = useState<SituationFamiliale>('celibataire')
-  const [nombreEnfants, setNombreEnfants] = useState<number>(0)
+  const [init] = useState(() => {
+    if (typeof window === 'undefined') return null
+    try {
+      const raw = localStorage.getItem('calcpatrimoine:state:tmi')
+      if (!raw) return null
+      const stored = JSON.parse(raw)
+      if (stored.situationFamiliale === 'parent-isole' && !stored.nombreEnfants) stored.nombreEnfants = 1
+      return stored
+    } catch { return null }
+  })
+
+  const revenu = useNumericInput(init?.revenuNetImposable ?? 45000, { min: 0, max: 500000 })
+  const [situationFamiliale, setSituationFamiliale] = useState<SituationFamiliale>(init?.situationFamiliale ?? 'celibataire')
+  const [nombreEnfants, setNombreEnfants] = useState<number>(init?.nombreEnfants ?? 0)
 
   function handleSituation(s: SituationFamiliale) {
     setSituationFamiliale(s)
@@ -53,24 +64,15 @@ export default function TMICalculator() {
 
   const tmiColors = TMI_COLORS[results.tmi]
 
-  // Restaure les inputs depuis localStorage (ex: transit depuis le widget homepage)
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('calcpatrimoine:state:tmi')
-      if (!raw) return
-      const stored = JSON.parse(raw)
-      if (typeof stored.revenuNetImposable === 'number') revenu.set(stored.revenuNetImposable)
-      if (stored.situationFamiliale) {
-        setSituationFamiliale(stored.situationFamiliale)
-        if (stored.situationFamiliale === 'parent-isole' && (stored.nombreEnfants ?? 0) === 0) {
-          setNombreEnfants(1)
-        } else if (typeof stored.nombreEnfants === 'number') {
-          setNombreEnfants(stored.nombreEnfants)
-        }
-      }
+      localStorage.setItem('calcpatrimoine:state:tmi', JSON.stringify({
+        revenuNetImposable: revenu.value,
+        situationFamiliale,
+        nombreEnfants,
+      }))
     } catch {}
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [revenu.value, situationFamiliale, nombreEnfants])
 
   useEffect(() => {
     saveSimHistory({

@@ -23,13 +23,21 @@ import { saveSimHistory } from '@/hooks/useSimStorage'
 import { formatEur } from '@/lib/formatters'
 
 export default function TransmissionCalculator() {
+ const [init] = useState(() => {
+   if (typeof window === 'undefined') return null
+   try {
+     const raw = localStorage.getItem('calcpatrimoine:state:assurance-vie-transmission')
+     return raw ? JSON.parse(raw) : null
+   } catch { return null }
+ })
+
  // États inputs
- const [capitalTotal, setCapitalTotal] = useState<number>(250000)
- const [versementsAvant70, setVersementsAvant70] = useState<number>(180000)
- const [versementsApres70, setVersementsApres70] = useState<number>(20000)
- const [ageSouscripteur, setAgeSouscripteur] = useState<number>(72)
- 
- const [beneficiaires, setBeneficiaires] = useState<Beneficiaire[]>([
+ const [capitalTotal, setCapitalTotal] = useState<number>(init?.capitalTotal ?? 250000)
+ const [versementsAvant70, setVersementsAvant70] = useState<number>(init?.versementsAvant70 ?? 180000)
+ const [versementsApres70, setVersementsApres70] = useState<number>(init?.versementsApres70 ?? 20000)
+ const [ageSouscripteur, setAgeSouscripteur] = useState<number>(init?.ageSouscripteur ?? 72)
+
+ const [beneficiaires, setBeneficiaires] = useState<Beneficiaire[]>(init?.beneficiaires ?? [
  {
  id: genererIdBeneficiaire(),
  nom: 'Enfant 1',
@@ -59,6 +67,14 @@ export default function TransmissionCalculator() {
  }
 
  const totalParts = beneficiaires.reduce((sum, b) => sum + b.partPourcentage, 0)
+
+ useEffect(() => {
+   try {
+     localStorage.setItem('calcpatrimoine:state:assurance-vie-transmission', JSON.stringify({
+       capitalTotal, versementsAvant70, versementsApres70, ageSouscripteur, beneficiaires,
+     }))
+   } catch {}
+ }, [capitalTotal, versementsAvant70, versementsApres70, ageSouscripteur, beneficiaires])
 
  useEffect(() => {
    if (results.capitalTotal <= 0) return

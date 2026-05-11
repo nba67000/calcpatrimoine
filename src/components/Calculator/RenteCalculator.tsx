@@ -15,15 +15,23 @@ import { saveSimHistory } from '@/hooks/useSimStorage'
 import { LIMITS, DEFAULT_VALUES } from '@/lib/constants'
 
 export default function RenteCalculator() {
- const [age, setAge] = useState<number>(DEFAULT_VALUES.AGE)
- const capitalInput = useNumericInput(DEFAULT_VALUES.CAPITAL, {
+ const [init] = useState(() => {
+   if (typeof window === 'undefined') return null
+   try {
+     const raw = localStorage.getItem('calcpatrimoine:state:rente-viagere')
+     return raw ? JSON.parse(raw) : null
+   } catch { return null }
+ })
+
+ const [age, setAge] = useState<number>(init?.age ?? DEFAULT_VALUES.AGE)
+ const capitalInput = useNumericInput(init?.capital ?? DEFAULT_VALUES.CAPITAL, {
    min: LIMITS.CAPITAL_MIN,
    max: LIMITS.CAPITAL_MAX,
    format: formatNombre,
  })
- const [showReversion, setShowReversion] = useState(false)
- const [spouseAge, setSpouseAge] = useState<number>(DEFAULT_VALUES.AGE - DEFAULT_VALUES.SPOUSE_AGE_DIFF)
- const [reversionPercentage, setReversionPercentage] = useState<60 | 80 | 100>(60)
+ const [showReversion, setShowReversion] = useState(init?.showReversion ?? false)
+ const [spouseAge, setSpouseAge] = useState<number>(init?.spouseAge ?? DEFAULT_VALUES.AGE - DEFAULT_VALUES.SPOUSE_AGE_DIFF)
+ const [reversionPercentage, setReversionPercentage] = useState<60 | 80 | 100>(init?.reversionPercentage ?? 60)
 
  const result = useMemo<AnnuityResult | null>(() => calculateAnnuity({
    age,
@@ -32,6 +40,14 @@ export default function RenteCalculator() {
      ? { enabled: true, spouse_age: spouseAge, percentage: reversionPercentage }
      : { enabled: false },
  }), [age, capitalInput.value, showReversion, spouseAge, reversionPercentage])
+
+ useEffect(() => {
+   try {
+     localStorage.setItem('calcpatrimoine:state:rente-viagere', JSON.stringify({
+       age, capital: capitalInput.value, showReversion, spouseAge, reversionPercentage,
+     }))
+   } catch {}
+ }, [age, capitalInput.value, showReversion, spouseAge, reversionPercentage])
 
  useEffect(() => {
    if (!result || result.monthly_amount <= 0) return

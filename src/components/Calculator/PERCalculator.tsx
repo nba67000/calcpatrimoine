@@ -31,14 +31,22 @@ const DEFAULT_INPUTS: PERInputs = {
 
 
 export default function PERCalculator() {
-  const salaire = useNumericInput(DEFAULT_INPUTS.salaireNetAnnuel, { min: 0, max: 500_000 })
-  const [tmi, setTmi] = useState<TMIOption>(DEFAULT_INPUTS.tmi)
-  const versement = useNumericInput(DEFAULT_INPUTS.versementEnvisage, { min: 0, max: 200_000 })
-  const reportN1 = useNumericInput(0, { min: 0, max: 200_000 })
-  const reportN2 = useNumericInput(0, { min: 0, max: 200_000 })
-  const reportN3 = useNumericInput(0, { min: 0, max: 200_000 })
-  const reportN4 = useNumericInput(0, { min: 0, max: 200_000 })
-  const reportN5 = useNumericInput(0, { min: 0, max: 200_000 })
+  const [init] = useState(() => {
+    if (typeof window === 'undefined') return null
+    try {
+      const raw = localStorage.getItem('calcpatrimoine:state:per-individuel')
+      return raw ? JSON.parse(raw) : null
+    } catch { return null }
+  })
+
+  const salaire = useNumericInput(init?.salaireNetAnnuel ?? DEFAULT_INPUTS.salaireNetAnnuel, { min: 0, max: 500_000 })
+  const [tmi, setTmi] = useState<TMIOption>(init?.tmi ?? DEFAULT_INPUTS.tmi)
+  const versement = useNumericInput(init?.versementEnvisage ?? DEFAULT_INPUTS.versementEnvisage, { min: 0, max: 200_000 })
+  const reportN1 = useNumericInput(init?.reportN1 ?? 0, { min: 0, max: 200_000 })
+  const reportN2 = useNumericInput(init?.reportN2 ?? 0, { min: 0, max: 200_000 })
+  const reportN3 = useNumericInput(init?.reportN3 ?? 0, { min: 0, max: 200_000 })
+  const reportN4 = useNumericInput(init?.reportN4 ?? 0, { min: 0, max: 200_000 })
+  const reportN5 = useNumericInput(init?.reportN5 ?? 0, { min: 0, max: 200_000 })
 
   const inputs: PERInputs = {
     salaireNetAnnuel: salaire.value,
@@ -57,6 +65,16 @@ export default function PERCalculator() {
   )
 
   const { detail, economieFiscale, coutNetReel, rendementFiscal, warnings, optimisations } = results
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('calcpatrimoine:state:per-individuel', JSON.stringify({
+        salaireNetAnnuel: salaire.value, tmi, versementEnvisage: versement.value,
+        reportN1: reportN1.value, reportN2: reportN2.value, reportN3: reportN3.value,
+        reportN4: reportN4.value, reportN5: reportN5.value,
+      }))
+    } catch {}
+  }, [salaire.value, tmi, versement.value, reportN1.value, reportN2.value, reportN3.value, reportN4.value, reportN5.value])
 
   useEffect(() => {
     if (economieFiscale <= 0) return
