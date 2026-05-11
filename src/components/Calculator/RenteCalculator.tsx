@@ -48,10 +48,15 @@ export default function RenteCalculator() {
  <>
  <div className="max-w-4xl mx-auto" suppressHydrationWarning>
  {/* Zone formulaire */}
- <div className="bg-neutral-100 rounded-lg shadow-md p-5 sm:p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
- <h2 className="text-2xl font-semibold text-neutral-900 mb-2">Calculez votre rente viagère</h2>
- <p className="text-sm text-neutral-600 mb-6">Simulation basée sur les tables de mortalité INSEE 2021</p>
- 
+  <div className="bg-neutral-100 rounded-lg shadow-md p-5 sm:p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
+  <div className="mb-6">
+    <h2 className="text-2xl font-semibold text-neutral-900 mb-2">
+      Calculez votre rente viagère
+    </h2>
+    <p className="text-sm text-neutral-600">
+      Simulation basée sur les tables de mortalité INSEE 2021
+    </p>
+  </div>
  {/* Âge */}
  <div className="mb-6">
  <div className="flex flex-wrap justify-between items-center gap-2 mb-2">

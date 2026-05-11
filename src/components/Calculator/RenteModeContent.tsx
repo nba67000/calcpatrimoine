@@ -21,7 +21,7 @@ export default function RenteModeContent() {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto px-6 py-10">
+      <div className="py-10">
         <div className="flex mb-2">
           <div className="flex border border-neutral-300 overflow-x-auto">
             {MODES.map(m => (

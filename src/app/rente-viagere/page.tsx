@@ -17,9 +17,9 @@ const CROSS_LINKS = [
 ]
 
 const NOTE_VIAGER = (
-  <div className="max-w-4xl mx-auto px-6 mb-0">
-    <div className="bg-white border-l-4 border-warning-400 px-5 py-4">
-      <p className="text-sm text-neutral-700">
+  <div className="max-w-6xl mx-auto px-6 mb-6">
+    <div className="bg-white border border-neutral-200 p-6">
+      <p className="text-sm text-neutral-700 leading-relaxed">
         <strong>À ne pas confondre :</strong>{' '}
         La <strong>rente viagère</strong> (ce calculateur) convertit un capital financier en revenus mensuels versés à vie.
         Le <strong>viager immobilier</strong> est la vente d&apos;un bien avec bouquet + rente.
