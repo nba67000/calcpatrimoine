@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description: 'Simulez les droits de succession sur votre assurance-vie. Calculs conformes au CGI avec gestion multi-bénéficiaires.',
     type: 'article',
   },
+  alternates: { canonical: 'https://calculpatrimoine.fr/assurance-vie/transmission' },
 }
 
 export default function TransmissionPage() {

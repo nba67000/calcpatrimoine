@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description: 'Deux calculateurs gratuits : fiscalité des rachats et transmission aux bénéficiaires. Calculs officiels conformes au CGI.',
     type: 'website',
   },
+  alternates: { canonical: 'https://calculpatrimoine.fr/assurance-vie' },
 }
 
 const CALCULATEURS = [

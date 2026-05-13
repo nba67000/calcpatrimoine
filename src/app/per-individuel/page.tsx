@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     description: 'Calculez votre économie d\'impôt sur un versement PER individuel. Plafond 2026, report des plafonds N-1 à N-5 (LF 2026).',
     type: 'article',
   },
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/per-individuel' },
 }
 
 const BAREMES = [

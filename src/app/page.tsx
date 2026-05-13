@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     description: 'Des calculateurs patrimoniaux basés sur les textes officiels. Aucun conseil, aucune donnée conservée.',
     type: 'website',
   },
+
+  alternates: { canonical: 'https://calculpatrimoine.fr' },
 }
 
 const ARTICLES = [

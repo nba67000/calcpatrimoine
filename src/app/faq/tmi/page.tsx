@@ -9,6 +9,8 @@ import FAQAccordionClient from '@/components/FAQAccordionClient'
 export const metadata: Metadata = {
   title: "FAQ Tranche Marginale d'Imposition 2026 | CalculPatrimoine",
   description: "Questions fréquentes sur la TMI : barème IR 2026, quotient familial, décote, différence TMI et taux moyen.",
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/faq/tmi' },
 }
 
 interface FAQItem {

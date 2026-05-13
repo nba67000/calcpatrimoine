@@ -9,6 +9,8 @@ import FAQAccordionClient from '@/components/FAQAccordionClient'
 export const metadata: Metadata = {
   title: 'FAQ PER Individuel 2026 - Versements et déductibilité | CalculPatrimoine',
   description: "Questions fréquentes sur le PER individuel : plafonds 2026, déductibilité, report sur 5 ans (LF 2026), TMI, sortie en capital ou rente.",
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/faq/per' },
 }
 
 interface FAQItem {

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     type: 'article',
     publishedTime: '2026-04-16',
   },
+  alternates: { canonical: 'https://calculpatrimoine.fr/blog/rente-viagere-seuil-rentabilite' },
 }
 
 export default function ArticleRenteViagere() {

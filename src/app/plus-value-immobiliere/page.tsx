@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     description: 'Simulez la fiscalité de votre cession immobilière : 19 % IR, 17,2 % PS, abattements pour durée, surtaxe éventuelle.',
     type: 'article',
   },
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/plus-value-immobiliere' },
 }
 
 const ABATTEMENTS_IR = [

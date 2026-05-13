@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     type: 'article',
     publishedTime: '2026-04-18',
   },
+  alternates: { canonical: 'https://calculpatrimoine.fr/blog/assurance-vie-fiscalite-rachat' },
 }
 
 export default function ArticleAssuranceViePage() {

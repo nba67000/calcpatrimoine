@@ -10,6 +10,8 @@ import FAQAccordionClient from '@/components/FAQAccordionClient'
 export const metadata: Metadata = {
   title: 'FAQ IFI 2026 - Impôt sur la fortune immobilière | CalculPatrimoine',
   description: "Seuil 1 300 000 €, barème progressif, abattement résidence principale 30 %, décote et plafonnement IFI + IR.",
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/faq/ifi' },
 }
 
 interface FAQItem {

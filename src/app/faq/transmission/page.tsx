@@ -9,6 +9,8 @@ import FAQAccordionClient from '@/components/FAQAccordionClient'
 export const metadata: Metadata = {
   title: 'FAQ Transmission Assurance-Vie - Art. 990I et 757B | CalculPatrimoine',
   description: "Abattements avant et après 70 ans, clause bénéficiaire, droits de succession, optimisations transmission assurance-vie.",
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/faq/transmission' },
 }
 
 interface FAQItem {

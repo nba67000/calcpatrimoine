@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     type: 'article',
     publishedTime: '2026-05-05',
   },
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/blog/per-individuel-deduction-fiscalite' },
 }
 
 export default function ArticlePERPage() {

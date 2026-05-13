@@ -5,6 +5,8 @@ import Footer from '@/components/Footer'
 export const metadata = {
  title: 'Mentions Légales - CalculPatrimoine',
  description: 'Mentions légales et informations obligatoires du site CalculPatrimoine.fr'
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/mentions-legales' },
 }
 
 export default function MentionsLegalesPage() {

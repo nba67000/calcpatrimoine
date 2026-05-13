@@ -6,6 +6,7 @@ export const metadata: Metadata = {
  title: 'FAQ Assurance-Vie : Fiscalité, Rachat et Optimisation | CalculPatrimoine',
  description: 'Questions fréquentes sur la fiscalité de l\'assurance-vie : PFU vs IR, abattement 8 ans, versements avant 2017, optimisation fiscale. Réponses d\'expert.',
  keywords: 'faq assurance vie, fiscalité rachat, pfu ou ir, abattement 8 ans, versements 2017, questions assurance vie',
+ alternates: { canonical: 'https://calculpatrimoine.fr/faq/assurance-vie' },
 }
 
 interface FAQItem {

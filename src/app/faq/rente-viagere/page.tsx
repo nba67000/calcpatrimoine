@@ -10,6 +10,8 @@ import FAQAccordionClient from '@/components/FAQAccordionClient'
 export const metadata: Metadata = {
   title: 'FAQ Rente Viagère - Fonctionnement, réversion, fiscalité | CalculPatrimoine',
   description: "Questions fréquentes sur la rente viagère : fonctionnement, réversion au conjoint, fiscalité, couples, bon âge pour souscrire.",
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/faq/rente-viagere' },
 }
 
 interface FAQItem {

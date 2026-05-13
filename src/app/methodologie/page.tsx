@@ -8,6 +8,8 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
  title: 'Méthodologie de Calcul',
  description: 'Découvrez comment nous calculons votre rente viagère avec les tables INSEE et les formules actuarielles officielles.'
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/methodologie' },
 }
 
 export default function Methodologie() {

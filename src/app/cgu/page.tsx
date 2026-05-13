@@ -4,7 +4,8 @@ import Footer from '@/components/Footer'
 
 export const metadata = {
  title: 'Conditions Générales d\'Utilisation - CalculPatrimoine',
- description: 'Conditions générales d\'utilisation de CalculPatrimoine - simulateurs patrimoniaux gratuits (rente viagère, assurance-vie, IFI, PER, TMI, plus-value immobilière)'
+ description: 'Conditions générales d\'utilisation de CalculPatrimoine - simulateurs patrimoniaux gratuits (rente viagère, assurance-vie, IFI, PER, TMI, plus-value immobilière)',
+ alternates: { canonical: 'https://calculpatrimoine.fr/cgu' },
 }
 
 export default function CGUPage() {

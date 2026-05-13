@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     description: 'Simulez votre IFI : abattement RP 30 %, barème 6 tranches, décote progressive, plafonnement IFI + IR à 75 % des revenus.',
     type: 'article',
   },
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/ifi' },
 }
 
 const toolSchema = {

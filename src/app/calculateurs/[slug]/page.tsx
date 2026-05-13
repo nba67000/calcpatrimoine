@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${cat.label} - Calculateurs | CalculPatrimoine`,
     description: `${cat.description}. Calculateurs gratuits basés sur les textes officiels. Aucune donnée conservée.`,
+    alternates: { canonical: `https://calculpatrimoine.fr/calculateurs/${slug}` },
   }
 }
 

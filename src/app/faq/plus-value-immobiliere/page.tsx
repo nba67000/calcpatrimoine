@@ -9,6 +9,8 @@ import FAQAccordionClient from '@/components/FAQAccordionClient'
 export const metadata: Metadata = {
   title: 'FAQ Plus-Value Immobilière - Résidence secondaire | CalculPatrimoine',
   description: "Abattements pour durée de détention, IR 19 %, prélèvements sociaux 17,2 %, surtaxe. Questions fréquentes sur la plus-value immobilière.",
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/faq/plus-value-immobiliere' },
 }
 
 interface FAQItem {

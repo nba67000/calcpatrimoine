@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description: 'Calculez combien vous allez payer en impôts sur votre rachat d\'assurance-vie.',
     type: 'article',
   },
+  alternates: { canonical: 'https://calculpatrimoine.fr/assurance-vie/fiscalite-rachat' },
 }
 
 const CROSS_LINKS = [

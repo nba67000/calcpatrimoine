@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'Blog - CalculPatrimoine',
   description: 'Articles sur la fiscalité du patrimoine, les calculs actuariels, et la finance personnelle. Mécanismes exacts, exemples chiffrés, sources officielles.',
+  alternates: { canonical: 'https://calculpatrimoine.fr/blog' },
 }
 
 const ARTICLES = [

@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     description: 'Calculez votre TMI et votre IR net avec le barème officiel 2026, le quotient familial et la décote.',
     type: 'article',
   },
+
+  alternates: { canonical: 'https://calculpatrimoine.fr/tmi' },
 }
 
 const TRANCHES = [

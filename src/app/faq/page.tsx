@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'FAQ - Questions fréquentes | CalculPatrimoine',
   description: 'Toutes les réponses sur nos calculateurs patrimoniaux : rente viagère, assurance-vie, PER, TMI, transmission. Retrouvez la FAQ dédiée à chaque outil.',
   keywords: 'faq calculpatrimoine, questions fréquentes, aide calculateur, rente viagère, assurance vie, PER, TMI',
+  alternates: { canonical: 'https://calculpatrimoine.fr/faq' },
 }
 
 const FAQ_SECTIONS = [
