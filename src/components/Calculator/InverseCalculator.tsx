@@ -5,7 +5,7 @@ import { useState, useMemo } from 'react'
 import { calculateRequiredCapital } from '@/lib/mortality'
 import { formatEurRounded as formatEuro, formatNombre } from '@/lib/formatters'
 import type { InverseResult } from '@/types'
-import { motion, AnimatePresence } from 'framer-motion'
+// PERF: framer-motion supprimé → animations CSS natives (.perf-fade-in, .perf-expand)
 import { LIMITS } from '@/lib/constants'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import Tooltip from '@/components/Tooltip'
@@ -163,15 +163,8 @@ export default function InverseCalculator() {
  />
  </button>
  </div>
-
- <AnimatePresence>
  {showReversion && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: 'auto', opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.3 }}
- className="overflow-hidden"
+ <div className="overflow-hidden perf-fade-in"
 >
  <div className="border-t border-primary-200 pt-4 mt-2">
  <div className="bg-white/50 rounded-lg p-4 mb-4">
@@ -250,36 +243,26 @@ export default function InverseCalculator() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  </div>
  </div>
 
  {/* Zone résultat */}
  {result && (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="bg-white rounded-lg shadow-lg p-5 sm:p-8 border-t-4 border-primary-600"
+ <div className="bg-white rounded-lg shadow-lg p-5 sm:p-8 border-t-4 border-primary-600 perf-fade-in"
 >
  <h3 className="text-xl font-semibold text-neutral-900 mb-6">Capital nécessaire</h3>
  
  {/* Montant principal */}
  <div className="mb-8">
- <motion.div
- key={result.required_capital}
- initial={{ y: 10, opacity: 0 }}
- animate={{ y: 0, opacity: 1 }}
- transition={{ duration: 0.2 }}
- className="flex items-baseline gap-2"
+ <div key={result.required_capital} className="flex items-baseline gap-2 perf-fade-in"
 >
  <span className="text-4xl sm:text-6xl font-bold tabular-nums text-neutral-900 tracking-tight">
  {formatEuro(result.required_capital)}
  </span>
- </motion.div>
+ </div>
  <div className="text-sm text-neutral-500 mt-2">
  pour obtenir {formatEuro(desiredAmount)}/mois à vie
  </div>
@@ -300,32 +283,24 @@ export default function InverseCalculator() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
 
  {/* Graphique de projection */}
  {result && (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.1 }}
- className="mt-6 bg-white rounded-lg shadow-lg p-4 sm:p-8 border border-neutral-200"
+ <div className="mt-6 bg-white rounded-lg shadow-lg p-4 sm:p-8 border border-neutral-200 perf-fade-in" style={{ animationDelay: '100ms' }}
 >
  <ProjectionChart
  capital={result.required_capital}
  monthlyRent={desiredAmount}
  lifeExpectancy={result.life_expectancy}
  />
- </motion.div>
+ </div>
  )}
 
  {/* Disclaimer LONG - EN DEHORS du bloc vert */}
  {result && (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.2 }}
- className="mt-6 p-6 bg-primary-50 border-2 border-primary-200 rounded-lg"
+ <div className="mt-6 p-6 bg-primary-50 border-2 border-primary-200 rounded-lg perf-fade-in" style={{ animationDelay: '200ms' }}
 >
  <h4 className="text-base font-bold text-primary-900 mb-3 flex items-center gap-2">
  <span className="text-xl"></span>
@@ -382,7 +357,7 @@ export default function InverseCalculator() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
  </div>
  )

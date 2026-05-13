@@ -7,6 +7,7 @@ import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
+import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
 import { formatEur, formatPct } from '@/lib/formatters'
 
 const SEUIL_IFI = 1_300_000
@@ -22,7 +23,7 @@ const DEFAULT_INPUTS: IFIInputs = {
 }
 
 export default function IFICalculator() {
-  const [inputs, setInputs] = useSimStorage<IFIInputs>('ifi', DEFAULT_INPUTS)
+  const [inputs, setInputs, resetInputs] = useSimStorage<IFIInputs>('ifi', DEFAULT_INPUTS)
   const results = useMemo(() => calculerIFI(inputs), [inputs])
   const ifiDefinitif = results.plafonnementApplicable ? results.ifiApresPlafonnement : results.ifiNet
 
@@ -39,6 +40,7 @@ export default function IFICalculator() {
 
   return (
     <>
+    <SimResumeBanner slug="ifi" onReset={resetInputs} />
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* === COLONNE GAUCHE - INPUTS === */}

@@ -10,6 +10,7 @@ import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
+import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
 
 // ---------------------------------------------------------------------------
 // Composant interne : Scénario de versement alternatif
@@ -95,7 +96,7 @@ interface PERSimState {
 }
 
 export default function PERCalculator() {
-  const [simState, setSimState] = useSimStorage<PERSimState>('per-individuel', {
+  const [simState, setSimState, resetSimState] = useSimStorage<PERSimState>('per-individuel', {
     salaireNetAnnuel: DEFAULT_INPUTS.salaireNetAnnuel,
     tmi: DEFAULT_INPUTS.tmi,
     versementEnvisage: DEFAULT_INPUTS.versementEnvisage,
@@ -158,6 +159,7 @@ export default function PERCalculator() {
 
   return (
     <>
+    <SimResumeBanner slug="per-individuel" onReset={resetSimState} />
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* COLONNE GAUCHE - INPUTS */}

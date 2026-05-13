@@ -9,7 +9,10 @@
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "analyze": "ANALYZE=true next build",
+    "analyze:server": "BUNDLE_ANALYZE=server next build",
+    "# perf-note": "framer-motion peut être retiré des deps une fois tous les calculateurs migrés vers perf-animations CSS"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",

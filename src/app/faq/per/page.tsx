@@ -2,9 +2,13 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import CrossLink from '@/components/CrossLink'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import { FAQ_PER } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'FAQ PER Individuel 2026 - Versements et déductibilité | CalculPatrimoine',
@@ -46,6 +50,9 @@ const sections: FAQSection[] = [
                 versements volontaires déductibles du PERIN (salarié). Le PERCOL, le PERO et
                 le régime TNS (Madelin) ne sont pas simulés.
               </p>
+            </div>
+            <div className="mt-4">
+              <CrossLink href="/per-individuel" title="Calculateur PER Individuel" description="Simulez votre économie d'impôt selon votre salaire, TMI et plafonds des années antérieures." />
             </div>
           </>
         ),
@@ -146,6 +153,9 @@ const sections: FAQSection[] = [
                 <strong>Exemple</strong> : Salarié, 60 000€ brut → revenu net professionnel
                 = 54 000€ → plafond = 5 400€.
               </p>
+            </div>
+            <div className="mt-4">
+              <CrossLink href="/per-individuel" title="Calculateur PER — plafond et report" description="Calculez votre plafond exact et combien vous pouvez reporter des années antérieures." />
             </div>
           </>
         ),
@@ -330,6 +340,7 @@ const sections: FAQSection[] = [
 export default function FAQPERPage() {
   return (
     <>
+      <SchemaFAQ items={FAQ_PER} />
       <Header />
       <div className="h-[3px] bg-accent-400 w-full" />
       <main style={{ backgroundColor: '#F7F3EC' }}>

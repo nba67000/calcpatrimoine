@@ -2,10 +2,14 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import CrossLink from '@/components/CrossLink'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import { FAQ_IFI } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'FAQ IFI 2026 - Impôt sur la fortune immobilière | CalculPatrimoine',
@@ -113,6 +117,9 @@ const sections: FAQSection[] = [
             <p className="text-sm text-neutral-600">
               Rappel : chaque taux ne s&apos;applique que sur la partie du patrimoine qui tombe dans cette tranche - pas sur l&apos;ensemble. Un patrimoine de 2 000 000 € génère un IFI de 7 400 €, soit 0,37 % de taux effectif.
             </p>
+            <div className="mt-4">
+              <CrossLink href="/ifi" title="Calculateur IFI 2026" description="Saisissez votre patrimoine net et simulez votre IFI — décote et plafonnement inclus." />
+            </div>
           </>
         ),
       },
@@ -155,6 +162,9 @@ const sections: FAQSection[] = [
               Important : depuis 2018, les dettes déductibles sont plafonnées pour les patrimoines supérieurs
               à 5 000 000 € (Art. 974 II CGI). Ce calculateur ne gère pas ce plafond.
             </p>
+            <div className="mt-4">
+              <CrossLink href="/ifi" title="Calculateur IFI" description="Saisissez votre patrimoine net de dettes et calculez votre IFI 2026." />
+            </div>
           </>
         ),
       },
@@ -254,25 +264,9 @@ const sections: FAQSection[] = [
 ]
 
 export default function FAQIFIPage() {
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: sections.flatMap(s => s.items).map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: typeof item.answer === 'string' ? item.answer : item.question,
-      },
-    })),
-  }
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <SchemaFAQ items={FAQ_IFI} />
       <Header />
       <div className="h-[3px] bg-accent-400 w-full" />
       <div style={{ backgroundColor: '#F7F3EC' }}>

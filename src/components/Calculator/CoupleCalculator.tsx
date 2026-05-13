@@ -5,7 +5,7 @@ import { useState, useMemo } from 'react'
 import { calculateCoupleStrategies } from '@/lib/mortality'
 import { formatEurRounded as formatEuro, formatNombre as formatCapitalInput } from '@/lib/formatters'
 import type { CoupleProfile, CoupleCalculation } from '@/types'
-import { motion } from 'framer-motion'
+// PERF: framer-motion supprimé → animations CSS natives (.perf-fade-in, .perf-expand)
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 
 export default function CoupleCalculator() {
@@ -220,12 +220,7 @@ export default function CoupleCalculator() {
 
  <div className="space-y-4">
  {strategies.map((strategy, index) => (
- <motion.div
- key={index}
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: index * 0.05 }}
- className="border border-neutral-200 rounded-lg p-6 hover:border-primary-300 transition-colors"
+ <div key={index} className="border border-neutral-200 rounded-lg p-6 hover:border-primary-300 transition-colors perf-fade-in" style={{ animationDelay: `${index * 50}ms` }}
 >
  <div className="flex items-start justify-between mb-3">
  <div>
@@ -258,7 +253,7 @@ export default function CoupleCalculator() {
  )}
  </div>
  )}
- </motion.div>
+ </div>
  ))}
  </div>
 

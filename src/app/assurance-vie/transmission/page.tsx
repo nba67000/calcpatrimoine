@@ -1,8 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import CalculateurPageLayout from '@/components/CalculateurPageLayout'
-import TransmissionCalculator from '@/components/Calculator/TransmissionCalculator'
+// PERF: lazy-load → TransmissionCalculator sort du bundle initial (logique métier + recharts)
+import dynamic from 'next/dynamic'
+import CalculatorSkeleton from '@/components/Calculator/CalculatorSkeleton'
+const TransmissionCalculator = dynamic(
+  () => import('@/components/Calculator/TransmissionCalculator'),
+  { loading: () => <CalculatorSkeleton /> }
+)
 import SourcesSection from '@/components/SourcesSection'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import SchemaHowTo from '@/components/SchemaHowTo'
+import { FAQ_TRANSMISSION, HOWTO_TRANSMISSION } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'Calculateur Transmission Assurance-Vie : Succession & Bénéficiaires | CalculPatrimoine',
@@ -12,13 +22,23 @@ export const metadata: Metadata = {
     title: 'Calculateur Transmission Assurance-Vie',
     description: 'Simulez les droits de succession sur votre assurance-vie. Calculs conformes au CGI avec gestion multi-bénéficiaires.',
     type: 'article',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CalculPatrimoine' }],
   },
   alternates: { canonical: 'https://calculpatrimoine.fr/assurance-vie/transmission' },
 }
 
 export default function TransmissionPage() {
   return (
-    <CalculateurPageLayout
+    <>
+      <SchemaHowTo
+        name={HOWTO_TRANSMISSION.name}
+        description={HOWTO_TRANSMISSION.description}
+        totalTime={HOWTO_TRANSMISSION.totalTime}
+        steps={HOWTO_TRANSMISSION.steps}
+        tool="Calculateur CalculPatrimoine"
+      />
+      <SchemaFAQ items={FAQ_TRANSMISSION} />
+      <CalculateurPageLayout
       breadcrumb={[
         { href: '/', label: 'Accueil' },
         { href: '/assurance-vie', label: 'Assurance-Vie' },
@@ -144,5 +164,6 @@ export default function TransmissionPage() {
       </section>
 
     </CalculateurPageLayout>
+    </>
   )
 }

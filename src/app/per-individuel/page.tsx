@@ -1,8 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import CalculateurPageLayout from '@/components/CalculateurPageLayout'
-import PERCalculator from '@/components/Calculator/PERCalculator'
+// PERF: lazy-load → PERCalculator sort du bundle initial (logique métier + recharts)
+import dynamic from 'next/dynamic'
+import CalculatorSkeleton from '@/components/Calculator/CalculatorSkeleton'
+const PERCalculator = dynamic(
+  () => import('@/components/Calculator/PERCalculator'),
+  { loading: () => <CalculatorSkeleton /> }
+)
 import SourcesSection from '@/components/SourcesSection'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import SchemaHowTo from '@/components/SchemaHowTo'
+import { FAQ_PER, HOWTO_PER } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'Simulateur PER individuel - économie d\'impôt',
@@ -12,6 +22,7 @@ export const metadata: Metadata = {
     title: 'Simulateur PER individuel - économie d\'impôt sur versement',
     description: 'Calculez votre économie d\'impôt sur un versement PER individuel. Plafond 2026, report des plafonds N-1 à N-5 (LF 2026).',
     type: 'article',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CalculPatrimoine' }],
   },
 
   alternates: { canonical: 'https://calculpatrimoine.fr/per-individuel' },
@@ -49,7 +60,16 @@ const LIMITES = [
 
 export default function PERIndividuelPage() {
   return (
-    <CalculateurPageLayout
+    <>
+      <SchemaHowTo
+        name={HOWTO_PER.name}
+        description={HOWTO_PER.description}
+        totalTime={HOWTO_PER.totalTime}
+        steps={HOWTO_PER.steps}
+        tool="Calculateur CalculPatrimoine"
+      />
+      <SchemaFAQ items={FAQ_PER} />
+      <CalculateurPageLayout
       breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'PER individuel - économie d\'impôt' }]}
       titre={<>Simulateur PER individuel<br />Économie d&apos;impôt sur versement</>}
       description="Calculez l'économie d'impôt générée par un versement volontaire sur votre Plan
@@ -219,5 +239,6 @@ export default function PERIndividuelPage() {
       </section>
 
     </CalculateurPageLayout>
+    </>
   )
 }

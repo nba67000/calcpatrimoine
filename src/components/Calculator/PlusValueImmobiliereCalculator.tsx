@@ -7,6 +7,7 @@ import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
+import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
 import { formatEur, formatPct } from '@/lib/formatters'
 
 const DEFAULT_INPUTS: PlusValueImmobiliereInputs = {
@@ -23,7 +24,7 @@ const DEFAULT_INPUTS: PlusValueImmobiliereInputs = {
 }
 
 export default function PlusValueImmobiliereCalculator() {
-  const [inputs, setInputs] = useSimStorage<PlusValueImmobiliereInputs>('plus-value-immobiliere', DEFAULT_INPUTS)
+  const [inputs, setInputs, resetInputs] = useSimStorage<PlusValueImmobiliereInputs>('plus-value-immobiliere', DEFAULT_INPUTS)
 
   const results = useMemo(() => calculerPlusValueImmobiliere(inputs), [inputs])
 
@@ -42,6 +43,7 @@ export default function PlusValueImmobiliereCalculator() {
 
   return (
     <>
+    <SimResumeBanner slug="plus-value-immobiliere" onReset={resetInputs} />
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* === COLONNE GAUCHE - INPUTS === */}

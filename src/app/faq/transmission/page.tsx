@@ -2,9 +2,13 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import CrossLink from '@/components/CrossLink'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import { FAQ_TRANSMISSION } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'FAQ Transmission Assurance-Vie - Art. 990I et 757B | CalculPatrimoine',
@@ -199,6 +203,9 @@ const sections: FAQSection[] = [
               La répartition entre bénéficiaires (parts égales, quotes-parts différentes) se définit
               librement dans la clause bénéficiaire.
             </p>
+            <div className="mt-4">
+              <CrossLink href="/assurance-vie/transmission" title="Calculateur de transmission" description="Simulez la répartition entre bénéficiaires et les droits sur chaque part selon Art. 990 I." />
+            </div>
           </>
         ),
       },
@@ -262,6 +269,9 @@ const sections: FAQSection[] = [
               Les plus-values générées sur les versements après 70 ans sont automatiquement exclues
               du calcul (elles sont exonérées).
             </p>
+            <div className="mt-4">
+              <CrossLink href="/assurance-vie/transmission" title="Calculateur transmission assurance-vie" description="Saisissez vos versements avant et après 70 ans — les régimes Art. 990 I et 757 B s'appliquent automatiquement." />
+            </div>
           </>
         ),
       },
@@ -289,6 +299,7 @@ const sections: FAQSection[] = [
 export default function FAQTransmissionPage() {
   return (
     <>
+      <SchemaFAQ items={FAQ_TRANSMISSION} />
       <Header />
       <div className="h-[3px] bg-accent-400 w-full" />
       <main style={{ backgroundColor: '#F7F3EC' }}>

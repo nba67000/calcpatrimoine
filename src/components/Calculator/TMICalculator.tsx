@@ -9,6 +9,7 @@ import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
+import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
 import { formatEur } from '@/lib/formatters'
 
 const TMI_COLORS: Record<number, { badge: string; text: string; bg: string }> = {
@@ -40,7 +41,7 @@ interface TMISimState {
 }
 
 export default function TMICalculator() {
-  const [simState, setSimState] = useSimStorage<TMISimState>('tmi', {
+  const [simState, setSimState, resetSimState] = useSimStorage<TMISimState>('tmi', {
     revenuNetImposable: 45000,
     situationFamiliale: 'celibataire',
     nombreEnfants: 0,
@@ -84,6 +85,7 @@ export default function TMICalculator() {
 
   return (
     <>
+    <SimResumeBanner slug="tmi" onReset={resetSimState} />
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* COLONNE GAUCHE - INPUTS */}

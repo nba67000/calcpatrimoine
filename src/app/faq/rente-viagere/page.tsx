@@ -6,6 +6,9 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CrossLink from '@/components/CrossLink'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import { FAQ_RENTE } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'FAQ Rente Viagère - Fonctionnement, réversion, fiscalité | CalculPatrimoine',
@@ -209,6 +212,13 @@ const sections: FAQSection[] = [
                 plus la rente mensuelle est élevée (+25% environ tous les 5 ans).
               </p>
             </div>
+            <div className="mt-4">
+              <CrossLink
+                href="/rente-viagere"
+                title="Calculateur Rente Viagère"
+                description="Saisissez votre capital, âge et sexe — le montant mensuel s'affiche instantanément."
+              />
+            </div>
           </>
         ),
       },
@@ -410,6 +420,13 @@ const sections: FAQSection[] = [
               <li><strong>Si revenus équilibrés</strong> : Rentes séparées OU capital regroupé 80%</li>
               <li><strong>Si vous voulez maximiser les revenus</strong> : Rentes séparées (mais risque survivant)</li>
             </ul>
+            <div className="mt-4">
+              <CrossLink
+                href="/rente-viagere"
+                title="Simulateur Mode Couple"
+                description="Comparez rentes séparées vs capital regroupé et visualisez l'impact sur le revenu du survivant."
+              />
+            </div>
           </>
         ),
       },
@@ -539,6 +556,7 @@ const sections: FAQSection[] = [
 export default function FAQRenteViagerePage() {
   return (
     <>
+      <SchemaFAQ items={FAQ_RENTE} />
       <Header />
       <div className="h-[3px] bg-accent-400 w-full" />
       <main style={{ backgroundColor: '#F7F3EC' }}>
@@ -568,7 +586,7 @@ export default function FAQRenteViagerePage() {
             <CrossLink
               title="Calculez votre rente en 30 secondes"
               description="Simulateur gratuit basé sur les tables de mortalité INSEE: 3 modes disponibles"
-              href="/"
+              href="/rente-viagere"
             />
           </header>
 

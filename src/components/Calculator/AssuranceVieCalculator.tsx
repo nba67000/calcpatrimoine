@@ -9,6 +9,7 @@ import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
+import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
 import { formatEur } from '@/lib/formatters'
 
 // dateOuverture stored as ISO string to survive JSON serialization
@@ -35,7 +36,7 @@ const DEFAULT_STATE: AVSimState = {
 }
 
 export default function AssuranceVieCalculator() {
-  const [inputs, setInputs] = useSimStorage<AVSimState>('assurance-vie-rachat', DEFAULT_STATE)
+  const [inputs, setInputs, resetInputs] = useSimStorage<AVSimState>('assurance-vie-rachat', DEFAULT_STATE)
 
   const results = useMemo(() => calculerFiscaliteRachat({
     ...inputs,
@@ -55,6 +56,7 @@ export default function AssuranceVieCalculator() {
 
   return (
     <>
+    <SimResumeBanner slug="assurance-vie-rachat" onReset={resetInputs} />
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* COLONNE GAUCHE - INPUTS */}

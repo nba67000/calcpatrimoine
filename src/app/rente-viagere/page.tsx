@@ -2,7 +2,17 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import CalculateurPageLayout from '@/components/CalculateurPageLayout'
 import SourcesSection from '@/components/SourcesSection'
-import RenteModeContent from '@/components/Calculator/RenteModeContent'
+// PERF: lazy-load → RenteModeContent sort du bundle initial (logique métier + recharts)
+import dynamic from 'next/dynamic'
+import CalculatorSkeleton from '@/components/Calculator/CalculatorSkeleton'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import SchemaHowTo from '@/components/SchemaHowTo'
+import { FAQ_RENTE, HOWTO_RENTE } from '@/lib/schema/schemaData'
+
+const RenteModeContent = dynamic(
+  () => import('@/components/Calculator/RenteModeContent'),
+  { loading: () => <CalculatorSkeleton /> }
+)
 
 export const metadata: Metadata = {
   title: 'Calculateur Rente Viagère - Tables INSEE 2021 | CalculPatrimoine',
@@ -30,7 +40,16 @@ const NOTE_VIAGER = (
 
 export default function RenteViagerePage() {
   return (
-    <CalculateurPageLayout
+    <>
+      <SchemaHowTo
+        name={HOWTO_RENTE.name}
+        description={HOWTO_RENTE.description}
+        totalTime={HOWTO_RENTE.totalTime}
+        steps={HOWTO_RENTE.steps}
+        tool="Calculateur CalculPatrimoine"
+      />
+      <SchemaFAQ items={FAQ_RENTE} />
+      <CalculateurPageLayout
       breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'Rente Viagère' }]}
       titre={<>Calculateur<br />Rente Viagère</>}
       description="Convertissez votre épargne (PER, assurance-vie, capital) en revenus versés à vie.
@@ -144,5 +163,6 @@ export default function RenteViagerePage() {
       </section>
 
     </CalculateurPageLayout>
+    </>
   )
 }

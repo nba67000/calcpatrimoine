@@ -1,7 +1,17 @@
 import type { Metadata } from 'next'
 import CalculateurPageLayout from '@/components/CalculateurPageLayout'
-import PlusValueImmobiliereCalculator from '@/components/Calculator/PlusValueImmobiliereCalculator'
+// PERF: lazy-load → PlusValueImmobiliereCalculator sort du bundle initial (logique métier + recharts)
+import dynamic from 'next/dynamic'
+import CalculatorSkeleton from '@/components/Calculator/CalculatorSkeleton'
+const PlusValueImmobiliereCalculator = dynamic(
+  () => import('@/components/Calculator/PlusValueImmobiliereCalculator'),
+  { loading: () => <CalculatorSkeleton /> }
+)
 import SourcesSection from '@/components/SourcesSection'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import SchemaHowTo from '@/components/SchemaHowTo'
+import { FAQ_PLUS_VALUE, HOWTO_PLUS_VALUE } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'Plus-value immobilière : calculateur IR et PS 2026',
@@ -11,6 +21,7 @@ export const metadata: Metadata = {
     title: 'Calculateur plus-value immobilière, IR + PS + surtaxe',
     description: 'Simulez la fiscalité de votre cession immobilière : 19 % IR, 17,2 % PS, abattements pour durée, surtaxe éventuelle.',
     type: 'article',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CalculPatrimoine' }],
   },
 
   alternates: { canonical: 'https://calculpatrimoine.fr/plus-value-immobiliere' },
@@ -38,7 +49,16 @@ const ABATTEMENTS_PS = [
 
 export default function PlusValueImmobilierePage() {
   return (
-    <CalculateurPageLayout
+    <>
+      <SchemaHowTo
+        name={HOWTO_PLUS_VALUE.name}
+        description={HOWTO_PLUS_VALUE.description}
+        totalTime={HOWTO_PLUS_VALUE.totalTime}
+        steps={HOWTO_PLUS_VALUE.steps}
+        tool="Calculateur CalculPatrimoine"
+      />
+      <SchemaFAQ items={FAQ_PLUS_VALUE} />
+      <CalculateurPageLayout
       breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'Plus-value immobilière' }]}
       titre={<>Plus-value immobilière :<br />calculateur 2026</>}
       description="Calculez l'impôt sur votre cession immobilière : IR 19 %, prélèvements sociaux
@@ -252,5 +272,6 @@ export default function PlusValueImmobilierePage() {
       </section>
 
     </CalculateurPageLayout>
+    </>
   )
 }

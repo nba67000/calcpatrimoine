@@ -2,9 +2,13 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import CrossLink from '@/components/CrossLink'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import { FAQ_PLUS_VALUE } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'FAQ Plus-Value Immobilière - Résidence secondaire | CalculPatrimoine',
@@ -224,6 +228,9 @@ const sections: FAQSection[] = [
               l&apos;économie réalisée en attendant quelques semaines peut être significative.
               Le calculateur affiche cette information en temps réel.
             </p>
+            <div className="mt-4">
+              <CrossLink href="/plus-value-immobiliere" title="Calculateur plus-value immobilière" description="Visualisez l'évolution des abattements IR et PS selon votre date d'acquisition." />
+            </div>
           </>
         ),
       },
@@ -476,6 +483,9 @@ const sections: FAQSection[] = [
                 (actes d&apos;acquisition, justificatifs de travaux, etc.) pour calculer le montant définitif.
               </p>
             </div>
+            <div className="mt-4">
+              <CrossLink href="/plus-value-immobiliere" title="Estimez votre plus-value avant le notaire" description="Saisissez prix d'achat, frais, travaux et durée de détention — impôt estimatif en quelques secondes." />
+            </div>
           </>
         ),
       },
@@ -540,6 +550,7 @@ const sections: FAQSection[] = [
 export default function FAQPlusValueImmobilierePage() {
   return (
     <>
+      <SchemaFAQ items={FAQ_PLUS_VALUE} />
       <Header />
       <div className="h-[3px] bg-accent-400 w-full" />
       <main style={{ backgroundColor: '#F7F3EC' }}>

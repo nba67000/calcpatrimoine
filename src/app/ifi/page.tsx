@@ -1,8 +1,18 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import CalculateurPageLayout from '@/components/CalculateurPageLayout'
-import IFICalculator from '@/components/Calculator/IFICalculator'
+// PERF: lazy-load → IFICalculator sort du bundle initial (logique métier + recharts)
+import dynamic from 'next/dynamic'
+import CalculatorSkeleton from '@/components/Calculator/CalculatorSkeleton'
+const IFICalculator = dynamic(
+  () => import('@/components/Calculator/IFICalculator'),
+  { loading: () => <CalculatorSkeleton /> }
+)
 import SourcesSection from '@/components/SourcesSection'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import SchemaHowTo from '@/components/SchemaHowTo'
+import { FAQ_IFI, HOWTO_IFI } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'Calculateur IFI 2026 : impôt sur la fortune immobilière',
@@ -12,6 +22,7 @@ export const metadata: Metadata = {
     title: 'Calculateur IFI 2026 - impôt sur la fortune immobilière',
     description: 'Simulez votre IFI : abattement RP 30 %, barème 6 tranches, décote progressive, plafonnement IFI + IR à 75 % des revenus.',
     type: 'article',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CalculPatrimoine' }],
   },
 
   alternates: { canonical: 'https://calculpatrimoine.fr/ifi' },
@@ -50,6 +61,14 @@ const BAREME_IFI = [
 export default function IFIPage() {
   return (
     <>
+      <SchemaHowTo
+        name={HOWTO_IFI.name}
+        description={HOWTO_IFI.description}
+        totalTime={HOWTO_IFI.totalTime}
+        steps={HOWTO_IFI.steps}
+        tool="Calculateur CalculPatrimoine"
+      />
+      <SchemaFAQ items={FAQ_IFI} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(toolSchema) }}

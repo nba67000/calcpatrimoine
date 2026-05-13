@@ -126,3 +126,58 @@ html {
     width: 1.75rem !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   PERF — Animations CSS natives (remplacent framer-motion)
+   Importées par CoupleCalculator, RenteCalculator, InverseCalculator.
+   Aucun JS au runtime → TBT non impacté.
+   ───────────────────────────────────────────────────────────── */
+
+@keyframes perfFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Stagger : appliquer animationDelay en style inline sur chaque élément */
+.perf-fade-in {
+  animation: perfFadeIn 0.25s ease-out both;
+}
+
+/* Expansion verticale — remplace AnimatePresence height 0→auto */
+@keyframes perfExpand {
+  from { opacity: 0; max-height: 0; }
+  to   { opacity: 1; max-height: 900px; }
+}
+
+.perf-expand {
+  animation: perfExpand 0.3s ease forwards;
+  overflow: hidden;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .perf-fade-in,
+  .perf-expand {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    max-height: none;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PERF — Font fallback metrics (réduit le CLS dû au FOUT)
+   Ces valeurs ajustent la police système utilisée en fallback
+   pour qu'elle ait les mêmes dimensions que Playfair Display,
+   minimisant le layout shift au swap.
+   Outil de référence : https://screenspan.net/fallback
+   ───────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Playfair Display Fallback';
+  src: local('Georgia');
+  ascent-override: 97%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 106%;
+}

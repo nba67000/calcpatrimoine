@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 
 const PREFIX = 'calcpatrimoine:state:'
 const HISTORY_KEY = 'calcpatrimoine:history'
@@ -12,13 +12,25 @@ export interface SimHistoryEntry {
   date: string // ISO 8601
 }
 
+/** Vérifie si un état sauvegardé existe dans localStorage pour ce slug. */
+export function hasStoredState(slug: string): boolean {
+  if (typeof window === 'undefined') return false
+  try {
+    return localStorage.getItem(PREFIX + slug) !== null
+  } catch {
+    return false
+  }
+}
+
 /**
  * Persiste les inputs d'un calculateur dans localStorage.
  * Drop-in replacement pour useState — les valeurs survivent aux rechargements.
  * Fusionne avec l'objet `initial` pour résister aux évolutions de schéma.
+ * Retourne [state, setState, reset] — reset efface le stockage et revient aux valeurs initiales.
  */
-export function useSimStorage<T>(slug: string, initial: T): [T, (val: T | ((prev: T) => T)) => void] {
+export function useSimStorage<T>(slug: string, initial: T): [T, (val: T | ((prev: T) => T)) => void, () => void] {
   const key = PREFIX + slug
+  const initialRef = useRef(initial)
 
   const [state, setStateRaw] = useState<T>(() => {
     if (typeof window === 'undefined') return initial
@@ -45,7 +57,12 @@ export function useSimStorage<T>(slug: string, initial: T): [T, (val: T | ((prev
     [key]
   )
 
-  return [state, setState]
+  const reset = useCallback(() => {
+    try { localStorage.removeItem(key) } catch {}
+    setStateRaw(initialRef.current)
+  }, [key])
+
+  return [state, setState, reset]
 }
 
 /** Enregistre un résultat de simulation dans l'historique local (1 entrée par slug). */

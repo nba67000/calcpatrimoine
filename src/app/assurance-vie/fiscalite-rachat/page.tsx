@@ -1,8 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import CalculateurPageLayout from '@/components/CalculateurPageLayout'
-import AssuranceVieCalculator from '@/components/Calculator/AssuranceVieCalculator'
+// PERF: lazy-load → AssuranceVieCalculator sort du bundle initial (logique métier + recharts)
+import dynamic from 'next/dynamic'
+import CalculatorSkeleton from '@/components/Calculator/CalculatorSkeleton'
+const AssuranceVieCalculator = dynamic(
+  () => import('@/components/Calculator/AssuranceVieCalculator'),
+  { loading: () => <CalculatorSkeleton /> }
+)
 import SourcesSection from '@/components/SourcesSection'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import SchemaHowTo from '@/components/SchemaHowTo'
+import { FAQ_ASSURANCE_VIE, HOWTO_ASSURANCE_VIE } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'Calculateur Assurance-Vie : Fiscalité Rachat PFU vs IR | CalculPatrimoine',
@@ -12,6 +22,7 @@ export const metadata: Metadata = {
     title: 'Calculateur Fiscalité Assurance-Vie - PFU vs IR',
     description: 'Calculez combien vous allez payer en impôts sur votre rachat d\'assurance-vie.',
     type: 'article',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CalculPatrimoine' }],
   },
   alternates: { canonical: 'https://calculpatrimoine.fr/assurance-vie/fiscalite-rachat' },
 }
@@ -24,7 +35,16 @@ const CROSS_LINKS = [
 
 export default function AssuranceViePage() {
   return (
-    <CalculateurPageLayout
+    <>
+      <SchemaHowTo
+        name={HOWTO_ASSURANCE_VIE.name}
+        description={HOWTO_ASSURANCE_VIE.description}
+        totalTime={HOWTO_ASSURANCE_VIE.totalTime}
+        steps={HOWTO_ASSURANCE_VIE.steps}
+        tool="Calculateur CalculPatrimoine"
+      />
+      <SchemaFAQ items={FAQ_ASSURANCE_VIE} />
+      <CalculateurPageLayout
       breadcrumb={[
         { href: '/', label: 'Accueil' },
         { href: '/assurance-vie', label: 'Assurance-Vie' },
@@ -135,5 +155,6 @@ export default function AssuranceViePage() {
       </section>
 
     </CalculateurPageLayout>
+    </>
   )
 }

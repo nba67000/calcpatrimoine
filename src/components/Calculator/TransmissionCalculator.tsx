@@ -18,6 +18,7 @@ import type {
 import ChatWidget from '@/components/ChatWidget'
 import AlertList from '@/components/AlertList'
 import CrossLink from '@/components/CrossLink'
+import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
 import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import { formatEur } from '@/lib/formatters'
 
@@ -41,7 +42,7 @@ const DEFAULT_STATE: TransmissionSimState = {
 }
 
 export default function TransmissionCalculator() {
- const [inputs, setInputs] = useSimStorage<TransmissionSimState>('assurance-vie-transmission', DEFAULT_STATE)
+ const [inputs, setInputs, resetInputs] = useSimStorage<TransmissionSimState>('assurance-vie-transmission', DEFAULT_STATE)
 
  const results = useMemo<TransmissionResults>(() => calculerTransmission({
    ...inputs,
@@ -70,6 +71,7 @@ export default function TransmissionCalculator() {
 
  return (
  <>
+ <SimResumeBanner slug="assurance-vie-transmission" onReset={resetInputs} />
  <div className="grid lg:grid-cols-2 gap-8">
 
  {/* COLONNE GAUCHE - INPUTS */}

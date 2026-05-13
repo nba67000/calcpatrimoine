@@ -1,8 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import CalculateurPageLayout from '@/components/CalculateurPageLayout'
-import TMICalculator from '@/components/Calculator/TMICalculator'
+// PERF: lazy-load → TMICalculator sort du bundle initial (logique métier + recharts)
+import dynamic from 'next/dynamic'
+import CalculatorSkeleton from '@/components/Calculator/CalculatorSkeleton'
+const TMICalculator = dynamic(
+  () => import('@/components/Calculator/TMICalculator'),
+  { loading: () => <CalculatorSkeleton /> }
+)
 import SourcesSection from '@/components/SourcesSection'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import SchemaHowTo from '@/components/SchemaHowTo'
+import { FAQ_TMI, HOWTO_TMI } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: 'Calculateur TMI : Tranche Marginale Imposition 2026',
@@ -12,6 +22,7 @@ export const metadata: Metadata = {
     title: 'Calculateur TMI - Tranche Marginale d\'Imposition 2026',
     description: 'Calculez votre TMI et votre IR net avec le barème officiel 2026, le quotient familial et la décote.',
     type: 'article',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CalculPatrimoine' }],
   },
 
   alternates: { canonical: 'https://calculpatrimoine.fr/tmi' },
@@ -35,7 +46,16 @@ const LIMITES = [
 
 export default function TMIPage() {
   return (
-    <CalculateurPageLayout
+    <>
+      <SchemaHowTo
+        name={HOWTO_TMI.name}
+        description={HOWTO_TMI.description}
+        totalTime={HOWTO_TMI.totalTime}
+        steps={HOWTO_TMI.steps}
+        tool="Calculateur CalculPatrimoine"
+      />
+      <SchemaFAQ items={FAQ_TMI} />
+      <CalculateurPageLayout
       breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'Tranche Marginale d\'Imposition' }]}
       titre={<>Calculateur TMI<br />Barème IR 2026</>}
       description="Calculez votre tranche marginale d'imposition et votre impôt net à partir de votre
@@ -174,5 +194,6 @@ export default function TMIPage() {
       </section>
 
     </CalculateurPageLayout>
+    </>
   )
 }

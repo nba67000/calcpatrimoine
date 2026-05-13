@@ -5,12 +5,13 @@ import { useMemo, useEffect } from 'react'
 import { calculateAnnuity } from '@/lib/mortality'
 import { formatEurRounded as formatEuro, formatNombre } from '@/lib/formatters'
 import type { AnnuityResult } from '@/types'
-import { motion, AnimatePresence } from 'framer-motion'
+// PERF: framer-motion supprimé → animations CSS natives (.perf-fade-in, .perf-expand)
 import Tooltip from '@/components/Tooltip'
 import ProjectionChart from '@/components/ProjectionChart'
 import Icon from '@/components/Icon'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
+import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
 import { useNumericInput } from '@/hooks/useNumericInput'
 import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import { LIMITS, DEFAULT_VALUES } from '@/lib/constants'
@@ -72,7 +73,7 @@ interface RenteSimState {
 }
 
 export default function RenteCalculator() {
-  const [simState, setSimState] = useSimStorage<RenteSimState>('rente-viagere', {
+  const [simState, setSimState, resetSimState] = useSimStorage<RenteSimState>('rente-viagere', {
     age: DEFAULT_VALUES.AGE,
     capital: DEFAULT_VALUES.CAPITAL,
     showReversion: false,
@@ -111,6 +112,7 @@ export default function RenteCalculator() {
 
  return (
  <>
+ <SimResumeBanner slug="rente-viagere" onReset={resetSimState} />
  <div className="max-w-6xl mx-auto" suppressHydrationWarning>
  {/* Zone formulaire */}
   <div className="bg-neutral-100 rounded-lg shadow-md p-5 sm:p-8 mb-6 border-l-4 border-primary-600" suppressHydrationWarning>
@@ -239,15 +241,8 @@ export default function RenteCalculator() {
  />
  </button>
  </div>
-
- <AnimatePresence>
  {simState.showReversion && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: 'auto', opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.3 }}
- className="overflow-hidden"
+ <div className="overflow-hidden perf-fade-in"
 >
  <div className="border-t border-primary-200 pt-4 mt-2">
  <div className="bg-white/50 rounded-lg p-4 mb-4">
@@ -324,36 +319,26 @@ export default function RenteCalculator() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  </div>
  </div>
 
  {/* Zone résultat */}
  {result && (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="bg-white rounded-lg shadow-lg p-5 sm:p-8 border-t-4 border-primary-600"
+ <div className="bg-white rounded-lg shadow-lg p-5 sm:p-8 border-t-4 border-primary-600 perf-fade-in"
 >
  <h3 className="text-xl font-semibold text-neutral-900 mb-6">Votre rente viagère estimée</h3>
 
  <div className="mb-8">
- <motion.div
- key={result.monthly_amount}
- initial={{ y: 10, opacity: 0 }}
- animate={{ y: 0, opacity: 1 }}
- transition={{ duration: 0.2 }}
- className="flex items-baseline gap-2"
+ <div key={result.monthly_amount} className="flex items-baseline gap-2 perf-fade-in"
 >
  <span className="text-4xl sm:text-6xl font-bold tabular-nums text-neutral-900 tracking-tight">
  {formatEuro(result.monthly_amount)}
  </span>
  <span className="text-xl text-neutral-600 font-medium">/ mois</span>
- </motion.div>
+ </div>
  <div className="text-sm text-neutral-500 mt-2">Rente mensuelle garantie à vie</div>
  </div>
 
@@ -392,23 +377,19 @@ export default function RenteCalculator() {
      reversion={simState.showReversion ? { enabled: true, spouse_age: simState.spouseAge, percentage: simState.reversionPercentage } : { enabled: false }}
    />
  )}
- </motion.div>
+ </div>
  )}
 
  {/* Graphique de projection */}
  {result && (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.1 }}
- className="mt-6 bg-white rounded-lg shadow-lg p-4 sm:p-8 border border-neutral-200"
+ <div className="mt-6 bg-white rounded-lg shadow-lg p-4 sm:p-8 border border-neutral-200 perf-fade-in" style={{ animationDelay: '100ms' }}
 >
  <ProjectionChart
  capital={capitalInput.value}
  monthlyRent={result.monthly_amount}
  lifeExpectancy={result.life_expectancy}
  />
- </motion.div>
+ </div>
  )}
 
  </div>

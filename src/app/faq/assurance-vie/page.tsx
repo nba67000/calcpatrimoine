@@ -1,6 +1,10 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import CrossLink from '@/components/CrossLink'
 import type { ReactElement } from 'react'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import { FAQ_ASSURANCE_VIE } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
  title: 'FAQ Assurance-Vie : Fiscalité, Rachat et Optimisation | CalculPatrimoine',
@@ -102,10 +106,13 @@ const faqItems: FAQItem[] = [
  <li>TMI à 41% : IR + PS = 58,2% | PFU = 30%</li>
  </ul>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-3 rounded text-sm">
- Le calculateur compare automatiquement ces deux options pour votre situation. 
- Le choix final vous appartient selon vos objectifs fiscaux. Consultez un 
+ Le calculateur compare automatiquement ces deux options pour votre situation.
+ Le choix final vous appartient selon vos objectifs fiscaux. Consultez un
  professionnel pour un conseil personnalisé.
  </p>
+ <div className="mt-4">
+  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Calculateur fiscalité des rachats" description="Simulez PFU vs IR sur votre situation — ancienneté, montant, TMI, versements avant 2017." />
+ </div>
  </>
  )
  },
@@ -232,10 +239,13 @@ const faqItems: FAQItem[] = [
  de votre plus-value.
  </p>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded">
- <strong>Information :</strong>Le calculateur affiche cette différence si votre 
- contrat a moins de 8 ans et compare les deux scénarios (rachat immédiat vs 
+ <strong>Information :</strong>Le calculateur affiche cette différence si votre
+ contrat a moins de 8 ans et compare les deux scénarios (rachat immédiat vs
  attendre 8 ans). La décision finale vous appartient selon vos besoins de liquidité.
  </p>
+ <div className="mt-4">
+  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Simulez les deux scénarios" description="Calculez l'écart fiscal entre un rachat immédiat et attendre le seuil des 8 ans." />
+ </div>
  </>
  )
  },
@@ -256,10 +266,13 @@ const faqItems: FAQItem[] = [
  2 × 4 600€ = <strong>9 200€ au total</strong>
  </p>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded text-sm">
- <strong>Information :</strong>Le calculateur affiche cette option de 
- fractionnement et calcule la différence fiscale. Le choix vous appartient 
+ <strong>Information :</strong>Le calculateur affiche cette option de
+ fractionnement et calcule la différence fiscale. Le choix vous appartient
  selon vos besoins de liquidité et votre situation personnelle.
  </p>
+ <div className="mt-4">
+  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Simulez le fractionnement sur 2 ans" description="Saisissez 25 000€ deux fois et comparez l'économie fiscale réalisée." />
+ </div>
  </>
  )
  },
@@ -341,9 +354,12 @@ const faqItems: FAQItem[] = [
  </div>
  </div>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded mt-3 text-sm">
- Le calculateur compare ces différentes variables. Pour une stratégie 
+ Le calculateur compare ces différentes variables. Pour une stratégie
  adaptée à votre situation, consultez un expert-comptable ou un CGP.
  </p>
+ <div className="mt-4">
+  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Testez chaque variable en temps réel" description="Modifiez ancienneté, TMI, montant, versements avant 2017 — l'impôt se recalcule instantanément." />
+ </div>
  </>
  )
  },
@@ -371,9 +387,12 @@ const faqItems: FAQItem[] = [
  <li>Suggestions de fractionnement si pertinent</li>
  </ul>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded text-sm">
- Ces comparaisons sont à titre informatif. La décision finale vous appartient 
+ Ces comparaisons sont à titre informatif. La décision finale vous appartient
  selon votre situation personnelle, fiscale et patrimoniale.
  </p>
+ <div className="mt-4">
+  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Ouvrez le calculateur" description="Modifiez chaque paramètre et comparez vos scénarios en temps réel." />
+ </div>
  </>
  )
  },
@@ -392,9 +411,12 @@ const faqItems: FAQItem[] = [
  <li>Comparer plusieurs scénarios côte à côte</li>
  </ul>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded text-sm">
- <strong>Information pratique :</strong>Vous pouvez ouvrir plusieurs onglets 
+ <strong>Information pratique :</strong>Vous pouvez ouvrir plusieurs onglets
  du calculateur pour comparer différents scénarios simultanément.
  </p>
+ <div className="mt-4">
+  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Simulez un rachat futur" description="Anticipez la fiscalité selon n'importe quel montant, horizon ou TMI — résultats immédiats." />
+ </div>
  </>
  )
  },
@@ -472,6 +494,7 @@ export default function FAQAssuranceViePage() {
 
  return (
  <div className="min-h-screen bg-neutral-50">
+      <SchemaFAQ items={FAQ_ASSURANCE_VIE} />
  {/* Header */}
  <div className="bg-gradient-to-b from-primary-50 to-white border-b border-neutral-200">
  <div className="max-w-4xl mx-auto px-4 py-12">

@@ -2,9 +2,13 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import CrossLink from '@/components/CrossLink'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import FAQAccordionClient from '@/components/FAQAccordionClient'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import { FAQ_TMI } from '@/lib/schema/schemaData'
+
 
 export const metadata: Metadata = {
   title: "FAQ Tranche Marginale d'Imposition 2026 | CalculPatrimoine",
@@ -121,6 +125,9 @@ const sections: FAQSection[] = [
               Si vous saisissez votre salaire brut, utilisez d&apos;abord le simulateur impots.gouv.fr
               pour obtenir votre revenu net imposable exact.
             </p>
+            <div className="mt-4">
+              <CrossLink href="/tmi" title="Calculateur TMI" description="Calculez votre tranche marginale et votre impôt sur le revenu 2026 à partir du revenu net imposable." />
+            </div>
           </>
         ),
       },
@@ -249,6 +256,7 @@ const sections: FAQSection[] = [
 export default function FAQTMIPage() {
   return (
     <>
+      <SchemaFAQ items={FAQ_TMI} />
       <Header />
       <div className="h-[3px] bg-accent-400 w-full" />
       <main style={{ backgroundColor: '#F7F3EC' }}>
