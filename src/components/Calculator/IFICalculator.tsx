@@ -6,6 +6,7 @@ import type { IFIInputs } from '@/types/ifi'
 import { saveSimHistory } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
+import CrossLink from '@/components/CrossLink'
 import { formatEur, formatPct } from '@/lib/formatters'
 
 const SEUIL_IFI = 1_300_000
@@ -374,6 +375,32 @@ export default function IFICalculator() {
         <AlertList items={results.optimisations} />
       </div>
     </div>
+
+    {results.assujetti && (
+      <div className="mt-4 border-t border-neutral-200">
+        <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 px-1 pt-4 pb-2">
+          Questions naturelles après ce résultat
+        </p>
+        <CrossLink
+          href="/tmi"
+          title="Calculer votre TMI — le plafonnement IFI dépend de votre IR"
+          description="Le plafonnement IFI (IR + IFI ≤ 75 % des revenus) nécessite de connaître votre IR exact — Calculer."
+        />
+        <CrossLink
+          href="/assurance-vie/transmission"
+          title="Réduire l'assiette IFI par démembrement ou assurance-vie"
+          description="Le capital en assurance-vie ({ifi} d'IFI en jeu) n'entre pas dans l'assiette IFI — Simuler la transmission."
+          context={{ ifi: formatEur(ifiDefinitif) }}
+        />
+        <CrossLink
+          href="/assurance-vie/fiscalite-rachat"
+          title="Arbitrage : placer une partie du patrimoine hors IFI"
+          description="Un rachat de {ifi} réinvesti en assurance-vie sortirait ce montant de l'assiette IFI."
+          context={{ ifi: formatEur(ifiDefinitif) }}
+        />
+      </div>
+    )}
+
     <ChatWidget
       contexte={{
         calculateur: 'ifi',

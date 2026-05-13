@@ -6,6 +6,7 @@ import type { PlusValueImmobiliereInputs } from '@/types/plusValueImmobiliere'
 import { saveSimHistory } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
+import CrossLink from '@/components/CrossLink'
 import { formatEur, formatPct } from '@/lib/formatters'
 
 export default function PlusValueImmobiliereCalculator() {
@@ -451,6 +452,33 @@ export default function PlusValueImmobiliereCalculator() {
 
       </div>
     </div>
+
+    {!results.exoneree && results.pvBrute > 0 && (
+      <div className="mt-4 border-t border-neutral-200">
+        <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 px-1 pt-4 pb-2">
+          Questions naturelles après ce résultat
+        </p>
+        <CrossLink
+          href="/tmi"
+          title="Quel sera l'impact de ce produit de cession sur votre TMI ?"
+          description="Le net perçu de {netPercu} s'ajoutera à vos revenus cette année — votre tranche marginale peut changer."
+          context={{ netPercu: formatEur(results.netPercu) }}
+        />
+        <CrossLink
+          href="/assurance-vie/fiscalite-rachat"
+          title="Réinvestir le net de cession en assurance-vie"
+          description="{netPercu} réinvesti en assurance-vie : simulation de la fiscalité à la sortie après 8 ans."
+          context={{ netPercu: formatEur(results.netPercu) }}
+        />
+        <CrossLink
+          href="/rente-viagere"
+          title="Convertir ce capital en rente viagère"
+          description="{netPercu} en rente mensuelle garantie à vie — tables INSEE 2021."
+          context={{ netPercu: formatEur(results.netPercu) }}
+        />
+      </div>
+    )}
+
     <ChatWidget
       contexte={{
         calculateur: 'plus-value-immobiliere',

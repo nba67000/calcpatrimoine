@@ -8,6 +8,7 @@ import { useNumericInput } from '@/hooks/useNumericInput'
 import { saveSimHistory } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
+import CrossLink from '@/components/CrossLink'
 import { formatEur } from '@/lib/formatters'
 
 const TMI_COLORS: Record<number, { badge: string; text: string; bg: string }> = {
@@ -324,6 +325,38 @@ export default function TMICalculator() {
         <AlertList items={results.optimisations} />
       </div>
     </div>
+
+    {results.irNet > 0 && (
+      <div className="mt-4 border-t border-neutral-200">
+        <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 px-1 pt-4 pb-2">
+          Questions naturelles après ce résultat
+        </p>
+        <CrossLink
+          href="/per-individuel"
+          title="Un versement PER réduirait cet impôt"
+          description="Avec votre TMI à {tmi} %, un versement PER de 5 000 € économiserait ~{economie} d'impôt — Simuler."
+          context={{
+            tmi: results.tmi,
+            economie: formatEur(Math.round(5000 * results.tmi / 100)),
+          }}
+        />
+        <CrossLink
+          href="/assurance-vie/fiscalite-rachat"
+          title="Comparer PFU vs barème sur un rachat d'assurance-vie"
+          description="À {tmi} % de TMI, l'option optimale entre flat tax 12,8 % et barème progressif peut changer — Calculer."
+          context={{ tmi: results.tmi }}
+        />
+        {results.irNet > 500 && (
+          <CrossLink
+            href="/tmi"
+            title="Voir l'impact d'une part fiscale supplémentaire"
+            description="Ajouter une demi-part (enfant à charge, parent isolé) réduirait l'IR de {irNet} — recalculer."
+            context={{ irNet: formatEur(results.irNet) }}
+          />
+        )}
+      </div>
+    )}
+
     <ChatWidget contexte={{ calculateur: 'tmi', inputs, results }} />
     </>
   )

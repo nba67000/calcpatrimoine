@@ -8,6 +8,7 @@ import type { AssuranceVieInputs, AssuranceVieResults } from '@/types/assuranceV
 import { saveSimHistory } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
+import CrossLink from '@/components/CrossLink'
 import { formatEur } from '@/lib/formatters'
 
 export default function AssuranceVieCalculator() {
@@ -339,6 +340,30 @@ export default function AssuranceVieCalculator() {
         )}
       </div>
     </div>
+    {results && results.plusValueTaxable > 0 && (
+      <div className="mt-4 border-t border-neutral-200">
+        <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 px-1 pt-4 pb-2">
+          Questions naturelles après ce résultat
+        </p>
+        <CrossLink
+          href="/assurance-vie/transmission"
+          title="Et la transmission après votre décès ? Art. 990 I"
+          description="Ce contrat de {capital} transmis à vos bénéficiaires : calcul des droits hors succession."
+          context={{ capital: formatEur(capitalTotal) }}
+        />
+        <CrossLink
+          href="/rente-viagere"
+          title="Comparer avec une rente viagère sur ce capital"
+          description="Convertir {capital} en rente mensuelle garantie à vie — départ immédiat ou différé."
+          context={{ capital: formatEur(capitalTotal) }}
+        />
+        <CrossLink
+          href="/tmi"
+          title="Vérifier votre TMI avant de choisir PFU ou barème"
+          description="L'option optimale entre PFU 12,8 % et barème dépend de votre tranche marginale réelle."
+        />
+      </div>
+    )}
     {results && (
       <ChatWidget
         contexte={{

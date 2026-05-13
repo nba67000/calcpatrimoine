@@ -10,9 +10,58 @@ import Tooltip from '@/components/Tooltip'
 import ProjectionChart from '@/components/ProjectionChart'
 import Icon from '@/components/Icon'
 import ChatWidget from '@/components/ChatWidget'
+import CrossLink from '@/components/CrossLink'
 import { useNumericInput } from '@/hooks/useNumericInput'
 import { saveSimHistory } from '@/hooks/useSimStorage'
 import { LIMITS, DEFAULT_VALUES } from '@/lib/constants'
+
+// ---------------------------------------------------------------------------
+// Composant interne : Comparateur de scénarios d'âge de départ
+// Montre l'impact de partir 4 ans plus tard sur la rente mensuelle
+// ---------------------------------------------------------------------------
+interface AgeScenarioComparisonProps {
+  capital: number
+  currentAge: number
+  reversion: { enabled: false } | { enabled: true; spouse_age: number; percentage: 60 | 80 | 100 }
+}
+
+function AgeScenarioComparison({ capital, currentAge, reversion }: AgeScenarioComparisonProps) {
+  const laterAge = Math.min(currentAge + 4, LIMITS.AGE_MAX)
+  const laterResult = useMemo(
+    () => calculateAnnuity({ age: laterAge, capital, reversion }),
+    [laterAge, capital, reversion]
+  )
+  const currentResult = useMemo(
+    () => calculateAnnuity({ age: currentAge, capital, reversion }),
+    [currentAge, capital, reversion]
+  )
+
+  if (!laterResult || !currentResult) return null
+  const diff = laterResult.monthly_amount - currentResult.monthly_amount
+  if (diff <= 0) return null
+
+  return (
+    <div className="mt-6 bg-neutral-50 border border-neutral-200 p-4">
+      <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-3">
+        Scénario — départ à {laterAge} ans
+      </p>
+      <div className="flex items-baseline gap-3">
+        <span className="text-2xl font-bold tabular-nums text-neutral-900">
+          {formatEuro(laterResult.monthly_amount)}
+        </span>
+        <span className="text-sm text-neutral-500">/ mois</span>
+        <span className="font-mono text-sm text-green-700 font-medium">
+          +{formatEuro(diff)}/mois vs {currentAge} ans
+        </span>
+      </div>
+      <p className="text-xs text-neutral-400 mt-1">
+        Attendre {laterAge - currentAge} ans génère {formatEuro(diff * 12)}/an supplémentaires à vie.
+      </p>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
 
 export default function RenteCalculator() {
  const [init] = useState(() => {
@@ -334,6 +383,15 @@ export default function RenteCalculator() {
  </div>
  </div>
  )}
+
+ {/* Comparateur de scénarios d'âge */}
+ {age < 75 && (
+   <AgeScenarioComparison
+     capital={capitalInput.value}
+     currentAge={age}
+     reversion={showReversion ? { enabled: true, spouse_age: spouseAge, percentage: reversionPercentage } : { enabled: false }}
+   />
+ )}
  </motion.div>
  )}
 
@@ -354,6 +412,31 @@ export default function RenteCalculator() {
  )}
 
  </div>
+ {result && (
+   <div className="mt-4 border-t border-neutral-200">
+     <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 px-1 pt-4 pb-2">
+       Questions naturelles après ce résultat
+     </p>
+     <CrossLink
+       href="/assurance-vie/fiscalite-rachat"
+       title="Et si ce capital restait en assurance-vie ?"
+       description="Fiscalité exacte d'un rachat partiel sur un contrat de {capital} — abattement, PFU vs barème."
+       context={{ capital: formatNombre(capitalInput.value) + ' €' }}
+     />
+     <CrossLink
+       href="/assurance-vie/transmission"
+       title="Transmission après décès — Art. 990 I"
+       description="Ce capital de {capital} transmis en assurance-vie : calcul des droits par bénéficiaire."
+       context={{ capital: formatNombre(capitalInput.value) + ' €' }}
+     />
+     <CrossLink
+       href="/tmi"
+       title="Quelle est votre TMI ?"
+       description="La rente de {rente}/mois s'ajoute à vos revenus — votre tranche marginale détermine l'impôt réel."
+       context={{ rente: formatEuro(result.monthly_amount) }}
+     />
+   </div>
+ )}
  {result && (
    <ChatWidget
      contexte={{

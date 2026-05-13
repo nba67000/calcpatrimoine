@@ -22,7 +22,7 @@ export default function SimHistoryWidget() {
 
   return (
     <section className="max-w-7xl mx-auto px-6 pb-12">
-      <div className="flex items-center gap-6 mb-5">
+      <div className="flex items-center gap-6 mb-1">
         <h2 className="font-mono text-xs uppercase tracking-widest text-neutral-500 shrink-0">
           Reprendre une simulation
         </h2>
@@ -34,6 +34,11 @@ export default function SimHistoryWidget() {
           Effacer
         </button>
       </div>
+
+      {/* Message éditorial — pas "sauvegardé sur nos serveurs", mais factuel */}
+      <p className="font-mono text-xs text-neutral-400 mb-4">
+        Vos paramètres sont conservés localement sur cet appareil — aucune donnée transmise.
+      </p>
 
       <div className="flex flex-wrap gap-3">
         {history.map(entry => (

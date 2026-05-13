@@ -19,6 +19,7 @@ import type {
 } from '@/types/transmission'
 import ChatWidget from '@/components/ChatWidget'
 import AlertList from '@/components/AlertList'
+import CrossLink from '@/components/CrossLink'
 import { saveSimHistory } from '@/hooks/useSimStorage'
 import { formatEur } from '@/lib/formatters'
 
@@ -400,6 +401,32 @@ export default function TransmissionCalculator() {
  {results && <AlertList items={results.infos} />}
  </div>
  </div>
+
+ {results && results.capitalTotal > 0 && (
+   <div className="mt-4 border-t border-neutral-200">
+     <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 px-1 pt-4 pb-2">
+       Questions naturelles après ce résultat
+     </p>
+     <CrossLink
+       href="/assurance-vie/fiscalite-rachat"
+       title="Simuler avec des versements avant 27/09/2017"
+       description="Les versements avant 2017 sur ce capital de {capital} bénéficient du taux 7,5 % — Calculer l'écart."
+       context={{ capital: formatEur(capitalTotal) }}
+     />
+     <CrossLink
+       href="/rente-viagere"
+       title="Ce capital converti en rente viagère avant décès"
+       description="{capital} en rente mensuelle à vie : comparaison avec la transmission aux bénéficiaires."
+       context={{ capital: formatEur(capitalTotal) }}
+     />
+     <CrossLink
+       href="/tmi"
+       title="Vérifier la TMI des bénéficiaires"
+       description="Les versements après 70 ans sont soumis aux droits de succession — la TMI des héritiers est déterminante."
+     />
+   </div>
+ )}
+
  {results && (
    <ChatWidget
      contexte={{

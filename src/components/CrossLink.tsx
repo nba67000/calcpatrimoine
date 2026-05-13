@@ -5,9 +5,24 @@ interface CrossLinkProps {
   description: string
   href: string
   variant?: 'blue'
+  /**
+   * Valeurs du résultat à injecter dans `description`.
+   * Syntaxe : "{key}" dans la chaîne description.
+   * Ex: description="Votre TMI est à {tmi} — un versement PER de {perSuggere} économiserait ~{economie}."
+   */
+  context?: Record<string, string | number>
 }
 
-export default function CrossLink({ title, description, href }: CrossLinkProps) {
+function interpolate(text: string, context?: Record<string, string | number>): string {
+  if (!context) return text
+  return text.replace(/\{(\w+)\}/g, (_, key) =>
+    key in context ? String(context[key]) : `{${key}}`
+  )
+}
+
+export default function CrossLink({ title, description, href, context }: CrossLinkProps) {
+  const resolvedDescription = interpolate(description, context)
+
   return (
     <Link
       href={href}
@@ -16,7 +31,7 @@ export default function CrossLink({ title, description, href }: CrossLinkProps) 
     >
       <div>
         <p className="font-bold text-neutral-900 group-hover:text-primary-700 transition-colors mb-0.5">{title}</p>
-        <p className="text-sm text-neutral-500">{description}</p>
+        <p className="text-sm text-neutral-500">{resolvedDescription}</p>
       </div>
       <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
     </Link>

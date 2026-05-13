@@ -9,6 +9,60 @@ import { useNumericInput } from '@/hooks/useNumericInput'
 import { saveSimHistory } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
+import CrossLink from '@/components/CrossLink'
+
+// ---------------------------------------------------------------------------
+// Composant interne : Scénario de versement alternatif
+// Compare l'économie fiscale pour versement actuel vs 50% plus élevé (plafond max)
+// ---------------------------------------------------------------------------
+interface PERVersementScenarioProps {
+  salaire: number
+  tmi: TMIOption
+  versementActuel: number
+  rapports: { n1: number; n2: number; n3: number; n4: number; n5: number }
+  plafondTotal: number
+}
+
+function PERVersementScenario({ salaire, tmi, versementActuel, rapports, plafondTotal }: PERVersementScenarioProps) {
+  const versementAlternatif = Math.min(versementActuel * 2, plafondTotal)
+  if (versementAlternatif <= versementActuel + 500) return null // trop proche, inutile
+
+  const resultatAlt = useMemo(() => calculerPER({
+    salaireNetAnnuel: salaire,
+    tmi,
+    versementEnvisage: versementAlternatif,
+    plafondsReportesN1: rapports.n1,
+    plafondsReportesN2: rapports.n2,
+    plafondsReportesN3: rapports.n3,
+    plafondsReportesN4: rapports.n4,
+    plafondsReportesN5: rapports.n5,
+  }), [salaire, tmi, versementAlternatif, rapports.n1, rapports.n2, rapports.n3, rapports.n4, rapports.n5])
+
+  const economieAct = Math.round(Math.min(versementActuel, plafondTotal) * tmi / 100)
+  const gainSuppl = resultatAlt.economieFiscale - economieAct
+  if (gainSuppl <= 0) return null
+
+  return (
+    <div className="bg-neutral-50 border border-neutral-200 p-4">
+      <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-3">
+        Scénario — versement à {formatEur(versementAlternatif)}
+      </p>
+      <div className="flex items-baseline gap-3 flex-wrap">
+        <span className="text-2xl font-bold tabular-nums text-green-700">
+          {formatEur(resultatAlt.economieFiscale)}
+        </span>
+        <span className="font-mono text-sm text-green-700 font-medium">
+          +{formatEur(gainSuppl)} d&apos;économie supplémentaire
+        </span>
+      </div>
+      <p className="text-xs text-neutral-400 mt-1">
+        Doubler le versement réduit le coût net réel à {formatEur(resultatAlt.coutNetReel)}.
+      </p>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
 
 const TMI_OPTIONS: Array<{ value: TMIOption; label: string; color: string }> = [
   { value: 0,  label: '0 %',  color: 'bg-neutral-100 text-neutral-800' },
@@ -325,8 +379,50 @@ export default function PERCalculator() {
 
         <AlertList items={warnings} />
         <AlertList items={optimisations} />
+
+        {/* Scénario : impact d'un versement différent */}
+        {tmi > 0 && economieFiscale > 0 && versement.value > 0 && (
+          <PERVersementScenario
+            salaire={salaire.value}
+            tmi={tmi}
+            versementActuel={versement.value}
+            rapports={{
+              n1: reportN1.value, n2: reportN2.value, n3: reportN3.value,
+              n4: reportN4.value, n5: reportN5.value,
+            }}
+            plafondTotal={detail.plafondTotal}
+          />
+        )}
+
       </div>
     </div>
+
+    {economieFiscale > 0 && (
+      <div className="mt-4 border-t border-neutral-200">
+        <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 px-1 pt-4 pb-2">
+          Questions naturelles après ce résultat
+        </p>
+        <CrossLink
+          href="/tmi"
+          title="Vérifier votre TMI — le calcul change si vous êtes à la limite d'une tranche"
+          description="Un versement PER de {versement} réduit votre revenu imposable — votre TMI réelle après versement peut différer."
+          context={{ versement: formatEur(versement.value) }}
+        />
+        <CrossLink
+          href="/assurance-vie/fiscalite-rachat"
+          title="Comparer avec un rachat d'assurance-vie à ce niveau de revenus"
+          description="PFU vs barème sur un rachat assurance-vie — l'écart dépend de votre TMI à {tmi} %."
+          context={{ tmi }}
+        />
+        <CrossLink
+          href="/rente-viagere"
+          title="Ce que deviendra ce capital converti en rente à la retraite"
+          description="Économie fiscale de {economie} réinvestie : simulation de la rente viagère au moment de la liquidation."
+          context={{ economie: formatEur(economieFiscale) }}
+        />
+      </div>
+    )}
+
     <ChatWidget contexte={{ calculateur: 'per-individuel', inputs, results }} />
     </>
   )
