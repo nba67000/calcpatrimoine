@@ -114,6 +114,43 @@ function calculerDetailTranches(
   return tranches
 }
 
+function evaluerAlertesTMI(p: {
+  plafonnementActif: boolean
+  reductionQFBrute: number
+  reductionQFPlafond: number
+  decoteApplicable: number
+  tmi: number
+  enCouple: boolean
+}): { warnings: TMIResults['warnings']; optimisations: TMIResults['optimisations'] } {
+  const warnings: TMIResults['warnings'] = []
+  const optimisations: TMIResults['optimisations'] = []
+
+  if (p.plafonnementActif) {
+    const ecart = Math.round(p.reductionQFBrute - p.reductionQFPlafond)
+    warnings.push({
+      type: 'warning',
+      message: `Le plafonnement du quotient familial s'applique : la réduction d'impôt est limitée à ${p.reductionQFPlafond.toLocaleString('fr-FR')} € (plafond de ${PLAFOND_DEMI_PART.toLocaleString('fr-FR')} € par demi-part). La réduction supplémentaire bloquée s'élève à ${ecart.toLocaleString('fr-FR')} €.`,
+    })
+  }
+
+  if (p.decoteApplicable > 0) {
+    optimisations.push({
+      type: 'info',
+      message: `La décote s'applique : l'impôt est réduit de ${p.decoteApplicable.toLocaleString('fr-FR')} € (décote ${p.enCouple ? 'couple' : 'célibataire/parent isolé'}, Art. 197-I-4 CGI).`,
+    })
+  }
+
+  if (p.tmi >= 30) {
+    const gainPER1000 = Math.round(1000 * (p.tmi / 100))
+    optimisations.push({
+      type: 'info',
+      message: `Avec une TMI à ${p.tmi} %, un versement de 1 000 € sur un PER individuel génère une économie d'impôt d'environ ${gainPER1000.toLocaleString('fr-FR')} € (sous réserve du plafond de déductibilité Art. 163 quatervicies CGI).`,
+    })
+  }
+
+  return { warnings, optimisations }
+}
+
 /**
  * Calcule la TMI, l'IR net et le taux moyen d'imposition.
  *
@@ -194,31 +231,9 @@ export function calculerTMIResult(inputs: TMIInputs): TMIResults {
   const detailTranches = calculerDetailTranches(revenuNetImposable, partsTotal)
 
   // 10. Warnings et optimisations
-  const warnings: TMIResults['warnings'] = []
-  const optimisations: TMIResults['optimisations'] = []
-
-  if (plafonnementActif) {
-    const ecart = Math.round(reductionQFBrute - reductionQFPlafond)
-    warnings.push({
-      type: 'warning',
-      message: `Le plafonnement du quotient familial s'applique : la réduction d'impôt est limitée à ${reductionQFPlafond.toLocaleString('fr-FR')} € (plafond de ${PLAFOND_DEMI_PART.toLocaleString('fr-FR')} € par demi-part). La réduction supplémentaire bloquée s'élève à ${ecart.toLocaleString('fr-FR')} €.`,
-    })
-  }
-
-  if (decoteApplicable > 0) {
-    optimisations.push({
-      type: 'info',
-      message: `La décote s'applique : l'impôt est réduit de ${decoteApplicable.toLocaleString('fr-FR')} € (décote ${enCouple ? 'couple' : 'célibataire/parent isolé'}, Art. 197-I-4 CGI).`,
-    })
-  }
-
-  if (tmi >= 30) {
-    const gainPER1000 = Math.round(1000 * (tmi / 100))
-    optimisations.push({
-      type: 'info',
-      message: `Avec une TMI à ${tmi} %, un versement de 1 000 € sur un PER individuel génère une économie d'impôt d'environ ${gainPER1000.toLocaleString('fr-FR')} € (sous réserve du plafond de déductibilité Art. 163 quatervicies CGI).`,
-    })
-  }
+  const { warnings, optimisations } = evaluerAlertesTMI({
+    plafonnementActif, reductionQFBrute, reductionQFPlafond, decoteApplicable, tmi, enCouple,
+  })
 
   return {
     nombreParts: partsTotal,

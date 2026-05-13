@@ -103,6 +103,51 @@ function calculerDecoteProgressive(patrimoine: number): number {
  * })
  * // r.ifiBrut = 35690, r.ifiNet = 35690
  */
+function evaluerAlertesIFI(p: {
+  dettesDeductibles: number
+  irAnnuel: number
+  patrimoineNetTaxable: number
+  decoteProgressive: number
+  plafonnementApplicable: boolean
+  ifiNet: number
+  seuilPlafonnement: number
+  ifiApresPlafonnement: number
+}): { warnings: IFIResults['warnings']; optimisations: IFIResults['optimisations'] } {
+  const warnings: IFIResults['warnings'] = []
+  const optimisations: IFIResults['optimisations'] = []
+
+  if (p.decoteProgressive > 0) {
+    optimisations.push({
+      type: 'info',
+      message: `Décote progressive appliquée : −${p.decoteProgressive.toLocaleString('fr-FR')} €. Elle s'annule progressivement entre 1 300 000 € et 1 400 000 € de patrimoine net taxable.`,
+      gain: p.decoteProgressive,
+    })
+  }
+
+  if (p.dettesDeductibles === 0 && p.patrimoineNetTaxable >= SEUIL_IFI) {
+    optimisations.push({
+      type: 'info',
+      message: `Si des emprunts immobiliers sont en cours sur les biens déclarés, le capital restant dû réduit le patrimoine taxable (Art. 974 CGI). Ajoutez ce montant dans le champ « Dettes déductibles » pour affiner le calcul.`,
+    })
+  }
+
+  if (p.plafonnementApplicable) {
+    warnings.push({
+      type: 'info',
+      message: `Plafonnement Art. 979 CGI : IFI (${p.ifiNet.toLocaleString('fr-FR')} €) + IR (${p.irAnnuel.toLocaleString('fr-FR')} €) dépasse 75 % des revenus (${p.seuilPlafonnement.toLocaleString('fr-FR')} €). L'IFI est plafonné à ${p.ifiApresPlafonnement.toLocaleString('fr-FR')} €.`,
+    })
+  }
+
+  if (p.patrimoineNetTaxable >= SEUIL_IFI && p.patrimoineNetTaxable < SEUIL_IFI + 50_000) {
+    warnings.push({
+      type: 'warning',
+      message: `Patrimoine net taxable très proche du seuil de 1 300 000 €. Une réévaluation des biens ou une dette déductible non renseignée peut modifier l'assujettissement.`,
+    })
+  }
+
+  return { warnings, optimisations }
+}
+
 export function calculerIFI(inputs: IFIInputs): IFIResults {
   // 1. Abattement résidence principale (Art. 973 CGI)
   const abattementRP = inputs.incluResidencePrincipale
@@ -166,37 +211,16 @@ export function calculerIFI(inputs: IFIInputs): IFIResults {
     : 0
 
   // 8. Warnings et optimisations
-  const warnings: IFIResults['warnings'] = []
-  const optimisations: IFIResults['optimisations'] = []
-
-  if (decoteProgressive > 0) {
-    optimisations.push({
-      type: 'info',
-      message: `Décote progressive appliquée : −${decoteProgressive.toLocaleString('fr-FR')} €. Elle s'annule progressivement entre 1 300 000 € et 1 400 000 € de patrimoine net taxable.`,
-      gain: decoteProgressive,
-    })
-  }
-
-  if (inputs.dettesDeductibles === 0 && patrimoineNetTaxable >= SEUIL_IFI) {
-    optimisations.push({
-      type: 'info',
-      message: `Si des emprunts immobiliers sont en cours sur les biens déclarés, le capital restant dû réduit le patrimoine taxable (Art. 974 CGI). Ajoutez ce montant dans le champ « Dettes déductibles » pour affiner le calcul.`,
-    })
-  }
-
-  if (plafonnementApplicable) {
-    warnings.push({
-      type: 'info',
-      message: `Plafonnement Art. 979 CGI : IFI (${ifiNet.toLocaleString('fr-FR')} €) + IR (${inputs.irAnnuel.toLocaleString('fr-FR')} €) dépasse 75 % des revenus (${seuilPlafonnement.toLocaleString('fr-FR')} €). L'IFI est plafonné à ${ifiApresPlafonnement.toLocaleString('fr-FR')} €.`,
-    })
-  }
-
-  if (patrimoineNetTaxable >= SEUIL_IFI && patrimoineNetTaxable < SEUIL_IFI + 50_000) {
-    warnings.push({
-      type: 'warning',
-      message: `Patrimoine net taxable très proche du seuil de 1 300 000 €. Une réévaluation des biens ou une dette déductible non renseignée peut modifier l'assujettissement.`,
-    })
-  }
+  const { warnings, optimisations } = evaluerAlertesIFI({
+    dettesDeductibles: inputs.dettesDeductibles,
+    irAnnuel: inputs.irAnnuel,
+    patrimoineNetTaxable,
+    decoteProgressive,
+    plafonnementApplicable,
+    ifiNet,
+    seuilPlafonnement,
+    ifiApresPlafonnement,
+  })
 
   return {
     abattementResidencePrincipale: abattementRP,

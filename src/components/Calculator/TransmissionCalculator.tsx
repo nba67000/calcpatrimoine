@@ -1,81 +1,61 @@
 // src/components/Calculator/TransmissionCalculator.tsx
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useMemo, useEffect } from 'react'
 import TransmissionChart from '@/components/TransmissionChart'
 import {
  calculerTransmission,
  genererIdBeneficiaire,
- getLibelleLien,
  ajouterBeneficiaire,
  supprimerBeneficiaire,
  equilibrerParts,
  modifierPartBeneficiaire,
 } from '@/lib/transmission'
 import type {
- TransmissionInputs,
  TransmissionResults,
  Beneficiaire
 } from '@/types/transmission'
 import ChatWidget from '@/components/ChatWidget'
 import AlertList from '@/components/AlertList'
 import CrossLink from '@/components/CrossLink'
-import { saveSimHistory } from '@/hooks/useSimStorage'
+import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import { formatEur } from '@/lib/formatters'
 
+interface TransmissionSimState {
+  capitalTotal: number
+  versementsAvant70: number
+  versementsApres70: number
+  ageSouscripteur: number
+  beneficiaires: Beneficiaire[]
+}
+
+const DEFAULT_STATE: TransmissionSimState = {
+  capitalTotal: 250000,
+  versementsAvant70: 180000,
+  versementsApres70: 20000,
+  ageSouscripteur: 72,
+  beneficiaires: [
+    { id: genererIdBeneficiaire(), nom: 'Enfant 1', lien: 'enfant', partPourcentage: 50 },
+    { id: genererIdBeneficiaire(), nom: 'Enfant 2', lien: 'enfant', partPourcentage: 50 },
+  ],
+}
+
 export default function TransmissionCalculator() {
- const [init] = useState(() => {
-   if (typeof window === 'undefined') return null
-   try {
-     const raw = localStorage.getItem('calcpatrimoine:state:assurance-vie-transmission')
-     return raw ? JSON.parse(raw) : null
-   } catch { return null }
- })
-
- // États inputs
- const [capitalTotal, setCapitalTotal] = useState<number>(init?.capitalTotal ?? 250000)
- const [versementsAvant70, setVersementsAvant70] = useState<number>(init?.versementsAvant70 ?? 180000)
- const [versementsApres70, setVersementsApres70] = useState<number>(init?.versementsApres70 ?? 20000)
- const [ageSouscripteur, setAgeSouscripteur] = useState<number>(init?.ageSouscripteur ?? 72)
-
- const [beneficiaires, setBeneficiaires] = useState<Beneficiaire[]>(init?.beneficiaires ?? [
- {
- id: genererIdBeneficiaire(),
- nom: 'Enfant 1',
- lien: 'enfant',
- partPourcentage: 50
- },
- {
- id: genererIdBeneficiaire(),
- nom: 'Enfant 2',
- lien: 'enfant',
- partPourcentage: 50
- }
- ])
+ const [inputs, setInputs] = useSimStorage<TransmissionSimState>('assurance-vie-transmission', DEFAULT_STATE)
 
  const results = useMemo<TransmissionResults>(() => calculerTransmission({
-   capitalTotal,
-   versementsAvant70,
-   versementsApres70,
+   ...inputs,
    dateOuverture: new Date(2010, 0, 1),
-   ageSouscripteur,
-   beneficiaires,
- }), [capitalTotal, versementsAvant70, versementsApres70, ageSouscripteur, beneficiaires])
+ }), [inputs])
 
- // Actions bénéficiaires - délèguent aux fonctions pures de lib/transmission
  const modifierBeneficiaire = (id: string, updates: Partial<Beneficiaire>) => {
-   setBeneficiaires(beneficiaires.map(b => b.id === id ? { ...b, ...updates } : b))
+   setInputs(prev => ({
+     ...prev,
+     beneficiaires: prev.beneficiaires.map(b => b.id === id ? { ...b, ...updates } : b),
+   }))
  }
 
- const totalParts = beneficiaires.reduce((sum, b) => sum + b.partPourcentage, 0)
-
- useEffect(() => {
-   try {
-     localStorage.setItem('calcpatrimoine:state:assurance-vie-transmission', JSON.stringify({
-       capitalTotal, versementsAvant70, versementsApres70, ageSouscripteur, beneficiaires,
-     }))
-   } catch {}
- }, [capitalTotal, versementsAvant70, versementsApres70, ageSouscripteur, beneficiaires])
+ const totalParts = inputs.beneficiaires.reduce((sum, b) => sum + b.partPourcentage, 0)
 
  useEffect(() => {
    if (results.capitalTotal <= 0) return
@@ -91,10 +71,10 @@ export default function TransmissionCalculator() {
  return (
  <>
  <div className="grid lg:grid-cols-2 gap-8">
- 
+
  {/* COLONNE GAUCHE - INPUTS */}
  <div className="space-y-6">
- 
+
  {/* Carte : Capital et versements */}
  <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-sm">
  <h3 className="text-xl font-bold text-neutral-900 mb-6">
@@ -108,7 +88,7 @@ export default function TransmissionCalculator() {
  Capital actuel total
  </label>
  <span className="text-2xl font-bold text-primary-600">
- {formatEur(capitalTotal)}
+ {formatEur(inputs.capitalTotal)}
  </span>
  </div>
  <input
@@ -116,8 +96,8 @@ export default function TransmissionCalculator() {
  min="10000"
  max="2000000"
  step="10000"
- value={capitalTotal}
- onChange={(e) => setCapitalTotal(Number(e.target.value))}
+ value={inputs.capitalTotal}
+ onChange={(e) => setInputs(prev => ({ ...prev, capitalTotal: Number(e.target.value) }))}
  className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
  />
  <div className="flex justify-between text-xs text-neutral-500 mt-1">
@@ -134,28 +114,30 @@ export default function TransmissionCalculator() {
  <span className="text-xs text-neutral-500 ml-2">(Art. 990 I)</span>
  </label>
  <span className="text-xl font-bold text-neutral-900">
- {formatEur(versementsAvant70)}
+ {formatEur(inputs.versementsAvant70)}
  </span>
  </div>
  <input
  type="range"
  min="0"
- max={capitalTotal}
+ max={inputs.capitalTotal}
  step="5000"
- value={versementsAvant70}
+ value={inputs.versementsAvant70}
  onChange={(e) => {
- const newVal = Number(e.target.value)
- setVersementsAvant70(newVal)
- // Ajuster après 70 si besoin
- if (newVal + versementsApres70> capitalTotal) {
- setVersementsApres70(Math.max(0, capitalTotal - newVal))
- }
+   const newVal = Number(e.target.value)
+   setInputs(prev => ({
+     ...prev,
+     versementsAvant70: newVal,
+     versementsApres70: newVal + prev.versementsApres70 > prev.capitalTotal
+       ? Math.max(0, prev.capitalTotal - newVal)
+       : prev.versementsApres70,
+   }))
  }}
  className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
  />
  <div className="flex justify-between text-xs text-neutral-500 mt-1">
  <span>0€</span>
- <span>{capitalTotal.toLocaleString('fr-FR')}€</span>
+ <span>{inputs.capitalTotal.toLocaleString('fr-FR')}€</span>
  </div>
  </div>
 
@@ -167,21 +149,21 @@ export default function TransmissionCalculator() {
  <span className="text-xs text-neutral-500 ml-2">(Art. 757 B)</span>
  </label>
  <span className="text-xl font-bold text-neutral-900">
- {formatEur(versementsApres70)}
+ {formatEur(inputs.versementsApres70)}
  </span>
  </div>
  <input
  type="range"
  min="0"
- max={Math.max(0, capitalTotal - versementsAvant70)}
+ max={Math.max(0, inputs.capitalTotal - inputs.versementsAvant70)}
  step="5000"
- value={versementsApres70}
- onChange={(e) => setVersementsApres70(Number(e.target.value))}
+ value={inputs.versementsApres70}
+ onChange={(e) => setInputs(prev => ({ ...prev, versementsApres70: Number(e.target.value) }))}
  className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
  />
  <div className="flex justify-between text-xs text-neutral-500 mt-1">
  <span>0€</span>
- <span>{Math.max(0, capitalTotal - versementsAvant70).toLocaleString('fr-FR')}€</span>
+ <span>{Math.max(0, inputs.capitalTotal - inputs.versementsAvant70).toLocaleString('fr-FR')}€</span>
  </div>
  </div>
 
@@ -189,12 +171,12 @@ export default function TransmissionCalculator() {
  <div className="bg-neutral-50 rounded-lg p-4 text-sm">
  <div className="flex justify-between mb-1">
  <span className="text-neutral-600">Versements totaux :</span>
- <span className="font-bold">{(versementsAvant70 + versementsApres70).toLocaleString('fr-FR')}€</span>
+ <span className="font-bold">{(inputs.versementsAvant70 + inputs.versementsApres70).toLocaleString('fr-FR')}€</span>
  </div>
  <div className="flex justify-between">
  <span className="text-neutral-600">Plus-value contrat :</span>
  <span className="font-bold text-primary-700">
- +{(capitalTotal - versementsAvant70 - versementsApres70).toLocaleString('fr-FR')}€
+ +{(inputs.capitalTotal - inputs.versementsAvant70 - inputs.versementsApres70).toLocaleString('fr-FR')}€
  </span>
  </div>
  </div>
@@ -204,20 +186,20 @@ export default function TransmissionCalculator() {
  <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-sm">
  <div className="flex justify-between items-center mb-6">
  <h3 className="text-xl font-bold text-neutral-900">
- Bénéficiaires ({beneficiaires.length})
+ Bénéficiaires ({inputs.beneficiaires.length})
  </h3>
  <div className="flex gap-2">
- {beneficiaires.length > 1 && (
+ {inputs.beneficiaires.length > 1 && (
  <button
- onClick={() => setBeneficiaires(equilibrerParts(beneficiaires))}
+ onClick={() => setInputs(prev => ({ ...prev, beneficiaires: equilibrerParts(prev.beneficiaires) }))}
  className="text-xs bg-neutral-100 hover:bg-neutral-200 text-neutral-700 px-3 py-1 rounded-lg font-medium transition-colors"
 >
  Équilibrer
  </button>
  )}
- {beneficiaires.length < 6 && (
+ {inputs.beneficiaires.length < 6 && (
  <button
- onClick={() => setBeneficiaires(ajouterBeneficiaire(beneficiaires))}
+ onClick={() => setInputs(prev => ({ ...prev, beneficiaires: ajouterBeneficiaire(prev.beneficiaires) }))}
  className="text-xs bg-primary-600 hover:bg-primary-700 text-white px-3 py-1 rounded-lg font-medium transition-colors"
 >
  + Ajouter
@@ -227,7 +209,7 @@ export default function TransmissionCalculator() {
  </div>
 
  {/* Alerte total parts */}
- {Math.abs(totalParts - 100)> 0.01 && (
+ {Math.abs(totalParts - 100) > 0.01 && (
  <div className="bg-primary-50 border border-primary-300 rounded-lg p-3 mb-4 text-sm">
  <p className="text-primary-900">
  Total des parts : <strong>{totalParts.toFixed(1)}%</strong> (doit faire 100%)
@@ -236,10 +218,10 @@ export default function TransmissionCalculator() {
  )}
 
  {/* Indication cascade proportionnelle */}
- {beneficiaires.length > 1 && (
+ {inputs.beneficiaires.length > 1 && (
  <div className="bg-primary-50 border border-primary-200 rounded-lg p-3 mb-4 text-xs text-primary-800">
  <p>
- Déplacer le curseur d&apos;un bénéficiaire ajuste automatiquement les bénéficiaires 
+ Déplacer le curseur d&apos;un bénéficiaire ajuste automatiquement les bénéficiaires
  situés en dessous pour maintenir 100%.
  </p>
  </div>
@@ -247,8 +229,8 @@ export default function TransmissionCalculator() {
 
  {/* Liste bénéficiaires */}
  <div className="space-y-4">
- {beneficiaires.map((benef, index) => (
- <div 
+ {inputs.beneficiaires.map((benef, index) => (
+ <div
  key={benef.id}
  className="bg-neutral-50 rounded-lg p-4 border border-neutral-200"
 >
@@ -260,9 +242,9 @@ export default function TransmissionCalculator() {
  placeholder={`Bénéficiaire ${index + 1}`}
  className="font-bold text-neutral-900 bg-transparent border-b border-neutral-300 focus:border-primary-500 focus:outline-none px-1 py-0.5 text-sm flex-1 mr-2"
  />
- {beneficiaires.length > 1 && (
+ {inputs.beneficiaires.length > 1 && (
  <button
- onClick={() => setBeneficiaires(supprimerBeneficiaire(beneficiaires, benef.id))}
+ onClick={() => setInputs(prev => ({ ...prev, beneficiaires: supprimerBeneficiaire(prev.beneficiaires, benef.id) }))}
  className="text-primary-500 hover:text-primary-700 text-sm"
  aria-label="Supprimer"
 >
@@ -278,8 +260,8 @@ export default function TransmissionCalculator() {
  </label>
  <select
  value={benef.lien}
- onChange={(e) => modifierBeneficiaire(benef.id, { 
- lien: e.target.value as Beneficiaire['lien'] 
+ onChange={(e) => modifierBeneficiaire(benef.id, {
+ lien: e.target.value as Beneficiaire['lien']
  })}
  className="w-full text-sm bg-white border border-neutral-300 rounded-lg px-3 py-2 focus:border-primary-500 focus:outline-none"
 >
@@ -296,18 +278,16 @@ export default function TransmissionCalculator() {
  <div className="flex justify-between items-baseline mb-1">
  <label className="text-xs text-neutral-600 flex items-center gap-2">
  Part
- {/* Indicateur : ce bénéficiaire ajustera ceux en dessous */}
- {index < beneficiaires.length - 1 && (
- <span 
+ {index < inputs.beneficiaires.length - 1 && (
+ <span
  className="text-xs bg-primary-100 text-primary-700 px-1.5 py-0.5 rounded text-[10px] font-medium"
  title="Modifier cette part ajuste les bénéficiaires en dessous"
 >
  ajustable
  </span>
  )}
- {/* Indicateur : dernier bénéficiaire = auto-ajusté */}
- {index === beneficiaires.length - 1 && beneficiaires.length > 1 && (
- <span 
+ {index === inputs.beneficiaires.length - 1 && inputs.beneficiaires.length > 1 && (
+ <span
  className="text-xs bg-neutral-200 text-neutral-600 px-1.5 py-0.5 rounded text-[10px] font-medium"
  title="Cette part s'ajuste automatiquement"
 >
@@ -318,7 +298,7 @@ export default function TransmissionCalculator() {
  <span className="text-sm font-bold text-primary-600">
  {benef.partPourcentage.toFixed(1)}%
  <span className="text-xs text-neutral-500 ml-2">
- ({Math.round((benef.partPourcentage / 100) * capitalTotal).toLocaleString('fr-FR')}€)
+ ({Math.round((benef.partPourcentage / 100) * inputs.capitalTotal).toLocaleString('fr-FR')}€)
  </span>
  </span>
  </div>
@@ -326,25 +306,23 @@ export default function TransmissionCalculator() {
  type="range"
  min="0"
  max={(() => {
- // Max = 100 - somme des bénéficiaires AVANT (figés)
- const partAvant = beneficiaires
+ const partAvant = inputs.beneficiaires
  .slice(0, index)
  .reduce((sum, b) => sum + b.partPourcentage, 0)
  return Math.max(0, 100 - partAvant)
  })()}
  step="0.5"
  value={benef.partPourcentage}
- onChange={(e) => setBeneficiaires(modifierPartBeneficiaire(beneficiaires, benef.id, Number(e.target.value)))}
- disabled={index === beneficiaires.length - 1 && beneficiaires.length > 1}
+ onChange={(e) => setInputs(prev => ({ ...prev, beneficiaires: modifierPartBeneficiaire(prev.beneficiaires, benef.id, Number(e.target.value)) }))}
+ disabled={index === inputs.beneficiaires.length - 1 && inputs.beneficiaires.length > 1}
  className={`w-full h-1.5 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600 ${
- index === beneficiaires.length - 1 && beneficiaires.length > 1 
- ? 'opacity-60 cursor-not-allowed' 
+ index === inputs.beneficiaires.length - 1 && inputs.beneficiaires.length > 1
+ ? 'opacity-60 cursor-not-allowed'
  : ''
  }`}
  />
- {/* Afficher max disponible si différent de 100 */}
- {index < beneficiaires.length - 1 && (() => {
- const partAvant = beneficiaires
+ {index < inputs.beneficiaires.length - 1 && (() => {
+ const partAvant = inputs.beneficiaires
  .slice(0, index)
  .reduce((sum, b) => sum + b.partPourcentage, 0)
  const maxDispo = 100 - partAvant
@@ -377,7 +355,7 @@ export default function TransmissionCalculator() {
 
  {/* COLONNE DROITE - RÉSULTATS */}
  <div className="space-y-6">
- 
+
  {/* Disclaimer */}
  <div className="bg-primary-50 border-2 border-primary-300 rounded-xl p-5">
  <div className="flex items-start gap-3">
@@ -387,8 +365,8 @@ export default function TransmissionCalculator() {
  Outil de simulation uniquement
  </h4>
  <p className="text-xs text-primary-800 leading-relaxed">
- Ce calculateur estime les droits de transmission. Il ne constitue pas un conseil 
- patrimonial personnalisé. Pour une décision adaptée à votre cas, consultez un notaire, 
+ Ce calculateur estime les droits de transmission. Il ne constitue pas un conseil
+ patrimonial personnalisé. Pour une décision adaptée à votre cas, consultez un notaire,
  un avocat fiscaliste ou un conseiller en gestion de patrimoine indépendant.
  </p>
  </div>
@@ -411,13 +389,13 @@ export default function TransmissionCalculator() {
        href="/assurance-vie/fiscalite-rachat"
        title="Simuler avec des versements avant 27/09/2017"
        description="Les versements avant 2017 sur ce capital de {capital} bénéficient du taux 7,5 % — Calculer l'écart."
-       context={{ capital: formatEur(capitalTotal) }}
+       context={{ capital: formatEur(inputs.capitalTotal) }}
      />
      <CrossLink
        href="/rente-viagere"
        title="Ce capital converti en rente viagère avant décès"
        description="{capital} en rente mensuelle à vie : comparaison avec la transmission aux bénéficiaires."
-       context={{ capital: formatEur(capitalTotal) }}
+       context={{ capital: formatEur(inputs.capitalTotal) }}
      />
      <CrossLink
        href="/tmi"
@@ -432,12 +410,8 @@ export default function TransmissionCalculator() {
      contexte={{
        calculateur: 'assurance-vie/transmission',
        inputs: {
-         capitalTotal,
-         versementsAvant70,
-         versementsApres70,
+         ...inputs,
          dateOuverture: new Date(2010, 0, 1),
-         ageSouscripteur,
-         beneficiaires,
        },
        results,
      }}

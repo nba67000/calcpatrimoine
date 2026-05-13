@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useMemo, useEffect } from 'react'
 import { calculerIFI } from '@/lib/ifi'
 import type { IFIInputs } from '@/types/ifi'
-import { saveSimHistory } from '@/hooks/useSimStorage'
+import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
@@ -11,45 +11,20 @@ import { formatEur, formatPct } from '@/lib/formatters'
 
 const SEUIL_IFI = 1_300_000
 
+const DEFAULT_INPUTS: IFIInputs = {
+  valeurBruteImmobilier: 2_000_000,
+  incluResidencePrincipale: false,
+  valeurResidencePrincipale: 500_000,
+  dettesDeductibles: 0,
+  appliquerPlafonnement: false,
+  revenusAnnuels: 80_000,
+  irAnnuel: 15_000,
+}
+
 export default function IFICalculator() {
-  const [init] = useState(() => {
-    if (typeof window === 'undefined') return null
-    try {
-      const raw = localStorage.getItem('calcpatrimoine:state:ifi')
-      return raw ? JSON.parse(raw) : null
-    } catch { return null }
-  })
-
-  const [valeurBruteImmobilier, setValeurBruteImmobilier] = useState(init?.valeurBruteImmobilier ?? 2_000_000)
-  const [incluResidencePrincipale, setIncluResidencePrincipale] = useState(init?.incluResidencePrincipale ?? false)
-  const [valeurResidencePrincipale, setValeurResidencePrincipale] = useState(init?.valeurResidencePrincipale ?? 500_000)
-  const [dettesDeductibles, setDettesDeductibles] = useState(init?.dettesDeductibles ?? 0)
-  const [appliquerPlafonnement, setAppliquerPlafonnement] = useState(init?.appliquerPlafonnement ?? false)
-  const [revenusAnnuels, setRevenusAnnuels] = useState(init?.revenusAnnuels ?? 80_000)
-  const [irAnnuel, setIrAnnuel] = useState(init?.irAnnuel ?? 15_000)
-
-  const inputs: IFIInputs = useMemo(() => ({
-    valeurBruteImmobilier,
-    incluResidencePrincipale,
-    valeurResidencePrincipale,
-    dettesDeductibles,
-    appliquerPlafonnement,
-    revenusAnnuels,
-    irAnnuel,
-  }), [valeurBruteImmobilier, incluResidencePrincipale, valeurResidencePrincipale, dettesDeductibles, appliquerPlafonnement, revenusAnnuels, irAnnuel])
-
+  const [inputs, setInputs] = useSimStorage<IFIInputs>('ifi', DEFAULT_INPUTS)
   const results = useMemo(() => calculerIFI(inputs), [inputs])
-
   const ifiDefinitif = results.plafonnementApplicable ? results.ifiApresPlafonnement : results.ifiNet
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('calcpatrimoine:state:ifi', JSON.stringify({
-        valeurBruteImmobilier, incluResidencePrincipale, valeurResidencePrincipale,
-        dettesDeductibles, appliquerPlafonnement, revenusAnnuels, irAnnuel,
-      }))
-    } catch {}
-  }, [valeurBruteImmobilier, incluResidencePrincipale, valeurResidencePrincipale, dettesDeductibles, appliquerPlafonnement, revenusAnnuels, irAnnuel])
 
   useEffect(() => {
     if (ifiDefinitif <= 0) return
@@ -83,8 +58,8 @@ export default function IFICalculator() {
                 type="number"
                 min="0"
                 step="10000"
-                value={valeurBruteImmobilier}
-                onChange={(e) => setValeurBruteImmobilier(Number(e.target.value))}
+                value={inputs.valeurBruteImmobilier}
+                onChange={(e) => setInputs(prev => ({ ...prev, valeurBruteImmobilier: Number(e.target.value) }))}
                 className="w-full px-4 py-3 pr-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base font-medium"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
@@ -99,8 +74,8 @@ export default function IFICalculator() {
             <label className="flex items-start gap-3 cursor-pointer mb-3">
               <input
                 type="checkbox"
-                checked={incluResidencePrincipale}
-                onChange={(e) => setIncluResidencePrincipale(e.target.checked)}
+                checked={inputs.incluResidencePrincipale}
+                onChange={(e) => setInputs(prev => ({ ...prev, incluResidencePrincipale: e.target.checked }))}
                 className="w-5 h-5 mt-0.5 text-primary-600 rounded focus:ring-2 focus:ring-primary-500 shrink-0"
               />
               <span className="text-sm text-neutral-700">
@@ -110,7 +85,7 @@ export default function IFICalculator() {
                 </span>
               </span>
             </label>
-            {incluResidencePrincipale && (
+            {inputs.incluResidencePrincipale && (
               <div className="ml-8">
                 <label className="text-sm font-medium text-neutral-700 block mb-2">
                   Valeur de la résidence principale
@@ -120,8 +95,8 @@ export default function IFICalculator() {
                     type="number"
                     min="0"
                     step="10000"
-                    value={valeurResidencePrincipale}
-                    onChange={(e) => setValeurResidencePrincipale(Number(e.target.value))}
+                    value={inputs.valeurResidencePrincipale}
+                    onChange={(e) => setInputs(prev => ({ ...prev, valeurResidencePrincipale: Number(e.target.value) }))}
                     className="w-full px-4 py-3 pr-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
@@ -145,8 +120,8 @@ export default function IFICalculator() {
                 type="number"
                 min="0"
                 step="1000"
-                value={dettesDeductibles}
-                onChange={(e) => setDettesDeductibles(Number(e.target.value))}
+                value={inputs.dettesDeductibles}
+                onChange={(e) => setInputs(prev => ({ ...prev, dettesDeductibles: Number(e.target.value) }))}
                 className="w-full px-4 py-3 pr-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
@@ -162,8 +137,8 @@ export default function IFICalculator() {
           <label className="flex items-start gap-3 cursor-pointer mb-4">
             <input
               type="checkbox"
-              checked={appliquerPlafonnement}
-              onChange={(e) => setAppliquerPlafonnement(e.target.checked)}
+              checked={inputs.appliquerPlafonnement}
+              onChange={(e) => setInputs(prev => ({ ...prev, appliquerPlafonnement: e.target.checked }))}
               className="w-5 h-5 mt-0.5 text-primary-600 rounded focus:ring-2 focus:ring-primary-500 shrink-0"
             />
             <span className="text-sm text-neutral-700">
@@ -174,7 +149,7 @@ export default function IFICalculator() {
             </span>
           </label>
 
-          {appliquerPlafonnement && (
+          {inputs.appliquerPlafonnement && (
             <div className="space-y-4 ml-8">
               <div>
                 <label className="text-sm font-medium text-neutral-700 block mb-2">
@@ -185,8 +160,8 @@ export default function IFICalculator() {
                     type="number"
                     min="0"
                     step="1000"
-                    value={revenusAnnuels}
-                    onChange={(e) => setRevenusAnnuels(Number(e.target.value))}
+                    value={inputs.revenusAnnuels}
+                    onChange={(e) => setInputs(prev => ({ ...prev, revenusAnnuels: Number(e.target.value) }))}
                     className="w-full px-4 py-3 pr-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
@@ -202,8 +177,8 @@ export default function IFICalculator() {
                     type="number"
                     min="0"
                     step="100"
-                    value={irAnnuel}
-                    onChange={(e) => setIrAnnuel(Number(e.target.value))}
+                    value={inputs.irAnnuel}
+                    onChange={(e) => setInputs(prev => ({ ...prev, irAnnuel: Number(e.target.value) }))}
                     className="w-full px-4 py-3 pr-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
@@ -223,7 +198,7 @@ export default function IFICalculator() {
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-neutral-600">Valeur brute immobilier</span>
-              <span className="font-medium">{formatEur(valeurBruteImmobilier)}</span>
+              <span className="font-medium">{formatEur(inputs.valeurBruteImmobilier)}</span>
             </div>
             {results.abattementResidencePrincipale > 0 && (
               <div className="flex justify-between text-green-700">
@@ -231,10 +206,10 @@ export default function IFICalculator() {
                 <span className="font-medium">−{formatEur(results.abattementResidencePrincipale)}</span>
               </div>
             )}
-            {dettesDeductibles > 0 && (
+            {inputs.dettesDeductibles > 0 && (
               <div className="flex justify-between text-green-700">
                 <span>Dettes déductibles</span>
-                <span className="font-medium">−{formatEur(dettesDeductibles)}</span>
+                <span className="font-medium">−{formatEur(inputs.dettesDeductibles)}</span>
               </div>
             )}
             <div className="flex justify-between pt-2 border-t border-neutral-200 font-bold">
@@ -290,13 +265,13 @@ export default function IFICalculator() {
             </div>
 
             {/* Plafonnement */}
-            {appliquerPlafonnement && revenusAnnuels > 0 && (
+            {inputs.appliquerPlafonnement && inputs.revenusAnnuels > 0 && (
               <div className="bg-white rounded-xl border border-neutral-200 p-5 shadow-sm">
                 <h4 className="text-sm font-bold text-neutral-700 uppercase tracking-wider mb-3">Plafonnement (Art. 979 CGI)</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-neutral-600">Revenus annuels</span>
-                    <span className="font-medium">{formatEur(revenusAnnuels)}</span>
+                    <span className="font-medium">{formatEur(inputs.revenusAnnuels)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-neutral-600">Seuil (75 %)</span>
@@ -308,11 +283,11 @@ export default function IFICalculator() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-neutral-600">IR dû</span>
-                    <span className="font-medium">+{formatEur(irAnnuel)}</span>
+                    <span className="font-medium">+{formatEur(inputs.irAnnuel)}</span>
                   </div>
                   <div className={`flex justify-between pt-2 border-t font-bold ${results.plafonnementApplicable ? 'text-orange-700' : 'text-green-700'}`}>
                     <span>IFI + IR</span>
-                    <span>{formatEur(results.ifiNet + irAnnuel)}</span>
+                    <span>{formatEur(results.ifiNet + inputs.irAnnuel)}</span>
                   </div>
                   {results.plafonnementApplicable && (
                     <p className="text-xs text-orange-600 mt-1">

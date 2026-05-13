@@ -87,7 +87,13 @@
       "WebFetch(domain:www.lesdeplafonnes.fr)",
       "WebFetch(domain:community.fortuneo.fr)",
       "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\" -Force | Select-Object Name, @{Name=\"Type\";Expression={if\\($_.PSIsContainer\\){\"DIR\"}else{\"FILE\"}}} | Format-Table -AutoSize)",
-      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\" -Recurse -Directory | ForEach-Object { $_.FullName.Replace\\(\"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\\\\\", \"src\\\\\"\\) } | Sort-Object)"
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\" -Recurse -Directory | ForEach-Object { $_.FullName.Replace\\(\"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\\\\\", \"src\\\\\"\\) } | Sort-Object)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\" -Recurse -Include \"*.ts\", \"*.tsx\", \"*.js\", \"*.mjs\", \"*.json\")",
+      "Bash(Measure-Object)",
+      "Bash(Select-Object -ExpandProperty Count)",
+      "Bash(xargs grep -l \"rel=\")",
+      "Bash(xargs grep -l \"href\\\\s*=\")",
+      "Bash(xargs grep -l \"dangerouslySetInnerHTML\")"
     ]
   }
 }

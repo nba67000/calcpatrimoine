@@ -87,6 +87,90 @@ function calculerTauxPFU(
  }
 }
 
+function evaluerAlertesAV(p: {
+  tmi: AssuranceVieInputs['tmi']
+  montantRachat: number
+  ancienneteAnnees: number
+  ancienneteMois: number
+  partPlusValue: number
+  abattementApplicable: number
+  plusValueTaxable: number
+  tauxPlusValue: number
+  tauxMoyenPFU: number
+  detailAvant2017: null | { plusValueAvant2017: number; tauxApres: number; avantage: number }
+  partAvant2017: AssuranceVieResults['partAvant2017']
+  optionPFU: FiscaliteOption
+  optionIR: FiscaliteOption
+  optionMoinsImposee: 'PFU' | 'IR'
+  difference: number
+}): { warnings: AssuranceVieResults['warnings']; optimisations: AssuranceVieResults['optimisations'] } {
+  const warnings: AssuranceVieResults['warnings'] = []
+  const optimisations: AssuranceVieResults['optimisations'] = []
+
+  if (p.ancienneteAnnees < 8) {
+    const moisRestants = (8 * 12) - (p.ancienneteAnnees * 12 + p.ancienneteMois)
+    const anneesRestantes = Math.floor(moisRestants / 12)
+    const moisSeuls = moisRestants % 12
+    let dureeTexte = ''
+    if (anneesRestantes > 0) {
+      dureeTexte = `${anneesRestantes} an${anneesRestantes > 1 ? 's' : ''}`
+      if (moisSeuls > 0) dureeTexte += ` et ${moisSeuls} mois`
+    } else {
+      dureeTexte = `${moisSeuls} mois`
+    }
+    const impotActuel = Math.min(p.optionPFU.totalPrelevement, p.optionIR.totalPrelevement)
+    const impotApresAbattement = Math.max(0, p.partPlusValue - p.abattementApplicable) * p.tauxMoyenPFU
+    const economieAttente = impotActuel - impotApresAbattement
+    if (economieAttente > 500) {
+      warnings.push({
+        type: 'danger',
+        message: `Votre contrat a moins de 8 ans (${p.ancienneteAnnees} ans et ${p.ancienneteMois} mois). En attendant ${dureeTexte}, vous économiserez environ ${Math.round(economieAttente).toLocaleString('fr-FR')}€ grâce à l'abattement de ${p.abattementApplicable.toLocaleString('fr-FR')}€.`,
+      })
+    } else {
+      warnings.push({
+        type: 'warning',
+        message: `Votre contrat a ${p.ancienneteAnnees} ans et ${p.ancienneteMois} mois. Dans ${dureeTexte}, vous bénéficierez d'un abattement de ${p.abattementApplicable.toLocaleString('fr-FR')}€.`,
+      })
+    }
+  }
+
+  if (p.ancienneteAnnees >= 8 && p.plusValueTaxable > 0) {
+    const depassement = p.partPlusValue - p.abattementApplicable
+    if (depassement > p.abattementApplicable * 0.5) {
+      const rachatAnnee1 = p.montantRachat * 0.4
+      const rachatAnnee2 = p.montantRachat * 0.6
+      const pvTaxableAnnee1 = Math.max(0, rachatAnnee1 * p.tauxPlusValue - p.abattementApplicable)
+      const pvTaxableAnnee2 = Math.max(0, rachatAnnee2 * p.tauxPlusValue - p.abattementApplicable)
+      const impotFractionne = (pvTaxableAnnee1 + pvTaxableAnnee2) * p.tauxMoyenPFU
+      const gainFractionnement = Math.min(p.optionPFU.totalPrelevement, p.optionIR.totalPrelevement) - impotFractionne
+      if (gainFractionnement > 300) {
+        optimisations.push({
+          type: 'success',
+          message: ` En fractionnant votre rachat sur 2 ans (${Math.round(rachatAnnee1).toLocaleString('fr-FR')}€ cette année + ${Math.round(rachatAnnee2).toLocaleString('fr-FR')}€ l'année prochaine), vous économisez environ ${Math.round(gainFractionnement).toLocaleString('fr-FR')}€.`,
+          gain: gainFractionnement,
+        })
+      }
+    }
+  }
+
+  if (p.partAvant2017 && p.partAvant2017.avantage > 100 && p.detailAvant2017) {
+    const tauxApresPct = (p.detailAvant2017.tauxApres * 100).toFixed(1)
+    optimisations.push({
+      type: 'info',
+      message: `Vos versements avant le 27/09/2017 bénéficient d'un taux réduit (24,7% au lieu de ${tauxApresPct}%), ce qui vous fait économiser ${Math.round(p.partAvant2017.avantage).toLocaleString('fr-FR')}€.`,
+    })
+  }
+
+  if (p.tmi <= 11 && p.optionMoinsImposee !== 'IR') {
+    warnings.push({
+      type: 'info',
+      message: ` Avec votre TMI à ${p.tmi}%, l'option IR + PS génère ${Math.round(p.difference).toLocaleString('fr-FR')}€ de différence par rapport au PFU. Vérifiez quelle option correspond le mieux à votre situation.`,
+    })
+  }
+
+  return { warnings, optimisations }
+}
+
 /**
  * Calcule la fiscalité complète du rachat
  */
@@ -163,85 +247,24 @@ export function calculerFiscaliteRachat(inputs: AssuranceVieInputs): AssuranceVi
  } : null
  
  // 10. Warnings et optimisations
- const warnings: AssuranceVieResults['warnings'] = []
- const optimisations: AssuranceVieResults['optimisations'] = []
- 
- // Warning : contrat < 8 ans
- if (ancienneteAnnees < 8) {
- const moisRestants = (8 * 12) - (ancienneteAnnees * 12 + ancienneteMois)
- const anneesRestantes = Math.floor(moisRestants / 12)
- const moisSeuls = moisRestants % 12
- 
- let dureeTexte = ''
- if (anneesRestantes> 0) {
- dureeTexte = `${anneesRestantes} an${anneesRestantes> 1 ? 's' : ''}`
- if (moisSeuls> 0) dureeTexte += ` et ${moisSeuls} mois`
- } else {
- dureeTexte = `${moisSeuls} mois`
- }
- 
- // Calcul économie potentielle si on attend
- const impotActuel = Math.min(optionPFU.totalPrelevement, optionIR.totalPrelevement)
- const impotApresAbattement = Math.max(0, partPlusValue - abattementApplicable) * calculPFU.tauxMoyen
- const economieAttente = impotActuel - impotApresAbattement
- 
- if (economieAttente> 500) {
- warnings.push({
- type: 'danger',
- message: `Votre contrat a moins de 8 ans (${ancienneteAnnees} ans et ${ancienneteMois} mois). En attendant ${dureeTexte}, vous économiserez environ ${Math.round(economieAttente).toLocaleString('fr-FR')}€ grâce à l'abattement de ${abattementApplicable.toLocaleString('fr-FR')}€.`
+ const { warnings, optimisations } = evaluerAlertesAV({
+   tmi: inputs.tmi,
+   montantRachat: inputs.montantRachat,
+   ancienneteAnnees,
+   ancienneteMois,
+   partPlusValue,
+   abattementApplicable,
+   plusValueTaxable,
+   tauxPlusValue,
+   tauxMoyenPFU: calculPFU.tauxMoyen,
+   detailAvant2017: calculPFU.detailAvant2017,
+   partAvant2017,
+   optionPFU,
+   optionIR,
+   optionMoinsImposee,
+   difference,
  })
- } else {
- warnings.push({
- type: 'warning',
- message: `Votre contrat a ${ancienneteAnnees} ans et ${ancienneteMois} mois. Dans ${dureeTexte}, vous bénéficierez d'un abattement de ${abattementApplicable.toLocaleString('fr-FR')}€.`
- })
- }
- }
- 
- // Optimisation : fractionnement si dépassement abattement
- if (ancienneteAnnees>= 8 && plusValueTaxable> 0) {
- const depassement = partPlusValue - abattementApplicable
- if (depassement> abattementApplicable * 0.5) {
- // Calcul gain potentiel fractionnement
- const rachatAnnee1 = inputs.montantRachat * 0.4
- const rachatAnnee2 = inputs.montantRachat * 0.6
- 
- const pvAnnee1 = rachatAnnee1 * tauxPlusValue
- const pvAnnee2 = rachatAnnee2 * tauxPlusValue
- 
- const pvTaxableAnnee1 = Math.max(0, pvAnnee1 - abattementApplicable)
- const pvTaxableAnnee2 = Math.max(0, pvAnnee2 - abattementApplicable)
- 
- const impotFractionne = (pvTaxableAnnee1 + pvTaxableAnnee2) * calculPFU.tauxMoyen
- const gainFractionnement = Math.min(optionPFU.totalPrelevement, optionIR.totalPrelevement) - impotFractionne
- 
- if (gainFractionnement> 300) {
- optimisations.push({
- type: 'success',
- message: ` En fractionnant votre rachat sur 2 ans (${Math.round(rachatAnnee1).toLocaleString('fr-FR')}€ cette année + ${Math.round(rachatAnnee2).toLocaleString('fr-FR')}€ l'année prochaine), vous économisez environ ${Math.round(gainFractionnement).toLocaleString('fr-FR')}€.`,
- gain: gainFractionnement
- })
- }
- }
- }
- 
- // Info : versements avant 2017
- if (partAvant2017 && partAvant2017.avantage > 100 && calculPFU.detailAvant2017) {
- const tauxApresPct = (calculPFU.detailAvant2017.tauxApres * 100).toFixed(1)
- optimisations.push({
- type: 'info',
- message: `Vos versements avant le 27/09/2017 bénéficient d'un taux réduit (24,7% au lieu de ${tauxApresPct}%), ce qui vous fait économiser ${Math.round(partAvant2017.avantage).toLocaleString('fr-FR')}€.`
- })
- }
- 
- // Warning : TMI faible avec PFU
- if (inputs.tmi <= 11 && optionMoinsImposee !== 'IR') {
- warnings.push({
- type: 'info',
- message: ` Avec votre TMI à ${inputs.tmi}%, l'option IR + PS génère ${Math.round(difference).toLocaleString('fr-FR')}€ de différence par rapport au PFU. Vérifiez quelle option correspond le mieux à votre situation.`
- })
- }
- 
+
  return {
  plusValueTotale,
  plusValueDansRachat: partPlusValue,

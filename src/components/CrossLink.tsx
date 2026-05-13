@@ -15,9 +15,13 @@ interface CrossLinkProps {
 
 function interpolate(text: string, context?: Record<string, string | number>): string {
   if (!context) return text
-  return text.replace(/\{(\w+)\}/g, (_, key) =>
-    key in context ? String(context[key]) : `{${key}}`
-  )
+  return text.replace(/\{(\w+)\}/g, (_, key) => {
+    if (key in context) return String(context[key])
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(`[CrossLink] clé manquante: "${key}" dans: "${text}"`)
+    }
+    return `{${key}}`
+  })
 }
 
 export default function CrossLink({ title, description, href, context }: CrossLinkProps) {

@@ -1,64 +1,33 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useMemo, useEffect } from 'react'
 import { calculerPlusValueImmobiliere } from '@/lib/plusValueImmobiliere'
 import type { PlusValueImmobiliereInputs } from '@/types/plusValueImmobiliere'
-import { saveSimHistory } from '@/hooks/useSimStorage'
+import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
 import { formatEur, formatPct } from '@/lib/formatters'
 
+const DEFAULT_INPUTS: PlusValueImmobiliereInputs = {
+  dateAcquisition: '2018-05-02',
+  prixAcquisition: 200000,
+  fraisAcquisition: 'forfait',
+  fraisAcquisitionReels: 15000,
+  travaux: 'forfait',
+  travauxReels: 0,
+  dateCession: '2026-05-02',
+  prixCession: 295000,
+  typeBien: 'autre',
+  premiereCession: false,
+}
+
 export default function PlusValueImmobiliereCalculator() {
-  const [init] = useState(() => {
-    if (typeof window === 'undefined') return null
-    try {
-      const raw = localStorage.getItem('calcpatrimoine:state:plus-value-immobiliere')
-      return raw ? JSON.parse(raw) : null
-    } catch { return null }
-  })
+  const [inputs, setInputs] = useSimStorage<PlusValueImmobiliereInputs>('plus-value-immobiliere', DEFAULT_INPUTS)
 
-  const [dateAcquisition, setDateAcquisition] = useState(init?.dateAcquisition ?? '2018-05-02')
-  const [prixAcquisition, setPrixAcquisition] = useState(init?.prixAcquisition ?? 200000)
-  const [fraisAcquisition, setFraisAcquisition] = useState<PlusValueImmobiliereInputs['fraisAcquisition']>(init?.fraisAcquisition ?? 'forfait')
-  const [fraisAcquisitionReels, setFraisAcquisitionReels] = useState(init?.fraisAcquisitionReels ?? 15000)
-  const [travaux, setTravaux] = useState<PlusValueImmobiliereInputs['travaux']>(init?.travaux ?? 'forfait')
-  const [travauxReels, setTravauxReels] = useState(init?.travauxReels ?? 0)
-  const [dateCession, setDateCession] = useState(init?.dateCession ?? '2026-05-02')
-  const [prixCession, setPrixCession] = useState(init?.prixCession ?? 295000)
-  const [typeBien, setTypeBien] = useState<PlusValueImmobiliereInputs['typeBien']>(init?.typeBien ?? 'autre')
-  const [premiereCession, setPremiereCession] = useState(init?.premiereCession ?? false)
-
-  const results = useMemo(
-    () =>
-      calculerPlusValueImmobiliere({
-        dateAcquisition,
-        prixAcquisition,
-        fraisAcquisition,
-        fraisAcquisitionReels,
-        travaux,
-        travauxReels,
-        dateCession,
-        prixCession,
-        typeBien,
-        premiereCession,
-      }),
-    [
-      dateAcquisition, prixAcquisition, fraisAcquisition, fraisAcquisitionReels,
-      travaux, travauxReels, dateCession, prixCession, typeBien, premiereCession,
-    ]
-  )
+  const results = useMemo(() => calculerPlusValueImmobiliere(inputs), [inputs])
 
   const forfaitDisponible = results.anneesDetention > 5
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('calcpatrimoine:state:plus-value-immobiliere', JSON.stringify({
-        dateAcquisition, prixAcquisition, fraisAcquisition, fraisAcquisitionReels,
-        travaux, travauxReels, dateCession, prixCession, typeBien, premiereCession,
-      }))
-    } catch {}
-  }, [dateAcquisition, prixAcquisition, fraisAcquisition, fraisAcquisitionReels, travaux, travauxReels, dateCession, prixCession, typeBien, premiereCession])
 
   useEffect(() => {
     if (results.pvBrute <= 0) return
@@ -89,8 +58,8 @@ export default function PlusValueImmobiliereCalculator() {
             </label>
             <input
               type="date"
-              value={dateAcquisition}
-              onChange={(e) => setDateAcquisition(e.target.value)}
+              value={inputs.dateAcquisition}
+              onChange={(e) => setInputs(prev => ({ ...prev, dateAcquisition: e.target.value }))}
               className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base"
             />
             <p className="text-xs text-neutral-500 mt-1">
@@ -108,8 +77,8 @@ export default function PlusValueImmobiliereCalculator() {
                 type="number"
                 min="0"
                 step="1000"
-                value={prixAcquisition}
-                onChange={(e) => setPrixAcquisition(Number(e.target.value))}
+                value={inputs.prixAcquisition}
+                onChange={(e) => setInputs(prev => ({ ...prev, prixAcquisition: Number(e.target.value) }))}
                 className="w-full px-4 py-3 pr-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base font-medium"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
@@ -125,9 +94,9 @@ export default function PlusValueImmobiliereCalculator() {
               {(['forfait', 'reel'] as const).map((mode) => (
                 <button
                   key={mode}
-                  onClick={() => setFraisAcquisition(mode)}
+                  onClick={() => setInputs(prev => ({ ...prev, fraisAcquisition: mode }))}
                   className={`py-2 px-3 rounded-lg font-medium text-sm transition-all ${
-                    fraisAcquisition === mode
+                    inputs.fraisAcquisition === mode
                       ? 'bg-primary-600 text-white shadow-md'
                       : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                   }`}
@@ -136,9 +105,9 @@ export default function PlusValueImmobiliereCalculator() {
                 </button>
               ))}
             </div>
-            {fraisAcquisition === 'forfait' ? (
+            {inputs.fraisAcquisition === 'forfait' ? (
               <p className="text-xs text-primary-600 bg-primary-50 px-3 py-2 rounded-lg">
-                Forfait appliqué : {formatEur(Math.round(prixAcquisition * 0.075))}
+                Forfait appliqué : {formatEur(Math.round(inputs.prixAcquisition * 0.075))}
               </p>
             ) : (
               <div className="relative">
@@ -146,8 +115,8 @@ export default function PlusValueImmobiliereCalculator() {
                   type="number"
                   min="0"
                   step="100"
-                  value={fraisAcquisitionReels}
-                  onChange={(e) => setFraisAcquisitionReels(Number(e.target.value))}
+                  value={inputs.fraisAcquisitionReels}
+                  onChange={(e) => setInputs(prev => ({ ...prev, fraisAcquisitionReels: Number(e.target.value) }))}
                   className="w-full px-4 py-3 pr-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base"
                   placeholder="Montant réel des frais"
                 />
@@ -165,10 +134,10 @@ export default function PlusValueImmobiliereCalculator() {
               {(['aucun', 'forfait', 'reel'] as const).map((mode) => (
                 <button
                   key={mode}
-                  onClick={() => setTravaux(mode)}
+                  onClick={() => setInputs(prev => ({ ...prev, travaux: mode }))}
                   disabled={mode === 'forfait' && !forfaitDisponible}
                   className={`py-2 px-2 rounded-lg font-medium text-xs transition-all ${
-                    travaux === mode
+                    inputs.travaux === mode
                       ? 'bg-primary-600 text-white shadow-md'
                       : mode === 'forfait' && !forfaitDisponible
                         ? 'bg-neutral-100 text-neutral-400 cursor-not-allowed'
@@ -179,24 +148,24 @@ export default function PlusValueImmobiliereCalculator() {
                 </button>
               ))}
             </div>
-            {travaux === 'forfait' && (
+            {inputs.travaux === 'forfait' && (
               <p className="text-xs text-primary-600 bg-primary-50 px-3 py-2 rounded-lg">
-                Forfait appliqué : {formatEur(Math.round(prixAcquisition * 0.15))}
+                Forfait appliqué : {formatEur(Math.round(inputs.prixAcquisition * 0.15))}
               </p>
             )}
-            {travaux === 'forfait' && !forfaitDisponible && (
+            {inputs.travaux === 'forfait' && !forfaitDisponible && (
               <p className="text-xs text-orange-600">
                 Forfait 15 % disponible uniquement si détention &gt; 5 ans.
               </p>
             )}
-            {travaux === 'reel' && (
+            {inputs.travaux === 'reel' && (
               <div className="relative">
                 <input
                   type="number"
                   min="0"
                   step="1000"
-                  value={travauxReels}
-                  onChange={(e) => setTravauxReels(Number(e.target.value))}
+                  value={inputs.travauxReels}
+                  onChange={(e) => setInputs(prev => ({ ...prev, travauxReels: Number(e.target.value) }))}
                   className="w-full px-4 py-3 pr-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base"
                   placeholder="Montant des travaux"
                 />
@@ -217,8 +186,8 @@ export default function PlusValueImmobiliereCalculator() {
             </label>
             <input
               type="date"
-              value={dateCession}
-              onChange={(e) => setDateCession(e.target.value)}
+              value={inputs.dateCession}
+              onChange={(e) => setInputs(prev => ({ ...prev, dateCession: e.target.value }))}
               className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base"
             />
           </div>
@@ -233,8 +202,8 @@ export default function PlusValueImmobiliereCalculator() {
                 type="number"
                 min="0"
                 step="1000"
-                value={prixCession}
-                onChange={(e) => setPrixCession(Number(e.target.value))}
+                value={inputs.prixCession}
+                onChange={(e) => setInputs(prev => ({ ...prev, prixCession: Number(e.target.value) }))}
                 className="w-full px-4 py-3 pr-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-base font-medium"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
@@ -253,9 +222,9 @@ export default function PlusValueImmobiliereCalculator() {
               ] as const).map(({ val, label }) => (
                 <button
                   key={val}
-                  onClick={() => setTypeBien(val)}
+                  onClick={() => setInputs(prev => ({ ...prev, typeBien: val }))}
                   className={`py-2 px-3 rounded-lg font-medium text-xs transition-all ${
-                    typeBien === val
+                    inputs.typeBien === val
                       ? 'bg-primary-600 text-white shadow-md'
                       : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                   }`}
@@ -264,7 +233,7 @@ export default function PlusValueImmobiliereCalculator() {
                 </button>
               ))}
             </div>
-            {typeBien === 'principal' && (
+            {inputs.typeBien === 'principal' && (
               <p className="text-xs text-green-700 bg-green-50 px-3 py-2 rounded-lg mt-2">
                 Exonération totale - résidence principale (Art. 150 U II 1° CGI)
               </p>
@@ -272,13 +241,13 @@ export default function PlusValueImmobiliereCalculator() {
           </div>
 
           {/* 1ère cession */}
-          {typeBien === 'autre' && (
+          {inputs.typeBien === 'autre' && (
             <div>
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
-                  checked={premiereCession}
-                  onChange={(e) => setPremiereCession(e.target.checked)}
+                  checked={inputs.premiereCession}
+                  onChange={(e) => setInputs(prev => ({ ...prev, premiereCession: e.target.checked }))}
                   className="w-5 h-5 mt-0.5 text-primary-600 rounded focus:ring-2 focus:ring-primary-500 shrink-0"
                 />
                 <span className="text-sm text-neutral-700">
@@ -347,18 +316,18 @@ export default function PlusValueImmobiliereCalculator() {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-neutral-600">Prix d&apos;acquisition</span>
-                  <span className="font-medium">{formatEur(prixAcquisition)}</span>
+                  <span className="font-medium">{formatEur(inputs.prixAcquisition)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-neutral-600">
-                    Frais {fraisAcquisition === 'forfait' ? '(forfait 7,5 %)' : '(réels)'}
+                    Frais {inputs.fraisAcquisition === 'forfait' ? '(forfait 7,5 %)' : '(réels)'}
                   </span>
                   <span className="font-medium">+{formatEur(results.fraisDeductibles)}</span>
                 </div>
                 {results.travauxDeductibles > 0 && (
                   <div className="flex justify-between">
                     <span className="text-neutral-600">
-                      Travaux {travaux === 'forfait' ? '(forfait 15 %)' : '(réels)'}
+                      Travaux {inputs.travaux === 'forfait' ? '(forfait 15 %)' : '(réels)'}
                     </span>
                     <span className="font-medium">+{formatEur(results.travauxDeductibles)}</span>
                   </div>
@@ -482,18 +451,7 @@ export default function PlusValueImmobiliereCalculator() {
     <ChatWidget
       contexte={{
         calculateur: 'plus-value-immobiliere',
-        inputs: {
-          dateAcquisition,
-          prixAcquisition,
-          fraisAcquisition,
-          fraisAcquisitionReels,
-          travaux,
-          travauxReels,
-          dateCession,
-          prixCession,
-          typeBien,
-          premiereCession,
-        },
+        inputs,
         results,
       }}
     />

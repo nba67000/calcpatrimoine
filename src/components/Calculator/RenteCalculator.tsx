@@ -1,7 +1,7 @@
-﻿// src/components/Calculator/RenteCalculator.tsx
+// src/components/Calculator/RenteCalculator.tsx
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useMemo, useEffect } from 'react'
 import { calculateAnnuity } from '@/lib/mortality'
 import { formatEurRounded as formatEuro, formatNombre } from '@/lib/formatters'
 import type { AnnuityResult } from '@/types'
@@ -12,7 +12,7 @@ import Icon from '@/components/Icon'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
 import { useNumericInput } from '@/hooks/useNumericInput'
-import { saveSimHistory } from '@/hooks/useSimStorage'
+import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import { LIMITS, DEFAULT_VALUES } from '@/lib/constants'
 
 // ---------------------------------------------------------------------------
@@ -63,51 +63,51 @@ function AgeScenarioComparison({ capital, currentAge, reversion }: AgeScenarioCo
 
 // ---------------------------------------------------------------------------
 
+interface RenteSimState {
+  age: number
+  capital: number
+  showReversion: boolean
+  spouseAge: number
+  reversionPercentage: 60 | 80 | 100
+}
+
 export default function RenteCalculator() {
- const [init] = useState(() => {
-   if (typeof window === 'undefined') return null
-   try {
-     const raw = localStorage.getItem('calcpatrimoine:state:rente-viagere')
-     return raw ? JSON.parse(raw) : null
-   } catch { return null }
- })
+  const [simState, setSimState] = useSimStorage<RenteSimState>('rente-viagere', {
+    age: DEFAULT_VALUES.AGE,
+    capital: DEFAULT_VALUES.CAPITAL,
+    showReversion: false,
+    spouseAge: DEFAULT_VALUES.AGE - DEFAULT_VALUES.SPOUSE_AGE_DIFF,
+    reversionPercentage: 60,
+  })
 
- const [age, setAge] = useState<number>(init?.age ?? DEFAULT_VALUES.AGE)
- const capitalInput = useNumericInput(init?.capital ?? DEFAULT_VALUES.CAPITAL, {
-   min: LIMITS.CAPITAL_MIN,
-   max: LIMITS.CAPITAL_MAX,
-   format: formatNombre,
- })
- const [showReversion, setShowReversion] = useState(init?.showReversion ?? false)
- const [spouseAge, setSpouseAge] = useState<number>(init?.spouseAge ?? DEFAULT_VALUES.AGE - DEFAULT_VALUES.SPOUSE_AGE_DIFF)
- const [reversionPercentage, setReversionPercentage] = useState<60 | 80 | 100>(init?.reversionPercentage ?? 60)
+  const capitalInput = useNumericInput(simState.capital, {
+    min: LIMITS.CAPITAL_MIN,
+    max: LIMITS.CAPITAL_MAX,
+    format: formatNombre,
+  })
 
- const result = useMemo<AnnuityResult | null>(() => calculateAnnuity({
-   age,
-   capital: capitalInput.value,
-   reversion: showReversion
-     ? { enabled: true, spouse_age: spouseAge, percentage: reversionPercentage }
-     : { enabled: false },
- }), [age, capitalInput.value, showReversion, spouseAge, reversionPercentage])
+  useEffect(() => {
+    setSimState(prev => ({ ...prev, capital: capitalInput.value }))
+  }, [capitalInput.value]) // setSimState is stable
 
- useEffect(() => {
-   try {
-     localStorage.setItem('calcpatrimoine:state:rente-viagere', JSON.stringify({
-       age, capital: capitalInput.value, showReversion, spouseAge, reversionPercentage,
-     }))
-   } catch {}
- }, [age, capitalInput.value, showReversion, spouseAge, reversionPercentage])
+  const result = useMemo<AnnuityResult | null>(() => calculateAnnuity({
+    age: simState.age,
+    capital: capitalInput.value,
+    reversion: simState.showReversion
+      ? { enabled: true, spouse_age: simState.spouseAge, percentage: simState.reversionPercentage }
+      : { enabled: false },
+  }), [simState.age, capitalInput.value, simState.showReversion, simState.spouseAge, simState.reversionPercentage])
 
- useEffect(() => {
-   if (!result || result.monthly_amount <= 0) return
-   saveSimHistory({
-     slug: 'rente-viagere',
-     nom: 'Rente Viagère',
-     href: '/rente-viagere',
-     resume: `Rente : ${formatEuro(result.monthly_amount)}/mois · Capital : ${formatNombre(capitalInput.value)} €`,
-     date: new Date().toISOString(),
-   })
- }, [result?.monthly_amount, capitalInput.value])
+  useEffect(() => {
+    if (!result || result.monthly_amount <= 0) return
+    saveSimHistory({
+      slug: 'rente-viagere',
+      nom: 'Rente Viagère',
+      href: '/rente-viagere',
+      resume: `Rente : ${formatEuro(result.monthly_amount)}/mois · Capital : ${formatNombre(capitalInput.value)} €`,
+      date: new Date().toISOString(),
+    })
+  }, [result?.monthly_amount, capitalInput.value])
 
  return (
  <>
@@ -131,17 +131,17 @@ export default function RenteCalculator() {
  type="number"
  min={LIMITS.AGE_MIN}
  max={LIMITS.AGE_MAX}
- value={age}
+ value={simState.age}
  onChange={(e) => {
  const val = e.target.value
  if (val === '' || !isNaN(Number(val))) {
- setAge(val === '' ? LIMITS.AGE_MIN : Number(val))
+ setSimState(prev => ({ ...prev, age: val === '' ? LIMITS.AGE_MIN : Number(val) }))
  }
  }}
  onBlur={(e) => {
  const val = Number(e.target.value)
- if (isNaN(val) || val < LIMITS.AGE_MIN) setAge(LIMITS.AGE_MIN)
- else if (val > LIMITS.AGE_MAX) setAge(LIMITS.AGE_MAX)
+ if (isNaN(val) || val < LIMITS.AGE_MIN) setSimState(prev => ({ ...prev, age: LIMITS.AGE_MIN }))
+ else if (val > LIMITS.AGE_MAX) setSimState(prev => ({ ...prev, age: LIMITS.AGE_MAX }))
  }}
  onFocus={(e) => e.target.select()}
  className="w-20 px-3 py-1 text-lg font-medium text-center border border-neutral-300 rounded-lg
@@ -155,8 +155,8 @@ export default function RenteCalculator() {
  min={LIMITS.AGE_MIN}
  max={LIMITS.AGE_MAX}
  step={1}
- value={age}
- onChange={(e) => setAge(Number(e.target.value))}
+ value={simState.age}
+ onChange={(e) => setSimState(prev => ({ ...prev, age: Number(e.target.value) }))}
  className="w-full"
  />
  <div className="flex justify-between text-xs text-neutral-400 mt-1">
@@ -206,8 +206,8 @@ export default function RenteCalculator() {
  Table de mortalité unisexe (réglementation 2012)
  </p>
  <p className="text-sm text-primary-900">
- Depuis décembre 2012, les assureurs utilisent une table unique pour hommes et 
- femmes (moyenne pondérée). Ce calculateur applique cette réglementation obligatoire 
+ Depuis décembre 2012, les assureurs utilisent une table unique pour hommes et
+ femmes (moyenne pondérée). Ce calculateur applique cette réglementation obligatoire
  (arrêt CJUE mars 2011).
  </p>
  </div>
@@ -226,22 +226,22 @@ export default function RenteCalculator() {
  </p>
  </div>
  <button
- onClick={() => setShowReversion(!showReversion)}
+ onClick={() => setSimState(prev => ({ ...prev, showReversion: !prev.showReversion }))}
  className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
- showReversion ? 'bg-primary-600' : 'bg-neutral-300'
+ simState.showReversion ? 'bg-primary-600' : 'bg-neutral-300'
  }`}
  aria-label="Activer réversion"
 >
  <span
  className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${
- showReversion ? 'translate-x-7' : 'translate-x-1'
+ simState.showReversion ? 'translate-x-7' : 'translate-x-1'
  }`}
  />
  </button>
  </div>
 
  <AnimatePresence>
- {showReversion && (
+ {simState.showReversion && (
  <motion.div
  initial={{ height: 0, opacity: 0 }}
  animate={{ height: 'auto', opacity: 1 }}
@@ -253,7 +253,7 @@ export default function RenteCalculator() {
  <div className="bg-white/50 rounded-lg p-4 mb-4">
  <p className="text-xs text-primary-900">
  <strong>Comment ça marche ?</strong>{' '}Votre rente sera légèrement réduite,
- mais votre conjoint continuera à recevoir {reversionPercentage}% après votre décès.
+ mais votre conjoint continuera à recevoir {simState.reversionPercentage}% après votre décès.
  </p>
  </div>
 
@@ -266,17 +266,17 @@ export default function RenteCalculator() {
  type="number"
  min={LIMITS.AGE_MIN}
  max={LIMITS.AGE_MAX}
- value={spouseAge}
+ value={simState.spouseAge}
  onChange={(e) => {
  const val = e.target.value
  if (val === '' || !isNaN(Number(val))) {
- setSpouseAge(val === '' ? LIMITS.AGE_MIN : Number(val))
+ setSimState(prev => ({ ...prev, spouseAge: val === '' ? LIMITS.AGE_MIN : Number(val) }))
  }
  }}
  onBlur={(e) => {
  const val = Number(e.target.value)
- if (isNaN(val) || val < LIMITS.AGE_MIN) setSpouseAge(LIMITS.AGE_MIN)
- else if (val > LIMITS.AGE_MAX) setSpouseAge(LIMITS.AGE_MAX)
+ if (isNaN(val) || val < LIMITS.AGE_MIN) setSimState(prev => ({ ...prev, spouseAge: LIMITS.AGE_MIN }))
+ else if (val > LIMITS.AGE_MAX) setSimState(prev => ({ ...prev, spouseAge: LIMITS.AGE_MAX }))
  }}
  onFocus={(e) => e.target.select()}
  className="w-16 px-2 py-1 text-sm font-medium text-center border border-primary-300 rounded-lg
@@ -290,8 +290,8 @@ export default function RenteCalculator() {
  min={LIMITS.AGE_MIN}
  max={LIMITS.AGE_MAX}
  step={1}
- value={spouseAge}
- onChange={(e) => setSpouseAge(Number(e.target.value))}
+ value={simState.spouseAge}
+ onChange={(e) => setSimState(prev => ({ ...prev, spouseAge: Number(e.target.value) }))}
  className="w-full"
  />
  </div>
@@ -306,9 +306,9 @@ export default function RenteCalculator() {
  {([60, 80, 100] as const).map((pct) => (
  <button
  key={pct}
- onClick={() => setReversionPercentage(pct)}
+ onClick={() => setSimState(prev => ({ ...prev, reversionPercentage: pct }))}
  className={`py-3 px-4 rounded-lg border-2 text-sm font-medium transition-all ${
- reversionPercentage === pct
+ simState.reversionPercentage === pct
  ? 'border-primary-600 bg-primary-100 text-primary-900 shadow-sm'
  : 'border-neutral-200 hover:border-primary-300 hover:bg-primary-50'
  }`}
@@ -318,9 +318,9 @@ export default function RenteCalculator() {
  ))}
  </div>
  <p className="text-xs text-neutral-500 mt-2">
- {reversionPercentage === 60 && 'Rente couple maximale, protection modérée'}
- {reversionPercentage === 80 && 'Équilibre entre les deux (le plus courant)'}
- {reversionPercentage === 100 && 'Protection maximale du conjoint'}
+ {simState.reversionPercentage === 60 && 'Rente couple maximale, protection modérée'}
+ {simState.reversionPercentage === 80 && 'Équilibre entre les deux (le plus courant)'}
+ {simState.reversionPercentage === 100 && 'Protection maximale du conjoint'}
  </p>
  </div>
  </div>
@@ -340,7 +340,7 @@ export default function RenteCalculator() {
  className="bg-white rounded-lg shadow-lg p-5 sm:p-8 border-t-4 border-primary-600"
 >
  <h3 className="text-xl font-semibold text-neutral-900 mb-6">Votre rente viagère estimée</h3>
- 
+
  <div className="mb-8">
  <motion.div
  key={result.monthly_amount}
@@ -375,7 +375,7 @@ export default function RenteCalculator() {
  {result.with_reversion && (
  <div className="mt-6 bg-primary-50 border border-primary-200 rounded-lg p-4">
  <div className="text-xs text-primary-900 mb-2 font-medium">
- Avec réversion {reversionPercentage}%
+ Avec réversion {simState.reversionPercentage}%
  </div>
  <div className="text-sm text-primary-900">
  Après votre décès, votre conjoint percevra{' '}
@@ -385,11 +385,11 @@ export default function RenteCalculator() {
  )}
 
  {/* Comparateur de scénarios d'âge */}
- {age < 75 && (
+ {simState.age < 75 && (
    <AgeScenarioComparison
      capital={capitalInput.value}
-     currentAge={age}
-     reversion={showReversion ? { enabled: true, spouse_age: spouseAge, percentage: reversionPercentage } : { enabled: false }}
+     currentAge={simState.age}
+     reversion={simState.showReversion ? { enabled: true, spouse_age: simState.spouseAge, percentage: simState.reversionPercentage } : { enabled: false }}
    />
  )}
  </motion.div>
@@ -442,10 +442,10 @@ export default function RenteCalculator() {
      contexte={{
        calculateur: 'rente-viagere',
        inputs: {
-         age,
+         age: simState.age,
          capital: capitalInput.value,
-         reversion: showReversion
-           ? { enabled: true, spouse_age: spouseAge, percentage: reversionPercentage }
+         reversion: simState.showReversion
+           ? { enabled: true, spouse_age: simState.spouseAge, percentage: simState.reversionPercentage }
            : { enabled: false },
        },
        results: result,
@@ -455,4 +455,3 @@ export default function RenteCalculator() {
  </>
  )
 }
-

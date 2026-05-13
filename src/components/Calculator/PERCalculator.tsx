@@ -1,12 +1,12 @@
-﻿'use client'
+'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { calculerPER } from '@/lib/per'
 import type { PERInputs, TMIOption } from '@/types/per'
 import { formatEur } from '@/lib/formatters'
 import { useNumericInput } from '@/hooks/useNumericInput'
-import { saveSimHistory } from '@/hooks/useSimStorage'
+import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
@@ -83,28 +83,53 @@ const DEFAULT_INPUTS: PERInputs = {
   plafondsReportesN5: 0,
 }
 
+interface PERSimState {
+  salaireNetAnnuel: number
+  tmi: TMIOption
+  versementEnvisage: number
+  reportN1: number
+  reportN2: number
+  reportN3: number
+  reportN4: number
+  reportN5: number
+}
 
 export default function PERCalculator() {
-  const [init] = useState(() => {
-    if (typeof window === 'undefined') return null
-    try {
-      const raw = localStorage.getItem('calcpatrimoine:state:per-individuel')
-      return raw ? JSON.parse(raw) : null
-    } catch { return null }
+  const [simState, setSimState] = useSimStorage<PERSimState>('per-individuel', {
+    salaireNetAnnuel: DEFAULT_INPUTS.salaireNetAnnuel,
+    tmi: DEFAULT_INPUTS.tmi,
+    versementEnvisage: DEFAULT_INPUTS.versementEnvisage,
+    reportN1: 0,
+    reportN2: 0,
+    reportN3: 0,
+    reportN4: 0,
+    reportN5: 0,
   })
 
-  const salaire = useNumericInput(init?.salaireNetAnnuel ?? DEFAULT_INPUTS.salaireNetAnnuel, { min: 0, max: 500_000 })
-  const [tmi, setTmi] = useState<TMIOption>(init?.tmi ?? DEFAULT_INPUTS.tmi)
-  const versement = useNumericInput(init?.versementEnvisage ?? DEFAULT_INPUTS.versementEnvisage, { min: 0, max: 200_000 })
-  const reportN1 = useNumericInput(init?.reportN1 ?? 0, { min: 0, max: 200_000 })
-  const reportN2 = useNumericInput(init?.reportN2 ?? 0, { min: 0, max: 200_000 })
-  const reportN3 = useNumericInput(init?.reportN3 ?? 0, { min: 0, max: 200_000 })
-  const reportN4 = useNumericInput(init?.reportN4 ?? 0, { min: 0, max: 200_000 })
-  const reportN5 = useNumericInput(init?.reportN5 ?? 0, { min: 0, max: 200_000 })
+  const salaire = useNumericInput(simState.salaireNetAnnuel, { min: 0, max: 500_000 })
+  const versement = useNumericInput(simState.versementEnvisage, { min: 0, max: 200_000 })
+  const reportN1 = useNumericInput(simState.reportN1, { min: 0, max: 200_000 })
+  const reportN2 = useNumericInput(simState.reportN2, { min: 0, max: 200_000 })
+  const reportN3 = useNumericInput(simState.reportN3, { min: 0, max: 200_000 })
+  const reportN4 = useNumericInput(simState.reportN4, { min: 0, max: 200_000 })
+  const reportN5 = useNumericInput(simState.reportN5, { min: 0, max: 200_000 })
+
+  useEffect(() => {
+    setSimState(prev => ({
+      ...prev,
+      salaireNetAnnuel: salaire.value,
+      versementEnvisage: versement.value,
+      reportN1: reportN1.value,
+      reportN2: reportN2.value,
+      reportN3: reportN3.value,
+      reportN4: reportN4.value,
+      reportN5: reportN5.value,
+    }))
+  }, [salaire.value, versement.value, reportN1.value, reportN2.value, reportN3.value, reportN4.value, reportN5.value]) // setSimState is stable
 
   const inputs: PERInputs = {
     salaireNetAnnuel: salaire.value,
-    tmi,
+    tmi: simState.tmi,
     versementEnvisage: versement.value,
     plafondsReportesN1: reportN1.value,
     plafondsReportesN2: reportN2.value,
@@ -115,20 +140,10 @@ export default function PERCalculator() {
 
   const results = useMemo(
     () => calculerPER(inputs),
-    [salaire.value, tmi, versement.value, reportN1.value, reportN2.value, reportN3.value, reportN4.value, reportN5.value]
+    [salaire.value, simState.tmi, versement.value, reportN1.value, reportN2.value, reportN3.value, reportN4.value, reportN5.value]
   )
 
   const { detail, economieFiscale, coutNetReel, rendementFiscal, warnings, optimisations } = results
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('calcpatrimoine:state:per-individuel', JSON.stringify({
-        salaireNetAnnuel: salaire.value, tmi, versementEnvisage: versement.value,
-        reportN1: reportN1.value, reportN2: reportN2.value, reportN3: reportN3.value,
-        reportN4: reportN4.value, reportN5: reportN5.value,
-      }))
-    } catch {}
-  }, [salaire.value, tmi, versement.value, reportN1.value, reportN2.value, reportN3.value, reportN4.value, reportN5.value])
 
   useEffect(() => {
     if (economieFiscale <= 0) return
@@ -136,10 +151,10 @@ export default function PERCalculator() {
       slug: 'per-individuel',
       nom: 'PER Individuel',
       href: '/per-individuel',
-      resume: `Économie : ${formatEur(economieFiscale)} · TMI ${tmi} %`,
+      resume: `Économie : ${formatEur(economieFiscale)} · TMI ${simState.tmi} %`,
       date: new Date().toISOString(),
     })
-  }, [economieFiscale, tmi])
+  }, [economieFiscale, simState.tmi])
 
   return (
     <>
@@ -154,7 +169,7 @@ export default function PERCalculator() {
             Salaire net annuel (N-1)
           </h3>
           <p className="text-xs text-neutral-500 mb-4">
-            Le salaire net reçu l&apos;an dernier, tel qu&apos;il apparaît sur votre bulletin de décembre ou votre déclaration d&apos;impôts. L&apos;abattement de 10 % pour frais professionnels est déduit automatiquement.
+            Le salaire net reçu l&apos;an dernier, tel qu&apos;il apparaît sur votre bulletin de décembre ou votre déclaration d&apos;impôts. L&apos;abattement de 10 % pour frais professionnels est déduit automatiquement.
           </p>
 
           <div className="mb-4">
@@ -205,9 +220,9 @@ export default function PERCalculator() {
             {TMI_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
-                onClick={() => setTmi(opt.value)}
+                onClick={() => setSimState(prev => ({ ...prev, tmi: opt.value }))}
                 className={`px-5 py-3 rounded-lg font-bold text-sm transition-all border-2 ${
-                  tmi === opt.value
+                  simState.tmi === opt.value
                     ? 'border-primary-600 bg-primary-600 text-white shadow-md scale-105'
                     : `border-neutral-200 ${opt.color} hover:border-primary-300`
                 }`}
@@ -293,7 +308,7 @@ export default function PERCalculator() {
 
         {/* Économie fiscale - résultat principal */}
         <div className={`rounded-xl border-2 p-6 ${
-          tmi === 0 ? 'bg-neutral-50 border-neutral-300' :
+          simState.tmi === 0 ? 'bg-neutral-50 border-neutral-300' :
           economieFiscale > 0 ? 'bg-green-50 border-green-300' : 'bg-neutral-50 border-neutral-300'
         }`}>
           <div className="mb-4">
@@ -381,10 +396,10 @@ export default function PERCalculator() {
         <AlertList items={optimisations} />
 
         {/* Scénario : impact d'un versement différent */}
-        {tmi > 0 && economieFiscale > 0 && versement.value > 0 && (
+        {simState.tmi > 0 && economieFiscale > 0 && versement.value > 0 && (
           <PERVersementScenario
             salaire={salaire.value}
-            tmi={tmi}
+            tmi={simState.tmi}
             versementActuel={versement.value}
             rapports={{
               n1: reportN1.value, n2: reportN2.value, n3: reportN3.value,
@@ -412,7 +427,7 @@ export default function PERCalculator() {
           href="/assurance-vie/fiscalite-rachat"
           title="Comparer avec un rachat d'assurance-vie à ce niveau de revenus"
           description="PFU vs barème sur un rachat assurance-vie — l'écart dépend de votre TMI à {tmi} %."
-          context={{ tmi }}
+          context={{ tmi: simState.tmi }}
         />
         <CrossLink
           href="/rente-viagere"

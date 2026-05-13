@@ -1,11 +1,11 @@
 // src/components/Calculator/TMICalculator.tsx
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useMemo, useEffect } from 'react'
 import { calculerTMIResult } from '@/lib/tmi'
 import type { TMIInputs, SituationFamiliale } from '@/types/tmi'
 import { useNumericInput } from '@/hooks/useNumericInput'
-import { saveSimHistory } from '@/hooks/useSimStorage'
+import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
@@ -33,47 +33,44 @@ const SITUATIONS: Array<{ value: SituationFamiliale; label: string }> = [
   { value: 'parent-isole', label: 'Parent isolé (case T)' },
 ]
 
+interface TMISimState {
+  revenuNetImposable: number
+  situationFamiliale: SituationFamiliale
+  nombreEnfants: number
+}
+
 export default function TMICalculator() {
-  const [init] = useState(() => {
-    if (typeof window === 'undefined') return null
-    try {
-      const raw = localStorage.getItem('calcpatrimoine:state:tmi')
-      if (!raw) return null
-      const stored = JSON.parse(raw)
-      if (stored.situationFamiliale === 'parent-isole' && !stored.nombreEnfants) stored.nombreEnfants = 1
-      return stored
-    } catch { return null }
+  const [simState, setSimState] = useSimStorage<TMISimState>('tmi', {
+    revenuNetImposable: 45000,
+    situationFamiliale: 'celibataire',
+    nombreEnfants: 0,
   })
 
-  const revenu = useNumericInput(init?.revenuNetImposable ?? 45000, { min: 0, max: 500000 })
-  const [situationFamiliale, setSituationFamiliale] = useState<SituationFamiliale>(init?.situationFamiliale ?? 'celibataire')
-  const [nombreEnfants, setNombreEnfants] = useState<number>(init?.nombreEnfants ?? 0)
+  const revenu = useNumericInput(simState.revenuNetImposable, { min: 0, max: 500000 })
+
+  // Sync numeric input value back to persisted state
+  useEffect(() => {
+    setSimState(prev => ({ ...prev, revenuNetImposable: revenu.value }))
+  }, [revenu.value]) // setSimState is stable
 
   function handleSituation(s: SituationFamiliale) {
-    setSituationFamiliale(s)
     // Parent isolé sans enfant est juridiquement impossible (case T Art. 195-1-c CGI)
-    if (s === 'parent-isole' && nombreEnfants === 0) setNombreEnfants(1)
+    if (s === 'parent-isole' && simState.nombreEnfants === 0) {
+      setSimState(prev => ({ ...prev, situationFamiliale: s, nombreEnfants: 1 }))
+    } else {
+      setSimState(prev => ({ ...prev, situationFamiliale: s }))
+    }
   }
 
   const inputs: TMIInputs = {
     revenuNetImposable: revenu.value,
-    situationFamiliale,
-    nombreEnfants,
+    situationFamiliale: simState.situationFamiliale,
+    nombreEnfants: simState.nombreEnfants,
   }
 
-  const results = useMemo(() => calculerTMIResult(inputs), [revenu.value, situationFamiliale, nombreEnfants])
+  const results = useMemo(() => calculerTMIResult(inputs), [revenu.value, simState.situationFamiliale, simState.nombreEnfants])
 
   const tmiColors = TMI_COLORS[results.tmi]
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('calcpatrimoine:state:tmi', JSON.stringify({
-        revenuNetImposable: revenu.value,
-        situationFamiliale,
-        nombreEnfants,
-      }))
-    } catch {}
-  }, [revenu.value, situationFamiliale, nombreEnfants])
 
   useEffect(() => {
     saveSimHistory({
@@ -142,7 +139,7 @@ export default function TMICalculator() {
                 key={s.value}
                 onClick={() => handleSituation(s.value)}
                 className={`w-full text-left px-4 py-3 rounded-lg font-medium text-sm transition-all border-2 ${
-                  situationFamiliale === s.value
+                  simState.situationFamiliale === s.value
                     ? 'bg-primary-600 text-white border-primary-600 shadow-md'
                     : 'bg-neutral-50 text-neutral-700 border-neutral-200 hover:border-primary-300 hover:bg-primary-50'
                 }`}
@@ -159,17 +156,17 @@ export default function TMICalculator() {
             </label>
             <div className="flex gap-2 flex-wrap">
               {[0, 1, 2, 3, 4, 5].map((n) => {
-                const disabled = situationFamiliale === 'parent-isole' && n === 0
+                const disabled = simState.situationFamiliale === 'parent-isole' && n === 0
                 return (
                   <button
                     key={n}
                     disabled={disabled}
-                    onClick={() => setNombreEnfants(n)}
+                    onClick={() => setSimState(prev => ({ ...prev, nombreEnfants: n }))}
                     title={disabled ? 'Parent isolé : au moins 1 enfant requis (Art. 195-1-c CGI)' : undefined}
                     className={`w-12 h-12 rounded-lg font-bold text-sm transition-all ${
                       disabled
                         ? 'bg-neutral-50 text-neutral-300 cursor-not-allowed'
-                        : nombreEnfants === n
+                        : simState.nombreEnfants === n
                           ? 'bg-primary-600 text-white shadow-md scale-105'
                           : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                     }`}
@@ -180,7 +177,7 @@ export default function TMICalculator() {
               })}
             </div>
             <p className="text-xs text-neutral-500 mt-2">
-              {situationFamiliale === 'parent-isole'
+              {simState.situationFamiliale === 'parent-isole'
                 ? 'Parent isolé (case T) : au moins 1 enfant requis - Art. 195-1-c CGI.'
                 : 'Enfants rattachés au foyer fiscal (art. 196 CGI).'}
             </p>

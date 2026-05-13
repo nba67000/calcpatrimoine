@@ -97,29 +97,14 @@ function calculerDetailPlafond(inputs: PERInputs): PERDetailPlafond {
  * calculerPER({ salaireNetAnnuel: 50000, tmi: 41, versementEnvisage: 10000,
  *   plafondsReportesN1: 3000, plafondsReportesN2: 0, plafondsReportesN3: 0 })
  */
-export function calculerPER(inputs: PERInputs): PERResults {
-  const { tmi, versementEnvisage } = inputs
-
-  // 1. Calcul du plafond
-  const detail = calculerDetailPlafond(inputs)
-
-  // 2. Économie fiscale sur la part déductible
-  const economieFiscale = Math.round(detail.montantDeductible * (tmi / 100))
-
-  // 3. Coût net réel du versement
-  const coutNetReel = versementEnvisage - economieFiscale
-
-  // 4. Rendement fiscal (économie / versement total)
-  const rendementFiscal =
-    versementEnvisage > 0
-      ? Math.round((economieFiscale / versementEnvisage) * 1000) / 10
-      : 0
-
-  // 5. Warnings et optimisations
+function evaluerAlertesPER(
+  tmi: PERInputs['tmi'],
+  versementEnvisage: number,
+  detail: PERDetailPlafond
+): { warnings: PERResults['warnings']; optimisations: PERResults['optimisations'] } {
   const warnings: PERResults['warnings'] = []
   const optimisations: PERResults['optimisations'] = []
 
-  // Avertissement systématique : l'avantage à l'entrée est un report d'imposition
   warnings.push({
     type: 'info',
     message: `L'économie affichée est un avantage fiscal à l'entrée, pas une exonération définitive. À la sortie, la part du capital issue des versements déductibles sera imposée à l'IR (au barème de l'année de sortie) ; les gains seront soumis aux prélèvements sociaux (17,2 %). L'avantage net réel dépend de l'écart entre votre TMI actuelle (${tmi} %) et votre TMI à la retraite.`,
@@ -164,6 +149,30 @@ export function calculerPER(inputs: PERInputs): PERResults {
       message: `Les plafonds non utilisés des 5 dernières années (N-1 à N-5) sont reportables depuis la LF 2026 (Art. 163 quatervicies I b) CGI). Ces montants figurent sur votre avis d'imposition (rubrique "Plafonds disponibles pour les versements retraite").`,
     })
   }
+
+  return { warnings, optimisations }
+}
+
+export function calculerPER(inputs: PERInputs): PERResults {
+  const { tmi, versementEnvisage } = inputs
+
+  // 1. Calcul du plafond
+  const detail = calculerDetailPlafond(inputs)
+
+  // 2. Économie fiscale sur la part déductible
+  const economieFiscale = Math.round(detail.montantDeductible * (tmi / 100))
+
+  // 3. Coût net réel du versement
+  const coutNetReel = versementEnvisage - economieFiscale
+
+  // 4. Rendement fiscal (économie / versement total)
+  const rendementFiscal =
+    versementEnvisage > 0
+      ? Math.round((economieFiscale / versementEnvisage) * 1000) / 10
+      : 0
+
+  // 5. Warnings et optimisations
+  const { warnings, optimisations } = evaluerAlertesPER(tmi, versementEnvisage, detail)
 
   return {
     detail,
