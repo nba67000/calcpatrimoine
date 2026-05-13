@@ -558,8 +558,8 @@ export default function FAQRenteViagerePage() {
               Questions fréquentes<br />Rente Viagère
             </h1>
             <p className="text-lg text-neutral-600 max-w-2xl mb-10">
-              Tout ce que vous devez savoir sur la rente viagère : fonctionnement, fiscalité,
-              réversion, couple. Le tout expliqué avec des exemples concrets.
+              Fonctionnement, fiscalité, réversion, couple — les questions fréquentes
+              sur la rente viagère, avec des exemples chiffrés.
             </p>
 
             {/* Lien vers calculateur */}

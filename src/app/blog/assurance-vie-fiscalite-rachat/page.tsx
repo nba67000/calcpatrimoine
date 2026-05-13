@@ -124,7 +124,7 @@ export default function ArticleAssuranceViePage() {
               <li><a href="#pfu-vs-ir" className="text-primary-600 hover:underline">3. PFU ou IR : lequel choisir ?</a></li>
               <li><a href="#date-2017" className="text-primary-600 hover:underline">4. La date du 27 septembre 2017</a></li>
               <li><a href="#150k" className="text-primary-600 hover:underline">5. Le cas des contrats de plus de 150 000 euros</a></li>
-              <li><a href="#erreurs" className="text-primary-600 hover:underline">6. Les 5 erreurs qui coûtent cher</a></li>
+              <li><a href="#erreurs" className="text-primary-600 hover:underline">6. Trois cas comparés : l&apos;écart selon le timing</a></li>
               <li><a href="#cas-concrets" className="text-primary-600 hover:underline">7. Cas concrets : 3 profils, 3 calculs</a></li>
               <li><a href="#optimisations" className="text-primary-600 hover:underline">8. Optimisations légales</a></li>
             </ol>
@@ -396,12 +396,12 @@ export default function ArticleAssuranceViePage() {
 
           {/* SECTION 6 */}
           <section id="erreurs" className="mb-16">
-            <h2 className="font-serif text-3xl font-bold text-neutral-900 mb-6">Les 5 erreurs qui coûtent cher</h2>
+            <h2 className="font-serif text-3xl font-bold text-neutral-900 mb-6">Trois cas comparés : l&apos;écart selon le timing</h2>
 
             {[
               {
                 titre: '1. Retirer juste avant les 8 ans',
-                desc: 'Votre contrat a 7 ans et 10 mois. Vous avez besoin d\'argent et vous retirez maintenant. C\'est l\'erreur la plus fréquente.',
+                desc: 'Votre contrat a 7 ans et 10 mois. Vous avez besoin d\'argent et vous retirez maintenant. L\'écart : 1 380 euros pour 60 jours de différence.',
                 cols: [
                   { label: 'Retrait immédiat', lines: ['Plus-value : 15 000 euros', 'Abattement : 0 euro', 'Impôt à 30 % : 4 500 euros'] },
                   { label: 'Attente de 2 mois', lines: ['Plus-value : 15 000 euros', 'Abattement : 4 600 euros', 'Impôt à 30 % : 3 120 euros'] },
@@ -419,7 +419,7 @@ export default function ArticleAssuranceViePage() {
               },
               {
                 titre: '3. Laisser le PFU s\'appliquer sans vérifier',
-                desc: 'Le PFU s\'applique automatiquement si vous ne demandez rien. Si vous êtes retraité avec un taux marginal à 11 %, c\'est une erreur silencieuse qui vous coûte chaque année.',
+                desc: 'Le PFU s\'applique automatiquement si vous ne demandez rien. Si votre TMI est à 11 %, l\'option IR est moins taxée que le PFU — mais elle n\'est jamais appliquée par défaut.',
                 cols: [
                   { label: 'PFU par défaut', lines: ['Plus-value taxable : 10 000 euros', 'Taux : 30 %', 'Impôt : 3 000 euros'] },
                   { label: 'Option IR + prél. sociaux', lines: ['Plus-value taxable : 10 000 euros', 'Taux : 11 % + 17,2 % = 28,2 %', 'Impôt : 2 820 euros'] },

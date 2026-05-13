@@ -192,8 +192,8 @@ const faqItems: FAQItem[] = [
  Cette mesure a été instaurée par la loi de finances 2018.
  </p>
  <p className="bg-primary-50 border-l-4 border-primary-500 p-4 rounded">
- <strong>Conseil :</strong>Si vous avez fait des versements avant cette date, 
- pensez à l&apos;indiquer dans le calculateur pour bénéficier de cet avantage fiscal.
+ <strong>À noter :</strong> Si vous avez versé avant cette date, indiquez-le
+ dans le calculateur — c&apos;est la variable qui fait passer le taux de 30 % à 24,7 %.
  </p>
  </>
  )
@@ -268,17 +268,13 @@ const faqItems: FAQItem[] = [
  answer: (
  <>
  <p className="mb-3">
- Au-delà de 150 000€ de versements par personne, un prélèvement additionnel 
- s&apos;applique sur la fraction des versements qui dépasse ce seuil.
- </p>
- <p className="mb-3">
- Le taux d&apos;imposition passe de 12,8% à 12,8% (inchangé pour l&apos;IR) mais avec 
- des modalités spécifiques définies à l&apos;article 990 I du CGI.
+ Au-delà de 150 000 € de versements post-27/09/2017 par personne, le taux
+ préférentiel de 7,5 % ne s&apos;applique plus à l&apos;excédent : c&apos;est le taux standard
+ de 12,8 % qui prend le relais (Art. 125-0 A CGI).
  </p>
  <p className="bg-primary-50 border-l-4 border-primary-500 p-4 rounded">
- <strong>Note :</strong>Le calculateur actuel ne gère pas encore ce cas complexe. 
- Si vous êtes concerné, nous vous recommandons de consulter un conseiller en 
- gestion de patrimoine ou d&apos;utiliser le simulateur impots.gouv.fr en complément.
+ <strong>À noter :</strong> Le calculateur ne gère pas encore ce cas — consultez
+ un notaire pour un calcul précis.
  </p>
  </>
  )
@@ -499,8 +495,8 @@ export default function FAQAssuranceViePage() {
  </h1>
  
  <p className="text-xl text-neutral-700 leading-relaxed">
- Tout ce que vous devez savoir sur la fiscalité du rachat d&apos;assurance-vie : 
- PFU vs IR, abattement 8 ans, versements avant 2017, optimisations fiscales.
+ PFU vs IR, abattement 8 ans, versements avant 2017 — les mécanismes
+ fiscaux du rachat d&apos;assurance-vie expliqués avec des chiffres.
  </p>
  </div>
  </div>
@@ -578,8 +574,8 @@ export default function FAQAssuranceViePage() {
  Article complet : Assurance-vie, combien vous allez VRAIMENT payer ?
  </h3>
  <p className="text-neutral-700 mb-4 leading-relaxed">
- Découvrez tous les mécanismes fiscaux, les 5 erreurs qui coûtent cher, 
- et les optimisations que personne ne vous dit. 2 500 mots pour tout comprendre.
+ Règle proportionnelle, PFU vs IR, fractionnement des rachats.
+ Exemples chiffrés avec formules.
  </p>
  <div className="flex items-center gap-2 text-primary-600 font-medium group-hover:gap-3 transition-all">
  <span>Lire l&apos;article complet</span>

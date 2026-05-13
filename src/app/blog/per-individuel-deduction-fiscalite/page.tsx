@@ -48,16 +48,14 @@ export default function ArticlePERPage() {
           {/* Intro */}
           <div className="mb-12">
             <p className="text-xl text-neutral-700 leading-relaxed mb-6">
-              Imaginons que cette année, vous versez 5 000 euros sur un PER individuel. Supposons que votre taux marginal d&apos;imposition s&apos;élève à 30 %. Vous bénéficierez d&apos;une déduction de 1 500 euros sur votre prochaine déclaration d&apos;impôts. Avantageux, n&apos;est-ce pas ? Pas si sûr.
-            </p>
-            <p className="text-neutral-700 mb-4">
-              Le PER individuel est souvent présenté comme un outil d&apos;optimisation fiscale simple : vous versez, vous déduisez, vous économisez. Les publicités s&apos;arrêtent là. Ce qu&apos;elles omettent de préciser, c&apos;est que cet argent épargné aujourd&apos;hui sera imposé demain, au moment où vous le retirerez à la retraite.
-            </p>
-            <p className="text-neutral-700 mb-4">
-              Ce n&apos;est pas un piège. C&apos;est le fonctionnement normal du produit. Comprendre précisément ce qui se joue à l&apos;entrée, durant la phase d&apos;épargne et à la sortie modifie totalement l&apos;évaluation de son véritable intérêt en fonction de votre situation.
+              Imaginons que cette année, vous versez 5 000 euros sur un PER individuel à 30 % de TMI.
+              L&apos;économie immédiate : 1 500 euros. Ce que ce chiffre ne montre pas : cet argent sera
+              imposé à la sortie, quand vous le retirerez à la retraite. Le bilan dépend donc de
+              votre TMI aujourd&apos;hui comparée à celle prévue à la retraite.
             </p>
             <p className="text-neutral-700">
-              Dans cet article : les mécanismes expliqués sans jargon, les formules, les plafonds, la fiscalité des retraits, et une comparaison chiffrée avec l&apos;assurance-vie.
+              Dans cet article : les mécanismes exacts à l&apos;entrée et à la sortie, les plafonds,
+              et une comparaison chiffrée avec l&apos;assurance-vie.
             </p>
           </div>
 
@@ -92,7 +90,7 @@ export default function ArticlePERPage() {
                 },
                 {
                   terme: 'Le PASS (Plafond Annuel de la Sécurité Sociale)',
-                  def: "Le PASS sert de base pour calculer le montant des indemnités journalières pour maladie, accident du travail ou maternité, les pensions d'invalidité, les retraites, et d'autres prestations. En 2025, le PASS vaut 46 368 euros. Dans cet article, quand il est indiqué « 10 % du PASS », cela signifie 10 % × 46 368 euros = 4 637 euros.",
+                  def: "Le PASS sert de base pour calculer le montant des indemnités journalières pour maladie, accident du travail ou maternité, les pensions d'invalidité, les retraites, et d'autres prestations. En 2025, le PASS vaut 47 100 euros. Dans cet article, quand il est indiqué « 10 % du PASS », cela signifie 10 % × 47 100 euros = 4 710 euros.",
                 },
                 {
                   terme: 'Le PFU (Prélèvement Forfaitaire Unique)',
@@ -280,7 +278,7 @@ export default function ArticlePERPage() {
             </p>
 
             <p className="text-neutral-700 mb-6">
-              Ces bornes sont exprimées en pourcentage du PASS (Plafond Annuel de la Sécurité Sociale), qui vaut 46 368 euros en 2025. Quand un texte de loi indique &laquo;&nbsp;10 % du PASS&nbsp;&raquo;, cela signifie concrètement 10 % × 46 368 euros, soit 4 637 euros.
+              Ces bornes sont exprimées en pourcentage du PASS (Plafond Annuel de la Sécurité Sociale), qui vaut 47 100 euros en 2025. Quand un texte de loi indique &laquo;&nbsp;10 % du PASS&nbsp;&raquo;, cela signifie concrètement 10 % × 47 100 euros, soit 4 710 euros.
             </p>
 
             <div className="bg-neutral-50 border border-neutral-200 p-5 my-6">
