@@ -117,7 +117,7 @@ export default function APropos() {
                   <div className="space-y-1.5 text-sm text-neutral-600 font-mono">
                     <p><span className="text-neutral-400">Stack :</span> Next.js 16, TypeScript, Tailwind CSS</p>
                     <p><span className="text-neutral-400">Open source :</span>{' '}
-                      <a href="https://github.com/nba67000/calculpatrimoine" className="text-primary-600 hover:underline" target="_blank" rel="noopener">
+                      <a href="https://github.com/nba67000/calculpatrimoine" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">
                         github.com/nba67000/calculpatrimoine
                       </a>
                     </p>
@@ -190,9 +190,9 @@ export default function APropos() {
                 <div>
                   <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Développeurs</h3>
                   <ul className="space-y-2 text-sm">
-                    <li><a href="https://github.com/nba67000/calculpatrimoine" className="text-primary-600 hover:underline" target="_blank" rel="noopener">Code source GitHub →</a></li>
-                    <li><a href="https://github.com/nba67000/calculpatrimoine/issues" className="text-primary-600 hover:underline" target="_blank" rel="noopener">Reporter un bug →</a></li>
-                    <li><a href="https://github.com/nba67000/calculpatrimoine/pulls" className="text-primary-600 hover:underline" target="_blank" rel="noopener">Contribuer (Pull Requests) →</a></li>
+                    <li><a href="https://github.com/nba67000/calculpatrimoine" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">Code source GitHub →</a></li>
+                    <li><a href="https://github.com/nba67000/calculpatrimoine/issues" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">Reporter un bug →</a></li>
+                    <li><a href="https://github.com/nba67000/calculpatrimoine/pulls" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">Contribuer (Pull Requests) →</a></li>
                   </ul>
                 </div>
                 <div>
