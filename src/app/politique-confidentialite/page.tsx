@@ -4,8 +4,7 @@ import Footer from '@/components/Footer'
 
 export const metadata = {
  title: 'Politique de Confidentialité - CalculPatrimoine',
- description: 'Politique de confidentialité et protection des données personnelles sur CalculPatrimoine'
-
+ description: 'Politique de confidentialité et protection des données personnelles sur CalculPatrimoine',
   alternates: { canonical: 'https://calculpatrimoine.fr/politique-confidentialite' },
 }
 
