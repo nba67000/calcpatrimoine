@@ -170,7 +170,7 @@ export default function ArticleRenteViagere() {
             <div className="bg-neutral-50 border border-neutral-200 p-5 my-6">
               <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-3">Fiscalité de la rente viagère (information générale)</p>
               <p className="text-sm text-neutral-700 leading-relaxed">
-                La rente perçue est imposée partiellement. La fraction imposable dépend de votre âge au moment où vous commencez à percevoir la rente : 70 % si vous avez moins de 50 ans, 50 % entre 50 et 59 ans, 40 % entre 60 et 69 ans, 30 % à partir de 70 ans. Cette fraction est intégrée à votre revenu imposable et taxée à votre taux marginal, plus les prélèvements sociaux.
+                La rente est imposée partiellement — et d&apos;autant moins que vous commencez à la percevoir tard. La fraction imposable est : 70 % avant 50 ans, 50 % de 50 à 59 ans, 40 % de 60 à 69 ans, 30 % à partir de 70 ans (Art. 158-6 CGI). La logique : plus vous attendez, plus chaque versement est assimilé à un retour de capital — et moins à un revenu.
               </p>
             </div>
           </section>

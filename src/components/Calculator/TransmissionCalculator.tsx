@@ -18,6 +18,7 @@ import type {
 import ChatWidget from '@/components/ChatWidget'
 import AlertList from '@/components/AlertList'
 import CrossLink from '@/components/CrossLink'
+import LegalDisclaimer from '@/components/LegalDisclaimer'
 import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
 import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
 import { formatEur } from '@/lib/formatters'
@@ -359,21 +360,7 @@ export default function TransmissionCalculator() {
  <div className="space-y-6">
 
  {/* Disclaimer */}
- <div className="bg-primary-50 border-2 border-primary-300 rounded-xl p-5">
- <div className="flex items-start gap-3">
- <div className="text-2xl"></div>
- <div>
- <h4 className="font-bold text-primary-900 mb-2 text-sm">
- Outil de simulation uniquement
- </h4>
- <p className="text-xs text-primary-800 leading-relaxed">
- Ce calculateur estime les droits de transmission. Il ne constitue pas un conseil
- patrimonial personnalisé. Pour une décision adaptée à votre cas, consultez un notaire,
- un avocat fiscaliste ou un conseiller en gestion de patrimoine indépendant.
- </p>
- </div>
- </div>
- </div>
+ <LegalDisclaimer />
 
  {/* Graphique résultats */}
  {results && <TransmissionChart results={results} />}

@@ -75,7 +75,7 @@ const faqItems: FAQItem[] = [
  </a>.
  </p>
  <p>
- Pour toute décision patrimoniale importante, un conseiller en gestion de patrimoine indépendant peut apporter une analyse adaptée à votre situation.
+ Les cas non couverts (versements &gt; 150 000 €, contrats luxembourgeois, rachats fractionnés multi-années) sont signalés dans cette FAQ.
  </p>
  </>
  )
@@ -106,9 +106,7 @@ const faqItems: FAQItem[] = [
  <li>TMI à 41% : IR + PS = 58,2% | PFU = 30%</li>
  </ul>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-3 rounded text-sm">
- Le calculateur compare automatiquement ces deux options pour votre situation.
- Le choix final vous appartient selon vos objectifs fiscaux. Consultez un
- professionnel pour un conseil personnalisé.
+ Le calculateur affiche les deux montants côte à côte et met en évidence l&apos;option la moins taxée. À TMI ≤ 11 %, l&apos;IR + PS est systématiquement moins coûteux que le PFU.
  </p>
  <div className="mt-4">
   <CrossLink href="/assurance-vie/fiscalite-rachat" title="Calculateur fiscalité des rachats" description="Simulez PFU vs IR sur votre situation — ancienneté, montant, TMI, versements avant 2017." />
@@ -313,9 +311,8 @@ const faqItems: FAQItem[] = [
  <li>Utilisation de l&apos;abattement annuel sur plusieurs rachats</li>
  </ul>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded text-sm">
- <strong>À noter :</strong>Même pour un besoin total de capital, conserver 
- une somme minimale (ex: 1 000€) sur le contrat préserve son ancienneté. 
- La décision dépend de votre situation et de vos objectifs patrimoniaux.
+ <strong>À noter :</strong> Même pour un besoin total de capital, conserver
+ une somme minimale (ex : 1 000 €) sur le contrat préserve son ancienneté.
  </p>
  </>
  )
@@ -354,8 +351,7 @@ const faqItems: FAQItem[] = [
  </div>
  </div>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded mt-3 text-sm">
- Le calculateur compare ces différentes variables. Pour une stratégie
- adaptée à votre situation, consultez un expert-comptable ou un CGP.
+ Chaque paramètre est modifiable en temps réel — les résultats se recalculent instantanément.
  </p>
  <div className="mt-4">
   <CrossLink href="/assurance-vie/fiscalite-rachat" title="Testez chaque variable en temps réel" description="Modifiez ancienneté, TMI, montant, versements avant 2017 — l'impôt se recalcule instantanément." />
@@ -387,8 +383,7 @@ const faqItems: FAQItem[] = [
  <li>Calcul de l&apos;économie fiscale si vous fractionnez le rachat sur 2 ans</li>
  </ul>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded text-sm">
- Ces comparaisons sont à titre informatif. La décision finale vous appartient
- selon votre situation personnelle, fiscale et patrimoniale.
+ Chaque paramètre est modifiable en temps réel — les résultats se recalculent instantanément.
  </p>
  <div className="mt-4">
   <CrossLink href="/assurance-vie/fiscalite-rachat" title="Ouvrez le calculateur" description="Modifiez chaque paramètre et comparez vos scénarios en temps réel." />
