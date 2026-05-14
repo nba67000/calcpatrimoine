@@ -68,17 +68,20 @@ const sections: FAQSection[] = [
             </p>
             <ul className="list-disc pl-6 mb-3 space-y-1">
               <li>Votre âge (plus vous êtes âgé, plus la rente est élevée)</li>
-              <li>Votre sexe (les femmes vivent plus longtemps, donc rente légèrement plus basse)</li>
               <li>Les options choisies (réversion ou pas, voir plus bas)</li>
             </ul>
+            <p className="mb-3 text-sm text-neutral-600">
+              Depuis l&apos;arrêt européen <em>Test-Achats</em> (2012), les assureurs calculent la rente
+              sur des tables unisexes : hommes et femmes du même âge obtiennent le même montant.
+            </p>
             <p className="mb-3">
               <strong>Étape 3</strong> : Vous recevez votre rente chaque mois, à vie, peu importe combien de temps vous vivez.
             </p>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4 mt-4">
               <p className="text-sm text-primary-900">
                 <strong>Exemple chiffré</strong> : Marc, 70 ans, verse 200 000€.
-                Il reçoit 1 227€/mois à vie. S&apos;il vit jusqu&apos;à 90 ans (20 ans),
-                il aura touché au total 294 480€.
+                Il reçoit 778€/mois à vie. S&apos;il vit jusqu&apos;à 92 ans (22 ans),
+                il aura touché au total 205 392€.
               </p>
             </div>
           </>
@@ -177,9 +180,9 @@ const sections: FAQSection[] = [
             </ul>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4 mt-4">
               <p className="text-sm text-primary-900">
-                <strong>Cas idéal</strong> : Jeanne, 68 ans, célibataire, 120 000€ d&apos;épargne,
-                retraite 1200€/mois. Elle transforme 80 000€ en rente (491€/mois) et garde 40 000€
-                en réserve. Total : 1691€/mois garanti à vie.
+                <strong>Exemple</strong> : Jeanne, 68 ans, célibataire, 120 000€ d&apos;épargne,
+                retraite 1 200€/mois. Elle transforme 80 000€ en rente (287€/mois) et garde 40 000€
+                en réserve. Total : 1 487€/mois garanti à vie.
               </p>
             </div>
           </>
@@ -197,19 +200,18 @@ const sections: FAQSection[] = [
             <p className="mb-3">
               <strong>Utilisez notre calculateur</strong>  gratuit, instantané, basé sur les vraies tables de mortalité INSEE.
             </p>
-            <p className="mb-3"><strong>Ordre de grandeur</strong> (pour 100 000€ de capital) :</p>
+            <p className="mb-3"><strong>Ordre de grandeur</strong> (pour 100 000€ de capital, tables unisexes) :</p>
             <ul className="list-none pl-0 mb-3 space-y-2">
-              <li>Homme 65 ans → <strong>614€/mois</strong></li>
-              <li>Homme 70 ans → <strong>766€/mois</strong></li>
-              <li>Homme 75 ans → <strong>996€/mois</strong></li>
-              <li>Femme 65 ans → <strong>532€/mois</strong> (vit plus longtemps)</li>
-              <li>Femme 70 ans → <strong>671€/mois</strong></li>
-              <li>Femme 75 ans → <strong>885€/mois</strong></li>
+              <li>60 ans → <strong>273€/mois</strong></li>
+              <li>65 ans → <strong>321€/mois</strong></li>
+              <li>70 ans → <strong>389€/mois</strong></li>
+              <li>75 ans → <strong>487€/mois</strong></li>
+              <li>80 ans → <strong>641€/mois</strong></li>
             </ul>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4 mt-4">
               <p className="text-sm text-primary-900">
-                <strong>Astuce</strong> : Plus vous attendez (70 ans vs 65 ans),
-                plus la rente mensuelle est élevée (+25% environ tous les 5 ans).
+                <strong>À noter</strong> : Plus vous attendez (70 ans vs 65 ans),
+                plus la rente est élevée. L&apos;écart est d&apos;environ +20 % tous les 5 ans.
               </p>
             </div>
             <div className="mt-4">
@@ -259,22 +261,21 @@ const sections: FAQSection[] = [
             </p>
             <p className="mb-3"><strong>Exemple concret</strong> :</p>
             <div className="bg-neutral-100 p-4 border border-neutral-200 mb-3">
-              <p className="mb-2">Jean, 65 ans, verse 100 000€. Il reçoit 614€/mois.</p>
-              <p className="mb-2"><strong>Scénario 1</strong> : Il décède à 70 ans (5 ans après)</p>
+              <p className="mb-2">Jean, 65 ans, verse 100 000€. Il reçoit 321€/mois.</p>
+              <p className="mb-2"><strong>Scénario 1</strong> : Il décède à 72 ans (7 ans après)</p>
               <ul className="list-none pl-4 mb-2">
-                <li>→ Total reçu : 614€ × 12 mois × 5 ans = <strong>36 840€</strong></li>
-                <li>→ Perte : 100 000€ - 36 840€ = <strong>63 160€</strong> </li>
+                <li>→ Total reçu : 321€ × 12 mois × 7 ans = <strong>26 964€</strong></li>
+                <li>→ Perte : 100 000€ - 26 964€ = <strong>73 036€</strong></li>
               </ul>
-              <p className="mb-2"><strong>Scénario 2</strong> : Il décède à 85 ans (20 ans après)</p>
+              <p className="mb-2"><strong>Scénario 2</strong> : Il décède à 92 ans (27 ans après)</p>
               <ul className="list-none pl-4">
-                <li>→ Total reçu : 614€ × 12 mois × 20 ans = <strong>147 360€</strong></li>
-                <li>→ Gain : 147 360€ - 100 000€ = <strong>+47 360€</strong> </li>
+                <li>→ Total reçu : 321€ × 12 mois × 27 ans = <strong>103 964€</strong></li>
+                <li>→ Gain : 103 964€ - 100 000€ = <strong>+3 964€</strong></li>
               </ul>
             </div>
             <p className="mb-3"><strong>Point mort</strong> (âge où vous &quot;récupérez&quot; votre capital) :</p>
             <ul className="list-disc pl-6 mb-3">
-              <li>Homme 65 ans → Point mort à <strong>78-79 ans</strong> (13-14 ans)</li>
-              <li>Femme 65 ans → Point mort à <strong>80-81 ans</strong> (15-16 ans)</li>
+              <li>65 ans → Point mort à <strong>91-92 ans</strong> (~27 ans de rente)</li>
             </ul>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4 mt-4">
               <p className="text-sm text-primary-900">
@@ -297,11 +298,11 @@ const sections: FAQSection[] = [
               vous êtes protégé contre le risque de &quot;vivre trop longtemps&quot; et de manquer d&apos;argent.
             </p>
             <div className="bg-primary-100 p-4 border border-neutral-200 mb-3">
-              <p className="mb-2">Marie, 65 ans, verse 100 000€. Elle reçoit 532€/mois (femme).</p>
+              <p className="mb-2">Marie, 65 ans, verse 100 000€. Elle reçoit 321€/mois.</p>
               <p className="mb-2"><strong>Elle vit jusqu&apos;à 102 ans</strong> (37 ans de rente) :</p>
               <ul className="list-none pl-4">
-                <li>→ Total reçu : 532€ × 12 × 37 = <strong>236 208€</strong></li>
-                <li>→ Gain : 236 208€ - 100 000€ = <strong>+136 208€</strong></li>
+                <li>→ Total reçu : 321€ × 12 × 37 = <strong>142 524€</strong></li>
+                <li>→ Gain : 142 524€ - 100 000€ = <strong>+42 524€</strong></li>
               </ul>
             </div>
             <p className="mb-3">
@@ -375,12 +376,12 @@ const sections: FAQSection[] = [
               <li>Jusqu&apos;à son propre décès</li>
             </ul>
             <div className="bg-primary-100 p-4 border border-neutral-200 mb-3">
-              <p className="mb-2">Pierre, 65 ans, verse 100 000€.</p>
-              <p className="mb-2"><strong>Sans réversion</strong> : 614€/mois</p>
-              <p className="mb-2"><strong>Avec réversion 60%</strong> : 540€/mois</p>
+              <p className="mb-2">Pierre, 65 ans, conjoint 63 ans, verse 100 000€.</p>
+              <p className="mb-2"><strong>Sans réversion</strong> : 321€/mois</p>
+              <p className="mb-2"><strong>Avec réversion 60%</strong> : 151€/mois</p>
               <p className="mb-2 text-sm text-neutral-700">
-                → Si Pierre décède, sa femme Marie touche 60% × 540€ = <strong>324€/mois à vie</strong><br />
-                → Si Marie décède avant Pierre, Pierre garde ses <strong>540€/mois</strong>
+                → Si Pierre décède, Marie touche 60% × 151€ = <strong>91€/mois à vie</strong><br />
+                → Si Marie décède avant Pierre, Pierre garde ses <strong>151€/mois</strong>
               </p>
             </div>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4 mb-3">

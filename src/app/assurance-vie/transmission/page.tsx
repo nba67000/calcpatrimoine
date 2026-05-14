@@ -71,8 +71,8 @@ export default function TransmissionPage() {
             <p>
               <strong>Article 757 B - versements après 70 ans.</strong>{' '}
               Abattement global de 30 500 € partagé entre tous les bénéficiaires (sauf conjoint).
-              Les gains réalisés sur le contrat (intérêts, valorisation) ne sont pas imposés à la succession. Seules les primes versées après 70 ans entrent dans le calcul.
-              Au-delà : barème de succession classique.
+              Les gains réalisés sur le contrat (intérêts, valorisation) ne sont pas imposés à la succession. Seul l&apos;argent versé après vos 70 ans entre dans le calcul.
+              Au-delà de l&apos;abattement : les droits de succession habituels s&apos;appliquent selon le lien de parenté et le montant reçu.
             </p>
             <p>
               <strong>Conjoint et PACS totalement exonérés.</strong>{' '}

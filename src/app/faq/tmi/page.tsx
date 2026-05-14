@@ -141,7 +141,7 @@ const sections: FAQSection[] = [
         answer: (
           <>
             <p className="mb-3">
-              Le quotient familial divise le revenu fiscal de référence par le nombre de <strong>parts fiscales</strong>
+              Le quotient familial divise le revenu net imposable par le nombre de <strong>parts fiscales</strong>
               du foyer. Cela réduit la tranche atteinte et donc l&apos;impôt.
             </p>
             <p className="mb-3"><strong>Nombre de parts :</strong></p>

@@ -40,8 +40,8 @@ const LIMITES = [
   'Le revenu saisi est le revenu net imposable (après abattement 10 % ou frais réels).',
   'Les revenus soumis à taux fixe (plus-values mobilières au PFU, etc.) ne sont pas pris en compte.',
   'Les réductions et crédits d\'impôt ne sont pas simulés.',
-  'La contribution exceptionnelle sur les hauts revenus (CEHR - surtaxe de 3 % à 4 % au-delà de 250 000 € de revenu fiscal de référence - Art. 223 sexies CGI) n\'est pas calculée.',
-  'La résidence alternée (demi-parts à 0,25) n\'est pas gérée.',
+  'La surtaxe sur les très hauts revenus (CEHR, Art. 223 sexies CGI) n\'est pas calculée. Elle s\'applique au-delà de 250 000 € de revenus et représente 3 à 4 % supplémentaires.',
+  'La garde alternée (enfants à mi-temps : 0,25 part au lieu de 0,5) n\'est pas gérée.',
 ]
 
 export default function TMIPage() {

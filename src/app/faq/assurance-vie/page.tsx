@@ -383,8 +383,8 @@ const faqItems: FAQItem[] = [
  <ul className="list-disc list-inside mb-3">
  <li>Comparaison PFU vs IR</li>
  <li>Différence entre les deux options</li>
- <li>Informations sur les optimisations possibles</li>
- <li>Suggestions de fractionnement si pertinent</li>
+ <li>Avertissement si vous dépassez l&apos;abattement annuel ou approchez du seuil des 8 ans</li>
+ <li>Calcul de l&apos;économie fiscale si vous fractionnez le rachat sur 2 ans</li>
  </ul>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded text-sm">
  Ces comparaisons sont à titre informatif. La décision finale vous appartient

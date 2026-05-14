@@ -81,8 +81,8 @@ export default function RenteViagerePage() {
             </p>
             <p>
               <strong>Les assureurs intègrent une hypothèse de rendement futur dans le calcul.</strong>{' '}
-              Ce rendement supposé (appelé taux technique) augmente légèrement la rente dès le départ : l&apos;assureur avance une partie des gains futurs.
-              En contrepartie, si les actifs performent mieux que prévu, les augmentations ultérieures de la rente sont réduites. Notre calculateur utilise 0,5 %, valeur standard du marché.
+              Ce rendement supposé (appelé taux technique) augmente légèrement la rente versée dès le départ : l&apos;assureur anticipe une partie des gains futurs sur les réserves investies.
+              Notre calculateur utilise 0,5 %, valeur standard du marché.
             </p>
             <p>
               <strong>La réversion réduit la rente, mais protège le conjoint.</strong>{' '}
