@@ -420,7 +420,7 @@ export default function ArticleAssuranceViePage() {
               },
               {
                 titre: '3. Laisser le PFU s\'appliquer sans vérifier',
-                desc: 'Le PFU s\'applique automatiquement si vous ne demandez rien. Si votre TMI est à 11 %, l\'option IR est moins taxée que le PFU — mais elle n\'est jamais appliquée par défaut.',
+                desc: 'Le PFU s\'applique automatiquement si vous ne demandez rien. Si votre TMI est à 11 %, l\'option IR est moins taxée que le PFU mais elle n\'est jamais appliquée par défaut.',
                 cols: [
                   { label: 'PFU par défaut', lines: ['Plus-value taxable : 10 000 euros', 'Taux : 30 %', 'Impôt : 3 000 euros'] },
                   { label: 'Option IR + prél. sociaux', lines: ['Plus-value taxable : 10 000 euros', 'Taux : 11 % + 17,2 % = 28,2 %', 'Impôt : 2 820 euros'] },

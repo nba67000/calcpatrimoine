@@ -93,7 +93,9 @@
       "Bash(Select-Object -ExpandProperty Count)",
       "Bash(xargs grep -l \"rel=\")",
       "Bash(xargs grep -l \"href\\\\s*=\")",
-      "Bash(xargs grep -l \"dangerouslySetInnerHTML\")"
+      "Bash(xargs grep -l \"dangerouslySetInnerHTML\")",
+      "Bash(node *)",
+      "Bash(python -c ' *)"
     ]
   }
 }

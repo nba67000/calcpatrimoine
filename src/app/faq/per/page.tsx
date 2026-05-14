@@ -47,7 +47,7 @@ const sections: FAQSection[] = [
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4 mt-4">
               <p className="text-sm text-primary-900">
                 <strong>À retenir</strong> : ce calculateur couvre uniquement le PER individuel souscrit à titre personnel (ex-PERP, dit PERIN).
-                Les PER d&apos;entreprise (PERCOL, PERO) et les contrats pour travailleurs indépendants (ex-Madelin) ne sont pas couverts — leurs règles de plafond diffèrent (Art. 154 bis CGI).
+                Les PER d&apos;entreprise (PERCOL, PERO) et les contrats pour travailleurs indépendants (ex-Madelin) ne sont pas couverts, leurs règles de plafond diffèrent (Art. 154 bis CGI).
               </p>
             </div>
             <div className="mt-4">
@@ -154,7 +154,7 @@ const sections: FAQSection[] = [
               </p>
             </div>
             <div className="mt-4">
-              <CrossLink href="/per-individuel" title="Calculateur PER — plafond et report" description="Calculez votre plafond exact et combien vous pouvez reporter des années antérieures." />
+              <CrossLink href="/per-individuel" title="Calculateur PER: plafond et report" description="Calculez votre plafond exact et combien vous pouvez reporter des années antérieures." />
             </div>
           </>
         ),

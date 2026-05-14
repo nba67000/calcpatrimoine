@@ -109,7 +109,7 @@ const faqItems: FAQItem[] = [
  Le calculateur affiche les deux montants côte à côte et met en évidence l&apos;option la moins taxée. À TMI ≤ 11 %, l&apos;IR + PS est systématiquement moins coûteux que le PFU.
  </p>
  <div className="mt-4">
-  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Calculateur fiscalité des rachats" description="Simulez PFU vs IR sur votre situation — ancienneté, montant, TMI, versements avant 2017." />
+  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Calculateur fiscalité des rachats" description="Simulez PFU vs IR sur votre situation : ancienneté, montant, TMI, versements avant 2017." />
  </div>
  </>
  )
@@ -199,7 +199,7 @@ const faqItems: FAQItem[] = [
  </p>
  <p className="bg-primary-50 border-l-4 border-primary-500 p-4 rounded">
  <strong>À noter :</strong> Si vous avez versé avant cette date, indiquez-le
- dans le calculateur — c&apos;est la variable qui fait passer le taux de 30 % à 24,7 %.
+ dans le calculateur, c&apos;est la variable qui fait passer le taux de 30 % à 24,7 %.
  </p>
  </>
  )
@@ -285,7 +285,7 @@ const faqItems: FAQItem[] = [
  de 12,8 % qui prend le relais (Art. 125-0 A CGI).
  </p>
  <p className="bg-primary-50 border-l-4 border-primary-500 p-4 rounded">
- <strong>À noter :</strong> Le calculateur ne gère pas encore ce cas — consultez
+ <strong>À noter :</strong> Le calculateur ne gère pas encore ce cas, consultez
  un notaire pour un calcul précis.
  </p>
  </>
@@ -351,10 +351,10 @@ const faqItems: FAQItem[] = [
  </div>
  </div>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded mt-3 text-sm">
- Chaque paramètre est modifiable en temps réel — les résultats se recalculent instantanément.
+ Chaque paramètre est modifiable en temps réel, les résultats se recalculent instantanément.
  </p>
  <div className="mt-4">
-  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Testez chaque variable en temps réel" description="Modifiez ancienneté, TMI, montant, versements avant 2017 — l'impôt se recalcule instantanément." />
+  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Testez chaque variable en temps réel" description="Modifiez ancienneté, TMI, montant, versements avant 2017, l'impôt se recalcule instantanément." />
  </div>
  </>
  )
@@ -383,7 +383,7 @@ const faqItems: FAQItem[] = [
  <li>Calcul de l&apos;économie fiscale si vous fractionnez le rachat sur 2 ans</li>
  </ul>
  <p className="bg-primary-50 border-l-4 border-primary-600 p-4 rounded text-sm">
- Chaque paramètre est modifiable en temps réel — les résultats se recalculent instantanément.
+ Chaque paramètre est modifiable en temps réel, les résultats se recalculent instantanément.
  </p>
  <div className="mt-4">
   <CrossLink href="/assurance-vie/fiscalite-rachat" title="Ouvrez le calculateur" description="Modifiez chaque paramètre et comparez vos scénarios en temps réel." />
@@ -410,7 +410,7 @@ const faqItems: FAQItem[] = [
  du calculateur pour comparer différents scénarios simultanément.
  </p>
  <div className="mt-4">
-  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Simulez un rachat futur" description="Anticipez la fiscalité selon n'importe quel montant, horizon ou TMI — résultats immédiats." />
+  <CrossLink href="/assurance-vie/fiscalite-rachat" title="Simulez un rachat futur" description="Anticipez la fiscalité selon n'importe quel montant, horizon ou TMI, résultats immédiats." />
  </div>
  </>
  )
@@ -514,7 +514,7 @@ export default function FAQAssuranceViePage() {
  </h1>
  
  <p className="text-xl text-neutral-700 leading-relaxed">
- PFU vs IR, abattement 8 ans, versements avant 2017 — les mécanismes
+ PFU vs IR, abattement 8 ans, versements avant 2017: les mécanismes
  fiscaux du rachat d&apos;assurance-vie expliqués avec des chiffres.
  </p>
  </div>
