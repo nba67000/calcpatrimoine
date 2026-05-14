@@ -377,7 +377,7 @@ export default function PlusValueImmobiliereCalculator() {
               <div className="space-y-3 text-sm">
                 <div>
                   <div className="flex justify-between mb-1">
-                    <span className="text-neutral-600">Base imposable IR</span>
+                    <span className="text-neutral-600">Plus-value nette taxée à 19 %</span>
                     <span className="font-medium">{formatEur(results.pvNetteIR)}</span>
                   </div>
                   <div className="flex justify-between text-red-700">
@@ -387,7 +387,7 @@ export default function PlusValueImmobiliereCalculator() {
                 </div>
                 <div className="border-t border-neutral-100 pt-3">
                   <div className="flex justify-between mb-1">
-                    <span className="text-neutral-600">Base imposable PS</span>
+                    <span className="text-neutral-600">Plus-value nette taxée à 17,2 %</span>
                     <span className="font-medium">{formatEur(results.pvNettePS)}</span>
                   </div>
                   <div className="flex justify-between text-red-700">

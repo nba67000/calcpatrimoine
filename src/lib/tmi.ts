@@ -126,10 +126,9 @@ function evaluerAlertesTMI(p: {
   const optimisations: TMIResults['optimisations'] = []
 
   if (p.plafonnementActif) {
-    const ecart = Math.round(p.reductionQFBrute - p.reductionQFPlafond)
     warnings.push({
       type: 'warning',
-      message: `Le plafonnement du quotient familial s'applique : la réduction d'impôt est limitée à ${p.reductionQFPlafond.toLocaleString('fr-FR')} € (plafond de ${PLAFOND_DEMI_PART.toLocaleString('fr-FR')} € par demi-part). La réduction supplémentaire bloquée s'élève à ${ecart.toLocaleString('fr-FR')} €.`,
+      message: `Plafonnement du quotient familial actif : l'avantage fiscal est limité à ${p.reductionQFPlafond.toLocaleString('fr-FR')} € (max. ${PLAFOND_DEMI_PART.toLocaleString('fr-FR')} € par demi-part, Art. 197-IV CGI). Sans ce plafond légal, la réduction aurait atteint ${Math.round(p.reductionQFBrute).toLocaleString('fr-FR')} €.`,
     })
   }
 

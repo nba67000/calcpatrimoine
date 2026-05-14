@@ -172,7 +172,7 @@ export default function RenteCalculator() {
  <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
  <label className="text-sm text-neutral-600 flex items-center">
  Capital disponible
- <Tooltip content="Montant à convertir en rente viagère. La fiscalité varie selon l'origine : assurance-vie ou capital propre → fraction imposable selon l'âge (30–70 %) ; PER avec versements déduits → imposé comme une pension (abattement 10 %)." />
+ <Tooltip content="Montant à convertir en rente. La fiscalité dépend de l'origine du capital : si c'est une assurance-vie, seule une fraction est imposable (30 % à 70 % selon votre âge) ; si c'est un PER déduit à l'entrée, la rente est imposée comme une pension de retraite (abattement 10 %)." />
  </label>
  <div className="flex items-center gap-2">
  <input

@@ -155,7 +155,7 @@ export default function IFICalculator() {
             <div className="space-y-4 ml-8">
               <div>
                 <label className="text-sm font-medium text-neutral-700 block mb-2">
-                  Revenus imposables annuels
+                  Revenu fiscal de référence (RFR)
                 </label>
                 <div className="relative">
                   <input
@@ -168,7 +168,7 @@ export default function IFICalculator() {
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 text-sm">€</span>
                 </div>
-                <p className="text-xs text-neutral-500 mt-1">Revenus soumis à l&apos;IR, y compris dividendes, intérêts et loyers.</p>
+                <p className="text-xs text-neutral-500 mt-1">Montant indiqué sur votre avis d&apos;imposition, rubrique « Revenu fiscal de référence ». Il inclut vos revenus IR, vos dividendes et intérêts au PFU, vos loyers.</p>
               </div>
               <div>
                 <label className="text-sm font-medium text-neutral-700 block mb-2">
@@ -365,8 +365,8 @@ export default function IFICalculator() {
         />
         <CrossLink
           href="/assurance-vie/transmission"
-          title="Réduire l'assiette IFI par démembrement ou assurance-vie"
-          description="Le capital en assurance-vie ({ifi} d'IFI en jeu) n'entre pas dans l'assiette IFI — Simuler la transmission."
+          title="L'assurance-vie n'entre pas dans l'IFI"
+          description="Le capital placé en assurance-vie ({ifi} d'IFI en jeu) est hors calcul IFI — Simuler la transmission."
           context={{ ifi: formatEur(ifiDefinitif) }}
         />
         <CrossLink
