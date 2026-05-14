@@ -125,7 +125,7 @@ export default function TMICalculator() {
           </div>
 
           <p className="text-xs text-neutral-500">
-            Saisissez le revenu net imposable (après abattement de 10 % pour frais professionnels ou frais réels, avant décote).
+            Saisissez le revenu net imposable (après abattement de 10 % pour frais professionnels ou frais réels). La décote est appliquée automatiquement.
           </p>
         </div>
 
@@ -181,7 +181,7 @@ export default function TMICalculator() {
             <p className="text-xs text-neutral-500 mt-2">
               {simState.situationFamiliale === 'parent-isole'
                 ? 'Parent isolé (case T) : au moins 1 enfant requis - Art. 195-1-c CGI.'
-                : 'Enfants rattachés au foyer fiscal (art. 196 CGI).'}
+                : 'Enfants à charge dans votre déclaration d\'impôts (art. 196 CGI).'}
             </p>
           </div>
         </div>

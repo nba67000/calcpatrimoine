@@ -178,8 +178,7 @@ const sections: FAQSection[] = [
         answer: (
           <>
             <p className="mb-3">
-              Selon l&apos;Art. 979 CGI, la somme IFI + impôt sur le revenu ne peut excéder 75 % des revenus
-              imposables de l&apos;année. Si ce seuil est dépassé, l&apos;IFI est réduit du montant qui dépasse 75 %.
+              Selon l&apos;Art. 979 CGI, la somme IFI + impôt sur le revenu ne peut excéder 75 % de vos revenus de l&apos;année (revenu fiscal de référence). Si ce seuil est dépassé, l&apos;IFI est réduit du montant qui dépasse 75 %.
             </p>
             <p className="mb-3">
               Exemple : revenus = 60 000 €, IR = 40 000 €, IFI calculé = 15 000 €.

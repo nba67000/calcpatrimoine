@@ -321,8 +321,8 @@ export default function ArticleRenteViagere() {
                 </p>
                 <div className="bg-neutral-50 border border-neutral-200 p-4 font-mono text-xs text-neutral-700">
                   <p>Capital de 200 000 euros</p>
-                  <p>À 60 ans : environ 780 euros par mois</p>
-                  <p>À 70 ans : environ 1 360 euros par mois (+74 %)</p>
+                  <p>À 60 ans : environ 545 euros par mois</p>
+                  <p>À 70 ans : environ 780 euros par mois (+43 %)</p>
                 </div>
                 <p className="text-sm text-neutral-600 mt-3 leading-relaxed">
                   En reportant la conversion de 10 ans, la rente est presque doublée. Pendant cette période, le capital peut continuer à fructifier en assurance-vie ou PER.
