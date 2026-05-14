@@ -295,7 +295,7 @@ export default function ArticleAssuranceViePage() {
             <div className="border-l-4 border-primary-300 bg-primary-50 px-5 py-4 my-6">
               <p className="font-mono text-xs text-primary-600 uppercase tracking-wider mb-2">La règle simple</p>
               <p className="text-sm text-primary-800 leading-relaxed">
-                Si votre taux marginal est à 0 ou 11 %, l&apos;option IR est généralement plus avantageuse. À partir de 30 %, le PFU est nettement préférable. Ne laissez jamais le PFU s&apos;appliquer par défaut sans avoir vérifié votre situation.
+                Le calculateur compare les deux options en temps réel. À TMI ≤ 11 %, l&apos;IR est systématiquement moins cher ; à 30 % et au-delà, le PFU l&apos;est presque toujours.
               </p>
             </div>
 

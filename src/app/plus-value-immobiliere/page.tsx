@@ -106,8 +106,8 @@ export default function PlusValueImmobilierePage() {
               Votre résidence principale est toujours exonérée, sans condition.
               Si le prix de vente est inférieur à 15 000 €, même chose.
               Et si c&apos;est votre première vente d&apos;un bien autre que votre résidence principale,
-              vous pouvez être exonéré à condition de ne pas avoir été propriétaire de votre résidence
-              principale dans les 4 ans avant la vente, et de réinvestir le produit de la vente dans votre
+              vous pouvez être exonéré. Deux conditions cumulatives : ne pas avoir été propriétaire de votre résidence
+              principale dans les 4 ans avant la vente, et réinvestir le produit dans votre
               future résidence principale dans les 2 ans.
             </p>
           </div>
@@ -262,8 +262,7 @@ export default function PlusValueImmobilierePage() {
 
         <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
           <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-            Outil indicatif uniquement. Ne constitue pas un conseil fiscal personnalisé.
-            Consultez un notaire ou un conseiller en gestion de patrimoine avant toute décision.{' '}
+            Outil indicatif uniquement. Ne constitue pas un conseil fiscal personnalisé.{' '}
             <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
               Code source ouvert
             </a>

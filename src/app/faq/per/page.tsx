@@ -276,9 +276,7 @@ const sections: FAQSection[] = [
               </tbody>
             </table>
             <p className="text-sm text-neutral-600">
-              La fiscalité à la sortie n&apos;est pas simulée par ce calculateur. Pour un calcul précis
-              selon votre situation à la retraite, un conseiller en gestion de patrimoine dispose
-              des informations nécessaires.
+              La fiscalité à la sortie n&apos;est pas simulée par ce calculateur : ce calculateur mesure l&apos;avantage fiscal à l&apos;entrée. Pour estimer l&apos;impôt à la retraite, les paramètres clés sont votre TMI à ce moment-là et le mode de sortie choisi (capital ou rente). Les deux régimes sont résumés dans le tableau ci-dessus.
             </p>
           </>
         ),
