@@ -377,7 +377,7 @@ export default function TransmissionCalculator() {
      <CrossLink
        href="/assurance-vie/fiscalite-rachat"
        title="Simuler avec des versements avant 27/09/2017"
-       description="Les versements avant 2017 sur ce capital de {capital} bénéficient du taux 7,5 % — Calculer l'écart."
+       description="Les versements avant 2017 sur ce capital de {capital} bénéficient du taux 7,5 %."
        context={{ capital: formatEur(inputs.capitalTotal) }}
      />
      <CrossLink
@@ -389,7 +389,7 @@ export default function TransmissionCalculator() {
      <CrossLink
        href="/tmi"
        title="Vérifier la TMI des bénéficiaires"
-       description="Les versements après 70 ans sont soumis aux droits de succession — la TMI des héritiers est déterminante."
+       description="Les versements après 70 ans sont soumis aux droits de succession. La TMI des héritiers est déterminante."
      />
    </div>
  )}

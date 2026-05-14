@@ -37,7 +37,7 @@ export default function SimHistoryWidget() {
 
       {/* Message éditorial — pas "sauvegardé sur nos serveurs", mais factuel */}
       <p className="font-mono text-xs text-neutral-400 mb-4">
-        Vos paramètres sont conservés localement sur cet appareil — aucune donnée transmise.
+        Vos paramètres sont conservés localement sur cet appareil. Aucune donnée transmise.
       </p>
 
       <div className="flex flex-wrap gap-3">

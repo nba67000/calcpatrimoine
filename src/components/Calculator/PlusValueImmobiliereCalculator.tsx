@@ -432,7 +432,7 @@ export default function PlusValueImmobiliereCalculator() {
         <CrossLink
           href="/tmi"
           title="Quel sera l'impact de ce produit de cession sur votre TMI ?"
-          description="Le net perçu de {netPercu} s'ajoutera à vos revenus cette année — votre tranche marginale peut changer."
+          description="Le net perçu de {netPercu} s'ajoutera à vos revenus cette année : votre tranche marginale peut changer."
           context={{ netPercu: formatEur(results.netPercu) }}
         />
         <CrossLink
@@ -444,7 +444,7 @@ export default function PlusValueImmobiliereCalculator() {
         <CrossLink
           href="/rente-viagere"
           title="Convertir ce capital en rente viagère"
-          description="{netPercu} en rente mensuelle garantie à vie — tables INSEE 2021."
+          description="{netPercu} en rente mensuelle garantie à vie (tables INSEE 2021)."
           context={{ netPercu: formatEur(results.netPercu) }}
         />
       </div>

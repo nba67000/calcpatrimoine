@@ -127,7 +127,7 @@ function evaluerAlertesPER(
   if (tmi === 11) {
     warnings.push({
       type: 'info',
-      message: `À TMI 11 %, l'économie fiscale est limitée. Si le versement fait passer une partie du revenu dans la tranche à 0 %, l'économie sur cette fraction est nulle — le calculateur affiche l'économie réelle en conséquence.`,
+      message: `À TMI 11 %, l'économie fiscale est limitée. Si le versement fait passer une partie du revenu dans la tranche à 0 %, l'économie sur cette fraction est nulle. Le calculateur affiche l'économie réelle en conséquence.`,
     })
   }
 

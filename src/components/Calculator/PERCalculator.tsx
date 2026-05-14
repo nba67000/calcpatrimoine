@@ -46,7 +46,7 @@ function PERVersementScenario({ salaire, tmi, versementActuel, rapports, plafond
   return (
     <div className="bg-neutral-50 border border-neutral-200 p-4">
       <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-3">
-        Scénario — versement à {formatEur(versementAlternatif)}
+        Scénario : versement à {formatEur(versementAlternatif)}
       </p>
       <div className="flex items-baseline gap-3 flex-wrap">
         <span className="text-2xl font-bold tabular-nums text-green-700">
@@ -421,14 +421,14 @@ export default function PERCalculator() {
         </p>
         <CrossLink
           href="/tmi"
-          title="Vérifier votre TMI — le calcul change si vous êtes à la limite d'une tranche"
-          description="Un versement PER de {versement} réduit votre revenu imposable — votre TMI réelle après versement peut différer."
+          title="Vérifier votre TMI : le calcul change si vous êtes à la limite d'une tranche"
+          description="Un versement PER de {versement} réduit votre revenu imposable. Votre TMI réelle après versement peut différer."
           context={{ versement: formatEur(versement.value) }}
         />
         <CrossLink
           href="/assurance-vie/fiscalite-rachat"
           title="Comparer avec un rachat d'assurance-vie à ce niveau de revenus"
-          description="PFU vs barème sur un rachat assurance-vie — l'écart dépend de votre TMI à {tmi} %."
+          description="PFU vs barème sur un rachat assurance-vie : l'écart dépend de votre TMI à {tmi} %."
           context={{ tmi: simState.tmi }}
         />
         <CrossLink

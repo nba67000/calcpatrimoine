@@ -360,13 +360,13 @@ export default function IFICalculator() {
         </p>
         <CrossLink
           href="/tmi"
-          title="Calculer votre TMI — le plafonnement IFI dépend de votre IR"
-          description="Le plafonnement IFI (IR + IFI ≤ 75 % des revenus) nécessite de connaître votre IR exact — Calculer."
+          title="Calculer votre TMI : le plafonnement IFI dépend de votre IR"
+          description="Le plafonnement IFI (IR + IFI ≤ 75 % des revenus) nécessite de connaître votre IR exact."
         />
         <CrossLink
           href="/assurance-vie/transmission"
           title="L'assurance-vie n'entre pas dans l'IFI"
-          description="Le capital placé en assurance-vie ({ifi} d'IFI en jeu) est hors calcul IFI — Simuler la transmission."
+          description="Le capital placé en assurance-vie ({ifi} d'IFI en jeu) est hors calcul IFI."
           context={{ ifi: formatEur(ifiDefinitif) }}
         />
         <CrossLink

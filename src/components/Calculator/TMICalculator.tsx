@@ -333,7 +333,7 @@ export default function TMICalculator() {
         <CrossLink
           href="/per-individuel"
           title="Un versement PER réduirait cet impôt"
-          description="Avec votre TMI à {tmi} %, un versement PER de 5 000 € économiserait ~{economie} d'impôt — Simuler."
+          description="Avec votre TMI à {tmi} %, un versement PER de 5 000 € économiserait ~{economie} d'impôt."
           context={{
             tmi: results.tmi,
             economie: formatEur(Math.round(5000 * results.tmi / 100)),
@@ -342,14 +342,14 @@ export default function TMICalculator() {
         <CrossLink
           href="/assurance-vie/fiscalite-rachat"
           title="Comparer PFU vs barème sur un rachat d'assurance-vie"
-          description="À {tmi} % de TMI, l'option optimale entre flat tax 12,8 % et barème progressif peut changer — Calculer."
+          description="À {tmi} % de TMI, l'option optimale entre flat tax 12,8 % et barème progressif peut changer."
           context={{ tmi: results.tmi }}
         />
         {results.irNet > 500 && (
           <CrossLink
             href="/tmi"
             title="Voir l'impact d'une part fiscale supplémentaire"
-            description="Ajouter une demi-part (enfant à charge, parent isolé) réduirait l'IR de {irNet} — recalculer."
+            description="Ajouter une demi-part (enfant à charge, parent isolé) réduirait l'IR de {irNet}."
             context={{ irNet: formatEur(results.irNet) }}
           />
         )}

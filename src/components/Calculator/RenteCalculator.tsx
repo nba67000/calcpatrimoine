@@ -44,7 +44,7 @@ function AgeScenarioComparison({ capital, currentAge, reversion }: AgeScenarioCo
   return (
     <div className="mt-6 bg-neutral-50 border border-neutral-200 p-4">
       <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-3">
-        Scénario — départ à {laterAge} ans
+        Scénario : départ à {laterAge} ans
       </p>
       <div className="flex items-baseline gap-3">
         <span className="text-2xl font-bold tabular-nums text-neutral-900">
@@ -401,19 +401,19 @@ export default function RenteCalculator() {
      <CrossLink
        href="/assurance-vie/fiscalite-rachat"
        title="Et si ce capital restait en assurance-vie ?"
-       description="Fiscalité exacte d'un rachat partiel sur un contrat de {capital} — abattement, PFU vs barème."
+       description="Fiscalité exacte d'un rachat partiel sur un contrat de {capital} : abattement, PFU vs barème."
        context={{ capital: formatNombre(capitalInput.value) + ' €' }}
      />
      <CrossLink
        href="/assurance-vie/transmission"
-       title="Transmission après décès — Art. 990 I"
+       title="Transmission après décès (Art. 990 I)"
        description="Ce capital de {capital} transmis en assurance-vie : calcul des droits par bénéficiaire."
        context={{ capital: formatNombre(capitalInput.value) + ' €' }}
      />
      <CrossLink
        href="/tmi"
        title="Quelle est votre TMI ?"
-       description="La rente de {rente}/mois s'ajoute à vos revenus — votre tranche marginale détermine l'impôt réel."
+       description="La rente de {rente}/mois s'ajoute à vos revenus : votre tranche marginale détermine l'impôt réel."
        context={{ rente: formatEuro(result.monthly_amount) }}
      />
    </div>

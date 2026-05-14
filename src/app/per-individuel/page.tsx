@@ -52,7 +52,7 @@ const EXEMPLES = [
 ]
 
 const LIMITES = [
-  'Ce calculateur couvre uniquement le PER individuel souscrit à titre personnel (ex-PERP, dit PERIN). Les PER d\'entreprise (PERCOL, PERO) et les contrats pour travailleurs indépendants (ex-Madelin) ne sont pas couverts — leurs règles de plafond diffèrent (Art. 154 bis CGI).',
+  'Ce calculateur couvre uniquement le PER individuel souscrit à titre personnel (ex-PERP, dit PERIN). Les PER d\'entreprise (PERCOL, PERO) et les contrats pour travailleurs indépendants (ex-Madelin) ne sont pas couverts : leurs règles de plafond diffèrent (Art. 154 bis CGI).',
   'Le partage du plafond de déduction entre conjoints ou partenaires de PACS n\'est pas simulé.',
   'La fiscalité à la sortie (imposition de la rente ou du capital) n\'est pas simulée.',
   'Il est supposé que les frais professionnels sont couverts par l\'abattement forfaitaire. Les frais réels ne sont pas gérés.',

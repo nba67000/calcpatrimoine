@@ -347,7 +347,7 @@ export default function AssuranceVieCalculator() {
         <CrossLink
           href="/rente-viagere"
           title="Comparer avec une rente viagère sur ce capital"
-          description="Convertir {capital} en rente mensuelle garantie à vie — départ immédiat ou différé."
+          description="Convertir {capital} en rente mensuelle garantie à vie, départ immédiat ou différé."
           context={{ capital: formatEur(inputs.capitalTotal) }}
         />
         <CrossLink
