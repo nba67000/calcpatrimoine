@@ -265,63 +265,8 @@ export default function CoupleCalculator() {
  </p>
  </div>
 
- {/* Disclaimer LONG */}
- <div className="mt-6 p-6 bg-primary-50 border-2 border-primary-200 rounded-lg">
- <h4 className="text-base font-bold text-primary-900 mb-3 flex items-center gap-2">
- <span className="text-xl"></span>
- Avertissement Important
- </h4>
- 
- <div className="text-sm text-primary-800 space-y-3">
- <p className="font-semibold">
- CalculPatrimoine est un outil pédagogique gratuit à titre indicatif uniquement. 
- Il ne constitue en aucun cas :
- </p>
- 
- <ul className="list-disc list-inside space-y-1 ml-4 text-primary-700">
- <li>Un conseil en investissement personnalisé</li>
- <li>Une recommandation de souscription</li>
- <li>Une garantie de résultat</li>
- <li>Un avis juridique, fiscal ou patrimonial</li>
- </ul>
- 
- <p className="font-semibold mt-3">
- Les calculs sont basés sur des formules actuarielles standard mais ne tiennent PAS compte de :
- </p>
- 
- <ul className="list-disc list-inside space-y-1 ml-4 text-primary-700 text-xs">
- <li>Votre situation fiscale personnelle</li>
- <li>Votre état de santé spécifique</li>
- <li>Votre régime matrimonial</li>
- <li>Les frais et commissions des assureurs (variables selon contrats)</li>
- <li>Les clauses particulières des contrats</li>
- <li>Les évolutions réglementaires futures</li>
- </ul>
- 
- <p className="font-bold text-primary-900 mt-3">
- Avant toute décision d&apos;investissement, consultez IMPÉRATIVEMENT :
- </p>
- 
- <ul className="list-disc list-inside space-y-1 ml-4 text-primary-700">
- <li>Un <strong>conseiller en gestion de patrimoine</strong> certifié (CGP)</li>
- <li>Un <strong>notaire</strong> pour les aspects successoraux et matrimoniaux</li>
- <li>Un <strong>expert-comptable</strong> pour optimiser la fiscalité</li>
- </ul>
- 
- <div className="border-t border-primary-300 pt-3 mt-3">
- <p className="text-xs text-primary-700">
- <strong>Limitation de responsabilité :</strong>CalculPatrimoine décline toute responsabilité 
- en cas de décision prise uniquement sur la base des calculs fournis. L&apos;éditeur ne peut être 
- tenu responsable d&apos;éventuelles erreurs de calcul, bugs logiciels, ou évolutions réglementaires 
- postérieures à la dernière mise à jour (avril 2026).
- </p>
- <p className="text-xs text-primary-700 mt-2">
- <a href="/cgu" className="underline hover:text-primary-900 font-medium">
- Conditions d&apos;utilisation complètes →
- </a>
- </p>
- </div>
- </div>
+ <div className="mt-6">
+ <LegalDisclaimer />
  </div>
  </div>
  )}

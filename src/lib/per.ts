@@ -127,7 +127,7 @@ function evaluerAlertesPER(
   if (tmi === 11) {
     warnings.push({
       type: 'info',
-      message: `À TMI 11 %, l'économie fiscale est limitée. Vérifiez que la déduction PER ne fait pas baisser votre revenu imposable sous le seuil de la tranche suivante, ce qui réduirait l'économie effective.`,
+      message: `À TMI 11 %, l'économie fiscale est limitée. Si le versement fait passer une partie du revenu dans la tranche à 0 %, l'économie sur cette fraction est nulle — le calculateur affiche l'économie réelle en conséquence.`,
     })
   }
 

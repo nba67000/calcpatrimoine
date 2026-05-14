@@ -164,7 +164,7 @@ function evaluerAlertesAV(p: {
   if (p.tmi <= 11 && p.optionMoinsImposee !== 'IR') {
     warnings.push({
       type: 'info',
-      message: ` Avec votre TMI à ${p.tmi}%, l'option IR + PS génère ${Math.round(p.difference).toLocaleString('fr-FR')}€ de différence par rapport au PFU. Vérifiez quelle option correspond le mieux à votre situation.`,
+      message: ` Avec votre TMI à ${p.tmi}%, l'option IR + PS génère ${Math.round(p.difference).toLocaleString('fr-FR')}€ de différence par rapport au PFU. Le graphique ci-dessus indique l'option la moins taxée pour ce rachat.`,
     })
   }
 

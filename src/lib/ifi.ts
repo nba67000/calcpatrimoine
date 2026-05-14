@@ -141,7 +141,7 @@ function evaluerAlertesIFI(p: {
   if (p.patrimoineNetTaxable >= SEUIL_IFI && p.patrimoineNetTaxable < SEUIL_IFI + 50_000) {
     warnings.push({
       type: 'warning',
-      message: `Patrimoine net taxable très proche du seuil de 1 300 000 €. Une réévaluation des biens ou une dette déductible non renseignée peut modifier l'assujettissement.`,
+      message: `Patrimoine net taxable très proche du seuil de 1 300 000 €. Une réévaluation des biens ou une dette déductible non saisie peut faire basculer le calcul de l'autre côté du seuil.`,
     })
   }
 
