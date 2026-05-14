@@ -218,7 +218,7 @@ const sections: FAQSection[] = [
               <CrossLink
                 href="/rente-viagere"
                 title="Calculateur Rente Viagère"
-                description="Saisissez votre capital, âge et sexe — le montant mensuel s'affiche instantanément."
+                description="Saisissez votre capital, âge et sexe: le montant mensuel s'affiche instantanément."
               />
             </div>
           </>
@@ -346,8 +346,7 @@ const sections: FAQSection[] = [
             </ol>
             <div className="bg-primary-50 border-l-4 border-primary-500 p-4 mt-4">
               <p className="text-sm text-primary-900">
-                <strong>CRUCIAL:</strong> Avant de signer, assurez-vous de garder une épargne de sécurité.
-                La rente viagère doit compléter vos revenus, pas être votre unique ressource.
+                <strong>Point d&apos;attention :</strong> une fois le contrat signé, le capital est définitivement cédé. Prévoir une épargne accessible en parallèle évite de dépendre uniquement de la rente en cas de besoin imprévu.
               </p>
             </div>
           </>
@@ -579,7 +578,7 @@ export default function FAQRenteViagerePage() {
               Questions fréquentes<br />Rente Viagère
             </h1>
             <p className="text-lg text-neutral-600 max-w-2xl mb-10">
-              Fonctionnement, fiscalité, réversion, couple — les questions fréquentes
+              Fonctionnement, fiscalité, réversion, couple: les questions fréquentes
               sur la rente viagère, avec des exemples chiffrés.
             </p>
 

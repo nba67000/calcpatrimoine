@@ -241,8 +241,7 @@ const sections: FAQSection[] = [
                 <strong>Attention à la réserve héréditaire</strong> : l&apos;assurance-vie est hors masse
                 successorale, mais si les versements représentent la quasi-totalité du patrimoine
                 au détriment des héritiers réservataires, un tribunal peut les réintégrer.
-                Ce risque concerne les patrimoines où l&apos;AV pèse disproportionnément face au reste.
-                Consultez un notaire dans ce cas.
+                Ce risque concerne les patrimoines où l&apos;assurance-vie représente la quasi-totalité des actifs, au point de priver les héritiers réservataires (enfants) de leur quote-part légale. En dessous de ce seuil, ce cas ne s&apos;applique pas.
               </p>
             </div>
           </>
@@ -270,7 +269,7 @@ const sections: FAQSection[] = [
               du calcul (elles sont exonérées).
             </p>
             <div className="mt-4">
-              <CrossLink href="/assurance-vie/transmission" title="Calculateur transmission assurance-vie" description="Saisissez vos versements avant et après 70 ans — les régimes Art. 990 I et 757 B s'appliquent automatiquement." />
+              <CrossLink href="/assurance-vie/transmission" title="Calculateur transmission assurance-vie" description="Saisissez vos versements avant et après 70 ans: les régimes Art. 990 I et 757 B s'appliquent automatiquement." />
             </div>
           </>
         ),

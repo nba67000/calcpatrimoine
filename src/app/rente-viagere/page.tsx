@@ -154,7 +154,7 @@ export default function RenteViagerePage() {
 
         <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
           <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-            Outil indicatif uniquement. Ne constitue pas un conseil patrimonial. Consultez un professionnel qualifié avant toute décision.{' '}
+            Outil indicatif uniquement. Ne constitue pas un conseil patrimonial.{' '}
             <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
               Code source ouvert
             </a>
