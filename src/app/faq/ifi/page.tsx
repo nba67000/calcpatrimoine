@@ -118,7 +118,7 @@ const sections: FAQSection[] = [
               Rappel : chaque taux ne s&apos;applique que sur la partie du patrimoine qui tombe dans cette tranche - pas sur l&apos;ensemble. Un patrimoine de 2 000 000 € génère un IFI de 7 400 €, soit 0,37 % de taux effectif.
             </p>
             <div className="mt-4">
-              <CrossLink href="/ifi" title="Calculateur IFI 2026" description="Saisissez votre patrimoine net et simulez votre IFI — décote et plafonnement inclus." />
+              <CrossLink href="/ifi" title="Calculateur IFI 2026" description="Saisissez votre patrimoine net et simulez votre IFI: décote et plafonnement inclus." />
             </div>
           </>
         ),
@@ -320,7 +320,6 @@ export default function FAQIFIPage() {
 
           <p className="font-mono text-xs text-neutral-400 text-center leading-relaxed">
             Outil indicatif uniquement. Ne constitue pas un conseil fiscal personnalisé.
-            Consultez un notaire ou un conseiller en gestion de patrimoine avant toute décision.
           </p>
         </section>
 

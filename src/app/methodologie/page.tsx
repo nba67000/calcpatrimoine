@@ -37,9 +37,9 @@ export default function Methodologie() {
  <div className="mb-6">
  <CrossLink
  title="Questions fréquentes"
- description="Consultez la FAQ pour des réponses simples et des exemples concrets"
+ description="Réponses simples et exemples chiffrés sur les formules utilisées."
  href="/faq"
- 
+
  variant="blue"
  />
  </div>
@@ -248,7 +248,7 @@ export default function Methodologie() {
 
  <div className="bg-neutral-50 p-4 rounded">
  <p className="text-sm text-neutral-700">
- <strong>📜 Cadre légal :</strong>Cette différenciation est <strong>légale en France</strong> pour les rentes viagères individuelles 
+ <strong>Cadre légal :</strong>{' '}Cette différenciation est <strong>légale en France</strong> pour les rentes viagères individuelles 
  (produits facultatifs). La directive européenne de 2011 interdisant la discrimination H/F ne s&apos;applique qu&apos;aux 
  assurances obligatoires (auto, santé).
  </p>
@@ -289,8 +289,8 @@ export default function Methodologie() {
  <div>
  <h4 className="font-semibold text-neutral-900 mb-1">Pas de conseil personnalisé</h4>
  <p>
- Cet outil est purement <strong>informatif</strong>. Il ne constitue pas un conseil en investissement. 
- Pour une souscription, consultez un courtier ou assureur agréé.
+ Cet outil est purement <strong>informatif</strong>. Il ne constitue pas un conseil en investissement.
+ La souscription d&apos;une rente viagère implique un contrat avec un assureur ou courtier agréé.
  </p>
  </div>
  </div>
@@ -301,7 +301,7 @@ export default function Methodologie() {
  <div className="mb-12">
  <CrossLink
  title="Des questions ?"
- description="Consultez la FAQ pour des explications simples avec exemples chiffrés"
+ description="Explications simples avec exemples chiffrés sur l'ensemble des calculateurs."
  href="/faq"
  
  variant="blue"

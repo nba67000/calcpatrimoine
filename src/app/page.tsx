@@ -191,8 +191,8 @@ export default function HomePage() {
             Une décision qui vous appartient.
           </h2>
           <p className="text-neutral-600 leading-relaxed">
-            Chaque résultat repose sur les textes officiels en vigueur -
-            Code général des impôts, BOFiP, tables de mortalité INSEE 2022.
+            Chaque résultat repose sur les textes officiels en vigueur :
+            Code général des impôts, BOFiP, tables de mortalité INSEE 2021.
             Le code source est public et auditable.
             Les données ne quittent pas votre navigateur.
           </p>

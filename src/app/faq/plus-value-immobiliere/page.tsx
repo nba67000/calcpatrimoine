@@ -313,8 +313,8 @@ const sections: FAQSection[] = [
               Chaque cession est imposée séparément.
             </p>
             <p className="text-sm text-neutral-600">
-              Ce calculateur est indicatif. Pour des stratégies de cession sur plusieurs biens,
-              consultez un notaire ou un conseiller en gestion de patrimoine.
+              Ce calculateur est indicatif. Pour des cessions sur plusieurs biens distincts,
+              chaque cession s&apos;apprécie séparément sur le plan fiscal.
             </p>
           </>
         ),
@@ -375,7 +375,7 @@ const sections: FAQSection[] = [
             </ol>
             <p className="text-sm text-neutral-600">
               Seule la fraction du prix réinvestie dans la résidence principale est exonérée
-              si le remploi est partiel. Consultez un notaire pour vérifier votre éligibilité.
+              si le remploi est partiel. L&apos;éligibilité dépend des trois conditions décrites ci-dessus.
             </p>
           </>
         ),
@@ -483,7 +483,7 @@ const sections: FAQSection[] = [
               </p>
             </div>
             <div className="mt-4">
-              <CrossLink href="/plus-value-immobiliere" title="Estimez votre plus-value avant le notaire" description="Saisissez prix d'achat, frais, travaux et durée de détention — impôt estimatif en quelques secondes." />
+              <CrossLink href="/plus-value-immobiliere" title="Estimez votre plus-value avant le notaire" description="Saisissez prix d'achat, frais, travaux et durée de détention: impôt estimatif en quelques secondes." />
             </div>
           </>
         ),

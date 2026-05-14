@@ -66,7 +66,7 @@ export default function ArticleRenteViagere() {
           <div className="border-l-4 border-warning-400 bg-warning-50 px-5 py-4 mb-12">
             <p className="font-mono text-xs font-bold text-warning-800 uppercase tracking-wider mb-1">Avertissement</p>
             <p className="text-sm text-warning-700 leading-relaxed">
-              Cet article compare différentes options de gestion du patrimoine à la retraite. Il ne constitue pas un conseil patrimonial personnalisé. Chaque situation est unique. Pour une décision adaptée à votre cas, consultez un conseiller en gestion de patrimoine indépendant.
+              Cet article compare différentes options de gestion du patrimoine à la retraite. Il ne constitue pas un conseil patrimonial personnalisé.
             </p>
           </div>
 
@@ -170,7 +170,7 @@ export default function ArticleRenteViagere() {
             <div className="bg-neutral-50 border border-neutral-200 p-5 my-6">
               <p className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-3">Fiscalité de la rente viagère (information générale)</p>
               <p className="text-sm text-neutral-700 leading-relaxed">
-                La rente est imposée partiellement — et d&apos;autant moins que vous commencez à la percevoir tard. La fraction imposable est : 70 % avant 50 ans, 50 % de 50 à 59 ans, 40 % de 60 à 69 ans, 30 % à partir de 70 ans (Art. 158-6 CGI). La logique : plus vous attendez, plus chaque versement est assimilé à un retour de capital — et moins à un revenu.
+                La rente est imposée partiellement et d&apos;autant moins que vous commencez à la percevoir tard. La fraction imposable est : 70 % avant 50 ans, 50 % de 50 à 59 ans, 40 % de 60 à 69 ans, 30 % à partir de 70 ans (Art. 158-6 CGI). La logique : plus vous attendez, plus chaque versement est assimilé à un retour de capital et moins à un revenu.
               </p>
             </div>
           </section>
