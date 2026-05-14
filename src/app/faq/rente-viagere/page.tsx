@@ -40,8 +40,8 @@ const sections: FAQSection[] = [
             </p>
             <p className="mb-3">
               <strong>Exemple concret</strong> : Vous avez 100 000€ d&apos;épargne. Au lieu de les laisser dormir,
-              vous les donnez à un assureur qui vous verse 614€ chaque mois jusqu&apos;à la fin de votre vie
-              (si vous avez 65 ans, homme).
+              vous les donnez à un assureur qui vous verse 321 € chaque mois jusqu&apos;à la fin de votre vie
+              (exemple : 100 000 €, 65 ans).
             </p>
             <p className="mb-3">
               <strong>Pourquoi faire ça ?</strong> Pour avoir un revenu régulier et sécurisé,

@@ -352,7 +352,7 @@ export default function PERCalculator() {
               <span className="font-medium text-neutral-500">− {formatEur(detail.abattementFraisPro)}</span>
             </div>
             <div className="flex justify-between font-medium pt-1 border-t border-neutral-200">
-              <span className="text-neutral-700">Revenu net professionnel retenu</span>
+              <span className="text-neutral-700">Salaire après abattement frais pro</span>
               <span>{formatEur(detail.revenuNetProfessionnel)}</span>
             </div>
 

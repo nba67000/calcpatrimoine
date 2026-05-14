@@ -190,7 +190,7 @@ export default function AssuranceVieCalculator() {
 
               <div className="bg-primary-50 rounded-lg p-4 border border-primary-200">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-primary-700">Plus-value taxable finale</span>
+                  <span className="text-sm font-medium text-primary-700">Part imposable du rachat</span>
                   <span className="text-lg font-bold text-primary-600">{formatEur(results.plusValueTaxable)}</span>
                 </div>
               </div>

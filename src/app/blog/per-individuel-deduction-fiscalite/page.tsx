@@ -104,7 +104,7 @@ export default function ArticlePERPage() {
                 },
                 {
                   terme: 'La rente viagère',
-                  def: "Un revenu mensuel versé jusqu'à votre décès, en échange d'un capital que vous cédez définitivement à un assureur. L'assureur prend le risque de vous payer longtemps si vous vivez longtemps. En contre partie, vous prenez le risque de ne pas percevoir l'équivalent de votre capital si la durée de perception est plus courte.",
+                  def: "Un revenu mensuel versé jusqu'à votre décès, en échange d'un capital que vous cédez définitivement à un assureur. L'assureur prend le risque de vous payer longtemps si vous vivez longtemps. En contrepartie, si vous décédez tôt, vous n'aurez pas récupéré l'équivalent de votre capital.",
                 },
               ].map(({ terme, def }) => (
                 <div key={terme} className="border-b border-neutral-100 pb-5 last:border-0 last:pb-0">

@@ -47,8 +47,7 @@ const sections: FAQSection[] = [
         answer: (
           <>
             <p className="mb-3">
-              Le prix de revient ajusté est le montant qui sert à calculer la plus-value brute.
-              Il est supérieur au seul prix d&apos;acquisition car il intègre les <strong>frais et les travaux</strong>.
+              Le prix de revient ajusté est ce que vous avez réellement payé pour le bien : prix d&apos;achat + frais d&apos;acquisition + travaux. C&apos;est ce montant qu&apos;on soustrait du prix de vente pour obtenir la plus-value brute.
             </p>
             <div className="bg-neutral-100 border border-neutral-200 p-4 mb-3 font-mono text-sm space-y-1">
               <p>Prix de revient = Prix d&apos;acquisition</p>
