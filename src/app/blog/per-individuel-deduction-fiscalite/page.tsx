@@ -65,7 +65,7 @@ export default function ArticlePERPage() {
           <div className="border-l-4 border-warning-400 bg-warning-50 px-5 py-4 mb-12">
             <p className="font-mono text-xs font-bold text-warning-800 uppercase tracking-wider mb-1">Avertissement</p>
             <p className="text-sm text-warning-700 leading-relaxed">
-              Cet article décrit les mécanismes fiscaux du PER individuel et présente des exemples chiffrés. Il ne constitue pas un conseil en investissement ou un conseil fiscal personnalisé. Chaque situation est unique. Pour une décision adaptée à votre cas, consultez un conseiller en gestion de patrimoine indépendant ou un expert-comptable.
+              Cet article décrit les mécanismes fiscaux du PER individuel et présente des exemples chiffrés. Il ne constitue pas un conseil en investissement ou un conseil fiscal personnalisé.
             </p>
           </div>
 

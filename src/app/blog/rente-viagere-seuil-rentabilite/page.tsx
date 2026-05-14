@@ -121,7 +121,7 @@ export default function ArticleRenteViagere() {
             <p className="font-mono text-xs text-primary-300 uppercase tracking-wider mb-2">Outil associé</p>
             <p className="text-white font-bold text-lg mb-1">Calculez votre seuil de rentabilité personnel</p>
             <p className="text-primary-200 text-sm mb-4">
-              Notre calculateur détermine votre seuil précis et le compare à votre espérance de vie selon les tables INSEE 2022.
+              Notre calculateur détermine votre seuil précis et le compare à votre espérance de vie selon les tables INSEE 2021.
             </p>
             <Link href="/rente-viagere" className="inline-block bg-surface-card text-primary-700 px-6 py-2.5 font-medium text-sm hover:bg-neutral-100 transition-colors font-mono">
               Accéder au calculateur →
@@ -349,11 +349,11 @@ export default function ArticleRenteViagere() {
                 "Le taux de conversion augmente avec l'âge. La période de conversion la plus favorable se situe entre 70 et 75 ans. Avant 65 ans, les montants sont peu attractifs.",
                 "La décision est irrévocable. Une fois le capital transféré, vous ne pouvez pas le récupérer, même partiellement. C'est le point le plus important à intégrer avant de signer.",
                 "L'option de réversion au profit du conjoint réduit la rente initiale de 15 à 30 %. Évaluez les besoins réels de votre conjoint avant d'opter pour cette clause.",
-                "La rente est pertinente si vous anticipez une longévité supérieure à la moyenne. Si votre état de santé est fragile, d'autres solutions préservent mieux votre capital.",
+                "La rente est pertinente si vous anticipez une longévité supérieure à la moyenne. Si votre état de santé est fragile, des alternatives comme les retraits programmés en assurance-vie conservent le capital accessible.",
                 "La rente est inadaptée si vous souhaitez transmettre un patrimoine. L'assurance-vie avec retraits programmés permet de concilier revenus réguliers et transmission.",
-                "Comparez les offres entre assureurs. Les taux de conversion peuvent varier de façon significative pour un même profil. Un écart de 10 % sur le taux représente 10 % de revenus en plus ou en moins à vie.",
+                "Les taux de conversion varient de façon significative entre assureurs pour un même profil. Un écart de 10 % sur le taux représente 10 % de revenus en plus ou en moins à vie.",
                 "La fiscalité de la rente est plus lourde que celle des retraits en assurance-vie. Prenez-la en compte dans votre calcul de revenu net réel.",
-                "Consultez un conseiller en gestion de patrimoine indépendant avant de convertir un capital important. La décision est définitive et mérite une analyse complète de votre situation.",
+                "La décision est définitive. Une fois le capital transféré, il est irrécupérable. Comparer avec les alternatives (retraits programmés en assurance-vie, conservation du capital) avant de signer.",
               ].map((point, i) => (
                 <div key={i} className="flex items-start gap-5 bg-surface-card border border-neutral-200 px-5 py-4">
                   <span className="font-mono font-bold text-primary-300 text-lg shrink-0 w-6">{i + 1}</span>
@@ -379,7 +379,7 @@ export default function ArticleRenteViagere() {
             <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">Méthodologie et sources</h2>
             <div className="space-y-4 text-sm">
               {[
-                { label: 'Tables de mortalité INSEE 2022', desc: 'Source des espérances de vie par âge et par sexe utilisées dans les calculs.' },
+                { label: 'Tables de mortalité INSEE 2021', desc: 'Source des espérances de vie par âge et par sexe utilisées dans les calculs.' },
                 { label: 'Article 158, 6° du CGI', desc: 'Fiscalité des rentes viagères à titre onéreux : fractions imposables selon l\'âge.', href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044979614' },
                 { label: 'Service-Public.fr - Rente viagère', desc: 'Fiche pratique officielle sur le fonctionnement et la fiscalité de la rente viagère.', href: 'https://www.service-public.fr/particuliers/vosdroits/F3173' },
               ].map(s => (

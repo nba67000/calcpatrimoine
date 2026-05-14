@@ -54,9 +54,8 @@ export default function CoupleCalculator() {
  commun avant conversion en rente.
  </p>
  <p className="font-semibold text-primary-900 mt-2">
- Selon votre régime matrimonial (communauté, séparation de biens), 
- les possibilités et implications fiscales/successorales diffèrent. 
- Un notaire pourra vous conseiller précisément.
+ Selon le régime matrimonial (communauté, séparation de biens),
+ les possibilités et implications fiscales/successorales diffèrent.
  </p>
  </div>
  </details>
