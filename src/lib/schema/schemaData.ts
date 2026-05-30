@@ -463,24 +463,24 @@ export const HOWTO_TRANSMISSION: { name: string; description: string; totalTime:
 
 export const FAQ_DONATION: FAQSchemaItem[] = [
   {
-    question: "Quels sont les abattements applicables sur une donation en 2026 ?",
+    question: "Quels abattements s'appliquent sur une donation en 2026 ?",
     answer:
-      "Les abattements personnels dépendent du lien de parenté entre donateur et donataire (Art. 779 et 790 E CGI) : 100 000 € par parent et par enfant (ligne directe), 80 724 € entre époux ou partenaires de PACS, 31 865 € pour un petit-enfant, 15 932 € entre frères et sœurs, 7 967 € pour un neveu ou une nièce. Un abattement supplémentaire de 159 325 € est cumulable pour un donataire en situation de handicap (Art. 779-II CGI). Aucun abattement n'est prévu pour les donations à des tiers ou parents éloignés.",
+      "Avant de calculer l'impôt, on retire un abattement de la valeur donnée. Le montant de cet abattement dépend du lien entre celui qui donne et celui qui reçoit (Art. 779 et 790 E CGI) : 100 000 € par parent et par enfant (ligne directe), 80 724 € entre époux ou partenaires de PACS, 31 865 € pour un petit-enfant, 15 932 € entre frères et sœurs, 7 967 € pour un neveu ou une nièce. Un abattement supplémentaire de 159 325 € s'ajoute pour un donataire en situation de handicap (Art. 779-II CGI). Aucun abattement n'est prévu pour les donations à des tiers ou parents éloignés. L'abattement repart à zéro tous les 15 ans (Art. 784 CGI).",
   },
   {
     question: "Comment fonctionne le rappel fiscal de 15 ans ?",
     answer:
-      "L'article 784 du CGI prévoit que les donations consenties entre les mêmes parties depuis moins de 15 ans sont rapportées au nouveau calcul. L'abattement déjà consommé n'est plus disponible et les tranches basses du barème déjà parcourues ne se reconstituent pas. Au-delà de 15 ans révolus, le compteur repart à zéro : l'abattement est intégralement disponible et le barème s'applique à nouveau dès la première tranche.",
+      "L'article 784 du CGI prévoit que si vous redonnez à la même personne dans les 15 ans qui suivent un premier don, ce premier don est pris en compte dans le nouveau calcul. L'abattement déjà utilisé n'est plus disponible et le calcul démarre dans une tranche plus haute du barème. Au-delà de 15 ans, le compteur repart à zéro : l'abattement est de nouveau disponible en entier et le barème s'applique à nouveau dès la première tranche.",
   },
   {
     question: "C'est quoi le don familial de sommes d'argent (Art. 790 G CGI) ?",
     answer:
-      "L'article 790 G du CGI prévoit un abattement de 31 865 € sur les dons de sommes d'argent, cumulable avec l'abattement personnel et renouvelable tous les 15 ans. Trois conditions cumulatives : le donateur a moins de 80 ans, le donataire est majeur ou mineur émancipé, et le lien est un descendant (enfant, petit-enfant, arrière-petit-enfant) ou, à défaut de descendant, un neveu ou une nièce. Le don doit porter sur de l'argent, pas sur des biens.",
+      "L'article 790 G du CGI ajoute 31 865 € d'abattement aux dons en argent (chèque, virement, espèces). Cet abattement s'ajoute à l'abattement personnel et repart à zéro tous les 15 ans. Trois conditions cumulatives : le donateur a moins de 80 ans, le donataire est majeur (ou mineur émancipé), et le don va à un enfant, petit-enfant, arrière-petit-enfant — ou, à défaut de descendant, à un neveu ou une nièce. Le don doit porter sur de l'argent, pas sur un bien immobilier ni sur des actions.",
   },
   {
     question: "Quel est le barème des droits de donation en ligne directe ?",
     answer:
-      "Le barème de l'article 777 CGI tableau I s'applique à la base taxable après abattement : 5 % jusqu'à 8 072 €, 10 % de 8 072 € à 12 109 €, 15 % de 12 109 € à 15 932 €, 20 % de 15 932 € à 552 324 €, 30 % de 552 324 € à 902 838 €, 40 % de 902 838 € à 1 805 677 €, 45 % au-delà. Exemple : une donation de 200 000 € d'un parent à un enfant après abattement de 100 000 € génère 18 194 € de droits.",
+      "Le barème de l'article 777 CGI tableau I s'applique à ce qui reste après abattement (donation - abattements). Il est progressif : chaque taux ne s'applique que sur la part du montant qui tombe dans sa tranche. Détail : 5 % jusqu'à 8 072 €, 10 % de 8 072 € à 12 109 €, 15 % de 12 109 € à 15 932 €, 20 % de 15 932 € à 552 324 €, 30 % de 552 324 € à 902 838 €, 40 % de 902 838 € à 1 805 677 €, 45 % au-delà. Exemple : une donation de 200 000 € d'un parent à un enfant après abattement de 100 000 € génère 18 194 € de droits.",
   },
   {
     question: "Quel barème entre frères et sœurs, et entre neveux et nièces ?",

@@ -132,7 +132,7 @@ export default function DonationCalculator() {
               </div>
             </div>
             <p className="text-xs text-neutral-500">
-              Valeur en pleine propriété du bien ou des sommes transmises. Le calcul s&apos;applique à la donation prise isolément.
+              Valeur du bien ou de la somme transmise. Si vous avez déjà fait des dons à la même personne dans les 15 dernières années, indiquez-les dans le champ plus bas — ne les cumulez pas ici.
             </p>
           </div>
 
@@ -181,7 +181,7 @@ export default function DonationCalculator() {
               <span className="text-xl sm:text-2xl font-bold text-neutral-600">€</span>
             </div>
             <p className="text-xs text-neutral-500">
-              Montant cumulé des donations consenties au même donataire depuis moins de 15 ans (Art. 784 CGI). Ce rappel réduit l&apos;abattement disponible et déplace le calcul vers les tranches hautes du barème.
+              Si vous avez déjà donné à la même personne dans les 15 dernières années, additionnez ces dons ici. Cela réduit l&apos;abattement qui vous reste et le calcul démarre dans une tranche plus haute du barème. Règle du rappel des 15 ans (Art. 784 CGI).
             </p>
           </div>
 
@@ -205,7 +205,7 @@ export default function DonationCalculator() {
                     Don familial de sommes d&apos;argent (Art. 790 G CGI)
                   </div>
                   <div className="text-xs text-neutral-500 mt-1">
-                    Abattement supplémentaire de 31 865 € cumulable. Conditions : donateur de moins de 80 ans, donataire majeur ou émancipé, lien éligible (descendant ou neveu/nièce).
+                    Ajoute 31 865 € d&apos;abattement en plus du premier, si trois conditions sont réunies : donateur de moins de 80 ans, donataire majeur (ou mineur émancipé), et le don va à un enfant, petit-enfant, arrière-petit-enfant — ou à défaut à un neveu/nièce.
                   </div>
                 </div>
               </label>
@@ -317,7 +317,7 @@ export default function DonationCalculator() {
               </div>
               {results.rappel15AnsActif && (
                 <div className="flex justify-between text-orange-700 text-xs">
-                  <span>dont abattement consommé par donations antérieures</span>
+                  <span>dont déjà utilisé par vos dons précédents</span>
                   <span>-{formatEur(results.abattementPersonnelTheorique - results.abattementPersonnelApplique)}</span>
                 </div>
               )}

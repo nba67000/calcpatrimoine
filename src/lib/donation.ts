@@ -185,14 +185,14 @@ function evaluerAlertes(p: {
     const conso = p.abattementPersonnelTheorique - p.abattementPersonnelApplique
     warnings.push({
       type: 'warning',
-      message: `Rappel fiscal des 15 ans (Art. 784 CGI) : ${eur(conso)} d'abattement déjà consommé par les donations antérieures. Il reste ${eur(p.abattementPersonnelApplique)} disponible.`,
+      message: `Vos dons précédents ont déjà utilisé ${eur(conso)} d'abattement. Il vous reste ${eur(p.abattementPersonnelApplique)} avant d'être taxé. Cet abattement repart à zéro au bout de 15 ans (Art. 784 CGI).`,
     })
   }
 
   if (p.donFamilial790GRefuse) {
     warnings.push({
       type: 'danger',
-      message: `Don familial de sommes d'argent (Art. 790 G CGI) non applicable : ${p.motifRefus790G}. Seul l'abattement personnel s'applique.`,
+      message: `L'option don familial (Art. 790 G CGI) ne peut pas s'appliquer : ${p.motifRefus790G}. Vous perdez l'abattement supplémentaire de 31 865 € — seul l'abattement personnel reste pris en compte.`,
     })
   }
 
@@ -212,7 +212,7 @@ function evaluerAlertes(p: {
   ) {
     optimisations.push({
       type: 'info',
-      message: `En attendant 15 ans, l'abattement de 100 000 € (Art. 779-I CGI) se reconstitue et un nouveau don de même montant pourrait à nouveau bénéficier d'un abattement complet.`,
+      message: `L'abattement de 100 000 € (Art. 779-I CGI) repart à zéro au bout de 15 ans. Un nouveau don à cet enfant à cette date bénéficierait à nouveau de l'abattement plein.`,
     })
   }
 

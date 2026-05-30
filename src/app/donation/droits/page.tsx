@@ -81,9 +81,10 @@ export default function DonationDroitsPage() {
             <div className="space-y-4 text-neutral-700 leading-relaxed">
               <p>
                 <strong>Trois étapes successives, fixées par le Code général des impôts.</strong>{' '}
-                Calculer les droits de donation, c&apos;est appliquer dans l&apos;ordre l&apos;abattement personnel
-                (Art. 779 CGI), les éventuels abattements cumulables (handicap, don familial 790 G), puis
-                le barème progressif de l&apos;article 777 CGI à la base taxable qui reste.
+                Le calcul se fait en trois temps. D&apos;abord on retire l&apos;abattement personnel qui dépend
+                du lien de parenté (Art. 779 CGI). Ensuite, si le cas s&apos;y prête, on retire les abattements
+                en plus : handicap, don familial 790 G. Sur ce qui reste, on applique le barème de
+                l&apos;article 777 CGI.
               </p>
               <p>
                 <strong>L&apos;abattement dépend du lien de parenté entre donateur et donataire.</strong>{' '}
@@ -93,15 +94,17 @@ export default function DonationDroitsPage() {
               </p>
               <p>
                 <strong>Le rappel fiscal des 15 ans (Art. 784 CGI).</strong>{' '}
-                Les donations consenties au même donataire depuis moins de 15 ans sont prises en compte :
-                l&apos;abattement déjà consommé n&apos;est plus disponible, et les tranches basses du barème
-                déjà parcourues ne se reconstituent pas. Au-delà de 15 ans révolus, le compteur repart à zéro.
+                Si vous avez déjà donné à la même personne dans les 15 dernières années, ces dons comptent :
+                l&apos;abattement déjà utilisé n&apos;est plus disponible, et le calcul démarre dans une tranche
+                plus haute du barème. Au-delà de 15 ans, le compteur repart à zéro — tout redevient comme si
+                c&apos;était un premier don.
               </p>
               <p>
                 <strong>Le don familial de sommes d&apos;argent (Art. 790 G CGI).</strong>{' '}
-                Un abattement supplémentaire de 31 865 €, cumulable avec l&apos;abattement personnel,
-                s&apos;applique aux dons en numéraire si le donateur a moins de 80 ans, le donataire est
-                majeur ou mineur émancipé, et le lien est descendant ou neveu/nièce (à défaut de descendant).
+                31 865 € d&apos;abattement en plus, valable uniquement pour les dons en argent (chèque,
+                virement, espèces — pas un bien immobilier ou des actions). Trois conditions cumulatives :
+                donateur de moins de 80 ans, donataire majeur, et le don va à un enfant, petit-enfant,
+                arrière-petit-enfant — ou à défaut à un neveu/nièce.
               </p>
             </div>
 

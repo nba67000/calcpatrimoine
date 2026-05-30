@@ -38,12 +38,14 @@ const sections: FAQSection[] = [
     title: 'Abattements et barème',
     items: [
       {
-        question: 'Quels sont les abattements applicables sur une donation en 2026 ?',
+        question: 'Quels abattements s\'appliquent sur une donation en 2026 ?',
         answer: (
           <>
             <p className="mb-3">
-              Les abattements personnels dépendent du lien de parenté entre donateur et donataire
-              (Art. 779 et 790 E CGI). Ils sont reconductibles tous les 15 ans (rappel fiscal Art. 784 CGI).
+              Avant de calculer l&apos;impôt, on retire un abattement de la valeur donnée. Le montant de cet
+              abattement dépend du lien entre celui qui donne et celui qui reçoit (Art. 779 et 790 E CGI).
+              Il repart à zéro tous les 15 ans (Art. 784 CGI), donc on peut le réutiliser une fois ce
+              délai passé.
             </p>
             <table className="w-full text-sm border-collapse mb-3">
               <thead>
@@ -75,9 +77,11 @@ const sections: FAQSection[] = [
         answer: (
           <>
             <p className="mb-3">
-              Le barème de l&apos;article 777 CGI tableau I s&apos;applique à la base taxable
-              (donation - abattements). Il est progressif : chaque tranche n&apos;est taxée que
-              sur la fraction concernée du montant.
+              Le barème de l&apos;article 777 CGI tableau I s&apos;applique à ce qui reste après
+              abattement (donation - abattements). Il est progressif : chaque taux ne
+              s&apos;applique que sur la part du montant qui tombe dans sa tranche. Concrètement,
+              sur 100 000 € taxables, vous ne payez pas 20 % sur 100 000 € — vous payez 5 % sur
+              les 8 072 premiers, 10 % sur la tranche suivante, etc.
             </p>
             <table className="w-full text-sm border-collapse mb-3">
               <thead>
@@ -165,8 +169,9 @@ const sections: FAQSection[] = [
         answer: (
           <>
             <p className="mb-3">
-              L&apos;article 784 du CGI prévoit que les donations consenties entre les mêmes parties
-              depuis moins de 15 ans sont rapportées au nouveau calcul. Concrètement :
+              L&apos;article 784 du CGI prévoit que si vous redonnez à la même personne dans les 15 ans
+              qui suivent un premier don, ce premier don est pris en compte dans le nouveau calcul.
+              Concrètement :
             </p>
             <ul className="list-disc pl-6 mb-3 space-y-2">
               <li>
@@ -186,9 +191,10 @@ const sections: FAQSection[] = [
               </li>
             </ul>
             <p className="text-sm text-neutral-600">
-              Le délai de 15 ans est apprécié de date à date par l&apos;administration fiscale.
-              C&apos;est la raison pour laquelle la déclaration formelle (formulaire 2735 ou acte
-              notarié) est essentielle : elle donne date certaine au fait.
+              Le délai de 15 ans se compte au jour près. C&apos;est pourquoi déclarer formellement la
+              donation (formulaire 2735 ou acte notarié) est essentiel : cette déclaration fixe
+              officiellement la date du don. Sans elle, en cas de contrôle, vous ne pourriez pas
+              prouver que les 15 ans sont écoulés.
             </p>
           </>
         ),
