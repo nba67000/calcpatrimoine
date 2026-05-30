@@ -458,6 +458,92 @@ export const HOWTO_TRANSMISSION: { name: string; description: string; totalTime:
 }
 
 // ─────────────────────────────────────────────────────────────
+// DONATION - DROITS DE MUTATION
+// ─────────────────────────────────────────────────────────────
+
+export const FAQ_DONATION: FAQSchemaItem[] = [
+  {
+    question: "Quels sont les abattements applicables sur une donation en 2026 ?",
+    answer:
+      "Les abattements personnels dépendent du lien de parenté entre donateur et donataire (Art. 779 et 790 E CGI) : 100 000 € par parent et par enfant (ligne directe), 80 724 € entre époux ou partenaires de PACS, 31 865 € pour un petit-enfant, 15 932 € entre frères et sœurs, 7 967 € pour un neveu ou une nièce. Un abattement supplémentaire de 159 325 € est cumulable pour un donataire en situation de handicap (Art. 779-II CGI). Aucun abattement n'est prévu pour les donations à des tiers ou parents éloignés.",
+  },
+  {
+    question: "Comment fonctionne le rappel fiscal de 15 ans ?",
+    answer:
+      "L'article 784 du CGI prévoit que les donations consenties entre les mêmes parties depuis moins de 15 ans sont rapportées au nouveau calcul. L'abattement déjà consommé n'est plus disponible et les tranches basses du barème déjà parcourues ne se reconstituent pas. Au-delà de 15 ans révolus, le compteur repart à zéro : l'abattement est intégralement disponible et le barème s'applique à nouveau dès la première tranche.",
+  },
+  {
+    question: "C'est quoi le don familial de sommes d'argent (Art. 790 G CGI) ?",
+    answer:
+      "L'article 790 G du CGI prévoit un abattement de 31 865 € sur les dons de sommes d'argent, cumulable avec l'abattement personnel et renouvelable tous les 15 ans. Trois conditions cumulatives : le donateur a moins de 80 ans, le donataire est majeur ou mineur émancipé, et le lien est un descendant (enfant, petit-enfant, arrière-petit-enfant) ou, à défaut de descendant, un neveu ou une nièce. Le don doit porter sur de l'argent, pas sur des biens.",
+  },
+  {
+    question: "Quel est le barème des droits de donation en ligne directe ?",
+    answer:
+      "Le barème de l'article 777 CGI tableau I s'applique à la base taxable après abattement : 5 % jusqu'à 8 072 €, 10 % de 8 072 € à 12 109 €, 15 % de 12 109 € à 15 932 €, 20 % de 15 932 € à 552 324 €, 30 % de 552 324 € à 902 838 €, 40 % de 902 838 € à 1 805 677 €, 45 % au-delà. Exemple : une donation de 200 000 € d'un parent à un enfant après abattement de 100 000 € génère 18 194 € de droits.",
+  },
+  {
+    question: "Quel barème entre frères et sœurs, et entre neveux et nièces ?",
+    answer:
+      "Entre frères et sœurs (tableau III de l'art. 777 CGI), le barème est de 35 % jusqu'à 24 430 € de base taxable puis 45 % au-delà, après abattement de 15 932 €. Pour les neveux et nièces et les parents jusqu'au 4e degré (tableau IV), le taux est forfaitaire de 55 % sur toute la base taxable, après abattement de 7 967 € pour les neveux et nièces. Au-delà du 4e degré ou sans lien de parenté, le taux est de 60 % sans abattement.",
+  },
+  {
+    question: "Quelle différence entre donation et succession ?",
+    answer:
+      "Les abattements personnels (100 000 €, 80 724 €, etc.) et le barème de l'art. 777 CGI sont identiques en donation et en succession. La différence tient au moment du transfert : la donation est consentie du vivant du donateur, la succession au moment de son décès. La donation permet d'anticiper, d'utiliser les abattements plusieurs fois sur 15 ans, et de bénéficier de mécanismes spécifiques (don familial 790 G, démembrement, donation-partage). La succession applique un seul abattement à la date du décès.",
+  },
+  {
+    question: "Faut-il déclarer une donation au fisc ?",
+    answer:
+      "Oui, les donations doivent être déclarées au service des impôts dans le mois qui suit l'acte (formulaire 2735 pour un don manuel, acte notarié pour une donation par acte). Cette déclaration fait courir le délai de 15 ans pour le rappel fiscal et constitue une date certaine en cas de contestation ultérieure (notamment pour les héritiers réservataires). L'enregistrement génère les droits de donation calculés sur la base taxable après abattements.",
+  },
+  {
+    question: "Mes données sont-elles stockées ou envoyées quelque part ?",
+    answer:
+      "Non, absolument pas. Tous les calculs sont effectués localement dans votre navigateur. Aucune donnée n'est transmise à un serveur ni conservée après fermeture de la page. Le code source est open-source et vérifiable sur GitHub.",
+  },
+]
+
+export const HOWTO_DONATION: { name: string; description: string; totalTime: string; steps: HowToStep[] } = {
+  name: "Comment calculer les droits de donation en 2026",
+  description:
+    "Simulez les droits de mutation à titre gratuit dus sur une donation : abattements par lien de parenté (Art. 779), barème (Art. 777), rappel fiscal 15 ans (Art. 784), don familial 790 G.",
+  totalTime: "PT3M",
+  steps: [
+    {
+      name: "Entrez le montant de la donation",
+      text:
+        "Saisissez la valeur en pleine propriété du bien ou des sommes transmises. Pour un bien autre que de l'argent, indiquez sa valeur vénale estimée. Le calcul s'applique à la donation prise isolément ; les donations antérieures sont saisies séparément.",
+      url: "https://calculpatrimoine.fr/donation/droits#montant",
+    },
+    {
+      name: "Choisissez le lien de parenté",
+      text:
+        "Sélectionnez le lien entre donateur et donataire : enfant, parent, petit-enfant, époux/PACS, frère/sœur, neveu/nièce, autre parent jusqu'au 4e degré, ou non-parent. Ce choix détermine l'abattement personnel (Art. 779 / 790 E) et le tableau du barème (Art. 777 CGI) appliqués.",
+      url: "https://calculpatrimoine.fr/donation/droits#lien",
+    },
+    {
+      name: "Renseignez les donations antérieures de moins de 15 ans",
+      text:
+        "Indiquez le total des donations déjà consenties au même donataire dans les 15 dernières années (Art. 784 CGI). L'abattement déjà utilisé est déduit, et les tranches basses du barème déjà parcourues ne sont plus disponibles.",
+      url: "https://calculpatrimoine.fr/donation/droits#anterieures",
+    },
+    {
+      name: "Activez les options spécifiques applicables",
+      text:
+        "Cochez le don familial de sommes d'argent (Art. 790 G CGI) pour ajouter 31 865 € d'abattement si les conditions sont remplies (donateur < 80 ans, donataire majeur, lien éligible). Cochez l'option handicap pour ajouter l'abattement de 159 325 € (Art. 779-II CGI).",
+      url: "https://calculpatrimoine.fr/donation/droits#options",
+    },
+    {
+      name: "Lisez les droits dus et le détail des tranches",
+      text:
+        "Le calculateur affiche le détail des abattements appliqués, la base taxable, les droits dus par tranche, le taux effectif d'imposition, le montant net pour le donataire, et l'économie liée aux abattements.",
+      url: "https://calculpatrimoine.fr/donation/droits#resultat",
+    },
+  ],
+}
+
+// ─────────────────────────────────────────────────────────────
 // PLUS-VALUE IMMOBILIÈRE
 // ─────────────────────────────────────────────────────────────
 

@@ -75,6 +75,12 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
         disponible: true,
       },
       {
+        href: '/donation/droits',
+        nom: 'Droits de donation',
+        desc: 'Abattements par lien de parenté (Art. 779), barème Art. 777, rappel 15 ans, don familial 790 G.',
+        disponible: true,
+      },
+      {
         href: '/succession',
         nom: 'Droits de succession',
         desc: 'Calcul des droits par héritier selon les abattements légaux et le barème progressif.',

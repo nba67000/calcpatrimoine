@@ -8,6 +8,7 @@ import type { AssuranceVieInputs, AssuranceVieResults } from '@/types/assuranceV
 import type { TransmissionInputs, TransmissionResults } from '@/types/transmission'
 import type { PlusValueImmobiliereInputs, PlusValueImmobiliereResults } from '@/types/plusValueImmobiliere'
 import type { IFIInputs, IFIResults } from '@/types/ifi'
+import type { DonationInputs, DonationResults } from '@/types/donation'
 import type { CalculatorInput, AnnuityResult } from '@/types'
 import { formatContexteTMI } from '@/lib/tmi'
 import { formatContextePER } from '@/lib/per'
@@ -16,6 +17,7 @@ import { formatContexteAVRachat } from '@/lib/assuranceVie'
 import { formatContexteTransmission } from '@/lib/transmission'
 import { formatContextePlusValue } from '@/lib/plusValueImmobiliere'
 import { formatContexteIFI } from '@/lib/ifi'
+import { formatContexteDonation } from '@/lib/donation'
 
 // ---------------------------------------------------------------------------
 // Type discriminant
@@ -29,6 +31,7 @@ export type ContexteChat =
   | { calculateur: 'assurance-vie/transmission'; inputs: TransmissionInputs; results: TransmissionResults }
   | { calculateur: 'plus-value-immobiliere'; inputs: PlusValueImmobiliereInputs; results: PlusValueImmobiliereResults }
   | { calculateur: 'ifi'; inputs: IFIInputs; results: IFIResults }
+  | { calculateur: 'donation-droits'; inputs: DonationInputs; results: DonationResults }
 
 // ---------------------------------------------------------------------------
 // Point d'entrée unique - TypeScript vérifie l'exhaustivité via le type de retour
@@ -50,5 +53,7 @@ export function formatContexteChat(contexte: ContexteChat): string {
       return formatContextePlusValue(contexte.inputs, contexte.results)
     case 'ifi':
       return formatContexteIFI(contexte.inputs, contexte.results)
+    case 'donation-droits':
+      return formatContexteDonation(contexte.inputs, contexte.results)
   }
 }

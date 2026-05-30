@@ -37,6 +37,12 @@ const FAQ_SECTIONS = [
     count: '10 questions',
   },
   {
+    href: '/faq/donation-droits',
+    label: 'FAQ Droits de donation',
+    desc: 'Abattements par lien de parenté (Art. 779), barème Art. 777, rappel 15 ans, don familial 790 G.',
+    count: '12 questions',
+  },
+  {
     href: '/faq/tmi',
     label: "FAQ Tranche Marginale d'Imposition",
     desc: 'Calcul de la TMI, barème IR 2026, quotient familial, décote, différence TMI et taux moyen.',

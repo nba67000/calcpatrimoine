@@ -16,6 +16,7 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
 | `assurance-vie/fiscalite-rachat` | Fiscalité rachat assurance-vie | `done` | 2026-04 |
 | `assurance-vie/transmission` | Transmission assurance-vie (art. 990 I / 757 B) | `done` | 2026-04 |
 | `tmi` | Tranche marginale d'imposition (barème IR 2026, QF, décote) | `done` | 2026-04-19 |
+| `donation/droits` | Donation (art. 777/779/784/790 G CGI, rappel 15 ans) | `done` | 2026-05-30 |
 
 ---
 
@@ -97,12 +98,15 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
 - **Complexité** : moyenne. Attention au plafonnement IFI + IR.
 
 #### `donation` - Donation (droits de donation par lien de parenté)
-- **Statut** : `todo`
+- **Statut** : `done`
+- **Date** : 2026-05-30
+- **Slug déployé** : `/donation/droits` (FAQ : `/faq/donation-droits`)
+- **Assignee** : claude-code-session-2026-05-30
 - **Description** : Calcul des droits de donation selon le lien de parenté,
-  abattements par donateur/donataire, rappel fiscal 15 ans.
-- **Sources** : Art. 777, 779, 784 CGI.
+  abattements par donateur/donataire, rappel fiscal 15 ans, don familial 790 G.
+- **Sources** : Art. 777, 779, 784, 790 E, 790 G CGI.
 - **Complexité** : élevée (tables par lien, règle du rappel, cumul avec
-  donations antérieures).
+  donations antérieures, conditions d'âge 790 G).
 
 #### `succession` - Succession (droits de succession)
 - **Statut** : `todo`
@@ -194,4 +198,4 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
   une description minimale. Ne jamais faire un calculateur `proposed` sans
   validation humaine - seuls les `todo` sont autorisés à l'implémentation.
 
-Last updated: 2026-05-08 (forum-watch ajout 3 idées P3).
+Last updated: 2026-05-30 (calculateur donation/droits livré).
