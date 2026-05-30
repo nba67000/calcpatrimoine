@@ -1,6 +1,8 @@
 // src/lib/tmi.ts
 
 import type { TMIInputs, TMIResults, TrancheDetail, SituationFamiliale } from '@/types/tmi'
+import type { CalculatorModule } from '@/lib/calculators/types'
+import { FAQ_TMI, HOWTO_TMI } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_TMI = [
@@ -289,4 +291,14 @@ export function formatContexteTMI(inputs: TMIInputs, r: TMIResults): string {
       ))
   }
   return lines.join('\n')
+}
+
+// Module calculateur unifié (cf. CONTEXT.md, ADR-0001)
+export const moduleTmi: CalculatorModule<TMIInputs, TMIResults> = {
+  slug: 'tmi',
+  nom: "TMI - Impôt sur le revenu",
+  sources: SOURCES_TMI,
+  faqSchema: FAQ_TMI,
+  howToSchema: HOWTO_TMI,
+  formatContexteChat: formatContexteTMI,
 }

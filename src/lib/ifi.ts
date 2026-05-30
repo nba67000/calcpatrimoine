@@ -1,6 +1,8 @@
 // src/lib/ifi.ts
 
 import type { IFIInputs, IFIResults, TrancheIFI } from '@/types/ifi'
+import type { CalculatorModule } from '@/lib/calculators/types'
+import { FAQ_IFI, HOWTO_IFI } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_IFI = [
@@ -272,4 +274,14 @@ export function formatContexteIFI(inputs: IFIInputs, r: IFIResults): string {
   }
 
   return lines.join('\n')
+}
+
+// Module calculateur unifié (cf. CONTEXT.md, ADR-0001)
+export const moduleIfi: CalculatorModule<IFIInputs, IFIResults> = {
+  slug: 'ifi',
+  nom: 'IFI - Fortune immobilière',
+  sources: SOURCES_IFI,
+  faqSchema: FAQ_IFI,
+  howToSchema: HOWTO_IFI,
+  formatContexteChat: formatContexteIFI,
 }

@@ -1,5 +1,8 @@
 // src/lib/transmission.ts
 
+import type { CalculatorModule } from '@/lib/calculators/types'
+import { FAQ_TRANSMISSION, HOWTO_TRANSMISSION } from '@/lib/schema/schemaData'
+
 export const SOURCES_TRANSMISSION = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045583309', label: 'Article 990 I du CGI', desc: 'Prélèvement sur versements avant 70 ans, abattement 152 500 € par bénéficiaire' },
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006305484', label: 'Article 757 B du CGI', desc: 'Réintégration succession versements après 70 ans, abattement 30 500 €' },
@@ -379,4 +382,14 @@ export function formatContexteTransmission(inputs: TransmissionInputs, r: Transm
     lines.push(`     Net reçu : ${eur(b.montantNet)} (taux effectif ${pct(b.tauxEffectif)})`)
   })
   return lines.join('\n')
+}
+
+// Module calculateur unifié (cf. CONTEXT.md, ADR-0001)
+export const moduleTransmission: CalculatorModule<TransmissionInputs, TransmissionResults> = {
+  slug: 'assurance-vie/transmission',
+  nom: 'Assurance-vie - transmission',
+  sources: SOURCES_TRANSMISSION,
+  faqSchema: FAQ_TRANSMISSION,
+  howToSchema: HOWTO_TRANSMISSION,
+  formatContexteChat: formatContexteTransmission,
 }

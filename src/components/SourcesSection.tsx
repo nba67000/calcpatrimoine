@@ -1,21 +1,16 @@
 // src/components/SourcesSection.tsx
-import { SOURCES_REGISTRY } from '@/lib/sourcesRegistry'
-
-interface Source {
-  href: string
-  label: string
-  desc: string
-}
+import { getCalculator } from '@/lib/calculators'
+import type { Source } from '@/lib/calculators/types'
 
 interface Props {
   sources?: Source[]
-  /** Slug du calculateur pour résolution automatique via le registre. */
+  /** Slug du calculateur — résolution automatique via le registry (cf. ADR-0001). */
   slug?: string
   title?: string
 }
 
 export default function SourcesSection({ sources, slug, title = 'Textes de loi' }: Props) {
-  const items: Source[] = sources ?? (slug ? SOURCES_REGISTRY[slug] ?? [] : [])
+  const items: Source[] = sources ?? (slug ? getCalculator(slug)?.sources ?? [] : [])
 
   return (
     <div>

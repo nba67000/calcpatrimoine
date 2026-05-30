@@ -6,6 +6,8 @@ import type {
   LienParente,
   TrancheDonation,
 } from '@/types/donation'
+import type { CalculatorModule } from '@/lib/calculators/types'
+import { FAQ_DONATION, HOWTO_DONATION } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_DONATION = [
@@ -439,4 +441,14 @@ export function formatContexteDonation(
     lines.push(ligne('Don 790 G refusé', r.motifRefus790G))
   }
   return lines.join('\n')
+}
+
+// Module calculateur unifié (cf. CONTEXT.md, ADR-0001)
+export const moduleDonation: CalculatorModule<DonationInputs, DonationResults> = {
+  slug: 'donation/droits',
+  nom: 'Donation - droits',
+  sources: SOURCES_DONATION,
+  faqSchema: FAQ_DONATION,
+  howToSchema: HOWTO_DONATION,
+  formatContexteChat: formatContexteDonation,
 }

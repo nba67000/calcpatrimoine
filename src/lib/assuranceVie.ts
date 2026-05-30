@@ -1,6 +1,8 @@
 ﻿// src/lib/assuranceVie.ts
 
 import type { AssuranceVieInputs, AssuranceVieResults, FiscaliteOption } from '@/types/assuranceVie'
+import type { CalculatorModule } from '@/lib/calculators/types'
+import { FAQ_ASSURANCE_VIE, HOWTO_ASSURANCE_VIE } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_ASSURANCE_VIE = [
@@ -348,4 +350,14 @@ export function formatContexteAVRachat(inputs: AssuranceVieInputs, r: AssuranceV
     )
   }
   return lines.join('\n')
+}
+
+// Module calculateur unifié (cf. CONTEXT.md, ADR-0001)
+export const moduleAvRachat: CalculatorModule<AssuranceVieInputs, AssuranceVieResults> = {
+  slug: 'assurance-vie/fiscalite-rachat',
+  nom: 'Assurance-vie - fiscalité rachat',
+  sources: SOURCES_ASSURANCE_VIE,
+  faqSchema: FAQ_ASSURANCE_VIE,
+  howToSchema: HOWTO_ASSURANCE_VIE,
+  formatContexteChat: formatContexteAVRachat,
 }

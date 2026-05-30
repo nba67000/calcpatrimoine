@@ -24,6 +24,8 @@ import type {
  CoupleCalculation
 } from '@/types'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
+import type { CalculatorModule } from '@/lib/calculators/types'
+import { FAQ_RENTE, HOWTO_RENTE } from '@/lib/schema/schemaData'
 
 export const SOURCES_RENTE_VIAGERE = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035514601', label: 'Article A132-1 du Code des assurances', desc: 'Taux technique maximum autorisé pour les contrats de rente viagère (75 % du taux OAT, plafonné à 3,5 %)' },
@@ -738,4 +740,14 @@ export function formatContexteRente(inputs: CalculatorInput, r: AnnuityResult): 
     )
   }
   return lines.join('\n')
+}
+
+// Module calculateur unifié (cf. CONTEXT.md, ADR-0001)
+export const moduleRenteViagere: CalculatorModule<CalculatorInput, AnnuityResult> = {
+  slug: 'rente-viagere',
+  nom: 'Rente viagère',
+  sources: SOURCES_RENTE_VIAGERE,
+  faqSchema: FAQ_RENTE,
+  howToSchema: HOWTO_RENTE,
+  formatContexteChat: formatContexteRente,
 }

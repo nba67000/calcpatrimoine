@@ -1,6 +1,8 @@
 // src/lib/plusValueImmobiliere.ts
 
 import type { PlusValueImmobiliereInputs, PlusValueImmobiliereResults } from '@/types/plusValueImmobiliere'
+import type { CalculatorModule } from '@/lib/calculators/types'
+import { FAQ_PLUS_VALUE, HOWTO_PLUS_VALUE } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_PLUS_VALUE = [
@@ -402,4 +404,14 @@ function buildResultMoinsValue(base: BaseResult): PlusValueImmobiliereResults {
     }],
     optimisations: [],
   }
+}
+
+// Module calculateur unifié (cf. CONTEXT.md, ADR-0001)
+export const modulePlusValue: CalculatorModule<PlusValueImmobiliereInputs, PlusValueImmobiliereResults> = {
+  slug: 'plus-value-immobiliere',
+  nom: 'Plus-value immobilière',
+  sources: SOURCES_PLUS_VALUE,
+  faqSchema: FAQ_PLUS_VALUE,
+  howToSchema: HOWTO_PLUS_VALUE,
+  formatContexteChat: formatContextePlusValue,
 }

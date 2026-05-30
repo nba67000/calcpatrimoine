@@ -1,7 +1,7 @@
 ﻿'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { formatContexteChat, type ContexteChat } from '@/lib/chatContext'
+import { getCalculator } from '@/lib/calculators'
 import { renderMarkdown } from '@/lib/markdownParser'
 
 // ---------------------------------------------------------------------------
@@ -10,8 +10,19 @@ import { renderMarkdown } from '@/lib/markdownParser'
 
 type ChatMessage = { role: 'user' | 'assistant'; content: string }
 
+/**
+ * Contexte passé au chatbot. Le slug `calculateur` est utilisé pour
+ * récupérer le module via `getCalculator(slug)` (cf. ADR-0001) puis
+ * formater le contexte avec ses inputs/results typés au callsite.
+ */
+export interface ChatContexte {
+  calculateur: string
+  inputs: unknown
+  results: unknown
+}
+
 interface Props {
-  contexte: ContexteChat
+  contexte: ChatContexte
 }
 
 // ---------------------------------------------------------------------------
@@ -76,7 +87,10 @@ export default function ChatWidget({ contexte }: Props) {
     setStreamingText('')
 
     try {
-      const contexteTexte = formatContexteChat(contexte)
+      const calculator = getCalculator(contexte.calculateur)
+      const contexteTexte = calculator
+        ? calculator.formatContexteChat(contexte.inputs, contexte.results)
+        : ''
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

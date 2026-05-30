@@ -134,7 +134,7 @@ export default function AssuranceViePage() {
               </div>
             </div>
 
-            <SourcesSection slug="assurance-vie" />
+            <SourcesSection slug="assurance-vie/fiscalite-rachat" />
 
             <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
               <p className="text-sm text-primary-800">

@@ -1,6 +1,8 @@
 // src/lib/per.ts
 
 import type { PERInputs, PERResults, PERDetailPlafond } from '@/types/per'
+import type { CalculatorModule } from '@/lib/calculators/types'
+import { FAQ_PER, HOWTO_PER } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_PER = [
@@ -212,4 +214,14 @@ export function formatContextePER(inputs: PERInputs, r: PERResults): string {
     ligne('Rendement fiscal immédiat', pct(r.rendementFiscal)),
   )
   return lines.join('\n')
+}
+
+// Module calculateur unifié (cf. CONTEXT.md, ADR-0001)
+export const modulePer: CalculatorModule<PERInputs, PERResults> = {
+  slug: 'per-individuel',
+  nom: 'PER individuel',
+  sources: SOURCES_PER,
+  faqSchema: FAQ_PER,
+  howToSchema: HOWTO_PER,
+  formatContexteChat: formatContextePER,
 }
