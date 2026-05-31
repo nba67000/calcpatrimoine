@@ -125,6 +125,12 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
         disponible: true,
       },
       {
+        href: '/csg-csds-retraite',
+        nom: 'CSG / CRDS sur pension',
+        desc: 'Taux CSG applicable (0 / 4,3 / 7,4 / 9,1 %) selon RFR et nombre de parts.',
+        disponible: true,
+      },
+      {
         href: '/plus-value-mobiliere',
         nom: 'Plus-value mobilière',
         desc: "Imposition sur cession de titres hors PEA selon durée de détention.",

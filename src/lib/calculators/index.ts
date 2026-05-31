@@ -31,6 +31,7 @@ import { moduleComparateurLocatif } from '@/lib/comparateurLocatif'
 import { modulePea } from '@/lib/pea'
 import { moduleLmnpRegime } from '@/lib/lmnpRegime'
 import { moduleSciRegime } from '@/lib/sciRegime'
+import { moduleCsgRetraite } from '@/lib/csgRetraite'
 
 // Stockage interne : les paramètres génériques TInputs/TResults sont délibérément
 // effacés pour permettre un dispatch runtime sur slug. Le typage strict reste
@@ -54,6 +55,7 @@ const MODULES: ReadonlyArray<CalculatorModule> = [
   modulePea as CalculatorModule,
   moduleLmnpRegime as CalculatorModule,
   moduleSciRegime as CalculatorModule,
+  moduleCsgRetraite as CalculatorModule,
 ]
 
 /** Récupère un module calculateur par son slug, ou undefined s'il n'existe pas. */

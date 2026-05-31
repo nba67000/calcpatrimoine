@@ -29,6 +29,7 @@ import { calculerComparateurLocatif } from '@/lib/comparateurLocatif'
 import { calculerPea } from '@/lib/pea'
 import { calculerLmnpRegime } from '@/lib/lmnpRegime'
 import { calculerSciRegime } from '@/lib/sciRegime'
+import { calculerCsgRetraite } from '@/lib/csgRetraite'
 import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
@@ -39,6 +40,7 @@ describe('calculator registry — exhaustivité', () => {
       'assurance-vie/fiscalite-rachat',
       'assurance-vie/transmission',
       'comparateur-locatif-placement',
+      'csg-csds-retraite',
       'donation/demembrement',
       'donation/droits',
       'ifi',
@@ -147,6 +149,13 @@ describe('calculator registry — formatContexteChat retourne une chaîne non vi
     }
     const results = calculerDonation(inputs)
     const txt = getCalculator('donation/droits')!.formatContexteChat(inputs, results)
+    expect(txt.length).toBeGreaterThan(20)
+  })
+
+  it('csg-csds-retraite', () => {
+    const inputs = { pensionBruteAnnuelle: 24000, revenuFiscalReference: 22000, nombreParts: 1 }
+    const results = calculerCsgRetraite(inputs)
+    const txt = getCalculator('csg-csds-retraite')!.formatContexteChat(inputs, results)
     expect(txt.length).toBeGreaterThan(20)
   })
 
