@@ -27,6 +27,7 @@ import { calculerDonationDemembrement } from '@/lib/donationDemembrement'
 import { calculerPlusValueLmnp } from '@/lib/plusValueLmnp'
 import { calculerComparateurLocatif } from '@/lib/comparateurLocatif'
 import { calculerPea } from '@/lib/pea'
+import { calculerLmnpRegime } from '@/lib/lmnpRegime'
 import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
@@ -40,6 +41,7 @@ describe('calculator registry — exhaustivité', () => {
       'donation/demembrement',
       'donation/droits',
       'ifi',
+      'lmnp-reel-vs-micro',
       'pea',
       'per-individuel',
       'per-sortie',
@@ -143,6 +145,16 @@ describe('calculator registry — formatContexteChat retourne une chaîne non vi
     }
     const results = calculerDonation(inputs)
     const txt = getCalculator('donation/droits')!.formatContexteChat(inputs, results)
+    expect(txt.length).toBeGreaterThan(20)
+  })
+
+  it('lmnp-reel-vs-micro', () => {
+    const inputs = {
+      loyersAnnuels: 20000, chargesReelles: 4000, amortissementsAnnuels: 6000,
+      tmi: 30 as const, typeMeuble: 'classique' as const,
+    }
+    const results = calculerLmnpRegime(inputs)
+    const txt = getCalculator('lmnp-reel-vs-micro')!.formatContexteChat(inputs, results)
     expect(txt.length).toBeGreaterThan(20)
   })
 
