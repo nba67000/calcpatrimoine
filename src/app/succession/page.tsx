@@ -6,7 +6,7 @@ const SuccessionCalculator = dynamic(
   () => import('@/components/Calculator/SuccessionCalculator'),
   { loading: () => <CalculatorSkeleton /> }
 )
-import SourcesSection from '@/components/SourcesSection'
+import MethodologieSection from '@/components/MethodologieSection'
 
 export const metadata: Metadata = {
   title: 'Calculateur droits de succession 2026 par héritier',
@@ -44,29 +44,17 @@ export default function SuccessionPage() {
       calculator={<SuccessionCalculator />}
       currentHref="/succession"
       methodologie={
-        <>
-          <SourcesSection slug="succession" />
-
-          <div>
-            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
-            <ul className="text-sm text-neutral-600 space-y-1.5">
-              {LIMITES.map((l, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
-                  <span>{l}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-            <p className="text-sm text-primary-800">
+        <MethodologieSection
+          slug="succession"
+          limites={LIMITES}
+          note={
+            <>
               Barème 2026 de l&apos;article 777 CGI (inchangé depuis LF 2011). Abattements
               Art. 779 CGI applicables aux successions ouvertes en 2026. Le conjoint et le
               partenaire de PACS sont totalement exonérés (Art. 796-0 bis CGI, Loi TEPA 2007).
-            </p>
-          </div>
-        </>
+            </>
+          }
+        />
       }
     />
   )

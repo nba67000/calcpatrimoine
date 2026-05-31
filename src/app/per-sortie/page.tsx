@@ -6,7 +6,7 @@ const PerSortieCalculator = dynamic(
   () => import('@/components/Calculator/PerSortieCalculator'),
   { loading: () => <CalculatorSkeleton /> }
 )
-import SourcesSection from '@/components/SourcesSection'
+import MethodologieSection from '@/components/MethodologieSection'
 
 export const metadata: Metadata = {
   title: 'PER Sortie : capital vs rente — calculateur fiscalité 2026',
@@ -43,28 +43,17 @@ export default function PerSortiePage() {
       calculator={<PerSortieCalculator />}
       currentHref="/per-sortie"
       methodologie={
-        <>
-          <SourcesSection slug="per-sortie" />
-
-          <div>
-            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
-            <ul className="text-sm text-neutral-600 space-y-1.5">
-              {LIMITES.map((l, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
-                  <span>{l}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-            <p className="text-sm text-primary-800">
-              Régime applicable aux liquidations PER 2026. Sources : Art. 158-5° bis CGI (rente), Art. 200 A CGI (PFU sur gains),
-              Art. 163 quatervicies CGI (régime d&apos;entrée), Art. L. 136-1-2 CSS (CSG retraités).
-            </p>
-          </div>
-        </>
+        <MethodologieSection
+          slug="per-sortie"
+          limites={LIMITES}
+          note={
+            <>
+              Régime applicable aux liquidations PER 2026. Sources : Art. 158-5° bis CGI (rente),
+              Art. 200 A CGI (PFU sur gains), Art. 163 quatervicies CGI (régime d&apos;entrée),
+              Art. L. 136-1-2 CSS (CSG retraités).
+            </>
+          }
+        />
       }
     />
   )

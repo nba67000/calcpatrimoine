@@ -6,7 +6,7 @@ const PeaCalculator = dynamic(
   () => import('@/components/Calculator/PeaCalculator'),
   { loading: () => <CalculatorSkeleton /> }
 )
-import SourcesSection from '@/components/SourcesSection'
+import MethodologieSection from '@/components/MethodologieSection'
 
 export const metadata: Metadata = {
   title: 'PEA : fiscalité retrait + bilan latent (calculateur 2026)',
@@ -44,28 +44,16 @@ export default function PeaPage() {
       calculator={<PeaCalculator />}
       currentHref="/pea"
       methodologie={
-        <>
-          <SourcesSection slug="pea" />
-
-          <div>
-            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
-            <ul className="text-sm text-neutral-600 space-y-1.5">
-              {LIMITES.map((l, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
-                  <span>{l}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-            <p className="text-sm text-primary-800">
-              Régime applicable 2026. Sources : Art. L. 221-30 et s. CMF (cadre juridique), Art. 150-0 A
-              et 157-5° bis CGI (fiscalité), Art. L. 136-7 CSS (prélèvements sociaux).
-            </p>
-          </div>
-        </>
+        <MethodologieSection
+          slug="pea"
+          limites={LIMITES}
+          note={
+            <>
+              Régime applicable 2026. Sources : Art. L. 221-30 et s. CMF (cadre juridique),
+              Art. 150-0 A et 157-5° bis CGI (fiscalité), Art. L. 136-7 CSS (prélèvements sociaux).
+            </>
+          }
+        />
       }
     />
   )

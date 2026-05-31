@@ -6,7 +6,7 @@ const PretIntrafamilialCalculator = dynamic(
   () => import('@/components/Calculator/PretIntrafamilialCalculator'),
   { loading: () => <CalculatorSkeleton /> }
 )
-import SourcesSection from '@/components/SourcesSection'
+import MethodologieSection from '@/components/MethodologieSection'
 
 export const metadata: Metadata = {
   title: 'Prêt intrafamilial in fine : calculateur 2026',
@@ -44,29 +44,17 @@ export default function PretIntrafamilialPage() {
       calculator={<PretIntrafamilialCalculator />}
       currentHref="/pret-intrafamilial"
       methodologie={
-        <>
-          <SourcesSection slug="pret-intrafamilial" />
-
-          <div>
-            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
-            <ul className="text-sm text-neutral-600 space-y-1.5">
-              {LIMITES.map((l, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
-                  <span>{l}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-            <p className="text-sm text-primary-800">
-              Régime applicable 2026. Sources : Art. 1892 et s. C. civil (prêt), Art. 757 B CGI (remise
-              de dette assimilée don), Art. 779 et 784 CGI (abattements et rappel 15 ans utilisés pour
-              la comparaison avec donation).
-            </p>
-          </div>
-        </>
+        <MethodologieSection
+          slug="pret-intrafamilial"
+          limites={LIMITES}
+          note={
+            <>
+              Régime applicable 2026. Sources : Art. 1892 et s. C. civil (prêt), Art. 757 B CGI
+              (remise de dette assimilée don), Art. 779 et 784 CGI (abattements et rappel 15 ans
+              utilisés pour la comparaison avec donation).
+            </>
+          }
+        />
       }
     />
   )

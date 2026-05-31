@@ -6,7 +6,7 @@ const PlusValueLmnpCalculator = dynamic(
   () => import('@/components/Calculator/PlusValueLmnpCalculator'),
   { loading: () => <CalculatorSkeleton /> }
 )
-import SourcesSection from '@/components/SourcesSection'
+import MethodologieSection from '@/components/MethodologieSection'
 
 export const metadata: Metadata = {
   title: 'Plus-value LMNP : réintégration amortissements 2026',
@@ -44,29 +44,17 @@ export default function PlusValueLmnpPage() {
       calculator={<PlusValueLmnpCalculator />}
       currentHref="/plus-value-immobiliere/lmnp"
       methodologie={
-        <>
-          <SourcesSection slug="plus-value-immobiliere/lmnp" />
-
-          <div>
-            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
-            <ul className="text-sm text-neutral-600 space-y-1.5">
-              {LIMITES.map((l, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
-                  <span>{l}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-            <p className="text-sm text-primary-800">
+        <MethodologieSection
+          slug="plus-value-immobiliere/lmnp"
+          limites={LIMITES}
+          note={
+            <>
               Règle applicable depuis le 15/02/2025 (LF 2025 art. 84). Sources : Art. 150 VB III CGI
               (réintégration), Art. 150 U et s. CGI (régime général PV immobilière particulier),
               Art. L136-7 CSS VI 2 (abattements PS).
-            </p>
-          </div>
-        </>
+            </>
+          }
+        />
       }
     />
   )

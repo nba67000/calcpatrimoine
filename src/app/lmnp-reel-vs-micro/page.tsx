@@ -6,7 +6,7 @@ const LmnpRegimeCalculator = dynamic(
   () => import('@/components/Calculator/LmnpRegimeCalculator'),
   { loading: () => <CalculatorSkeleton /> }
 )
-import SourcesSection from '@/components/SourcesSection'
+import MethodologieSection from '@/components/MethodologieSection'
 
 export const metadata: Metadata = {
   title: 'LMNP réel vs micro-BIC : comparateur 2026',
@@ -43,28 +43,16 @@ export default function LmnpRegimePage() {
       calculator={<LmnpRegimeCalculator />}
       currentHref="/lmnp-reel-vs-micro"
       methodologie={
-        <>
-          <SourcesSection slug="lmnp-reel-vs-micro" />
-
-          <div>
-            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
-            <ul className="text-sm text-neutral-600 space-y-1.5">
-              {LIMITES.map((l, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
-                  <span>{l}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-            <p className="text-sm text-primary-800">
-              Régime applicable 2026, post-réforme LF 2025. Sources : Art. 50-0 CGI (micro-BIC), Art. 32 CGI
-              (option réel), LF 2025 art. 84 (meublé touristique), Art. L. 136-7 CSS (PS).
-            </p>
-          </div>
-        </>
+        <MethodologieSection
+          slug="lmnp-reel-vs-micro"
+          limites={LIMITES}
+          note={
+            <>
+              Régime applicable 2026, post-réforme LF 2025. Sources : Art. 50-0 CGI (micro-BIC),
+              Art. 32 CGI (option réel), LF 2025 art. 84 (meublé touristique), Art. L. 136-7 CSS (PS).
+            </>
+          }
+        />
       }
     />
   )
