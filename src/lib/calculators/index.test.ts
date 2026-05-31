@@ -23,6 +23,7 @@ import { calculerDonation } from '@/lib/donation'
 import { calculerSuccession } from '@/lib/succession'
 import { calculerPerSortie } from '@/lib/perSortie'
 import { calculerPretIntrafamilial } from '@/lib/pretIntrafamilial'
+import { calculerDonationDemembrement } from '@/lib/donationDemembrement'
 import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
@@ -32,6 +33,7 @@ describe('calculator registry — exhaustivité', () => {
     expect(listCalculatorSlugs().sort()).toEqual([
       'assurance-vie/fiscalite-rachat',
       'assurance-vie/transmission',
+      'donation/demembrement',
       'donation/droits',
       'ifi',
       'per-individuel',
@@ -135,6 +137,16 @@ describe('calculator registry — formatContexteChat retourne une chaîne non vi
     }
     const results = calculerDonation(inputs)
     const txt = getCalculator('donation/droits')!.formatContexteChat(inputs, results)
+    expect(txt.length).toBeGreaterThan(20)
+  })
+
+  it('donation/demembrement', () => {
+    const inputs = {
+      valeurBienPleinePropriete: 500000, ageUsufruitier: 65,
+      lienDonataire: 'enfant' as const, donationsAnterieures: 0,
+    }
+    const results = calculerDonationDemembrement(inputs)
+    const txt = getCalculator('donation/demembrement')!.formatContexteChat(inputs, results)
     expect(txt.length).toBeGreaterThan(20)
   })
 

@@ -93,6 +93,12 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
         disponible: true,
       },
       {
+        href: '/donation/demembrement',
+        nom: 'Donation avec démembrement',
+        desc: 'Donation de la nue-propriété (barème Art. 669 CGI) — économie de droits vs pleine propriété.',
+        disponible: true,
+      },
+      {
         href: '/succession',
         nom: 'Droits de succession',
         desc: 'Calcul des droits par héritier selon les abattements légaux et le barème progressif.',
