@@ -442,24 +442,12 @@ const faqItems: FAQItem[] = [
  </p>
  <ul className="list-disc list-inside">
  <li>
- <a 
- href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047956718"
- target="_blank"
- rel="noopener noreferrer"
- className="text-primary-600 hover:underline"
->
- Article 125-0 A du CGI
- </a>
+ {/* LEGIARTI000047956718 retiré le 2026-05-31 (HTTP 404). Cf. docs/broken-links-to-fix.md. */}
+ <span className="font-medium text-neutral-700">Article 125-0 A du CGI</span>
  </li>
  <li>
- <a 
- href="https://bofip.impots.gouv.fr/bofip/2823-PGP.html"
- target="_blank"
- rel="noopener noreferrer"
- className="text-primary-600 hover:underline"
->
- BOFiP-RPPM-RCM-20-10-20
- </a>
+ {/* BOFiP 2823 retiré le 2026-05-31 (URL re-route vers BNC). */}
+ <span className="font-medium text-neutral-700">BOFiP-RPPM-RCM-20-10-20</span>
  </li>
  <li>
  <a 

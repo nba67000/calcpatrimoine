@@ -6,11 +6,13 @@ import { FAQ_ASSURANCE_VIE, HOWTO_ASSURANCE_VIE } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_ASSURANCE_VIE = [
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047956718', label: 'Article 125-0 A du CGI', desc: "Fiscalité des rachats d'assurance-vie, abattements annuels" },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045583309', label: 'Article 990 I du CGI', desc: 'Prélèvement spécifique sur versements > 150 000 €' },
+  // Légifrance + BOFiP retirés le 2026-05-31 (HTTP 404 ou re-route vers mauvais doc).
+  // Cf. docs/broken-links-to-fix.md.
+  { label: 'Article 125-0 A du CGI' },
+  { label: 'Article 990 I du CGI' },
   { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036339197', label: 'Loi de finances 2018 (article 28)', desc: 'Réforme PFU (flat tax), date pivot du 27 septembre 2017' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047958086', label: 'Article L136-7 du Code de la Sécurité Sociale', desc: 'Prélèvements sociaux : CSG 9,2 % + CRDS 0,5 % + PS 7,5 % = 17,2 %' },
-  { href: 'https://bofip.impots.gouv.fr/bofip/2823-PGP.html', label: 'BOFiP RPPM-RCM-20-10-20', desc: 'Règle proportionnelle, exemples de calculs détaillés' },
+  { label: 'Article L136-7 du Code de la Sécurité Sociale' },
+  { label: 'BOFiP RPPM-RCM-20-10-20' },
 ]
 
 /**

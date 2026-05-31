@@ -12,11 +12,16 @@
 import type { FAQSchemaItem } from '@/components/SchemaFAQ'
 import type { HowToStep } from '@/components/SchemaHowTo'
 
-/** Source légale citée par un calculateur (CGI, BOFiP, service-public, etc.). */
+/** Source légale citée par un calculateur (CGI, BOFiP, service-public, etc.).
+ *
+ * `href` et `desc` sont optionnels : quand l'URL externe est morte ou pointe
+ * vers le mauvais contenu, on retire les deux et on ne garde que le `label`
+ * (référence textuelle de l'article). Cf. `docs/broken-links-to-fix.md` pour
+ * la liste des liens à reconstruire. */
 export interface Source {
-  href: string
+  href?: string
   label: string
-  desc: string
+  desc?: string
 }
 
 /** Schéma HowTo JSON-LD complet d'un calculateur. */

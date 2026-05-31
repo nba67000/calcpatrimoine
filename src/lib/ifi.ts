@@ -5,12 +5,14 @@ import type { CalculatorModule } from '@/lib/calculators/types'
 import { FAQ_IFI, HOWTO_IFI } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatLigne as ligne } from '@/lib/formatters'
 
+// URLs Légifrance retirées le 2026-05-31 (toutes mortes - HTTP 404).
+// Voir docs/broken-links-to-fix.md pour les LEGIARTI à reconstruire.
 export const SOURCES_IFI = [
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036472764', label: 'Article 964 du CGI', desc: "Champ d'application IFI - seuil d'assujettissement à 1 300 000 €" },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036473012', label: 'Article 977 du CGI', desc: "Barème IFI - 6 tranches de 0 % à 1,50 % ; décote progressive 1,3M–1,4M€" },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036472780', label: 'Article 973 du CGI', desc: "Abattement de 30 % sur la résidence principale ; passif déductible" },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036472786', label: 'Article 974 du CGI', desc: "Dettes déductibles - emprunts liés aux biens taxables, taxes foncières" },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036473018', label: 'Article 979 du CGI', desc: "Plafonnement : IFI + IR ≤ 75 % des revenus de l'année" },
+  { label: 'Article 964 du CGI' },
+  { label: 'Article 977 du CGI' },
+  { label: 'Article 973 du CGI' },
+  { label: 'Article 974 du CGI' },
+  { label: 'Article 979 du CGI' },
 ]
 
 // --- Constantes fiscales (Art. 977 CGI - LF 2018, inchangées au 01/01/2026) ---

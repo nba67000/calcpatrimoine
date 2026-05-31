@@ -31,16 +31,19 @@ export type RessourceBlog = {
 export type RessourceLoi = {
   type: 'loi'
   ref: string            // ex : "Art. 125-0 A CGI"
-  url: string
-  sujet: string
+  // url et sujet sont optionnels : retirés temporairement quand l'URL externe
+  // est morte (cf. docs/broken-links-to-fix.md). Dans ce cas, seule la `ref`
+  // est citée dans le contexte chat.
+  url?: string
+  sujet?: string
   calculateursLies: SlugCalculateur[]
 }
 
 export type RessourceDoctrine = {
   type: 'doctrine'
   ref: string            // ex : "BOFiP BOI-RPPM-RCM-20-10-20-50"
-  url: string
-  sujet: string
+  url?: string
+  sujet?: string
   calculateursLies: SlugCalculateur[]
 }
 
@@ -135,45 +138,35 @@ export const ARTICLES_LOI: RessourceLoi[] = [
     calculateursLies: ['assurance-vie/fiscalite-rachat'],
   },
   {
+    // URL non vérifiée (suspectée morte d'après crawl 2026-05-31).
+    // Cf. docs/broken-links-to-fix.md, à tester puis remettre url+sujet.
     type: 'loi',
     ref: 'Art. 990 I CGI',
-    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288653',
-    sujet: 'Prélèvement sur capitaux décès AV (versements avant 70 ans) - abattement 152 500€/bénéficiaire, taux 20%/31,25%',
     calculateursLies: ['assurance-vie/transmission'],
   },
   {
     type: 'loi',
     ref: 'Art. 757 B CGI',
-    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288569',
-    sujet: 'Versements AV après 70 ans soumis aux droits de succession - abattement global 30 500€, exonération des plus-values',
     calculateursLies: ['assurance-vie/transmission'],
   },
   {
     type: 'loi',
     ref: 'Art. 777 CGI',
-    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044981950',
-    sujet: 'Barème des droits de succession ligne directe (5% à 45%) - inchangé depuis 2011',
     calculateursLies: ['assurance-vie/transmission'],
   },
   {
     type: 'loi',
     ref: 'Art. 779 CGI',
-    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000026292566',
-    sujet: 'Abattements succession : 100 000€ par enfant, 15 932€ frère/sœur, 7 967€ neveu/nièce',
     calculateursLies: ['assurance-vie/transmission'],
   },
   {
     type: 'loi',
     ref: 'Art. 163 quatervicies CGI',
-    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047605786',
-    sujet: 'Déductibilité des versements PER - plafond annuel, report sur 3 ans, règle TNS',
     calculateursLies: ['per-individuel'],
   },
   {
     type: 'loi',
     ref: 'Art. 197 CGI',
-    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044981244',
-    sujet: 'Barème progressif IR et décote - tranches 0%/11%/30%/41%/45%',
     calculateursLies: ['tmi', 'per-individuel'],
   },
   {

@@ -11,12 +11,14 @@ import { FAQ_DONATION, HOWTO_DONATION } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_DONATION = [
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464063', label: 'Article 777 du CGI', desc: 'Tarif des droits de mutation à titre gratuit - tableaux I à IV (2026)' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048845104', label: 'Article 779 du CGI', desc: 'Abattements personnels par lien de parenté (100 000 € enfant, 15 932 € frère-sœur, etc.)' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464760', label: 'Article 784 du CGI', desc: 'Rappel fiscal des donations consenties depuis moins de 15 ans' },
+  // Légifrance retirés le 2026-05-31 (HTTP 404). Cf. docs/broken-links-to-fix.md.
+  { label: 'Article 777 du CGI' },
+  { label: 'Article 779 du CGI' },
+  { label: 'Article 784 du CGI' },
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038588107', label: 'Article 790 E du CGI', desc: 'Abattement de 80 724 € entre époux et partenaires de PACS' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464661', label: 'Article 790 G du CGI', desc: 'Don familial de sommes d\'argent - 31 865 € cumulable (donateur < 80 ans)' },
-  { href: 'https://bofip.impots.gouv.fr/bofip/3845-PGP.html', label: 'BOFiP BOI-ENR-DMTG-20-30-20-20', desc: 'Tarif des droits de mutation à titre gratuit - barèmes 2026' },
+  { label: 'Article 790 G du CGI' },
+  // BOFiP 3845 retiré le 2026-05-31 (URL re-route vers PV biens meubles, pas donation).
+  { label: 'BOFiP BOI-ENR-DMTG-20-30-20-20' },
   { href: 'https://www.service-public.gouv.fr/particuliers/vosdroits/F14203', label: 'Service-public.gouv.fr F14203', desc: 'Donation : calcul des droits - source secondaire confirmée le 2026-05-30' },
 ]
 

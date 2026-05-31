@@ -66,16 +66,21 @@ function buildDynamicPrompt(contexteTexte: string, slug: SlugCalculateur): strin
     blog.forEach(r => lignesRessources.push(`  - [${r.titre}](/blog/${r.slug})`))
   }
 
+  // Quand url+sujet sont absents (lien externe mort retiré, cf.
+  // docs/broken-links-to-fix.md), on ne cite que la référence textuelle.
+  const formatRef = (r: { ref: string; url?: string; sujet?: string }) =>
+    r.url && r.sujet ? `  - [${r.ref}](${r.url}) - ${r.sujet}` : `  - ${r.ref}`
+
   const lois = ressources.filter(r => r.type === 'loi')
   if (lois.length > 0) {
     lignesRessources.push('Textes de loi :')
-    lois.forEach(r => lignesRessources.push(`  - [${r.ref}](${r.url}) - ${r.sujet}`))
+    lois.forEach(r => lignesRessources.push(formatRef(r)))
   }
 
   const doctrine = ressources.filter(r => r.type === 'doctrine')
   if (doctrine.length > 0) {
     lignesRessources.push('Doctrine administrative :')
-    doctrine.forEach(r => lignesRessources.push(`  - [${r.ref}](${r.url}) - ${r.sujet}`))
+    doctrine.forEach(r => lignesRessources.push(formatRef(r)))
   }
 
   if (autresCalcs.length > 0) {

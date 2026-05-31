@@ -184,7 +184,7 @@ export default function ArticlePERPage() {
 
             <p className="text-xs text-neutral-500 font-mono">
               Source :{' '}
-              <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038612513" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Article L224-1 du Code monétaire et financier</a>
+              <span className="font-medium text-neutral-700">Article L224-1 du Code monétaire et financier</span>
             </p>
           </section>
 
@@ -254,7 +254,7 @@ export default function ArticlePERPage() {
 
             <p className="text-xs text-neutral-500 font-mono">
               Source :{' '}
-              <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985573" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Article 163 quatervicies du CGI</a>
+              <span className="font-medium text-neutral-700">Article 163 quatervicies du CGI</span>
             </p>
           </section>
 
@@ -331,7 +331,7 @@ export default function ArticlePERPage() {
 
             <p className="text-xs text-neutral-500 font-mono">
               Source :{' '}
-              <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985573" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Article 163 quatervicies du CGI</a>
+              <span className="font-medium text-neutral-700">Article 163 quatervicies du CGI</span>
             </p>
           </section>
 
@@ -395,7 +395,7 @@ export default function ArticlePERPage() {
 
             <p className="text-xs text-neutral-500 font-mono">
               Sources :{' '}
-              <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044979614" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Article 158, 5° bis du CGI</a>
+              <span className="font-medium text-neutral-700">Article 158, 5° bis du CGI</span>
               {' · '}
               <a href="https://bofip.impots.gouv.fr/bofip/10261-PGP.html" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">BOFiP RSA-PENS-10</a>
             </p>
@@ -655,18 +655,22 @@ export default function ArticlePERPage() {
               <div>
                 <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Textes de loi</h3>
                 <ul className="space-y-2 text-sm">
-                  {[
+                  {([
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053542827', label: 'Article 163 quatervicies du CGI', desc: 'Déductibilité des cotisations versées au PER individuel' },
                     { href: 'https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042158853', label: 'Article 158, 5° bis du CGI', desc: 'Imposition des rentes issues des PER - régime des pensions' },
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038507575', label: 'Article L224-1 du Code monétaire et financier', desc: 'Définition légale du PER individuel (loi PACTE 2019)' },
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805604', label: 'Article L224-28 du Code monétaire et financier', desc: 'Cas de déblocage anticipé - liste exhaustive' },
                     { href: 'https://www.service-public.fr/particuliers/vosdroits/F34982', label: 'Service-Public.fr - PER individuel', desc: 'Fiche pratique officielle : ouverture, versements, fiscalité, déblocages' },
-                  ].map(s => (
-                    <li key={s.href} className="flex items-start gap-3">
+                  ] as Array<{ href?: string; label: string; desc?: string }>).map((s, i) => (
+                    <li key={s.href ?? `${s.label}-${i}`} className="flex items-start gap-3">
                       <span className="text-accent-400 mt-0.5 shrink-0">-</span>
                       <div>
-                        <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
-                        <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>
+                        {s.href ? (
+                          <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
+                        ) : (
+                          <span className="font-medium text-neutral-700">{s.label}</span>
+                        )}
+                        {s.desc && <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>}
                       </div>
                     </li>
                   ))}

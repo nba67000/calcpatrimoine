@@ -380,7 +380,9 @@ export default function ArticleRenteViagere() {
             <div className="space-y-4 text-sm">
               {[
                 { label: 'Tables de mortalité INSEE 2021', desc: 'Source des espérances de vie par âge et par sexe utilisées dans les calculs.' },
-                { label: 'Article 158, 6° du CGI', desc: 'Fiscalité des rentes viagères à titre onéreux : fractions imposables selon l\'âge.', href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044979614' },
+                // LEGIARTI000044979614 retiré le 2026-05-31 (HTTP 404).
+                // Cf. docs/broken-links-to-fix.md.
+                { label: 'Article 158, 6° du CGI' },
                 { label: 'Service-Public.fr - Rente viagère', desc: 'Fiche pratique officielle sur le fonctionnement et la fiscalité de la rente viagère.', href: 'https://www.service-public.fr/particuliers/vosdroits/F3173' },
               ].map(s => (
                 <div key={s.label} className="flex items-start gap-3">
@@ -390,7 +392,7 @@ export default function ArticleRenteViagere() {
                       ? <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
                       : <p className="font-medium text-neutral-800">{s.label}</p>
                     }
-                    <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>
+                    {s.desc && <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>}
                   </div>
                 </div>
               ))}

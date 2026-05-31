@@ -175,7 +175,7 @@ export default function ArticleAssuranceViePage() {
 
             <p className="text-xs text-neutral-500 font-mono">
               Source :{' '}
-              <a href="https://bofip.impots.gouv.fr/bofip/2823-PGP.html" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">BOFiP - RPPM-RCM-20-10-20</a>
+              <span className="font-medium text-neutral-700">BOFiP - RPPM-RCM-20-10-20</span>
             </p>
           </section>
 
@@ -301,7 +301,7 @@ export default function ArticleAssuranceViePage() {
 
             <p className="text-xs text-neutral-500 font-mono">
               Source :{' '}
-              <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047956718" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Article 125-0 A du CGI</a>
+              <span className="font-medium text-neutral-700">Article 125-0 A du CGI</span>
             </p>
           </section>
 
@@ -391,7 +391,7 @@ export default function ArticleAssuranceViePage() {
 
             <p className="text-xs text-neutral-500 font-mono">
               Source :{' '}
-              <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045583309" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Article 990 I du CGI</a>
+              <span className="font-medium text-neutral-700">Article 990 I du CGI</span>
             </p>
           </section>
 
@@ -609,17 +609,23 @@ export default function ArticleAssuranceViePage() {
               <div>
                 <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Textes de loi</h3>
                 <ul className="space-y-2 text-sm">
-                  {[
-                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047956718', label: 'Article 125-0 A du CGI', desc: 'Fiscalité des rachats, abattements annuels' },
-                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045583309', label: 'Article 990 I du CGI', desc: 'Prélèvement spécifique sur versements après 70 ans dépassant 152 500 euros' },
+                  {([
+                    // URLs Légifrance retirées le 2026-05-31 (HTTP 404).
+                    // Cf. docs/broken-links-to-fix.md.
+                    { label: 'Article 125-0 A du CGI' },
+                    { label: 'Article 990 I du CGI' },
                     { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036339197', label: 'Loi de finances 2018, article 28', desc: 'Réforme PFU et date pivot du 27 septembre 2017' },
-                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047958086', label: 'Article L136-7 du Code de la Sécurité Sociale', desc: 'Prélèvements sociaux : CSG + CRDS = 17,2 %' },
-                  ].map(s => (
-                    <li key={s.href} className="flex items-start gap-3">
+                    { label: 'Article L136-7 du Code de la Sécurité Sociale' },
+                  ] as Array<{ href?: string; label: string; desc?: string }>).map((s, i) => (
+                    <li key={s.href ?? `${s.label}-${i}`} className="flex items-start gap-3">
                       <span className="text-accent-400 mt-0.5 shrink-0">-</span>
                       <div>
-                        <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
-                        <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>
+                        {s.href ? (
+                          <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
+                        ) : (
+                          <span className="font-medium text-neutral-700">{s.label}</span>
+                        )}
+                        {s.desc && <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>}
                       </div>
                     </li>
                   ))}
@@ -628,15 +634,20 @@ export default function ArticleAssuranceViePage() {
               <div>
                 <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Documentation officielle</h3>
                 <ul className="space-y-2 text-sm">
-                  {[
-                    { href: 'https://bofip.impots.gouv.fr/bofip/2823-PGP.html', label: 'BOFiP - RPPM-RCM-20-10-20', desc: 'Règle proportionnelle et exemples de calculs détaillés' },
+                  {([
+                    // BOFiP 2823 retiré le 2026-05-31 (URL re-route vers BNC).
+                    { label: 'BOFiP - RPPM-RCM-20-10-20' },
                     { href: 'https://www.service-public.fr/particuliers/vosdroits/F22414', label: 'Service-Public.fr', desc: 'Fiche pratique sur la fiscalité de l\'assurance-vie' },
-                  ].map(s => (
-                    <li key={s.href} className="flex items-start gap-3">
+                  ] as Array<{ href?: string; label: string; desc?: string }>).map((s, i) => (
+                    <li key={s.href ?? `${s.label}-${i}`} className="flex items-start gap-3">
                       <span className="text-accent-400 mt-0.5 shrink-0">-</span>
                       <div>
-                        <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
-                        <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>
+                        {s.href ? (
+                          <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">{s.label}</a>
+                        ) : (
+                          <span className="font-medium text-neutral-700">{s.label}</span>
+                        )}
+                        {s.desc && <p className="text-neutral-500 text-xs mt-0.5">{s.desc}</p>}
                       </div>
                     </li>
                   ))}
