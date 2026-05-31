@@ -22,6 +22,7 @@ import { calculerIFI } from '@/lib/ifi'
 import { calculerDonation } from '@/lib/donation'
 import { calculerSuccession } from '@/lib/succession'
 import { calculerPerSortie } from '@/lib/perSortie'
+import { calculerPretIntrafamilial } from '@/lib/pretIntrafamilial'
 import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
@@ -36,6 +37,7 @@ describe('calculator registry — exhaustivité', () => {
       'per-individuel',
       'per-sortie',
       'plus-value-immobiliere',
+      'pret-intrafamilial',
       'rente-viagere',
       'succession',
       'tmi',
@@ -133,6 +135,17 @@ describe('calculator registry — formatContexteChat retourne une chaîne non vi
     }
     const results = calculerDonation(inputs)
     const txt = getCalculator('donation/droits')!.formatContexteChat(inputs, results)
+    expect(txt.length).toBeGreaterThan(20)
+  })
+
+  it('pret-intrafamilial', () => {
+    const inputs = {
+      montantPret: 100000, dureeAnnees: 10, tauxInteret: 2,
+      agePreteur: 65, esperanceVie: 85,
+      lienEmprunteur: 'enfant' as const, donationsAnterieures: 0,
+    }
+    const results = calculerPretIntrafamilial(inputs)
+    const txt = getCalculator('pret-intrafamilial')!.formatContexteChat(inputs, results)
     expect(txt.length).toBeGreaterThan(20)
   })
 
