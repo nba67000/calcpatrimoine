@@ -44,8 +44,8 @@ const sections: FAQSection[] = [
               Deux régimes coexistent selon l&apos;âge auquel les versements ont été effectués :
             </p>
             <ul className="list-disc pl-6 mb-3 space-y-2">
-              <li><strong>Avant 70 ans</strong> : Article 990 I du CGI - régime le plus avantageux</li>
-              <li><strong>Après 70 ans</strong> : Article 757 B du CGI - abattement global plus limité</li>
+              <li><strong>Avant 70 ans</strong> : Article 990 I du CGI — abattement de 152 500 € par bénéficiaire, puis 20 % jusqu&apos;à 700 000 € et 31,25 % au-delà</li>
+              <li><strong>Après 70 ans</strong> : Article 757 B du CGI — abattement global de 30 500 € partagé entre tous les bénéficiaires, gains exonérés, droits de succession ordinaires au-delà</li>
             </ul>
             <div className="bg-primary-50 border-l-4 border-primary-400 p-4">
               <p className="text-sm text-primary-900">

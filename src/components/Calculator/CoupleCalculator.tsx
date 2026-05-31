@@ -214,7 +214,7 @@ export default function CoupleCalculator() {
  <div className="bg-white rounded-lg border border-neutral-200 p-8">
  <h3 className="text-xl font-semibold mb-2">Comparaison des 9 stratégies</h3>
  <p className="text-sm text-neutral-600 mb-6">
- Voici toutes les options possibles pour votre situation. Choisissez selon vos priorités.
+ Les 9 combinaisons de réversion possibles pour ce couple, classées par rente totale.
  </p>
 
  <div className="space-y-4">

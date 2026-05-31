@@ -21,7 +21,7 @@ const CALCULATEURS = [
     nom: 'Fiscalité Rachat',
     tag: 'Impôt',
     question: 'Combien allez-vous payer sur votre retrait ?',
-    desc: 'Simulez l\'impôt exact sur un rachat partiel ou total. Comparez PFU (30 %) et IR + PS selon votre tranche d\'imposition.',
+    desc: 'Simulez l\'impôt dû sur un rachat partiel ou total. Comparez PFU (30 %) et IR + PS selon votre tranche d\'imposition.',
     points: ['Règle proportionnelle automatique', 'Abattement 8 ans (4 600 € / 9 200 €)', 'Versements avant 27/09/2017', 'Comparaison PFU vs IR'],
   },
   {
@@ -71,7 +71,7 @@ export default function AssuranceVieHubPage() {
         {/* 2 Calculateurs - table-style */}
         <section className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex items-center gap-6 mb-0">
-            <h2 className="font-serif text-2xl text-neutral-900 shrink-0">Choisissez votre outil</h2>
+            <h2 className="font-serif text-2xl text-neutral-900 shrink-0">Les deux calculateurs</h2>
             <div className="flex-1 h-[1px] bg-neutral-300" />
           </div>
 
@@ -110,30 +110,25 @@ export default function AssuranceVieHubPage() {
 
         {/* Info pédagogique */}
         <section className="max-w-4xl mx-auto px-6 py-8">
-          <div className="bg-white border border-neutral-200 p-8">
-            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
-              Quelle différence entre les deux ?
+          <div className="bg-white border border-neutral-200 p-8 space-y-5">
+            <h2 className="font-serif text-2xl font-bold text-neutral-900">
+              Rachat ou transmission : deux fiscalités séparées
             </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="border-l-4 border-primary-200 pl-5 py-2">
-                <h3 className="font-bold text-primary-900 mb-3">Fiscalité Rachat</h3>
-                <p className="text-sm text-neutral-500 mb-2 font-mono uppercase tracking-wider text-xs">Quand l&apos;utiliser ?</p>
-                <ul className="text-sm text-neutral-700 space-y-1">
-                  <li>- Vous voulez retirer de l&apos;argent de votre contrat</li>
-                  <li>- Vous voulez anticiper les impôts sur ce retrait</li>
-                  <li>- Vous voulez comparer PFU et IR pour votre situation</li>
-                </ul>
-              </div>
-              <div className="border-l-4 border-accent-400 pl-5 py-2">
-                <h3 className="font-bold text-neutral-900 mb-3">Transmission</h3>
-                <p className="text-sm text-neutral-500 mb-2 font-mono uppercase tracking-wider text-xs">Quand l&apos;utiliser ?</p>
-                <ul className="text-sm text-neutral-700 space-y-1">
-                  <li>- Vous préparez votre succession</li>
-                  <li>- Vous voulez simuler la répartition entre bénéficiaires</li>
-                  <li>- Vous voulez anticiper les droits payés par vos héritiers</li>
-                </ul>
-              </div>
-            </div>
+            <p className="text-neutral-700 leading-relaxed">
+              Un même contrat d&apos;assurance-vie déclenche deux régimes fiscaux distincts selon ce que vous en faites.
+            </p>
+            <p className="text-neutral-700 leading-relaxed">
+              <strong>Le calculateur Fiscalité Rachat</strong> traite ce qui se passe quand vous retirez de l&apos;argent
+              de votre vivant : seule la part de plus-value contenue dans le rachat est imposée, au PFU (30 %)
+              ou à l&apos;IR + prélèvements sociaux selon votre choix, avec un abattement de 4 600 € (9 200 € en couple)
+              après 8 ans de détention.
+            </p>
+            <p className="text-neutral-700 leading-relaxed">
+              <strong>Le calculateur Transmission</strong> traite ce que reçoivent vos bénéficiaires à votre décès : les sommes
+              transmises sortent de la succession civile et suivent une fiscalité propre (Art. 990 I et 757 B CGI),
+              avec des abattements et des taux qui dépendent de votre âge au moment des versements,
+              pas de votre âge au décès.
+            </p>
           </div>
         </section>
 

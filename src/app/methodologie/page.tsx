@@ -30,7 +30,7 @@ export default function Methodologie() {
  Comment nous calculons votre rente viagère
  </h1>
  <p className="text-xl text-neutral-600 mb-6">
- Transparence totale sur nos méthodes de calcul, nos sources de données et nos formules actuarielles.
+ Tables de mortalité utilisées, formule actuarielle, taux technique, hypothèses de calcul — tout est ici.
  </p>
  
  {/* Cross-link FAQ */}
@@ -53,20 +53,20 @@ export default function Methodologie() {
  <div className="bg-white rounded-lg p-4 border-l-4 border-primary-500">
  <div className="font-semibold text-primary-900 mb-2">Rente viagère (ce calculateur)</div>
  <ul className="space-y-1 text-neutral-700">
- <li>✓ Vous avez un <strong>capital financier</strong> (épargne, assurance-vie)</li>
- <li>✓ Vous le convertissez en <strong>revenus mensuels à vie</strong></li>
- <li>✓ Pas de bien immobilier impliqué</li>
- <li>✓ Exemple : 100 000€ → 614€/mois à vie (homme, 65 ans)</li>
+ <li>- Vous avez un <strong>capital financier</strong> (épargne, assurance-vie)</li>
+ <li>- Vous le convertissez en <strong>revenus mensuels à vie</strong></li>
+ <li>- Pas de bien immobilier impliqué</li>
+ <li>- Exemple : 100 000€ → 614€/mois à vie (homme, 65 ans)</li>
  </ul>
  </div>
- 
+
  <div className="bg-white rounded-lg p-4 border-l-4 border-primary-500">
- <div className="font-semibold text-primary-900 mb-2">🏡 Viager immobilier (autre produit)</div>
+ <div className="font-semibold text-primary-900 mb-2">Viager immobilier (autre produit)</div>
  <ul className="space-y-1 text-neutral-700">
- <li>✓ Vous vendez votre <strong>maison/appartement</strong></li>
- <li>✓ Acheteur paie : bouquet + rente mensuelle</li>
- <li>✓ Vous gardez l&apos;usufruit (droit d&apos;y habiter)</li>
- <li>✓ Exemple : Vente maison 300k€ → 50k€ bouquet + 800€/mois</li>
+ <li>- Vous vendez votre <strong>maison/appartement</strong></li>
+ <li>- Acheteur paie : bouquet + rente mensuelle</li>
+ <li>- Vous gardez l&apos;usufruit (droit d&apos;y habiter)</li>
+ <li>- Exemple : Vente maison 300k€ → 50k€ bouquet + 800€/mois</li>
  </ul>
  </div>
  </div>
@@ -264,8 +264,10 @@ export default function Methodologie() {
  <div>
  <h4 className="font-semibold text-neutral-900 mb-1">Frais non inclus</h4>
  <p>
- Les assureurs appliquent généralement des frais de gestion (3-5% du capital) et des frais annuels. 
- Notre calculateur affiche la rente <strong>brute théorique</strong>.
+ Les assureurs prélèvent des frais sur arrérages (à chaque versement de rente) et parfois des frais
+ d&apos;entrée sur le capital converti. Ces frais varient d&apos;un contrat à l&apos;autre et figurent
+ obligatoirement dans la notice contractuelle. Notre calculateur affiche la rente <strong>brute théorique</strong>,
+ avant prélèvement de ces frais.
  </p>
  </div>
  
