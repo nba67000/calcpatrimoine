@@ -6,10 +6,11 @@ import { FAQ_ASSURANCE_VIE, HOWTO_ASSURANCE_VIE } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_ASSURANCE_VIE = [
-  // Légifrance + BOFiP retirés le 2026-05-31 (HTTP 404 ou re-route vers mauvais doc).
+  // Légifrance + BOFiP partiellement retirés le 2026-05-31 (HTTP 404 ou re-route vers mauvais doc).
   // Cf. docs/broken-links-to-fix.md.
   { label: 'Article 125-0 A du CGI' },
-  { label: 'Article 990 I du CGI' },
+  // URL restaurée le 2026-05-31 (crawl round 1 : LEGIARTI alternatif valide).
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288653', label: 'Article 990 I du CGI', desc: 'Prélèvement spécifique sur versements > 150 000 €' },
   { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036339197', label: 'Loi de finances 2018 (article 28)', desc: 'Réforme PFU (flat tax), date pivot du 27 septembre 2017' },
   { label: 'Article L136-7 du Code de la Sécurité Sociale' },
   { label: 'BOFiP RPPM-RCM-20-10-20' },

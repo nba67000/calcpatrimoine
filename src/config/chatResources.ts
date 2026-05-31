@@ -138,18 +138,22 @@ export const ARTICLES_LOI: RessourceLoi[] = [
     calculateursLies: ['assurance-vie/fiscalite-rachat'],
   },
   {
-    // URL non vérifiée (suspectée morte d'après crawl 2026-05-31).
-    // Cf. docs/broken-links-to-fix.md, à tester puis remettre url+sujet.
     type: 'loi',
     ref: 'Art. 990 I CGI',
+    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288653',
+    sujet: 'Prélèvement sur capitaux décès AV (versements avant 70 ans) - abattement 152 500€/bénéficiaire, taux 20%/31,25%',
     calculateursLies: ['assurance-vie/transmission'],
   },
   {
     type: 'loi',
     ref: 'Art. 757 B CGI',
+    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288569',
+    sujet: 'Versements AV après 70 ans soumis aux droits de succession - abattement global 30 500€, exonération des plus-values',
     calculateursLies: ['assurance-vie/transmission'],
   },
   {
+    // Art 777 : URL LEGIARTI000044981950 confirmée 404 (crawl 2026-05-31 round 2).
+    // À reconstruire avec un nouveau LEGIARTI.
     type: 'loi',
     ref: 'Art. 777 CGI',
     calculateursLies: ['assurance-vie/transmission'],
@@ -157,6 +161,8 @@ export const ARTICLES_LOI: RessourceLoi[] = [
   {
     type: 'loi',
     ref: 'Art. 779 CGI',
+    url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000026292566',
+    sujet: 'Abattements succession : 100 000€ par enfant, 15 932€ frère/sœur, 7 967€ neveu/nièce',
     calculateursLies: ['assurance-vie/transmission'],
   },
   {

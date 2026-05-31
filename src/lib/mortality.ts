@@ -30,7 +30,8 @@ import { FAQ_RENTE, HOWTO_RENTE } from '@/lib/schema/schemaData'
 export const SOURCES_RENTE_VIAGERE = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035514601', label: 'Article A132-1 du Code des assurances', desc: 'Taux technique maximum autorisé pour les contrats de rente viagère (75 % du taux OAT, plafonné à 3,5 %)' },
   { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000820127', label: 'Arrêté du 1er août 2006 - tables TGH 05 / TGF 05', desc: 'Homologation des tables de mortalité par génération pour les rentes viagères (art. A335-1 Code des assurances)' },
-  { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023744555', label: 'Loi n° 2011-1906 du 21 décembre 2011', desc: "Interdiction de la tarification différenciée selon le sexe (tables unisexes obligatoires depuis le 21 décembre 2012)" },
+  // JORFTEXT000023744555 retiré le 2026-05-31 (Légifrance affiche "Pas de contenu disponible").
+  { label: 'Loi n° 2011-1906 du 21 décembre 2011' },
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053542725', label: 'Article 158-6 du CGI', desc: "Fractions imposables des rentes viagères à titre onéreux selon l'âge : 70 % (< 50 ans), 50 % (50-59 ans), 40 % (60-69 ans), 30 % (> 69 ans)" },
   { href: 'https://www.insee.fr/fr/statistiques/7624538', label: 'INSEE - Tables de mortalité 2021', desc: "Tables statistiques utilisées pour les projections d'espérance de vie (publication juin 2023)" },
 ]

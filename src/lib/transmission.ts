@@ -4,14 +4,14 @@ import type { CalculatorModule } from '@/lib/calculators/types'
 import { FAQ_TRANSMISSION, HOWTO_TRANSMISSION } from '@/lib/schema/schemaData'
 
 export const SOURCES_TRANSMISSION = [
-  // LEGIARTI000045583309 retiré le 2026-05-31 (HTTP 404).
-  { label: 'Article 990 I du CGI' },
-  // LEGIARTI000006305484 retiré le 2026-05-31 (pointait vers Art 796, pas 757 B).
-  // Cf. docs/broken-links-to-fix.md.
-  { label: 'Article 757 B du CGI' },
+  // URLs restaurées le 2026-05-31 (crawl round 2 : LEGIARTI alternatifs valides).
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288653', label: 'Article 990 I du CGI', desc: 'Prélèvement sur versements avant 70 ans, abattement 152 500 € par bénéficiaire' },
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288569', label: 'Article 757 B du CGI', desc: 'Réintégration succession versements après 70 ans, abattement 30 500 €' },
   { href: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000278649', label: 'Loi TEPA 2007', desc: 'Exonération totale conjoint/PACS pour les successions' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042160878', label: 'Articles 777 et suivants du CGI', desc: 'Barème des droits de succession en ligne directe' },
-  { href: 'https://bofip.impots.gouv.fr/bofip/3296-PGP.html', label: 'BOFiP - Assurance-vie et successions', desc: 'Bulletin Officiel des Finances Publiques sur la transmission' },
+  // LEGIARTI000042160878 retiré le 2026-05-31 (HTTP 404).
+  { label: 'Articles 777 et suivants du CGI' },
+  // BOFiP 3296 retiré le 2026-05-31 (URL re-route vers ENR-DMTOI, pas AV/successions).
+  { label: 'BOFiP - Assurance-vie et successions' },
 ]
 
 import type {

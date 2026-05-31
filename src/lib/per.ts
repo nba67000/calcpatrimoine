@@ -6,10 +6,12 @@ import { FAQ_PER, HOWTO_PER } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_PER = [
-  // LEGIARTI000048776042 retiré le 2026-05-31 (HTTP 404). Cf. docs/broken-links-to-fix.md.
+  // URLs Légifrance partiellement retirées le 2026-05-31. Cf. docs/broken-links-to-fix.md.
   { label: 'Article 163 quatervicies du CGI' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044986838', label: 'Article 83 du CGI', desc: "Abattement forfaitaire de 10 % pour frais professionnels sur les salaires (min. 509 €, max. 14 555 € pour revenus 2025)" },
-  { href: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072026/LEGISCTA000038619671/', label: "Articles L.224-1 et suivants du Code monétaire et financier", desc: "Régime juridique du Plan d'Épargne Retraite (PER) - compartiments, versements, sortie" },
+  // LEGIARTI000044986838 retiré le 2026-05-31 (HTTP 404 round 1).
+  { label: 'Article 83 du CGI' },
+  // Section LEGISCTA000038619671 retirée le 2026-05-31 (HTTP 404 round 3).
+  { label: "Articles L.224-1 et suivants du Code monétaire et financier" },
 ]
 
 // PASS 2025 - Décret du 29 novembre 2024

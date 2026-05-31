@@ -11,11 +11,13 @@ import { FAQ_DONATION, HOWTO_DONATION } from '@/lib/schema/schemaData'
 import { formatEurRounded as eur, formatPct as pct, formatLigne as ligne } from '@/lib/formatters'
 
 export const SOURCES_DONATION = [
-  // Légifrance retirés le 2026-05-31 (HTTP 404). Cf. docs/broken-links-to-fix.md.
+  // Légifrance partiellement retirés le 2026-05-31. Cf. docs/broken-links-to-fix.md.
   { label: 'Article 777 du CGI' },
-  { label: 'Article 779 du CGI' },
+  // URL restaurée le 2026-05-31 (crawl round 2 : LEGIARTI alternatif valide).
+  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000026292566', label: 'Article 779 du CGI', desc: 'Abattements personnels par lien de parenté (100 000 € enfant, 15 932 € frère-sœur, etc.)' },
   { label: 'Article 784 du CGI' },
-  { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038588107', label: 'Article 790 E du CGI', desc: 'Abattement de 80 724 € entre époux et partenaires de PACS' },
+  // LEGIARTI000038588107 retiré le 2026-05-31 (HTTP 404 round 2).
+  { label: 'Article 790 E du CGI' },
   { label: 'Article 790 G du CGI' },
   // BOFiP 3845 retiré le 2026-05-31 (URL re-route vers PV biens meubles, pas donation).
   { label: 'BOFiP BOI-ENR-DMTG-20-30-20-20' },

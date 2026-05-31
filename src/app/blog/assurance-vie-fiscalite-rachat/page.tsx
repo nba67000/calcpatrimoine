@@ -391,7 +391,7 @@ export default function ArticleAssuranceViePage() {
 
             <p className="text-xs text-neutral-500 font-mono">
               Source :{' '}
-              <span className="font-medium text-neutral-700">Article 990 I du CGI</span>
+              <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288653" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Article 990 I du CGI</a>
             </p>
           </section>
 
@@ -613,7 +613,7 @@ export default function ArticleAssuranceViePage() {
                     // URLs Légifrance retirées le 2026-05-31 (HTTP 404).
                     // Cf. docs/broken-links-to-fix.md.
                     { label: 'Article 125-0 A du CGI' },
-                    { label: 'Article 990 I du CGI' },
+                    { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288653', label: 'Article 990 I du CGI', desc: 'Prélèvement spécifique sur versements après 70 ans dépassant 152 500 euros' },
                     { href: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036339197', label: 'Loi de finances 2018, article 28', desc: 'Réforme PFU et date pivot du 27 septembre 2017' },
                     { label: 'Article L136-7 du Code de la Sécurité Sociale' },
                   ] as Array<{ href?: string; label: string; desc?: string }>).map((s, i) => (

@@ -10,7 +10,8 @@ export const SOURCES_TMI = [
   // LEGIARTI000006302756 retiré le 2026-05-31 (pointait vers Art 150-0 F, pas 194).
   // Cf. docs/broken-links-to-fix.md.
   { label: 'Article 194 du CGI' },
-  { href: 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179579/', label: 'Article 195 du CGI', desc: 'Demi-parts supplémentaires : parent isolé (case T), invalidité, etc.' },
+  // LEGISCTA000006179579 retiré le 2026-05-31 (re-route vers Art 200 A "valeurs mobilières", pas Art 195).
+  { label: 'Article 195 du CGI' },
   { href: 'https://bofip.impots.gouv.fr/bofip/2491-PGP.html/identifiant=BOI-IR-LIQ-20-10-20260407', label: 'BOFiP BOI-IR-LIQ-20-10', desc: "Barème de l'impôt sur le revenu 2026 - publié le 07/04/2026" },
   { href: 'https://bofip.impots.gouv.fr/bofip/2495-PGP.html/identifiant=BOI-IR-LIQ-20-20-30-20250414', label: 'BOFiP BOI-IR-LIQ-20-20-30', desc: 'Décote - paramètres 2026 (indexation +0,9 % sur la base 2025)' },
 ]

@@ -397,7 +397,8 @@ export default function ArticlePERPage() {
               Sources :{' '}
               <span className="font-medium text-neutral-700">Article 158, 5° bis du CGI</span>
               {' · '}
-              <a href="https://bofip.impots.gouv.fr/bofip/10261-PGP.html" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">BOFiP RSA-PENS-10</a>
+              {/* BOFiP 10261 retiré le 2026-05-31 (re-route vers Convention France-Andorre). */}
+              <span className="font-medium text-neutral-700">BOFiP RSA-PENS-10</span>
             </p>
           </section>
 
@@ -657,7 +658,8 @@ export default function ArticlePERPage() {
                 <ul className="space-y-2 text-sm">
                   {([
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053542827', label: 'Article 163 quatervicies du CGI', desc: 'Déductibilité des cotisations versées au PER individuel' },
-                    { href: 'https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042158853', label: 'Article 158, 5° bis du CGI', desc: 'Imposition des rentes issues des PER - régime des pensions' },
+                    // LEGIARTI000042158853 retiré le 2026-05-31 (re-route vers Art 156, pas 158-5° bis).
+                    { label: 'Article 158, 5° bis du CGI' },
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038507575', label: 'Article L224-1 du Code monétaire et financier', desc: 'Définition légale du PER individuel (loi PACTE 2019)' },
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805604', label: 'Article L224-28 du Code monétaire et financier', desc: 'Cas de déblocage anticipé - liste exhaustive' },
                     { href: 'https://www.service-public.fr/particuliers/vosdroits/F34982', label: 'Service-Public.fr - PER individuel', desc: 'Fiche pratique officielle : ouverture, versements, fiscalité, déblocages' },
