@@ -49,7 +49,9 @@ export default function PeaCalculator() {
                 onChange={e => set('versementsTotaux', Number(e.target.value))}
                 className="w-full px-3 py-2 border border-neutral-200 rounded text-right" />
               <p className="text-xs text-neutral-500 mt-1">
-                Plafond légal : 150 000 € (PEA classique). La différence avec la valeur actuelle = plus-value latente.
+                Plafond légal : 150 000 € (PEA classique). Si votre PEA vaut plus que ce que vous y avez
+                versé, la différence est une plus-value latente — non taxée tant que vous ne retirez rien,
+                mais sur laquelle vous devrez les prélèvements sociaux à la sortie.
               </p>
             </div>
             <div>
@@ -60,7 +62,9 @@ export default function PeaCalculator() {
                 onChange={e => set('agePeaAnnees', Number(e.target.value))}
                 className="w-full" />
               <p className="text-xs text-neutral-500 mt-1">
-                Seuil clé : 5 ans = exonération IR (PS 17,2 % seulement). Avant : PFU 30 %.
+                Seuil clé : à partir de 5 ans, l&apos;impôt sur le revenu disparaît et il ne reste que les
+                prélèvements sociaux (17,2 %) sur la plus-value. Avant 5 ans, retirer = flat tax 30 % +
+                clôture du plan.
               </p>
             </div>
           </div>

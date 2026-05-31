@@ -88,7 +88,10 @@ export default function LmnpRegimeCalculator() {
                 onChange={e => set('chargesReelles', Number(e.target.value))}
                 className="w-full px-3 py-2 border border-neutral-200 rounded text-right" />
               <p className="text-xs text-neutral-500 mt-1">
-                Entretien, copropriété, taxe foncière, intérêts d&apos;emprunt, assurances.
+                Total annuel des dépenses que vous pouvez déduire de vos loyers : entretien,
+                copropriété, taxe foncière, intérêts d&apos;emprunt, assurances. Ces charges réduisent
+                votre bénéfice imposable en régime réel — mais ne servent à rien en régime micro
+                (l&apos;abattement forfaitaire les couvre déjà).
               </p>
             </div>
 
@@ -98,7 +101,9 @@ export default function LmnpRegimeCalculator() {
                 onChange={e => set('amortissementsAnnuels', Number(e.target.value))}
                 className="w-full px-3 py-2 border border-neutral-200 rounded text-right" />
               <p className="text-xs text-neutral-500 mt-1">
-                Indicatif : bien 2-3 %/an + meubles 10 %/an. Un comptable établit le tableau d&apos;amortissement précis.
+                Repère : ~2-3 % de la valeur du bien par an + ~10 % de la valeur des meubles. C&apos;est
+                une charge fictive qui diminue le bénéfice imposable — d&apos;où l&apos;intérêt principal du
+                régime réel. Un comptable établit le calcul détaillé par composant.
               </p>
             </div>
           </div>

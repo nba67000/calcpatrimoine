@@ -100,7 +100,7 @@ export default function PretIntrafamilialCalculator() {
 
             <div>
               <label className="text-sm font-medium text-neutral-700 block mb-1">
-                Donations antérieures du prêteur à l&apos;emprunteur &lt; 15 ans (€)
+                Donations du prêteur à l&apos;emprunteur sur les 15 dernières années (€)
               </label>
               <input type="number" min="0" step="1000" value={inputs.donationsAnterieures}
                 onChange={e => set('donationsAnterieures', Number(e.target.value))}

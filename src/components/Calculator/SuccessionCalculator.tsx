@@ -168,7 +168,7 @@ export default function SuccessionCalculator() {
                     </div>
                     <div>
                       <label className="text-xs text-neutral-500 block mb-1" title="Donations reçues du défunt depuis moins de 15 ans">
-                        Dons reçus &lt; 15 ans (€)
+                        Dons reçus du défunt depuis moins de 15 ans (€)
                       </label>
                       <input
                         type="number"

@@ -80,8 +80,9 @@ export default function PlusValueLmnpCalculator() {
           <div className="bg-amber-50 rounded-xl border-2 border-amber-300 p-6 shadow-sm space-y-2">
             <h3 className="text-xl font-bold text-amber-900">Amortissements LMNP</h3>
             <p className="text-sm text-amber-800">
-              Total des amortissements déduits des revenus locatifs depuis l&apos;achat. Depuis le 15/02/2025,
-              ils sont réintégrés au prix d&apos;acquisition (Art. 150 VB III CGI).
+              Total des amortissements que vous avez déduits de vos loyers depuis l&apos;achat. Depuis le
+              15/02/2025, ces amortissements sont retirés du prix d&apos;achat fiscal au moment de la vente :
+              votre plus-value imposable augmente d&apos;autant (Art. 150 VB III CGI).
             </p>
             <div>
               <input type="number" min="0" step="1000" value={inputs.amortissementsLmnpCumules}

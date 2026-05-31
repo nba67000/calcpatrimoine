@@ -74,7 +74,7 @@ export default function PerSortieCalculator() {
               />
               <p className="text-xs text-neutral-500 mt-1">
                 Le reste ({100 - inputs.fractionVersementsDeductibles} %) correspond aux plus-values
-                générées par votre PER, taxées au PFU 30 % à la sortie.
+                générées par votre PER, taxées à la flat tax 30 % (PFU) à la sortie en capital.
               </p>
             </div>
           </div>

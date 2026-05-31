@@ -53,7 +53,8 @@ export default function CsgRetraiteCalculator() {
                 onChange={e => set('pensionBruteAnnuelle', Number(e.target.value))}
                 className="w-full px-3 py-2 border border-neutral-200 rounded text-right text-lg font-medium" />
               <p className="text-xs text-neutral-500 mt-1">
-                Total annuel brut de toutes vos pensions de retraite (régime général + complémentaires).
+                Total annuel brut de toutes vos pensions : retraite de base (CNAV/MSA/CARSAT)
+                et complémentaires (AGIRC-ARRCO, IRCANTEC, etc.).
               </p>
             </div>
           </div>
@@ -99,7 +100,7 @@ export default function CsgRetraiteCalculator() {
             <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
               <span className="text-neutral-500">Pension brute annuelle</span>
               <span className="text-right">{formatEur(inputs.pensionBruteAnnuelle)}</span>
-              <span className="text-neutral-500">CSG/CRDS/CASA</span>
+              <span className="text-neutral-500">CSG + CRDS + CASA (contributions sociales)</span>
               <span className="text-right text-red-700">- {formatEur(results.prelevement)}</span>
               <span className="font-bold pt-2 border-t">Pension nette annuelle</span>
               <span className="text-right font-bold text-primary-700 pt-2 border-t">{formatEur(results.pensionNette)}</span>
