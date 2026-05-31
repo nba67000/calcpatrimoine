@@ -59,7 +59,7 @@ export function calculerPlusValueLmnp(inputs: PlusValueLmnpInputs): PlusValueLmn
   if (inputs.amortissementsLmnpCumules > 0) {
     warnings.push({
       type: 'warning',
-      message: `Depuis le 15/02/2025, les amortissements LMNP déduits (${eur(inputs.amortissementsLmnpCumules)}) sont réintégrés au prix d'acquisition pour le calcul de la PV. Surcoût d'impôt estimé : ${eur(surcoutLmnp)}.`,
+      message: `Depuis le 15 février 2025, les amortissements que vous avez déduits chaque année de vos loyers (${eur(inputs.amortissementsLmnpCumules)} cumulés) sont retirés de votre prix d'achat fiscal au moment de la vente. Concrètement, votre prix d'achat fiscal n'est plus le prix payé mais ce prix moins les amortissements — donc votre plus-value imposable augmente. Surcoût d'impôt estimé : ${eur(surcoutLmnp)}.`,
     })
   }
 

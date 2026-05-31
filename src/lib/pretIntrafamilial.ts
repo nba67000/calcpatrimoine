@@ -132,7 +132,7 @@ export function calculerPretIntrafamilial(
   if (inputs.tauxInteret === 0 && inputs.montantPret > 5000) {
     warnings.push({
       type: 'warning',
-      message: `Prêt sans intérêt de ${eur(inputs.montantPret)} : risque de requalification en don indirect par l'administration fiscale, surtout en l'absence de reconnaissance de dette écrite et de calendrier de remboursement précis. Le taux minimal accepté est généralement le TMM (taux moyen mensuel pratiqué par les banques).`,
+      message: `Prêt sans intérêt de ${eur(inputs.montantPret)} : si l'administration fiscale considère que ce n'est pas un vrai prêt mais une donation déguisée, elle peut le requalifier en don — et vous devrez payer les droits de donation rétroactivement. Pour éviter ça : reconnaissance de dette écrite, calendrier de remboursement précis, et un taux d'intérêt minimal (référence : taux moyen mensuel pratiqué par les banques, publié par la Banque de France).`,
     })
   }
   if (interetsAnnuels > 1000) {
@@ -144,7 +144,7 @@ export function calculerPretIntrafamilial(
   if (decesAvantTerme) {
     warnings.push({
       type: 'danger',
-      message: `Espérance de vie (${dureeRestanteAvantDeces} ans) inférieure à la durée du prêt (${inputs.dureeAnnees} ans). Le capital non remboursé (${eur(capitalNonRembourseDecesEstime)}) entrera dans l'actif successoral comme créance, taxée à la part de l'emprunteur si héritier.`,
+      message: `Votre espérance de vie estimée (${dureeRestanteAvantDeces} ans) est plus courte que la durée du prêt (${inputs.dureeAnnees} ans). Si vous décédez avant que l'emprunteur n'ait remboursé, le capital restant (${eur(capitalNonRembourseDecesEstime)}) devient une créance qui entre dans votre succession. Si l'emprunteur est aussi l'héritier, sa part d'héritage est diminuée d'autant — et il paie des droits de succession dessus comme sur n'importe quel autre actif.`,
     })
   }
 

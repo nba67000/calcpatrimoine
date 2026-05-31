@@ -135,8 +135,9 @@ function appliquerBareme(
  * Règles appliquées :
  * - Conjoint et partenaire de PACS : exonérés totalement (Art. 796-0 bis CGI, Loi TEPA 2007).
  * - Pour les autres héritiers : abattement personnel Art. 779 CGI + barème Art. 777 CGI selon le lien.
- * - Rappel fiscal Art. 784 CGI : les donations antérieures < 15 ans consomment l'abattement
- *   et démarrent le barème dans les tranches déjà parcourues.
+ * - Rappel 15 ans (Art. 784 CGI) : si le défunt avait fait des donations à l'héritier
+ *   dans les 15 années avant son décès, l'abattement déjà utilisé n'est plus disponible,
+ *   et le calcul démarre dans une tranche plus haute du barème.
  *
  * @example
  * // Enfant unique recevant 250 000 € sans donation antérieure

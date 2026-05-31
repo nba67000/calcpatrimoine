@@ -93,7 +93,7 @@ export function calculerPerSortie(inputs: PerSortieInputs): PerSortieResults {
   if (inputs.tmiRetraite >= 41 && inputs.fractionVersementsDeductibles > 50) {
     warnings.push({
       type: 'warning',
-      message: `Avec une TMI à ${inputs.tmiRetraite} % à la retraite et ${inputs.fractionVersementsDeductibles} % de versements déductibles, la sortie en capital coûte ${eur(impotVersements)} d'IR sur la part versements. La rente, étalée sur ${dureeRente} ans, lisse cet impôt — mais le différentiel net dépend de l'espérance de vie.`,
+      message: `Votre tranche d'imposition est élevée à la retraite (${inputs.tmiRetraite} %) et ${inputs.fractionVersementsDeductibles} % de votre capital vient de versements que vous aviez déduits à l'entrée. Sortir en capital fait payer ${eur(impotVersements)} d'impôt sur le revenu d'un coup sur cette part. La rente étale cet impôt sur ${dureeRente} ans, ce qui peut faire baisser le total — selon votre durée de vie.`,
     })
   }
 
