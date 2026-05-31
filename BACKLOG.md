@@ -20,142 +20,42 @@ début de chaque session et **met à jour les statuts** au fil de l'eau.
 | `plus-value-immobiliere` | Plus-value immobilière (résidence secondaire / investissement) | `done` | 2026-05-06 |
 | `ifi` | Impôt sur la fortune immobilière | `done` | 2026-05-07 |
 | `donation/droits` | Donation (art. 777/779/784/790 G CGI, rappel 15 ans) | `done` | 2026-05-30 |
+| `succession` | Droits de succession par héritier (Art. 777/779 + Loi TEPA) | `done` | 2026-06-01 |
+| `per-sortie` | PER : fiscalité de liquidation (capital vs rente) | `done` | 2026-06-01 |
+| `pret-intrafamilial` | Prêt intrafamilial in fine vs donation directe | `done` | 2026-06-01 |
+| `donation/demembrement` | Donation nue-propriété (barème Art. 669 CGI) | `done` | 2026-06-01 |
+| `plus-value-immobiliere/lmnp` | PV immo LMNP (réintégration amortissements LF 2025) | `done` | 2026-06-01 |
+| `comparateur-locatif-placement` | Comparateur immo locatif vs placement financier (V1 simplifiée) | `done` | 2026-06-01 |
+| `pea` | PEA fiscalité retrait + bilan latent (3 vues) | `done` | 2026-06-01 |
+| `lmnp-reel-vs-micro` | LMNP réel vs micro-BIC (LF 2025) | `done` | 2026-06-01 |
+| `sci-is-vs-ir` | SCI à l'IS vs à l'IR (V1 impôt annuel seul) | `done` | 2026-06-01 |
+| `csg-csds-retraite` | CSG/CRDS sur pensions de retraite (4 paliers) | `done` | 2026-06-01 |
+
+**18 calculateurs livrés au 2026-06-01.**
 
 ---
 
-## Prochains calculateurs - priorisé
+## Prochains calculateurs
 
-**Ordre mis à jour le 2026-05-31** suite au scan `/forum-watch` MoneyVox.
-Cf. journal en bas. Les items `done` sont consolidés dans la table ci-dessus ;
-seuls les items actionnables figurent ici.
+Aucun calculateur en attente. Pour proposer un nouveau besoin :
+- Lancer `/forum-watch` pour scanner les forums MoneyVox.
+- Ajouter une entrée `proposed` ci-dessous avec sources et complexité.
 
-### P1 - Priorité immédiate
+### À considérer en suivi des V1 simplifiées
 
-#### `succession` - Succession (droits de succession)
-- **Statut** : `todo`
-- **Promotion** : était P2, promu P1 (signal forum fort - 5 fils sur 30 jours
-  dans la catégorie transmission-patrimoine de MoneyVox).
-- **Description** : Calcul des droits de succession par héritier (abattements,
-  barème, réduction par lien).
-- **Sources** : Art. 777 et s. CGI, Art. 796-0 bis (exonération conjoint),
-  Art. 990 I / 757 B (interaction avec assurance-vie).
-- **Complexité** : élevée. Interaction avec assurance-vie déjà modélisée dans
-  `/assurance-vie/transmission`.
-- **Synergie** : complète naturellement le `/donation/droits` livré le 2026-05-30
-  - même barème Art. 777, mêmes abattements Art. 779 réutilisables.
+Les calculateurs livrés ci-dessous sont des MVPs qui mériteraient une V2 plus
+complète :
 
-#### `per-sortie` - PER : fiscalité de liquidation (capital vs rente)
-- **Statut** : `proposed`
-- **Promotion** : était P3, promu P1 (signal forum fort - 3 fils confirmant
-  la demande sur 30 jours : effet d'aubaine, PER après 70 ans, rachat avec
-  moins de perte).
-- **Origine** : Forum MoneyVox r/épargne-retraite - 2026-05-08, confirmation
-  2026-05-31.
-- **Description** : Complément de `/per-individuel` (côté sortie). Comparaison
-  fiscale entre sortie en capital et sortie en rente, selon la TMI à la retraite
-  et la durée de détention. Calcul de l'impôt sur le capital récupéré (versements
-  déduits imposables à l'IR + PV soumises à flat tax ou IR selon option).
-
-### P2 - À faire ensuite
-
-#### `pret-intrafamilial-in-fine` - Prêt intrafamilial (transmission)
-- **Statut** : `proposed` (NOUVEAU - 2026-05-31)
-- **Origine** : Forum MoneyVox r/transmission-patrimoine 2026-05-31, fil 54249
-  (44 réponses, encore actif).
-- **Description** : Simulateur de prêt entre proches avec remboursement in fine
-  comme alternative ou complément à la donation. Calcul du coût fiscal (intérêts
-  imposables côté prêteur si > 1 000 € de cumul familial), traitement à la
-  succession du prêteur si le capital n'est pas remboursé (intégration à
-  l'actif successoral via créance détenue contre l'emprunteur), et risque de
-  requalification en don indirect en cas de remise de dette.
-- **Sources à vérifier** : Art. 1892 et s. C. civil (prêt), Art. 757 B CGI
-  (remise de dette = don), instructions sur les prêts familiaux. Taux minimal
-  d'intérêt à actualiser annuellement (référence taux moyen pratiqué).
-- **Complexité** : élevée. Pièges : taux d'intérêt minimal (sinon
-  requalification possible), preuves de remboursement, partage entre héritiers
-  à la succession du prêteur, interaction avec abattement donation 779.
-
-#### `donation-demembrement` - Donation avec démembrement (nue-propriété / usufruit)
-- **Statut** : `proposed`
-- **Promotion** : était P3, promu P2 (extension naturelle de `/donation/droits`
-  livré le 2026-05-30, prérequis levé).
-- **Origine** : Forum MoneyVox r/transmission-patrimoine - 2026-05-08
-- **Description** : Extension du calculateur `donation/droits`. Calcul des
-  droits de donation sur la valeur de la nue-propriété selon l'âge du donateur
-  (barème Art. 669 CGI). Visualisation de l'économie de droits par rapport à
-  une donation en pleine propriété, et impact sur la plus-value future lors de
-  la revente par le donataire.
-- **Synergie** : réutilise les barèmes Art. 777 et abattements Art. 779 du
-  calculateur `/donation/droits`.
-
-#### `plus-value-immobiliere-lmnp` - Mode LMNP du calculateur PV immo (EXTENSION)
-- **Statut** : `proposed` (NOUVEAU - 2026-05-31)
-- **Origine** : Forum MoneyVox r/immobilier-locatif fil 53221 (relancé en
-  2026-05) + limite déjà signalée dans la FAQ du calculateur existant
-  `/plus-value-immobiliere`.
-- **Description** : Extension (pas un nouveau calculateur) du calculateur
-  `/plus-value-immobiliere` pour gérer le cas LMNP. Depuis le 15/02/2025, les
-  amortissements déduits dans le cadre d'une location meublée doivent être
-  réintégrés au prix d'acquisition pour le calcul de la PV imposable. Le
-  calculateur actuel donne un résultat trop optimiste dans ce cas (et le
-  signale en FAQ).
-- **Sources à vérifier** : Art. 150 VB CGI modifié par LF 2025 (à confirmer),
-  BOFiP à publier sur la réintégration.
-- **Complexité** : moyenne. Ajout d'un mode "LMNP" sur le calculateur existant
-  + champ "amortissements cumulés déduits" + recalcul du prix d'acquisition
-  fiscal. Pas de nouveau fichier de page.
-
-### P3 - Bonus / plus tard
-
-#### `comparateur-locatif-placement` - Comparateur immobilier locatif vs placement financier
-- **Statut** : `proposed`
-- **Origine** : Forum MoneyVox r/immobilier-locatif - 2026-05-08, confirmé par
-  un 2e fil 54131 le 2026-05 (`/forum-watch` 2026-05-31).
-- **Description** : Pour un même capital et une même durée, comparer le rendement
-  net after-tax d'un investissement locatif (loyers nets, plus-value de cession,
-  fiscalité LMNP/nu) vs un placement financier (AV fonds euros + UC, PEA).
-  Hypothèses paramétrables : rendement locatif, valorisation annuelle, TMI,
-  régime fiscal.
-- **Complexité** : élevée - ne pas sortir avant que la méthodologie soit validée.
-  Risque de comparer des pommes et des oranges si les hypothèses ne sont pas
-  explicites.
-
-#### `pea` - Fiscalité PEA (durée détention + passif fiscal latent)
-- **Statut** : `proposed`
-- **Description** : Deux besoins distincts, candidats à un même outil.
-
-  **1. Fiscalité de sortie** : exonération IR après 5 ans, PS (17,2 %) toujours
-  dus sur les plus-values. Calcul net perçu selon la date d'entrée et le capital.
-
-  **2. Suivi patrimonial brut / net (origine Reddit - r/vosfinances 2026-05)** :
-  un PEA ancien à 500 k€ ne vaut pas 500 k€ net car la CSG latente (~18,3 % sur
-  la plus-value) n'est pas encore réalisée. Trois approches coexistent :
-  - *Brut* : 500 k€ - représente l'exposition réelle aux marchés.
-  - *Net de sortie* : versements + (PV × 81,7 %) - ce qu'on toucherait aujourd'hui.
-  - *Bilan* : 500 k€ à l'actif, passif fiscal latent (~64 k€ dans l'exemple) mis
-    à jour dynamiquement. Analogue aux impôts différés (IAS 12 / deferred tax).
-  L'outil pourrait proposer les trois chiffres + le crédit lombard comme alternative
-  (accès liquidités sans déclencher la CSG).
-
-  **Complexité CSG historique** : pour les vieux PEA (années 90), les taux PS
-  ont varié dans le temps - il faut recalculer par période. Vérifier le degré
-  de précision attendu avant de spécifier.
-
-#### `lmnp-reel-vs-micro` - LMNP réel vs micro-BIC
-- **Statut** : `proposed`
-- **Description** : Comparaison entre régimes LMNP. Délicat sur le timing de
-  la réforme 2025-2026 (meublé touristique).
-
-#### `sci-is-vs-ir` - SCI à l'IS vs à l'IR (comparateur simplifié)
-- **Statut** : `proposed`
-- **Description** : Comparaison fiscale simplifiée sur un projet locatif
-  donné. **Attention** : très casse-gueule, ne pas sortir tant que la
-  méthodologie n'est pas béton.
-
-#### `csg-csds-retraite` - CSG/CRDS sur pensions de retraite
-- **Statut** : `proposed`
-- **Description** : Calcul du taux CSG applicable (exonéré / réduit / médian /
-  normal) selon le RFR.
+- **`comparateur-locatif-placement`** : ajouter modélisation du crédit
+  immobilier (effet de levier), des frais d'acquisition réels (notaire ~7-8 %),
+  de la vacance locative explicite, de l'indexation des loyers.
+- **`sci-is-vs-ir`** : ajouter calcul de la plus-value à la sortie (PV particulier
+  vs PV pro). C'est ce calcul de sortie qui inverse souvent la conclusion.
+- **`per-sortie`** : permettre de sélectionner finement le taux PS retraité
+  (RFR), intégrer la sortie anticipée pour résidence principale.
+- **`plus-value-immobiliere/lmnp`** : ajouter le calcul d'amortissement
+  automatique à partir des données du bien (composants, mobilier) au lieu d'une
+  saisie manuelle du total.
 
 ---
 
@@ -163,9 +63,14 @@ seuls les items actionnables figurent ici.
 
 - **2026-05-31** : 5 catégories MoneyVox scannées, 13 fils retenus sur 30 jours.
   10 opportunités de réponse (calculateurs existants). 2 idées nouvelles
-  ajoutées : `pret-intrafamilial-in-fine` (P2) et `plus-value-immobiliere-lmnp`
-  (P2). Confirmation de `comparateur-locatif-placement` (2e fil). Promotion
-  `succession` P2→P1 et `per-sortie` P3→P1 sur signal fort.
+  ajoutées : `pret-intrafamilial-in-fine` et `plus-value-immobiliere-lmnp`.
+  Confirmation de `comparateur-locatif-placement`. Promotion `succession` et
+  `per-sortie` en P1.
+
+- **2026-06-01** : tous les calculateurs `proposed` du backlog ont été
+  implémentés en V1 — backlog vide d'items actionnables après cette session.
+  Les V2 d'amélioration sont listées dans "À considérer en suivi des V1
+  simplifiées" ci-dessus.
 
 ---
 
@@ -178,4 +83,4 @@ seuls les items actionnables figurent ici.
   une description minimale. Ne jamais faire un calculateur `proposed` sans
   validation humaine - seuls les `todo` sont autorisés à l'implémentation.
 
-Last updated: 2026-05-31 (scan forum-watch + réorganisation par signal marché).
+Last updated: 2026-06-01 (10 calculateurs livrés en une session, backlog vidé).
