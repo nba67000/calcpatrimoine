@@ -22,6 +22,7 @@ import { moduleAvRachat } from '@/lib/assuranceVie'
 import { moduleTransmission } from '@/lib/transmission'
 import { moduleRenteViagere } from '@/lib/mortality'
 import { moduleDonation } from '@/lib/donation'
+import { moduleSuccession } from '@/lib/succession'
 
 // Stockage interne : les paramètres génériques TInputs/TResults sont délibérément
 // effacés pour permettre un dispatch runtime sur slug. Le typage strict reste
@@ -36,6 +37,7 @@ const MODULES: ReadonlyArray<CalculatorModule> = [
   moduleTransmission as CalculatorModule,
   moduleRenteViagere as CalculatorModule,
   moduleDonation as CalculatorModule,
+  moduleSuccession as CalculatorModule,
 ]
 
 /** Récupère un module calculateur par son slug, ou undefined s'il n'existe pas. */

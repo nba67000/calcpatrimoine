@@ -84,7 +84,7 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
         href: '/succession',
         nom: 'Droits de succession',
         desc: 'Calcul des droits par héritier selon les abattements légaux et le barème progressif.',
-        disponible: false,
+        disponible: true,
       },
     ],
   },

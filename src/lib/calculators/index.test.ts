@@ -20,12 +20,13 @@ import { calculerTransmission } from '@/lib/transmission'
 import { calculerPlusValueImmobiliere } from '@/lib/plusValueImmobiliere'
 import { calculerIFI } from '@/lib/ifi'
 import { calculerDonation } from '@/lib/donation'
+import { calculerSuccession } from '@/lib/succession'
 import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
 
 describe('calculator registry — exhaustivité', () => {
-  it('expose exactement les 8 calculateurs livrés', () => {
+  it('expose tous les calculateurs livrés', () => {
     expect(listCalculatorSlugs().sort()).toEqual([
       'assurance-vie/fiscalite-rachat',
       'assurance-vie/transmission',
@@ -34,6 +35,7 @@ describe('calculator registry — exhaustivité', () => {
       'per-individuel',
       'plus-value-immobiliere',
       'rente-viagere',
+      'succession',
       'tmi',
     ])
   })
@@ -129,6 +131,18 @@ describe('calculator registry — formatContexteChat retourne une chaîne non vi
     }
     const results = calculerDonation(inputs)
     const txt = getCalculator('donation/droits')!.formatContexteChat(inputs, results)
+    expect(txt.length).toBeGreaterThan(20)
+  })
+
+  it('succession', () => {
+    const inputs = {
+      actifNetSuccessoral: 300000,
+      heritiers: [
+        { id: '1', nom: 'Enfant', lien: 'enfant' as const, partRecue: 300000, donationsAnterieures: 0 },
+      ],
+    }
+    const results = calculerSuccession(inputs)
+    const txt = getCalculator('succession')!.formatContexteChat(inputs, results)
     expect(txt.length).toBeGreaterThan(20)
   })
 })

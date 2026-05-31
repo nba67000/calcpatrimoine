@@ -1,0 +1,254 @@
+// src/components/Calculator/SuccessionCalculator.tsx
+'use client'
+
+import {
+  calculerSuccession,
+  genererIdHeritier,
+  LIBELLE_LIEN,
+} from '@/lib/succession'
+import type {
+  SuccessionInputs,
+  HeritierSuccession,
+  LienHeritier,
+} from '@/types/succession'
+import { useCalculator } from '@/hooks/useCalculator'
+import AlertList from '@/components/AlertList'
+import ChatWidget from '@/components/ChatWidget'
+import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
+import { formatEur, formatNombre } from '@/lib/formatters'
+
+const LIENS: Array<{ value: LienHeritier; label: string }> = (
+  Object.entries(LIBELLE_LIEN) as Array<[LienHeritier, string]>
+).map(([value, label]) => ({ value, label }))
+
+const DEFAULT_INPUTS: SuccessionInputs = {
+  actifNetSuccessoral: 600000,
+  heritiers: [
+    { id: 'h1', nom: 'Conjoint',  lien: 'epoux_pacs', partRecue: 300000, donationsAnterieures: 0 },
+    { id: 'h2', nom: 'Enfant 1',  lien: 'enfant',     partRecue: 150000, donationsAnterieures: 0 },
+    { id: 'h3', nom: 'Enfant 2',  lien: 'enfant',     partRecue: 150000, donationsAnterieures: 0 },
+  ],
+}
+
+export default function SuccessionCalculator() {
+  const { inputs, setInputs, reset, results } = useCalculator({
+    slug: 'succession',
+    nom: 'Succession - Droits par héritier',
+    href: '/succession',
+    defaultInputs: DEFAULT_INPUTS,
+    compute: calculerSuccession,
+    resume: (r) =>
+      r.totalDroits > 0
+        ? `Droits totaux : ${formatEur(r.totalDroits)} sur ${r.detailHeritiers.length} héritier${r.detailHeritiers.length > 1 ? 's' : ''}`
+        : null,
+  })
+
+  function modifierHeritier(id: string, updates: Partial<HeritierSuccession>) {
+    setInputs(prev => ({
+      ...prev,
+      heritiers: prev.heritiers.map(h => (h.id === id ? { ...h, ...updates } : h)),
+    }))
+  }
+
+  function ajouterHeritier() {
+    if (inputs.heritiers.length >= 8) return
+    setInputs(prev => ({
+      ...prev,
+      heritiers: [
+        ...prev.heritiers,
+        {
+          id: genererIdHeritier(),
+          nom: `Héritier ${prev.heritiers.length + 1}`,
+          lien: 'enfant',
+          partRecue: 0,
+          donationsAnterieures: 0,
+        },
+      ],
+    }))
+  }
+
+  function supprimerHeritier(id: string) {
+    if (inputs.heritiers.length <= 1) return
+    setInputs(prev => ({
+      ...prev,
+      heritiers: prev.heritiers.filter(h => h.id !== id),
+    }))
+  }
+
+  return (
+    <>
+      <SimResumeBanner slug="succession" onReset={reset} />
+      <div className="grid lg:grid-cols-2 gap-8">
+
+        {/* COLONNE GAUCHE - INPUTS */}
+        <div className="space-y-6">
+
+          {/* Actif net */}
+          <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-sm">
+            <h3 className="text-xl font-bold text-neutral-900 mb-4">Actif net successoral</h3>
+            <div className="mb-2">
+              <div className="flex items-baseline gap-3">
+                <input
+                  type="number"
+                  min="0"
+                  step="10000"
+                  value={inputs.actifNetSuccessoral}
+                  onChange={(e) =>
+                    setInputs(prev => ({ ...prev, actifNetSuccessoral: Number(e.target.value) }))
+                  }
+                  className="w-44 px-4 py-3 border border-neutral-300 rounded-lg text-xl font-bold text-primary-700 text-right focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                />
+                <span className="text-xl font-bold text-neutral-600">€</span>
+              </div>
+              <p className="text-xs text-neutral-500 mt-2">
+                Patrimoine du défunt après déduction des dettes. La répartition entre héritiers est gérée
+                en colonne « part reçue » ci-dessous.
+              </p>
+            </div>
+          </div>
+
+          {/* Héritiers */}
+          <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-xl font-bold text-neutral-900">Héritiers</h3>
+              <button
+                onClick={ajouterHeritier}
+                disabled={inputs.heritiers.length >= 8}
+                className="font-mono text-xs px-3 py-1.5 border border-primary-300 text-primary-600 hover:bg-primary-600 hover:text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                + Ajouter
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {inputs.heritiers.map((h) => (
+                <div key={h.id} className="border border-neutral-200 rounded-lg p-4 space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <input
+                      type="text"
+                      value={h.nom}
+                      onChange={(e) => modifierHeritier(h.id, { nom: e.target.value })}
+                      className="flex-1 px-3 py-2 border border-neutral-200 rounded text-sm font-medium"
+                    />
+                    {inputs.heritiers.length > 1 && (
+                      <button
+                        onClick={() => supprimerHeritier(h.id)}
+                        className="font-mono text-xs text-neutral-400 hover:text-red-600 px-2"
+                        aria-label="Supprimer"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="text-xs text-neutral-500 block mb-1">Lien avec le défunt</label>
+                    <select
+                      value={h.lien}
+                      onChange={(e) => modifierHeritier(h.id, { lien: e.target.value as LienHeritier })}
+                      className="w-full px-3 py-2 border border-neutral-200 rounded text-sm"
+                    >
+                      {LIENS.map(l => (
+                        <option key={l.value} value={l.value}>{l.label}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-xs text-neutral-500 block mb-1">Part reçue (€)</label>
+                      <input
+                        type="number"
+                        min="0"
+                        step="1000"
+                        value={h.partRecue}
+                        onChange={(e) => modifierHeritier(h.id, { partRecue: Number(e.target.value) })}
+                        className="w-full px-3 py-2 border border-neutral-200 rounded text-sm text-right"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-neutral-500 block mb-1" title="Donations reçues du défunt depuis moins de 15 ans">
+                        Dons reçus &lt; 15 ans (€)
+                      </label>
+                      <input
+                        type="number"
+                        min="0"
+                        step="1000"
+                        value={h.donationsAnterieures}
+                        onChange={(e) => modifierHeritier(h.id, { donationsAnterieures: Number(e.target.value) })}
+                        className="w-full px-3 py-2 border border-neutral-200 rounded text-sm text-right"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* COLONNE DROITE - RÉSULTATS */}
+        <div className="space-y-6">
+
+          {/* Total */}
+          <div className="rounded-xl border-2 border-primary-200 bg-primary-50 p-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <div className="text-xs text-primary-700 mb-1">Droits totaux</div>
+                <div className="text-3xl font-bold text-primary-900">
+                  {formatEur(results.totalDroits)}
+                </div>
+              </div>
+              <div>
+                <div className="text-xs text-primary-700 mb-1">Total net reçu</div>
+                <div className="text-3xl font-bold text-primary-900">
+                  {formatEur(results.totalNetRecu)}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Détail par héritier */}
+          <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-neutral-900 mb-4">Détail par héritier</h3>
+            <div className="space-y-4">
+              {results.detailHeritiers.map(d => (
+                <div key={d.id} className="border-l-2 border-accent-400 pl-4">
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="font-bold text-neutral-900">
+                      {d.nom}{' '}
+                      <span className="font-normal text-xs text-neutral-500">
+                        ({LIBELLE_LIEN[d.lien]})
+                      </span>
+                    </p>
+                    {d.exonereLoiTEPA && (
+                      <span className="font-mono text-xs text-green-700 bg-green-50 px-2 py-0.5 border border-green-200">
+                        Exonéré TEPA
+                      </span>
+                    )}
+                  </div>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+                    <span className="text-neutral-500">Part reçue</span>
+                    <span className="text-right">{formatEur(d.partRecue)}</span>
+                    <span className="text-neutral-500">Abattement</span>
+                    <span className="text-right">{formatEur(d.abattementApplique)}</span>
+                    <span className="text-neutral-500">Base taxable</span>
+                    <span className="text-right">{formatEur(d.baseTaxable)}</span>
+                    <span className="font-medium text-neutral-700">Droits</span>
+                    <span className="text-right font-medium text-red-700">{formatEur(d.droits)}</span>
+                    <span className="font-bold text-neutral-900">Net reçu</span>
+                    <span className="text-right font-bold text-primary-700">{formatEur(d.netRecu)}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <AlertList items={results.warnings} />
+          <AlertList items={results.optimisations} />
+        </div>
+      </div>
+
+      <ChatWidget contexte={{ calculateur: 'succession', inputs, results }} />
+    </>
+  )
+}
