@@ -95,7 +95,14 @@
       "Bash(xargs grep -l \"href\\\\s*=\")",
       "Bash(xargs grep -l \"dangerouslySetInnerHTML\")",
       "Bash(node *)",
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(npm audit *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nicol\\\\OneDrive\\\\Desktop\\\\calcpatrimoine\\\\src\\\\app\" -Filter \"page.tsx\" -Recurse)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(xargs wc -l)",
+      "Bash(xargs grep -l \"CalculateurPageLayout\")",
+      "Bash(awk '{print $9, $5}')",
+      "Bash(xargs -I {} sh -c 'echo \"=== {} ===\"; grep -n \"SchemaFAQ\\\\|SchemaHowTo\\\\|SourcesSection\\\\|FAQ_\\\\|HOWTO_\" {}')"
     ]
   }
 }
