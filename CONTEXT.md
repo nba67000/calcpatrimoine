@@ -133,6 +133,23 @@ ce qui se déduit du `currentHref` :
 
 Cf. ADR-0002.
 
+### MethodologieSection
+
+Composant standardisé (`src/components/MethodologieSection.tsx`) pour
+remplir la prop `methodologie` ci-dessus. Absorbe la structure répétée
+sur ~15 pages calc : `<SourcesSection>` + liste "Limites connues" + bandeau
+primary "date/sources". Props : `slug`, `limites?`, `note?`, `extra?`.
+Cf. ADR-0003.
+
+### Module fiscal partagé
+
+`src/lib/fiscal/baremesArt777.ts` centralise les barèmes Art. 777 CGI et
+les abattements Art. 779 utilisés par les calculateurs `donation`,
+`succession`, `donationDemembrement` et `pretIntrafamilial`. Expose
+`appliquerBareme(base, tranchesConsommees, bareme)` (rappel 15 ans
+intégré) et `getBaremePourLien(lien)` avec type union `LienFiscal`.
+Cf. ADR-0003.
+
 ---
 
 ## Conventions de nommage
