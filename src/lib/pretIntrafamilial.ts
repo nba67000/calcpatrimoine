@@ -12,6 +12,7 @@ import type {
 import type { CalculatorModule, HowToSchema } from '@/lib/calculators/types'
 import type { FAQSchemaItem } from '@/components/SchemaFAQ'
 import { formatEurRounded as eur, formatLigne as ligne } from '@/lib/formatters'
+import { appliquerBareme, getBaremePourLien, type LienFiscal } from '@/lib/fiscal/baremesArt777'
 
 export const SOURCES_PRET_INTRAFAMILIAL = [
   { label: 'Article 1892 et s. du Code civil', desc: 'Régime juridique du prêt entre particuliers' },
@@ -21,7 +22,7 @@ export const SOURCES_PRET_INTRAFAMILIAL = [
   { label: 'Instruction fiscale 7G-3-12', desc: 'Prêts familiaux - déclaration obligatoire au-delà de 1 500 € (cumul annuel par préteur)' },
 ]
 
-// Abattements personnels Art. 779 CGI - mêmes que donation
+// Abattements personnels Art. 779 CGI - mêmes que donation (cf. baremesArt777.ts)
 const ABATTEMENTS: Record<LienEmprunteur, number> = {
   enfant:       100000,
   petit_enfant: 31865,
@@ -29,46 +30,14 @@ const ABATTEMENTS: Record<LienEmprunteur, number> = {
   autre:        0,
 }
 
-// Barème ligne directe (simplifié pour le MVP : ligne directe + neveu/sœur)
-function tauxDroitsLigneDirecte(base: number): number {
-  // Simplification : taux moyen approximatif pour base typique < 500 000 €
-  if (base <= 0) return 0
-  let droits = 0
-  const tranches = [
-    { max: 8072, taux: 0.05 },
-    { max: 12109, taux: 0.10 },
-    { max: 15932, taux: 0.15 },
-    { max: 552324, taux: 0.20 },
-    { max: 902838, taux: 0.30 },
-    { max: 1805677, taux: 0.40 },
-    { max: Number.MAX_VALUE, taux: 0.45 },
-  ]
-  let restant = base
-  let bornePre = 0
-  for (const t of tranches) {
-    const dansLaTranche = Math.min(restant, t.max - bornePre)
-    if (dansLaTranche <= 0) break
-    droits += dansLaTranche * t.taux
-    restant -= dansLaTranche
-    bornePre = t.max
-    if (restant <= 0) break
-  }
-  return droits
-}
-
-function tauxDroitsAutreLien(base: number, lien: LienEmprunteur): number {
-  if (base <= 0) return 0
-  if (lien === 'frere_soeur') {
-    if (base <= 24430) return base * 0.35
-    return 24430 * 0.35 + (base - 24430) * 0.45
-  }
-  // Autre lien (neveu, non parent)
-  return base * 0.55
-}
-
+/** Calcule les droits qu'il faudrait payer si la créance/donation était
+ *  effectivement taxée. Utilise le module fiscal partagé. */
 function calculerDroits(base: number, lien: LienEmprunteur): number {
-  if (lien === 'enfant' || lien === 'petit_enfant') return tauxDroitsLigneDirecte(base)
-  return tauxDroitsAutreLien(base, lien)
+  if (base <= 0) return 0
+  // L'enum LienEmprunteur ('autre' = non parent/neveu lointain) est compatible
+  // avec LienFiscal.
+  const bareme = getBaremePourLien(lien as LienFiscal)
+  return appliquerBareme(base, 0, bareme).droits
 }
 
 /**

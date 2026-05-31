@@ -13,6 +13,14 @@ import type {
 } from '@/types/succession'
 import type { CalculatorModule } from '@/lib/calculators/types'
 import { formatEurRounded as eur, formatLigne as ligne } from '@/lib/formatters'
+import {
+  appliquerBareme,
+  getBaremePourLien,
+  BAREME_LIGNE_DIRECTE,
+  ABATTEMENTS_ART_779,
+  ABATTEMENT_PETIT_ENFANT_SUCCESSION,
+  ABATTEMENT_DEFAUT_ART_788,
+} from '@/lib/fiscal/baremesArt777'
 
 export const SOURCES_SUCCESSION = [
   // Cf. docs/broken-links-to-fix.md pour le statut des URLs Légifrance.
@@ -24,109 +32,34 @@ export const SOURCES_SUCCESSION = [
 ]
 
 // ─────────────────────────────────────────────────────────────
-// Abattements (mêmes que donation - Art. 779 CGI 2026)
+// Abattements en succession (cas particuliers vs donation)
 // ─────────────────────────────────────────────────────────────
+//
+// En succession :
+// - Conjoint/PACS : exonérés totalement (Loi TEPA, traité en amont).
+// - Petit-enfant et autres : abattement par défaut Art. 788 (1 594 €).
+// - Les autres abattements suivent Art. 779 CGI standard (cf. baremesArt777.ts).
+//
+// On dérive donc d'ABATTEMENTS_ART_779 en surchargeant les cas spécifiques
+// succession.
 
 const ABATTEMENTS: Record<LienHeritier, number> = {
-  enfant:       100000, // Art. 779-I CGI
-  epoux_pacs:   80724,  // Art. 790 E CGI (succession : exonéré totalement par TEPA - ce montant n'est jamais appliqué)
-  parent:       100000, // Art. 779-I CGI (ligne directe ascendante)
-  petit_enfant: 1594,   // Art. 779-I CGI : abattement spécifique petit-enfant en succession (1 594 €)
-  frere_soeur:  15932,  // Art. 779-IV CGI
-  neveu_niece:  7967,   // Art. 779-V CGI
-  autre_4e:     1594,   // Abattement défaut Art. 788 CGI
-  non_parent:   1594,   // Abattement défaut Art. 788 CGI
+  enfant:       ABATTEMENTS_ART_779.enfant,        // 100 000 €
+  epoux_pacs:   ABATTEMENTS_ART_779.epoux_pacs,    // 80 724 € (jamais appliqué - exonéré TEPA)
+  parent:       ABATTEMENTS_ART_779.parent,        // 100 000 €
+  petit_enfant: ABATTEMENT_PETIT_ENFANT_SUCCESSION, // 1 594 € (≠ donation : 31 865 €)
+  frere_soeur:  ABATTEMENTS_ART_779.frere_soeur,   // 15 932 €
+  neveu_niece:  ABATTEMENTS_ART_779.neveu_niece,   // 7 967 €
+  autre_4e:     ABATTEMENT_DEFAUT_ART_788,         // 1 594 €
+  non_parent:   ABATTEMENT_DEFAUT_ART_788,         // 1 594 €
 }
 
-// ─────────────────────────────────────────────────────────────
-// Barèmes Art. 777 CGI (mêmes que donation pour la plupart des liens)
-// ─────────────────────────────────────────────────────────────
-
-interface Tranche {
-  taux: number
-  min: number
-  max: number
-}
-
-const BAREME_LIGNE_DIRECTE: Tranche[] = [
-  { taux: 5,  min: 0,       max: 8072 },
-  { taux: 10, min: 8072,    max: 12109 },
-  { taux: 15, min: 12109,   max: 15932 },
-  { taux: 20, min: 15932,   max: 552324 },
-  { taux: 30, min: 552324,  max: 902838 },
-  { taux: 40, min: 902838,  max: 1805677 },
-  { taux: 45, min: 1805677, max: Number.MAX_VALUE },
-]
-
-const BAREME_FRERE_SOEUR: Tranche[] = [
-  { taux: 35, min: 0,     max: 24430 },
-  { taux: 45, min: 24430, max: Number.MAX_VALUE },
-]
-
-const BAREME_NEVEU_NIECE: Tranche[] = [
-  { taux: 55, min: 0, max: Number.MAX_VALUE },
-]
-
-const BAREME_NON_PARENT: Tranche[] = [
-  { taux: 60, min: 0, max: Number.MAX_VALUE },
-]
-
-function getBareme(lien: LienHeritier): Tranche[] {
-  switch (lien) {
-    case 'enfant':
-    case 'parent':
-    case 'petit_enfant':
-      return BAREME_LIGNE_DIRECTE
-    case 'epoux_pacs':
-      // Exonéré, mais on retourne ligne directe par sécurité (le code n'arrivera pas ici)
-      return BAREME_LIGNE_DIRECTE
-    case 'frere_soeur':
-      return BAREME_FRERE_SOEUR
-    case 'neveu_niece':
-    case 'autre_4e':
-      return BAREME_NEVEU_NIECE
-    case 'non_parent':
-      return BAREME_NON_PARENT
-  }
-}
-
-/**
- * Applique le barème par tranches à la base taxable, en tenant compte du rappel
- * fiscal Art. 784 CGI (les donations antérieures consomment déjà certaines tranches
- * basses du barème).
- */
-function appliquerBareme(
-  baseTaxable: number,
-  tranchesConsomeesParRappel: number,
-  bareme: Tranche[]
-): { droits: number; detail: TrancheSuccession[] } {
-  const detail: TrancheSuccession[] = []
-  let droits = 0
-  const debut = tranchesConsomeesParRappel
-  const fin = debut + baseTaxable
-
-  for (const t of bareme) {
-    if (fin <= t.min) break
-
-    const borneBasse = Math.max(t.min, debut)
-    const borneHaute = Math.min(t.max, fin)
-
-    if (borneHaute <= borneBasse) continue
-
-    const baseDansLaTranche = borneHaute - borneBasse
-    const droitsDansLaTranche = baseDansLaTranche * (t.taux / 100)
-    droits += droitsDansLaTranche
-
-    detail.push({
-      taux: t.taux,
-      borneInf: t.min,
-      borneSup: t.max === Number.MAX_VALUE ? null : t.max,
-      baseDansLaTranche: Math.round(baseDansLaTranche),
-      droitsDansLaTranche: Math.round(droitsDansLaTranche),
-    })
-  }
-
-  return { droits, detail }
+function getBareme(lien: LienHeritier) {
+  // En succession, conjoint/PACS sont exonérés (TEPA, traité en amont).
+  // Le barème renvoyé pour epoux_pacs n'est pas appliqué — on retourne
+  // ligne directe par sécurité.
+  if (lien === 'epoux_pacs') return BAREME_LIGNE_DIRECTE
+  return getBaremePourLien(lien)
 }
 
 /**
@@ -195,9 +128,12 @@ export function calculerSuccession(inputs: SuccessionInputs): SuccessionResults 
     // 2d. Tranches consommées par les donations antérieures (au-delà de l'abattement)
     const tranchesConsomees = Math.max(0, h.donationsAnterieures - abattementMax)
 
-    // 2e. Application du barème
+    // 2e. Application du barème (utilise le module fiscal partagé)
     const bareme = getBareme(h.lien)
     const { droits, detail } = appliquerBareme(baseTaxable, tranchesConsomees, bareme)
+
+    // Adaptation type detail vers TrancheSuccession (compatible shape)
+    const detailSuccession: TrancheSuccession[] = detail
 
     const droitsArrondis = Math.round(droits)
     detailHeritiers.push({
@@ -210,7 +146,7 @@ export function calculerSuccession(inputs: SuccessionInputs): SuccessionResults 
       droits: droitsArrondis,
       netRecu: h.partRecue - droitsArrondis,
       exonereLoiTEPA: false,
-      detailTranches: detail,
+      detailTranches: detailSuccession,
     })
 
     totalDroits += droitsArrondis

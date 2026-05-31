@@ -12,6 +12,7 @@ import type { LienParente } from '@/types/donation'
 import type { CalculatorModule, HowToSchema } from '@/lib/calculators/types'
 import type { FAQSchemaItem } from '@/components/SchemaFAQ'
 import { formatEurRounded as eur, formatLigne as ligne, formatPct as pct } from '@/lib/formatters'
+import { appliquerBareme, getBaremePourLien, type LienFiscal } from '@/lib/fiscal/baremesArt777'
 
 export const SOURCES_DONATION_DEMEMBREMENT = [
   { label: 'Article 669 du CGI', desc: 'Barème légal de la valeur de l\'usufruit et de la nue-propriété selon l\'âge de l\'usufruitier' },
@@ -37,7 +38,7 @@ function bareme669(age: number): { usufruit: number; nuePropriete: number } {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Abattements + barème Art. 777 (réutilisés depuis donation)
+// Abattements (Art. 779/790 E CGI) - wrapping du module fiscal partagé
 // ─────────────────────────────────────────────────────────────
 
 const ABATTEMENTS: Record<LienParente, number> = {
@@ -46,72 +47,13 @@ const ABATTEMENTS: Record<LienParente, number> = {
   autre_4e: 0, non_parent: 0,
 }
 
-const BAREMES_LINEAIRES: Partial<Record<LienParente, number>> = {
-  neveu_niece: 0.55,
-  autre_4e: 0.55,
-  non_parent: 0.60,
-}
-
-function appliquerBaremeLigneDirecte(base: number): number {
+/** Calcule les droits de mutation à titre gratuit applicables à une base
+ *  taxable, selon le lien de parenté. Utilise le module fiscal partagé
+ *  (cf. `src/lib/fiscal/baremesArt777.ts`). */
+function calculerDroits(base: number, lien: LienParente): number {
   if (base <= 0) return 0
-  const tranches = [
-    { max: 8072, taux: 0.05 },
-    { max: 12109, taux: 0.10 },
-    { max: 15932, taux: 0.15 },
-    { max: 552324, taux: 0.20 },
-    { max: 902838, taux: 0.30 },
-    { max: 1805677, taux: 0.40 },
-    { max: Number.MAX_VALUE, taux: 0.45 },
-  ]
-  let droits = 0
-  let restant = base
-  let bornePre = 0
-  for (const t of tranches) {
-    const dans = Math.min(restant, t.max - bornePre)
-    if (dans <= 0) break
-    droits += dans * t.taux
-    restant -= dans
-    bornePre = t.max
-    if (restant <= 0) break
-  }
-  return droits
-}
-
-function appliquerBaremeEpoux(base: number): number {
-  if (base <= 0) return 0
-  const tranches = [
-    { max: 8072, taux: 0.05 },
-    { max: 15932, taux: 0.10 },
-    { max: 31865, taux: 0.15 },
-    { max: 552324, taux: 0.20 },
-    { max: 902838, taux: 0.30 },
-    { max: 1805677, taux: 0.40 },
-    { max: Number.MAX_VALUE, taux: 0.45 },
-  ]
-  let droits = 0
-  let restant = base
-  let bornePre = 0
-  for (const t of tranches) {
-    const dans = Math.min(restant, t.max - bornePre)
-    if (dans <= 0) break
-    droits += dans * t.taux
-    restant -= dans
-    bornePre = t.max
-    if (restant <= 0) break
-  }
-  return droits
-}
-
-function appliquerBareme(base: number, lien: LienParente): number {
-  const lineaire = BAREMES_LINEAIRES[lien]
-  if (lineaire !== undefined) return base * lineaire
-  if (lien === 'frere_soeur') {
-    if (base <= 0) return 0
-    if (base <= 24430) return base * 0.35
-    return 24430 * 0.35 + (base - 24430) * 0.45
-  }
-  if (lien === 'epoux_pacs') return appliquerBaremeEpoux(base)
-  return appliquerBaremeLigneDirecte(base)
+  const bareme = getBaremePourLien(lien as LienFiscal)
+  return appliquerBareme(base, 0, bareme).droits
 }
 
 /**
@@ -145,11 +87,11 @@ export function calculerDonationDemembrement(
 
   // 3. Droits sur la donation de nue-propriété
   const baseTaxable = Math.max(0, valeurNueProprietetransmise - abattementDisponible)
-  const droitsDemembrement = Math.round(appliquerBareme(baseTaxable, inputs.lienDonataire))
+  const droitsDemembrement = Math.round(calculerDroits(baseTaxable, inputs.lienDonataire))
 
   // 4. Comparaison : donation en pleine propriété
   const baseTaxablePleinePropriete = Math.max(0, inputs.valeurBienPleinePropriete - abattementDisponible)
-  const droitsPleinePropriete = Math.round(appliquerBareme(baseTaxablePleinePropriete, inputs.lienDonataire))
+  const droitsPleinePropriete = Math.round(calculerDroits(baseTaxablePleinePropriete, inputs.lienDonataire))
   const economieRealisee = droitsPleinePropriete - droitsDemembrement
 
   // 5. Warnings + optimisations

@@ -24,7 +24,7 @@ describe('calculerPretIntrafamilial', () => {
 
   it('prêt sans intérêt → warning requalification', () => {
     const r = calculerPretIntrafamilial(defaults({ tauxInteret: 0 }))
-    expect(r.warnings.some(w => w.message.includes('requalification'))).toBe(true)
+    expect(r.warnings.some(w => w.message.includes('requalifier'))).toBe(true)
   })
 
   it('intérêts > 1 000 € → warning déclaration prêteur', () => {
