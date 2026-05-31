@@ -21,6 +21,7 @@ import { calculerPlusValueImmobiliere } from '@/lib/plusValueImmobiliere'
 import { calculerIFI } from '@/lib/ifi'
 import { calculerDonation } from '@/lib/donation'
 import { calculerSuccession } from '@/lib/succession'
+import { calculerPerSortie } from '@/lib/perSortie'
 import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
@@ -33,6 +34,7 @@ describe('calculator registry — exhaustivité', () => {
       'donation/droits',
       'ifi',
       'per-individuel',
+      'per-sortie',
       'plus-value-immobiliere',
       'rente-viagere',
       'succession',
@@ -131,6 +133,17 @@ describe('calculator registry — formatContexteChat retourne une chaîne non vi
     }
     const results = calculerDonation(inputs)
     const txt = getCalculator('donation/droits')!.formatContexteChat(inputs, results)
+    expect(txt.length).toBeGreaterThan(20)
+  })
+
+  it('per-sortie', () => {
+    const inputs = {
+      capitalAccumule: 100000, fractionVersementsDeductibles: 70,
+      tmiRetraite: 30 as const, ageRetraite: 65, esperanceVie: 85,
+      tauxRenteAnnuel: 4, mode: 'capital' as const, partCapitalSiMixte: 50,
+    }
+    const results = calculerPerSortie(inputs)
+    const txt = getCalculator('per-sortie')!.formatContexteChat(inputs, results)
     expect(txt.length).toBeGreaterThan(20)
   })
 

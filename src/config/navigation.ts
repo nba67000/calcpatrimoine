@@ -48,6 +48,12 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
         desc: "Économie d'impôt sur versement et comparaison avec l'assurance-vie selon votre TMI.",
         disponible: true,
       },
+      {
+        href: '/per-sortie',
+        nom: 'PER Sortie (capital vs rente)',
+        desc: 'Comparez la fiscalité à la liquidation : capital (IR + PFU) vs rente (régime pensions).',
+        disponible: true,
+      },
     ],
   },
   {
