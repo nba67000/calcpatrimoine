@@ -24,6 +24,7 @@ import { calculerSuccession } from '@/lib/succession'
 import { calculerPerSortie } from '@/lib/perSortie'
 import { calculerPretIntrafamilial } from '@/lib/pretIntrafamilial'
 import { calculerDonationDemembrement } from '@/lib/donationDemembrement'
+import { calculerPlusValueLmnp } from '@/lib/plusValueLmnp'
 import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
@@ -39,6 +40,7 @@ describe('calculator registry — exhaustivité', () => {
       'per-individuel',
       'per-sortie',
       'plus-value-immobiliere',
+      'plus-value-immobiliere/lmnp',
       'pret-intrafamilial',
       'rente-viagere',
       'succession',
@@ -137,6 +139,20 @@ describe('calculator registry — formatContexteChat retourne une chaîne non vi
     }
     const results = calculerDonation(inputs)
     const txt = getCalculator('donation/droits')!.formatContexteChat(inputs, results)
+    expect(txt.length).toBeGreaterThan(20)
+  })
+
+  it('plus-value-immobiliere/lmnp', () => {
+    const inputs = {
+      dateAcquisition: '2018-01-01', prixAcquisition: 200000,
+      fraisAcquisition: 'forfait' as const, fraisAcquisitionReels: 0,
+      travaux: 'aucun' as const, travauxReels: 0,
+      dateCession: '2026-01-01', prixCession: 320000,
+      typeBien: 'autre' as const, premiereCession: false,
+      amortissementsLmnpCumules: 30000,
+    }
+    const results = calculerPlusValueLmnp(inputs)
+    const txt = getCalculator('plus-value-immobiliere/lmnp')!.formatContexteChat(inputs, results)
     expect(txt.length).toBeGreaterThan(20)
   })
 
