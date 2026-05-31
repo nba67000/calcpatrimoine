@@ -163,6 +163,12 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
         disponible: true,
       },
       {
+        href: '/sci-is-vs-ir',
+        nom: 'SCI à l\'IS vs à l\'IR',
+        desc: 'Compare l\'impôt annuel SCI selon le régime (V1 : sortie non incluse, attention).',
+        disponible: true,
+      },
+      {
         href: '/ifi',
         nom: 'IFI - Fortune immobilière',
         desc: 'Calcul IFI : seuil 1 300 000 €, barème progressif, abattement RP 30 %, décote, plafonnement.',

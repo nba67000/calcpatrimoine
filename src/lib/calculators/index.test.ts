@@ -28,6 +28,7 @@ import { calculerPlusValueLmnp } from '@/lib/plusValueLmnp'
 import { calculerComparateurLocatif } from '@/lib/comparateurLocatif'
 import { calculerPea } from '@/lib/pea'
 import { calculerLmnpRegime } from '@/lib/lmnpRegime'
+import { calculerSciRegime } from '@/lib/sciRegime'
 import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
@@ -49,6 +50,7 @@ describe('calculator registry — exhaustivité', () => {
       'plus-value-immobiliere/lmnp',
       'pret-intrafamilial',
       'rente-viagere',
+      'sci-is-vs-ir',
       'succession',
       'tmi',
     ])
@@ -145,6 +147,16 @@ describe('calculator registry — formatContexteChat retourne une chaîne non vi
     }
     const results = calculerDonation(inputs)
     const txt = getCalculator('donation/droits')!.formatContexteChat(inputs, results)
+    expect(txt.length).toBeGreaterThan(20)
+  })
+
+  it('sci-is-vs-ir', () => {
+    const inputs = {
+      loyersAnnuels: 24000, chargesDeductibles: 4000, interetsEmprunt: 6000,
+      amortissementsAnnuels: 8000, tmiAssocies: 30 as const, dureeProjet: 15,
+    }
+    const results = calculerSciRegime(inputs)
+    const txt = getCalculator('sci-is-vs-ir')!.formatContexteChat(inputs, results)
     expect(txt.length).toBeGreaterThan(20)
   })
 
