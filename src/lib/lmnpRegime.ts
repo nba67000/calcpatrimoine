@@ -76,13 +76,13 @@ export function calculerLmnpRegime(inputs: LmnpRegimeInputs): LmnpRegimeResults 
   if (!microApplicable) {
     warnings.push({
       type: 'warning',
-      message: `Vos loyers (${eur(inputs.loyersAnnuels)}) dépassent le seuil du régime micro-BIC pour ce type de location (${eur(params.seuil)}). Le régime réel est obligatoire.`,
+      message: `Vos loyers (${eur(inputs.loyersAnnuels)}) dépassent le plafond du régime micro-BIC pour ce type de location (${eur(params.seuil)}). Au-delà, le régime simplifié (avec abattement forfaitaire) n'est plus accessible : vous passez obligatoirement au régime réel, où vous devez tenir une comptabilité et déduire vos charges et amortissements réels.`,
     })
   }
   if (inputs.typeMeuble === 'touristique_non_classe') {
     warnings.push({
       type: 'info',
-      message: `Meublé touristique non classé : depuis la LF 2025, l'abattement micro est passé de 50 % à 30 % et le seuil de 77 700 € à 15 000 €. Si vous êtes au-dessus de ce seuil, basculer au régime réel pour amortir le bien devient quasi-incontournable.`,
+      message: `Meublé touristique non classé : la loi de finances 2025 a réduit l'avantage du régime simplifié. L'abattement forfaitaire est passé de 50 % à 30 % et le plafond de loyers est passé de 77 700 € à 15 000 €. Conséquence : si vos loyers dépassent 15 000 €/an, vous devez passer au régime réel (où vous pouvez déduire vos charges et amortissements) pour conserver une fiscalité raisonnable.`,
     })
   }
   if (beneficeApresAmortissement < 0) {

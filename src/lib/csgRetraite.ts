@@ -90,7 +90,7 @@ export function calculerCsgRetraite(inputs: CsgRetraiteInputs): CsgRetraiteResul
   if (tauxApplicable === 'normal' && inputs.revenuFiscalReference - s.median < 2000) {
     warnings.push({
       type: 'info',
-      message: `Vous êtes juste au-dessus du seuil de bascule médian → normal (écart ${eur(inputs.revenuFiscalReference - s.median)}). Si votre RFR baissait sous ${eur(s.median)} pendant 2 années consécutives, vous passeriez au taux médian (économie ${eur(inputs.pensionBruteAnnuelle * (TAUX_RATES.normal - TAUX_RATES.median))}/an).`,
+      message: `Votre revenu fiscal de référence (RFR) est juste au-dessus du seuil qui sépare le taux médian du taux normal — vous n'en êtes éloigné que de ${eur(inputs.revenuFiscalReference - s.median)}. Si votre RFR descendait sous ${eur(s.median)} pendant 2 années consécutives (c'est la règle anti-bascule de l'administration), vous repasseriez au taux médian — soit une économie de ${eur(inputs.pensionBruteAnnuelle * (TAUX_RATES.normal - TAUX_RATES.median))} par an sur votre pension.`,
     })
   }
   if (tauxApplicable === 'exonere') {

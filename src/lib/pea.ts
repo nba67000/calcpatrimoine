@@ -63,7 +63,7 @@ export function calculerPea(inputs: PeaInputs): PeaResults {
   if (!exonerationIrActive && inputs.agePeaAnnees > 0) {
     warnings.push({
       type: 'danger',
-      message: `Votre PEA a ${inputs.agePeaAnnees.toFixed(1)} ans : tout retrait avant 5 ans ferme le plan et déclenche le PFU 30 % (IR 12,8 % + PS 17,2 %) sur la totalité des gains. Attendre les 5 ans permet de passer à l'exonération IR (PS 17,2 % seulement).`,
+      message: `Votre PEA a ${inputs.agePeaAnnees.toFixed(1)} ans. Si vous retirez avant 5 ans, votre plan est automatiquement fermé et vous payez la flat tax de 30 % (12,8 % d'impôt sur le revenu + 17,2 % de prélèvements sociaux) sur l'ensemble de vos gains. En attendant d'atteindre les 5 ans, vous ne payez plus que les prélèvements sociaux (17,2 %) — l'impôt sur le revenu disparaît.`,
     })
   }
 
