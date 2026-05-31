@@ -26,6 +26,7 @@ import { calculerPretIntrafamilial } from '@/lib/pretIntrafamilial'
 import { calculerDonationDemembrement } from '@/lib/donationDemembrement'
 import { calculerPlusValueLmnp } from '@/lib/plusValueLmnp'
 import { calculerComparateurLocatif } from '@/lib/comparateurLocatif'
+import { calculerPea } from '@/lib/pea'
 import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
@@ -40,6 +41,7 @@ describe('calculator registry — exhaustivité', () => {
       'donation/droits',
       'ifi',
       'per-individuel',
+      'pea',
       'per-sortie',
       'plus-value-immobiliere',
       'plus-value-immobiliere/lmnp',
@@ -141,6 +143,13 @@ describe('calculator registry — formatContexteChat retourne une chaîne non vi
     }
     const results = calculerDonation(inputs)
     const txt = getCalculator('donation/droits')!.formatContexteChat(inputs, results)
+    expect(txt.length).toBeGreaterThan(20)
+  })
+
+  it('pea', () => {
+    const inputs = { valeurActuelle: 100000, versementsTotaux: 60000, agePeaAnnees: 7, montantRetrait: 30000 }
+    const results = calculerPea(inputs)
+    const txt = getCalculator('pea')!.formatContexteChat(inputs, results)
     expect(txt.length).toBeGreaterThan(20)
   })
 

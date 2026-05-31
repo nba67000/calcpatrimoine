@@ -119,6 +119,12 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
         disponible: true,
       },
       {
+        href: '/pea',
+        nom: 'PEA - Fiscalité + bilan latent',
+        desc: 'Retrait après 5 ans (PS 17,2 %) + bilan brut/net/passif fiscal latent.',
+        disponible: true,
+      },
+      {
         href: '/plus-value-mobiliere',
         nom: 'Plus-value mobilière',
         desc: "Imposition sur cession de titres hors PEA selon durée de détention.",
