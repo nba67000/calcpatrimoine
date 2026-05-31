@@ -40,7 +40,7 @@ describe('calculerPlusValueLmnp', () => {
 
   it('warning si amortissements > 0', () => {
     const r = calculerPlusValueLmnp(defaults({ amortissementsLmnpCumules: 30000 }))
-    expect(r.warnings.some(w => w.message.includes('réintégrés'))).toBe(true)
+    expect(r.warnings.some(w => w.message.includes('retirés'))).toBe(true)
   })
 
   it('amortissements 0 : warning info "saisir vos amortissements"', () => {
