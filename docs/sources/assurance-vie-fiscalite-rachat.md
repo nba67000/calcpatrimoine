@@ -3,6 +3,9 @@
 **Dernière vérification** : 2026-05-03
 **Millésime fiscal** : Revenus 2025 / Barème 2026
 
+> ⚠ **Crawl 2026-05-31** : 1 URL Légifrance de ce document est morte
+> (Art 200 A v37985080). Cf. `docs/broken-links-to-fix.md`.
+
 ---
 
 ## Textes de loi
@@ -12,7 +15,7 @@
   Extrait pertinent : "Les produits [...] sont soumis à l'impôt sur le revenu selon les modalités prévues au 1 du II de l'article 200 A"
 
 - **Article 200 A du Code général des impôts** - Taux PFU (12,8%)
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985080
+  URL Légifrance : ~~`LEGIARTI000037985080`~~ (morte HTTP 404)
   Extrait pertinent : "Le taux forfaitaire mentionné au 1 est fixé à 12,8 %"
 
 ## Doctrine administrative

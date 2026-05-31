@@ -4,6 +4,12 @@
 **Millésime fiscal** : Barème 2026 (abattements et tarifs indexés par la LF 2026)
 **Calculateur concerné** : `src/app/donation/droits/page.tsx`
 
+> ⚠ **Crawl 2026-05-31** : 4 URLs Légifrance + 2 URLs BOFiP de ce document
+> sont cassées (404 ou re-route vers le mauvais doc). Marquées en
+> `~~strikethrough~~`. NB : Art. 779 CGI a un ID alternatif valide
+> (`LEGIARTI000026292566`, déjà utilisé dans `src/lib/donation.ts`). Cf.
+> `docs/broken-links-to-fix.md` pour la liste consolidée.
+
 ---
 
 ## Textes de loi
@@ -11,27 +17,27 @@
 ### Code général des impôts
 
 - **Article 777 CGI** - Tarif des droits de mutation à titre gratuit (donations et successions)
-  - URL : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464063
+  - URL : ~~`LEGIARTI000041464063`~~ (morte HTTP 404)
   - Version en vigueur : 2026
   - Point clé : 4 tableaux (ligne directe / époux-PACS / frères-sœurs / autres), barèmes progressifs par tranches.
 
 - **Article 779 CGI** - Abattements applicables aux donations et successions selon le lien de parenté
-  - URL : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048845104
+  - URL : ~~`LEGIARTI000048845104`~~ (morte HTTP 404) — utiliser à la place `LEGIARTI000026292566` (testé OK 2026-05-31)
   - Version en vigueur : 2026
   - Point clé : 100 000 € enfant/parent ; 159 325 € handicapé ; 15 932 € frère-sœur ; 7 967 € neveu-nièce.
 
 - **Article 784 CGI** - Rappel fiscal des donations antérieures
-  - URL : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464760
+  - URL : ~~`LEGIARTI000041464760`~~ (morte HTTP 404)
   - Version en vigueur : 2026
   - Point clé : les donations consenties depuis 15 ans sont rapportées (abattement et tranches déjà consommés).
 
 - **Article 790 E CGI** - Abattement spécifique entre époux et partenaires de PACS
-  - URL : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038588107
+  - URL : ~~`LEGIARTI000038588107`~~ (morte HTTP 404)
   - Version en vigueur : 2026
   - Point clé : 80 724 € sur les donations entre époux ou partenaires liés par un PACS.
 
 - **Article 790 G CGI** - Don familial de sommes d'argent (exonération supplémentaire)
-  - URL : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464661
+  - URL : ~~`LEGIARTI000041464661`~~ (morte HTTP 404)
   - Version en vigueur : 2026
   - Point clé : 31 865 € en plus de l'abattement personnel ; donateur < 80 ans, donataire majeur ; renouvelable tous les 15 ans.
 
@@ -42,11 +48,11 @@
 ### BOFiP
 
 - **BOI-ENR-DMTG-20-30-20-10** - Calcul des droits de mutation à titre gratuit
-  - URL : https://bofip.impots.gouv.fr/bofip/3837-PGP.html
+  - URL : ~~`bofip/3837-PGP.html`~~ (re-route vers "Exonération heures supplémentaires", pas ENR-DMTG)
   - Sections utilisées : application des abattements puis du barème, rappel fiscal 15 ans.
 
 - **BOI-ENR-DMTG-20-30-20-20** - Tarif des droits de mutation à titre gratuit
-  - URL : https://bofip.impots.gouv.fr/bofip/3845-PGP.html
+  - URL : ~~`bofip/3845-PGP.html`~~ (re-route vers "RPPM Plus-values biens meubles", pas ENR-DMTG)
   - Sections utilisées : tableaux I à IV de l'article 777 CGI.
 
 ### Source secondaire de confirmation des chiffres

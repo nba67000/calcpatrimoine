@@ -451,7 +451,7 @@ const faqItems: FAQItem[] = [
  </li>
  <li>
  <a 
- href="https://www.service-public.fr/particuliers/vosdroits/F22414"
+ href="https://www.service-public.gouv.fr/particuliers/vosdroits/F22414"
  target="_blank"
  rel="noopener noreferrer"
  className="text-primary-600 hover:underline"

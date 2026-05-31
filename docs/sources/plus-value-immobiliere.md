@@ -3,6 +3,10 @@
 **Dernière vérification** : 2026-05-03
 **Millésime fiscal** : Cessions en 2026 / Barème applicable au 03/05/2026
 
+> ⚠ **Crawl 2026-05-31** : les URLs Légifrance de ce document sont OK (testées
+> en rounds 1-3). Les 3 URLs BOFiP `bofip/208-PGP.html` sont en revanche
+> mortes (HTTP 404). Cf. `docs/broken-links-to-fix.md`.
+
 ## Textes de loi
 
 - **Article 150 U du Code général des impôts** - Champ d'application de l'imposition des plus-values immobilières
@@ -46,14 +50,14 @@
 ## Doctrine administrative
 
 - **BOFiP BOI-RFPI-PVI** - Série Plus-values immobilières
-  URL : https://bofip.impots.gouv.fr/bofip/208-PGP.html/identifiant=BOI-RFPI-PVI
+  URL : ~~`bofip/208-PGP.html/identifiant=BOI-RFPI-PVI`~~ (morte HTTP 404)
   Note : les URLs PGP numériques (ex. 2013-PGP.html) sont instables - utiliser les identifiants BOI.
 
 - **BOFiP BOI-RFPI-PVI-20-10** - Calcul du prix d'acquisition (frais et travaux)
-  URL : https://bofip.impots.gouv.fr/bofip/208-PGP.html/identifiant=BOI-RFPI-PVI-20-10
+  URL : ~~`bofip/208-PGP.html/identifiant=BOI-RFPI-PVI-20-10`~~ (morte HTTP 404, à reconstruire)
 
 - **BOFiP BOI-RFPI-PVI-20-20** - Calcul du montant imposable (abattements et surtaxe)
-  URL : https://bofip.impots.gouv.fr/bofip/208-PGP.html/identifiant=BOI-RFPI-PVI-20-20
+  URL : ~~`bofip/208-PGP.html/identifiant=BOI-RFPI-PVI-20-20`~~ (morte HTTP 404, à reconstruire)
 
 ## Barèmes et taux
 

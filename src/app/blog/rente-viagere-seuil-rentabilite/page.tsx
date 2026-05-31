@@ -383,7 +383,7 @@ export default function ArticleRenteViagere() {
                 // LEGIARTI000044979614 retiré le 2026-05-31 (HTTP 404).
                 // Cf. docs/broken-links-to-fix.md.
                 { label: 'Article 158, 6° du CGI' },
-                { label: 'Service-Public.fr - Rente viagère', desc: 'Fiche pratique officielle sur le fonctionnement et la fiscalité de la rente viagère.', href: 'https://www.service-public.fr/particuliers/vosdroits/F3173' },
+                { label: 'Service-Public.fr - Rente viagère', desc: 'Fiche pratique officielle sur le fonctionnement et la fiscalité de la rente viagère.', href: 'https://www.service-public.gouv.fr/particuliers/vosdroits/F3173' },
               ].map(s => (
                 <div key={s.label} className="flex items-start gap-3">
                   <span className="text-accent-400 mt-0.5 shrink-0">-</span>

@@ -12,7 +12,7 @@ export const SOURCES_PLUS_VALUE = [
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053584839', label: 'Article L136-7 CSS (VI 2)', desc: 'Abattements PS pour durée de détention : 1,65 %/an (6e-21e), 1,60 % (22e), 9 %/an (23e-29e) - exonération à 30 ans' },
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047970809', label: 'Article 150 VD du CGI', desc: "Moins-values immobilières - non imputables sauf vente d'immeuble acquis par fractions successives" },
   { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048806252', label: 'Article 1609 nonies G du CGI', desc: 'Taxe additionnelle (surtaxe) sur plus-values > 50 000 € - de 2 % à 6 %' },
-  { href: 'https://www.service-public.fr/particuliers/vosdroits/F10864', label: 'Service-Public.fr - Plus-value immobilière', desc: 'Synthèse officielle des règles applicables (vérifié le 15/04/2026)' },
+  { href: 'https://www.service-public.gouv.fr/particuliers/vosdroits/F10864', label: 'Service-Public.fr - Plus-value immobilière', desc: 'Synthèse officielle des règles applicables (vérifié le 15/04/2026)' },
 ]
 
 // --- Constantes fiscales ---

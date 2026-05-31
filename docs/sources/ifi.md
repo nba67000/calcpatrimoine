@@ -3,32 +3,38 @@
 **Dernière vérification** : 2026-05-07
 **Millésime fiscal** : IFI 2026 (patrimoine au 1er janvier 2026)
 
+> ⚠ **Crawl 2026-05-31** : **toutes** les URLs Légifrance et BOFiP de ce document
+> sont mortes (HTTP 404). Les URLs sont marquées d'un `~~strikethrough~~`. Cf.
+> `docs/broken-links-to-fix.md` pour la liste consolidée. Les références textuelles
+> (Art. 964, 977, 973, 974, 979 CGI) restent valides et exploitables — chercher
+> directement sur Légifrance.
+
 ## Textes de loi
 
 - **Article 964 du Code général des impôts** - Champ d'application et seuil IFI
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036472764
+  URL Légifrance : ~~`LEGIARTI000036472764`~~ (morte HTTP 404)
   Extrait pertinent : "Sont soumises à l'IFI les personnes physiques dont la valeur nette taxable du patrimoine immobilier est supérieure ou égale à 1 300 000 €."
 
 - **Article 973 du Code général des impôts** - Passif déductible et abattement résidence principale
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036472780
+  URL Légifrance : ~~`LEGIARTI000036472780`~~ (morte HTTP 404)
   Extrait pertinent : "La valeur de la résidence principale fait l'objet d'un abattement de 30 %."
 
 - **Article 977 du Code général des impôts** - Barème IFI
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036473012
+  URL Légifrance : ~~`LEGIARTI000036473012`~~ (morte HTTP 404)
   Extrait pertinent : Barème progressif en 6 tranches de 0 % à 1,50 %. Décote pour patrimoines entre 1 300 000 € et 1 400 000 € : 17 500 € − 1,25 % × patrimoine net.
 
 - **Article 979 du Code général des impôts** - Plafonnement
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036473018
+  URL Légifrance : ~~`LEGIARTI000036473018`~~ (morte HTTP 404)
   Extrait pertinent : "La somme de l'IFI et de l'impôt sur le revenu ne peut excéder 75 % des revenus."
 
 - **Article 974 du Code général des impôts** - Dettes déductibles
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036472786
+  URL Légifrance : ~~`LEGIARTI000036472786`~~ (morte HTTP 404)
   Extrait pertinent : Dettes déductibles : emprunts contractés pour acquisition, construction, réparation ou amélioration des biens taxables ; taxes foncières.
 
 ## Doctrine administrative
 
 - **BOFiP BOI-PAT-IFI** - Documentation complète IFI
-  URL : https://bofip.impots.gouv.fr/bofip/11225-PGP.html
+  URL : ~~`bofip/11225-PGP.html`~~ (morte HTTP 404 confirmé 2026-05-31)
   Note : Accès par fetch automatisé non disponible au 2026-05-07 (403). Données vérifiées via Légifrance et Wikipedia FR.
 
 ## Barèmes et taux

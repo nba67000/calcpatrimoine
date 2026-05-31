@@ -3,6 +3,12 @@
 **Dernière vérification** : 2026-05-03
 **Millésime fiscal** : Revenus 2025 / Barème 2026
 
+> ⚠ **Crawl 2026-05-31** : plusieurs URLs Légifrance citées ci-dessous sont
+> mortes (HTTP 404) ou re-routent vers le mauvais article (Art 194 → Art 150-0 F ;
+> Art 195 → Art 200 A ; Art 196 → Art 150 N bis abrogé en 2003). Les URLs mortes
+> sont marquées d'un `~~strikethrough~~`. Cf. `docs/broken-links-to-fix.md` pour
+> la liste consolidée et l'état de chaque URL.
+
 ## Textes de loi
 
 - **Article 197 du Code général des impôts** - Barème progressif de l'impôt sur le revenu et décote
@@ -11,14 +17,14 @@
   Extrait pertinent décote : "diminué [...] de la différence entre 897 € et 45,25 % de son montant pour les contribuables célibataires [...] et de la différence entre 1 483 € et 45,25 % de son montant pour les contribuables soumis à imposition commune"
 
 - **Article 194 du Code général des impôts** - Quotient familial, nombre de parts
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006302756
+  URL Légifrance : ~~`LEGIARTI000006302756`~~ (morte : re-route vers Art 150-0 F)
   Extrait pertinent : "Chaque enfant [à charge] ouvre droit à une demi-part supplémentaire"
 
 - **Article 195 du Code général des impôts** - Demi-parts supplémentaires (invalidité, etc.)
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179579/
+  URL Légifrance : ~~`LEGISCTA000006179579`~~ (morte : re-route vers Art 200 A "valeurs mobilières")
 
 - **Article 196 du Code général des impôts** - Enfants à charge
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006302765
+  URL Légifrance : ~~`LEGIARTI000006302765`~~ (morte : re-route vers Art 150 N bis abrogé en 2003)
 
 ## Doctrine administrative
 

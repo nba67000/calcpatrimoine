@@ -662,7 +662,7 @@ export default function ArticlePERPage() {
                     { label: 'Article 158, 5° bis du CGI' },
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038507575', label: 'Article L224-1 du Code monétaire et financier', desc: 'Définition légale du PER individuel (loi PACTE 2019)' },
                     { href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805604', label: 'Article L224-28 du Code monétaire et financier', desc: 'Cas de déblocage anticipé - liste exhaustive' },
-                    { href: 'https://www.service-public.fr/particuliers/vosdroits/F34982', label: 'Service-Public.fr - PER individuel', desc: 'Fiche pratique officielle : ouverture, versements, fiscalité, déblocages' },
+                    { href: 'https://www.service-public.gouv.fr/particuliers/vosdroits/F34982', label: 'Service-Public.fr - PER individuel', desc: 'Fiche pratique officielle : ouverture, versements, fiscalité, déblocages' },
                   ] as Array<{ href?: string; label: string; desc?: string }>).map((s, i) => (
                     <li key={s.href ?? `${s.label}-${i}`} className="flex items-start gap-3">
                       <span className="text-accent-400 mt-0.5 shrink-0">-</span>

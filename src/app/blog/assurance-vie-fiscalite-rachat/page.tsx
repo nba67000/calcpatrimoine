@@ -637,7 +637,7 @@ export default function ArticleAssuranceViePage() {
                   {([
                     // BOFiP 2823 retiré le 2026-05-31 (URL re-route vers BNC).
                     { label: 'BOFiP - RPPM-RCM-20-10-20' },
-                    { href: 'https://www.service-public.fr/particuliers/vosdroits/F22414', label: 'Service-Public.fr', desc: 'Fiche pratique sur la fiscalité de l\'assurance-vie' },
+                    { href: 'https://www.service-public.gouv.fr/particuliers/vosdroits/F22414', label: 'Service-Public.fr', desc: 'Fiche pratique sur la fiscalité de l\'assurance-vie' },
                   ] as Array<{ href?: string; label: string; desc?: string }>).map((s, i) => (
                     <li key={s.href ?? `${s.label}-${i}`} className="flex items-start gap-3">
                       <span className="text-accent-400 mt-0.5 shrink-0">-</span>

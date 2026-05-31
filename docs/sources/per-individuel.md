@@ -3,31 +3,34 @@
 **Dernière vérification** : 2026-05-03
 **Millésime fiscal** : Revenus 2025 / Barème 2026
 
+> ⚠ **Crawl 2026-05-31** : 3 URLs Légifrance + 1 BOFiP de ce document sont
+> mortes (HTTP 404). Marquées en `~~strikethrough~~`. Cf. `docs/broken-links-to-fix.md`.
+
 ---
 
 ## Textes de loi
 
 - **Article 163 quatervicies du Code général des impôts** - Déductibilité des cotisations et versements effectués au titre de l'épargne retraite (PER individuel)
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048776042
+  URL Légifrance : ~~`LEGIARTI000048776042`~~ (morte HTTP 404)
   Version en vigueur : 21 février 2026 (modifié par LF 2026 art. 10)
   Extrait pertinent point b) : "La différence [...] peut être utilisée au cours de l'une des cinq années suivantes."
   Note : LF 2026 art. 10 a porté la durée de report de 3 ans à 5 ans.
 
 - **Article 83 du Code général des impôts** - Déduction forfaitaire de 10 % pour frais professionnels sur les salaires (abattement min/max)
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044986838
+  URL Légifrance : ~~`LEGIARTI000044986838`~~ (morte HTTP 404)
   Version en vigueur : 21 février 2026 (modifié par LF 2026 art. 78)
   Extrait pertinent : "Elle est limitée à 14 426 € pour l'imposition des rémunérations perçues en 2024 ; chaque année, le plafond [...] est relevé dans la même proportion que la limite supérieure de la première tranche du barème."
   Valeurs 2025 (revenus 2025) : min 509 € = 504 × (11 600/11 497), max 14 555 € = 14 426 × (11 600/11 497)
 
 - **Article L.224-1 et suivants du Code monétaire et financier** - Régime juridique du Plan d'Épargne Retraite (PER)
-  URL Légifrance : https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072026/LEGISCTA000038619671/
+  URL Légifrance : ~~`LEGISCTA000038619671` (section)~~ (morte HTTP 404)
 
 ---
 
 ## Doctrine administrative
 
 - **BOFiP BOI-IR-BASE-20-50-10** - Plafond de déduction des cotisations d'épargne retraite
-  URL : https://bofip.impots.gouv.fr/bofip/2108-PGP.html/identifiant=BOI-IR-BASE-20-50-10
+  URL : ~~`bofip/2108-PGP.html`~~ (morte HTTP 404 confirmé 2026-05-31)
   Note : URL à re-vérifier - le BOFiP a restructuré ses identifiants en 2024-2025.
 
 ---
