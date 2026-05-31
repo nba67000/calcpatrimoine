@@ -25,6 +25,7 @@ import { calculerPerSortie } from '@/lib/perSortie'
 import { calculerPretIntrafamilial } from '@/lib/pretIntrafamilial'
 import { calculerDonationDemembrement } from '@/lib/donationDemembrement'
 import { calculerPlusValueLmnp } from '@/lib/plusValueLmnp'
+import { calculerComparateurLocatif } from '@/lib/comparateurLocatif'
 import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
@@ -34,6 +35,7 @@ describe('calculator registry — exhaustivité', () => {
     expect(listCalculatorSlugs().sort()).toEqual([
       'assurance-vie/fiscalite-rachat',
       'assurance-vie/transmission',
+      'comparateur-locatif-placement',
       'donation/demembrement',
       'donation/droits',
       'ifi',
@@ -139,6 +141,18 @@ describe('calculator registry — formatContexteChat retourne une chaîne non vi
     }
     const results = calculerDonation(inputs)
     const txt = getCalculator('donation/droits')!.formatContexteChat(inputs, results)
+    expect(txt.length).toBeGreaterThan(20)
+  })
+
+  it('comparateur-locatif-placement', () => {
+    const inputs = {
+      capitalInitial: 200000, dureeAnnees: 20, tmi: 30 as const,
+      rendementLocatifBrut: 5, valorisationAnnuelle: 2, fraisChargesPct: 30,
+      regimeLocatif: 'micro_foncier' as const,
+      rendementPlacementBrut: 6, vehiculePlacement: 'pea' as const,
+    }
+    const results = calculerComparateurLocatif(inputs)
+    const txt = getCalculator('comparateur-locatif-placement')!.formatContexteChat(inputs, results)
     expect(txt.length).toBeGreaterThan(20)
   })
 
