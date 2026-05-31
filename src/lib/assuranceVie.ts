@@ -126,7 +126,7 @@ function evaluerAlertesAV(p: {
     if (economieAttente > 500) {
       warnings.push({
         type: 'danger',
-        message: `Votre contrat a moins de 8 ans (${p.ancienneteAnnees} ans et ${p.ancienneteMois} mois). En attendant ${dureeTexte}, vous économiserez environ ${Math.round(economieAttente).toLocaleString('fr-FR')}€ grâce à l'abattement de ${p.abattementApplicable.toLocaleString('fr-FR')}€.`,
+        message: `Votre contrat a ${p.ancienneteAnnees} ans et ${p.ancienneteMois} mois. À partir de 8 ans, les gains que vous retirez chaque année sont exonérés d'IR jusqu'à ${p.abattementApplicable.toLocaleString('fr-FR')}€. En attendant encore ${dureeTexte}, vous économiseriez environ ${Math.round(economieAttente).toLocaleString('fr-FR')}€ sur ce rachat.`,
       })
     } else {
       warnings.push({
@@ -159,14 +159,14 @@ function evaluerAlertesAV(p: {
     const tauxApresPct = (p.detailAvant2017.tauxApres * 100).toFixed(1)
     optimisations.push({
       type: 'info',
-      message: `Vos versements avant le 27/09/2017 bénéficient d'un taux réduit (24,7% au lieu de ${tauxApresPct}%), ce qui vous fait économiser ${Math.round(p.partAvant2017.avantage).toLocaleString('fr-FR')}€.`,
+      message: `Vos versements faits avant le 27 septembre 2017 (date à laquelle la flat tax a remplacé l'ancien régime) sont taxés au taux réduit historique de 24,7 % au lieu de ${tauxApresPct} %. Économie sur ce rachat : ${Math.round(p.partAvant2017.avantage).toLocaleString('fr-FR')} €.`,
     })
   }
 
   if (p.tmi <= 11 && p.optionMoinsImposee !== 'IR') {
     warnings.push({
       type: 'info',
-      message: ` Avec votre TMI à ${p.tmi}%, l'option IR + PS génère ${Math.round(p.difference).toLocaleString('fr-FR')}€ de différence par rapport au PFU. Le graphique ci-dessus indique l'option la moins taxée pour ce rachat.`,
+      message: `Avec votre TMI à ${p.tmi} %, choisir l'imposition au barème de l'IR (plus les 17,2 % de prélèvements sociaux) plutôt que la flat tax à 30 % (PFU) change le résultat de ${Math.round(p.difference).toLocaleString('fr-FR')} €. Le graphique ci-dessus indique laquelle des deux options vous coûte le moins cher pour ce rachat.`,
     })
   }
 

@@ -187,7 +187,7 @@ function evaluerAlertes(p: {
     const conso = p.abattementPersonnelTheorique - p.abattementPersonnelApplique
     warnings.push({
       type: 'warning',
-      message: `Vos dons précédents ont déjà utilisé ${eur(conso)} d'abattement. Il vous reste ${eur(p.abattementPersonnelApplique)} avant d'être taxé. Cet abattement repart à zéro au bout de 15 ans (Art. 784 CGI).`,
+      message: `Vos dons précédents au même bénéficiaire (sur les 15 dernières années) ont déjà utilisé ${eur(conso)} d'abattement. Il vous reste ${eur(p.abattementPersonnelApplique)} à donner sans droits avant que le surplus ne soit taxé. Le compteur se remet à zéro 15 ans après chaque don (Art. 784 CGI).`,
     })
   }
 

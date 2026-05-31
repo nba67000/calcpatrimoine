@@ -125,7 +125,7 @@ export default function TMICalculator() {
           </div>
 
           <p className="text-xs text-neutral-500">
-            Saisissez le revenu net imposable (après abattement de 10 % pour frais professionnels ou frais réels). La décote est appliquée automatiquement.
+            Saisissez votre revenu après l&apos;abattement automatique de 10 % pour frais professionnels (ligne déjà calculée sur votre avis d&apos;imposition). Si vous bénéficiez de la décote pour revenus modestes, elle est appliquée automatiquement plus bas.
           </p>
         </div>
 
@@ -188,9 +188,10 @@ export default function TMICalculator() {
 
         {/* Récap parts fiscales */}
         <div className="bg-neutral-50 rounded-xl border border-neutral-200 p-5">
-          <h3 className="text-sm font-bold text-neutral-700 mb-3 uppercase tracking-wide">
-            Quotient familial
+          <h3 className="text-sm font-bold text-neutral-700 mb-1 uppercase tracking-wide">
+            Vos parts fiscales
           </h3>
+          <p className="text-xs text-neutral-500 mb-3 normal-case">Quotient familial</p>
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div className="bg-white rounded-lg p-3 border border-neutral-200">
               <div className="text-xs text-neutral-500 mb-1">Parts totales</div>

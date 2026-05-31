@@ -130,7 +130,7 @@ function evaluerAlertesTMI(p: {
   if (p.plafonnementActif) {
     warnings.push({
       type: 'warning',
-      message: `Plafonnement du quotient familial actif : l'avantage fiscal est limité à ${p.reductionQFPlafond.toLocaleString('fr-FR')} € (max. ${PLAFOND_DEMI_PART.toLocaleString('fr-FR')} € par demi-part, Art. 197-IV CGI). Sans ce plafond légal, la réduction aurait atteint ${Math.round(p.reductionQFBrute).toLocaleString('fr-FR')} €.`,
+      message: `Vos enfants à charge réduisent normalement votre impôt — mais cette réduction est plafonnée à ${PLAFOND_DEMI_PART.toLocaleString('fr-FR')} € par demi-part au-delà du quotient de base (Art. 197-IV CGI). Pour vous, la réduction réelle est de ${p.reductionQFPlafond.toLocaleString('fr-FR')} € au lieu des ${Math.round(p.reductionQFBrute).toLocaleString('fr-FR')} € qu'elle aurait été sans ce plafond.`,
     })
   }
 

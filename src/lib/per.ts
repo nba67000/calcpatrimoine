@@ -109,13 +109,13 @@ function evaluerAlertesPER(
 
   warnings.push({
     type: 'info',
-    message: `L'économie affichée est un avantage fiscal à l'entrée, pas une exonération définitive. À la sortie, la part du capital issue des versements déductibles sera imposée à l'IR (au barème de l'année de sortie) ; les gains seront soumis aux prélèvements sociaux (17,2 %). L'avantage net réel dépend de l'écart entre votre TMI actuelle (${tmi} %) et votre TMI à la retraite.`,
+    message: `Cette économie est différée, pas annulée. À la retraite, quand vous récupérerez l'argent : la partie qui correspond à vos versements sera imposée à l'IR (au barème en vigueur cette année-là), les gains seront soumis aux prélèvements sociaux (17,2 %). L'avantage final dépend donc de l'écart entre votre TMI aujourd'hui (${tmi} %) et votre TMI à la retraite.`,
   })
 
   if (detail.partNonDeductible > 0) {
     warnings.push({
       type: 'danger',
-      message: `Votre versement de ${versementEnvisage.toLocaleString('fr-FR')} € dépasse votre plafond disponible de ${detail.partNonDeductible.toLocaleString('fr-FR')} €. Seuls ${detail.montantDeductible.toLocaleString('fr-FR')} € sont déductibles. La part excédentaire (${detail.partNonDeductible.toLocaleString('fr-FR')} €) reste investissable sur le PER mais sans avantage fiscal à l'entrée.`,
+      message: `Votre versement de ${versementEnvisage.toLocaleString('fr-FR')} € dépasse de ${detail.partNonDeductible.toLocaleString('fr-FR')} € le plafond déductible. Seuls ${detail.montantDeductible.toLocaleString('fr-FR')} € viennent réduire votre revenu imposable cette année. Le surplus (${detail.partNonDeductible.toLocaleString('fr-FR')} €) reste placé sur le PER et continue à générer des intérêts comme le reste, mais il ne fait pas baisser votre impôt cette année.`,
     })
   }
 
