@@ -1,7 +1,6 @@
 // src/components/Calculator/TransmissionCalculator.tsx
 'use client'
 
-import { useMemo, useEffect } from 'react'
 import TransmissionChart from '@/components/TransmissionChart'
 import {
  calculerTransmission,
@@ -12,7 +11,6 @@ import {
  modifierPartBeneficiaire,
 } from '@/lib/transmission'
 import type {
- TransmissionResults,
  Beneficiaire
 } from '@/types/transmission'
 import ChatWidget from '@/components/ChatWidget'
@@ -20,8 +18,8 @@ import AlertList from '@/components/AlertList'
 import CrossLink from '@/components/CrossLink'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
-import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
-import { formatEur } from '@/lib/formatters'
+import { useCalculator } from '@/hooks/useCalculator'
+import { formatEur, formatNombre } from '@/lib/formatters'
 
 interface TransmissionSimState {
   capitalTotal: number
@@ -43,12 +41,19 @@ const DEFAULT_STATE: TransmissionSimState = {
 }
 
 export default function TransmissionCalculator() {
- const [inputs, setInputs, resetInputs] = useSimStorage<TransmissionSimState>('assurance-vie-transmission', DEFAULT_STATE)
-
- const results = useMemo<TransmissionResults>(() => calculerTransmission({
-   ...inputs,
-   dateOuverture: new Date(2010, 0, 1),
- }), [inputs])
+ const { inputs, setInputs, reset, results } = useCalculator({
+   slug: 'assurance-vie-transmission',
+   nom: 'Transmission AV',
+   href: '/assurance-vie/transmission',
+   defaultInputs: DEFAULT_STATE,
+   compute: (state: TransmissionSimState) => calculerTransmission({
+     ...state,
+     dateOuverture: new Date(2010, 0, 1),
+   }),
+   resume: r => r.capitalTotal > 0
+     ? `Capital : ${formatEur(r.capitalTotal)} · Impôts : ${formatEur(r.totalImpots)}`
+     : null,
+ })
 
  const modifierBeneficiaire = (id: string, updates: Partial<Beneficiaire>) => {
    setInputs(prev => ({
@@ -59,20 +64,9 @@ export default function TransmissionCalculator() {
 
  const totalParts = inputs.beneficiaires.reduce((sum, b) => sum + b.partPourcentage, 0)
 
- useEffect(() => {
-   if (results.capitalTotal <= 0) return
-   saveSimHistory({
-     slug: 'assurance-vie-transmission',
-     nom: 'Transmission AV',
-     href: '/assurance-vie/transmission',
-     resume: `Capital : ${formatEur(results.capitalTotal)} · Impôts : ${formatEur(results.totalImpots)}`,
-     date: new Date().toISOString(),
-   })
- }, [results.totalImpots, results.capitalTotal])
-
  return (
  <>
- <SimResumeBanner slug="assurance-vie-transmission" onReset={resetInputs} />
+ <SimResumeBanner slug="assurance-vie-transmission" onReset={reset} />
  <div className="grid lg:grid-cols-2 gap-8">
 
  {/* COLONNE GAUCHE - INPUTS */}
@@ -140,7 +134,7 @@ export default function TransmissionCalculator() {
  />
  <div className="flex justify-between text-xs text-neutral-500 mt-1">
  <span>0€</span>
- <span>{inputs.capitalTotal.toLocaleString('fr-FR')}€</span>
+ <span>{formatNombre(inputs.capitalTotal)}€</span>
  </div>
  </div>
 
@@ -166,7 +160,7 @@ export default function TransmissionCalculator() {
  />
  <div className="flex justify-between text-xs text-neutral-500 mt-1">
  <span>0€</span>
- <span>{Math.max(0, inputs.capitalTotal - inputs.versementsAvant70).toLocaleString('fr-FR')}€</span>
+ <span>{formatNombre(Math.max(0, inputs.capitalTotal - inputs.versementsAvant70))}€</span>
  </div>
  </div>
 
@@ -174,12 +168,12 @@ export default function TransmissionCalculator() {
  <div className="bg-neutral-50 rounded-lg p-4 text-sm">
  <div className="flex justify-between mb-1">
  <span className="text-neutral-600">Versements totaux :</span>
- <span className="font-bold">{(inputs.versementsAvant70 + inputs.versementsApres70).toLocaleString('fr-FR')}€</span>
+ <span className="font-bold">{formatNombre(inputs.versementsAvant70 + inputs.versementsApres70)}€</span>
  </div>
  <div className="flex justify-between">
  <span className="text-neutral-600">Plus-value contrat :</span>
  <span className="font-bold text-primary-700">
- +{(inputs.capitalTotal - inputs.versementsAvant70 - inputs.versementsApres70).toLocaleString('fr-FR')}€
+ +{formatNombre(inputs.capitalTotal - inputs.versementsAvant70 - inputs.versementsApres70)}€
  </span>
  </div>
  </div>
@@ -301,7 +295,7 @@ export default function TransmissionCalculator() {
  <span className="text-sm font-bold text-primary-600">
  {benef.partPourcentage.toFixed(1)}%
  <span className="text-xs text-neutral-500 ml-2">
- ({Math.round((benef.partPourcentage / 100) * inputs.capitalTotal).toLocaleString('fr-FR')}€)
+ ({formatNombre(Math.round((benef.partPourcentage / 100) * inputs.capitalTotal))}€)
  </span>
  </span>
  </div>

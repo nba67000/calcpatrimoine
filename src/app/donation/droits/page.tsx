@@ -9,9 +9,6 @@ const DonationCalculator = dynamic(
   { loading: () => <CalculatorSkeleton /> }
 )
 import SourcesSection from '@/components/SourcesSection'
-import SchemaFAQ from '@/components/SchemaFAQ'
-import SchemaHowTo from '@/components/SchemaHowTo'
-import { FAQ_DONATION, HOWTO_DONATION } from '@/lib/schema/schemaData'
 
 
 export const metadata: Metadata = {
@@ -48,14 +45,6 @@ const LIMITES = [
 export default function DonationDroitsPage() {
   return (
     <>
-      <SchemaHowTo
-        name={HOWTO_DONATION.name}
-        description={HOWTO_DONATION.description}
-        totalTime={HOWTO_DONATION.totalTime}
-        steps={HOWTO_DONATION.steps}
-        tool="Calculateur CalculPatrimoine"
-      />
-      <SchemaFAQ items={FAQ_DONATION} />
       <CalculateurPageLayout
         breadcrumb={[
           { href: '/', label: 'Accueil' },
@@ -69,6 +58,31 @@ export default function DonationDroitsPage() {
         features={['Barème 2026 (Art. 777 CGI)', 'Abattements Art. 779 + 790 E', 'Don familial 790 G', 'Rappel fiscal 15 ans']}
         calculator={<DonationCalculator />}
         currentHref="/donation/droits"
+        methodologie={
+          <>
+            <SourcesSection slug="donation/droits" />
+
+            <div>
+              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
+              <ul className="text-sm text-neutral-600 space-y-1.5">
+                {LIMITES.map((l, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
+                    <span>{l}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
+              <p className="text-sm text-primary-800">
+                Barème 2026 de l&apos;article 777 CGI. Calculs croisés contre cinq cas de référence
+                (ligne directe, époux, don familial 790 G, frères et sœurs, neveu).
+                Dernière vérification des sources : 30 mai 2026.
+              </p>
+            </div>
+          </>
+        }
       >
 
         {/* Comment ça marche */}
@@ -223,46 +237,6 @@ export default function DonationDroitsPage() {
               </div>
               <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
             </Link>
-          </div>
-        </section>
-
-        {/* Méthodologie et sources */}
-        <section className="max-w-4xl mx-auto px-6 py-8 pb-16">
-          <div className="bg-white border border-neutral-200 p-8">
-            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
-              Méthodologie et sources officielles
-            </h2>
-
-            <div className="space-y-6">
-              <SourcesSection slug="donation/droits" />
-
-              <div>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
-                <ul className="text-sm text-neutral-600 space-y-1.5">
-                  {LIMITES.map((l, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
-                      <span>{l}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-                <p className="text-sm text-primary-800">
-                  <strong>Méthodologie vérifiée</strong> - calculs validés sur cinq cas de référence
-                  (ligne directe, époux, don familial 790 G, frères et sœurs, neveu) à partir des
-                  barèmes 2026 de l&apos;article 777 CGI. Dernière vérification : 30 mai 2026.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
-            <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-              Outil indicatif uniquement. Ne constitue pas un conseil fiscal personnalisé.{' '}
-              <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
-            </p>
           </div>
         </section>
 

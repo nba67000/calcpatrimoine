@@ -9,9 +9,6 @@ const PERCalculator = dynamic(
   { loading: () => <CalculatorSkeleton /> }
 )
 import SourcesSection from '@/components/SourcesSection'
-import SchemaFAQ from '@/components/SchemaFAQ'
-import SchemaHowTo from '@/components/SchemaHowTo'
-import { FAQ_PER, HOWTO_PER } from '@/lib/schema/schemaData'
 
 
 export const metadata: Metadata = {
@@ -61,14 +58,6 @@ const LIMITES = [
 export default function PERIndividuelPage() {
   return (
     <>
-      <SchemaHowTo
-        name={HOWTO_PER.name}
-        description={HOWTO_PER.description}
-        totalTime={HOWTO_PER.totalTime}
-        steps={HOWTO_PER.steps}
-        tool="Calculateur CalculPatrimoine"
-      />
-      <SchemaFAQ items={FAQ_PER} />
       <CalculateurPageLayout
       breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'PER individuel - économie d\'impôt' }]}
       titre={<>Simulateur PER individuel<br />Économie d&apos;impôt sur versement</>}
@@ -78,6 +67,54 @@ export default function PERIndividuelPage() {
       features={['Art. 163 quatervicies CGI', 'PASS 2025 - plafonds 2026', 'Report plafonds N-1 à N-5 (LF 2026)', 'Zéro donnée conservée']}
       calculator={<PERCalculator />}
       currentHref="/per-individuel"
+      methodologie={
+        <>
+          <SourcesSection slug="per-individuel" />
+
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Barèmes vérifiés - 2026</h3>
+            <div className="bg-neutral-50 border border-neutral-200 p-4">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-neutral-200">
+                    <th className="text-left py-2 text-neutral-500 font-mono text-xs">Paramètre</th>
+                    <th className="text-right py-2 text-neutral-500 font-mono text-xs">Valeur 2026</th>
+                    <th className="text-right py-2 text-neutral-500 font-mono text-xs hidden sm:table-cell">Base</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-neutral-100 text-neutral-700">
+                  {BAREMES.map(b => (
+                    <tr key={b.param}>
+                      <td className="py-2">{b.param}</td>
+                      <td className="py-2 text-right font-medium font-mono">{b.valeur}</td>
+                      <td className="py-2 text-right text-neutral-400 text-xs hidden sm:table-cell">{b.base}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="font-mono text-xs text-neutral-400 mt-3">Dernière vérification : 1er mai 2026 - service-public.gouv.fr</p>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
+            <ul className="text-sm text-neutral-600 space-y-1.5">
+              {LIMITES.map((l, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
+                  <span>{l}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
+            <p className="text-sm text-primary-800">
+              Plafonds et seuils 2026 (PASS 2025, Art. 163 quatervicies CGI). Dernière vérification des sources : 1er mai 2026.
+            </p>
+          </div>
+        </>
+      }
     >
 
       {/* Lien TMI */}
@@ -153,70 +190,6 @@ export default function PERIndividuelPage() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Méthodologie */}
-      <section className="max-w-4xl mx-auto px-6 py-8 pb-16">
-        <div className="bg-white border border-neutral-200 p-8">
-          <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
-            Méthodologie et sources officielles
-          </h2>
-
-          <div className="space-y-6">
-            <SourcesSection slug="per-individuel" />
-
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Barèmes vérifiés - 2026</h3>
-              <div className="bg-neutral-50 border border-neutral-200 p-4">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-neutral-200">
-                      <th className="text-left py-2 text-neutral-500 font-mono text-xs">Paramètre</th>
-                      <th className="text-right py-2 text-neutral-500 font-mono text-xs">Valeur 2026</th>
-                      <th className="text-right py-2 text-neutral-500 font-mono text-xs hidden sm:table-cell">Base</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-neutral-100 text-neutral-700">
-                    {BAREMES.map(b => (
-                      <tr key={b.param}>
-                        <td className="py-2">{b.param}</td>
-                        <td className="py-2 text-right font-medium font-mono">{b.valeur}</td>
-                        <td className="py-2 text-right text-neutral-400 text-xs hidden sm:table-cell">{b.base}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <p className="font-mono text-xs text-neutral-400 mt-3">Dernière vérification : 1er mai 2026 - service-public.gouv.fr</p>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
-              <ul className="text-sm text-neutral-600 space-y-1.5">
-                {LIMITES.map((l, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
-                    <span>{l}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-              <p className="text-sm text-primary-800">
-                <strong>Méthodologie vérifiée</strong> - calculs validés sur trois cas de référence.
-                Sources : service-public.gouv.fr, Art. 163 quatervicies CGI. Dernière vérification : 1er mai 2026.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
-          <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-            Outil indicatif uniquement. Ne constitue pas un conseil fiscal ou patrimonial personnalisé.{' '}
-            <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
-          </p>
         </div>
       </section>
 

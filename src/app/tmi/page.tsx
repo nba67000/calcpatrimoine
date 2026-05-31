@@ -9,9 +9,6 @@ const TMICalculator = dynamic(
   { loading: () => <CalculatorSkeleton /> }
 )
 import SourcesSection from '@/components/SourcesSection'
-import SchemaFAQ from '@/components/SchemaFAQ'
-import SchemaHowTo from '@/components/SchemaHowTo'
-import { FAQ_TMI, HOWTO_TMI } from '@/lib/schema/schemaData'
 
 
 export const metadata: Metadata = {
@@ -47,14 +44,6 @@ const LIMITES = [
 export default function TMIPage() {
   return (
     <>
-      <SchemaHowTo
-        name={HOWTO_TMI.name}
-        description={HOWTO_TMI.description}
-        totalTime={HOWTO_TMI.totalTime}
-        steps={HOWTO_TMI.steps}
-        tool="Calculateur CalculPatrimoine"
-      />
-      <SchemaFAQ items={FAQ_TMI} />
       <CalculateurPageLayout
       breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'Tranche Marginale d\'Imposition' }]}
       titre={<>Calculateur TMI<br />Barème IR 2026</>}
@@ -64,6 +53,29 @@ export default function TMIPage() {
       features={['Barème IR 2026 (LF 2026)', 'Quotient familial + plafonnement', 'Décote (Art. 197-I-4 CGI)', 'Zéro donnée conservée']}
       calculator={<TMICalculator />}
       currentHref="/tmi"
+      methodologie={
+        <>
+          <SourcesSection slug="tmi" />
+
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
+            <ul className="text-sm text-neutral-600 space-y-1.5">
+              {LIMITES.map((l, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
+                  <span>{l}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
+            <p className="text-sm text-primary-800">
+              Barème LF 2026 applicable aux revenus 2025. Dernière vérification des sources : 19 avril 2026.
+            </p>
+          </div>
+        </>
+      }
     >
 
       {/* Explications */}
@@ -136,47 +148,8 @@ export default function TMIPage() {
         </div>
       </section>
 
-      {/* Méthodologie */}
-      <section className="max-w-4xl mx-auto px-6 py-8 pb-16">
-        <div className="bg-white border border-neutral-200 p-8">
-          <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
-            Méthodologie et sources officielles
-          </h2>
-
-          <div className="space-y-6">
-            <SourcesSection slug="tmi" />
-
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Limites connues</h3>
-              <ul className="text-sm text-neutral-600 space-y-1.5">
-                {LIMITES.map((l, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-neutral-400 mt-0.5 shrink-0">-</span>
-                    <span>{l}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-              <p className="text-sm text-primary-800">
-                <strong>Méthodologie vérifiée</strong> - calculs validés sur trois cas de référence issus des barèmes LF 2026,
-                dont un cas de plafonnement du quotient familial. Dernière vérification : 19 avril 2026.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
-          <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-            Outil indicatif uniquement. Ne constitue pas un conseil fiscal personnalisé.{' '}
-            <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
-          </p>
-        </div>
-      </section>
-
       {/* FAQ cross-link */}
-      <section className="max-w-4xl mx-auto px-6 pb-16">
+      <section className="max-w-4xl mx-auto px-6 pb-8">
         <div className="border-t border-neutral-300">
           <Link
             href="/faq/tmi"

@@ -8,9 +8,6 @@ const PlusValueImmobiliereCalculator = dynamic(
   { loading: () => <CalculatorSkeleton /> }
 )
 import SourcesSection from '@/components/SourcesSection'
-import SchemaFAQ from '@/components/SchemaFAQ'
-import SchemaHowTo from '@/components/SchemaHowTo'
-import { FAQ_PLUS_VALUE, HOWTO_PLUS_VALUE } from '@/lib/schema/schemaData'
 
 
 export const metadata: Metadata = {
@@ -50,14 +47,6 @@ const ABATTEMENTS_PS = [
 export default function PlusValueImmobilierePage() {
   return (
     <>
-      <SchemaHowTo
-        name={HOWTO_PLUS_VALUE.name}
-        description={HOWTO_PLUS_VALUE.description}
-        totalTime={HOWTO_PLUS_VALUE.totalTime}
-        steps={HOWTO_PLUS_VALUE.steps}
-        tool="Calculateur CalculPatrimoine"
-      />
-      <SchemaFAQ items={FAQ_PLUS_VALUE} />
       <CalculateurPageLayout
       breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'Plus-value immobilière' }]}
       titre={<>Plus-value immobilière :<br />calculateur 2026</>}
@@ -72,12 +61,49 @@ export default function PlusValueImmobilierePage() {
       ]}
       calculator={<PlusValueImmobiliereCalculator />}
       currentHref="/plus-value-immobiliere"
+      methodologie={
+        <>
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formules de calcul</h3>
+            <div className="bg-neutral-50 border border-neutral-200 p-5 grid md:grid-cols-2 gap-x-8 gap-y-3">
+              {[
+                ['Plus-value brute', 'Prix de cession − Prix de revient ajusté'],
+                ['Prix de revient ajusté', 'Prix achat + frais + travaux'],
+                ['Forfait frais', '7,5 % du prix d\'acquisition'],
+                ['Forfait travaux (> 5 ans)', '15 % du prix d\'acquisition'],
+                ['Abattement IR (6e-21e an)', '6 % × (n − 5)'],
+                ['Abattement IR (22e an)', '6 % × 16 + 4 % = 100 %'],
+                ['Abattement PS (6e-21e an)', '1,65 % × (n − 5)'],
+                ['Abattement PS (22e an)', '28 % ; + 9 %/an jusqu\'à 30 ans'],
+                ['IR', 'PV nette IR × 19 %'],
+                ['Prélèvements sociaux', 'PV nette PS × 17,2 %'],
+                ['Surtaxe (si PV nette IR > 50 000 €)', '2 % à 6 % avec tempérament par seuil'],
+              ].map(([label, val]) => (
+                <div key={label} className="font-mono">
+                  <p className="text-xs text-neutral-400 mb-0.5">{label}</p>
+                  <p className="text-xs text-neutral-700">{val}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <SourcesSection slug="plus-value-immobiliere" />
+
+          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
+            <p className="text-sm text-primary-800">
+              <strong>Millésime fiscal : 2026.</strong> Barèmes applicables aux cessions réalisées en 2026.
+              Dernière vérification des sources : 02/05/2026. Ce calculateur est indicatif ;
+              le notaire calcule et prélève les impôts définitifs lors de la cession.
+            </p>
+          </div>
+        </>
+      }
     >
 
       {/* Explications */}
       <section className="max-w-4xl mx-auto px-6 py-8">
         <div className="bg-white border border-neutral-200 p-8 space-y-6">
-          <h2 className="font-serif text-2xl font-bold text-neutral-900">Comment ça marche ?</h2>
+          <h2 className="font-serif text-2xl font-bold text-neutral-900">Quatre règles à connaître avant la cession</h2>
 
           <div className="space-y-4 text-neutral-700 leading-relaxed">
             <p>
@@ -213,60 +239,6 @@ export default function PlusValueImmobilierePage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Méthodologie et sources */}
-      <section className="max-w-4xl mx-auto px-6 py-4 pb-16">
-        <div className="bg-white border border-neutral-200 p-8">
-          <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
-            Méthodologie et sources officielles
-          </h2>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formules de calcul</h3>
-              <div className="bg-neutral-50 border border-neutral-200 p-5 grid md:grid-cols-2 gap-x-8 gap-y-3">
-                {[
-                  ['Plus-value brute', 'Prix de cession − Prix de revient ajusté'],
-                  ['Prix de revient ajusté', 'Prix achat + frais + travaux'],
-                  ['Forfait frais', '7,5 % du prix d\'acquisition'],
-                  ['Forfait travaux (> 5 ans)', '15 % du prix d\'acquisition'],
-                  ['Abattement IR (6e-21e an)', '6 % × (n − 5)'],
-                  ['Abattement IR (22e an)', '6 % × 16 + 4 % = 100 %'],
-                  ['Abattement PS (6e-21e an)', '1,65 % × (n − 5)'],
-                  ['Abattement PS (22e an)', '28 % ; + 9 %/an jusqu\'à 30 ans'],
-                  ['IR', 'PV nette IR × 19 %'],
-                  ['Prélèvements sociaux', 'PV nette PS × 17,2 %'],
-                  ['Surtaxe (si PV nette IR > 50 000 €)', '2 % à 6 % avec tempérament par seuil'],
-                ].map(([label, val]) => (
-                  <div key={label} className="font-mono">
-                    <p className="text-xs text-neutral-400 mb-0.5">{label}</p>
-                    <p className="text-xs text-neutral-700">{val}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <SourcesSection slug="plus-value-immobiliere" />
-
-            <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-              <p className="text-sm text-primary-800">
-                <strong>Millésime fiscal : 2026.</strong> Barèmes applicables aux cessions réalisées en 2026.
-                Dernière vérification des sources : 02/05/2026. Ce calculateur est indicatif ;
-                le notaire calcule et prélève les impôts définitifs lors de la cession.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
-          <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-            Outil indicatif uniquement. Ne constitue pas un conseil fiscal personnalisé.{' '}
-            <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
-              Code source ouvert
-            </a>
-          </p>
         </div>
       </section>
 

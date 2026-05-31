@@ -10,7 +10,7 @@ import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
 import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
-import { formatEur } from '@/lib/formatters'
+import { formatEur, formatNombre } from '@/lib/formatters'
 
 const TMI_COLORS: Record<number, { badge: string; text: string; bg: string }> = {
   0:  { badge: 'bg-neutral-200 text-neutral-800',  text: 'text-neutral-700',  bg: 'bg-neutral-50'  },
@@ -195,7 +195,7 @@ export default function TMICalculator() {
             <div className="bg-white rounded-lg p-3 border border-neutral-200">
               <div className="text-xs text-neutral-500 mb-1">Parts totales</div>
               <div className="text-2xl font-bold text-neutral-900">
-                {results.nombreParts.toLocaleString('fr-FR')}
+                {formatNombre(results.nombreParts)}
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 border border-neutral-200">

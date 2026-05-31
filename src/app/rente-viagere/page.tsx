@@ -5,9 +5,6 @@ import SourcesSection from '@/components/SourcesSection'
 // PERF: lazy-load → RenteModeContent sort du bundle initial (logique métier + recharts)
 import dynamic from 'next/dynamic'
 import CalculatorSkeleton from '@/components/Calculator/CalculatorSkeleton'
-import SchemaFAQ from '@/components/SchemaFAQ'
-import SchemaHowTo from '@/components/SchemaHowTo'
-import { FAQ_RENTE, HOWTO_RENTE } from '@/lib/schema/schemaData'
 
 const RenteModeContent = dynamic(
   () => import('@/components/Calculator/RenteModeContent'),
@@ -41,14 +38,6 @@ const NOTE_VIAGER = (
 export default function RenteViagerePage() {
   return (
     <>
-      <SchemaHowTo
-        name={HOWTO_RENTE.name}
-        description={HOWTO_RENTE.description}
-        totalTime={HOWTO_RENTE.totalTime}
-        steps={HOWTO_RENTE.steps}
-        tool="Calculateur CalculPatrimoine"
-      />
-      <SchemaFAQ items={FAQ_RENTE} />
       <CalculateurPageLayout
       breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'Rente Viagère' }]}
       titre={<>Calculateur<br />Rente Viagère</>}
@@ -59,13 +48,45 @@ export default function RenteViagerePage() {
       aboveCalculator={NOTE_VIAGER}
       calculator={<RenteModeContent />}
       currentHref="/rente-viagere"
+      methodologie={
+        <>
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formules actuarielles</h3>
+            <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5 grid sm:grid-cols-2 gap-x-8 gap-y-3 overflow-hidden">
+              {[
+                ['Annuité viagère (äx)', 'Σ (ₖpₓ × vᵏ) pour k = 0 à ω-x'],
+                ["Facteur d'actualisation", 'v = 1 / (1 + i) - i = taux technique'],
+                ['Probabilité de survie', 'ₖpₓ = lₓ₊ₖ / lₓ (tables TGH05/TGF05)'],
+                ['Rente annuelle', 'Rente = Capital / äx'],
+                ['Avec réversion', 'Capital / (äx + α × äy|x)'],
+                ['Taux technique défaut', '0,5 % (standard marché)'],
+              ].map(([label, val]) => (
+                <div key={label} className="font-mono">
+                  <p className="text-xs text-neutral-400 mb-0.5">{label}</p>
+                  <p className="text-xs text-neutral-700 break-all">{val}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <SourcesSection slug="rente-viagere" title="Textes réglementaires" />
+
+          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
+            <p className="text-sm text-primary-800">
+              Tables générationnelles TGH05 / TGF05 homologuées par arrêté du 1er août 2006 (art. A335-1 Code des assurances).
+              Taux technique : 0,5 %. Table unisexe : pondération 48 % hommes / 52 % femmes.
+              Dernière vérification des sources : mai 2026.
+            </p>
+          </div>
+        </>
+      }
     >
 
       {/* Explications */}
       <section className="max-w-6xl mx-auto px-6 py-8">
         <div className="bg-white border border-neutral-200 p-8 space-y-5">
           <h2 className="font-serif text-2xl font-bold text-neutral-900">
-            Comment ça marche ?
+            Ce qui détermine le montant de la rente
           </h2>
           <div className="space-y-4 text-neutral-700 leading-relaxed">
             <p>
@@ -110,55 +131,6 @@ export default function RenteViagerePage() {
               <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/* Méthodologie */}
-      <section className="max-w-6xl mx-auto px-6 py-8 pb-16">
-        <div className="bg-white border border-neutral-200 p-8">
-          <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
-            Méthodologie et sources officielles
-          </h2>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formules actuarielles</h3>
-              <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5 grid sm:grid-cols-2 gap-x-8 gap-y-3 overflow-hidden">
-                {[
-                  ['Annuité viagère (äx)', 'Σ (ₖpₓ × vᵏ) pour k = 0 à ω-x'],
-                  ["Facteur d'actualisation", 'v = 1 / (1 + i) - i = taux technique'],
-                  ['Probabilité de survie', 'ₖpₓ = lₓ₊ₖ / lₓ (tables TGH05/TGF05)'],
-                  ['Rente annuelle', 'Rente = Capital / äx'],
-                  ['Avec réversion', 'Capital / (äx + α × äy|x)'],
-                  ['Taux technique défaut', '0,5 % (standard marché)'],
-                ].map(([label, val]) => (
-                  <div key={label} className="font-mono">
-                    <p className="text-xs text-neutral-400 mb-0.5">{label}</p>
-                    <p className="text-xs text-neutral-700 break-all">{val}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <SourcesSection slug="rente-viagere" title="Textes réglementaires" />
-
-            <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-              <p className="text-sm text-primary-800">
-                <strong>Méthodologie vérifiée :</strong> calculs conformes aux formules actuarielles standard,
-                tables générationnelles TGH05 / TGF05 homologuées par arrêté du 1er août 2006 (art. A335-1 Code des assurances).
-                Taux technique : 0,5 %. Table unisexe : pondération 48 % hommes / 52 % femmes. Dernière vérification : mai 2026.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
-          <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-            Outil indicatif uniquement. Ne constitue pas un conseil patrimonial.{' '}
-            <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
-              Code source ouvert
-            </a>
-          </p>
         </div>
       </section>
 

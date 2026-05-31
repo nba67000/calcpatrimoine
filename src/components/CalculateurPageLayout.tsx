@@ -11,6 +11,9 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import LegalDisclaimer from '@/components/LegalDisclaimer'
 import RelatedCalcSection from '@/components/RelatedCalcSection'
+import SchemaFAQ from '@/components/SchemaFAQ'
+import SchemaHowTo from '@/components/SchemaHowTo'
+import { getCalculator } from '@/lib/calculators'
 
 interface BreadcrumbItem {
   href?: string
@@ -28,6 +31,13 @@ interface Props {
   /** Slug href du calculateur courant. Active RelatedCalcSection. */
   currentHref?: string
   children?: ReactNode
+  /**
+   * Contenu de la section "Méthodologie et sources officielles", rendu
+   * après les `children` dans un wrapper standardisé (H2 + container +
+   * footer disclaimer). Typiquement : formules, SourcesSection, limites,
+   * bandeau date de vérification. La structure interne reste libre.
+   */
+  methodologie?: ReactNode
 }
 
 export default function CalculateurPageLayout({
@@ -39,9 +49,27 @@ export default function CalculateurPageLayout({
   calculator,
   currentHref,
   children,
+  methodologie,
 }: Props) {
+  // Résolution du module calculateur via le registry pour injecter
+  // automatiquement les schémas SEO (FAQ + HowTo). Cf. ADR-0001.
+  const slug = currentHref?.replace(/^\//, '')
+  const module = slug ? getCalculator(slug) : undefined
+
   return (
     <>
+      {module && (
+        <>
+          <SchemaHowTo
+            name={module.howToSchema.name}
+            description={module.howToSchema.description}
+            totalTime={module.howToSchema.totalTime}
+            steps={module.howToSchema.steps}
+            tool="Calculateur CalculPatrimoine"
+          />
+          <SchemaFAQ items={module.faqSchema} />
+        </>
+      )}
       <Header />
       {/*
         CLS FIX : hauteur explicite pour que le navigateur réserve l'espace
@@ -121,6 +149,31 @@ export default function CalculateurPageLayout({
         </div>
 
         {children}
+
+        {methodologie && (
+          <section className="max-w-4xl mx-auto px-6 py-4 pb-16">
+            <div className="bg-white border border-neutral-200 p-8">
+              <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
+                Méthodologie et sources officielles
+              </h2>
+              <div className="space-y-6">{methodologie}</div>
+            </div>
+
+            <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
+              <p className="font-mono text-xs text-neutral-400 leading-relaxed">
+                Outil indicatif uniquement. Ne constitue pas un conseil fiscal ou patrimonial personnalisé.{' '}
+                <a
+                  href="https://github.com/nba67000/calculpatrimoine"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary-600 hover:underline"
+                >
+                  Code source ouvert
+                </a>
+              </p>
+            </div>
+          </section>
+        )}
 
         {currentHref && <RelatedCalcSection currentHref={currentHref} />}
 

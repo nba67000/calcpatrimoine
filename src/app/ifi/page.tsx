@@ -9,9 +9,6 @@ const IFICalculator = dynamic(
   { loading: () => <CalculatorSkeleton /> }
 )
 import SourcesSection from '@/components/SourcesSection'
-import SchemaFAQ from '@/components/SchemaFAQ'
-import SchemaHowTo from '@/components/SchemaHowTo'
-import { FAQ_IFI, HOWTO_IFI } from '@/lib/schema/schemaData'
 
 
 export const metadata: Metadata = {
@@ -61,14 +58,6 @@ const BAREME_IFI = [
 export default function IFIPage() {
   return (
     <>
-      <SchemaHowTo
-        name={HOWTO_IFI.name}
-        description={HOWTO_IFI.description}
-        totalTime={HOWTO_IFI.totalTime}
-        steps={HOWTO_IFI.steps}
-        tool="Calculateur CalculPatrimoine"
-      />
-      <SchemaFAQ items={FAQ_IFI} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(toolSchema) }}
@@ -93,6 +82,41 @@ export default function IFIPage() {
         ]}
         calculator={<IFICalculator />}
         currentHref="/ifi"
+        methodologie={
+          <>
+            <div>
+              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formules de calcul</h3>
+              <div className="bg-neutral-50 border border-neutral-200 p-5 grid md:grid-cols-2 gap-x-8 gap-y-3">
+                {[
+                  ['Valeur brute', 'Valeur de marché totale des biens au 1er janvier'],
+                  ['Abattement RP', '30 % de la valeur de la résidence principale'],
+                  ['Patrimoine net taxable', 'Assiette brute − abattement RP − dettes'],
+                  ['IFI brut', 'Application du barème progressif par tranche'],
+                  ['Décote (si 1,3M ≤ P < 1,4M €)', '17 500 € − 1,25 % × patrimoine net'],
+                  ['IFI net', 'IFI brut − décote progressive'],
+                  ['Plafonnement', 'Si IFI + IR > 75 % revenus → IFI réduit'],
+                  ['Taux effectif', 'IFI net / patrimoine net × 100'],
+                ].map(([label, val]) => (
+                  <div key={label} className="font-mono">
+                    <p className="text-xs text-neutral-400 mb-0.5">{label}</p>
+                    <p className="text-xs text-neutral-700">{val}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <SourcesSection slug="ifi" />
+
+            <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
+              <p className="text-sm text-primary-800">
+                <strong>Millésime fiscal : 2026.</strong> Barème applicable au patrimoine au 1er janvier 2026.
+                Inchangé depuis la LF 2018. Dernière vérification des sources : 07/05/2026.
+                Ce calculateur est indicatif ; les exonérations partielles (biens professionnels, forêts,
+                démembrement) et les réductions pour dons ne sont pas prises en compte.
+              </p>
+            </div>
+          </>
+        }
       >
 
         {/* Comment ça marche */}
@@ -232,58 +256,6 @@ export default function IFIPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* Méthodologie et sources */}
-        <section className="max-w-4xl mx-auto px-6 py-4 pb-16">
-          <div className="bg-white border border-neutral-200 p-8">
-            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
-              Méthodologie et sources officielles
-            </h2>
-
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Formules de calcul</h3>
-                <div className="bg-neutral-50 border border-neutral-200 p-5 grid md:grid-cols-2 gap-x-8 gap-y-3">
-                  {[
-                    ['Valeur brute', 'Valeur de marché totale des biens au 1er janvier'],
-                    ['Abattement RP', '30 % de la valeur de la résidence principale'],
-                    ['Patrimoine net taxable', 'Assiette brute − abattement RP − dettes'],
-                    ['IFI brut', 'Application du barème progressif par tranche'],
-                    ['Décote (si 1,3M ≤ P < 1,4M €)', '17 500 € − 1,25 % × patrimoine net'],
-                    ['IFI net', 'IFI brut − décote progressive'],
-                    ['Plafonnement', 'Si IFI + IR > 75 % revenus → IFI réduit'],
-                    ['Taux effectif', 'IFI net / patrimoine net × 100'],
-                  ].map(([label, val]) => (
-                    <div key={label} className="font-mono">
-                      <p className="text-xs text-neutral-400 mb-0.5">{label}</p>
-                      <p className="text-xs text-neutral-700">{val}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <SourcesSection slug="ifi" />
-
-              <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-                <p className="text-sm text-primary-800">
-                  <strong>Millésime fiscal : 2026.</strong> Barème applicable au patrimoine au 1er janvier 2026.
-                  Inchangé depuis la LF 2018. Dernière vérification des sources : 07/05/2026.
-                  Ce calculateur est indicatif ; les exonérations partielles (biens professionnels, forêts,
-                  démembrement) et les réductions pour dons ne sont pas prises en compte.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
-            <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-              Outil indicatif uniquement. Ne constitue pas un conseil fiscal personnalisé.{' '}
-              <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
-                Code source ouvert
-              </a>
-            </p>
           </div>
         </section>
 

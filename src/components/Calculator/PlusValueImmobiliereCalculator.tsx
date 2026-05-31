@@ -1,9 +1,8 @@
 'use client'
 
-import { useMemo, useEffect } from 'react'
 import { calculerPlusValueImmobiliere } from '@/lib/plusValueImmobiliere'
 import type { PlusValueImmobiliereInputs } from '@/types/plusValueImmobiliere'
-import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
+import { useCalculator } from '@/hooks/useCalculator'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
@@ -24,26 +23,22 @@ const DEFAULT_INPUTS: PlusValueImmobiliereInputs = {
 }
 
 export default function PlusValueImmobiliereCalculator() {
-  const [inputs, setInputs, resetInputs] = useSimStorage<PlusValueImmobiliereInputs>('plus-value-immobiliere', DEFAULT_INPUTS)
-
-  const results = useMemo(() => calculerPlusValueImmobiliere(inputs), [inputs])
+  const { inputs, setInputs, reset, results } = useCalculator({
+    slug: 'plus-value-immobiliere',
+    nom: 'Plus-value immobilière',
+    href: '/plus-value-immobiliere',
+    defaultInputs: DEFAULT_INPUTS,
+    compute: calculerPlusValueImmobiliere,
+    resume: r => r.pvBrute > 0
+      ? `PV brute : ${formatEur(r.pvBrute)} · Impôts : ${formatEur(r.totalImpots)}`
+      : null,
+  })
 
   const forfaitDisponible = results.anneesDetention > 5
 
-  useEffect(() => {
-    if (results.pvBrute <= 0) return
-    saveSimHistory({
-      slug: 'plus-value-immobiliere',
-      nom: 'Plus-value immobilière',
-      href: '/plus-value-immobiliere',
-      resume: `PV brute : ${formatEur(results.pvBrute)} · Impôts : ${formatEur(results.totalImpots)}`,
-      date: new Date().toISOString(),
-    })
-  }, [results.pvBrute, results.totalImpots])
-
   return (
     <>
-    <SimResumeBanner slug="plus-value-immobiliere" onReset={resetInputs} />
+    <SimResumeBanner slug="plus-value-immobiliere" onReset={reset} />
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* === COLONNE GAUCHE - INPUTS === */}

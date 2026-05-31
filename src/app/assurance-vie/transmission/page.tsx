@@ -9,9 +9,6 @@ const TransmissionCalculator = dynamic(
   { loading: () => <CalculatorSkeleton /> }
 )
 import SourcesSection from '@/components/SourcesSection'
-import SchemaFAQ from '@/components/SchemaFAQ'
-import SchemaHowTo from '@/components/SchemaHowTo'
-import { FAQ_TRANSMISSION, HOWTO_TRANSMISSION } from '@/lib/schema/schemaData'
 
 
 export const metadata: Metadata = {
@@ -30,14 +27,6 @@ export const metadata: Metadata = {
 export default function TransmissionPage() {
   return (
     <>
-      <SchemaHowTo
-        name={HOWTO_TRANSMISSION.name}
-        description={HOWTO_TRANSMISSION.description}
-        totalTime={HOWTO_TRANSMISSION.totalTime}
-        steps={HOWTO_TRANSMISSION.steps}
-        tool="Calculateur CalculPatrimoine"
-      />
-      <SchemaFAQ items={FAQ_TRANSMISSION} />
       <CalculateurPageLayout
       breadcrumb={[
         { href: '/', label: 'Accueil' },
@@ -50,12 +39,47 @@ export default function TransmissionPage() {
       features={['Article 990 I (avant 70 ans)', 'Article 757 B (après 70 ans)', 'Jusqu\'à 6 bénéficiaires', 'Zéro donnée conservée']}
       calculator={<TransmissionCalculator />}
       currentHref="/assurance-vie/transmission"
+      methodologie={
+        <>
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Abattements et taux 2026</h3>
+            <div className="bg-neutral-50 border border-neutral-200 p-5 grid md:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+              <div>
+                <p className="font-bold text-neutral-900 mb-1">Article 990 I (avant 70 ans)</p>
+                <p className="text-neutral-600">Abattement : 152 500 € par bénéficiaire</p>
+                <p className="text-neutral-600">Taux : 20 % puis 31,25 % (seuil 700 000 €)</p>
+              </div>
+              <div>
+                <p className="font-bold text-neutral-900 mb-1">Article 757 B (après 70 ans)</p>
+                <p className="text-neutral-600">Abattement : 30 500 € global partagé</p>
+                <p className="text-neutral-600">Taux : barème succession classique</p>
+              </div>
+              <div>
+                <p className="font-bold text-neutral-900 mb-1">Conjoint / PACS</p>
+                <p className="text-neutral-600">Exonération totale (Loi TEPA 2007)</p>
+              </div>
+              <div>
+                <p className="font-bold text-neutral-900 mb-1">Plus-values après 70 ans</p>
+                <p className="text-neutral-600">Totalement exonérées</p>
+              </div>
+            </div>
+          </div>
+
+          <SourcesSection slug="assurance-vie/transmission" />
+
+          <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
+            <p className="text-sm text-primary-800">
+              Barèmes et abattements 2026 (Art. 990 I et 757 B CGI). Dernière vérification des sources : avril 2026.
+            </p>
+          </div>
+        </>
+      }
     >
 
       {/* Explications */}
       <section className="max-w-4xl mx-auto px-6 py-8">
         <div className="bg-white border border-neutral-200 p-8 space-y-5">
-          <h2 className="font-serif text-2xl font-bold text-neutral-900">Comment ça marche ?</h2>
+          <h2 className="font-serif text-2xl font-bold text-neutral-900">Deux régimes selon l&apos;âge des versements</h2>
           <div className="space-y-4 text-neutral-700 leading-relaxed">
             <p>
               <strong>Deux régimes selon l&apos;âge des versements.</strong>{' '}
@@ -108,57 +132,6 @@ export default function TransmissionPage() {
             </div>
             <span className="font-mono text-primary-600 group-hover:translate-x-1 transition-transform ml-4 shrink-0">→</span>
           </Link>
-        </div>
-      </section>
-
-      {/* Méthodologie */}
-      <section className="max-w-4xl mx-auto px-6 py-8 pb-16">
-        <div className="bg-white border border-neutral-200 p-8">
-          <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-6">
-            Méthodologie et sources officielles
-          </h2>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Abattements et taux 2026</h3>
-              <div className="bg-neutral-50 border border-neutral-200 p-5 grid md:grid-cols-2 gap-x-8 gap-y-4 text-sm">
-                <div>
-                  <p className="font-bold text-neutral-900 mb-1">Article 990 I (avant 70 ans)</p>
-                  <p className="text-neutral-600">Abattement : 152 500 € par bénéficiaire</p>
-                  <p className="text-neutral-600">Taux : 20 % puis 31,25 % (seuil 700 000 €)</p>
-                </div>
-                <div>
-                  <p className="font-bold text-neutral-900 mb-1">Article 757 B (après 70 ans)</p>
-                  <p className="text-neutral-600">Abattement : 30 500 € global partagé</p>
-                  <p className="text-neutral-600">Taux : barème succession classique</p>
-                </div>
-                <div>
-                  <p className="font-bold text-neutral-900 mb-1">Conjoint / PACS</p>
-                  <p className="text-neutral-600">Exonération totale (Loi TEPA 2007)</p>
-                </div>
-                <div>
-                  <p className="font-bold text-neutral-900 mb-1">Plus-values après 70 ans</p>
-                  <p className="text-neutral-600">Totalement exonérées</p>
-                </div>
-              </div>
-            </div>
-
-            <SourcesSection slug="assurance-vie/transmission" />
-
-            <div className="border-l-4 border-primary-200 bg-primary-50 px-4 py-3">
-              <p className="text-sm text-primary-800">
-                <strong>Méthodologie vérifiée</strong> - calculs conformes au CGI et au BOFiP.
-                Barèmes et abattements mis à jour en avril 2026.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-neutral-200 mt-8 pt-6 text-center">
-          <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-            Outil indicatif uniquement. Ne constitue pas un conseil patrimonial personnalisé.{' '}
-            <a href="https://github.com/nba67000/calculpatrimoine" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Code source ouvert</a>
-          </p>
         </div>
       </section>
 

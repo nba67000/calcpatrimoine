@@ -1,16 +1,15 @@
 // src/components/Calculator/AssuranceVieCalculator.tsx
 'use client'
 
-import { useMemo, useEffect } from 'react'
 import FiscaliteComparisonChart from '@/components/FiscaliteComparisonChart'
 import { calculerFiscaliteRachat, formatDateForInput, parseDateFromInput } from '@/lib/assuranceVie'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
-import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
+import { useCalculator } from '@/hooks/useCalculator'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
 import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
-import { formatEur } from '@/lib/formatters'
+import { formatEur, formatNombre } from '@/lib/formatters'
 
 // dateOuverture stored as ISO string to survive JSON serialization
 interface AVSimState {
@@ -36,27 +35,23 @@ const DEFAULT_STATE: AVSimState = {
 }
 
 export default function AssuranceVieCalculator() {
-  const [inputs, setInputs, resetInputs] = useSimStorage<AVSimState>('assurance-vie-rachat', DEFAULT_STATE)
-
-  const results = useMemo(() => calculerFiscaliteRachat({
-    ...inputs,
-    dateOuverture: new Date(inputs.dateOuverture),
-  }), [inputs])
-
-  useEffect(() => {
-    if (results.plusValueTaxable <= 0) return
-    saveSimHistory({
-      slug: 'assurance-vie-rachat',
-      nom: 'Fiscalité des rachats',
-      href: '/assurance-vie/fiscalite-rachat',
-      resume: `Rachat : ${formatEur(inputs.montantRachat)} · PV imposable : ${formatEur(results.plusValueTaxable)}`,
-      date: new Date().toISOString(),
-    })
-  }, [results.plusValueTaxable, inputs.montantRachat])
+  const { inputs, setInputs, reset, results } = useCalculator({
+    slug: 'assurance-vie-rachat',
+    nom: 'Fiscalité des rachats',
+    href: '/assurance-vie/fiscalite-rachat',
+    defaultInputs: DEFAULT_STATE,
+    compute: (state: AVSimState) => calculerFiscaliteRachat({
+      ...state,
+      dateOuverture: new Date(state.dateOuverture),
+    }),
+    resume: (r, i) => r.plusValueTaxable > 0
+      ? `Rachat : ${formatEur(i.montantRachat)} · PV imposable : ${formatEur(r.plusValueTaxable)}`
+      : null,
+  })
 
   return (
     <>
-    <SimResumeBanner slug="assurance-vie-rachat" onReset={resetInputs} />
+    <SimResumeBanner slug="assurance-vie-rachat" onReset={reset} />
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* COLONNE GAUCHE - INPUTS */}
@@ -159,7 +154,7 @@ export default function AssuranceVieCalculator() {
               className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
             />
             <div className="flex justify-between text-xs text-neutral-500 mt-1">
-              <span>1 000€</span><span>{inputs.capitalTotal.toLocaleString('fr-FR')}€</span>
+              <span>1 000€</span><span>{formatNombre(inputs.capitalTotal)}€</span>
             </div>
           </div>
 
@@ -252,7 +247,7 @@ export default function AssuranceVieCalculator() {
               className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
             />
             <div className="flex justify-between text-xs text-neutral-500 mt-1">
-              <span>0€</span><span>{inputs.versementTotal.toLocaleString('fr-FR')}€</span>
+              <span>0€</span><span>{formatNombre(inputs.versementTotal)}€</span>
             </div>
           </div>
 

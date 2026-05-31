@@ -1,14 +1,13 @@
 'use client'
 
-import { useMemo, useEffect } from 'react'
 import { calculerIFI } from '@/lib/ifi'
 import type { IFIInputs } from '@/types/ifi'
-import { saveSimHistory, useSimStorage } from '@/hooks/useSimStorage'
+import { useCalculator } from '@/hooks/useCalculator'
 import AlertList from '@/components/AlertList'
 import ChatWidget from '@/components/ChatWidget'
 import CrossLink from '@/components/CrossLink'
 import SimResumeBanner from '@/components/Calculator/SimResumeBanner'
-import { formatEur, formatPct } from '@/lib/formatters'
+import { formatEur, formatPct, formatNombre } from '@/lib/formatters'
 
 const SEUIL_IFI = 1_300_000
 
@@ -23,24 +22,23 @@ const DEFAULT_INPUTS: IFIInputs = {
 }
 
 export default function IFICalculator() {
-  const [inputs, setInputs, resetInputs] = useSimStorage<IFIInputs>('ifi', DEFAULT_INPUTS)
-  const results = useMemo(() => calculerIFI(inputs), [inputs])
-  const ifiDefinitif = results.plafonnementApplicable ? results.ifiApresPlafonnement : results.ifiNet
+  const { inputs, setInputs, reset, results } = useCalculator({
+    slug: 'ifi',
+    nom: 'IFI - Fortune immobilière',
+    href: '/ifi',
+    defaultInputs: DEFAULT_INPUTS,
+    compute: calculerIFI,
+    resume: r => {
+      const ifi = r.plafonnementApplicable ? r.ifiApresPlafonnement : r.ifiNet
+      return ifi > 0 ? `IFI : ${formatEur(ifi)}` : null
+    },
+  })
 
-  useEffect(() => {
-    if (ifiDefinitif <= 0) return
-    saveSimHistory({
-      slug: 'ifi',
-      nom: 'IFI - Fortune immobilière',
-      href: '/ifi',
-      resume: `IFI : ${formatEur(ifiDefinitif)}`,
-      date: new Date().toISOString(),
-    })
-  }, [ifiDefinitif])
+  const ifiDefinitif = results.plafonnementApplicable ? results.ifiApresPlafonnement : results.ifiNet
 
   return (
     <>
-    <SimResumeBanner slug="ifi" onReset={resetInputs} />
+    <SimResumeBanner slug="ifi" onReset={reset} />
     <div className="grid lg:grid-cols-2 gap-8">
 
       {/* === COLONNE GAUCHE - INPUTS === */}
@@ -323,12 +321,12 @@ export default function IFICalculator() {
                   {results.tranches.map((t, i) => (
                     <tr key={i} className={`border-b border-neutral-100 ${t.impot > 0 ? '' : 'text-neutral-400'}`}>
                       <td className="py-2 text-xs">
-                        {t.de.toLocaleString('fr-FR')} →{' '}
-                        {t.a !== null ? t.a.toLocaleString('fr-FR') : '∞'} €
+                        {formatNombre(t.de)} →{' '}
+                        {t.a !== null ? formatNombre(t.a) : '∞'} €
                       </td>
-                      <td className="py-2 text-right font-mono">{t.taux.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} %</td>
-                      <td className="py-2 text-right">{t.baseImposable.toLocaleString('fr-FR')} €</td>
-                      <td className="py-2 text-right font-bold">{t.impot.toLocaleString('fr-FR')} €</td>
+                      <td className="py-2 text-right font-mono">{formatPct(t.taux, 2)}</td>
+                      <td className="py-2 text-right">{formatEur(t.baseImposable)}</td>
+                      <td className="py-2 text-right font-bold">{formatEur(t.impot)}</td>
                     </tr>
                   ))}
                   <tr className="border-t-2 border-neutral-200 font-bold">

@@ -86,11 +86,29 @@ Composant React client (`src/components/Calculator/<Nom>Calculator.tsx`)
 qui gère l'état d'entrée, appelle la pure lib via `useMemo`, et rend les
 résultats. Toujours nommé `<Nom>Calculator`.
 
+Pour les calculateurs dont les inputs persistés correspondent **directement**
+au shape des Inputs de la lib (pas de couche `useNumericInput`), utiliser
+le hook [[useCalculator]] qui absorbe le triplet
+`useSimStorage + useMemo(compute) + useEffect(saveSimHistory)`.
+
+### useCalculator
+
+Hook (`src/hooks/useCalculator.ts`) qui factorise la mécanique d'état des
+Calculator UI standard : persistance (`useSimStorage`), computation
+(`useMemo`), enregistrement dans l'historique (`useEffect` +
+`saveSimHistory`). Retourne `{ inputs, setInputs, reset, results }`.
+S'applique aux calcs dont les Inputs persistés = Inputs de la lib
+(IFI, AssuranceVie/rachat, Transmission, PlusValueImmobiliere).
+Cf. ADR-0002.
+
 ### Calculator page
 
 Server component (`src/app/<slug>/page.tsx`) qui assemble le calculateur :
-metadata SEO, breadcrumb, `<LegalDisclaimer>`, le composant Calculator,
-et les sections "Comment ça marche", "Exemples", "Méthodologie".
+metadata SEO, breadcrumb, et le composant Calculator. Le layout
+[[CalculateurPageLayout]] absorbe automatiquement : `<LegalDisclaimer>`,
+les schémas SEO (`SchemaFAQ` + `SchemaHowTo` résolus via le registry),
+le footer disclaimer, et le wrapper de la section "Méthodologie et
+sources officielles" (passée via la prop `methodologie`).
 
 ### Seam d'extension
 
@@ -99,6 +117,21 @@ Pour ajouter un calculateur, un seul fichier de wiring doit être édité :
 reste édité séparément car il porte des métadonnées d'UX (catégorie
 visible, ordre dans le menu, description courte) qui sont distinctes
 du comportement du calculateur lui-même.
+
+### CalculateurPageLayout
+
+Layout React (`src/components/CalculateurPageLayout.tsx`) consommé par
+toutes les pages calculateur. Au-delà du chrome (Header, hero,
+breadcrumb, RelatedCalcSection, Footer), il absorbe automatiquement
+ce qui se déduit du `currentHref` :
+
+- les schémas SEO `SchemaFAQ` + `SchemaHowTo` (résolus via `getCalculator(slug)`),
+- le `LegalDisclaimer` au-dessus du calculateur,
+- le wrapper standardisé de la section "Méthodologie et sources officielles"
+  (H2 + container + footer disclaimer "Outil indicatif…") via la prop
+  `methodologie?: ReactNode`.
+
+Cf. ADR-0002.
 
 ---
 
