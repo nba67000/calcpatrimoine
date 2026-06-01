@@ -98,15 +98,6 @@ export const metadata: Metadata = {
     url: 'https://calculpatrimoine.fr',
     title: 'CalculPatrimoine - Calculateurs patrimoniaux gratuits et open-source',
     description: 'Plus de 14 calculateurs patrimoniaux gratuits basés sur les textes officiels : TMI, PER, assurance-vie, donation, succession, IFI, PEA, plus-value, LMNP, SCI. Open-source, sans inscription.',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'CalculPatrimoine - Calculateurs patrimoniaux',
-        type: 'image/png',
-      },
-    ],
   },
 
   twitter: {
@@ -115,12 +106,10 @@ export const metadata: Metadata = {
     creator: '@calculpatrimoine',
     title: 'CalculPatrimoine - Calculateurs patrimoniaux gratuits',
     description: 'Calculateurs gratuits pour la fiscalité du patrimoine : TMI, PER, assurance-vie, donation, succession, IFI, PEA, plus-value. Open-source, sans inscription.',
-    images: ['/og-image.png'],
   },
 
   verification: {
     google: 'TNiWVpRx2OUPkpd3psd01dLxb9RyaBLgsWxrN_Z-GlY',
-    yandex: 'VOTRE_CODE_YANDEX',
   },
 
   alternates: {
