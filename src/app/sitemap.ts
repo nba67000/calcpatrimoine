@@ -17,6 +17,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     }))
 
+  // Category landing pages - derived from CATEGORIES_CALC
+  const categoryPages: MetadataRoute.Sitemap = CATEGORIES_CALC.map(cat => ({
+    url: `${baseUrl}/calculateurs/${cat.slug}`,
+    lastModified,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
   return [
     // Home
     {
@@ -28,6 +36,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Calculators (derived)
     ...calculatorPages,
+
+    // Category landing pages (derived)
+    ...categoryPages,
 
     // Blog
     {
@@ -48,6 +59,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/blog/per-individuel-deduction-fiscalite`,
+      lastModified: new Date('2026-04-20'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
 
     // FAQ
     {
@@ -63,6 +80,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/faq/transmission`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/faq/ifi`,
       lastModified,
       changeFrequency: 'monthly',
@@ -70,6 +93,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/faq/donation-droits`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/faq/tmi`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/faq/per`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/faq/rente-viagere`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/faq/plus-value-immobiliere`,
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.6,

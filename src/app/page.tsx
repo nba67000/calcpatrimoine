@@ -8,11 +8,11 @@ import { CATEGORIES_CALC } from '@/config/navigation'
 
 export const metadata: Metadata = {
   title: 'CalculPatrimoine - Calculateurs patrimoniaux gratuits et open-source',
-  description: 'Des calculateurs patrimoniaux gratuits basés sur les textes officiels en vigueur. Aucune donnée conservée. Code source ouvert.',
-  keywords: 'calculateur patrimoine, rente viagère, assurance vie, PER, TMI, retraite, simulateur gratuit, open-source',
+  description: 'Plus de 14 calculateurs patrimoniaux gratuits basés sur les textes officiels (CGI, BOFiP, INSEE) : TMI, PER, assurance-vie, donation, succession, IFI, PEA, plus-value immobilière, LMNP, SCI, rente viagère. Sans inscription, aucune donnée conservée.',
+  keywords: 'calculateur patrimoine, simulateur fiscal gratuit, calculateur TMI 2026, calculateur PER, plafond PER, assurance vie fiscalité, rachat assurance vie, transmission assurance vie, droits de donation, calculateur succession, IFI 2026, PEA fiscalité, plus-value immobilière, LMNP réel vs micro, SCI IS vs IR, rente viagère, CSG retraite, prêt intrafamilial, démembrement, open source finance',
   openGraph: {
-    title: 'CalculPatrimoine - Calculateurs patrimoniaux gratuits',
-    description: 'Des calculateurs patrimoniaux basés sur les textes officiels. Aucun conseil, aucune donnée conservée.',
+    title: 'CalculPatrimoine - Calculateurs patrimoniaux gratuits et open-source',
+    description: 'Plus de 14 calculateurs patrimoniaux basés sur les textes officiels. Aucun conseil, aucune donnée conservée.',
     type: 'website',
   },
 

@@ -1,96 +1,100 @@
-﻿// src/components/SchemaMarkup.tsx
+// src/components/SchemaMarkup.tsx
 import Script from 'next/script'
+import { CATEGORIES_CALC } from '@/config/navigation'
 
 export default function SchemaMarkup() {
- const schemaData = {
- '@context': 'https://schema.org',
- '@graph': [
- // SoftwareApplication
- {
- '@type': 'SoftwareApplication',
- name: 'CalculPatrimoine',
- applicationCategory: 'FinanceApplication',
- operatingSystem: 'Web',
- offers: {
- '@type': 'Offer',
- price: '0',
- priceCurrency: 'EUR',
- },
- description:
- 'Calculateur de rente viagère gratuit et open-source. Estimez vos revenus mensuels à vie à partir d\'un capital, basé sur les tables de mortalité officielles INSEE.',
- url: 'https://calculpatrimoine.fr',
- softwareVersion: '1.0',
- featureList: [
- 'Calcul rente viagère',
- 'Calcul inversé capital nécessaire',
- 'Optimisation stratégies couple',
- 'Tables mortalité INSEE 2022',
- 'Sans inscription',
- 'Données non conservées',
- ],
- screenshot: 'https://calculpatrimoine.fr/og-image.png',
- author: {
- '@type': 'Organization',
- name: 'CalculPatrimoine',
- url: 'https://calculpatrimoine.fr',
- },
- aggregateRating: {
- '@type': 'AggregateRating',
- ratingValue: '4.8',
- ratingCount: '127',
- },
- },
- // Organization
- {
- '@type': 'Organization',
- name: 'CalculPatrimoine',
- url: 'https://calculpatrimoine.fr',
- logo: 'https://calculpatrimoine.fr/logo.svg',
- sameAs: [
- 'https://github.com/votre-username/calculpatrimoine', // À REMPLACER
- ],
- contactPoint: {
- '@type': 'ContactPoint',
- email: 'contact@calculpatrimoine.fr',
- contactType: 'Customer Service',
- },
- },
- // WebSite
- {
- '@type': 'WebSite',
- name: 'CalculPatrimoine',
- url: 'https://calculpatrimoine.fr',
- description:
- 'Calculateur de rente viagère gratuit basé sur les tables de mortalité INSEE',
- potentialAction: {
- '@type': 'SearchAction',
- target: {
- '@type': 'EntryPoint',
- urlTemplate: 'https://calculpatrimoine.fr/?q={search_term_string}',
- },
- 'query-input': 'required name=search_term_string',
- },
- },
- // FinancialProduct
- {
- '@type': 'FinancialProduct',
- name: 'Calculateur Rente Viagère',
- description:
- 'Outil de calcul de rente viagère permettant de convertir un capital en revenus mensuels garantis à vie',
- provider: {
- '@type': 'Organization',
- name: 'CalculPatrimoine',
- },
- feesAndCommissionsSpecification: 'Gratuit - Aucuns frais',
- },
- ],
- }
+  const baseUrl = 'https://calculpatrimoine.fr'
 
- return (
- <Script
- id="schema-markup"
- type="application/ld+json"
- dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
- />
- )
+  const calculateursActifs = CATEGORIES_CALC
+    .flatMap(c => c.calculateurs)
+    .filter(c => c.disponible)
+
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${baseUrl}#website`,
+        name: 'CalculPatrimoine',
+        url: baseUrl,
+        inLanguage: 'fr-FR',
+        description:
+          'Calculateurs patrimoniaux gratuits et open-source basés sur les textes officiels (CGI, BOFiP, INSEE).',
+        publisher: { '@id': `${baseUrl}#organization` },
+      },
+
+      {
+        '@type': 'Organization',
+        '@id': `${baseUrl}#organization`,
+        name: 'CalculPatrimoine',
+        url: baseUrl,
+        logo: `${baseUrl}/logo.svg`,
+        sameAs: ['https://github.com/nba67000/calculpatrimoine'],
+        founder: {
+          '@type': 'Person',
+          name: 'Nicolas Barbier',
+        },
+      },
+
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${baseUrl}#software`,
+        name: 'CalculPatrimoine',
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: baseUrl,
+        description:
+          'Suite de calculateurs patrimoniaux gratuits pour la fiscalité française : TMI, PER, assurance-vie, donation, succession, IFI, PEA, plus-value immobilière, LMNP, SCI, rente viagère, CSG retraite.',
+        softwareVersion: '2.0',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'EUR',
+        },
+        featureList: [
+          'Tranche marginale d\'imposition (TMI) 2026',
+          'Économie d\'impôt PER avec plafond et report',
+          'Fiscalité des rachats d\'assurance-vie (PFU vs IR)',
+          'Transmission assurance-vie (Art. 990 I, 757 B CGI)',
+          'Droits de donation par lien de parenté',
+          'Donation avec démembrement (Art. 669 CGI)',
+          'Droits de succession par héritier',
+          'IFI 2026 avec abattement résidence principale et plafonnement',
+          'PEA : fiscalité retrait et bilan latent',
+          'Plus-value immobilière (résidence secondaire, locatif, LMNP)',
+          'LMNP réel vs micro-BIC',
+          'SCI à l\'IS vs à l\'IR',
+          'Rente viagère sur tables INSEE 2021',
+          'CSG/CRDS sur pension de retraite',
+          'Prêt intrafamilial in fine',
+          'Locatif vs placement financier',
+          'Sans inscription, données non conservées',
+          'Code source ouvert',
+        ],
+        author: { '@id': `${baseUrl}#organization` },
+      },
+
+      {
+        '@type': 'ItemList',
+        '@id': `${baseUrl}#calculateurs`,
+        name: 'Calculateurs patrimoniaux',
+        numberOfItems: calculateursActifs.length,
+        itemListElement: calculateursActifs.map((calc, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: `${baseUrl}${calc.href}`,
+          name: calc.nom,
+          description: calc.desc,
+        })),
+      },
+    ],
+  }
+
+  return (
+    <Script
+      id="schema-markup"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+    />
+  )
 }
