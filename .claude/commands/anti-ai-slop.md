@@ -1,5 +1,5 @@
 ---
-description: Détecte les patterns AI-slop dans le contenu éditorial de CalcPatrimoine — généricité, conseillisme, imprécision fiscale, padding. Complémentaire à /trois-freres.
+description: Détecte les patterns AI-slop dans le contenu éditorial de CalcPatrimoine , généricité, conseillisme, imprécision fiscale, padding. Complémentaire à /trois-freres.
 ---
 
 # /anti-ai-slop
@@ -39,7 +39,7 @@ Mots-déclencheurs :
 - "pour optimiser votre situation", "idéalement", "il vaut mieux", "le plus avantageux"
 - Impératif non-factuel : "choisissez", "optez pour", "évitez de"
 
-Reformulation attendue : "l'option X aboutit à Y€ d'impôt en moins" — jamais "choisissez l'option X".
+Reformulation attendue : "l'option X aboutit à Y€ d'impôt en moins" , jamais "choisissez l'option X".
 
 ### 2. Imprécision fiscale
 
@@ -99,7 +99,7 @@ Mauvais exemple : "Simulez facilement votre plus-value immobilière avec notre o
 Pour chaque signal détecté, une entrée structurée :
 
 ```
-Fichier : src/app/tmi/page.tsx — section "Comment fonctionne le barème progressif ?"
+Fichier : src/app/tmi/page.tsx , section "Comment fonctionne le barème progressif ?"
 Signal : Structure artificielle IA (titre passe-partout)
 
 Original :
@@ -107,7 +107,7 @@ Original :
 
 Problème :
 Titre en "Comment X ?" = marqueur IA générique. Il décrit la section au lieu de
-l'ancrer dans la situation de l'utilisateur. Le contenu sous ce titre est bon —
+l'ancrer dans la situation de l'utilisateur. Le contenu sous ce titre est bon ,
 c'est le titre seul qui est creux.
 
 Action : reformuler en affirmation ou en question de l'utilisateur
@@ -125,15 +125,15 @@ Tableau récapitulatif après scan complet :
 |---------|--------|----------|
 | ... | ... | Critique / Gêne / Mineur |
 
-**Critique** : conseillisme ou imprécision fiscale — contredit le positionnement du site
-**Gêne** : généricité ou padding — affaiblit la crédibilité
-**Mineur** : structure ou SEO — amélioration de confort
+**Critique** : conseillisme ou imprécision fiscale , contredit le positionnement du site
+**Gêne** : généricité ou padding , affaiblit la crédibilité
+**Mineur** : structure ou SEO , amélioration de confort
 
-Classer par sévérité décroissante. Ne pas signaler plus de 10 passages au total — prioriser.
+Classer par sévérité décroissante. Ne pas signaler plus de 10 passages au total , prioriser.
 
 ---
 
-## STOP — attendre validation
+## STOP , attendre validation
 
 Présenter le rapport. **Ne modifier aucun fichier.**
 

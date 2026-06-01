@@ -5,7 +5,7 @@
 // être réintégrés au prix d'acquisition pour le calcul de la plus-value
 // imposable (Art. 150 VB III CGI modifié par LF 2025).
 //
-// Approche : wrapper autour de calculerPlusValueImmobiliere — la
+// Approche : wrapper autour de calculerPlusValueImmobiliere , la
 // réintégration des amortissements = soustraction au prix d'acquisition fiscal.
 
 import { calculerPlusValueImmobiliere } from './plusValueImmobiliere'
@@ -59,7 +59,7 @@ export function calculerPlusValueLmnp(inputs: PlusValueLmnpInputs): PlusValueLmn
   if (inputs.amortissementsLmnpCumules > 0) {
     warnings.push({
       type: 'warning',
-      message: `Depuis le 15 février 2025, les amortissements que vous avez déduits chaque année de vos loyers (${eur(inputs.amortissementsLmnpCumules)} cumulés) sont retirés de votre prix d'achat fiscal au moment de la vente. Concrètement, votre prix d'achat fiscal n'est plus le prix payé mais ce prix moins les amortissements — donc votre plus-value imposable augmente. Surcoût d'impôt estimé : ${eur(surcoutLmnp)}.`,
+      message: `Depuis le 15 février 2025, les amortissements que vous avez déduits chaque année de vos loyers (${eur(inputs.amortissementsLmnpCumules)} cumulés) sont retirés de votre prix d'achat fiscal au moment de la vente. Concrètement, votre prix d'achat fiscal n'est plus le prix payé mais ce prix moins les amortissements : votre plus-value imposable augmente d'autant. Surcoût d'impôt estimé : ${eur(surcoutLmnp)}.`,
     })
   }
 
@@ -93,7 +93,7 @@ export function calculerPlusValueLmnp(inputs: PlusValueLmnpInputs): PlusValueLmn
 const FAQ_PV_LMNP: FAQSchemaItem[] = [
   {
     question: "Pourquoi les amortissements LMNP augmentent-ils la plus-value ?",
-    answer: "Depuis le 15/02/2025 (LF 2025), les amortissements déduits des revenus locatifs LMNP sont réintégrés au prix d'acquisition lors du calcul de la plus-value. Concrètement, le prix d'acquisition fiscal est réduit du montant des amortissements cumulés — ce qui augmente la plus-value brute imposable.",
+    answer: "Depuis le 15/02/2025 (LF 2025), les amortissements déduits des revenus locatifs LMNP sont réintégrés au prix d'acquisition lors du calcul de la plus-value. Concrètement, le prix d'acquisition fiscal est réduit du montant des amortissements cumulés, ce qui augmente la plus-value brute imposable.",
   },
   {
     question: "Cette règle s'applique-t-elle aux ventes antérieures à 2025 ?",

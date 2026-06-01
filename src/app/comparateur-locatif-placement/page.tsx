@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 }
 
 const LIMITES = [
-  '**Pas de crédit immobilier modélisé.** Le calculateur compare un achat comptant à un placement comptant. L\'effet de levier du crédit (intérêts déduits des loyers en régime réel, capital amorti) change radicalement le résultat — non couvert dans cette V1.',
+  '**Pas de crédit immobilier modélisé.** Le calculateur compare un achat comptant à un placement comptant. L\'effet de levier du crédit (intérêts déduits des loyers en régime réel, capital amorti) change radicalement le résultat : non couvert dans cette V1.',
   'Frais d\'acquisition immobilière (notaire ~7-8 %) non modélisés. Sur courte durée, ils peuvent rendre le locatif structurellement perdant.',
   'Surtaxe PV immobilière (> 50 000 €) non calculée. Pour les durées courtes/petits capitaux, impact faible.',
   'Seuil 150 000 € pour PFU réduit en AV non modélisé.',
-  'Vacances locatives implicites dans le % de frais — l\'utilisateur doit les intégrer manuellement.',
+  'Vacances locatives implicites dans le % de frais : l\'utilisateur doit les intégrer manuellement.',
   'Frais de gestion, courtage, fiscalité du courtier ignorés.',
   'Pas d\'indexation des loyers (taux fixe sur toute la durée).',
 ]
@@ -34,7 +34,7 @@ export default function ComparateurLocatifPage() {
       titre={<>Locatif vs<br />placement financier</>}
       description="Comparez deux stratégies d'investissement à capital égal et durée égale : immobilier locatif
         (loyers nets cumulés + plus-value à la revente) vs placement financier (PEA, assurance-vie, CTO).
-        Hypothèses simplificatrices clairement listées — utiliser comme première estimation, pas comme
+        Hypothèses simplificatrices clairement listées : utiliser comme première estimation, pas comme
         décision finale."
       features={[
         'Locatif : micro-foncier ou réel',

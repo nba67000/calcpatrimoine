@@ -24,7 +24,7 @@ const PFU = 0.30  // avant 5 ans
 /**
  * Calculs PEA : bilan + sortie partielle ou totale.
  *
- * Hypothèse : PV répartie proportionnellement dans la valeur du PEA — un retrait
+ * Hypothèse : PV répartie proportionnellement dans la valeur du PEA , un retrait
  * partiel emporte la même fraction de PV que sa fraction de la valeur totale.
  *
  * @example
@@ -63,7 +63,7 @@ export function calculerPea(inputs: PeaInputs): PeaResults {
   if (!exonerationIrActive && inputs.agePeaAnnees > 0) {
     warnings.push({
       type: 'danger',
-      message: `Votre PEA a ${inputs.agePeaAnnees.toFixed(1)} ans. Si vous retirez avant 5 ans, votre plan est automatiquement fermé et vous payez la flat tax de 30 % (12,8 % d'impôt sur le revenu + 17,2 % de prélèvements sociaux) sur l'ensemble de vos gains. En attendant d'atteindre les 5 ans, vous ne payez plus que les prélèvements sociaux (17,2 %) — l'impôt sur le revenu disparaît.`,
+      message: `Votre PEA a ${inputs.agePeaAnnees.toFixed(1)} ans. Si vous retirez avant 5 ans, votre plan est automatiquement fermé et vous payez la flat tax de 30 % (12,8 % d'impôt sur le revenu + 17,2 % de prélèvements sociaux) sur l'ensemble de vos gains. En attendant d'atteindre les 5 ans, vous ne payez plus que les prélèvements sociaux (17,2 %) : l'impôt sur le revenu disparaît.`,
     })
   }
 
@@ -77,7 +77,7 @@ export function calculerPea(inputs: PeaInputs): PeaResults {
   if (plusValueLatente === 0 && inputs.versementsTotaux > 0) {
     warnings.push({
       type: 'info',
-      message: `Aucune plus-value latente (valeur actuelle = versements). Aucun impôt à la sortie — tout retrait est neutre fiscalement.`,
+      message: `Aucune plus-value latente (valeur actuelle = versements). Aucun impôt à la sortie : tout retrait est neutre fiscalement.`,
     })
   }
 
@@ -123,7 +123,7 @@ const FAQ_PEA: FAQSchemaItem[] = [
   },
   {
     question: "Pourquoi un PEA à 500 k€ ne vaut-il pas vraiment 500 k€ ?",
-    answer: "Parce que la valeur brute affichée par votre courtier inclut une plus-value latente non encore taxée. Si vous décidez de sortir, vous devez payer les PS sur cette plus-value (et l'IR avant 5 ans). Le passif fiscal latent est analogue aux impôts différés en comptabilité — il existe mais ne se matérialise qu'à la sortie.",
+    answer: "Parce que la valeur brute affichée par votre courtier inclut une plus-value latente non encore taxée. Si vous décidez de sortir, vous devez payer les PS sur cette plus-value (et l'IR avant 5 ans). Le passif fiscal latent est analogue aux impôts différés en comptabilité : il existe mais ne se matérialise qu'à la sortie.",
   },
   {
     question: "Un retrait partiel après 5 ans clôture-t-il le PEA ?",

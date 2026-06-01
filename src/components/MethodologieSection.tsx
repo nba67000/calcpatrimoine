@@ -16,7 +16,7 @@ import type { ReactNode } from 'react'
 import SourcesSection from '@/components/SourcesSection'
 
 interface Props {
-  /** Slug du calculateur — utilisé pour résoudre les sources via le registry. */
+  /** Slug du calculateur , utilisé pour résoudre les sources via le registry. */
   slug: string
   /** Titre alternatif pour la sous-section "Textes de loi" (rare). */
   titreSourcesSection?: string
@@ -27,7 +27,7 @@ interface Props {
   /** Note de bas de section (millésime, références légales clés) rendue dans
    *  un bandeau primary discret. Peut contenir du JSX. */
   note?: ReactNode
-  /** Slot libre rendu APRÈS sources et avant limites — pour insérer un tableau
+  /** Slot libre rendu APRÈS sources et avant limites , pour insérer un tableau
    *  spécifique au calc (ex. barème 669 dans donation/démembrement, abattements
    *  spécifiques dans transmission, etc.). */
   extra?: ReactNode

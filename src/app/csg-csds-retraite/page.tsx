@@ -16,10 +16,10 @@ export const metadata: Metadata = {
 
 const LIMITES = [
   'Le RFR à saisir est celui de l\'année N-2 (= RFR 2024 pour la CSG 2026). C\'est la règle légale, qui crée un décalage temporel.',
-  'Le calculateur applique le barème 2026 standard. La règle de bascule de taux après 2 années consécutives de changement (anti-effet de seuil) n\'est pas modélisée — un retraité juste au-dessus d\'un seuil pendant 1 an conserve son ancien taux.',
+  'Le calculateur applique le barème 2026 standard. La règle de bascule de taux après 2 années consécutives de changement (anti-effet de seuil) n\'est pas modélisée : un retraité juste au-dessus d\'un seuil pendant 1 an conserve son ancien taux.',
   'Les majorations de demi-parts supplémentaires sont appliquées via les majorations standards. Les cas particuliers (parent isolé, invalidité, etc.) peuvent légèrement modifier les seuils.',
-  'Les revenus de remplacement autres que les pensions (allocations chômage) suivent des règles voisines mais distinctes — non couvert.',
-  'Le calculateur ne traite pas l\'abattement spécifique de 10 % sur les pensions pour l\'IR — il porte uniquement sur la CSG/CRDS/CASA.',
+  'Les revenus de remplacement autres que les pensions (allocations chômage) suivent des règles voisines mais distinctes. Non couvert ici.',
+  'Le calculateur ne traite pas l\'abattement spécifique de 10 % sur les pensions pour l\'IR : il porte uniquement sur la CSG/CRDS/CASA.',
 ]
 
 export default function CsgRetraitePage() {
@@ -47,7 +47,7 @@ export default function CsgRetraitePage() {
 
           <div>
             <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">
-              Barème CSG 2026 — pensions de retraite (Art. L. 136-8 CSS)
+              Barème CSG 2026 : pensions de retraite (Art. L. 136-8 CSS)
             </h3>
             <table className="w-full text-sm">
               <thead>

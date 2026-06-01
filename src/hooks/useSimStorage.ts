@@ -24,9 +24,9 @@ export function hasStoredState(slug: string): boolean {
 
 /**
  * Persiste les inputs d'un calculateur dans localStorage.
- * Drop-in replacement pour useState — les valeurs survivent aux rechargements.
+ * Drop-in replacement pour useState , les valeurs survivent aux rechargements.
  * Fusionne avec l'objet `initial` pour résister aux évolutions de schéma.
- * Retourne [state, setState, reset] — reset efface le stockage et revient aux valeurs initiales.
+ * Retourne [state, setState, reset] , reset efface le stockage et revient aux valeurs initiales.
  */
 export function useSimStorage<T>(slug: string, initial: T): [T, (val: T | ((prev: T) => T)) => void, () => void] {
   const key = PREFIX + slug

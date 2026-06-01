@@ -5,7 +5,7 @@
 
 > ⚠ **Crawl 2026-05-31** : 2 URLs sont cassées : Art 777 (LEGIARTI000044981950 → 404)
 > et Loi TEPA docs version (JORFTEXT000000872484 → re-route vers décret 1984 sans
-> rapport). Les autres (990 I, 757 B, 779 — IDs LEGIARTI000047288653 / 47288569 /
+> rapport). Les autres (990 I, 757 B, 779 , IDs LEGIARTI000047288653 / 47288569 /
 > 26292566) sont OK et sont aujourd'hui utilisées dans le code. Pour Loi TEPA, le
 > code utilise désormais JORFTEXT000000278649 (testé OK). Cf.
 > `docs/broken-links-to-fix.md`.
@@ -32,7 +32,7 @@
   Extrait pertinent : barème progressif 5 % à 45 %, inchangé depuis LF 2011
 
 - **Loi TEPA du 21 août 2007** - Exonération totale du conjoint survivant / partenaire PACS
-  URL Légifrance : ~~`JORFTEXT000000872484`~~ (re-route vers Décret 1984 sans rapport) — utiliser `JORFTEXT000000278649` (testé OK, déjà en code)
+  URL Légifrance : ~~`JORFTEXT000000872484`~~ (re-route vers Décret 1984 sans rapport) , utiliser `JORFTEXT000000278649` (testé OK, déjà en code)
   Extrait pertinent : exonération de droits de mutation pour le conjoint ou partenaire PACS
 
 ## Doctrine administrative

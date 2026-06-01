@@ -61,7 +61,7 @@ function calculerDroits(base: number, lien: LienParente): number {
  *
  * Le donataire reçoit la nue-propriété ; l'usufruit reste au donateur (jusqu'à
  * son décès). La valeur fiscale de la nue-propriété est donnée par le barème
- * Art. 669 CGI selon l'âge de l'usufruitier — plus l'usufruitier est jeune,
+ * Art. 669 CGI selon l'âge de l'usufruitier , plus l'usufruitier est jeune,
  * moins la nue-propriété vaut, donc moins de droits.
  *
  * @example
@@ -110,7 +110,7 @@ export function calculerDonationDemembrement(
   if (economieRealisee > 0) {
     optimisations.push({
       type: 'success',
-      message: `Le démembrement permet d'économiser ${eur(economieRealisee)} de droits par rapport à une donation en pleine propriété du même bien. À noter : au décès du donateur, l'usufruit s'éteint sans droit supplémentaire — le donataire récupère la pleine propriété sans nouvelle taxation.`,
+      message: `Le démembrement permet d'économiser ${eur(economieRealisee)} de droits par rapport à une donation en pleine propriété du même bien. À noter : au décès du donateur, l'usufruit s'éteint sans droit supplémentaire ; le donataire récupère la pleine propriété sans nouvelle taxation.`,
     })
   }
 

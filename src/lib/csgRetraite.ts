@@ -90,7 +90,7 @@ export function calculerCsgRetraite(inputs: CsgRetraiteInputs): CsgRetraiteResul
   if (tauxApplicable === 'normal' && inputs.revenuFiscalReference - s.median < 2000) {
     warnings.push({
       type: 'info',
-      message: `Votre revenu fiscal de référence (RFR) est juste au-dessus du seuil qui sépare le taux médian du taux normal — vous n'en êtes éloigné que de ${eur(inputs.revenuFiscalReference - s.median)}. Si votre RFR descendait sous ${eur(s.median)} pendant 2 années consécutives (c'est la règle anti-bascule de l'administration), vous repasseriez au taux médian — soit une économie de ${eur(inputs.pensionBruteAnnuelle * (TAUX_RATES.normal - TAUX_RATES.median))} par an sur votre pension.`,
+      message: `Votre revenu fiscal de référence (RFR) est juste au-dessus du seuil qui sépare le taux médian du taux normal : vous n'en êtes éloigné que de ${eur(inputs.revenuFiscalReference - s.median)}. Si votre RFR descendait sous ${eur(s.median)} pendant 2 années consécutives (c'est la règle anti-bascule de l'administration), vous repasseriez au taux médian, soit une économie de ${eur(inputs.pensionBruteAnnuelle * (TAUX_RATES.normal - TAUX_RATES.median))} par an sur votre pension.`,
     })
   }
   if (tauxApplicable === 'exonere') {
@@ -138,7 +138,7 @@ const FAQ_CSG: FAQSchemaItem[] = [
   },
   {
     question: "Que se passe-t-il si mon RFR varie d'une année à l'autre ?",
-    answer: "Le taux est ajusté chaque année selon le RFR N-2. Pour qu'un changement de taux soit appliqué, il faut généralement que la condition soit remplie 2 années consécutives — cela évite les bascules ponctuelles liées à un revenu exceptionnel.",
+    answer: "Le taux est ajusté chaque année selon le RFR N-2. Pour qu'un changement de taux soit appliqué, il faut généralement que la condition soit remplie 2 années consécutives : cela évite les bascules ponctuelles liées à un revenu exceptionnel.",
   },
   {
     question: "Pourquoi la CASA (Contribution additionnelle de solidarité pour l'autonomie) ?",

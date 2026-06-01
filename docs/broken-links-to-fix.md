@@ -2,7 +2,7 @@
 
 Liste consolidée des URLs Légifrance/BOFiP cassées identifiées par les crawls
 **2026-05-31** (3 rounds, ~54 URLs testées au total). Toutes les entrées
-cassées ont vu leur `href`/`url` et `desc`/`sujet` retirés du code (option A —
+cassées ont vu leur `href`/`url` et `desc`/`sujet` retirés du code (option A ,
 quick fix). Seul le **label / référence textuelle** reste affiché à l'utilisateur.
 
 ## Méthode pour reconstruire
@@ -30,7 +30,7 @@ présents dans `docs/sources/` ou `chatResources.ts`) :
 
 ---
 
-## ❌ Légifrance — articles confirmés morts (HTTP 404)
+## ❌ Légifrance , articles confirmés morts (HTTP 404)
 
 | Article | Ancien LEGIARTI | Fichiers à mettre à jour quand l'URL valide est trouvée |
 |---|---|---|
@@ -53,13 +53,13 @@ présents dans `docs/sources/` ou `chatResources.ts`) :
 | Art 784 CGI (rappel 15 ans) | LEGIARTI000041464760 | `src/lib/donation.ts`, `docs/sources/donation-droits.md` |
 | Art 790 G CGI (don familial) | LEGIARTI000041464661 | `src/lib/donation.ts`, `docs/sources/donation-droits.md` |
 | Art 790 E CGI (don entre époux) | LEGIARTI000038588107 | `src/lib/donation.ts` |
-| Art 990 I CGI (lib version) | LEGIARTI000045583309 | `src/app/blog/assurance-vie-fiscalite-rachat/page.tsx` source — les libs utilisent désormais la version `47288653` qui fonctionne |
+| Art 990 I CGI (lib version) | LEGIARTI000045583309 | `src/app/blog/assurance-vie-fiscalite-rachat/page.tsx` source , les libs utilisent désormais la version `47288653` qui fonctionne |
 | Art 83 CGI (frais professionnels) | LEGIARTI000044986838 | `src/lib/per.ts` |
 | Articles L.224-1 et s. CMF (section) | LEGITEXT000006072026/LEGISCTA000038619671/ | `src/lib/per.ts` |
 | Articles 777 et s. (transmission) | LEGIARTI000042160878 | `src/lib/transmission.ts` |
 | Art 197 CGI (chatResources) | LEGIARTI000044981244 | `src/config/chatResources.ts` |
 
-## ⚠️ Légifrance — articles confirmés pointant vers le MAUVAIS contenu
+## ⚠️ Légifrance , articles confirmés pointant vers le MAUVAIS contenu
 
 | Référence annoncée | LEGIARTI utilisé | Affiche en réalité | Fichiers |
 |---|---|---|---|
@@ -71,7 +71,7 @@ présents dans `docs/sources/` ou `chatResources.ts`) :
 | Loi 2011-1906 (tables unisexes) | JORFTEXT000023744555 | "Pas de contenu disponible" | `src/lib/mortality.ts` |
 | Loi TEPA 2007 (docs version) | JORFTEXT000000872484 | Décret n°84-752 (Ministre Affaires européennes 1984) | `docs/sources/assurance-vie-transmission.md` |
 
-## ⚠️ BOFiP — identifiants à reconstruire (URL OK mais re-route vers mauvais doc)
+## ⚠️ BOFiP , identifiants à reconstruire (URL OK mais re-route vers mauvais doc)
 
 | Référence | URL morte | Contenu réel affiché | Fichiers |
 |---|---|---|---|
@@ -80,7 +80,7 @@ présents dans `docs/sources/` ou `chatResources.ts`) :
 | BOFiP-Assurance-vie et successions | `bofip/3296-PGP.html` | ENR-DMTOI-10-70-60 (coopératives agricoles) | `src/lib/transmission.ts` |
 | BOFiP RSA-PENS-10 (PER blog) | `bofip/10261-PGP.html` | Convention fiscale France-Andorre | `src/app/blog/per-individuel-deduction-fiscalite/page.tsx` |
 
-## ❌ BOFiP — HTTP 404
+## ❌ BOFiP , HTTP 404
 
 | Référence | URL morte | Fichiers |
 |---|---|---|
@@ -92,33 +92,33 @@ présents dans `docs/sources/` ou `chatResources.ts`) :
 
 ## ✅ URLs confirmées OK (validées par les 3 rounds de crawl 2026-05-31)
 
-### Légifrance — articles
-- Art 125-0 A CGI (LEGIARTI000044989424) — `docs/sources/`, `src/config/chatResources.ts`
-- Art 197 CGI (LEGIARTI000051212954) — `src/lib/tmi.ts` ⚠ version 2025 (à actualiser pour le millésime 2026 si nécessaire)
-- Art 150 U CGI (LEGIARTI000053544910) — `src/lib/plusValueImmobiliere.ts`, `src/config/chatResources.ts`
-- Art 150 VB CGI (LEGIARTI000053544785) — `src/lib/plusValueImmobiliere.ts`
-- Art 150 VD CGI (LEGIARTI000047970809) — `src/lib/plusValueImmobiliere.ts`
-- Art L136-7 CSS VI 2 (LEGIARTI000053584839) — `src/lib/plusValueImmobiliere.ts`
-- Art 1609 nonies G CGI (LEGIARTI000048806252) — `src/lib/plusValueImmobiliere.ts`, `src/config/chatResources.ts`
-- Art 158 CGI (LEGIARTI000053542725) — `src/lib/mortality.ts`
-- Art A132-1 Code des assurances (LEGIARTI000035514601) — `src/lib/mortality.ts`
-- Art 163 quatervicies CGI (LEGIARTI000053542827) — `src/app/blog/per-individuel-deduction-fiscalite/page.tsx`
-- Art L224-1 CMF (LEGIARTI000038507575) — `src/app/blog/per-individuel-deduction-fiscalite/page.tsx`
-- Art L224-28 CMF (LEGIARTI000048805604) — `src/app/blog/per-individuel-deduction-fiscalite/page.tsx`
-- **Art 990 I CGI** (LEGIARTI000047288653) — RESTAURÉ dans libs + blog + chatResources
-- **Art 757 B CGI** (LEGIARTI000047288569) — RESTAURÉ dans lib + chatResources
-- **Art 779 CGI** (LEGIARTI000026292566) — RESTAURÉ dans lib + chatResources
+### Légifrance , articles
+- Art 125-0 A CGI (LEGIARTI000044989424) , `docs/sources/`, `src/config/chatResources.ts`
+- Art 197 CGI (LEGIARTI000051212954) , `src/lib/tmi.ts` ⚠ version 2025 (à actualiser pour le millésime 2026 si nécessaire)
+- Art 150 U CGI (LEGIARTI000053544910) , `src/lib/plusValueImmobiliere.ts`, `src/config/chatResources.ts`
+- Art 150 VB CGI (LEGIARTI000053544785) , `src/lib/plusValueImmobiliere.ts`
+- Art 150 VD CGI (LEGIARTI000047970809) , `src/lib/plusValueImmobiliere.ts`
+- Art L136-7 CSS VI 2 (LEGIARTI000053584839) , `src/lib/plusValueImmobiliere.ts`
+- Art 1609 nonies G CGI (LEGIARTI000048806252) , `src/lib/plusValueImmobiliere.ts`, `src/config/chatResources.ts`
+- Art 158 CGI (LEGIARTI000053542725) , `src/lib/mortality.ts`
+- Art A132-1 Code des assurances (LEGIARTI000035514601) , `src/lib/mortality.ts`
+- Art 163 quatervicies CGI (LEGIARTI000053542827) , `src/app/blog/per-individuel-deduction-fiscalite/page.tsx`
+- Art L224-1 CMF (LEGIARTI000038507575) , `src/app/blog/per-individuel-deduction-fiscalite/page.tsx`
+- Art L224-28 CMF (LEGIARTI000048805604) , `src/app/blog/per-individuel-deduction-fiscalite/page.tsx`
+- **Art 990 I CGI** (LEGIARTI000047288653) , RESTAURÉ dans libs + blog + chatResources
+- **Art 757 B CGI** (LEGIARTI000047288569) , RESTAURÉ dans lib + chatResources
+- **Art 779 CGI** (LEGIARTI000026292566) , RESTAURÉ dans lib + chatResources
 
-### Légifrance — lois
-- Loi TEPA 2007 (JORFTEXT000000278649) — `src/lib/transmission.ts`
-- Loi de finances 2018 art. 28 (JORFTEXT000036339197) — `src/lib/assuranceVie.ts`, blog
-- Arrêté 1er août 2006 tables TGH/TGF (JORFTEXT000000820127) — `src/lib/mortality.ts`
+### Légifrance , lois
+- Loi TEPA 2007 (JORFTEXT000000278649) , `src/lib/transmission.ts`
+- Loi de finances 2018 art. 28 (JORFTEXT000036339197) , `src/lib/assuranceVie.ts`, blog
+- Arrêté 1er août 2006 tables TGH/TGF (JORFTEXT000000820127) , `src/lib/mortality.ts`
 
 ### BOFiP (avec identifiant complet)
-- BOI-RPPM-RCM-20-10-20-50 (3951-PGP) — `src/lib/assuranceVie.ts`, `src/config/chatResources.ts`
-- BOI-IR-LIQ-20-10 (2491-PGP) — `src/lib/tmi.ts`, `docs/sources/tmi.md`
-- BOI-IR-LIQ-20-20-30 (2495-PGP) — `src/lib/tmi.ts`, `docs/sources/tmi.md`
-- BOI-IR-LIQ-20-20-20 (2494-PGP) — `docs/sources/tmi.md`
+- BOI-RPPM-RCM-20-10-20-50 (3951-PGP) , `src/lib/assuranceVie.ts`, `src/config/chatResources.ts`
+- BOI-IR-LIQ-20-10 (2491-PGP) , `src/lib/tmi.ts`, `docs/sources/tmi.md`
+- BOI-IR-LIQ-20-20-30 (2495-PGP) , `src/lib/tmi.ts`, `docs/sources/tmi.md`
+- BOI-IR-LIQ-20-20-20 (2494-PGP) , `docs/sources/tmi.md`
 
 ---
 
@@ -129,9 +129,9 @@ non critiques. Sans signal contraire, on les considère OK par défaut tant que
 personne ne remonte de problème (ces URLs sont historiquement stables) :
 
 - service-public.fr fiches : F14203, F22414, F3173, F10864, F34982
-- insee.fr / ined.fr (URLs INSEE et INED — formats historiques stables)
+- insee.fr / ined.fr (URLs INSEE et INED , formats historiques stables)
 - bofip/14954-PGP.html/ACTU-2026-00022 (actualité TMI, dans docs seulement)
-- LEGIARTI000047970756 (Art 150 VC CGI, dans `chatResources.ts` et `src/lib/plusValueImmobiliere.ts`) — cohérent avec le pattern Art 150 VB/VD qui sont OK, probablement OK aussi
+- LEGIARTI000047970756 (Art 150 VC CGI, dans `chatResources.ts` et `src/lib/plusValueImmobiliere.ts`) , cohérent avec le pattern Art 150 VB/VD qui sont OK, probablement OK aussi
 
 ---
 

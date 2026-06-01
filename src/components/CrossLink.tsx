@@ -8,7 +8,7 @@ interface CrossLinkProps {
   /**
    * Valeurs du résultat à injecter dans `description`.
    * Syntaxe : "{key}" dans la chaîne description.
-   * Ex: description="Votre TMI est à {tmi} — un versement PER de {perSuggere} économiserait ~{economie}."
+   * Ex: description="Votre TMI est à {tmi} , un versement PER de {perSuggere} économiserait ~{economie}."
    */
   context?: Record<string, string | number>
 }

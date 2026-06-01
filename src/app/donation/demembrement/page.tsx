@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 const LIMITES = [
   'Le calculateur ne traite que la donation de nue-propriété avec conservation de l\'usufruit par le donateur. La donation d\'usufruit temporaire (à durée fixe) suit des règles différentes.',
   'La réversion d\'usufruit (au profit du conjoint au décès du donateur usufruitier) n\'est pas modélisée.',
-  'L\'évaluation du bien en pleine propriété (immobilier, parts de société, portefeuille) est laissée à l\'utilisateur — le calculateur ne fait que appliquer le barème 669 CGI sur la valeur saisie.',
-  'Au décès du donateur usufruitier, la réunion de l\'usufruit à la nue-propriété est en principe non taxable (Art. 1133 CGI) — mais des exceptions existent (démembrement irrégulier, etc.) non couvertes ici.',
+  'L\'évaluation du bien en pleine propriété (immobilier, parts de société, portefeuille) est laissée à l\'utilisateur : le calculateur ne fait que appliquer le barème 669 CGI sur la valeur saisie.',
+  'Au décès du donateur usufruitier, la réunion de l\'usufruit à la nue-propriété est en principe non taxable (Art. 1133 CGI), mais des exceptions existent (démembrement irrégulier, etc.) non couvertes ici.',
 ]
 
 export default function DonationDemembrementPage() {
@@ -33,7 +33,7 @@ export default function DonationDemembrementPage() {
       titre={<>Donation avec<br />démembrement</>}
       description="Calculez les droits de donation sur la nue-propriété transmise au donataire, en
         conservant l'usufruit. La valeur fiscale de la nue-propriété dépend de l'âge du donateur
-        usufruitier (barème Art. 669 CGI) — plus le donateur est jeune, plus l'économie de droits
+        usufruitier (barème Art. 669 CGI) : plus le donateur est jeune, plus l'économie de droits
         est importante."
       features={[
         'Barème Art. 669 CGI',

@@ -33,7 +33,7 @@ export default function SciRegimePage() {
       titre={<>SCI<br />à l&apos;IS vs à l&apos;IR</>}
       description="Comparez l'impôt annuel d'une SCI translucide (revenus fonciers à l'IR + PS) et d'une SCI ayant
         opté à l'IS (bénéfice après amortissements, taxé 15 % jusqu'à 42 500 € puis 25 %). Calculateur V1
-        simplifié — sortie non couverte, voir Limites."
+        simplifié. Sortie non couverte, voir Limites."
       features={[
         'IR : revenus fonciers + PS',
         'IS : 15 % puis 25 %',

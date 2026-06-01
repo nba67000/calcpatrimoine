@@ -90,7 +90,7 @@ export default function LmnpRegimeCalculator() {
               <p className="text-xs text-neutral-500 mt-1">
                 Total annuel des dépenses que vous pouvez déduire de vos loyers : entretien,
                 copropriété, taxe foncière, intérêts d&apos;emprunt, assurances. Ces charges réduisent
-                votre bénéfice imposable en régime réel — mais ne servent à rien en régime micro
+                votre bénéfice imposable en régime réel, mais ne servent à rien en régime micro
                 (l&apos;abattement forfaitaire les couvre déjà).
               </p>
             </div>
@@ -102,7 +102,7 @@ export default function LmnpRegimeCalculator() {
                 className="w-full px-3 py-2 border border-neutral-200 rounded text-right" />
               <p className="text-xs text-neutral-500 mt-1">
                 Repère : ~2-3 % de la valeur du bien par an + ~10 % de la valeur des meubles. C&apos;est
-                une charge fictive qui diminue le bénéfice imposable — d&apos;où l&apos;intérêt principal du
+                une charge fictive qui diminue le bénéfice imposable : c&apos;est l&apos;intérêt principal du
                 régime réel. Un comptable établit le calcul détaillé par composant.
               </p>
             </div>

@@ -1,6 +1,6 @@
 // src/components/CalculateurPageLayout.tsx
 //
-// PERF — Core Web Vitals fixes (CLS) :
+// PERF , Core Web Vitals fixes (CLS) :
 //   • contain:layout sur le hero → isole les re-flows du reste de la page
 //   • minHeight sur h1 → absorbe le layout shift FOUT quand Playfair Display charge
 //   • minHeight sur nav/features → réserve l'espace avant les styles Tailwind

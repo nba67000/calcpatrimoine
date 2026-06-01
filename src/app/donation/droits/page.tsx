@@ -110,15 +110,15 @@ export default function DonationDroitsPage() {
                 <strong>Le rappel fiscal des 15 ans (Art. 784 CGI).</strong>{' '}
                 Si vous avez déjà donné à la même personne dans les 15 dernières années, ces dons comptent :
                 l&apos;abattement déjà utilisé n&apos;est plus disponible, et le calcul démarre dans une tranche
-                plus haute du barème. Au-delà de 15 ans, le compteur repart à zéro — tout redevient comme si
+                plus haute du barème. Au-delà de 15 ans, le compteur repart à zéro : tout redevient comme si
                 c&apos;était un premier don.
               </p>
               <p>
                 <strong>Le don familial de sommes d&apos;argent (Art. 790 G CGI).</strong>{' '}
                 31 865 € d&apos;abattement en plus, valable uniquement pour les dons en argent (chèque,
-                virement, espèces — pas un bien immobilier ou des actions). Trois conditions cumulatives :
+                virement, espèces ; pas un bien immobilier ou des actions). Trois conditions cumulatives :
                 donateur de moins de 80 ans, donataire majeur, et le don va à un enfant, petit-enfant,
-                arrière-petit-enfant — ou à défaut à un neveu/nièce.
+                arrière-petit-enfant, ou à défaut à un neveu/nièce.
               </p>
             </div>
 

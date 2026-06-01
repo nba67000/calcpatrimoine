@@ -101,7 +101,7 @@ export function calculerPretIntrafamilial(
   if (inputs.tauxInteret === 0 && inputs.montantPret > 5000) {
     warnings.push({
       type: 'warning',
-      message: `Prêt sans intérêt de ${eur(inputs.montantPret)} : si l'administration fiscale considère que ce n'est pas un vrai prêt mais une donation déguisée, elle peut le requalifier en don — et vous devrez payer les droits de donation rétroactivement. Pour éviter ça : reconnaissance de dette écrite, calendrier de remboursement précis, et un taux d'intérêt minimal (référence : taux moyen mensuel pratiqué par les banques, publié par la Banque de France).`,
+      message: `Prêt sans intérêt de ${eur(inputs.montantPret)} : si l'administration fiscale considère que ce n'est pas un vrai prêt mais une donation déguisée, elle peut le requalifier en don, et vous devrez payer les droits de donation rétroactivement. Pour éviter ça : reconnaissance de dette écrite, calendrier de remboursement précis, et un taux d'intérêt minimal (référence : taux moyen mensuel pratiqué par les banques, publié par la Banque de France).`,
     })
   }
   if (interetsAnnuels > 1000) {
@@ -113,7 +113,7 @@ export function calculerPretIntrafamilial(
   if (decesAvantTerme) {
     warnings.push({
       type: 'danger',
-      message: `Votre espérance de vie estimée (${dureeRestanteAvantDeces} ans) est plus courte que la durée du prêt (${inputs.dureeAnnees} ans). Si vous décédez avant que l'emprunteur n'ait remboursé, le capital restant (${eur(capitalNonRembourseDecesEstime)}) devient une créance qui entre dans votre succession. Si l'emprunteur est aussi l'héritier, sa part d'héritage est diminuée d'autant — et il paie des droits de succession dessus comme sur n'importe quel autre actif.`,
+      message: `Votre espérance de vie estimée (${dureeRestanteAvantDeces} ans) est plus courte que la durée du prêt (${inputs.dureeAnnees} ans). Si vous décédez avant que l'emprunteur n'ait remboursé, le capital restant (${eur(capitalNonRembourseDecesEstime)}) devient une créance qui entre dans votre succession. Si l'emprunteur est aussi l'héritier, sa part d'héritage est diminuée d'autant, et il paie des droits de succession dessus comme sur n'importe quel autre actif.`,
     })
   }
 
@@ -126,14 +126,14 @@ export function calculerPretIntrafamilial(
   ) {
     optimisations.push({
       type: 'success',
-      message: `À ${eur(inputs.montantPret)}, une donation directe à votre enfant serait intégralement couverte par l'abattement de ${eur(ABATTEMENTS.enfant)} (Art. 779-I CGI) — aucun droit de donation. À comparer avec le coût de gestion d'un prêt (intérêts, déclarations, risque de requalification).`,
+      message: `À ${eur(inputs.montantPret)}, une donation directe à votre enfant serait intégralement couverte par l'abattement de ${eur(ABATTEMENTS.enfant)} (Art. 779-I CGI) : aucun droit de donation. À comparer avec le coût de gestion d'un prêt (intérêts, déclarations, risque de requalification).`,
     })
   }
 
   if (optionAvantageuse === 'pret' && !decesAvantTerme) {
     optimisations.push({
       type: 'info',
-      message: `Si le prêt va jusqu'au terme (remboursement complet par l'emprunteur), aucun droit de mutation n'est dû. Le prêt n'est ni une donation ni une transmission — c'est un déplacement temporaire de trésorerie.`,
+      message: `Si le prêt va jusqu'au terme (remboursement complet par l'emprunteur), aucun droit de mutation n'est dû. Le prêt n'est ni une donation ni une transmission : c'est un déplacement temporaire de trésorerie.`,
     })
   }
 
@@ -168,7 +168,7 @@ const FAQ_PRET_INTRAFAMILIAL: FAQSchemaItem[] = [
   },
   {
     question: "Que se passe-t-il si le prêteur décède avant le remboursement ?",
-    answer: "Le capital non remboursé devient une créance qui entre dans l'actif successoral du défunt. Si l'emprunteur est aussi héritier, sa part d'héritage est diminuée de la créance, qui s'éteint par confusion — mais elle a déjà été taxée aux droits de succession sur la base qui revient à l'emprunteur.",
+    answer: "Le capital non remboursé devient une créance qui entre dans l'actif successoral du défunt. Si l'emprunteur est aussi héritier, sa part d'héritage est diminuée de la créance, qui s'éteint par confusion ; mais elle a déjà été taxée aux droits de succession sur la base qui revient à l'emprunteur.",
   },
 ]
 

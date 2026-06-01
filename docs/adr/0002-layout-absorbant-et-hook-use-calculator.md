@@ -34,15 +34,15 @@ architecturales sur le périmètre Calculator UI + pages :
 
 ## Décision
 
-### Couche 1 — Layout absorbant
+### Couche 1 , Layout absorbant
 
 `CalculateurPageLayout` étend son périmètre. Au-delà du chrome
 (Header, hero, breadcrumb, RelatedCalcSection, Footer), il absorbe :
 
-1. **Schémas SEO** — quand `currentHref` est fourni, le layout résout
+1. **Schémas SEO** , quand `currentHref` est fourni, le layout résout
    `getCalculator(slug)` (slug = currentHref sans le `/` initial) et
    injecte `<SchemaHowTo>` + `<SchemaFAQ>` au top du rendu.
-2. **Section méthodologie** — nouvelle prop
+2. **Section méthodologie** , nouvelle prop
    `methodologie?: ReactNode`. Le layout rend le wrapper standard
    (`<section>` + H2 "Méthodologie et sources officielles" + container
    blanc + footer disclaimer "Outil indicatif uniquement. Ne constitue
@@ -59,7 +59,7 @@ Conséquences :
   couvrir l'ensemble des cas (auparavant : 5 disaient "fiscal", 2
   disaient "patrimonial", 1 disait "fiscal ou patrimonial").
 
-### Couche 2 — Hook useCalculator
+### Couche 2 , Hook useCalculator
 
 `src/hooks/useCalculator.ts` exporte un hook qui factorise la mécanique
 de state des Calculator UI dont les Inputs persistés **correspondent
@@ -84,21 +84,21 @@ pour les états dégénérés (résultat nul, etc.).
 S'applique à 4 calcs (IFI, AssuranceVie/rachat, Transmission,
 PlusValueImmobiliere). Les 4 autres (TMI, PER, Donation, Rente)
 maintiennent une couche `useNumericInput` qui découple le shape persisté
-du shape des Inputs — pour ces calcs, le hook ne s'applique pas
+du shape des Inputs , pour ces calcs, le hook ne s'applique pas
 directement et ils restent en gestion manuelle.
 
-### Couche 3 — Unification des formatters
+### Couche 3 , Unification des formatters
 
 Les 12 callsites `toLocaleString('fr-FR')` brut dans les Calculator UI
 sont remplacés par les helpers existants de `src/lib/formatters.ts`
 (`formatEur`, `formatNombre`, `formatPct`). Aucune extension du module
-formatters n'a été nécessaire — uniquement la réparation du seam.
+formatters n'a été nécessaire , uniquement la réparation du seam.
 
 ## Raison
 
 **Deep > shallow.** Le layout passe d'une interface qui s'arrête au
 calculator + children libre à une interface qui possède aussi le chrome
-SEO et le wrapper méthodologie. La complexité ne disparaît pas — elle se
+SEO et le wrapper méthodologie. La complexité ne disparaît pas , elle se
 concentre au seul endroit qui connaît déjà le slug.
 
 **Locality.** Une page calculateur passe de ~290 lignes (IFI) /
@@ -120,7 +120,7 @@ Les Calculator UI gardent leur testabilité existante (rendering).
 
 **Composant `<CalculatorShell>` avec slots `saisie` + `resultats`** :
 envisagé initialement. Rejeté car le rendering des Calculator UI diverge
-beaucoup (charts, scenarios, tables de comparaison, etc.) — un shell à
+beaucoup (charts, scenarios, tables de comparaison, etc.) , un shell à
 slots aurait soit forcé une structure trop rigide, soit dégénéré en
 render-prop noodle. Le hook absorbe la mécanique sans imposer la forme
 visuelle.

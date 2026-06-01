@@ -1,7 +1,7 @@
 // src/components/SchemaFAQ.tsx
 //
 // Injecte un bloc JSON-LD FAQPage dans le <head>.
-// Chaque `answer` doit être du texte brut (pas de JSX/HTML) — Google
+// Chaque `answer` doit être du texte brut (pas de JSX/HTML) , Google
 // n'indexe que le texte, et le HTML dans les champs text/answer génère
 // des erreurs dans le Rich Results Test.
 //
@@ -16,7 +16,7 @@
 
 export interface FAQSchemaItem {
   question: string
-  answer: string // TEXTE BRUT uniquement — pas de JSX, pas de HTML
+  answer: string // TEXTE BRUT uniquement , pas de JSX, pas de HTML
 }
 
 interface Props {

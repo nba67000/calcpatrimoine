@@ -98,8 +98,8 @@ export default function ComparateurLocatifCalculator() {
               <select value={inputs.regimeLocatif}
                 onChange={e => set('regimeLocatif', e.target.value as RegimeLocatif)}
                 className="w-full px-3 py-2 border border-neutral-200 rounded">
-                <option value="micro_foncier">Micro-foncier — 30 % du loyer ne sont pas taxés (forfait charges)</option>
-                <option value="reel_nu">Régime réel — on déduit les charges réelles que vous saisissez ci-dessus</option>
+                <option value="micro_foncier">Micro-foncier : 30 % du loyer ne sont pas taxés (forfait charges)</option>
+                <option value="reel_nu">Régime réel : on déduit les charges réelles que vous saisissez ci-dessus</option>
               </select>
             </div>
           </div>

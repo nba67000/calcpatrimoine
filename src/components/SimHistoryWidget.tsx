@@ -35,7 +35,7 @@ export default function SimHistoryWidget() {
         </button>
       </div>
 
-      {/* Message éditorial — pas "sauvegardé sur nos serveurs", mais factuel */}
+      {/* Message éditorial , pas "sauvegardé sur nos serveurs", mais factuel */}
       <p className="font-mono text-xs text-neutral-400 mb-4">
         Vos paramètres sont conservés localement sur cet appareil. Aucune donnée transmise.
       </p>

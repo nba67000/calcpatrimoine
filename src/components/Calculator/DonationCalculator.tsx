@@ -132,7 +132,7 @@ export default function DonationCalculator() {
               </div>
             </div>
             <p className="text-xs text-neutral-500">
-              Valeur du bien ou de la somme transmise. Si vous avez déjà fait des dons à la même personne dans les 15 dernières années, indiquez-les dans le champ plus bas — ne les cumulez pas ici.
+              Valeur du bien ou de la somme transmise. Si vous avez déjà fait des dons à la même personne dans les 15 dernières années, indiquez-les dans le champ plus bas (ne les cumulez pas ici).
             </p>
           </div>
 
@@ -205,7 +205,7 @@ export default function DonationCalculator() {
                     Don familial de sommes d&apos;argent (Art. 790 G CGI)
                   </div>
                   <div className="text-xs text-neutral-500 mt-1">
-                    Ajoute 31 865 € d&apos;abattement en plus du premier, si trois conditions sont réunies : donateur de moins de 80 ans, donataire majeur (ou mineur émancipé), et le don va à un enfant, petit-enfant, arrière-petit-enfant — ou à défaut à un neveu/nièce.
+                    Ajoute 31 865 € d&apos;abattement en plus du premier, si trois conditions sont réunies : donateur de moins de 80 ans, donataire majeur (ou mineur émancipé), et le don va à un enfant, petit-enfant, arrière-petit-enfant (ou à défaut à un neveu/nièce).
                   </div>
                 </div>
               </label>

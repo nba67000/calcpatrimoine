@@ -9,7 +9,7 @@ Le scan `/improve-codebase-architecture` du 2026-06-01 (déclenché après
 l'ajout de 10 nouveaux calculateurs en une session) a identifié deux
 frictions architecturales nouvelles ou amplifiées :
 
-### Friction 1 — Duplication des barèmes fiscaux Art. 777 CGI
+### Friction 1 , Duplication des barèmes fiscaux Art. 777 CGI
 
 Les calculateurs `donation`, `succession`, `donationDemembrement` et
 `pretIntrafamilial` réécrivent tous le même barème par tranches Art. 777
@@ -23,7 +23,7 @@ CGI et les abattements Art. 779 CGI. Chaque lib a sa propre :
 patches identiques. Un développeur qui corrige une erreur arrondi dans le
 calcul a 4 endroits à toucher.
 
-### Friction 2 — Pattern méthodologie répété sur ~15 pages calc
+### Friction 2 , Pattern méthodologie répété sur ~15 pages calc
 
 Depuis ADR-0002, chaque page calc passe une prop `methodologie={...}` au
 layout. Mais le contenu de cette prop est **lui-même répétitif** :
@@ -47,7 +47,7 @@ il faut éditer 15 fichiers.
 
 ## Décision
 
-### Extraction 1 — `src/lib/fiscal/baremesArt777.ts`
+### Extraction 1 , `src/lib/fiscal/baremesArt777.ts`
 
 Module unique exposant :
 
@@ -74,7 +74,7 @@ export function getBaremePourLien(lien: LienFiscal): Tranche[]
 ```
 
 Le type `LienFiscal` est l'union des string-literals des enums consommateurs
-(`LienParente`, `LienHeritier`, `LienEmprunteur`) — compatible via valeur.
+(`LienParente`, `LienHeritier`, `LienEmprunteur`) , compatible via valeur.
 
 **Refactorings** :
 - `src/lib/succession.ts` : importe + utilise `appliquerBareme`/`getBaremePourLien`.
@@ -87,7 +87,7 @@ Le type `LienFiscal` est l'union des string-literals des enums consommateurs
 - `src/lib/donation.ts` : **non touché** dans cette session (stable, hors scope
   refactor). Reste candidat pour une consolidation ultérieure si besoin.
 
-### Extraction 2 — `src/components/MethodologieSection.tsx`
+### Extraction 2 , `src/components/MethodologieSection.tsx`
 
 Composant standardisé avec props :
 - `slug: string` (requis) → résout SourcesSection auto via registry.
@@ -151,7 +151,7 @@ leur custom.
 
 **Refactor pages 7+ avec `extra` prop** : applicable à `donation/demembrement`
 et `csg-csds-retraite` (qui ont tableaux spécifiques). À faire dans un
-prochain commit dédié — pas bloquant.
+prochain commit dédié , pas bloquant.
 
 ## Conséquences
 
@@ -161,7 +161,7 @@ prochain commit dédié — pas bloquant.
   toute future logique fiscale CGI 777/779 (succession, donation, prêt
   familial).
 - ADR-0001 §Suivi reste valide (migration `types/` → `lib/`, migration
-  `schemaData.ts` — non touchés).
+  `schemaData.ts` , non touchés).
 
 ## Suivi
 

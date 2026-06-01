@@ -89,13 +89,13 @@ export const CATEGORIES_CALC: CategorieCalc[] = [
       {
         href: '/pret-intrafamilial',
         nom: 'Prêt intrafamilial in fine',
-        desc: 'Prêt entre proches avec remboursement in fine — comparaison fiscale avec une donation directe.',
+        desc: 'Prêt entre proches avec remboursement in fine : comparaison fiscale avec une donation directe.',
         disponible: true,
       },
       {
         href: '/donation/demembrement',
         nom: 'Donation avec démembrement',
-        desc: 'Donation de la nue-propriété (barème Art. 669 CGI) — économie de droits vs pleine propriété.',
+        desc: 'Donation de la nue-propriété (barème Art. 669 CGI) : économie de droits vs pleine propriété.',
         disponible: true,
       },
       {

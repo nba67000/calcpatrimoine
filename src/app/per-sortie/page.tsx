@@ -9,15 +9,15 @@ const PerSortieCalculator = dynamic(
 import MethodologieSection from '@/components/MethodologieSection'
 
 export const metadata: Metadata = {
-  title: 'PER Sortie : capital vs rente — calculateur fiscalité 2026',
+  title: 'PER Sortie : capital vs rente. Calculateur fiscalité 2026',
   description: 'Comparez la fiscalité de sortie de votre PER : capital (versements à l\'IR + gains au PFU 30 %) vs rente (Art. 158-5° bis CGI, abattement 10 %, PS retraités).',
   keywords: 'per sortie, capital ou rente, fiscalité PER retraite, art 158 5 bis CGI, PFU PER',
   alternates: { canonical: 'https://calculpatrimoine.fr/per-sortie' },
 }
 
 const LIMITES = [
-  'Ce calculateur estime le taux PS retraités à 9,1 % (taux normal). Selon votre RFR, vous pouvez relever du taux médian (6,6 %), du taux réduit (3,8 %) ou être exonéré — réduction d\'autant des PS sur la rente.',
-  'Le taux de rente saisi est une hypothèse simplificatrice. Le taux réel dépend des tables de mortalité de l\'assureur et de l\'âge de liquidation — voir /rente-viagere pour une estimation actuarielle.',
+  'Ce calculateur estime le taux PS retraités à 9,1 % (taux normal). Selon votre RFR, vous pouvez relever du taux médian (6,6 %), du taux réduit (3,8 %) ou être exonéré, ce qui réduit d\'autant les PS sur la rente.',
+  'Le taux de rente saisi est une hypothèse simplificatrice. Le taux réel dépend des tables de mortalité de l\'assureur et de l\'âge de liquidation. Voir /rente-viagere pour une estimation actuarielle.',
   'Le calculateur ne traite pas la sortie anticipée (acquisition résidence principale, accident de la vie, etc.) qui suit des règles fiscales différentes.',
   'Les versements non déductibles (option de ne pas déduire à l\'entrée) suivent un régime fiscal différent à la sortie. Saisir 0 % en fraction versements déductibles pour s\'en approcher partiellement, mais le mécanisme exact diffère.',
 ]

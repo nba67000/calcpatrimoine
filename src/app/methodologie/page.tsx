@@ -30,7 +30,7 @@ export default function Methodologie() {
  Comment nous calculons votre rente viagère
  </h1>
  <p className="text-xl text-neutral-600 mb-6">
- Tables de mortalité utilisées, formule actuarielle, taux technique, hypothèses de calcul — tout est ici.
+ Tables de mortalité utilisées, formule actuarielle, taux technique, hypothèses de calcul : tout est ici.
  </p>
  
  {/* Cross-link FAQ */}

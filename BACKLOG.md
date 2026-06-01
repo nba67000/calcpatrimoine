@@ -68,7 +68,7 @@ complète :
   `per-sortie` en P1.
 
 - **2026-06-01** : tous les calculateurs `proposed` du backlog ont été
-  implémentés en V1 — backlog vide d'items actionnables après cette session.
+  implémentés en V1 , backlog vide d'items actionnables après cette session.
   Les V2 d'amélioration sont listées dans "À considérer en suivi des V1
   simplifiées" ci-dessus.
 

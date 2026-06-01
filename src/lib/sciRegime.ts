@@ -73,7 +73,7 @@ export function calculerSciRegime(inputs: SciRegimeInputs): SciRegimeResults {
   // --- Warnings importants (rappel : V1 simplifiée) ---
   warnings.push({
     type: 'danger',
-    message: `IMPORTANT : ce calculateur ne couvre que l'impôt annuel sur les loyers. Au moment de revendre le bien, les deux régimes donnent des résultats très différents. À l'IR, vous payez l'impôt comme un particulier — avec exonération progressive selon la durée de détention (exonéré d'impôt sur le revenu à 22 ans, de prélèvements sociaux à 30 ans). À l'IS, vous payez l'impôt comme une société — et tous les amortissements que vous aviez déduits sont réintégrés à votre prix d'achat fiscal, ce qui augmente fortement la plus-value taxable. Pour un projet long terme, refaire le calcul en incluant la sortie est indispensable.`,
+    message: `IMPORTANT : ce calculateur ne couvre que l'impôt annuel sur les loyers. Au moment de revendre le bien, les deux régimes donnent des résultats très différents. À l'IR, vous payez l'impôt comme un particulier, avec exonération progressive selon la durée de détention (exonéré d'impôt sur le revenu à 22 ans, de prélèvements sociaux à 30 ans). À l'IS, vous payez l'impôt comme une société : tous les amortissements que vous aviez déduits sont réintégrés à votre prix d'achat fiscal, ce qui augmente fortement la plus-value taxable. Pour un projet long terme, refaire le calcul en incluant la sortie est indispensable.`,
   })
 
   if (inputs.amortissementsAnnuels === 0) {
@@ -131,7 +131,7 @@ const FAQ_SCI: FAQSchemaItem[] = [
   },
   {
     question: "L'option IS est-elle réversible ?",
-    answer: "Non. L'option IS est définitive depuis la LF 2019 — une fois la SCI à l'IS, on ne peut plus revenir à l'IR. À l'inverse, une SCI à l'IR peut basculer à l'IS à tout moment (mais reste à l'IS ensuite).",
+    answer: "Non. L'option IS est définitive depuis la LF 2019 : une fois la SCI à l'IS, on ne peut plus revenir à l'IR. À l'inverse, une SCI à l'IR peut basculer à l'IS à tout moment (mais reste à l'IS ensuite).",
   },
   {
     question: "Quelle différence avec le LMNP ?",

@@ -34,7 +34,7 @@ import type { PERInputs } from '@/types/per'
 import type { AssuranceVieInputs } from '@/types/assuranceVie'
 import type { IFIInputs } from '@/types/ifi'
 
-describe('calculator registry — exhaustivité', () => {
+describe('calculator registry , exhaustivité', () => {
   it('expose tous les calculateurs livrés', () => {
     expect(listCalculatorSlugs().sort()).toEqual([
       'assurance-vie/fiscalite-rachat',
@@ -63,7 +63,7 @@ describe('calculator registry — exhaustivité', () => {
   })
 })
 
-describe('calculator registry — formatContexteChat retourne une chaîne non vide', () => {
+describe('calculator registry , formatContexteChat retourne une chaîne non vide', () => {
   it('tmi', () => {
     const inputs = { revenuNetImposable: 45000, situationFamiliale: 'celibataire' as const, nombreEnfants: 0 }
     const results = calculerTMIResult(inputs)

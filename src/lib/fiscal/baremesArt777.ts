@@ -81,7 +81,7 @@ export const ABATTEMENTS_ART_779: Record<string, number> = {
 
 /** Abattement spécifique petit-enfant en SUCCESSION (et non en donation).
  *  En donation, l'abattement Art. 790 B s'applique (31 865 €). En succession,
- *  le petit-enfant n'a en principe pas d'abattement personnel — on applique
+ *  le petit-enfant n'a en principe pas d'abattement personnel , on applique
  *  l'abattement par défaut Art. 788 (1 594 €) sauf représentation. */
 export const ABATTEMENT_PETIT_ENFANT_SUCCESSION = 1594
 

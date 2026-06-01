@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import SchemaMarkup from "@/components/SchemaMarkup";
 
-// PERF — Stratégie polices :
+// PERF , Stratégie polices :
 // • Playfair (serif, LCP element) → display:'swap' : le texte s'affiche en fallback
 //   immédiatement, puis est remplacé par Playfair. Réduit le LCP vs 'block'.
 // • Inter (corps) → display:'optional' : si la police n'arrive pas dans le 1er
@@ -13,7 +13,7 @@ import SchemaMarkup from "@/components/SchemaMarkup";
 // • Lora (italique éditorial) → display:'swap' : utilisée ponctuellement,
 //   le swap est invisible car peu de texte concerné.
 // next/font auto-héberge ces polices sur le même domaine et injecte le
-// <link rel="preload"> dans le <head> — plus de round-trip fonts.googleapis.com.
+// <link rel="preload"> dans le <head> , plus de round-trip fonts.googleapis.com.
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,7 +24,7 @@ const inter = Inter({
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  display: 'swap',     // PERF: 'swap' sur les titres (LCP) — fallback immédiat
+  display: 'swap',     // PERF: 'swap' sur les titres (LCP) , fallback immédiat
   weight: ['700'],
   variable: '--font-playfair',
   preload: true,
@@ -130,7 +130,7 @@ export default function RootLayout({
         <link rel="alternate icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         {/*
-          PERF — preconnect Vercel Analytics pour anticiper la connexion
+          PERF , preconnect Vercel Analytics pour anticiper la connexion
           (réduit la latence du beacon sans bloquer le rendu)
         */}
         <link rel="preconnect" href="https://vitals.vercel-insights.com" />

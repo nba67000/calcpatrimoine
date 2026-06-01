@@ -1,6 +1,6 @@
 // src/lib/calculators/index.ts
 //
-// **Calculator registry** — collecteur unique des modules calculateur.
+// **Calculator registry** , collecteur unique des modules calculateur.
 //
 // Voir CONTEXT.md (vocabulaire) et ADR-0001 (raison d'être).
 //
@@ -9,7 +9,7 @@
 //   2. Ajouter l'import + l'entrée dans `MODULES` ci-dessous.
 //
 // Le compilateur TypeScript garantit l'unicité du slug (aucun, c'est un Array)
-// — la duplication est repérée par `getCalculator` au premier accès si jamais
+// , la duplication est repérée par `getCalculator` au premier accès si jamais
 // elle se glisse. Pour une vérification stricte, ajouter un test runtime.
 
 import type { CalculatorModule } from './types'

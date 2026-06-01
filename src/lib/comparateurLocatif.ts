@@ -146,13 +146,13 @@ export function calculerComparateurLocatif(
   // --- Warnings ---
   warnings.push({
     type: 'info',
-    message: `Hypothèse à connaître : le calcul suppose que vous achetez le bien comptant (sans emprunt). Si vous achetez à crédit, le rendement réel du locatif est très différent — l'emprunt vous permet d'investir plus que votre apport, et les intérêts d'emprunt se déduisent de vos loyers. Le calculateur ne modélise pas cet effet (un calcul séparé serait nécessaire).`,
+    message: `Hypothèse à connaître : le calcul suppose que vous achetez le bien comptant (sans emprunt). Si vous achetez à crédit, le rendement réel du locatif est très différent. L'emprunt vous permet d'investir plus que votre apport, et les intérêts d'emprunt se déduisent de vos loyers. Le calculateur ne modélise pas cet effet (un calcul séparé serait nécessaire).`,
   })
 
   if (inputs.dureeAnnees < 10) {
     warnings.push({
       type: 'warning',
-      message: `Sur ${inputs.dureeAnnees} ans, attention : le calculateur ignore les frais d'acquisition (notaire ~7-8 % du prix d'achat). Sur courte durée, ces frais peuvent rendre le locatif perdant — il faut que la valorisation du bien compense ces frais avant même de parler de gain. Pour l'immobilier, viser au minimum 10-15 ans.`,
+      message: `Sur ${inputs.dureeAnnees} ans, attention : le calculateur ignore les frais d'acquisition (notaire ~7-8 % du prix d'achat). Sur courte durée, ces frais peuvent rendre le locatif perdant ; il faut que la valorisation du bien compense ces frais avant même de parler de gain. Pour l'immobilier, viser au minimum 10-15 ans.`,
     })
   }
 
@@ -193,7 +193,7 @@ export function calculerComparateurLocatif(
 const FAQ_COMPARATEUR: FAQSchemaItem[] = [
   {
     question: "Le calculateur prend-il en compte l'effet de levier du crédit ?",
-    answer: "Non. Le calculateur compare un achat immobilier comptant à un placement financier comptant — même capital de départ, pas de financement. L'effet de levier du crédit immobilier (intérêts déduits des loyers en régime réel, capital amorti par les loyers) change radicalement le résultat — il faut un calculateur dédié pour cette dimension.",
+    answer: "Non. Le calculateur compare un achat immobilier comptant à un placement financier comptant : même capital de départ, pas de financement. L'effet de levier du crédit immobilier (intérêts déduits des loyers en régime réel, capital amorti par les loyers) change radicalement le résultat ; il faut un calculateur dédié pour cette dimension.",
   },
   {
     question: "Quelle est la différence entre micro-foncier et régime réel ?",

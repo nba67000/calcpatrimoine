@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const LIMITES = [
   'Ce calculateur traite la succession en pleine propriété (numéraire ou biens évalués). Les successions avec démembrement (usufruit/nue-propriété) ne sont pas gérées.',
-  'L\'assurance-vie n\'est pas intégrée à la succession : elle suit ses propres règles (Art. 990 I / 757 B CGI) — voir le calculateur dédié /assurance-vie/transmission.',
+  'L\'assurance-vie n\'est pas intégrée à la succession : elle suit ses propres règles (Art. 990 I / 757 B CGI). Voir le calculateur dédié /assurance-vie/transmission.',
   'Les exonérations spéciales ne sont pas calculées : Pacte Dutreil (transmission d\'entreprise), forêts (Art. 793 CGI), œuvres d\'art, monuments historiques.',
   'Les frais de notaire et émoluments ne sont pas inclus (hors fiscalité pure).',
   'L\'abattement spécifique aux héritiers handicapés (Art. 779-II CGI, +159 325 €) n\'est pas géré dans cette V1.',

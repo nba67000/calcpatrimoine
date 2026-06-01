@@ -19,7 +19,7 @@ const LIMITES = [
   'Ce calculateur ne traite que le LMNP (loueur en meublé non professionnel). Le LMP relève d\'un régime fiscal différent (BIC professionnel, plus-values pro).',
   'L\'utilisateur saisit lui-même le total des amortissements déduits. Le calculateur ne reconstitue pas le tableau d\'amortissement à partir des données du bien.',
   'La règle de réintégration s\'applique aux cessions à partir du 15/02/2025. Pour une vente antérieure, utiliser le calculateur standard /plus-value-immobiliere.',
-  'Le notaire calcule l\'impôt définitif lors de la cession — ce calculateur fournit une estimation pré-cession.',
+  'Le notaire calcule l\'impôt définitif lors de la cession. Ce calculateur fournit une estimation pré-cession.',
 ]
 
 export default function PlusValueLmnpPage() {
@@ -33,7 +33,7 @@ export default function PlusValueLmnpPage() {
       titre={<>Plus-value immobilière<br />LMNP (réintégration)</>}
       description="Calculez la plus-value imposable d'un bien loué en meublé non professionnel (LMNP). Depuis
         le 15/02/2025, les amortissements déduits des revenus locatifs sont réintégrés au prix d'acquisition
-        pour le calcul de la PV — ce qui augmente mécaniquement l'impôt. Comparaison automatique avec le
+        pour le calcul de la PV, ce qui augmente mécaniquement l'impôt. Comparaison automatique avec le
         régime standard."
       features={[
         'Réintégration amortissements',

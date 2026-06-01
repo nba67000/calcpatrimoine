@@ -56,7 +56,7 @@ const ABATTEMENTS: Record<LienHeritier, number> = {
 
 function getBareme(lien: LienHeritier) {
   // En succession, conjoint/PACS sont exonérés (TEPA, traité en amont).
-  // Le barème renvoyé pour epoux_pacs n'est pas appliqué — on retourne
+  // Le barème renvoyé pour epoux_pacs n'est pas appliqué , on retourne
   // ligne directe par sécurité.
   if (lien === 'epoux_pacs') return BAREME_LIGNE_DIRECTE
   return getBaremePourLien(lien)

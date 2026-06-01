@@ -32,7 +32,7 @@ export default function PeaPage() {
       titre={<>Calculateur PEA<br />Fiscalité retrait + bilan latent</>}
       description="Deux usages dans un seul calculateur : (1) estimer le net après prélèvements sociaux sur
         un retrait (exonération IR après 5 ans, Art. 157-5° bis CGI) ; (2) faire le bilan
-        patrimonial avec trois vues — brut, net de sortie, et passif fiscal latent (analogue aux
+        patrimonial avec trois vues : brut, net de sortie, et passif fiscal latent (analogue aux
         impôts différés)."
       features={[
         'Exonération IR > 5 ans',

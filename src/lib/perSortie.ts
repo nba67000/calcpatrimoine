@@ -13,11 +13,11 @@ export const SOURCES_PER_SORTIE = [
   // Cf. docs/broken-links-to-fix.md
   { label: 'Article 158, 5° bis du CGI', desc: 'Sortie en rente du PER assimilée à une pension de retraite (abattement 10 %)' },
   { label: 'Article 200 A du CGI', desc: 'PFU 30 % sur la fraction "plus-values" du capital sorti' },
-  { label: 'Article 163 quatervicies du CGI', desc: 'Régime de déductibilité à l\'entrée — détermine l\'imposition à la sortie' },
+  { label: 'Article 163 quatervicies du CGI', desc: 'Régime de déductibilité à l\'entrée : détermine l\'imposition à la sortie' },
   { label: 'Article L. 136-1-2 CSS', desc: 'CSG sur pensions de retraite (taux 8,3 % normal, 6,6 % médian, 3,8 % réduit, exonéré)' },
 ]
 
-// Taux PS sur pensions de retraite (taux normal — simplification : on n'évalue
+// Taux PS sur pensions de retraite (taux normal , simplification : on n'évalue
 // pas le RFR pour appliquer un taux réduit).
 const PS_PENSION_NORMAL = 0.091  // CSG 8,3 + CRDS 0,5 + CASA 0,3 = 9,1 %
 const ABATTEMENT_PENSION = 0.10  // Art. 158-5° bis CGI
@@ -31,7 +31,7 @@ const PFU = 0.30                 // 12,8 % IR + 17,2 % PS
  * Hypothèses simplificatrices :
  * - Capital : versements déductibles imposés au barème IR (TMI à la retraite),
  *   gains imposés au PFU 30 % (12,8 + 17,2 PS).
- * - Rente : régime des pensions (Art. 158-5° bis CGI) — abattement 10 %, IR
+ * - Rente : régime des pensions (Art. 158-5° bis CGI) , abattement 10 %, IR
  *   au barème (TMI), CSG/CRDS/CASA 9,1 % (taux normal, simplification).
  * - Comparaison cumulée : capital = montant net immédiat ; rente = rente
  *   nette annuelle × (espérance de vie − âge à la retraite).
@@ -79,21 +79,21 @@ export function calculerPerSortie(inputs: PerSortieInputs): PerSortieResults {
   if (dureeRente < 5) {
     warnings.push({
       type: 'danger',
-      message: `L'espérance de vie résiduelle saisie (${dureeRente} années) est très courte. La sortie en rente perd presque tout intérêt en dessous de 10 ans — vérifier l'âge à la liquidation et l'espérance INSEE pour votre situation.`,
+      message: `L'espérance de vie résiduelle saisie (${dureeRente} années) est très courte. La sortie en rente perd presque tout intérêt en dessous de 10 ans : vérifier l'âge à la liquidation et l'espérance INSEE pour votre situation.`,
     })
   }
 
   if (inputs.tmiRetraite === 0) {
     warnings.push({
       type: 'info',
-      message: `À TMI 0 %, les versements déductibles ne génèrent pas d'impôt à la sortie. La sortie en capital est mécaniquement plus avantageuse — seuls les gains restent taxés au PFU à 30 %.`,
+      message: `À TMI 0 %, les versements déductibles ne génèrent pas d'impôt à la sortie. La sortie en capital est mécaniquement plus avantageuse : seuls les gains restent taxés au PFU à 30 %.`,
     })
   }
 
   if (inputs.tmiRetraite >= 41 && inputs.fractionVersementsDeductibles > 50) {
     warnings.push({
       type: 'warning',
-      message: `Votre tranche d'imposition est élevée à la retraite (${inputs.tmiRetraite} %) et ${inputs.fractionVersementsDeductibles} % de votre capital vient de versements que vous aviez déduits à l'entrée. Sortir en capital fait payer ${eur(impotVersements)} d'impôt sur le revenu d'un coup sur cette part. La rente étale cet impôt sur ${dureeRente} ans, ce qui peut faire baisser le total — selon votre durée de vie.`,
+      message: `Votre tranche d'imposition est élevée à la retraite (${inputs.tmiRetraite} %) et ${inputs.fractionVersementsDeductibles} % de votre capital vient de versements que vous aviez déduits à l'entrée. Sortir en capital fait payer ${eur(impotVersements)} d'impôt sur le revenu d'un coup sur cette part. La rente étale cet impôt sur ${dureeRente} ans, ce qui peut faire baisser le total selon votre durée de vie.`,
     })
   }
 

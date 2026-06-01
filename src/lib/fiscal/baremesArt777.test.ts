@@ -7,7 +7,7 @@ import {
   ABATTEMENTS_ART_779,
 } from './baremesArt777'
 
-describe('appliquerBareme — Art. 777 CGI', () => {
+describe('appliquerBareme , Art. 777 CGI', () => {
   it('ligne directe 100 000 € (après abattement) → 18 194 €', () => {
     const r = appliquerBareme(100000, 0, BAREME_LIGNE_DIRECTE)
     // 5%×8072 + 10%×4037 + 15%×3823 + 20%×84068 = 18194

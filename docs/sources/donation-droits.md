@@ -22,7 +22,7 @@
   - Point clé : 4 tableaux (ligne directe / époux-PACS / frères-sœurs / autres), barèmes progressifs par tranches.
 
 - **Article 779 CGI** - Abattements applicables aux donations et successions selon le lien de parenté
-  - URL : ~~`LEGIARTI000048845104`~~ (morte HTTP 404) — utiliser à la place `LEGIARTI000026292566` (testé OK 2026-05-31)
+  - URL : ~~`LEGIARTI000048845104`~~ (morte HTTP 404) , utiliser à la place `LEGIARTI000026292566` (testé OK 2026-05-31)
   - Version en vigueur : 2026
   - Point clé : 100 000 € enfant/parent ; 159 325 € handicapé ; 15 932 € frère-sœur ; 7 967 € neveu-nièce.
 

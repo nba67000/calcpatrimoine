@@ -157,7 +157,7 @@ const HOWTO_LMNP: HowToSchema = {
   steps: [
     { name: "Saisir les loyers annuels", text: "Loyers bruts encaissés sur l'année." },
     { name: "Indiquer les charges réelles", text: "Charges déductibles en régime réel : entretien, taxes, copropriété, intérêts d'emprunt." },
-    { name: "Saisir les amortissements", text: "Amortissement annuel du bien (2-3 %/an) + meubles (10 %/an) — seulement utilisé en régime réel." },
+    { name: "Saisir les amortissements", text: "Amortissement annuel du bien (2-3 %/an) + meubles (10 %/an) : seulement utilisé en régime réel." },
     { name: "Choisir le type de meublé + TMI", text: "Détermine l'abattement micro et le seuil applicable." },
     { name: "Lire la comparaison", text: "Le calculateur affiche l'impôt dans chaque régime et l'économie réalisée." },
   ],

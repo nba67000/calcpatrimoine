@@ -128,7 +128,7 @@ html {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   PERF — Animations CSS natives (remplacent framer-motion)
+   PERF , Animations CSS natives (remplacent framer-motion)
    Importées par CoupleCalculator, RenteCalculator, InverseCalculator.
    Aucun JS au runtime → TBT non impacté.
    ───────────────────────────────────────────────────────────── */
@@ -143,7 +143,7 @@ html {
   animation: perfFadeIn 0.25s ease-out both;
 }
 
-/* Expansion verticale — remplace AnimatePresence height 0→auto */
+/* Expansion verticale , remplace AnimatePresence height 0→auto */
 @keyframes perfExpand {
   from { opacity: 0; max-height: 0; }
   to   { opacity: 1; max-height: 900px; }
@@ -166,7 +166,7 @@ html {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   PERF — Font fallback metrics (réduit le CLS dû au FOUT)
+   PERF , Font fallback metrics (réduit le CLS dû au FOUT)
    Ces valeurs ajustent la police système utilisée en fallback
    pour qu'elle ait les mêmes dimensions que Playfair Display,
    minimisant le layout shift au swap.

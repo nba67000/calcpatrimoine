@@ -475,7 +475,7 @@ export const FAQ_DONATION: FAQSchemaItem[] = [
   {
     question: "C'est quoi le don familial de sommes d'argent (Art. 790 G CGI) ?",
     answer:
-      "L'article 790 G du CGI ajoute 31 865 € d'abattement aux dons en argent (chèque, virement, espèces). Cet abattement s'ajoute à l'abattement personnel et repart à zéro tous les 15 ans. Trois conditions cumulatives : le donateur a moins de 80 ans, le donataire est majeur (ou mineur émancipé), et le don va à un enfant, petit-enfant, arrière-petit-enfant — ou, à défaut de descendant, à un neveu ou une nièce. Le don doit porter sur de l'argent, pas sur un bien immobilier ni sur des actions.",
+      "L'article 790 G du CGI ajoute 31 865 € d'abattement aux dons en argent (chèque, virement, espèces). Cet abattement s'ajoute à l'abattement personnel et repart à zéro tous les 15 ans. Trois conditions cumulatives : le donateur a moins de 80 ans, le donataire est majeur (ou mineur émancipé), et le don va à un enfant, petit-enfant, arrière-petit-enfant (ou, à défaut de descendant, à un neveu ou une nièce). Le don doit porter sur de l'argent, pas sur un bien immobilier ni sur des actions.",
   },
   {
     question: "Quel est le barème des droits de donation en ligne directe ?",

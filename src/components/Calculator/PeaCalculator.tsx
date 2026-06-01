@@ -50,7 +50,7 @@ export default function PeaCalculator() {
                 className="w-full px-3 py-2 border border-neutral-200 rounded text-right" />
               <p className="text-xs text-neutral-500 mt-1">
                 Plafond légal : 150 000 € (PEA classique). Si votre PEA vaut plus que ce que vous y avez
-                versé, la différence est une plus-value latente — non taxée tant que vous ne retirez rien,
+                versé, la différence est une plus-value latente : non taxée tant que vous ne retirez rien,
                 mais sur laquelle vous devrez les prélèvements sociaux à la sortie.
               </p>
             </div>

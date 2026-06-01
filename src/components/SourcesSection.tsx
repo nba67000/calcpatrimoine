@@ -4,7 +4,7 @@ import type { Source } from '@/lib/calculators/types'
 
 interface Props {
   sources?: Source[]
-  /** Slug du calculateur — résolution automatique via le registry (cf. ADR-0001). */
+  /** Slug du calculateur , résolution automatique via le registry (cf. ADR-0001). */
   slug?: string
   title?: string
 }

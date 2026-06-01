@@ -127,7 +127,7 @@ export default function PerSortieCalculator() {
                 className="w-full"
               />
               <p className="text-xs text-neutral-500 mt-1">
-                Indicatif. Le taux réel dépend de l&apos;âge et des tables de mortalité de l&apos;assureur — voir le
+                Indicatif. Le taux réel dépend de l&apos;âge et des tables de mortalité de l&apos;assureur. Voir le
                 calculateur /rente-viagere pour une estimation actuarielle précise.
               </p>
             </div>

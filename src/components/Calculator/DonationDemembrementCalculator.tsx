@@ -70,7 +70,7 @@ export default function DonationDemembrementCalculator() {
               <p className="text-xs text-neutral-500 mt-1">
                 Le donateur garde l&apos;usufruit (droit d&apos;usage et de percevoir les loyers), le donataire
                 reçoit la nue-propriété. Plus le donateur est jeune, plus l&apos;usufruit qu&apos;il conserve
-                vaut cher — donc la nue-propriété transmise vaut moins, et les droits à payer baissent
+                vaut cher : la nue-propriété transmise vaut moins, et les droits à payer baissent
                 (barème Art. 669 CGI).
               </p>
             </div>

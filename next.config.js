@@ -48,7 +48,7 @@ const nextConfig = {
         ],
       },
       // PERF : cache moyen sur les images publiques
-      // Next.js n'accepte pas les groupes capturants — on cible /public/* avec un wildcard simple
+      // Next.js n'accepte pas les groupes capturants , on cible /public/* avec un wildcard simple
       {
         source: '/:path*.(png|jpg|jpeg|gif|svg|ico|webp|avif)',
         headers: [

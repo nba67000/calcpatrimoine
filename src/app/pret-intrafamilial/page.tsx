@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const LIMITES = [
   'Le calculateur estime un remboursement in fine pur : intérêts annuels + capital intégral à la fin. Pour un prêt amortissable, l\'amortissement réduit la créance restante mais augmente la charge de remboursement annuelle.',
-  'Le taux d\'intérêt minimal acceptable (sans requalification) n\'est pas codé en dur — référence usuelle : TMM (taux moyen mensuel) publié par la Banque de France. À actualiser annuellement.',
+  'Le taux d\'intérêt minimal acceptable (sans requalification) n\'est pas codé en dur. Référence usuelle : TMM (taux moyen mensuel) publié par la Banque de France. À actualiser annuellement.',
   'Le calculateur suppose que l\'emprunteur est aussi héritier du prêteur. Sinon, la créance s\'impute sur l\'ensemble des héritiers proportionnellement.',
   'La déclaration du prêt (formulaire 2062 si > 5 000 €) et des intérêts (formulaire 2778 si > 1 000 €/an) est obligatoire mais hors scope de ce calculateur.',
   'Le risque de requalification en don indirect (prêt sans intérêt sans remboursement effectif, ou simulation de remboursement avec dons réguliers compensatoires) n\'est pas modélisé.',

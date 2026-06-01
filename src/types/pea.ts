@@ -21,11 +21,11 @@ export interface PeaResults {
   vueNetteSortie: number         // versements + PV × (1 − PS/PFU)
   passifLatentEstime: number     // = PV × taux effectif
 
-  // Sortie (rachat partiel ou total) — appliqué au montantRetrait
+  // Sortie (rachat partiel ou total) , appliqué au montantRetrait
   pvDansRetrait: number
   impotSurRetrait: number
   netRetrait: number
-  tauxAppliqueRetrait: number    // 0 (avant 5 ans non détenu — pas codé), 17,2 (>5 ans) ou 30 (<5 ans simplifié)
+  tauxAppliqueRetrait: number    // 0 (avant 5 ans non détenu , pas codé), 17,2 (>5 ans) ou 30 (<5 ans simplifié)
   exonerationIrActive: boolean   // true si âge >= 5 ans
 
   warnings: Array<{ type: 'danger' | 'warning' | 'info'; message: string }>

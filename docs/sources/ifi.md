@@ -6,7 +6,7 @@
 > ⚠ **Crawl 2026-05-31** : **toutes** les URLs Légifrance et BOFiP de ce document
 > sont mortes (HTTP 404). Les URLs sont marquées d'un `~~strikethrough~~`. Cf.
 > `docs/broken-links-to-fix.md` pour la liste consolidée. Les références textuelles
-> (Art. 964, 977, 973, 974, 979 CGI) restent valides et exploitables — chercher
+> (Art. 964, 977, 973, 974, 979 CGI) restent valides et exploitables , chercher
 > directement sur Légifrance.
 
 ## Textes de loi
