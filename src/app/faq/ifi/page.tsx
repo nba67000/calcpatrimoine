@@ -159,8 +159,8 @@ const sections: FAQSection[] = [
               les dettes envers des proches sous certaines conditions.
             </p>
             <p className="text-sm text-neutral-600">
-              Important : depuis 2018, les dettes déductibles sont plafonnées pour les patrimoines supérieurs
-              à 5 000 000 € (Art. 974 II CGI). Ce calculateur ne gère pas ce plafond.
+              Important : depuis 2018, les emprunts déductibles sont plafonnés pour les patrimoines de plus
+              de 5 000 000 € (Art. 974 II CGI). Ce calculateur ne gère pas ce plafond.
             </p>
             <div className="mt-4">
               <CrossLink href="/ifi" title="Calculateur IFI" description="Saisissez votre patrimoine net de dettes et calculez votre IFI 2026." />

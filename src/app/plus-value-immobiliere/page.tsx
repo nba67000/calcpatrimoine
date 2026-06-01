@@ -117,8 +117,9 @@ export default function PlusValueImmobilierePage() {
             <p>
               <strong>Plus vous gardez longtemps, moins vous payez, et à partir d&apos;un certain stade, vous ne payez plus rien.</strong>{' '}
               Deux taxes s&apos;appliquent sur le gain : l&apos;impôt sur le revenu (19 %) et les prélèvements sociaux (17,2 %).
-              Chaque année supplémentaire de détention réduit ces deux taxes, mais pas à la même vitesse :
-              l&apos;impôt sur le revenu tombe à zéro à 22 ans, les prélèvements sociaux seulement à 30 ans.
+              Chaque année supplémentaire de détention réduit les impôts, mais les deux taxes s&apos;annulent
+              à des moments différents. Après 22 ans de détention : l&apos;impôt sur le revenu tombe à zéro.
+              Après 30 ans : les prélèvements sociaux aussi. Avant ces seuils, vous payerez quelque chose.
             </p>
 
             <p>

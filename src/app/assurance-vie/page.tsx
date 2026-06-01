@@ -124,10 +124,11 @@ export default function AssuranceVieHubPage() {
               après 8 ans de détention.
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              <strong>Le calculateur Transmission</strong> traite ce que reçoivent vos bénéficiaires à votre décès : les sommes
-              transmises sortent de la succession civile et suivent une fiscalité propre (Art. 990 I et 757 B CGI),
-              avec des abattements et des taux qui dépendent de votre âge au moment des versements,
-              pas de votre âge au décès.
+              <strong>Le calculateur Transmission</strong> traite ce que reçoivent vos bénéficiaires à votre décès.
+              L&apos;assurance-vie échappe à la succession classique et suit ses propres règles
+              (Art. 990 I et 757 B CGI). Ce qui compte : votre âge au moment des versements, pas votre âge au décès.
+              Versé avant 70 ans = abattement de 152 500 € par bénéficiaire. Versé après 70 ans = abattement
+              de 30 500 € à partager entre tous.
             </p>
           </div>
         </section>

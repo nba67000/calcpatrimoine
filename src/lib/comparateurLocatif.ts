@@ -152,7 +152,7 @@ export function calculerComparateurLocatif(
   if (inputs.dureeAnnees < 10) {
     warnings.push({
       type: 'warning',
-      message: `Sur ${inputs.dureeAnnees} ans, attention : le calculateur ignore les frais d'acquisition (notaire ~7-8 % du prix d'achat). Sur courte durée, ces frais peuvent rendre le locatif perdant ; il faut que la valorisation du bien compense ces frais avant même de parler de gain. Pour l'immobilier, viser au minimum 10-15 ans.`,
+      message: `Sur ${inputs.dureeAnnees} ans, attention : le calculateur ignore les frais d'acquisition (notaire ~7-8 % du prix d'achat). Sur courte durée, ces frais peuvent rendre le locatif perdant : il faut d'abord que la valorisation du bien rattrape ces 7-8 % avant de commencer à gagner quoi que ce soit. Pour l'immobilier, viser au minimum 10-15 ans.`,
     })
   }
 

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 }
 
 const LIMITES = [
-  'Ce calculateur traite la succession en pleine propriété (numéraire ou biens évalués). Les successions avec démembrement (usufruit/nue-propriété) ne sont pas gérées.',
+  'Ce calculateur traite la succession en pleine propriété : argent, comptes, biens transmis intégralement à l\'héritier. Il ne gère pas le démembrement (cas où l\'usufruit reste à un parent et la nue-propriété va à l\'enfant).',
   'L\'assurance-vie n\'est pas intégrée à la succession : elle suit ses propres règles (Art. 990 I / 757 B CGI). Voir le calculateur dédié /assurance-vie/transmission.',
   'Les exonérations spéciales ne sont pas calculées : Pacte Dutreil (transmission d\'entreprise), forêts (Art. 793 CGI), œuvres d\'art, monuments historiques.',
   'Les frais de notaire et émoluments ne sont pas inclus (hors fiscalité pure).',

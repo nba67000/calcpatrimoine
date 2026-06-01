@@ -61,9 +61,9 @@ export default function PERIndividuelPage() {
       <CalculateurPageLayout
       breadcrumb={[{ href: '/', label: 'Accueil' }, { label: 'PER individuel - économie d\'impôt' }]}
       titre={<>Simulateur PER individuel<br />Économie d&apos;impôt sur versement</>}
-      description="Calculez l'économie d'impôt générée par un versement volontaire sur votre Plan
-        d'Épargne Retraite individuel (PERIN). Plafond de déduction 2026, report des
-        plafonds non utilisés sur les 5 années suivantes (LF 2026), coût net réel du versement."
+      description="Versez sur votre PER, voyez l'impôt économisé cette année. Plafond 2026 calculé,
+        années non consommées reportables sur les 5 années suivantes (LF 2026), coût net du versement
+        après économie d'impôt."
       features={['Art. 163 quatervicies CGI', 'PASS 2025 - plafonds 2026', 'Report plafonds N-1 à N-5 (LF 2026)', 'Zéro donnée conservée']}
       calculator={<PERCalculator />}
       currentHref="/per-individuel"

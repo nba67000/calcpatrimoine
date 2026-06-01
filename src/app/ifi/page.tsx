@@ -239,7 +239,7 @@ export default function IFIPage() {
               {[
                 {
                   q: 'Qui doit payer l\'IFI ?',
-                  r: 'Si votre patrimoine immobilier net (valeur des biens moins les dettes) dépasse 1 300 000 € au 1er janvier, vous devez payer l\'IFI. Ce seuil s\'applique à l\'ensemble du foyer fiscal, pas par individu. Si vous habitez à l\'étranger, seuls vos biens situés en France comptent.',
+                  r: 'Si votre patrimoine immobilier net (valeur des biens moins les dettes) dépasse 1 300 000 € au 1er janvier, vous devez payer l\'IFI. Ce seuil compte pour le couple entier (mariés ou pacsés), pas chacun de son côté. Si vous habitez à l\'étranger, seuls vos biens situés en France comptent.',
                 },
                 {
                   q: 'Quels biens entrent dans l\'IFI ?',
@@ -247,7 +247,7 @@ export default function IFIPage() {
                 },
                 {
                   q: 'Le plafonnement IFI + IR, c\'est quoi exactement ?',
-                  r: 'Selon l\'Art. 979 CGI, la somme IFI + impôt sur le revenu ne peut pas dépasser 75 % de vos revenus de l\'année. Si c\'est le cas, l\'IFI est réduit du montant qui dépasse ce plafond. Cela concerne surtout les personnes dont les revenus sont faibles par rapport à leur patrimoine (ex. retraités avec un gros patrimoine immobilier peu productif).',
+                  r: 'Une règle protège ceux qui ont beaucoup de patrimoine mais peu de revenus : le total IFI + impôt sur le revenu ne peut pas dépasser 75 % de vos revenus de l\'année (Art. 979 CGI). Si le total dépasse, l\'IFI est réduit du surplus. Cas typique : un retraité dont la maison vaut cher mais qui touche une petite pension, sans ce plafond il serait sur-imposé.',
                 },
               ].map(({ q, r }) => (
                 <div key={q} className="border-l-2 border-accent-400 pl-4">
